@@ -218,7 +218,7 @@ class DB_DataObject
      * @access  private (ish) - extended classes can overide this
      * @var  string
      */
-    public $_database = '';
+    public $_database = false;
 
     
      
