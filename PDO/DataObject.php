@@ -334,6 +334,8 @@ class DB_DataObject
             if (!$this->_database) {
                 $this->_database = $dsn_ar['path'];
                 
+                // what about databases that do not expose their name???
+                
                 switch($dsn_ar['scheme']) {
                     case 'sqlite':
                         $this->_database  = basename($this->_database);
