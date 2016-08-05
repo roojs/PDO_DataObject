@@ -133,9 +133,12 @@ class DB_DataObject
      */
     static $config = array(
         
-            // fill me in...
+            
+            'PDO' => 'PDO',  
         
         
+        
+            // fill me in..
         
     );
     
