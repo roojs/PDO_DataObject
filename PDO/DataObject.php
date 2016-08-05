@@ -28,104 +28,11 @@
  * @link       https://github.com/roojs/PDO_DataObject
  */
   
-
-/* =========================================================================== 
- *
- *    !!!!!!!!!!!!!               W A R N I N G                !!!!!!!!!!!
- *
- *  THIS MAY SEGFAULT PHP IF YOU ARE USING THE ZEND OPTIMIZER (to fix it, 
- *  just add "define('DB_DATAOBJECT_NO_OVERLOAD',true);" before you include 
- *  this file. reducing the optimization level may also solve the segfault.
- *  ===========================================================================
- */
-
-/**
- * The main "DB_DataObject" class is really a base class for your own tables classes
- *
- * // Set up the class by creating an ini file (refer to the manual for more details
- * [DB_DataObject]
- * database         = mysql:/username:password@host/database
- * schema_location = /home/myapplication/database
- * class_location  = /home/myapplication/DBTables/
- * clase_prefix    = DBTables_
- *
- *
- * //Start and initialize...................... - dont forget the &
- * $config = parse_ini_file('example.ini',true);
- * $options = &PEAR::getStaticProperty('DB_DataObject','options');
- * $options = $config['DB_DataObject'];
- *
- * // example of a class (that does not use the 'auto generated tables data')
- * class mytable extends DB_DataObject {
- *     // mandatory - set the table
- *     var $_database_dsn = "mysql://username:password@localhost/database";
- *     var $__table = "mytable";
- *     function table() {
- *         return array(
- *             'id' => 1, // integer or number
- *             'name' => 2, // string
- *        );
- *     }
- *     function keys() {
- *         return array('id');
- *     }
- * }
- *
- * // use in the application
- *
- *
- * Simple get one row
- *
- * $instance = new mytable;
- * $instance->get("id",12);
- * echo $instance->somedata;
- *
- *
- * Get multiple rows
- *
- * $instance = new mytable;
- * $instance->whereAdd("ID > 12");
- * $instance->whereAdd("ID < 14");
- * $instance->find();
- * while ($instance->fetch()) {
- *     echo $instance->somedata;
- * }
+ 
+ 
+  
 
 
-/**
- * Needed classes
- * - we use getStaticProperty from PEAR pretty extensively (cant remove it ATM)
- */
-
-require_once 'PEAR.php';
-
-/**
- * We are duping fetchmode constants to be compatible with
- * both DB and MDB2
- */
-define('DB_DATAOBJECT_FETCHMODE_ORDERED',1); 
-define('DB_DATAOBJECT_FETCHMODE_ASSOC',2);
-
-
-
-
-
-/**
- * these are constants for the get_table array
- * user to determine what type of escaping is required around the object vars.
- */
-define('DB_DATAOBJECT_INT',  1);  // does not require ''
-define('DB_DATAOBJECT_STR',  2);  // requires ''
-
-define('DB_DATAOBJECT_DATE', 4);  // is date #TODO
-define('DB_DATAOBJECT_TIME', 8);  // is time #TODO
-define('DB_DATAOBJECT_BOOL', 16); // is boolean #TODO
-define('DB_DATAOBJECT_TXT',  32); // is long text #TODO
-define('DB_DATAOBJECT_BLOB', 64); // is blob type
-
-
-define('DB_DATAOBJECT_NOTNULL', 128);           // not null col.
-define('DB_DATAOBJECT_MYSQLTIMESTAMP'   , 256);           // mysql timestamps (ignored by update/insert)
 /*
  * Define this before you include DataObjects.php to  disable overload - if it segfaults due to Zend optimizer..
  */
@@ -182,34 +89,7 @@ $GLOBALS['_DB_DATAOBJECT']['CACHE'] = array();
 $GLOBALS['_DB_DATAOBJECT']['OVERLOADED'] = false;
 $GLOBALS['_DB_DATAOBJECT']['QUERYENDTIME'] = 0;
 
-
  
-// this will be horrifically slow!!!!
-// these two are BC/FC handlers for call in PHP4/5
-
- 
-if (!defined('DB_DATAOBJECT_NO_OVERLOAD')) {
-    
-    class DB_DataObject_Overload 
-    {
-        function __call($method,$args) 
-        {
-            $return = null;
-            $this->_call($method,$args,$return);
-            return $return;
-        }
-        function __sleep() 
-        {
-            return array_keys(get_object_vars($this)) ; 
-        }
-    }
-} else {
-    class DB_DataObject_Overload {}
-}
-
-
-    
-
 
  
 
@@ -220,7 +100,7 @@ if (!defined('DB_DATAOBJECT_NO_OVERLOAD')) {
  * @since    PHP 4.0
  */
  
-class DB_DataObject extends DB_DataObject_Overload
+class DB_DataObject
 {
    /**
     * The Version - use this to check feature changes
@@ -228,8 +108,35 @@ class DB_DataObject extends DB_DataObject_Overload
     * @access   private
     * @var      string
     */
-    var $_DB_DataObject_version = "1.11.3";
+    var $_PDO_DataObject_version = "1.0";
 
+    
+    
+    
+
+    /**
+     * these are constants for the get_table array
+     * user to determine what type of escaping is required around the object vars.
+     */
+    const INT =   1;  // does not require ''
+    const STR =  2;  // requires ''
+    
+    const DATE = 4;  // is date #TODO
+    const TIME = 8;  // is time #TODO
+    const BOOL = 16; // is boolean #TODO
+    const TXT =  32; // is long text #TODO
+    const BLOB = 64; // is blob type
+     
+    const NOTNULL = 128;           // not null col.
+    const MYSQLTIMESTAMP =256;           // mysql timestamps (ignored by update/insert)
+    
+    
+    
+    
+    
+    
+    
+    
     /**
      * The Database table (used by table extends)
      *
