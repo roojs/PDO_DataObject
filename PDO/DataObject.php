@@ -317,7 +317,7 @@ class DB_DataObject
         }
         
         
-        $md5 = md5(serialize($dsn));
+        $md5 = md5($dsn);
         
         $this->_database_dsn_md5 = $md5;
         // we now have the dsn + 
