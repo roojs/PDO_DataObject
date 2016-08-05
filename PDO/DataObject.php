@@ -287,7 +287,7 @@ class DB_DataObject
                 $this->_database = isset(self::$config['tables'][$tn]) ? self::$config['tables'][$tn] : false;
             }
             if (0 === self::$config['debug']) {
-                $this->debug("Checking for database specific ini ('{$this->_database}') : config[database][$this->_database] in options","CONNECT");
+                $this->debug("Checking for database specific ini ('{$this->_database}') : config[databases][$this->_database] in options","CONNECT");
             }
             
             if ($this->_database && !empty($options["database_{$this->_database}"]))  {
