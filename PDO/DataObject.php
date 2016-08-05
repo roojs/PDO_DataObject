@@ -32,13 +32,7 @@
  
   
 
-
-/*
- * Define this before you include DataObjects.php to  disable overload - if it segfaults due to Zend optimizer..
- */
-//define('DB_DATAOBJECT_NO_OVERLOAD',true)  
-
-
+ 
 /**
  * Theses are the standard error codes, most methods will fail silently - and return false
  * to access the error message either use $table->_lastError
@@ -130,8 +124,12 @@ class DB_DataObject
     const NOTNULL = 128;           // not null col.
     const MYSQLTIMESTAMP =256;           // mysql timestamps (ignored by update/insert)
     
-    
-    
+    /**
+    * Used for clarity in methods like delete() and count() to specify that the method should
+    * build the condition only out of the whereAdd's and not the object parameters. 
+    */
+    const WHEREADD_ONLY = 'wao';
+
     
     
     
