@@ -219,11 +219,11 @@ class DB_DataObject
     /**
      * connects to the database
      *
+     *  Uses database DSN to connect
      *
-     * TODO: tidy this up - This has grown to support a number of connection options like
-     *  a) dynamic changing of ini file to change which database to connect to
-     *  b) multi data via the table_{$table} = dsn ini option
-     *  c) session based storage.
+     *  Database specific behaviours relating to connect?
+     *   * ?????
+     * 
      *
      * @access private
      * @return true | PEAR::error
