@@ -437,7 +437,25 @@ class DB_DataObject
 
     }
     
-    
+    /**
+     * Set the global configuration...
+     * Used to be via PEAR::getStaticProperty() - now depricated..
+     * 
+     * @param   string  $k column
+     * @param   string  $v value
+     * @access  public
+     * @return  int     No. of rows
+     */
+     
+    public function loadConfig($cfg = array()) {
+    {
+        $this->_loadConfig();
+        foreach ($cfg as $k=>$v) {
+            self::$config[$k] = $v;
+        }
+        
+
+    }
     
     
     
