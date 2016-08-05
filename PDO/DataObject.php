@@ -146,8 +146,9 @@ class DB_DataObject
     static private $sequence = array(); // cache of sequence keys (modifyable)
     
     
-    static public $lasterror   = false; // pear error objects for last error event.
-
+    static private $lasterror   = false; // pear error objects for last error event. accesss with lastError() ???
+    
+    
         
    /**
     *
