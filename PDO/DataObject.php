@@ -189,12 +189,12 @@ class DB_DataObject
         if (!self::$config_loaded) {
             $this->_loadConfig();
         }
-        // Set database driver for reference 
-        $db_driver = empty($_DB_DATAOBJECT['CONFIG']['db_driver']) ? 
-                'DB' : $_DB_DATAOBJECT['CONFIG']['db_driver'];
+        // We can use a fake PDO class when testing..
+        $PDO = $config['PDO'];
+        
         
         // is it already connected ?    
-        if ($this->_database_dsn_md5 && !empty($_DB_DATAOBJECT['CONNECTIONS'][$this->_database_dsn_md5])) {
+        if ($this->_database_dsn_md5 && !empty(self::$connections[$this->_database_dsn_md5])) {
             
             // connection is an error...
             if (PEAR::isError($_DB_DATAOBJECT['CONNECTIONS'][$this->_database_dsn_md5])) {
