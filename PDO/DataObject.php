@@ -132,6 +132,10 @@ class DB_DataObject
      * @var     array
      */
     static $config = array(
+            /**
+             * The database DSN - @see _connect
+             */
+            'database' => false,  
         
             /**
             * PDO Class - this can be changed for unit testing. (normally leave as default.)
