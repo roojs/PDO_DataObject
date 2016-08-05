@@ -121,10 +121,10 @@ class DB_DataObject
     const INT = 1;  // does not require ''
     const STR = 2;  // requires ''
     
-    const DATE = 4;  // is date #TODO
-    const TIME = 8;  // is time #TODO
-    const BOOL = 16; // is boolean #TODO
-    const TXT  = 32; // is long text #TODO
+    const DATE = 4;  // is date 
+    const TIME = 8;  // is time 
+    const BOOL = 16; // is boolean 
+    const TXT  = 32; // is long text 
     const BLOB = 64; // is blob type
      
     const NOTNULL = 128;           // not null col.
