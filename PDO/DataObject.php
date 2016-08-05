@@ -138,6 +138,8 @@ class DB_DataObject
             */
             'PDO' => 'PDO',  
         
+            'debug' => 0,   // debugLevel...
+        
         
             'tables' => array(), // map of tables names to database names 
             
