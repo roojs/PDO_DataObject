@@ -364,7 +364,7 @@ class DB_DataObject
         if (!empty($dsn_ar['query'])) {
             $pdo_dsn = ';' . str_replace('&', ';',  $dsn_ar['query']); // could just str_replace..
         }
-        
+        $opts = array();
         if (!empty($dsn_ar['fragment'])) {
             // options.. |MYSQL_ATTR_INIT_COMMAND=....|
             $pdo_rc = new ReflectionClass( "PDO" );
