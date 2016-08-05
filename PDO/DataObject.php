@@ -433,7 +433,7 @@ class DB_DataObject
      * @return - the current config..
      */
      
-    public static function loadConfig($cfg = array()) {
+    public static function loadConfig($cfg = array()) 
     {
         $this->_loadPEARConfig();
         foreach ($cfg as $k=>$v) {
