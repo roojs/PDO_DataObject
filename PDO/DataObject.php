@@ -351,8 +351,8 @@ class DB_DataObject
         $pdo_dsn =
             $dsn_ar['scheme'] . ':' .
             'dbname=' . $dsn_ar['path'] .
-            (empty($dsn_ar['host']) ? '': ';host=' . $dsn_ar['host'] .
-            (empty($dsn_ar['port']) ? '' : ';port=' . $dsn_ar['port'];
+            (empty($dsn_ar['host']) ? '': ';host=' . $dsn_ar['host']) .
+            (empty($dsn_ar['port']) ? '' : ';port=' . $dsn_ar['port']);
             
          if (self::$debug) {
             $this->debug("NEW CONNECTION TP DATABASE :" .$this->_database , "CONNECT",3);
