@@ -28,14 +28,7 @@
  * @link       https://github.com/roojs/PDO_DataObject
  */
   
-  
-
- /*
- *
- * @package  DB_DataObject
- * @author   Alan Knowles <alan@akbkhome.com>
- * @since    PHP 4.0
- */
+   
  
 class PDO_DataObject
 {
