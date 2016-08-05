@@ -314,14 +314,8 @@ class DB_DataObject
                  
         }
         
+        $md5 = md5(serialize($dsn));
         
-        if (is_string($dsn)) {
-            $md5 = md5($dsn);
-        } else {
-            /// support array based dsn's  ** no idea if this is still used!?
-            $md5 = md5(serialize($dsn));
-        }
-    
         $this->_database_dsn_md5 = $md5;
         // we now have the dsn + 
         
