@@ -423,6 +423,10 @@ class DB_DataObject
      */
     private function _loadPEARConfig()
     {
+        
+        if (self::$config_loaded) {
+            return;
+        }
         self::$config_loaded = true;
         
         if (!class_exists('PEAR')) {
