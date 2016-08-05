@@ -319,7 +319,6 @@ class DB_DataObject
         
         $md5 = md5($dsn); // we used to support array of dsn? - not sure why... as you should use a proxy here...
         
-        $dsn_ar = parse_url($dsn);
         
         $this->_database_dsn_md5 = $md5;
         // we now have the dsn + 
@@ -332,58 +331,38 @@ class DB_DataObject
             
             
             if (!$this->_database) {
-                $this->_database = $dsn_ar['path'];
-                
-                // what about databases that do not expose their name???
-                
-                switch($dsn_ar['scheme']) {
-                    case 'sqlite':
-                        $this->_database  = basename($this->_database);
-                        break;
-                    case 'ibase':
-                        $this->_database  = substr(basename($this->_database), 0, -4);
-                        break;
-                    //fixme?? Oracle?        
-                }
+                $this->_database = self::$connections[$md5]->database;
                 
             }
             return true;
         }
 
         
-        if (!empty($_DB_DATAOBJECT['CONFIG']['debug'])) {
+            
+                
+            
+        
+        
+        if (self::$debug) {
             $this->debug("NEW CONNECTION TP DATABASE :" .$this->_database , "CONNECT",3);
             /* actualy make a connection */
             $this->debug(print_r($dsn,true) ." {$this->_database_dsn_md5}", "CONNECT",3);
         }
         
-        // Note this is verbose deliberatly! 
+        $dsn_ar = parse_url($dsn);
+
+        self::$connections[$md5] = new PDO($pdo_dsn, $username, $password, $options);
         
-        if ($db_driver == 'DB') {
-            
-            /* PEAR DB connect */
-            
             // this allows the setings of compatibility on DB 
-            $db_options = PEAR::getStaticProperty('DB','options');
-            require_once 'DB.php';
-            if ($db_options) {
-                $_DB_DATAOBJECT['CONNECTIONS'][$this->_database_dsn_md5] = DB::connect($dsn,$db_options);
-            } else {
-                $_DB_DATAOBJECT['CONNECTIONS'][$this->_database_dsn_md5] = DB::connect($dsn);
-            }
-             
+        $db_options = PEAR::getStaticProperty('DB','options');
+        require_once 'DB.php';
+        if ($db_options) {
+            $_DB_DATAOBJECT['CONNECTIONS'][$this->_database_dsn_md5] = DB::connect($dsn,$db_options);
         } else {
-            /* assumption is MDB2 */
-            require_once 'MDB2.php';
-            // this allows the setings of compatibility on MDB2 
-            $db_options = PEAR::getStaticProperty('MDB2','options');
-            $db_options = is_array($db_options) ? $db_options : array();
-            $db_options['portability'] = isset($db_options['portability'] )
-                ? $db_options['portability']  : MDB2_PORTABILITY_ALL ^ MDB2_PORTABILITY_FIX_CASE;
-            $_DB_DATAOBJECT['CONNECTIONS'][$this->_database_dsn_md5] = MDB2::connect($dsn,$db_options);
-            
+            $_DB_DATAOBJECT['CONNECTIONS'][$this->_database_dsn_md5] = DB::connect($dsn);
         }
- 
+         
+        
         
         if (!empty($_DB_DATAOBJECT['CONFIG']['debug'])) {
             $this->debug(print_r($_DB_DATAOBJECT['CONNECTIONS'],true), "CONNECT",5);
