@@ -185,7 +185,7 @@ class DB_DataObject
     {
         
         
-        if (empty($_DB_DATAOBJECT['CONFIG'])) {
+        if (!self::$config_loaded) {
             $this->_loadConfig();
         }
         // Set database driver for reference 
