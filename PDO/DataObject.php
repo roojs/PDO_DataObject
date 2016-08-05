@@ -144,7 +144,9 @@ class DB_DataObject
     static private $ini = array(); // mapping of database to ini file results
     static private $links = array(); //  mapping of database to links file
     static private $sequence = array(); // cache of sequence keys (modifyable)
-    static private $lasterror   = false; // pear error objects for last error event.
+    
+    
+    static public $lasterror   = false; // pear error objects for last error event.
 
         
    /**
