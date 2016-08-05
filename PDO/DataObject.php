@@ -82,7 +82,7 @@ class DB_DataObject
     */
     var $_PDO_DataObject_version = "1.0";
  
-    /* ---------------- ---------------- ---------------- -------------------------------- */
+    /* ---------------- ---------------- Constants  -------------------------------- */
 
     /**
      * these are constants for the get_table array
@@ -121,6 +121,13 @@ class DB_DataObject
     const ERROR_NOCLASS =       -4;  // no class exists
     const ERROR_INVALID_CALL  =  -7;  // overlad getter/setter failure
      
+    
+    /* ---------------- ---------------- static  -------------------------------- */
+    
+    
+    
+    
+    
     
     /**
      * The Database table (used by table extends)
