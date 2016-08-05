@@ -487,8 +487,8 @@ class DB_DataObject
             case 'mssql':
             case 'sybase':
                 return '[' . str_replace(']', ']]', $str) . ']';
-            case 'pgsql':
-                return '"' . str_replace('"', '?', $str) . '"'; // not sure if this works..
+            default: // pgsql..
+                return '"' . str_replace('"', '""', $str) . '"'; // not sure if this works..
                 
         }
         
