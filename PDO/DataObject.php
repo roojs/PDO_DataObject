@@ -334,7 +334,7 @@ class DB_DataObject
                 $this->_database = self::$connections[$md5]->database;
                 
             }
-            return true;
+            return self::$connections[$md5];
         }
 
          
@@ -411,7 +411,7 @@ class DB_DataObject
          
         // Oracle need to optimize for portibility - not sure exactly what this does though :)
          
-        return true;
+        return self::$connections[$md5];
     }
 
      
