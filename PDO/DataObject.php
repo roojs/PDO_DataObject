@@ -376,11 +376,15 @@ class DB_DataObject
     private function _loadConfig()
     {
         self::$config_loaded = true;
+        
         if (!class_exists('PEAR')) {
             return;
         }
-        self::$config_loaded = true;
-        $_DB_DATAOBJECT['CONFIG'] = &PEAR::getStaticProperty('DB_DataObject','options');
+        
+        $cfg = PEAR::getStaticProperty('DB_DataObject','options');
+        foreach ($cfg as $k=>$v) {
+            self::$config[$k] = $v;
+        }
         
 
     }
