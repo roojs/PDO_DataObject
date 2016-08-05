@@ -138,7 +138,7 @@ class DB_DataObject
         
         
     );
-    
+    static $config_loaded = false; // flag to indicate if we have attempted to load config from PEAR::getStaticProperty
     
     static private $connections = array(); // md5 map of connections to DSN
     static private $ini = array(); // mapping of database to ini file results
@@ -159,6 +159,215 @@ class DB_DataObject
      */
     var $__table = '';  // database table
 
+    
+    
+    
+    
+    /* ---------------- ---------------- connecting to the database  -------------------------------- */
+
+    
+    
+    
+     
+    /**
+     * connects to the database
+     *
+     *
+     * TODO: tidy this up - This has grown to support a number of connection options like
+     *  a) dynamic changing of ini file to change which database to connect to
+     *  b) multi data via the table_{$table} = dsn ini option
+     *  c) session based storage.
+     *
+     * @access private
+     * @return true | PEAR::error
+     */
+    private function _connect()
+    {
+        global $_DB_DATAOBJECT;
+        if (empty($_DB_DATAOBJECT['CONFIG'])) {
+            $this->_loadConfig();
+        }
+        // Set database driver for reference 
+        $db_driver = empty($_DB_DATAOBJECT['CONFIG']['db_driver']) ? 
+                'DB' : $_DB_DATAOBJECT['CONFIG']['db_driver'];
+        
+        // is it already connected ?    
+        if ($this->_database_dsn_md5 && !empty($_DB_DATAOBJECT['CONNECTIONS'][$this->_database_dsn_md5])) {
+            
+            // connection is an error...
+            if (PEAR::isError($_DB_DATAOBJECT['CONNECTIONS'][$this->_database_dsn_md5])) {
+                return $this->raiseError(
+                        $_DB_DATAOBJECT['CONNECTIONS'][$this->_database_dsn_md5]->message,
+                        $_DB_DATAOBJECT['CONNECTIONS'][$this->_database_dsn_md5]->code, PEAR_ERROR_DIE
+                );
+                 
+            }
+
+            if (empty($this->_database)) {
+                $this->_database = $_DB_DATAOBJECT['CONNECTIONS'][$this->_database_dsn_md5]->dsn['database'];
+                $hasGetDatabase = method_exists($_DB_DATAOBJECT['CONNECTIONS'][$this->_database_dsn_md5], 'getDatabase');
+                
+                $this->_database = ($db_driver != 'DB' && $hasGetDatabase)  
+                        ? $_DB_DATAOBJECT['CONNECTIONS'][$this->_database_dsn_md5]->getDatabase() 
+                        : $_DB_DATAOBJECT['CONNECTIONS'][$this->_database_dsn_md5]->dsn['database'];
+
+                
+                
+                if (($_DB_DATAOBJECT['CONNECTIONS'][$this->_database_dsn_md5]->dsn['phptype'] == 'sqlite') 
+                    && is_file($this->_database))  {
+                    $this->_database = basename($this->_database);
+                }
+                if ($_DB_DATAOBJECT['CONNECTIONS'][$this->_database_dsn_md5]->dsn['phptype'] == 'ibase')  {
+                    $this->_database = substr(basename($this->_database), 0, -4);
+                }
+                
+            }
+            // theoretically we have a md5, it's listed in connections and it's not an error.
+            // so everything is ok!
+            return true;
+            
+        }
+
+        // it's not currently connected!
+        // try and work out what to use for the dsn !
+
+        $options= $_DB_DATAOBJECT['CONFIG'];
+        // if the databse dsn dis defined in the object..
+        $dsn = isset($this->_database_dsn) ? $this->_database_dsn : null;
+        
+        if (!$dsn) {
+            if (!$this->_database && !strlen($this->tableName())) {
+                $this->_database = isset($options["table_{$this->tableName()}"]) ? $options["table_{$this->tableName()}"] : null;
+            }
+            if (!empty($_DB_DATAOBJECT['CONFIG']['debug'])) {
+                $this->debug("Checking for database specific ini ('{$this->_database}') : database_{$this->_database} in options","CONNECT");
+            }
+            
+            if ($this->_database && !empty($options["database_{$this->_database}"]))  {
+                $dsn = $options["database_{$this->_database}"];
+            } else if (!empty($options['database'])) {
+                $dsn = $options['database'];
+                  
+            }
+        }
+
+        // if still no database...
+        if (!$dsn) {
+            return $this->raiseError(
+                "No database name / dsn found anywhere",
+                DB_DATAOBJECT_ERROR_INVALIDCONFIG, PEAR_ERROR_DIE
+            );
+                 
+        }
+        
+        
+        if (is_string($dsn)) {
+            $this->_database_dsn_md5 = md5($dsn);
+        } else {
+            /// support array based dsn's
+            $this->_database_dsn_md5 = md5(serialize($dsn));
+        }
+
+        if (!empty($_DB_DATAOBJECT['CONNECTIONS'][$this->_database_dsn_md5])) {
+            if (!empty($_DB_DATAOBJECT['CONFIG']['debug'])) {
+                $this->debug("USING CACHED CONNECTION", "CONNECT",3);
+            }
+            
+            
+            
+            if (!$this->_database) {
+
+                $hasGetDatabase = method_exists($_DB_DATAOBJECT['CONNECTIONS'][$this->_database_dsn_md5], 'getDatabase');
+                $this->_database = ($db_driver != 'DB' && $hasGetDatabase)  
+                        ? $_DB_DATAOBJECT['CONNECTIONS'][$this->_database_dsn_md5]->getDatabase() 
+                        : $_DB_DATAOBJECT['CONNECTIONS'][$this->_database_dsn_md5]->dsn['database'];
+                
+                if (($_DB_DATAOBJECT['CONNECTIONS'][$this->_database_dsn_md5]->dsn['phptype'] == 'sqlite') 
+                    && is_file($this->_database)) 
+                {
+                    $this->_database = basename($this->_database);
+                }
+            }
+            return true;
+        }
+
+        
+        if (!empty($_DB_DATAOBJECT['CONFIG']['debug'])) {
+            $this->debug("NEW CONNECTION TP DATABASE :" .$this->_database , "CONNECT",3);
+            /* actualy make a connection */
+            $this->debug(print_r($dsn,true) ." {$this->_database_dsn_md5}", "CONNECT",3);
+        }
+        
+        // Note this is verbose deliberatly! 
+        
+        if ($db_driver == 'DB') {
+            
+            /* PEAR DB connect */
+            
+            // this allows the setings of compatibility on DB 
+            $db_options = PEAR::getStaticProperty('DB','options');
+            require_once 'DB.php';
+            if ($db_options) {
+                $_DB_DATAOBJECT['CONNECTIONS'][$this->_database_dsn_md5] = DB::connect($dsn,$db_options);
+            } else {
+                $_DB_DATAOBJECT['CONNECTIONS'][$this->_database_dsn_md5] = DB::connect($dsn);
+            }
+             
+        } else {
+            /* assumption is MDB2 */
+            require_once 'MDB2.php';
+            // this allows the setings of compatibility on MDB2 
+            $db_options = PEAR::getStaticProperty('MDB2','options');
+            $db_options = is_array($db_options) ? $db_options : array();
+            $db_options['portability'] = isset($db_options['portability'] )
+                ? $db_options['portability']  : MDB2_PORTABILITY_ALL ^ MDB2_PORTABILITY_FIX_CASE;
+            $_DB_DATAOBJECT['CONNECTIONS'][$this->_database_dsn_md5] = MDB2::connect($dsn,$db_options);
+            
+        }
+ 
+        
+        if (!empty($_DB_DATAOBJECT['CONFIG']['debug'])) {
+            $this->debug(print_r($_DB_DATAOBJECT['CONNECTIONS'],true), "CONNECT",5);
+        }
+        if (PEAR::isError($_DB_DATAOBJECT['CONNECTIONS'][$this->_database_dsn_md5])) {
+            $this->debug($_DB_DATAOBJECT['CONNECTIONS'][$this->_database_dsn_md5]->toString(), "CONNECT FAILED",5);
+            return $this->raiseError(
+                    "Connect failed, turn on debugging to 5 see why",
+                        $_DB_DATAOBJECT['CONNECTIONS'][$this->_database_dsn_md5]->code, PEAR_ERROR_DIE
+            );
+
+        }
+         
+        if (empty($this->_database)) {
+            $hasGetDatabase = method_exists($_DB_DATAOBJECT['CONNECTIONS'][$this->_database_dsn_md5], 'getDatabase');
+            
+            $this->_database = ($db_driver != 'DB' && $hasGetDatabase)  
+                    ? $_DB_DATAOBJECT['CONNECTIONS'][$this->_database_dsn_md5]->getDatabase() 
+                    : $_DB_DATAOBJECT['CONNECTIONS'][$this->_database_dsn_md5]->dsn['database'];
+
+
+            if (($_DB_DATAOBJECT['CONNECTIONS'][$this->_database_dsn_md5]->dsn['phptype'] == 'sqlite') 
+                && is_file($this->_database)) 
+            {
+                $this->_database = basename($this->_database);
+            }
+        }
+        
+        // Oracle need to optimize for portibility - not sure exactly what this does though :)
+         
+        return true;
+    }
+
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
     
     
     
