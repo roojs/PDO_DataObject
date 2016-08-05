@@ -37,7 +37,7 @@
  * @since    PHP 4.0
  */
  
-class DB_DataObject
+class PDO_DataObject
 {
    /**
     * The Version - use this to check feature changes
