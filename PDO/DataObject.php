@@ -444,9 +444,8 @@ class DB_DataObject
      * Used to be via PEAR::getStaticProperty() - now depricated..
      * 
      * @param   array  key/value - see self::$config
-     * @param   string  $v value
+     * @static
      * @access  public
-     * @return  int     No. of rows
      */
      
     public static function loadConfig($cfg = array()) {
@@ -455,8 +454,6 @@ class DB_DataObject
         foreach ($cfg as $k=>$v) {
             self::$config[$k] = $v;
         }
-        
-
     }
     
     
