@@ -306,7 +306,7 @@ class DB_DataObject
         if (!$dsn) {
             return $this->raiseError(
                 "No database name / dsn found anywhere",
-                DB_DATAOBJECT_ERROR_INVALIDCONFIG, PEAR_ERROR_DIE
+                self::ERROR_INVALIDCONFIG, self::ERROR_DIE
             );
                  
         }
