@@ -343,11 +343,7 @@ class DB_DataObject
             
         
         
-        if (self::$debug) {
-            $this->debug("NEW CONNECTION TP DATABASE :" .$this->_database , "CONNECT",3);
-            /* actualy make a connection */
-            $this->debug(print_r($dsn,true) ." {$this->_database_dsn_md5}", "CONNECT",3);
-        }
+       
         
         
         // create a pdo dsn....
@@ -355,8 +351,15 @@ class DB_DataObject
         $pdo_dsn =
             $dsn_ar['scheme'] . ':' .
             'dbname=' . $dsn_ar['path'] .
-            ';host=' . $dsn_ar['host'] .
-            ';port=' . $dsn_ar['port'] .
+            (empty($dsn_ar['host']) ? '': ';host=' . $dsn_ar['host'] .
+            (empty($dsn_ar['port']) ? '' : ';port=' . $dsn_ar['port'];
+            
+         if (self::$debug) {
+            $this->debug("NEW CONNECTION TP DATABASE :" .$this->_database , "CONNECT",3);
+            /* actualy make a connection */
+            $this->debug(print_r($dsn,true) . ' ' . $pdo_dsn . ' ' . $this->_database_dsn_md5, "CONNECT",3);
+        }    
+            
         $username = isset($dsn_ar['user']) ? $dsn_ar['user'] : '';
         $password = isset($dsn_ar['pass']) ? $dsn_ar['pass'] : '';
         
