@@ -82,7 +82,7 @@ class DB_DataObject
     */
     var $_PDO_DataObject_version = "1.0";
  
-    
+    /* ---------------- ---------------- ---------------- -------------------------------- */
 
     /**
      * these are constants for the get_table array
@@ -130,6 +130,9 @@ class DB_DataObject
      */
     var $__table = '';  // database table
 
+    
+    
+    
     /**
      * The Number of rows returned from a query
      *
