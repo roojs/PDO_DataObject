@@ -473,7 +473,7 @@ class DB_DataObject
     
     function quoteIdentifier($str)
     {
-        $pdo = $this->pdo();
+        $pdo = $this->_PDO();
         switch($pdo->getAttribute(PDO::ATTR_DRIVER_NAME)) {
             case 'mysql':
                 return '`' . str_replace('`', '``', $str) . '`';
