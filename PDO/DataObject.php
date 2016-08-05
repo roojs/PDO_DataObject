@@ -367,14 +367,6 @@ class DB_DataObject
             $this->debug(print_r(self::$connections,true), "CONNECT",5);
         }
         
-        if (PEAR::isError($_DB_DATAOBJECT['CONNECTIONS'][$this->_database_dsn_md5])) {
-            $this->debug($_DB_DATAOBJECT['CONNECTIONS'][$this->_database_dsn_md5]->toString(), "CONNECT FAILED",5);
-            return $this->raiseError(
-                    "Connect failed, turn on debugging to 5 see why",
-                        $_DB_DATAOBJECT['CONNECTIONS'][$this->_database_dsn_md5]->code, PEAR_ERROR_DIE
-            );
-
-        }
          
         if (empty($this->_database)) {
             $hasGetDatabase = method_exists($_DB_DATAOBJECT['CONNECTIONS'][$this->_database_dsn_md5], 'getDatabase');
