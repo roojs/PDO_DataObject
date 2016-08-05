@@ -443,7 +443,7 @@ class DB_DataObject
      * Set the global configuration...
      * Used to be via PEAR::getStaticProperty() - now depricated..
      * 
-     * @param   string  $k column
+     * @param   array  key/value - see self::$config
      * @param   string  $v value
      * @access  public
      * @return  int     No. of rows
