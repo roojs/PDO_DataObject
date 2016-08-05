@@ -172,7 +172,33 @@ class DB_DataObject
     /* ---------------- ---------------- connecting to the database  -------------------------------- */
 
     
-    
+      /**
+     * The Database connection dsn (as described in the PEAR DB)
+     * only used really if you are writing a very simple application/test..
+     * try not to use this - it is better stored in configuration files..
+     *
+     * @access  private
+     * @var     string
+     */
+    private $_database_dsn = '';
+
+    /**
+     * The Database connection id (md5 sum of databasedsn)
+     *
+     * @access  private
+     * @var     string
+     */
+    private $_database_dsn_md5 = '';
+
+    /**
+     * The Database name
+     * created in __connection
+     *
+     * @access  private
+     * @var  string
+     */
+    private $_database = '';
+
     
      
     /**
