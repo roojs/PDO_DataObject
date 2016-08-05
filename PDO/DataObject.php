@@ -279,7 +279,7 @@ class DB_DataObject
             }
             // theoretically we have a md5, it's listed in connections and it's not an error.
             // so everything is ok!
-            return true;
+            return $con;
             
         }
 
