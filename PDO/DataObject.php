@@ -383,22 +383,7 @@ class DB_DataObject
         
         self::$connections[$md5]->database = $db;
         
-        
-        if (empty($this->_database)) {
-            $hasGetDatabase = method_exists($_DB_DATAOBJECT['CONNECTIONS'][$this->_database_dsn_md5], 'getDatabase');
-            
-            $this->_database = ($db_driver != 'DB' && $hasGetDatabase)  
-                    ? $_DB_DATAOBJECT['CONNECTIONS'][$this->_database_dsn_md5]->getDatabase() 
-                    : $_DB_DATAOBJECT['CONNECTIONS'][$this->_database_dsn_md5]->dsn['database'];
-
-
-            if (($_DB_DATAOBJECT['CONNECTIONS'][$this->_database_dsn_md5]->dsn['phptype'] == 'sqlite') 
-                && is_file($this->_database)) 
-            {
-                $this->_database = basename($this->_database);
-            }
-        }
-        
+         
         // Oracle need to optimize for portibility - not sure exactly what this does though :)
          
         return true;
