@@ -142,7 +142,7 @@ class DB_DataObject
         
         
             'tables' => array(), // map of tables names to database names 
-            
+            'databases' => array() // map of database names to connection dsn's
            
         
             // fill me in..
