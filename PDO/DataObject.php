@@ -489,6 +489,10 @@ class DB_DataObject
                 return '[' . str_replace(']', ']]', $str) . ']';
             default: // pgsql..
                 return '"' . str_replace('"', '""', $str) . '"'; // not sure if this works..
+            
+            
+            // some don't suppor it -> msql
+            // odbc?? - do we deal with this?
                 
         }
         
