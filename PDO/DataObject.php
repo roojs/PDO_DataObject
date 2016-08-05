@@ -183,7 +183,8 @@ class DB_DataObject
      */
     private function _connect()
     {
-        global $_DB_DATAOBJECT;
+        
+        
         if (empty($_DB_DATAOBJECT['CONFIG'])) {
             $this->_loadConfig();
         }
@@ -361,7 +362,28 @@ class DB_DataObject
     
     
     
-    
+    /**
+     * Define the global $_DB_DATAOBJECT['CONFIG'] as an alias to  PEAR::getStaticProperty('DB_DataObject','options');
+     *
+     * After Profiling DB_DataObject, I discoved that the debug calls where taking
+     * considerable time (well 0.1 ms), so this should stop those calls happening. as
+     * all calls to debug are wrapped with direct variable queries rather than actually calling the funciton
+     * THIS STILL NEEDS FURTHER INVESTIGATION
+     *
+     * @access   public
+     * @return   object an error object
+     */
+    private function _loadConfig()
+    {
+        self::$config_loaded = true;
+        if (!class_exists('PEAR')) {
+            return;
+        }
+        self::$config_loaded = true;
+        $_DB_DATAOBJECT['CONFIG'] = &PEAR::getStaticProperty('DB_DataObject','options');
+        
+
+    }
     
     
     
@@ -4877,25 +4899,7 @@ class DB_DataObject
         return $error;
     }
 
-    /**
-     * Define the global $_DB_DATAOBJECT['CONFIG'] as an alias to  PEAR::getStaticProperty('DB_DataObject','options');
-     *
-     * After Profiling DB_DataObject, I discoved that the debug calls where taking
-     * considerable time (well 0.1 ms), so this should stop those calls happening. as
-     * all calls to debug are wrapped with direct variable queries rather than actually calling the funciton
-     * THIS STILL NEEDS FURTHER INVESTIGATION
-     *
-     * @access   public
-     * @return   object an error object
-     */
-    function _loadConfig()
-    {
-        global $_DB_DATAOBJECT;
-
-        $_DB_DATAOBJECT['CONFIG'] = &PEAR::getStaticProperty('DB_DataObject','options');
-
-
-    }
+    
      /**
      * Free global arrays associated with this object.
      *
