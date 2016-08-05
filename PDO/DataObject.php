@@ -499,9 +499,7 @@ class DB_DataObject
     }
 
     
-    
-    
-    
+     
     
     /**
      * The Number of rows returned from a query
