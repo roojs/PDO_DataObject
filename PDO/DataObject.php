@@ -353,8 +353,16 @@ class DB_DataObject
             'dbname=' . $dsn_ar['path'] .
             (empty($dsn_ar['host']) ? '': ';host=' . $dsn_ar['host']) .
             (empty($dsn_ar['port']) ? '' : ';port=' . $dsn_ar['port']);
-            
-         if (self::$debug) {
+        
+        switch($dsn_ar['scheme'] ) {
+            case 'sqlite':
+            case 'sqlite2':
+                $pdo_dsn =            $dsn_ar['scheme'] . ':' .$dsn_ar['path'];
+                
+        }
+        
+        
+        if (self::$debug) {
             $this->debug("NEW CONNECTION TP DATABASE :" .$this->_database , "CONNECT",3);
             /* actualy make a connection */
             $this->debug(print_r($dsn,true) . ' ' . $pdo_dsn . ' ' . $this->_database_dsn_md5, "CONNECT",3);
