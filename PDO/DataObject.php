@@ -337,14 +337,7 @@ class DB_DataObject
             return true;
         }
 
-        
-            
-                
-            
-        
-        
-       
-        
+         
         
         // create a pdo dsn....
         
@@ -421,7 +414,7 @@ class DB_DataObject
         return true;
     }
 
-    
+     
     
     
     /**
