@@ -357,8 +357,9 @@ class DB_DataObject
         switch($dsn_ar['scheme'] ) {
             case 'sqlite':
             case 'sqlite2':
-                $pdo_dsn =            $dsn_ar['scheme'] . ':' .$dsn_ar['path'];
-                
+                $pdo_dsn =            $dsn_ar['scheme'] . ':' .$dsn_ar['path']; // urldecode perhaps?
+                break;
+            // others go here...
         }
         
         
