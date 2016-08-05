@@ -264,9 +264,9 @@ class DB_DataObject
         // it's not currently connected!
         // try and work out what to use for the dsn !
 
-        $options= $_DB_DATAOBJECT['CONFIG'];
+        
         // if the databse dsn dis defined in the object..
-        $dsn = isset($this->_database_dsn) ? $this->_database_dsn : null;
+        $dsn = isset(self:$_database_dsn) ? self:$_database_dsn : null;
         
         if (!$dsn) {
             if (!$this->_database && !strlen($this->tableName())) {
