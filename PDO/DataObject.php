@@ -354,7 +354,11 @@ class DB_DataObject
         // create a pdo dsn....
         
         // might throw an eror..
-        self::$connections[$md5] = new PDO($pdo_dsn, $username, $password, $options);
+        try {
+            self::$connections[$md5] = new PDO($pdo_dsn, $username, $password, $options);
+        } catch (PDOException $ex) {
+            return $this->raiseException($ex);
+        }
         
         
         
