@@ -123,23 +123,31 @@ class DB_DataObject
      
     
     /* ---------------- ---------------- static  -------------------------------- */
-    
+    /**
+     * Configuration - you can access this directly to set up the behavior
+     * Generally not a good idea to modify this after you have initially set it. (as behavour will get confusing)
+     *
+     * @access  public
+     * @static
+     * @var     array
+     */
     static $config = array(
         
             // fill me in...
         
         
         
-    )
+    );
+    
+    
+    static private $connections = array(); // md5 map of connections to DSN
+    static private $ini = array(); // mapping of database to ini file results
+    static private $links = array(); //  mapping of database to links file
+    static private $links = array(); //  mapping of database to links file
+  
         
    /**
     *
-    * storage for connection and result objects,
-    * it is done this way so that print_r()'ing the is smaller, and
-    * it reduces the memory size of the object.
-    * -- future versions may use $this->_connection = & PEAR object..
-    *   although will need speed tests to see how this affects it.
-    * - includes sub arrays
     *   - connections = md5 sum mapp to pear db object
     *   - results     = [id] => map to pear db object
     *   - resultseq   = sequence id for results & results field
