@@ -319,8 +319,8 @@ class DB_DataObject
         $this->_database_dsn_md5 = $md5;
         // we now have the dsn + 
         
-        if (!empty($_DB_DATAOBJECT['CONNECTIONS'][$this->_database_dsn_md5])) {
-            if (!empty($_DB_DATAOBJECT['CONFIG']['debug'])) {
+        if (!empty(self::$connections[$md5])) {
+            if (self::$debug) {
                 $this->debug("USING CACHED CONNECTION", "CONNECT",3);
             }
             
