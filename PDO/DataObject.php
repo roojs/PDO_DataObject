@@ -366,10 +366,11 @@ class DB_DataObject
         }
         
         if (!empty($dsn_ar['fragment'])) {
-            // options.. |pipe=....| 
+            // options.. |MYSQL_ATTR_INIT_COMMAND=....|
+            $pdo_rc = new ReflectionClass( "PDO" );
             foreach(explode('|', $dsn_ar['fragment']) as $opt) {
                 list($k,$v) = explode('=', $opt);
-                
+                $opts[$pdo_rc->getConstant($k)] = $v;
                 
             }
         }
@@ -395,7 +396,7 @@ class DB_DataObject
         
         if (self::$debug) {
             $this->debug(print_r(self::$connections,true), "CONNECT",5);
-        }
+        } 
         
         $dsn_ar = parse_url($dsn);
 
