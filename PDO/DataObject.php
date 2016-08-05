@@ -474,7 +474,22 @@ class DB_DataObject
         return self::$config;
     }
     
+     
     
+    /* ---------------- ---------------- database  portability methods -------------------------------- */
+    
+    function quoteIdentifier($str)
+    {
+        $pdo = $this->pdo();
+        switch($pdo->getAttribute(PDO::ATTR_DRIVER_NAME)) {
+            case 'mysql':
+                return '`' . str_replace('`', '``', $str) . '`';
+                
+        }
+        
+        
+    }
+
     
     
     
