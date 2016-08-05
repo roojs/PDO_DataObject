@@ -150,7 +150,7 @@ class DB_DataObject
     /**
      * Connections [md5] => PDO
      * note - we overload PDO with some values
-     *   $database (as there is no support for it..!)
+     *   $pdo->database (as there is no support for it..!)
      */
     private static $connections = array(); // md5 map of connections to DSN
     
