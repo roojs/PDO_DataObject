@@ -149,7 +149,7 @@ class DB_DataObject
     static private $lasterror   = false; // pear error objects for last error event. accesss with lastError() ???
     
     
-    
+    /* ---------------- ---------------- non-static  -------------------------------- */
     
     /**
      * The Database table (used by table extends)
