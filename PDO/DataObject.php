@@ -185,27 +185,27 @@ class DB_DataObject
      * only used really if you are writing a very simple application/test..
      * try not to use this - it is better stored in configuration files..
      *
-     * @access  private
+     * @access  private (ish) - extended classes can overide this
      * @var     string
      */
-    private $_database_dsn = '';
+    public $_database_dsn = '';
 
     /**
      * The Database connection id (md5 sum of databasedsn)
      *
-     * @access  private
+     * @access  private (ish) - extended classes can overide this
      * @var     string
      */
-    private $_database_dsn_md5 = '';
+    public $_database_dsn_md5 = '';
 
     /**
      * The Database name
      * created in __connection
      *
-     * @access  private
+     * @access  private (ish) - extended classes can overide this
      * @var  string
      */
-    private $_database = '';
+    public $_database = '';
 
     
      
