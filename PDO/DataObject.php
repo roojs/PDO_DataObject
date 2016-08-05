@@ -201,11 +201,13 @@ class DB_DataObject
         // is it already connected ?    
         if ($this->_database_dsn_md5 && !empty(self::$connections[$this->_database_dsn_md5])) {
             
+            $con = self::$connections[$this->_database_dsn_md5];
             // connection is an error...
-            if (PEAR::isError($_DB_DATAOBJECT['CONNECTIONS'][$this->_database_dsn_md5])) {
+            if (!is_a($con, $PDO)) {
+                
                 return $this->raiseError(
-                        $_DB_DATAOBJECT['CONNECTIONS'][$this->_database_dsn_md5]->message,
-                        $_DB_DATAOBJECT['CONNECTIONS'][$this->_database_dsn_md5]->code, PEAR_ERROR_DIE
+                        $con->message,
+                        $con->code, PEAR_ERROR_DIE
                 );
                  
             }
