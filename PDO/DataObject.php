@@ -358,7 +358,7 @@ class DB_DataObject
             self::$connections[$md5] = new PDO($pdo_dsn, $username, $password, $options);
         } catch (PDOException $ex) {
             $this->debug( (string) $ex , "CONNECT FAILED",5);
-            return $this->raiseException("Connect failed, turn on debugging to 5 see why",$ex,PEAR_ERROR_DIE );
+            return $this->raiseError("Connect failed, turn on debugging to 5 see why",$ex,PEAR_ERROR_DIE );
         }
         
         
