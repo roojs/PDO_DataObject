@@ -446,6 +446,7 @@ class DB_DataObject
      * @param   array  key/value - see self::$config
      * @static
      * @access  public
+     * @return - the current config..
      */
      
     public static function loadConfig($cfg = array()) {
