@@ -118,13 +118,13 @@ class DB_DataObject
      * these are constants for the get_table array
      * user to determine what type of escaping is required around the object vars.
      */
-    const INT =   1;  // does not require ''
-    const STR =  2;  // requires ''
+    const INT = 1;  // does not require ''
+    const STR = 2;  // requires ''
     
     const DATE = 4;  // is date #TODO
     const TIME = 8;  // is time #TODO
     const BOOL = 16; // is boolean #TODO
-    const TXT =  32; // is long text #TODO
+    const TXT  = 32; // is long text #TODO
     const BLOB = 64; // is blob type
      
     const NOTNULL = 128;           // not null col.
