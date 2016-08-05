@@ -332,11 +332,17 @@ class DB_DataObject
             
             
             if (!$this->_database) {
-
-                $hasGetDatabase = method_exists($_DB_DATAOBJECT['CONNECTIONS'][$this->_database_dsn_md5], 'getDatabase');
-                $this->_database = ($db_driver != 'DB' && $hasGetDatabase)  
-                        ? $_DB_DATAOBJECT['CONNECTIONS'][$this->_database_dsn_md5]->getDatabase() 
-                        : $_DB_DATAOBJECT['CONNECTIONS'][$this->_database_dsn_md5]->dsn['database'];
+                $this->_database = $dsn_ar['path'];
+                
+                switch($dsn_ar['scheme']) {
+                    case 'sqlite':
+                        $this->_database  = basename($this->_database);
+                        break;
+                    case 'ibase':
+                        $this->_database  = basename($this->_database);
+                        break;
+                        
+                }
                 
                 if (($_DB_DATAOBJECT['CONNECTIONS'][$this->_database_dsn_md5]->dsn['phptype'] == 'sqlite') 
                     && is_file($this->_database)) 
