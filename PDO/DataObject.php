@@ -361,6 +361,9 @@ class DB_DataObject
                 break;
             // others go here...
         }
+        if (!empty($dsn_ar['query'])) {
+            $pdo_dsn = implode(';', explode('&', $dsn_ar['query']));
+        }
         
         
         if (self::$debug) {
