@@ -195,7 +195,7 @@ class DB_DataObject
      * @access  private (ish) - extended classes can overide this
      * @var     string
      */
-    public $_database_dsn = '';
+    public $_database_dsn = false;
 
     /**
      * The Database connection id (md5 sum of databasedsn)
