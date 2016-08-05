@@ -316,12 +316,15 @@ class DB_DataObject
         
         
         if (is_string($dsn)) {
-            $this->_database_dsn_md5 = md5($dsn);
+            $md5 = md5($dsn);
         } else {
             /// support array based dsn's  ** no idea if this is still used!?
-            $this->_database_dsn_md5 = md5(serialize($dsn));
+            $md5 = md5(serialize($dsn));
         }
-
+    
+        $this->_database_dsn_md5 = $md5;
+        // we now have the dsn + 
+        
         if (!empty($_DB_DATAOBJECT['CONNECTIONS'][$this->_database_dsn_md5])) {
             if (!empty($_DB_DATAOBJECT['CONFIG']['debug'])) {
                 $this->debug("USING CACHED CONNECTION", "CONNECT",3);
