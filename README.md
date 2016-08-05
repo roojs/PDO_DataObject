@@ -4,9 +4,11 @@ PDO replacement for PEAR's DB_DataObject
 
 Work has been funded by CentralNic Group plc 
 
-In General, this should be API compatible with DB_DataObject, except for the getDatabaseConnection(), which is replaced with PDOConnection() - and returns a PDO object, rather than a PEAR DB object.
+In General, this should be API compatible with DB_DataObject, except for
+* getDatabaseConnection(), which is replaced with PDOConnection() - and returns a PDO object, rather than a PEAR DB object.
 
-In addition
+
+Other Changes
 a) chained methods (prefixed with 'c', and throw exceptions)
 $key_value =  DB_DAtaObject::Factory('table')
       ->cautoJoin()
@@ -17,6 +19,8 @@ $key_value =  DB_DAtaObject::Factory('table')
 b) Default behaviour is to throw exceptions (compatibility - PEAR::Error is available as a setting)
 
 c) Overloading has been removed - you should be able to wrap the DataObject and add it back in (it's not recommended - causes more problems than it solves)
+
+d) You can configure DataObjects direct by setting PDO_DataObject::$config - (if PEAR is not loaded, then PEAR::getStaticPropery will not be called...)
 
 ---------------------
 Commit Log
