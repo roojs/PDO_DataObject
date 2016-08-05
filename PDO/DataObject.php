@@ -364,7 +364,7 @@ class DB_DataObject
         
         
         if (self::$debug) {
-            $this->debug(print_r($_DB_DATAOBJECT['CONNECTIONS'],true), "CONNECT",5);
+            $this->debug(print_r(self::$connections,true), "CONNECT",5);
         }
         
         if (PEAR::isError($_DB_DATAOBJECT['CONNECTIONS'][$this->_database_dsn_md5])) {
