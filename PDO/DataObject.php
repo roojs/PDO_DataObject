@@ -484,6 +484,11 @@ class DB_DataObject
         switch($pdo->getAttribute(PDO::ATTR_DRIVER_NAME)) {
             case 'mysql':
                 return '`' . str_replace('`', '``', $str) . '`';
+            case 'mssql':
+            case 'sybase':
+                return '[' . str_replace(']', ']]', $str) . ']';
+            case 'pgsql':
+                return '"' . str_replace('"', '?', $str) . '"'; // not sure if this works..
                 
         }
         
