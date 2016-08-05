@@ -319,6 +319,8 @@ class DB_DataObject
         
         $md5 = md5($dsn); // we used to support array of dsn? - not sure why... as you should use a proxy here...
         
+        $dsn_ar = parse_url($dsn);
+        
         $this->_database_dsn_md5 = $md5;
         // we now have the dsn + 
         
