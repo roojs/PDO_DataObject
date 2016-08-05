@@ -139,11 +139,9 @@ class DB_DataObject
             'PDO' => 'PDO',  
         
         
-        
-            // optional TABLE => database mapping
-            // where XXXX is table name, and YYYY is the database to use.
-            // 'table_XXXX' => 'YYYYY', 
-        
+            'tables' => array(), // map of tables names to database names 
+            
+           
         
             // fill me in..
             
@@ -284,8 +282,9 @@ class DB_DataObject
         $dsn = $this->_database_dsn;
         
         if (!$dsn) {
+            $tn = $this->tableName();
             if (!$this->_database && !strlen($this->tableName())) {
-                $this->_database = isset($options["table_{$this->tableName()}"]) ? $options["table_{$this->tableName()}"] : null;
+                $this->_database = isset(self::$config['tables'][$tn]) ? self::$config['tables'][$tn] : false;
             }
             if (!empty($_DB_DATAOBJECT['CONFIG']['debug'])) {
                 $this->debug("Checking for database specific ini ('{$this->_database}') : database_{$this->_database} in options","CONNECT");
