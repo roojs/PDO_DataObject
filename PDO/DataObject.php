@@ -341,16 +341,11 @@ class DB_DataObject
                         $this->_database  = basename($this->_database);
                         break;
                     case 'ibase':
-                        $this->_database  = basename($this->_database);
+                        $this->_database  = substr(basename($this->_database), 0, -4);
                         break;
                     //fixme?? Oracle?        
                 }
                 
-                if (($_DB_DATAOBJECT['CONNECTIONS'][$this->_database_dsn_md5]->dsn['phptype'] == 'sqlite') 
-                    && is_file($this->_database)) 
-                {
-                    $this->_database = basename($this->_database);
-                }
             }
             return true;
         }
