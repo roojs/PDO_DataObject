@@ -352,6 +352,14 @@ class DB_DataObject
         
         // create a pdo dsn....
         
+        $pdo_dsn =
+            $dsn_ar['scheme'] . ':' .
+            'dbname=' . $dsn_ar['path'] .
+            ';host=' . $dsn_ar['host'] .
+            ';port=' . $dsn_ar['port'] .
+        $username = isset($dsn_ar['user']) ? $dsn_ar['user'] : '';
+        $password = isset($dsn_ar['pass']) ? $dsn_ar['pass'] : '';
+        
         // might throw an eror..
         try {
             self::$connections[$md5] = new PDO($pdo_dsn, $username, $password, $options);
