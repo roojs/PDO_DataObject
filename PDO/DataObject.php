@@ -353,14 +353,15 @@ class DB_DataObject
         
         // create a pdo dsn....
         
-
+        // might throw an eror..
         self::$connections[$md5] = new PDO($pdo_dsn, $username, $password, $options);
         
         
         
-        if (!empty($_DB_DATAOBJECT['CONFIG']['debug'])) {
+        if (self::$debug) {
             $this->debug(print_r($_DB_DATAOBJECT['CONNECTIONS'],true), "CONNECT",5);
         }
+        
         if (PEAR::isError($_DB_DATAOBJECT['CONNECTIONS'][$this->_database_dsn_md5])) {
             $this->debug($_DB_DATAOBJECT['CONNECTIONS'][$this->_database_dsn_md5]->toString(), "CONNECT FAILED",5);
             return $this->raiseError(
