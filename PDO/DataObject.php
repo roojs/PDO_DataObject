@@ -128,10 +128,8 @@ class DB_DataObject
     * Used for clarity in methods like delete() and count() to specify that the method should
     * build the condition only out of the whereAdd's and not the object parameters. 
     */
-    const WHEREADD_ONLY = 'wao';
+    const WHEREADD_ONLY = true;
 
-    
-    
     
     
     
