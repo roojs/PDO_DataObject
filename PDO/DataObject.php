@@ -4920,7 +4920,7 @@ class DB_DataObject
      * this is due to the fact it would wreck havoc on the internal methods!
      *
      * @param  int $message    message
-     * @param  int $type       type
+     * @param  int|Exception $type       type
      * @param  int $behaviour  behaviour (die or continue!);
      * @access public
      * @return error object
