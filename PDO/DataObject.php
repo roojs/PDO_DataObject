@@ -421,7 +421,7 @@ class DB_DataObject
      * @access   public
      * @return   object an error object
      */
-    private function _loadConfig()
+    private function _loadPEARConfig()
     {
         self::$config_loaded = true;
         
@@ -449,7 +449,7 @@ class DB_DataObject
      
     public function loadConfig($cfg = array()) {
     {
-        $this->_loadConfig();
+        $this->_loadPEARConfig();
         foreach ($cfg as $k=>$v) {
             self::$config[$k] = $v;
         }
