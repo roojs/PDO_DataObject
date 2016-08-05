@@ -343,7 +343,7 @@ class DB_DataObject
                     case 'ibase':
                         $this->_database  = basename($this->_database);
                         break;
-                        
+                    //fixme?? Oracle?        
                 }
                 
                 if (($_DB_DATAOBJECT['CONNECTIONS'][$this->_database_dsn_md5]->dsn['phptype'] == 'sqlite') 
