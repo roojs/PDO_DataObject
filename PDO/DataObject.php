@@ -349,7 +349,6 @@ class DB_DataObject
             $this->debug(print_r($dsn,true) ." {$this->_database_dsn_md5}", "CONNECT",3);
         }
         
-        $dsn_ar = parse_url($dsn);
         
         // create a pdo dsn....
         
@@ -366,6 +365,11 @@ class DB_DataObject
         if (self::$debug) {
             $this->debug(print_r(self::$connections,true), "CONNECT",5);
         }
+        
+        $dsn_ar = parse_url($dsn);
+
+        
+        self::$connections[$md5]->database = $dsn_ar['path'];
         
          
         if (empty($this->_database)) {
