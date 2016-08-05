@@ -119,10 +119,10 @@ class DB_DataObject
     const ERROR_NODATA =        -2;  // no data available
     const ERROR_INVALIDCONFIG = -3;  // something wrong with the config
     const ERROR_NOCLASS =       -4;  // no class exists
-    const ERROR_INVALID_CALL  =  -7;  // overlad getter/setter failure
     
     
-    const ERROR_DIE  =  -7;  // overlad getter/setter failure
+    
+    const ERROR_DIE  =  9;  // from PEAR_ERROR_DIE
 
     
     /* ---------------- ---------------- static  -------------------------------- */
