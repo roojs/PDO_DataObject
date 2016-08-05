@@ -202,7 +202,8 @@ class DB_DataObject
         if ($this->_database_dsn_md5 && !empty(self::$connections[$this->_database_dsn_md5])) {
             
             $con = self::$connections[$this->_database_dsn_md5];
-            // connection is an error...
+            
+            // connection is an error...?? assumes pear error???
             if (!is_a($con, $PDO)) {
                 
                 return $this->raiseError(
