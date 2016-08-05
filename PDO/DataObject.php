@@ -30,28 +30,6 @@
   
  
  
-  
-
- 
-/**
- * Theses are the standard error codes, most methods will fail silently - and return false
- * to access the error message either use $table->_lastError
- * or $last_error = PEAR::getStaticProperty('DB_DataObject','lastError');
- * the code is $last_error->code, and the message is $last_error->message (a standard PEAR error)
- */
-
-define('DB_DATAOBJECT_ERROR_INVALIDARGS',   -1);  // wrong args to function
-define('DB_DATAOBJECT_ERROR_NODATA',        -2);  // no data available
-define('DB_DATAOBJECT_ERROR_INVALIDCONFIG', -3);  // something wrong with the config
-define('DB_DATAOBJECT_ERROR_NOCLASS',       -4);  // no class exists
-define('DB_DATAOBJECT_ERROR_INVALID_CALL'  ,-7);  // overlad getter/setter failure
-
-/**
- * Used in methods like delete() and count() to specify that the method should
- * build the condition only out of the whereAdd's and not the object parameters.
- */
-define('DB_DATAOBJECT_WHEREADD_ONLY', true);
-
 /**
  *
  * storage for connection and result objects,
@@ -122,7 +100,7 @@ class DB_DataObject
     const BLOB = 64; // is blob type
      
     const NOTNULL = 128;           // not null col.
-    const MYSQLTIMESTAMP =256;           // mysql timestamps (ignored by update/insert)
+    const MYSQLTIMESTAMP = 256;           // mysql timestamps (ignored by update/insert)
     
     /**
     * Used for clarity in methods like delete() and count() to specify that the method should
@@ -131,7 +109,20 @@ class DB_DataObject
     const WHEREADD_ONLY = true;
 
     
+    /**
+     * #FIXME - MAY BE REMOVED...
+     * Theses are the standard error codes, most methods will fail silently - and return false
+     * to access the error message either use $table->_lastError
+     * or $last_error = PEAR::getStaticProperty('DB_DataObject','lastError');
+     * the code is $last_error->code, and the message is $last_error->message (a standard PEAR error)
+     */
     
+    const ERROR_INVALIDARGS =   -1;  // wrong args to function
+    const ERROR_NODATA =        -2;  // no data available
+    const ERROR_INVALIDCONFIG = -3;  // something wrong with the config
+    const ERROR_NOCLASS =       -4;  // no class exists
+    const ERROR_INVALID_CALL  =  -7;  // overlad getter/setter failure
+     
     
     /**
      * The Database table (used by table extends)
