@@ -81,9 +81,7 @@ class DB_DataObject
     * @var      string
     */
     var $_PDO_DataObject_version = "1.0";
-
-    
-    
+ 
     
 
     /**
