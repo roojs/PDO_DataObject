@@ -137,6 +137,8 @@ class DB_DataObject
     static $config = array(
             /**
              * The database DSN - @see _connect
+             *
+             * used to allow arrays - but if you are using a 'pool' - use a proxy.. dont' do it here..
              */
             'database' => false,  
         
@@ -313,6 +315,7 @@ class DB_DataObject
             );
                  
         }
+        
         
         $md5 = md5(serialize($dsn));
         
