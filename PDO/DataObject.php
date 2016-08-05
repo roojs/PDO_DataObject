@@ -239,10 +239,8 @@ class DB_DataObject
     private function _connect()
     {
         
-        
-        if (!self::$config_loaded) {
-            $this->_loadConfig();
-        }
+        $this->_loadConfig();
+         
         // We can use a fake PDO class when testing..
         $PDO = $config['PDO'];
         
