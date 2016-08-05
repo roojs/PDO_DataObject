@@ -421,11 +421,12 @@ class DB_DataObject
      * @access   public
      * @return   object an error object
      */
-    private function _loadConfig()
+    public function loadConfig($config === array())
     {
         self::$config_loaded = true;
         
-        if (!class_exists('PEAR')) {
+        
+        if (class_exists('PEAR')) {
             return;
         }
         
