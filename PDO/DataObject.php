@@ -140,7 +140,15 @@ class DB_DataObject
         
         
         
+            // optional TABLE => database mapping
+            // where XXXX is table name, and YYYY is the database to use.
+            // 'table_XXXX' => 'YYYYY', 
+        
+        
             // fill me in..
+            
+            
+            
         
     );
     
