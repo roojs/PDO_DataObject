@@ -245,7 +245,7 @@ class DB_DataObject
      * @access private
      * @return true | PEAR::error
      */
-    private function _connect()
+    private function PDO()
     {
         
         $this->_loadConfig();
