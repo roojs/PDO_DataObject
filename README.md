@@ -6,6 +6,7 @@ Work has been funded by CentralNic Group plc
 
 In General, this should be API compatible with DB_DataObject, except for
 * getDatabaseConnection(), which is replaced with PDOConnection() - and returns a PDO object, rather than a PEAR DB object.
+* staticGet() - has been removed
 
 
 Other Changes
