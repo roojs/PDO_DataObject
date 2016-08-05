@@ -124,7 +124,44 @@ class DB_DataObject
     
     /* ---------------- ---------------- static  -------------------------------- */
     
-    
+    static $config = array(
+        
+            // fill me in...
+        
+        
+        
+    )
+        
+   /**
+    *
+    * storage for connection and result objects,
+    * it is done this way so that print_r()'ing the is smaller, and
+    * it reduces the memory size of the object.
+    * -- future versions may use $this->_connection = & PEAR object..
+    *   although will need speed tests to see how this affects it.
+    * - includes sub arrays
+    *   - connections = md5 sum mapp to pear db object
+    *   - results     = [id] => map to pear db object
+    *   - resultseq   = sequence id for results & results field
+    *   - resultfields = [id] => list of fields return from query (for use with toArray())
+    *   - ini         = mapping of database to ini file results
+    *   - links       = mapping of database to links file
+    *   - lasterror   = pear error objects for last error event.
+    *   - config      = aliased view of PEAR::getStaticPropery('DB_DataObject','options') * done for performance.
+    *   - array of loaded classes by autoload method - to stop it doing file access request over and over again!
+    */
+   $GLOBALS['_DB_DATAOBJECT']['RESULTS']   = array();
+   $GLOBALS['_DB_DATAOBJECT']['RESULTSEQ'] = 1;
+   $GLOBALS['_DB_DATAOBJECT']['RESULTFIELDS'] = array();
+   $GLOBALS['_DB_DATAOBJECT']['CONNECTIONS'] = array();
+   $GLOBALS['_DB_DATAOBJECT']['INI'] = array();
+   $GLOBALS['_DB_DATAOBJECT']['LINKS'] = array();
+   $GLOBALS['_DB_DATAOBJECT']['SEQUENCE'] = array();
+   $GLOBALS['_DB_DATAOBJECT']['LASTERROR'] = null;
+   $GLOBALS['_DB_DATAOBJECT']['CONFIG'] = array();
+   $GLOBALS['_DB_DATAOBJECT']['CACHE'] = array();
+   $GLOBALS['_DB_DATAOBJECT']['OVERLOADED'] = false;
+   $GLOBALS['_DB_DATAOBJECT']['QUERYENDTIME'] = 0;
     
     
     
