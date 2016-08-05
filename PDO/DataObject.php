@@ -273,7 +273,7 @@ class DB_DataObject
 
         
         // if the databse dsn dis defined in the object..
-        $dsn = isset(self:$_database_dsn) ? self:$_database_dsn : null;
+        $dsn = $this->_database_dsn) ? self:$_database_dsn : false;
         
         if (!$dsn) {
             if (!$this->_database && !strlen($this->tableName())) {
