@@ -362,9 +362,17 @@ class DB_DataObject
             // others go here...
         }
         if (!empty($dsn_ar['query'])) {
-            $pdo_dsn = implode(';', explode('&', $dsn_ar['query']));
+            $pdo_dsn = ';' . str_replace('&', ';',  $dsn_ar['query']); // could just str_replace..
         }
         
+        if (!empty($dsn_ar['fragment'])) {
+            // options.. |pipe=....| 
+            foreach(explode('|', $dsn_ar['fragment']) as $opt) {
+                list($k,$v) = explode('=', $opt);
+                
+                
+            }
+        }
         
         if (self::$debug) {
             $this->debug("NEW CONNECTION TP DATABASE :" .$this->_database , "CONNECT",3);
@@ -377,7 +385,7 @@ class DB_DataObject
         
         // might throw an eror..
         try {
-            self::$connections[$md5] = new PDO($pdo_dsn, $username, $password, $options);
+            self::$connections[$md5] = new $PDO($pdo_dsn, $username, $password, $options);
         } catch (PDOException $ex) {
             $this->debug( (string) $ex , "CONNECT FAILED",5);
             return $this->raiseError("Connect failed, turn on debugging to 5 see why",$ex,PEAR_ERROR_DIE );
