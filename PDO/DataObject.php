@@ -146,7 +146,15 @@ class DB_DataObject
     
     private static $config_loaded = false; // flag to indicate if we have attempted to load config from PEAR::getStaticProperty
     
+    
+    /**
+     * Connections [md5] => PDO
+     * note - we overload PDO with some values
+     *   $database (as there is no support for it..!)
+     */
     private static $connections = array(); // md5 map of connections to DSN
+    
+    
     private static $ini = array(); // mapping of database to ini file results
     private static $links = array(); //  mapping of database to links file
     private static $sequence = array(); // cache of sequence keys (modifyable)
@@ -240,7 +248,7 @@ class DB_DataObject
             }
 
             if (empty($this->_database)) {
-                $this->_database = $_DB_DATAOBJECT['CONNECTIONS'][$this->_database_dsn_md5]->dsn['database'];
+                $this->_database = $con->database; 
                 $hasGetDatabase = method_exists($_DB_DATAOBJECT['CONNECTIONS'][$this->_database_dsn_md5], 'getDatabase');
                 
                 $this->_database = ($db_driver != 'DB' && $hasGetDatabase)  
