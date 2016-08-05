@@ -421,14 +421,15 @@ class DB_DataObject
      * @access   public
      * @return   object an error object
      */
-    public function loadConfig($cfg = array())
+    private function _loadConfig()
     {
         self::$config_loaded = true;
-         
-        if (class_exists('PEAR')) {
-            $cfg = array_merge(PEAR::getStaticProperty('DB_DataObject','options'), $cfg);
+        
+        if (!class_exists('PEAR')) {
+            return;
         }
-         
+        
+        $cfg = PEAR::getStaticProperty('DB_DataObject','options');
         foreach ($cfg as $k=>$v) {
             self::$config[$k] = $v;
         }
