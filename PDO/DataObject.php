@@ -4927,6 +4927,8 @@ class DB_DataObject
      */
     function raiseError($message, $type = null, $behaviour = null)
     {
+        ## FIXME - type can be and exception!!!
+        
         global $_DB_DATAOBJECT;
         
         if ($behaviour == PEAR_ERROR_DIE && !empty($_DB_DATAOBJECT['CONFIG']['dont_die'])) {
