@@ -133,7 +133,9 @@ class DB_DataObject
      */
     static $config = array(
         
-            
+            /**
+            * PDO Class - this can be changed for unit testing. (normally leave as default.)
+            */
             'PDO' => 'PDO',  
         
         
