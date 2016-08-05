@@ -94,7 +94,7 @@ class PDO_DataObject
      */
     static $config = array(
             /**
-             * The database DSN - @see _connect
+             * The database DSN - @see _PDO
              *
              * used to allow arrays - but if you are using a 'pool' - use a proxy.. dont' do it here..
              */
