@@ -181,9 +181,16 @@ class DB_DataObject
 
     
       /**
-     * The Database connection dsn (as described in the PEAR DB)
+     * The Database connection dsn (similar to PEAR DB)
      * only used really if you are writing a very simple application/test..
      * try not to use this - it is better stored in configuration files..
+     *
+     * Format:
+     * 
+     *  PDO_DRIVER://USER:PASSWORD@HOST/DATABASE?a=b&c=d
+     *  -> converts to PDO connect
+     *  PDO_DRIVER:host=HOST;dbname=DATABASE;a=b;c=d   USER , PASSWORD
+     * 
      *
      * @access  private (ish) - extended classes can overide this
      * @var     string
