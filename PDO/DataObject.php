@@ -454,6 +454,7 @@ class DB_DataObject
         foreach ($cfg as $k=>$v) {
             self::$config[$k] = $v;
         }
+        return self::$config;
     }
     
     
