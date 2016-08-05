@@ -449,7 +449,7 @@ class DB_DataObject
      * @return  int     No. of rows
      */
      
-    public function loadConfig($cfg = array()) {
+    public static function loadConfig($cfg = array()) {
     {
         $this->_loadPEARConfig();
         foreach ($cfg as $k=>$v) {
