@@ -248,22 +248,11 @@ class DB_DataObject
             }
 
             if (empty($this->_database)) {
-                $this->_database = $con->database; 
-                $hasGetDatabase = method_exists($_DB_DATAOBJECT['CONNECTIONS'][$this->_database_dsn_md5], 'getDatabase');
+                $this->_database = $con->database;
                 
-                $this->_database = ($db_driver != 'DB' && $hasGetDatabase)  
-                        ? $_DB_DATAOBJECT['CONNECTIONS'][$this->_database_dsn_md5]->getDatabase() 
-                        : $_DB_DATAOBJECT['CONNECTIONS'][$this->_database_dsn_md5]->dsn['database'];
-
-                
-                
-                if (($_DB_DATAOBJECT['CONNECTIONS'][$this->_database_dsn_md5]->dsn['phptype'] == 'sqlite') 
-                    && is_file($this->_database))  {
-                    $this->_database = basename($this->_database);
-                }
-                if ($_DB_DATAOBJECT['CONNECTIONS'][$this->_database_dsn_md5]->dsn['phptype'] == 'ibase')  {
-                    $this->_database = substr(basename($this->_database), 0, -4);
-                }
+                // note
+                // sqlite -- database == basename of database...
+                // ibase -- last 4 characters (substring basename, 0, -4 )
                 
             }
             // theoretically we have a md5, it's listed in connections and it's not an error.
