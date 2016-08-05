@@ -146,10 +146,7 @@ class DB_DataObject
             * PDO Class - this can be changed for unit testing. (normally leave as default.)
             */
             'PDO' => 'PDO',  
-        
-            'debug' => 0,   // debugLevel...
-        
-        
+         
             'tables' => array(), // map of tables names to database names 
             'databases' => array() // map of database names to connection dsn's
            
@@ -160,6 +157,9 @@ class DB_DataObject
             
         
     );
+    
+    static $debug = 0;
+    
     
     private static $config_loaded = false; // flag to indicate if we have attempted to load config from PEAR::getStaticProperty
     
