@@ -138,12 +138,13 @@ class DB_DataObject
         
         
     );
+    
     private static $config_loaded = false; // flag to indicate if we have attempted to load config from PEAR::getStaticProperty
     
-    static private $connections = array(); // md5 map of connections to DSN
-    static private $ini = array(); // mapping of database to ini file results
-    static private $links = array(); //  mapping of database to links file
-    static private $sequence = array(); // cache of sequence keys (modifyable)
+    private static $connections = array(); // md5 map of connections to DSN
+    private static $ini = array(); // mapping of database to ini file results
+    private static $links = array(); //  mapping of database to links file
+    private static $sequence = array(); // cache of sequence keys (modifyable)
     
     
     static private $lasterror   = false; // pear error objects for last error event. accesss with lastError() ???
