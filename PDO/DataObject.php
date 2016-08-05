@@ -292,8 +292,8 @@ class DB_DataObject
             
             if ($this->_database && !empty(self::$config['databases'][$this->_database]))  {
                 $dsn = self::$config['databases'][$this->_database];
-            } else if (!empty($options['database'])) {
-                $dsn = $options['database'];
+            } else if (false !== self::$config['database'])) {
+                $dsn = self::$config['database'];
                   
             }
         }
