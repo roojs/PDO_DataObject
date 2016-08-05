@@ -368,10 +368,22 @@ class DB_DataObject
         
         $dsn_ar = parse_url($dsn);
 
+        $db = $dsn_ar['path'];
+        switch($dsn_ar['scheme']) {
+            case 'sqlite':
+                $db = basename($db);
+                break;
+            case 'ibase':
+                $db = substr(basename($db), 0, -4);
+                break;
+            // others????
+            default:
+                break;
+        }
         
-        self::$connections[$md5]->database = $dsn_ar['path'];
+        self::$connections[$md5]->database = $db;
         
-         
+        
         if (empty($this->_database)) {
             $hasGetDatabase = method_exists($_DB_DATAOBJECT['CONNECTIONS'][$this->_database_dsn_md5], 'getDatabase');
             
