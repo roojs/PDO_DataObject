@@ -138,7 +138,7 @@ class DB_DataObject
         
         
     );
-    static $config_loaded = false; // flag to indicate if we have attempted to load config from PEAR::getStaticProperty
+    private static $config_loaded = false; // flag to indicate if we have attempted to load config from PEAR::getStaticProperty
     
     static private $connections = array(); // md5 map of connections to DSN
     static private $ini = array(); // mapping of database to ini file results
