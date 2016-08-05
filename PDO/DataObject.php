@@ -292,7 +292,7 @@ class DB_DataObject
             
             if ($this->_database && !empty(self::$config['databases'][$this->_database]))  {
                 $dsn = self::$config['databases'][$this->_database];
-            } else if (false !== self::$config['database'])) {
+            } else if (false !== self::$config['database']) {
                 $dsn = self::$config['database'];
                   
             }
