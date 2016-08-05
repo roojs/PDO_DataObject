@@ -290,8 +290,8 @@ class DB_DataObject
                 $this->debug("Checking for database specific ini ('{$this->_database}') : config[databases][$this->_database] in options","CONNECT");
             }
             
-            if ($this->_database && !empty($options["database_{$this->_database}"]))  {
-                $dsn = $options["database_{$this->_database}"];
+            if ($this->_database && !empty(self::$config['databases'][$this->_database]))  {
+                $dsn = self::$config['databases'][$this->_database];
             } else if (!empty($options['database'])) {
                 $dsn = $options['database'];
                   
