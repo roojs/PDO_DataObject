@@ -85,7 +85,7 @@ class PDO_DataObject_Introspection
         
          
         
-        // Assignment code 
+        // Generator code
         
         if ($args = func_get_args()) {
              
