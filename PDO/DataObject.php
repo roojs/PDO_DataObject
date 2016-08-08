@@ -402,6 +402,9 @@ class PDO_DataObject
         foreach ($cfg as $k=>$v) {
             self::$config[$k] = $v;
         }
+        if (isset($cfg['debug'])) {
+            self::$debug = $cfg['debug'];
+        }
         
 
     }
@@ -421,6 +424,9 @@ class PDO_DataObject
         self::_loadPEARConfig();
         foreach ($cfg as $k=>$v) {
             self::$config[$k] = $v;
+        }
+        if (isset($cfg['debug'])) {
+            self::$debug = $cfg['debug'];
         }
         return self::$config;
     }
