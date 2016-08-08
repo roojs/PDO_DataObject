@@ -54,6 +54,16 @@ class PDO_DataObject_Introspection
      *                                    parse_ini_file('mydb.ini',true), 
      *                                    parse_ini_file('mydb.link.ini',true)); 
      *
+     * 1 argument:
+     * DB_DataObject::databaseStructure(  'databasename')
+     *  - returns the structure
+     *  - always calls generator...
+     
+     * 2 argument:
+     * DB_DataObject::databaseStructure(  'databasename', 'tablename')
+     *  - returns the structure
+     *  - always calls generator...
+     *
      * obviously you dont have to use ini files.. (just return array similar to ini files..)
      *  
      * It should append to the table structure array 
