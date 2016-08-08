@@ -35,6 +35,7 @@ a) skeleton class
   
 
 Tests:
+    connect  method ::PDO() 
     quoteIdentifer
     
 Target:END OF WEEK 1 (est. 2 days)
@@ -207,7 +208,7 @@ staticGet -- depricate?
 -----------
 Directly accessing database (BC BREAK!)
 getDatabaseConnection() -- this will have to throw an error... - as it's can not work..
-getPDOConnection() << replacement?
+PDO() << replacement?
 
 -----
 Things that need implementations (not really provided by PDO?)
