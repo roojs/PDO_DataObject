@@ -38,15 +38,12 @@ class PDO_DataObject_Introspection
     /**
      * Constructor
      * @arg DataObject $do   - the dataobject.
-     *
-     */
+      */
     
-    function __construct($do)
+    function __construct(PDO_DataObject $do)
     {
         $this->dataobject = $do;
-        if (!is_a($do, 'PDO_DataObject')) {
-            throw new Exception('Constructor called without PDO_DataObject');
-        }
+        
     }
     /**
      *
