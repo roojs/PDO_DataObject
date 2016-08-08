@@ -2131,6 +2131,7 @@ class PDO_DataObject
      * @param optional string  name of database to assign / read
      * @param optional array   structure of database, and keys
      * @param optional array  table links
+     * @param optional bool overwrite - normally the first two will just append
      *
      * @access public
      * @return true or PEAR:error on wrong paramenters.. or false if no file exists..
@@ -2149,7 +2150,7 @@ class PDO_DataObject
         if ($args) {
         
             // databaseStructure('mydb',   array(.... schema....), array( ... links')
-        
+            
             self::$ini[$args[0]] = isset( self::$ini[$args[0]]) ?
                  self::$ini[$args[0]] + $args[1] : $args[1];
             
