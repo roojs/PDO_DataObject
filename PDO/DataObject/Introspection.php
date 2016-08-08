@@ -175,7 +175,7 @@ class PDO_DataObject_Introspection
             }
         }
         if (!empty($ini_out)) {
-            PDO_DataObject::databaseStructure($database,$ini_out,array(), true);
+            PDO_DataObject::databaseStructure($database,$ini_out,false, true);
         }
         
         // now have we loaded the structure.. 
