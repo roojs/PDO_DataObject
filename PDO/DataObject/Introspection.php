@@ -103,11 +103,11 @@ class PDO_DataObject_Introspection
                
             foreach($tables as $table) {
                 
-                $this->relayGenerator('fillTableSchema', array($x->_database, $table));
+                $this->relayGenerator('fillTableSchema', array($x->databaseName(), $table));
                 
             }
             
-            return PDO_DataObject::$ini[$x->_database];            
+            return PDO_DataObject::$ini[$x->databaseName()];            
          
             // databaseStructure('mydb',   array(.... schema....), array( ... links')
          
