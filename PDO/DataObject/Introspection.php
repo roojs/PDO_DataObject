@@ -46,7 +46,7 @@ class PDO_DataObject_Introspection
         
     }
     /**
-     *
+     * 'complex' version of databaseStructure - this is not so 'speed sensitive'
      *
      *
      */
@@ -62,10 +62,11 @@ class PDO_DataObject_Introspection
         
             if (count($args) == 1) {
                 
+                $cfg = &PDO_DataObject::$config;
                 // this returns all the tables and their structure..
-                if (!empty($_DB_DATAOBJECT['CONFIG']['debug'])) {
-                    $this->debug("Loading Generator as databaseStructure called with args",1);
-                }
+                
+                $this->do->debug("Loading Generator as databaseStructure called with args",1);
+                
                 
                 $x = new DB_DataObject;
                 $x->_database = $args[0];
