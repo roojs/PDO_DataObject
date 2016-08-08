@@ -119,13 +119,6 @@ class PDO_DataObject_Introspection
         
         
         
-        
-        
-        // initialize the ini data.. if empt..
-        if (empty(PDO_DataObject::$ini[$this->do->databaseName()])) {
-            $this->do->databaseStructure($this->do->databaseName(), array())
-        }
-        
         // probably not need (pdo() will load it..)
         PDO_DataObject::loadConfig();
         
