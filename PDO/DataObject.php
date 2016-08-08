@@ -201,7 +201,7 @@ class PDO_DataObject
      * 
      *
      * @access private
-     * @return true | PEAR::error
+     * @return PDO Object the connection
      */
     public function PDO()
     {
