@@ -2152,6 +2152,9 @@ class PDO_DataObject
             DB_DataObject::loadConfig();
         }
         
+        
+        
+        
         // we do not have the data for this table yet...
         
         // if we are configured to use the proxy..
@@ -2168,6 +2171,10 @@ class PDO_DataObject
             return true;
         }
             
+        // basic idea here..
+        // if we have a really simple format - do that here.. otherwise pass to introspection to sort out.
+        
+        
              
        
         
