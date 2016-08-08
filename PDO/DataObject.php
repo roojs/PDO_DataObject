@@ -137,8 +137,8 @@ class PDO_DataObject
     
     
     // these have to be public? as we modify them in the introspection
-    public static $ini = array(); // mapping of database to ini file results
-    public static $links = array(); //  mapping of database to links file
+    private static $ini = array(); // mapping of database to ini file results
+    private static $links = array(); //  mapping of database to links file
     
     
     private static $sequence = array(); // cache of sequence keys (modifyable)
