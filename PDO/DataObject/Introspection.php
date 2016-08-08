@@ -65,15 +65,7 @@ class PDO_DataObject_Introspection
      *  - returns the structure
      *  - always calls generator...
      
-     * 2 arguments:
-     * DB_DataObject::databaseStructure(  'databasename', parse_ini_file('mydb.ini',true))
-     *  - set's the structure..
-     *  
-     * 3 arguments:
-     * DB_DataObject::databaseStructure(  'databasename',
-     *                                    parse_ini_file('mydb.ini',true), 
-     *                                    parse_ini_file('mydb.link.ini',true)); 
-     *
+    *
      *  - set's the structure.. and the links data..
           
      *
