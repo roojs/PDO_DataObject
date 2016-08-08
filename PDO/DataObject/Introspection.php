@@ -153,16 +153,20 @@ class PDO_DataObject_Introspection
             if (empty($ini)) {
                 continue;
             }
-             if (file_exists($ini) && is_file($ini)) {
-                
-                $_DB_DATAOBJECT['INI'][$this->_database] = array_merge(
-                    $_DB_DATAOBJECT['INI'][$this->_database],
+            if (!file_exists($ini) || !is_file($ini) || !is_readable ($ini)) {
+                $this->debug("ini file is not readable / does not exist: $ini","databaseStructure",1);
+                 $this->raiseError( "Unable to load schema for database and table (turn debugging up to 5 for full error message)",
+                                   PDO_DataObject::ERROR_INVALIDARGS, PDO_DataObject::ERROR_DIE);
+       
+            }
+                $ini_out = array_merge(
+                    $ini_out,
                     parse_ini_file($ini, true)
                 );
                     
-                if (!empty($_DB_DATAOBJECT['CONFIG']['debug'])) { 
+                
                     if (!is_readable ($ini)) {
-                        $this->debug("ini file is not readable: $ini","databaseStructure",1);
+                    
                     } else {
                         $this->debug("Loaded ini file: $ini","databaseStructure",1);
                     }
