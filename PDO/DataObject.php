@@ -2113,6 +2113,10 @@ class PDO_DataObject
      * usage :
      * 1 argument - forces generator run..
      * DB_DataObject::databaseStructure(  'databasename')
+     *
+     * 2 argument - just returns the database structure - if any.
+     * DB_DataObject::databaseStructure(  'databasename', false)
+     * 
      * 
      * 2 arguments:
      * DB_DataObject::databaseStructure(  'databasename', parse_ini_file('mydb.ini',true))
