@@ -124,8 +124,8 @@ class PDO_DataObject_Introspection
         }
         
         // initialize the ini data.. if empt..
-        if (empty($_DB_DATAOBJECT['INI'][$this->_database])) {
-            $_DB_DATAOBJECT['INI'][$this->_database] = array();
+        if (empty(PDO_DataObject::$ini[$this->_database])) {
+            PDO_DataObject::$ini[$this->_database] = array();
         }
          
         if (empty($_DB_DATAOBJECT['CONFIG'])) {
