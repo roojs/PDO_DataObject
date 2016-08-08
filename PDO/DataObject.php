@@ -2164,7 +2164,8 @@ class PDO_DataObject
                     self::$links[$database] + $linksdata :
                     $linksdata;
             }
-            return self::$ini[$database];
+            
+            return isset(self::$ini[$database]) ? self::$ini[$database] : false;
             
             // will not get here....
         }
