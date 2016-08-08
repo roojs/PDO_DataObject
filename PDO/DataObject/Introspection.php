@@ -50,6 +50,7 @@ class PDO_DataObject_Introspection
      * only used when
      * a) setting manually the structure or ini.
      * b) proxy is set..
+     * c) ini_**** is set...
      *
      *
      *
