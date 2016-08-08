@@ -170,7 +170,7 @@ class PDO_DataObject_Introspection
         }
                     
          
-        $_DB_DATAOBJECT['INI'][$this->_database] = array();
+        PDO_DataObject::$ini[$this->_database] = array();
         foreach ($schemas as $ini) {
             if (empty($ini)) {
                 continue;
