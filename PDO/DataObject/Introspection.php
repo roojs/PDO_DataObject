@@ -119,7 +119,7 @@ class PDO_DataObject_Introspection
         
         
         // if this table is already loaded this table..
-        if (!empty($_DB_DATAOBJECT['INI'][$this->_database][$this->tableName()])) {
+        if (!empty(PDO_DataObject::$ini[$this->_database][$this->tableName()])) {
             return true;
         }
         
