@@ -218,6 +218,11 @@ class PDO_DataObject_Introspection
         
     }
     
+    function GeneraterRelay($method, $args)
+    {
+        
+        
+    }
     
     
 }
