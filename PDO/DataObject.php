@@ -2126,46 +2126,12 @@ class PDO_DataObject
         
         if ($args = func_get_args()) {
             class_exists('PDO_DataObject_Introspection') ? '' : require_once 'PDO/DataObject/Introspection.php';
-        
-            if (count($args) == 1) {
-                
-                // this returns all the tables and their structure..
-                if (!empty($_DB_DATAOBJECT['CONFIG']['debug'])) {
-                    $this->debug("Loading Generator as databaseStructure called with args",1);
-                }
-                
-                $x = new DB_DataObject;
-                $x->_database = $args[0];
-                $this->_connect();
-                $DB = $_DB_DATAOBJECT['CONNECTIONS'][$this->_database_dsn_md5];
-       
-                $tables = $DB->getListOf('tables');
-                class_exists('DB_DataObject_Generator') ? '' : 
-                    require_once 'DB/DataObject/Generator.php';
-                    
-                foreach($tables as $table) {
-                    $y = new DB_DataObject_Generator;
-                    $y->fillTableSchema($x->_database,$table);
-                }
-                return $_DB_DATAOBJECT['INI'][$x->_database];            
-            } else {
-        
-                $_DB_DATAOBJECT['INI'][$args[0]] = isset($_DB_DATAOBJECT['INI'][$args[0]]) ?
-                    $_DB_DATAOBJECT['INI'][$args[0]] + $args[1] : $args[1];
-                
-                if (isset($args[1])) {
-                    $_DB_DATAOBJECT['LINKS'][$args[0]] = isset($_DB_DATAOBJECT['LINKS'][$args[0]]) ?
-                        $_DB_DATAOBJECT['LINKS'][$args[0]] + $args[2] : $args[2];
-                }
-                return true;
-            }
-            // will not get here....
+            $io = new PDO_DataObject_Introspection($this);
+            return call_user_func_array(array($io,'databaseStructure'), $args);
         }
-        
-        
-        
+          
         if (!$this->_database) {
-            $this->_connect();
+            $this->PDO();
         }
         
         
