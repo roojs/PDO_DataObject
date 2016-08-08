@@ -85,9 +85,8 @@ class PDO_DataObject_Introspection
                 $x = new PDO_DataObject();
                 $x->_database = $args[0];
                 $x->PDO();
-                
-       
-                $tables = $this->getListOf('tables');
+                 
+                $tables = (new PDO_DataObject_Introspection($x))->getListOf('tables');
                 
                 //?? move ??
                 class_exists('DB_DataObject_Generator') ? '' : 
