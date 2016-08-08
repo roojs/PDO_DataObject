@@ -76,7 +76,7 @@ class PDO_DataObject_Introspection
         
             if (count($args) == 1) {
                 
-                $cfg = &PDO_DataObject::$config;
+                
                 // this returns all the tables and their structure..
                 
                 $this->do->debug("Loading Generator as databaseStructure called with args",1);
