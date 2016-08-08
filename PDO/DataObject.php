@@ -206,7 +206,7 @@ class PDO_DataObject
     private function _PDO()
     {
         
-        $config = $self::loadConfig();
+        $config = self::loadConfig();
          
         // We can use a fake PDO class when testing..
         $PDO = $config['PDO'];
