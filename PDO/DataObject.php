@@ -2157,7 +2157,8 @@ class PDO_DataObject
             
             if (count($args) > 2)  {
                 self::$links[$tablename] = isset(self::$links[$tablename]) ?
-                    self::$links[$tablename] + $args[2] : $args[2];
+                    self::$links[$tablename] + $linksdata :
+                    $linksdata;
             }
             return true;
             
