@@ -2184,7 +2184,10 @@ class PDO_DataObject
             if (self::$debug) {
                 $this->debug("Missing ini file: $ini","databaseStructure",1);
             }
-            
+            $this->raiseError( "Unable to load schema for database and table (turn debugging up to 5 for full error message)",
+                                self::ERROR_INVALIDARGS, self::ERROR_DIE);
+            return false;
+        }
         
         
         foreach ($schemas as $ini) {
@@ -2223,16 +2226,7 @@ class PDO_DataObject
         if (!empty($_DB_DATAOBJECT['INI'][$this->_database][$this->tableName()])) {
             return true;
         }
-        // - if not try building it..
-        if (!empty($_DB_DATAOBJECT['CONFIG']['proxy'])) {
-            class_exists('DB_DataObject_Generator') ? '' : 
-                require_once 'DB/DataObject/Generator.php';
-                
-            $x = new DB_DataObject_Generator;
-            $x->fillTableSchema($this->_database,$this->tableName());
-            // should this fail!!!???
-            return true;
-        }
+       
         $this->debug("Cant find database schema: {$this->_database}/{$this->tableName()} \n".
                     "in links file data: " . print_r($_DB_DATAOBJECT['INI'],true),"databaseStructure",5);
         // we have to die here!! - it causes chaos if we dont (including looping forever!)
