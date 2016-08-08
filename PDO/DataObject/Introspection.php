@@ -93,7 +93,7 @@ class PDO_DataObject_Introspection
                     require_once 'PDO/DataObject/Generator.php';
                     
                 foreach($tables as $table) {
-                    (new DB_DataObject_Generator())->fillTableSchema($x->_database,$table);
+                    (new PDO_DataObject_Generator())->fillTableSchema($x->_database,$table);
                 }
                 
                 return PDO_DataObject::$ini[$x->_database];            
