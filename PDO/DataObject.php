@@ -2156,7 +2156,7 @@ class PDO_DataObject
         
         // if we are configured to use the proxy..
         
-        if ( !empty($_DB_DATAOBJECT['CONFIG']['proxy']) ) {
+        if ( !self::$config['proxy']) ) {
             if (!empty($_DB_DATAOBJECT['CONFIG']['debug'])) {
                 $this->debug("Loading Generator to fetch Schema",1);
             }
