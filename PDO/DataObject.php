@@ -2141,7 +2141,7 @@ class PDO_DataObject
 
         // Assignment code 
         
-        if ($args = func_get_args() && count($args) > 1) {
+        if ($args = func_get_args() && count($args) == 1) {
             
             return $this->_databaseStructureIntrospection();
         }
