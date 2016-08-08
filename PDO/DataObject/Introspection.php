@@ -118,6 +118,8 @@ class PDO_DataObject_Introspection
         $this->PDO();
         
         
+        $database = $this->do->databaseName();
+        $table = $this->do->tableName();
         
         // probably not need (pdo() will load it..)
         PDO_DataObject::loadConfig();
@@ -133,16 +135,16 @@ class PDO_DataObject_Introspection
         }
             
              
-       
+        
         
         // if you supply this with arguments, then it will take those
         // as the database and links array...
          
         //           
         
-            $schemas = is_array($_DB_DATAOBJECT['CONFIG']["ini_{$this->_database}"]) ?
-                $_DB_DATAOBJECT['CONFIG']["ini_{$this->_database}"] :
-                explode(PATH_SEPARATOR,$_DB_DATAOBJECT['CONFIG']["ini_{$this->_database}"]);
+        $schemas = is_array(PDO_DataObject::$ini["ini_{$this->_database}"]) ?
+            $_DB_DATAOBJECT['CONFIG']["ini_{$this->_database}"] :
+            explode(PATH_SEPARATOR,$_DB_DATAOBJECT['CONFIG']["ini_{$this->_database}"]);
         }
                     
          
