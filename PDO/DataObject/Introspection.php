@@ -68,12 +68,12 @@ class PDO_DataObject_Introspection
                 $this->do->debug("Loading Generator as databaseStructure called with args",1);
                 
                 
-                $x = new DB_DataObject;
+                $x = new PDO_DataObject();
                 $x->_database = $args[0];
-                $this->_connect();
-                $DB = $_DB_DATAOBJECT['CONNECTIONS'][$this->_database_dsn_md5];
+                $this->PDO();
+                
        
-                $tables = $DB->getListOf('tables');
+                $tables = $this->getListOf('tables');
                 class_exists('DB_DataObject_Generator') ? '' : 
                     require_once 'DB/DataObject/Generator.php';
                     
