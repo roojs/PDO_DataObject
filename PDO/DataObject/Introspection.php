@@ -117,8 +117,7 @@ class PDO_DataObject_Introspection
         
         
         if (!$this->_database) {
-            $this->_connect();
-        }
+            $this->PDO();
         
         
         // if this table is already loaded this table..
