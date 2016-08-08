@@ -91,7 +91,7 @@ class PDO_DataObject_Introspection
     function databaseStructure()
     {
         
-         global $_DB_DATAOBJECT;
+         
         
         // Assignment code 
         
@@ -167,9 +167,8 @@ class PDO_DataObject_Introspection
         // if you supply this with arguments, then it will take those
         // as the database and links array...
          
-        $schemas = array(PDO_DataObject::$config['schema_location'] .'/'. $this->_database .'.ini');
-                 
-        if (isset(PDO_DataObject::$config["ini_{$this->_database}"])) {
+        //           
+        
             $schemas = is_array($_DB_DATAOBJECT['CONFIG']["ini_{$this->_database}"]) ?
                 $_DB_DATAOBJECT['CONFIG']["ini_{$this->_database}"] :
                 explode(PATH_SEPARATOR,$_DB_DATAOBJECT['CONFIG']["ini_{$this->_database}"]);
