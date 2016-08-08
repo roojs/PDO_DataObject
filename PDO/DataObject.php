@@ -314,7 +314,7 @@ class PDO_DataObject
             // others go here...
         }
         if (!empty($dsn_ar['query'])) {
-            $pdo_dsn = ';' . str_replace('&', ';',  $dsn_ar['query']); // could just str_replace..
+            $pdo_dsn .= ';' . str_replace('&', ';',  $dsn_ar['query']); // could just str_replace..
         }
         $opts = array();
         if (!empty($dsn_ar['fragment'])) {
