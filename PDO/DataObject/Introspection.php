@@ -132,6 +132,9 @@ class PDO_DataObject_Introspection
         // if we are configured to use the proxy..
         
         if ( !empty($_DB_DATAOBJECT['CONFIG']['proxy']) ) {
+            
+            $this->relayGenerator('fillTableSchema', array($this->do->_database, $this->do->tableName())
+            
             if (!empty($_DB_DATAOBJECT['CONFIG']['debug'])) {
                 $this->debug("Loading Generator to fetch Schema",1);
             }
