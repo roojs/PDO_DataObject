@@ -47,6 +47,10 @@ class PDO_DataObject_Introspection
     }
     /**
      * 'complex' version of databaseStructure - this is not so 'speed sensitive'
+     * only used when
+     * a) proxy is set..
+     *
+     *
      *
      *    
      * usage :
