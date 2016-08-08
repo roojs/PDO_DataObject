@@ -2207,7 +2207,12 @@ class PDO_DataObject
         
          
     }
-
+    /**
+     * 'complex' versions of databaseStructure
+     * - manual set
+     * - proxy
+     * - ini_****
+     */
     private function databaseStructureIntrospection()
     {
         class_exists('PDO_DataObject_Introspection') ? '' : require_once 'PDO/DataObject/Introspection.php';
