@@ -127,10 +127,7 @@ class PDO_DataObject_Introspection
         if (empty(PDO_DataObject::$ini[$this->_database])) {
             PDO_DataObject::$ini[$this->_database] = array();
         }
-         
-        if (empty($_DB_DATAOBJECT['CONFIG'])) {
-            DB_DataObject::_loadConfig();
-        }
+        PDO_DataObject::loadConfig();
         
         // we do not have the data for this table yet...
         
