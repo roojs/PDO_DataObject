@@ -431,7 +431,7 @@ class PDO_DataObject
     
     function quoteIdentifier($str)
     {
-        $pdo = $this->_PDO();
+        $pdo = $this->PDO();
         if (!is_a($pdo, self::$config['PDO'])) {
             $this->raiseError("Can not quoteIdentifier as connection failed", $pdo, self::ERROR_DIE);
         }
