@@ -300,12 +300,6 @@ class PDO_DataObject
 
         // create a pdo dsn....
         
-        $pdo_dsn =
-            $dsn_ar['scheme'] . ':' .
-            'dbname=' . substr($dsn_ar['path'],1) .
-            (empty($dsn_ar['host']) ? '': ';host=' . $dsn_ar['host']) .
-            (empty($dsn_ar['port']) ? '' : ';port=' . $dsn_ar['port']);
-        
         switch($dsn_ar['scheme'] ) {
             case 'sqlite':
             case 'sqlite2':
@@ -316,10 +310,20 @@ class PDO_DataObject
                     $dsn_ar['scheme'] . ':' .
                     'Database=' . substr($dsn_ar['path'],1) .
                     (empty($dsn_ar['host']) ? '': ';Server=' . $dsn_ar['host']) .
-                    (empty($dsn_ar['port']) ? '' : ',' . $dsn_ar['port']);    
-          
-          
+                    (empty($dsn_ar['port']) ? '' : ',' . $dsn_ar['port']);
+                break;
+            
             // others go here...
+        
+            default:
+            
+                $pdo_dsn =
+                    $dsn_ar['scheme'] . ':' .
+                    'dbname=' . substr($dsn_ar['path'],1) .
+                    (empty($dsn_ar['host']) ? '': ';host=' . $dsn_ar['host']) .
+                    (empty($dsn_ar['port']) ? '' : ';port=' . $dsn_ar['port']);
+               break;
+            
         }
         if (!empty($dsn_ar['query'])) {
             $pdo_dsn .= ';' . str_replace('&', ';',  $dsn_ar['query']); // could just str_replace..
