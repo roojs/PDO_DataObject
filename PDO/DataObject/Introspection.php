@@ -38,11 +38,16 @@ class PDO_DataObject_Introspection
     function __construct($do)
     {
         $this->dataobject = $do;
+        if (!is_a($do, 'PDO_DataObject')) {
+            throw new Exception('Constructor called without PDO_DataObject');
+        }
     }
     
     
     function databaseStructure()
     {
+        
+        
         
     }
     
