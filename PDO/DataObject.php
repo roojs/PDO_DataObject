@@ -115,7 +115,10 @@ class PDO_DataObject
             // fill me in..
             
             
-            
+            'portability' => 0,
+                //similar to DB's portability setting,
+                // currently it only lowercases the tablename when you call tableName(), and
+                // flatten's ini files ..
         
     );
     
@@ -2192,21 +2195,7 @@ class PDO_DataObject
         
         self::$ini[$this->_database] =  parse_ini_file($ini, true)
                 
-                    
-                if (!empty($_DB_DATAOBJECT['CONFIG']['debug'])) { 
-                    if () {
-                        $this->debug("ini file is not readable: $ini","databaseStructure",1);
-                    } else {
-                        $this->debug("Loaded ini file: $ini","databaseStructure",1);
-                    }
-                }
-            } else {
-                if (!empty($_DB_DATAOBJECT['CONFIG']['debug'])) {
-                    
-                }
-            }
-             
-        }
+               
         // are table name lowecased..
         if (!empty($_DB_DATAOBJECT['CONFIG']['portability']) && $_DB_DATAOBJECT['CONFIG']['portability'] & 1) {
             foreach($_DB_DATAOBJECT['INI'][$this->_database] as $k=>$v) {
