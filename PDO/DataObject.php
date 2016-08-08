@@ -2133,8 +2133,25 @@ class PDO_DataObject
 
         // Assignment code 
         
-        if ($args = func_get_args()) {
+        if ($args = func_get_args() && count($args) > 1) {
+            
             return $this->_databaseStructureIntrospection();
+        }
+        
+        if ($args) {
+        
+            // databaseStructure('mydb',   array(.... schema....), array( ... links')
+        
+            self::$ini[$args[0]] = isset( self::$ini[$args[0]]) ?
+                 self::$ini[$args[0]] + $args[1] : $args[1];
+            
+            if (isset($args[2])) {
+                self::$links[$args[0]] = isset(self::$links[$args[0]]) ?
+                    self::$links[$args[0]] + $args[2] : $args[2];
+            }
+            return true;
+            
+            // will not get here....
         }
           
         if (!$this->_database) {
