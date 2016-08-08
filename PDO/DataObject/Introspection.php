@@ -74,6 +74,8 @@ class PDO_DataObject_Introspection
                 
        
                 $tables = $this->getListOf('tables');
+                
+                //?? move ??
                 class_exists('DB_DataObject_Generator') ? '' : 
                     require_once 'DB/DataObject/Generator.php';
                     
