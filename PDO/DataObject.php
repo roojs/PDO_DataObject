@@ -2133,8 +2133,8 @@ class PDO_DataObject
      *
      *     
      * @param optional string  name of database to assign / read
-     * @param optional array   structure of database, and keys
-     * @param optional array  table links
+     * @param optional array|false   structure of database, and keys
+     * @param optional array|false  table links
      * @param optional bool overwrite - normally the first two will just append
      *
      * @access public
