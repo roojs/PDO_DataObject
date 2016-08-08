@@ -2151,10 +2151,7 @@ class PDO_DataObject
         if (!self::$config_loaded) {
             DB_DataObject::loadConfig();
         }
-        
-        
-        
-        
+         
         // we do not have the data for this table yet...
         
         // if we are configured to use the proxy..
@@ -2178,8 +2175,7 @@ class PDO_DataObject
         if (isset($_DB_DATAOBJECT['CONFIG']["ini_{$this->_database}"])) {
             class_exists('PDO_DataObject_Introspection') ? '' : require_once 'PDO/DataObject/Introspection.php';
             $io = new PDO_DataObject_Introspection($this);
-            return call_user_func_array(array($io,'databaseStructure'), $args);
-             
+            return call_user_func(array($io,'databaseStructure'));
         }
         
         $schema = self::$config['schema_location'] .'/'. $this->_database .'.ini';
