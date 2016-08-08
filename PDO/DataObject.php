@@ -2156,7 +2156,7 @@ class PDO_DataObject
         
         // if we are configured to use the proxy..
         
-        if ( !self::$config['proxy'])   {
+        if ( self::$config['proxy'])   {
             if (self::$debug) {
                 $this->debug("Loading Generator to fetch Schema",1);
             }
@@ -2181,7 +2181,10 @@ class PDO_DataObject
         $ini = self::$config['schema_location'] .'/'. $this->_database .'.ini';
         
         if (!file_exists($ini) || !is_file($ini)) {
-        
+            if (self::$debug) {
+                $this->debug("Missing ini file: $ini","databaseStructure",1);
+            }
+            
         
         
         foreach ($schemas as $ini) {
@@ -2201,7 +2204,7 @@ class PDO_DataObject
                 }
             } else {
                 if (!empty($_DB_DATAOBJECT['CONFIG']['debug'])) {
-                    $this->debug("Missing ini file: $ini","databaseStructure",1);
+                    
                 }
             }
              
