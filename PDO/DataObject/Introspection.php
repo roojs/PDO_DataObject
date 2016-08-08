@@ -107,7 +107,7 @@ class PDO_DataObject_Introspection
                 
                 return PDO_DataObject::$ini[$x->_database];            
             }  
-            // databaseStructure('mydb', 'table' , array(.... schema....), array( ... links')
+            // databaseStructure('mydb',   array(.... schema....), array( ... links')
         
             PDO_DataObject::$ini[$args[0]] = isset( PDO_DataObject::$ini[$args[0]]) ?
                  PDO_DataObject::$ini[$args[0]] + $args[1] : $args[1];
