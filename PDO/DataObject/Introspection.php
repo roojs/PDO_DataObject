@@ -172,6 +172,9 @@ class PDO_DataObject_Introspection
          
         $_DB_DATAOBJECT['INI'][$this->_database] = array();
         foreach ($schemas as $ini) {
+            if (empty($ini)) {
+                continue;
+            }
              if (file_exists($ini) && is_file($ini)) {
                 
                 $_DB_DATAOBJECT['INI'][$this->_database] = array_merge(
