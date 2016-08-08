@@ -386,7 +386,7 @@ class PDO_DataObject
      * @access   public
      * @return   object an error object
      */
-    private function _loadPEARConfig()
+    private static function _loadPEARConfig()
     {
         
         if (self::$config_loaded) {
