@@ -109,7 +109,9 @@ class PDO_DataObject
             'databases' => array() // map of database names to connection dsn's
            
         
-            'proxy'=>false,
+            'proxy' => false,
+                // normally we use pre-created 'ini' files, but if you use proxy, it will generate the
+                // the database schema on the fly..
             // fill me in..
             
             
