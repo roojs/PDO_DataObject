@@ -110,7 +110,7 @@ class PDO_DataObject_Introspection
                     PDO_DataObject::$links[$args[0]] + $args[2] : $args[2];
             }
             return true;
-            }
+            
             // will not get here....
         }
         
