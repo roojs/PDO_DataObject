@@ -184,16 +184,8 @@ class PDO_DataObject_Introspection
         if (!empty($dbini[$this->tableName()])) {
             return true;
         }
-        // - if not try building it..
-        if (!empty($_DB_DATAOBJECT['CONFIG']['proxy'])) {
-            class_exists('DB_DataObject_Generator') ? '' : 
-                require_once 'DB/DataObject/Generator.php';
-                
-            $x = new DB_DataObject_Generator;
-            $x->fillTableSchema($this->_database,$this->tableName());
-            // should this fail!!!???
-            return true;
-        }
+        // previously we tried proxy here... - but it's already supposed to be tried at this point anyway.
+       
         $this->debug("Cant find database schema: {$this->_database}/{$this->tableName()} \n".
                     "in links file data: " . print_r($_DB_DATAOBJECT['INI'],true),"databaseStructure",5);
         // we have to die here!! - it causes chaos if we dont (including looping forever!)
