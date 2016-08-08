@@ -135,7 +135,7 @@ class PDO_DataObject_Introspection
             if (!empty($_DB_DATAOBJECT['CONFIG']['debug'])) {
                 $this->debug("Loading Generator to fetch Schema",1);
             }
-            class_exists('DB_DataObject_Generator') ? '' : 
+            class_exists('PDO_DataObject_Generator') ? '' : 
                 require_once 'DB/DataObject/Generator.php';
                 
             
