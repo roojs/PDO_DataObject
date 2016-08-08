@@ -2131,9 +2131,7 @@ class PDO_DataObject
         // Assignment code 
         
         if ($args = func_get_args()) {
-            class_exists('PDO_DataObject_Introspection') ? '' : require_once 'PDO/DataObject/Introspection.php';
-            $io = new PDO_DataObject_Introspection($this);
-            return call_user_func_array(array($io,'databaseStructure'), $args);
+            return $this->databaseStructureIntrospection();
         }
           
         if (!$this->_database) {
@@ -2160,7 +2158,15 @@ class PDO_DataObject
         // if we are configured to use the proxy..
         
         if ( self::$config['proxy'])   {
-            if (self::$debug) {
+            return $this->databaseStructureIntrospection();
+        }
+            
+        // basic idea here..
+        // if we have a really simple format - do that here.. otherwise pass to introspection to sort out.
+        
+        // uses 'ini_* settings..
+        if (isset(self::$config['ini_'. $this->_database ])) {
+           if (self::$debug) {
                 $this->debug("Loading Generator to fetch Schema",1);
             }
             class_exists('DB_DataObject_Generator') ? '' : 
@@ -2169,16 +2175,6 @@ class PDO_DataObject
             $x = new DB_DataObject_Generator;
             $x->fillTableSchema($this->_database,$this->tableName());
             return true;
-        }
-            
-        // basic idea here..
-        // if we have a really simple format - do that here.. otherwise pass to introspection to sort out.
-        
-        // uses 'ini_* settings..
-        if (isset(self::$config['ini_'. $this->_database ])) {
-            class_exists('PDO_DataObject_Introspection') ? '' : require_once 'PDO/DataObject/Introspection.php';
-            $io = new PDO_DataObject_Introspection($this);
-            return call_user_func(array($io,'databaseStructure'));
         }
         
         $ini = self::$config['schema_location'] .'/'. $this->_database .'.ini';
