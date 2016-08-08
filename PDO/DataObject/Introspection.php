@@ -119,13 +119,13 @@ class PDO_DataObject_Introspection
         
         
         // if this table is already loaded this table..
-        if (!empty(PDO_DataObject::$ini[$this->do->_database][$this->do->tableName()])) {
+        if (!empty(PDO_DataObject::$ini[$this->do->databaseName()][$this->do->tableName()])) {
             return true;
         }
         
         // initialize the ini data.. if empt..
-        if (empty(PDO_DataObject::$ini[$this->do->_database])) {
-            PDO_DataObject::$ini[$this->do->_database] = array();
+        if (empty(PDO_DataObject::$ini[$this->do->databaseName()])) {
+            $this->do->databaseStructure($this->do->databaseName())
         }
         
         // probably not need (pdo() will load it..)
