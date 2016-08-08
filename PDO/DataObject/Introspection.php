@@ -187,7 +187,7 @@ class PDO_DataObject_Introspection
         // previously we tried proxy here... - but it's already supposed to be tried at this point anyway.
         
        
-        $this->do->debug("Cant find database schema: {$this->_database}/{$this->tableName()} \n".
+        $this->do->debug("Cant find database schema: {$database}/{$table} \n".
                     "in links file data: " . print_r($dbini,true),"databaseStructure",5);
         // we have to die here!! - it causes chaos if we dont (including looping forever!)
         $this->do->raiseError( "Unable to load schema for database and table (turn debugging up to 5 for full error message)", 
