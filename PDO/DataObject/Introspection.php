@@ -62,6 +62,7 @@ class PDO_DataObject_Introspection
      * @param optional string  name of database to assign / read
      * @param optional array   structure of database, and keys
      * @param optional array  table links
+     * @return (varies) - depends if you are setting or getting...
      */
     
     function databaseStructure()
