@@ -2180,7 +2180,7 @@ class PDO_DataObject
         
         $ini = self::$config['schema_location'] .'/'. $this->_database .'.ini';
         
-        if (!file_exists($ini) || !is_file($ini)) {
+        if (!file_exists($ini) || !is_file($ini) || !is_readable ($ini)) {
             if (self::$debug) {
                 $this->debug("Missing ini file: $ini","databaseStructure",1);
             }
@@ -2190,16 +2190,11 @@ class PDO_DataObject
         }
         
         
-        foreach ($schemas as $ini) {
-           
+        self::$ini[$this->_database] =  parse_ini_file($ini, true)
                 
-                $_DB_DATAOBJECT['INI'][$this->_database] = array_merge(
-                    $_DB_DATAOBJECT['INI'][$this->_database],
-                    parse_ini_file($ini, true)
-                );
                     
                 if (!empty($_DB_DATAOBJECT['CONFIG']['debug'])) { 
-                    if (!is_readable ($ini)) {
+                    if () {
                         $this->debug("ini file is not readable: $ini","databaseStructure",1);
                     } else {
                         $this->debug("Loaded ini file: $ini","databaseStructure",1);
