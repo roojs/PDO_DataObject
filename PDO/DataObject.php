@@ -302,7 +302,7 @@ class PDO_DataObject
         
         $pdo_dsn =
             $dsn_ar['scheme'] . ':' .
-            'dbname=' . $dsn_ar['path'] .
+            'dbname=' . substr($dsn_ar['path'],1) .
             (empty($dsn_ar['host']) ? '': ';host=' . $dsn_ar['host']) .
             (empty($dsn_ar['port']) ? '' : ';port=' . $dsn_ar['port']);
         
