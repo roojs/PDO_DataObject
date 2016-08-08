@@ -3034,7 +3034,7 @@ class PDO_DataObject
         }
          
         if (empty($_DB_DATAOBJECT['CONFIG'])) {
-            DB_DataObject::_loadConfig();
+            PDO_DataObject::_loadConfig();
         }
         // no configuration available for database
         if (!empty($database) && empty($_DB_DATAOBJECT['CONFIG']['database_'.$database])) {
