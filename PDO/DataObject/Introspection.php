@@ -33,7 +33,7 @@
 class PDO_DataObject_Introspection
 {
     
-    private $dataobject;
+    private $do;
     
     /**
      * Constructor
@@ -42,7 +42,7 @@ class PDO_DataObject_Introspection
     
     function __construct(PDO_DataObject $do)
     {
-        $this->dataobject = $do;
+        $this->do = $do;
         
     }
     /**
