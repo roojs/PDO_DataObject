@@ -2182,7 +2182,7 @@ class PDO_DataObject
         
         if (!file_exists($ini) || !is_file($ini) || !is_readable ($ini)) {
             if (self::$debug) {
-                $this->debug("Missing ini file: $ini","databaseStructure",1);
+                $this->debug("Can not read ini file: $ini - not (exists|file|readable)","databaseStructure",1);
             }
             $this->raiseError( "Unable to load schema for database and table (turn debugging up to 5 for full error message)",
                                 self::ERROR_INVALIDARGS, self::ERROR_DIE);
