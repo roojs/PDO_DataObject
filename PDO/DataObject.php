@@ -2137,7 +2137,7 @@ class PDO_DataObject
      * @return true or PEAR:error on wrong paramenters.. or false if no file exists..
      *              or the array(tablename => array(column_name=>type)) if called with 1 argument.. (databasename)
      */
-    function databaseStructure($tablename = false, $inidata = false, $tabledata=false, $overwrite = false)
+    function databaseStructure($tablename = false, $inidata = array(), $tabledata=array(), $overwrite = false)
     {
 
         // Assignment code 
