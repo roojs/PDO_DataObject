@@ -143,8 +143,8 @@ class PDO_DataObject_Introspection
         //           
         
         $schemas = is_array(PDO_DataObject::$config["ini_{$database}"]) ?
-            PDO_DataObject::$config["ini_{$this->_database}"] :
-            explode(PATH_SEPARATOR,PDO_DataObject::$config["ini_{$this->_database}"]);
+            PDO_DataObject::$config["ini_{$database}"] :
+            explode(PATH_SEPARATOR,PDO_DataObject::$config["ini_{$database}"]);
         }
                     
          
