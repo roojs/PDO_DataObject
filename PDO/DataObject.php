@@ -2150,17 +2150,17 @@ class PDO_DataObject
         if ($args) {
         
             // databaseStructure('mydb',   a$tabledatarray(.... schema....), array( ... links')
-            
-            self::$ini[$database] = isset( self::$ini[$database]) && !$overwrite ?
-                 self::$ini[$database] + $inidata :
-                 $inidata;
+            if ($inidata !== false) {
+                self::$ini[$database] = isset( self::$ini[$database]) && !$overwrite ?
+                    self::$ini[$database] + $inidata :
+                    $inidata;
             
             if (count($args) > 2 && $linksdata !== false)  {
                 self::$links[$database] = isset(self::$links[$database]) && !$overwrite ?  
                     self::$links[$database] + $linksdata :
                     $linksdata;
             }
-            return true;
+            return self::$ini[$database];
             
             // will not get here....
         }
