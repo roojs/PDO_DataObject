@@ -2182,7 +2182,7 @@ class PDO_DataObject
              
         }
         
-       
+        $schema = self::$config['schema_location'] .'/'. $this->_database .'.ini':
         
         // if you supply this with arguments, then it will take those
         // as the database and links array...
