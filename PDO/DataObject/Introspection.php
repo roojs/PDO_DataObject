@@ -163,29 +163,20 @@ class PDO_DataObject_Introspection
                 $ini_out,
                 parse_ini_file($ini, true)
             );
-                    
                 
-                    if (!is_readable ($ini)) {
-                    
-                    } else {
-                        $this->debug("Loaded ini file: $ini","databaseStructure",1);
-                    }
-                }
-            } else {
-                if (!empty($_DB_DATAOBJECT['CONFIG']['debug'])) {
-                    $this->debug("Missing ini file: $ini","databaseStructure",1);
-                }
-            }
              
         }
+        
         // are table name lowecased..
-        if (!empty($_DB_DATAOBJECT['CONFIG']['portability']) && $_DB_DATAOBJECT['CONFIG']['portability'] & 1) {
-            foreach($_DB_DATAOBJECT['INI'][$this->_database] as $k=>$v) {
+        if (PDO_DataObject::$config['portability'] & 1) {
+            foreach($ini_out as $k=>$v) {
                 // results in duplicate cols.. but not a big issue..
-                $_DB_DATAOBJECT['INI'][$this->_database][strtolower($k)] = $v;
+                $ini_out[strtolower($k)] = $v;
             }
         }
-        
+        if (!empty($ini_out)) {
+            PDO_DataObject::databaseStructure($database,$ini_out);
+        }
         
         // now have we loaded the structure.. 
         
