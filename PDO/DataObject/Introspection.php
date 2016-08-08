@@ -96,41 +96,29 @@ class PDO_DataObject_Introspection
         // Assignment code 
         
         if ($args = func_get_args()) {
-        
-            if (count($args) == 1) {
-                
-                
+             
                 // this returns all the tables and their structure..
                 
-                $this->do->debug("Loading Generator as databaseStructure called with args",1);
-                
-                
-                $x = new PDO_DataObject();
-                $x->_database = $args[0];
-                $x->PDO();
-                 
-                $tables = (new PDO_DataObject_Introspection($x))->getListOf('tables');
-                
-                   
-                foreach($tables as $table) {
-                    
-                    $this->relayGenerator('fillTableSchema', array($x->_database, $table));
-                    
-                }
-                
-                return PDO_DataObject::$ini[$x->_database];            
-            }  
-            // databaseStructure('mydb',   array(.... schema....), array( ... links')
-        
-            PDO_DataObject::$ini[$args[0]] = isset( PDO_DataObject::$ini[$args[0]]) ?
-                 PDO_DataObject::$ini[$args[0]] + $args[1] : $args[1];
+            $this->do->debug("Loading Generator as databaseStructure called with args",1);
             
-            if (isset($args[2])) {
-                PDO_DataObject::$links[$args[0]] = isset(PDO_DataObject::$links[$args[0]]) ?
-                    PDO_DataObject::$links[$args[0]] + $args[2] : $args[2];
+            
+            $x = new PDO_DataObject();
+            $x->_database = $args[0];
+            $x->PDO();
+             
+            $tables = (new PDO_DataObject_Introspection($x))->getListOf('tables');
+            
+               
+            foreach($tables as $table) {
+                
+                $this->relayGenerator('fillTableSchema', array($x->_database, $table));
+                
             }
-            return true;
             
+            return PDO_DataObject::$ini[$x->_database];            
+         
+            // databaseStructure('mydb',   array(.... schema....), array( ... links')
+         
             // will not get here....
         }
         
