@@ -2151,8 +2151,9 @@ class PDO_DataObject
         
             // databaseStructure('mydb',   array(.... schema....), array( ... links')
             
-            self::$ini[$args[0]] = isset( self::$ini[$args[0]]) ?
-                 self::$ini[$args[0]] + $args[1] : $args[1];
+            self::$ini[$tablename] = isset( self::$ini[$tablename]) || !$overwrite ?
+                 self::$ini[$args[0]] + $args[1] :
+                 $args[1];
             
             if (count($args) > 2)  {
                 self::$links[$args[0]] = isset(self::$links[$args[0]]) ?
