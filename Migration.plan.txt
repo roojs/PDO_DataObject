@@ -1,0 +1,326 @@
+
+Proposed Stages
+
+a) skeleton class
+ - with new configuration format   static PDO_DataObject::$config[....] 
+ - with constants.  
+      PDO_DataObject::INT etc...
+      PDO_DataObject::ERROR_INVALIDARGS
+      PDO_DataObject::WHEREADD_ONLY
+
+ - connect?
+
+
+- globals replacements
+     CONFIG:: -> PDO_DataObject::$config
+     RESULTS:: ?? not needed? << use private $_pdo_result
+     RESULTSEQ:: ?? not needed...
+     RESULTFIELDS:: probably not needed - info available from $_pdo_result->getColumnMeta / numColumns()
+     
+     CONNECTIONS:: PDO_DataObject::$connections
+     INI:: PDO_DataObject::$ini
+     LINKS:: PDO_DataObject::$links
+     SEQUENCE:: PDO_DataObject::$sequence ??? -- cache of sequence keys (modifyable)
+     LASTERROR  PDO_DataObject::$last_error -- just used for reference by others.
+     CACHE -- part of staticGet? - should we remove this?
+     OVERLOADED -- remove
+     QUERYENDTIME -- we can probably add this to the $_pdo_result / PDOStatement Object
+
+    debug - callinging LoadConfig with 'debug' - sets self::$debug (not stored in self::$config['debug'])
+    
+
+- utilFunctions
+     quoteIdentifier 
+     dbType $pdo->getAttribute(PDO::ATTR_DRIVER_NAME); -- not needed, just do this...
+  
+
+Tests:
+    quoteIdentifer
+    
+Target:END OF WEEK 1 (est. 2 days)
+-------------------------
+b) PDO_DataObjects_Introspection 
+
+
+     databaseStructure -- all conditions except plain 'ini' 
+  
+ - may require sub 'versions' PDO_DataObjects_Introspection_Mysql .. Pgsql .. msql .. sqlite (maybe others from DB)
+ - implementations of 
+      getListOf('schema.tables');
+      getListOf('tables'); 
+      getListOf('views');
+      tableInfo()
+      
+
+Tests:
+   $do = new PDO_DataObjects( array( 'table' => 'test', 'database' => 'xxxx' )); ?? for testing only?
+   or  new PDO_DataObjects('xxxx/test');
+
+   $x = new PDO_DataObjects_Introspection($do);
+   $x->getListOf(...)
+   == do a test of all the methods... - based on dummy $pdo ? 
+  -- these tests are not relivant to compatibility..
+
+Target:END OF WEEK 3 (est. 4 days)
+-------------------------
+c) Query  / fetch methods of PDO_DataObject
+  -- needed for generator?
+   modifyLimitQuery
+   escapeSimple
+Tests:
+  -- make sure simple fake tests work... 
+  
+
+Target:END OF WEEK 4 (est. 2 days)
+-------------------------
+d) Generator
+ - creating .ini files / generating code etc...
+
+Tests:
+   == do a test of all the methods... - based on dummy $pdo ? 
+  -- tests can be run against old + new...
+  -- these tests should generate compatible code.
+
+
+Target:END OF WEEK 6 (est. 4 days)
+-------------------------
+e) PDO_DataObject class
+  * factory / loading
+  * condition building
+  * query and modify methods.
+Tests:
+  needs fake DB and PDO objects
+  test both DB_DAtaObject and PDO_DataObject for compatibility
+  test settings like compatibilitylevel (eg. lowercase everything)
+  test settings like null???
+  test of query conditions
+  test of fetch all/fetch 
+  test of update
+
+
+Target:END OF WEEK 8 (est. 4 days)
+
+
+-------------------------
+Namespaces?? autoloading? packaging
+
+autoloading: in general we still prefer require_once however make the code compatible with class_exists...
+class_exists(...) ? '': require_once '....'; << 
+
+For namespacing - we will not bother at this point, I'd rather go with some 'automated' code parse to convert it to 
+namespaces.. -  could be PDO\DataObject ? not much real benefit though at present...
+
+Plan is to propose to PEAR? although we can set up a pear channel easily
+probably also include a composer file. 
+
+------------------
+
+
+Migrating DataObjects to use PDO
+?? change to PDO_DataObject ???   in theory DB_DataObject extends PDO_DataObjects can be used to support it?
+
+** replaces DB as the backend?
+
+
+-------------------------
+Testing strategy
+
+Develop a test plan
+* using phpt http://qa.php.net/write-test.php
+* how can we compare 'old' Dataobjects to 'new' one?
+* for the tests running against the old version? - support fake 'DB'?
+* add an extra setting (unittest={fake pdo object})
+   - so any pdo work uses the fake pdo object if in unittest mode..
+   
+
+-------------------------
+Run throught of DataObject.php
+_build_select
+-> quoteIdentifiers
+
+
+find -
+-> modifyLImitQuery
+-> cleaning of RESULTS object?
+
+fetch
+-> use of result->fetchRow() (query and statement object in pdo)
+-> catching of end of results.
+-> clearing resultfields 
+-> in theory it could fetch into the object.?? = however we covert '.' to '_' ... may be an issue in some scenarios?
+BC?
+
+
+selectAs
+-> quoteIdentifier
+
+insert
+-> determine Dbtype ( for empty insert)
+-> quoteIdentifier
+-> sequence inserts and setOption seqname_format..... ??
+-> dbtype - used to deterime method to get inserted id
+-- sequence handling?? see config options? is there anything more we do about sequences relating to pear?
+
+update
+-> quoteIdentifier
+
+delete
+-> quoteIdentifier
+-> modifyLimitQuery / setLimit ??
+
+count
+-> quoteIdentifier 
+-> result->fetchRow
+
+escape
+-> escapeSimple
+
+_quote  (is this still used?) - it says private?
+-> quotesmart?
+
+_connect .... 
+-> change over to PDO...
+-> connection options??? -- check what we use?
+
+_query
+-> transaction begin / autocommit?  PDO::beginTransaction
+-> query/exec
+-> set 'N' using result->numRows()
+-> return $DB->affectedRows();  if insert/update etc...
+
+_build_condition
+-> quoteIdentifier
+
+
+factory ?? move code to 'PDO_DataObject_Factory' ? 
+-> can call generator...
+
+_autoloadClass ?? move to 'PDO_DataObject_Factory' ? 
+
+joinAdd / autoJoin -- move code to PDO_DataObject_Join()
+
+toArray - needs resultfields - to determine fields that where returned..
+-> ?? depricate link_loaded?? - it's so not recomended to use this.
+
+staticGet -- depricate?
+
+-----------
+Directly accessing database (BC BREAK!)
+getDatabaseConnection() -- this will have to throw an error... - as it's can not work..
+getPDOConnection() << replacement?
+
+-----
+Things that need implementations (not really provided by PDO?)
+quoteIdentifiers
+modifyLimitQuery
+escapeSimple
+dbtype - standard PDO call...
+
+
+------------------------
+Introspection
+
+-- Pro/Cons on splitting this - it's called quite a bit.. so basically esential to operations.
+--- contains quite a bit of code 
+  ** we could go on the principle, that anything that relates to 'real instrospection goes in it' - and move new getListof stuff
+  ** then if stuff is cached, then we can not call it...
+  ** if you are being clever and using the keys() -> to set data -> then use the extra class..
+  ** basically the base class should provide 90% usages without loading the introspection...
+
+
+databaseStructure
+-> ?? move to DataObject_Introspection?
+-> DB->getListOf('tables')
+(( calls generator 
+
+??? do we factory/ctor  
+
+keys() -- introspection??  
+table() -- introspection?
+links() -- introspection?
+databaseStructure() -> introspection..
+
+
+--------------------
+_call (move to DB_DataObject_Overload.... )
+
+fromValue/toValue ? used by call really, but are kind of usefull?
+
+
+---------------------------------- 
+
+Other Changes
+-> move globals -> static instances props..
+-> constants to -> object constants..
+
+storing resultobject in DO?? - how does that affect print_r ?
+
+
+
+?? overload support ?? 
+ -- removed - in theory you can just wrap dataobjects, and add the two methods....
+ ** we can remove _call and  why is __sleep defined as it is??
+
+
+fetchRow
+-> ?? should we even support this??? depricate?
+
+
+----------------------------------------------
+DB_DataObject_Cast->PDO_DataObject_Cast
+** change constants to refer to PDO object...
+** needs knowledge of database type (from 'db')
+
+DB_DataObject_Error->PDO_DataObject_Error  -- trivial changes
+DB_DataObject_Links->PDO_DataObject_Error  -- minor changes
+
+-------------------------------------------
+DB_DataObject_Generator->PDO_DataObject_Generator
+** needs access to dbtype.
+-> getListOf('scshema.tables'); or  getListOf('tables'); 
+->  $__DB->getListOf(is_string($options['build_views']) ?
+                                    $options['build_views'] : 'views');
+
+
+->$__DB->quoteIdentifier()
+->$DB->tableInfo()
+
+_createForiegnKeys
+-> runs queries to seleect various details for postgres...
+
+
+
+-------------------------------------
+Configuration / settings..
+
+All configuration will be 
+   DB_DataObject::$config[....]   
+   -- defaults values set where possible.
+   -- avoid 'empty' checks in code where possible.
+   -- we can document configuration options in there...
+
+
+
+?? config? - 
+ - reduce empty checks / set defaults on config values, so that we can just check booleans.
+
+DB portability -- lowercase ?? and other stuff???
+
+
+database -> new format? 
+need to support 'username' & 'password' ?
+db_driver << not needed anymore..
+dont_use_pear_sequences <<??? need to work out how this affects our code.!?!?
+
+
+
+----------------------------------------------------
+
+
+
+
+
+STAGE 2:
+- use 'prepared' statements rather than constructing the SQL
+  ** this may be problematic as methods may need changing... like 'whereAdd' etc...
+  ** hence postpone this and ignore at present.
