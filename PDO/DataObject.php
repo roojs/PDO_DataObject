@@ -2153,7 +2153,7 @@ class PDO_DataObject
             self::$ini[$args[0]] = isset( self::$ini[$args[0]]) ?
                  self::$ini[$args[0]] + $args[1] : $args[1];
             
-            if (isset($args[2])) {
+            if (count($args) > 2)  {
                 self::$links[$args[0]] = isset(self::$links[$args[0]]) ?
                     self::$links[$args[0]] + $args[2] : $args[2];
             }
