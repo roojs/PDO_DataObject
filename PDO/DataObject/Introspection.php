@@ -161,11 +161,9 @@ class PDO_DataObject_Introspection
         // if you supply this with arguments, then it will take those
         // as the database and links array...
          
-        $schemas = isset($_DB_DATAOBJECT['CONFIG']['schema_location']) ?
-            array("{$_DB_DATAOBJECT['CONFIG']['schema_location']}/{$this->_database}.ini") :
-            array() ;
+        $schemas = array(PDO_DataObject::$config['schema_location'] .'/'. $this->_database .'.ini');
                  
-        if (isset($_DB_DATAOBJECT['CONFIG']["ini_{$this->_database}"])) {
+        if (isset(PDO_DataObject::$config["ini_{$this->_database}"])) {
             $schemas = is_array($_DB_DATAOBJECT['CONFIG']["ini_{$this->_database}"]) ?
                 $_DB_DATAOBJECT['CONFIG']["ini_{$this->_database}"] :
                 explode(PATH_SEPARATOR,$_DB_DATAOBJECT['CONFIG']["ini_{$this->_database}"]);
