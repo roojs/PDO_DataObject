@@ -2216,8 +2216,11 @@ class PDO_DataObject
     private function _databaseStructureIntrospection()
     {
         class_exists('PDO_DataObject_Introspection') ? '' : require_once 'PDO/DataObject/Introspection.php';
-        $io = new PDO_DataObject_Introspection($this);
-        return call_user_func_array(array($io,'databaseStructure'), func_get_args());
+        
+        return call_user_func_array(
+                    array(new PDO_DataObject_Introspection($this),'databaseStructure'),
+                    func_get_args()
+                );
     }
 
     /**
