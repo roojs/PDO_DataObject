@@ -2111,7 +2111,7 @@ class PDO_DataObject
      *
      *
      * usage :
-     * 1 argument - forces 
+     * 1 argument - forces generator run..
      * DB_DataObject::databaseStructure(  'databasename')
      * 
      * 2 arguments:
