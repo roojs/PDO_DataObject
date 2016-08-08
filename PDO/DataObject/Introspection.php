@@ -177,10 +177,11 @@ class PDO_DataObject_Introspection
         if (!empty($ini_out)) {
             PDO_DataObject::databaseStructure($database,$ini_out,false, true);
         }
+        $dbini = PDO_DataObject::databaseStructure($database,false);
         
         // now have we loaded the structure.. 
         
-        if (!empty($_DB_DATAOBJECT['INI'][$this->_database][$this->tableName()])) {
+        if (!empty($dbini[$this->tableName()])) {
             return true;
         }
         // - if not try building it..
