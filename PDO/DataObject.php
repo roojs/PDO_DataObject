@@ -2178,12 +2178,14 @@ class PDO_DataObject
             return call_user_func(array($io,'databaseStructure'));
         }
         
-        $schema = self::$config['schema_location'] .'/'. $this->_database .'.ini';
+        $ini = self::$config['schema_location'] .'/'. $this->_database .'.ini';
         
- 
-         
+        if (!file_exists($ini) || !is_file($ini)) {
+        
+        
+        
         foreach ($schemas as $ini) {
-             if (file_exists($ini) && is_file($ini)) {
+           
                 
                 $_DB_DATAOBJECT['INI'][$this->_database] = array_merge(
                     $_DB_DATAOBJECT['INI'][$this->_database],
