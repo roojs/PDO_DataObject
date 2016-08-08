@@ -2156,13 +2156,12 @@ class PDO_DataObject
         
         // if we are configured to use the proxy..
         
-        if ( !self::$config['proxy']) ) {
-            if (!empty($_DB_DATAOBJECT['CONFIG']['debug'])) {
+        if ( !self::$config['proxy'])   {
+            if (self::$debug) {
                 $this->debug("Loading Generator to fetch Schema",1);
             }
             class_exists('DB_DataObject_Generator') ? '' : 
                 require_once 'DB/DataObject/Generator.php';
-                
             
             $x = new DB_DataObject_Generator;
             $x->fillTableSchema($this->_database,$this->tableName());
