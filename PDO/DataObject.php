@@ -418,7 +418,7 @@ class PDO_DataObject
      
     public static function loadConfig($cfg = array()) 
     {
-        $this->_loadPEARConfig();
+        self::_loadPEARConfig();
         foreach ($cfg as $k=>$v) {
             self::$config[$k] = $v;
         }
