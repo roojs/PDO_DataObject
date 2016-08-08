@@ -2174,8 +2174,14 @@ class PDO_DataObject
         // basic idea here..
         // if we have a really simple format - do that here.. otherwise pass to introspection to sort out.
         
-        
+        // uses 'ini_* settings..
+        if (isset($_DB_DATAOBJECT['CONFIG']["ini_{$this->_database}"])) {
+            class_exists('PDO_DataObject_Introspection') ? '' : require_once 'PDO/DataObject/Introspection.php';
+            $io = new PDO_DataObject_Introspection($this);
+            return call_user_func_array(array($io,'databaseStructure'), $args);
              
+        }
+        
        
         
         // if you supply this with arguments, then it will take those
