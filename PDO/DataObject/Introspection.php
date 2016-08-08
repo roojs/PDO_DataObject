@@ -106,8 +106,8 @@ class PDO_DataObject_Introspection
                  PDO_DataObject::$ini[$args[0]] + $args[1] : $args[1];
             
             if (isset($args[2])) {
-                $_DB_DATAOBJECT['LINKS'][$args[0]] = isset($_DB_DATAOBJECT['LINKS'][$args[0]]) ?
-                    $_DB_DATAOBJECT['LINKS'][$args[0]] + $args[2] : $args[2];
+                PDO_DataObject::$links[$args[0]] = isset(PDO_DataObject::$links[$args[0]]) ?
+                    PDO_DataObject::$links[$args[0]] + $args[2] : $args[2];
             }
             return true;
             }
