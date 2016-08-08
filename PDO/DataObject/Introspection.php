@@ -141,6 +141,8 @@ class PDO_DataObject_Introspection
         if (empty(PDO_DataObject::$ini[$this->_database])) {
             PDO_DataObject::$ini[$this->_database] = array();
         }
+        
+        // probably not need (pdo() will load it..)
         PDO_DataObject::loadConfig();
         
         // we do not have the data for this table yet...
