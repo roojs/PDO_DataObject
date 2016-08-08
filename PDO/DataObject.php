@@ -2166,15 +2166,7 @@ class PDO_DataObject
         
         // uses 'ini_* settings..
         if (isset(self::$config['ini_'. $this->_database ])) {
-           if (self::$debug) {
-                $this->debug("Loading Generator to fetch Schema",1);
-            }
-            class_exists('DB_DataObject_Generator') ? '' : 
-                require_once 'DB/DataObject/Generator.php';
-            
-            $x = new DB_DataObject_Generator;
-            $x->fillTableSchema($this->_database,$this->tableName());
-            return true;
+            return $this->databaseStructureIntrospection();
         }
         
         $ini = self::$config['schema_location'] .'/'. $this->_database .'.ini';
