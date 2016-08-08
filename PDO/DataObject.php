@@ -2194,7 +2194,7 @@ class PDO_DataObject
         
         // now have we loaded the structure.. 
         
-        if (self::$ini[$this->_database][$this->_database][$this->tableName()]) {
+        if (!empty(self::$ini[$this->_database][$this->_database][$this->tableName()])) {
             return true;
         }
        
