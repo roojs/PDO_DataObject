@@ -106,7 +106,7 @@ class PDO_DataObject
             'PDO' => 'PDO',  
          
             'tables' => array(), // map of tables names to database names 
-            'databases' => array() // map of database names to connection dsn's
+            'databases' => array(), // map of database names to connection dsn's
            
         
             'proxy' => false,
