@@ -4480,26 +4480,7 @@ class PDO_DataObject
         return true; // everything is OK.
     }
 
-    /**
-     * Gets the DB object related to an object - so you can use funky peardb stuf with it :)
-     *
-     * @access public
-     * @return object The DB connection
-     */
-    function getDatabaseConnection()
-    {
-        global $_DB_DATAOBJECT;
-        if (($e = $this->_connect()) !== true) {
-            return $e;
-        }
-
-        if (!isset($_DB_DATAOBJECT['CONNECTIONS'][$this->_database_dsn_md5])) {
-            $r = false;
-            return $r;
-        }
-        return $_DB_DATAOBJECT['CONNECTIONS'][$this->_database_dsn_md5];
-    }
- 
+   
  
     /**
      * Gets the DB result object related to the objects active query
