@@ -80,10 +80,11 @@ class PDO_DataObject_Introspection
                     require_once 'DB/DataObject/Generator.php';
                     
                 foreach($tables as $table) {
-                    $y = new DB_DataObject_Generator;
+                    $y = new DB_DataObject_Generator();
                     $y->fillTableSchema($x->_database,$table);
                 }
-                return $_DB_DATAOBJECT['INI'][$x->_database];            
+                
+                return PDO_DataObject::$ini[$x->_database];            
             } else {
         
                 $_DB_DATAOBJECT['INI'][$args[0]] = isset($_DB_DATAOBJECT['INI'][$args[0]]) ?
