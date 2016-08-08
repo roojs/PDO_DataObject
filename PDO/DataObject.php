@@ -2150,7 +2150,7 @@ class PDO_DataObject
         }
          
         if (!self::$config_loaded) {
-            DB_DataObject::loadConfig();
+            self::loadConfig();
         }
          
         // we do not have the data for this table yet...
