@@ -2155,7 +2155,7 @@ class PDO_DataObject
                  self::$ini[$database] + $inidata :
                  $inidata;
             
-            if (count($args) > 2)  {
+            if (count($args) > 2 && $linksdata !== false)  {
                 self::$links[$database] = isset(self::$links[$database]) && !$overwrite ?  
                     self::$links[$database] + $linksdata :
                     $linksdata;
