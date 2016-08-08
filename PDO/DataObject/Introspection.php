@@ -35,6 +35,12 @@ class PDO_DataObject_Introspection
     
     private $dataobject;
     
+    /**
+     * Constructor
+     * @arg DataObject $do   - the dataobject.
+     *
+     */
+    
     function __construct($do)
     {
         $this->dataobject = $do;
@@ -42,7 +48,11 @@ class PDO_DataObject_Introspection
             throw new Exception('Constructor called without PDO_DataObject');
         }
     }
-    
+    /**
+     *
+     *
+     *
+     */
     
     function databaseStructure()
     {
