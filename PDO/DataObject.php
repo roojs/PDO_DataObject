@@ -2137,7 +2137,7 @@ class PDO_DataObject
      * @return true or PEAR:error on wrong paramenters.. or false if no file exists..
      *              or the array(tablename => array(column_name=>type)) if called with 1 argument.. (databasename)
      */
-    function databaseStructure($tablename = false, $inidata = array(), $tabledata=array(), $overwrite = false)
+    function databaseStructure($tablename = false, $inidata = false, $tabledata=false, $overwrite = false)
     {
 
         // Assignment code 
@@ -2151,13 +2151,13 @@ class PDO_DataObject
         
             // databaseStructure('mydb',   array(.... schema....), array( ... links')
             
-            self::$ini[$tablename] = isset( self::$ini[$tablename]) || !$overwrite ?
-                 self::$ini[$args[0]] + $args[1] :
+            self::$ini[$tablename] = isset( self::$ini[$tablename]) && !$overwrite ?
+                 self::$ini[$tablename] + $args[1] :
                  $args[1];
             
             if (count($args) > 2)  {
-                self::$links[$args[0]] = isset(self::$links[$args[0]]) ?
-                    self::$links[$args[0]] + $args[2] : $args[2];
+                self::$links[$tablename] = isset(self::$links[$tablename]) ?
+                    self::$links[$tablename] + $args[2] : $args[2];
             }
             return true;
             
