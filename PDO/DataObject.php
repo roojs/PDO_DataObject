@@ -311,6 +311,11 @@ class PDO_DataObject
             case 'sqlite2':
                 $pdo_dsn =      $dsn_ar['scheme'] . ':' .$dsn_ar['path']; // urldecode perhaps?
                 break;
+            case 'sqlsrv':
+            $dsn_ar['scheme'] . ':' .
+            'Database=' . substr($dsn_ar['path'],1) .
+            (empty($dsn_ar['host']) ? '': ';Server=' . $dsn_ar['host']) .
+            (empty($dsn_ar['port']) ? '' : ',' . $dsn_ar['port']);    
             // others go here...
         }
         if (!empty($dsn_ar['query'])) {
