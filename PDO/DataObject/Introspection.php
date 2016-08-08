@@ -130,7 +130,7 @@ class PDO_DataObject_Introspection
         
         if ( PDO_DataObject::$config['proxy'])  {
             
-            $this->relayGenerator('fillTableSchema', array($this->do->databaseName(), $this->do->tableName()));
+            $this->relayGenerator('fillTableSchema', array($database, $table));
             return true;
         }
             
@@ -142,7 +142,7 @@ class PDO_DataObject_Introspection
          
         //           
         
-        $schemas = is_array(PDO_DataObject::$ini["ini_{$this->_database}"]) ?
+        $schemas = is_array(PDO_DataObject::$ini["ini_{$database}"]) ?
             $_DB_DATAOBJECT['CONFIG']["ini_{$this->_database}"] :
             explode(PATH_SEPARATOR,$_DB_DATAOBJECT['CONFIG']["ini_{$this->_database}"]);
         }
