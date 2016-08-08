@@ -2131,7 +2131,7 @@ class PDO_DataObject
         // Assignment code 
         
         if ($args = func_get_args()) {
-            return $this->databaseStructureIntrospection();
+            return $this->_databaseStructureIntrospection();
         }
           
         if (!$this->_database) {
@@ -2158,7 +2158,7 @@ class PDO_DataObject
         // if we are configured to use the proxy..
         
         if ( self::$config['proxy'])   {
-            return $this->databaseStructureIntrospection();
+            return $this->_databaseStructureIntrospection();
         }
             
         // basic idea here..
@@ -2166,7 +2166,7 @@ class PDO_DataObject
         
         // uses 'ini_* settings..
         if (isset(self::$config['ini_'. $this->_database ])) {
-            return $this->databaseStructureIntrospection();
+            return $this->_databaseStructureIntrospection();
         }
         
         $ini = self::$config['schema_location'] .'/'. $this->_database .'.ini';
