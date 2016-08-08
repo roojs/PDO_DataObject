@@ -128,7 +128,7 @@ class PDO_DataObject_Introspection
         
         if ( PDO_DataObject::$config['proxy'])  {
             
-            $this->relayGenerator('fillTableSchema', array($this->do->_database, $this->do->tableName()));
+            $this->relayGenerator('fillTableSchema', array($this->do->databaseName(), $this->do->tableName()));
             return true;
         }
             
