@@ -203,7 +203,7 @@ class PDO_DataObject
      * @access private
      * @return true | PEAR::error
      */
-    private function _PDO()
+    public function PDO()
     {
         
         $config = self::loadConfig();
