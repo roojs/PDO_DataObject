@@ -48,7 +48,20 @@ class PDO_DataObject_Introspection
     /**
      * 'complex' version of databaseStructure - this is not so 'speed sensitive'
      *
+     *    
+     * usage :
+     * DB_DataObject::databaseStructure(  'databasename',
+     *                                    parse_ini_file('mydb.ini',true), 
+     *                                    parse_ini_file('mydb.link.ini',true)); 
      *
+     * obviously you dont have to use ini files.. (just return array similar to ini files..)
+     *  
+     * It should append to the table structure array 
+     *
+     *     
+     * @param optional string  name of database to assign / read
+     * @param optional array   structure of database, and keys
+     * @param optional array  table links
      */
     
     function databaseStructure()
