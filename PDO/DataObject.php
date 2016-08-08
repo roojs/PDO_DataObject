@@ -109,6 +109,7 @@ class PDO_DataObject
             'databases' => array() // map of database names to connection dsn's
            
         
+            'proxy'=>false,
             // fill me in..
             
             
@@ -2136,17 +2137,17 @@ class PDO_DataObject
         
         
         // if this table is already loaded this table..
-        if (!empty(self::$INI[$this->_database][$this->tableName()])) {
+        if (!empty(self::$ini[$this->_database][$this->tableName()])) {
             return true;
         }
         
         // initialize the ini data.. if empt..
-        if (empty($_DB_DATAOBJECT['INI'][$this->_database])) {
-            $_DB_DATAOBJECT['INI'][$this->_database] = array();
+        if (empty(self::$ini[$this->_database])) {
+            self::$ini[$this->_database] = array();
         }
          
-        if (empty($_DB_DATAOBJECT['CONFIG'])) {
-            DB_DataObject::_loadConfig();
+        if (!self::$config_loaded) {
+            DB_DataObject::loadConfig();
         }
         
         // we do not have the data for this table yet...
