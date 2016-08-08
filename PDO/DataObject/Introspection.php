@@ -95,7 +95,7 @@ class PDO_DataObject_Introspection
             
             
             $x = new PDO_DataObject();
-            $x->_database = $args[0];
+            $x->databaseName( $args[0]);
             $x->PDO();
              
             $tables = (new PDO_DataObject_Introspection($x))->getListOf('tables');
