@@ -2122,11 +2122,10 @@ class PDO_DataObject
     function databaseStructure()
     {
 
-        global $_DB_DATAOBJECT;
-        
         // Assignment code 
         
         if ($args = func_get_args()) {
+            class_exists('PDO_DataObject_Introspection') ? '' : require_once 'PDO/DataObject/Introspection.php';
         
             if (count($args) == 1) {
                 
