@@ -2111,10 +2111,18 @@ class PDO_DataObject
      *
      *
      * usage :
+     * 1 argument - forces 
+     * DB_DataObject::databaseStructure(  'databasename')
+     * 
+     * 2 arguments:
+     * DB_DataObject::databaseStructure(  'databasename', parse_ini_file('mydb.ini',true))
+     *  - set's the structure..
+     *  
+     * 3 arguments:
      * DB_DataObject::databaseStructure(  'databasename',
      *                                    parse_ini_file('mydb.ini',true), 
      *                                    parse_ini_file('mydb.link.ini',true)); 
-     *
+    
      * obviously you dont have to use ini files.. (just return array similar to ini files..)
      *  
      * It should append to the table structure array 
