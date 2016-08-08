@@ -89,8 +89,8 @@ class PDO_DataObject_Introspection
                 $tables = (new PDO_DataObject_Introspection($x))->getListOf('tables');
                 
                 //?? move ??
-                class_exists('DB_DataObject_Generator') ? '' : 
-                    require_once 'DB/DataObject/Generator.php';
+                class_exists('PDO_DataObject_Generator') ? '' : 
+                    require_once 'PDO/DataObject/Generator.php';
                     
                 foreach($tables as $table) {
                     (new DB_DataObject_Generator())->fillTableSchema($x->_database,$table);
