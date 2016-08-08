@@ -2182,23 +2182,10 @@ class PDO_DataObject
              
         }
         
-        $schema = self::$config['schema_location'] .'/'. $this->_database .'.ini':
+        $schema = self::$config['schema_location'] .'/'. $this->_database .'.ini';
         
-        // if you supply this with arguments, then it will take those
-        // as the database and links array...
+ 
          
-        $schemas = isset($_DB_DATAOBJECT['CONFIG']['schema_location']) ?
-            array("{$_DB_DATAOBJECT['CONFIG']['schema_location']}/{$this->_database}.ini") :
-            array() ;
-                 
-        if (isset($_DB_DATAOBJECT['CONFIG']["ini_{$this->_database}"])) {
-            $schemas = is_array($_DB_DATAOBJECT['CONFIG']["ini_{$this->_database}"]) ?
-                $_DB_DATAOBJECT['CONFIG']["ini_{$this->_database}"] :
-                explode(PATH_SEPARATOR,$_DB_DATAOBJECT['CONFIG']["ini_{$this->_database}"]);
-        }
-                    
-         
-        $_DB_DATAOBJECT['INI'][$this->_database] = array();
         foreach ($schemas as $ini) {
              if (file_exists($ini) && is_file($ini)) {
                 
