@@ -345,8 +345,8 @@ class PDO_DataObject
             $this->debug(print_r($dsn,true) . ' ' . $pdo_dsn . ' ' . $this->_database_dsn_md5, "CONNECT",3);
         }    
             
-        $username = isset($dsn_ar['user']) ? $dsn_ar['user'] : '';
-        $password = isset($dsn_ar['pass']) ? $dsn_ar['pass'] : '';
+        $username = isset($dsn_ar['user']) ? urldecode( $dsn_ar['user'] ): '';
+        $password = isset($dsn_ar['pass']) ? urldecode( $dsn_ar['pass'] ): '';
         
         // might throw an eror..
         try {
