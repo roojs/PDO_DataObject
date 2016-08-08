@@ -1,0 +1,9 @@
+Test Suite
+
+includes/run-tests.php (copy of a php5 release run-tests)
+modified so that run-tests-info.php does not try and write to the system folder....
+
+
+
+
+php  includes/run-tests.php -P *.phpt
