@@ -296,7 +296,8 @@ class PDO_DataObject
         }
 
          
-        
+        $dsn_ar = parse_url($dsn);
+
         // create a pdo dsn....
         
         $pdo_dsn =
@@ -349,7 +350,6 @@ class PDO_DataObject
             $this->debug(print_r(self::$connections,true), "CONNECT",5);
         } 
         
-        $dsn_ar = parse_url($dsn);
 
         $db = $dsn_ar['path'];
         switch($dsn_ar['scheme']) {
