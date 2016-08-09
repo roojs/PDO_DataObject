@@ -120,6 +120,18 @@ class PDO_DataObject
                 // currently it only lowercases the tablename when you call tableName(), and
                 // flatten's ini files ..
         
+            // -------- Error handling --------
+            // new behaviour is to throw exceptions - everywhere!!!
+            // to turn on 'old' behaviour - use 'exceptions' => false
+            
+            'exceptions' => true,
+            
+            // if non-exception behaviour is on then we trigger PEAR error's with
+            // if a fatal erorr occurs - we normally die.. but this can be prevented by
+            // this flag -- I'm not sure how usefull it is, as if you use a global pear error handler
+            // you can catch the error anyway
+            'dont_die' => false,   // normally errors are triggered
+        
     );
     
     static $debug = 0;
