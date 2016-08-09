@@ -8,7 +8,7 @@ require_once 'includes/init.php';
 
     
 
-PDO_DataObject::$config['database']='mysql://username:test@localhost:3344 /somedb#' . implode( '|',
+PDO_DataObject::$config['database']='mysql://username:test@localhost:3344/somedb#' . implode( '|',
     array(
         'MYSQL_ATTR_SSL_KEY=/path/to/client-key.pem',
         'MYSQL_ATTR_SSL_CERT=/path/to/client-cert.pem',
