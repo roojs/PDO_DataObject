@@ -4818,7 +4818,7 @@ class PDO_DataObject
      * @access   public
      * @return   none
      */
-    function debug($message, $logtype = 0, $level = 1)
+    static function debug($message, $logtype = 0, $level = 1)
     {
         global $_DB_DATAOBJECT;
 
