@@ -4888,8 +4888,9 @@ class PDO_DataObject
      * this is due to the fact it would wreck havoc on the internal methods!
      *
      * @param  int $message    message
-     * @param  int|Exception $type       type
+     * @param  int $type       type
      * @param  int $behaviour  behaviour (die or continue!);
+     * @param  Exception  Cause of error...
      * @access public
      * @return error object
      */
@@ -4908,10 +4909,10 @@ class PDO_DataObject
             $behaviour = null;
         }
         
-        if (class_exists('PEAR')) {
-            $error = &PEAR::getStaticProperty('DB_DataObject','lastError');
-        }
+        class_exists('PEAR') ? '' : require_once 'PEAR.php';
         
+        
+        $error = &PEAR::getStaticProperty('DB_DataObject','lastError');
         
       
         // no checks for production here?....... - we log  errors before we throw them.
@@ -4919,9 +4920,11 @@ class PDO_DataObject
         
         
         
-        
         if (PEAR::isError($message)) {
             $error = $message;
+            self::$lasterror = $error;
+            $this->_lastError = $error
+            
         } else {
             require_once 'DB/DataObject/Error.php';
             $dor = new PEAR();
