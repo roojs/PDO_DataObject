@@ -277,7 +277,7 @@ class PDO_DataObject
         
         if (!$dsn) {
             $tn = $this->tableName();
-            if (!$this->_database && !strlen($this->tableName())) {
+            if (!$this->_database && strlen($this->tableName())) {
                 $this->_database = isset(self::$config['tables'][$tn]) ? self::$config['tables'][$tn] : false;
             }
             if (self::$debug && $this->_database) {
@@ -288,7 +288,6 @@ class PDO_DataObject
                 $dsn = self::$config['databases'][$this->_database];
             } else if (false !== self::$config['database']) {
                 $dsn = self::$config['database'];
-                  
             }
         }
 
