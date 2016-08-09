@@ -280,7 +280,7 @@ class PDO_DataObject
             if (!$this->_database && !strlen($this->tableName())) {
                 $this->_database = isset(self::$config['tables'][$tn]) ? self::$config['tables'][$tn] : false;
             }
-            if (self::$debug) {
+            if (self::$debug && $this->_database) {
                 $this->debug("Checking for database specific ini ('{$this->_database}') : config[databases][$this->_database] in options","CONNECT");
             }
             
@@ -2154,13 +2154,16 @@ class PDO_DataObject
     function databaseStructure($database = false, $inidata = array(), $linksdata=array(), $overwrite = false)
     {
 
-        // Assignment code 
-        
-        if ($args = func_get_args() && count($args) == 1) {
-            
-            return $this->_databaseStructureIntrospection($args);
+        $args = func_get_args();
+    
+        if (self::$debug) {
+            self::debug(json_encode($args, true), __FUNCTION__ , 1);
         }
         
+        if ($args && count($args) == 1) {
+            return $this->_databaseStructureIntrospection($args);
+        }
+        // Assignment code    
         if ($args && $inidata !== false) {
         
             // databaseStructure('mydb',   a$tabledatarray(.... schema....), array( ... links')
@@ -2240,7 +2243,7 @@ class PDO_DataObject
         
         // now have we loaded the structure.. 
         
-        if (!empty(self::$ini[$this->_database][$this->_database][$this->tableName()])) {
+        if (!empty(self::$ini[$this->_database][$this->tableName()])) {
             return self::$ini[$this->_database];
         }
        
@@ -4860,7 +4863,7 @@ class PDO_DataObject
     static function debugLevel($v = null)
     {
         // can be slow....
-        DB_DataObject::loadConfig();
+        PDO_DataObject::loadConfig();
         
         if ($v !== null) {
             
