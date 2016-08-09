@@ -393,21 +393,10 @@ class PDO_DataObject
         } 
         
 
-        $db = $dsn_ar['path'];
-        switch($dsn_ar['scheme']) {
-            case 'sqlite':
-                $db = basename($db);
-                break;
-            case 'ibase':
-                $db = substr(basename($db), 0, -4);
-                break;
-            // others????
-            default:
-                break;
-        }
+      
         
-        self::$connections[$md5]->database = $db;
-        
+        self::$connections[$md5]->database = $database;
+        $this->_database = $database;
          
         // Oracle need to optimize for portibility - not sure exactly what this does though :)
          
