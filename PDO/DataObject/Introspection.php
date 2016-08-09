@@ -201,26 +201,14 @@ class PDO_DataObject_Introspection
      *
      * @returns PDO_DataObject_Generator
      */
-    private function generator()
+    private function _generator()
     {
         class_exists('PDO_DataObject_Generator') ? '' : 
-                require_once 'DB/DataObject/Generator.php';
+                require_once 'PDO/DataObject/Generator.php';
         return new PDO_DataObject_Generator();
     }
     
-    private function relayGenerator($method, $args)
-    {
-            
-            $this->debug("Loading Generator to fetch Schema",1);
-            
-                
-            
-            $x = new DB_DataObject_Generator;
-            return call_user_func_array(
-                    array($method, $args)
-            );
-        
-    }
+    
     
     
 }
