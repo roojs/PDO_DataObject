@@ -106,7 +106,7 @@ class PDO_DataObject_Introspection
                 
             }
             
-            return PDO_DataObject::$ini[$x->database()];            
+            return PDO_DataObject::databaseStructure($database,false);            
          
             // databaseStructure('mydb',   array(.... schema....), array( ... links')
          
