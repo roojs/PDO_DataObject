@@ -4838,7 +4838,7 @@ class PDO_DataObject
         }
         
         if (!is_numeric( self::$debug ) && is_callable( self::$debug)) {
-            return call_user_func($_DB_DATAOBJECT['CONFIG']['debug'], $class, $message, $logtype, $level);
+            return call_user_func(self::$debug, $class, $message, $logtype, $level);
         }
         
         if (!ini_get('html_errors')) {
