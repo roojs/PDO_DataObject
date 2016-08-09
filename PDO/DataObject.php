@@ -2164,7 +2164,7 @@ class PDO_DataObject
         }
         
         if ($args && count($args) == 1) {
-            return $this->_databaseStructureIntrospection($args);
+            return $this->_introspection()->databaseStructure($database, $inidata,$linksdata, $overwrite);
         }
         // Assignment code    
         if ($args && $inidata !== false) {
@@ -2270,7 +2270,10 @@ class PDO_DataObject
         class_exists('PDO_DataObject_Introspection') ? '' : require_once 'PDO/DataObject/Introspection.php';
         $this->debug("Calling Introspection", "databaseStructure");
         return new PDO_DataObject_Introspection($this);
-        
+        return call_user_func_array(
+                    array(new PDO_DataObject_Introspection($this),'databaseStructure'),
+                    func_get_args()
+                );
     }
 
     /**
