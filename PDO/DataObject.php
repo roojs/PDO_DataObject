@@ -4873,7 +4873,7 @@ class PDO_DataObject
         if ($v !== null) {
             
             $r = self::$debug;
-            self::$debug; = $v;
+            self::$debug = $v;
             self::$config['debug'] = $v;// for reference only
             return $r;
         }
