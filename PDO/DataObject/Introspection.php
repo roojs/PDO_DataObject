@@ -130,7 +130,7 @@ class PDO_DataObject_Introspection
         if ( PDO_DataObject::$config['proxy'])  {
             
             $this->generator()->fillTableSchema($database, $table);
-            return true;
+            return PDO_DataObject::databaseStructure($database,false); 
         }
             
              
