@@ -3,7 +3,7 @@ databaseStructure
 --FILE--
 <?php
 require_once 'includes/init.php';
-PDO_DataObject::debugLevel(1);
+//PDO_DataObject::debugLevel(1);
 
 // test structure from single ini file
 PDO_DataObject::$config['schema_location'] = dirname(__FILE__).'/includes/';
@@ -20,6 +20,8 @@ $obj = new PDO_DataObject();
 $obj->__table = 'account_transaction';
 $obj->_database = 'anotherdb';
 
+// does not actually connect to the DB - as we only do a db connection if we do not know the database name..
+print_r($obj->databaseStructure('anotherdb', false));
 
 // test structure from introspection
 
