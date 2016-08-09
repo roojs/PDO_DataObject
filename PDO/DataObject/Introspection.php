@@ -94,7 +94,7 @@ class PDO_DataObject_Introspection
             
             
             $x = new PDO_DataObject();
-            $x->databaseName( $args[0]);
+            $x->database( $args[0]);
             $x->PDO();
              
             $tables = (new PDO_DataObject_Introspection($x))->getListOf('tables');
@@ -102,11 +102,11 @@ class PDO_DataObject_Introspection
                
             foreach($tables as $table) {
                 
-                $this->relayGenerator('fillTableSchema', array($x->databaseName(), $table));
+                $this->relayGenerator('fillTableSchema', array($x->database(), $table));
                 
             }
             
-            return PDO_DataObject::$ini[$x->databaseName()];            
+            return PDO_DataObject::$ini[$x->database()];            
          
             // databaseStructure('mydb',   array(.... schema....), array( ... links')
          
@@ -117,7 +117,7 @@ class PDO_DataObject_Introspection
         $this->PDO();
         
         
-        $database = $this->do->databaseName();
+        $database = $this->do->database();
         $table = $this->do->tableName();
         
         // probably not need (pdo() will load it..)
