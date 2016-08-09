@@ -262,6 +262,10 @@ class PDO_DataObject
                 // ibase -- last 4 characters (substring basename, 0, -4 )
                 
             }
+            
+            if (self::$debug) {
+                $this->debug("Using Cached connection","CONNECT");
+            }
             // theoretically we have a md5, it's listed in connections and it's not an error.
             // so everything is ok!
             return $con;
@@ -2261,14 +2265,12 @@ class PDO_DataObject
      * - proxy
      * - ini_****
      */
-    private function _databaseStructureIntrospection()
+    private function _introspection()
     {
         class_exists('PDO_DataObject_Introspection') ? '' : require_once 'PDO/DataObject/Introspection.php';
+        $this->debug("Calling Introspection", "databaseStructure");
+        return new PDO_DataObject_Introspection($this);
         
-        return call_user_func_array(
-                    array(new PDO_DataObject_Introspection($this),'databaseStructure'),
-                    func_get_args()
-                );
     }
 
     /**
