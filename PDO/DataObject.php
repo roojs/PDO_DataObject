@@ -4877,7 +4877,7 @@ class PDO_DataObject
             self::$config['debug'] = $v;// for reference only
             return $r;
         }
-        return self:$debug;
+        return self::$debug;
     }
 
     /**
