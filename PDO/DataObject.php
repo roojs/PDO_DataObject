@@ -4877,7 +4877,7 @@ class PDO_DataObject
             self::$config['debug'] = $v;// for reference only
             return $r;
         }
-        return isset($_DB_DATAOBJECT['CONFIG']['debug']) ? $_DB_DATAOBJECT['CONFIG']['debug'] : 0;
+        return self:$debug;
     }
 
     /**
