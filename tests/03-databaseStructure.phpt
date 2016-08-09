@@ -18,10 +18,22 @@ PDO_DataObject::$config['databases']['anotherdb']='mysql://username:test@localho
 
 $obj = new PDO_DataObject();
 $obj->__table = 'account_transaction';
-$obj->_database = 'anotherdb';
+$obj->_database = 'anotherdb'; // this method is not advised as it's not very portable...
 
 // does not actually connect to the DB - as we only do a db connection if we do not know the database name..
 print_r($obj->databaseStructure('anotherdb', false));
+
+// test structure from two ini files. (using database)
+PDO_DataObject::$config['tables']['account_transaction']='anotherdb';
+
+$obj = new PDO_DataObject();
+$obj->__table = 'account_transaction';
+
+
+// does not actually connect to the DB - as we only do a db connection if we do not know the database name..
+print_r($obj->databaseStructure('anotherdb', false));
+
+
 
 // test structure from introspection
 
