@@ -2195,7 +2195,7 @@ class PDO_DataObject
         
         // if this table is already loaded this table..
         if (!empty(self::$ini[$this->_database][$this->tableName()])) {
-            return true;
+            return self::$ini[$this->_database];
         }
         
         // initialize the ini data.. if empt..
