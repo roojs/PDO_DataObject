@@ -181,7 +181,7 @@ class PDO_DataObject_Introspection
         // now have we loaded the structure.. 
         
         if (!empty($dbini[$this->tableName()])) {
-            return true;
+            return $dbini;
         }
         // previously we tried proxy here... - but it's already supposed to be tried at this point anyway.
         
