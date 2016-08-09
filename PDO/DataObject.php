@@ -4895,11 +4895,11 @@ class PDO_DataObject
      */
     function raiseError($message, $type = 0, $behaviour = null, $previous_exception = null)
     {
-        
+        PDO_DataObject::debug($message,'ERROR',1);
         // default behaviour now...
         if (self::$config['exceptions']) {
             //?? is this it???
-            PDO_DataObject::debug($message,'ERROR',1);
+            
             throw new Exception($message, $type, $previous_exception);
         }
         
