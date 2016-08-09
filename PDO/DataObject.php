@@ -4836,7 +4836,8 @@ class PDO_DataObject
         if (!is_string($message)) {
             $message = print_r($message,true);
         }
-        if (!is_numeric( $_DB_DATAOBJECT['CONFIG']['debug']) && is_callable( $_DB_DATAOBJECT['CONFIG']['debug'])) {
+        
+        if (!is_numeric( self::$debug ) && is_callable( self::$debug)) {
             return call_user_func($_DB_DATAOBJECT['CONFIG']['debug'], $class, $message, $logtype, $level);
         }
         
