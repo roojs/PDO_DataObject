@@ -4820,15 +4820,18 @@ class PDO_DataObject
      */
     static function debug($message, $logtype = 0, $level = 1)
     {
-        global $_DB_DATAOBJECT;
-
-        if (empty($_DB_DATAOBJECT['CONFIG']['debug'])  || 
-            (is_numeric($_DB_DATAOBJECT['CONFIG']['debug']) &&  $_DB_DATAOBJECT['CONFIG']['debug'] < $level)) {
+         
+        if (!self::$debug  || 
+            (is_numeric(self::$debug) &&  self::$debug < $level)) {
             return;
         }
+        
         // this is a bit flaky due to php's wonderfull class passing around crap..
         // but it's about as good as it gets..
-        $class = (isset($this) && is_a($this,'DB_DataObject')) ? get_class($this) : 'DB_DataObject';
+        
+        $bt = debug_backtrace();
+        
+        $class = $bt[0]['class']; // hopefully...
         
         if (!is_string($message)) {
             $message = print_r($message,true);
