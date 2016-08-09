@@ -2249,7 +2249,7 @@ class PDO_DataObject
         // now have we loaded the structure.. 
         
         if (!empty(self::$ini[$this->_database][$this->_database][$this->tableName()])) {
-            return true;
+            return self::$ini[$this->_database];
         }
        
         $this->debug("Cant find database schema: {$this->_database}/{$this->tableName()} \n".
