@@ -4882,7 +4882,8 @@ class PDO_DataObject
     var $_lastError = false;
 
     /**
-     * Default error handling is to create a pear error, but never return it.
+     * Default error handling is to create throw an exception , unless config[excpetions] == false
+     * if it's off a pear error is returned (and may trigger a 'DIE' event
      * if you need to handle errors you should look at setting the PEAR_Error callback
      * this is due to the fact it would wreck havoc on the internal methods!
      *
@@ -4892,9 +4893,14 @@ class PDO_DataObject
      * @access public
      * @return error object
      */
-    function raiseError($message, $type = null, $behaviour = null)
+    function raiseError($message, $type = 0, $behaviour = null, $previous_exception = null)
     {
-        ## FIXME - type can be and exception!!!
+        
+        // default behaviour now...
+        if (self::$config['exceptions']) {
+            throw new Exception($message, $type, $previous_exception);
+            
+        }
         
          
         if ($behaviour == self::ERROR_DIE && self::$config['dont_die']) {
@@ -4905,9 +4911,12 @@ class PDO_DataObject
             $error = &PEAR::getStaticProperty('DB_DataObject','lastError');
         }
         
+        
       
         // no checks for production here?....... - we log  errors before we throw them.
-        DB_DataObject::debug($message,'ERROR',1);
+        PDO_DataObject::debug($message,'ERROR',1);
+        
+        
         
         
         if (PEAR::isError($message)) {
