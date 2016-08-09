@@ -4898,8 +4898,8 @@ class PDO_DataObject
         
         // default behaviour now...
         if (self::$config['exceptions']) {
-            throw new Exception($message, $type, $previous_exception);
             
+            throw new Exception($message, $type, $previous_exception);
         }
         
          
