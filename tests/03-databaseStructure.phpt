@@ -16,6 +16,9 @@ print_r($obj->databaseStructure('somedb', false));
 // test structure from two ini files. (using database)
 PDO_DataObject::$config['databases']['anotherdb']='mysql://username:test@localhost:3344/anotherdb';
 
+$obj = new PDO_DataObject();
+$obj->__table = 'account_transaction';
+$obj->_database = 'anotherdb';
 
 
 // test structure from introspection
