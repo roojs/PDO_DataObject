@@ -102,7 +102,7 @@ class PDO_DataObject_Introspection
                
             foreach($tables as $table) {
                 
-                $this->relayGenerator('fillTableSchema', array($x->database(), $table));
+                $this->generator()->fillTableSchema($x->database(), $table);
                 
             }
             
