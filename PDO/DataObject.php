@@ -4918,23 +4918,21 @@ class PDO_DataObject
         if (PEAR::isError($message)) {
             $error = $message;
             self::$lasterror = $error;
-            $this->_lastError = $error
-            
-        } else {
-            require_once 'DB/DataObject/Error.php';
-            $dor = new PEAR();
-            $error = $dor->raiseError($message, $type, $behaviour,
-                            $opts=null, $userinfo=null, 'DB_DataObject_Error'
-                        );
+            $this->_lastError = $error;
+            return $error;
         }
+        
+        require_once 'DB/DataObject/Error.php';
+        $dor = new PEAR();
+        $error = $dor->raiseError($message, $type, $behaviour,
+                $opts=null, $userinfo=null, 'DB_DataObject_Error'
+        );
+        
         // this will never work totally with PHP's object model.
         // as this is passed on static calls (like staticGet in our case)
  
-        $_DB_DATAOBJECT['LASTERROR'] = $error;
-        
-        if (isset($this) && is_object($this) && is_subclass_of($this,'db_dataobject')) {
-            $this->_lastError = $error;
-        }
+        self::$lasterror = $error;
+        $this->_lastError = $error;
    
         return $error;
     }
