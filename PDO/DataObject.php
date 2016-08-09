@@ -4922,10 +4922,10 @@ class PDO_DataObject
             return $error;
         }
         
-        require_once 'DB/DataObject/Error.php';
+        require_once 'PDO/DataObject/Error.php';
         $dor = new PEAR();
         $error = $dor->raiseError($message, $type, $behaviour,
-                $opts=null, $userinfo=null, 'DB_DataObject_Error'
+                $opts=null, $userinfo=null, 'PDO_DataObject_Error'
         );
         
         // this will never work totally with PHP's object model.
