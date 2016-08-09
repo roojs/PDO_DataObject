@@ -2156,7 +2156,7 @@ class PDO_DataObject
      * @param optional bool overwrite - normally the first two will just append
      *
      * @access public
-     * @return true or PEAR:error on wrong paramenters.. or false if no file exists..
+     * @return Array(databse Structure)  or false if no file exists..
      *              or the array(tablename => array(column_name=>type)) if called with 1 argument.. (databasename)
      */
     function databaseStructure($database = false, $inidata = array(), $linksdata=array(), $overwrite = false)
