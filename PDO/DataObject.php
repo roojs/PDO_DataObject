@@ -2164,7 +2164,7 @@ class PDO_DataObject
         }
         
         if ($args && count($args) == 1) {
-            return $this->_introspection()->databaseStructure($database, $inidata,$linksdata, $overwrite);
+            return $this->_introspection()->databaseStructure($database);
         }
         // Assignment code    
         if ($args && $inidata !== false) {
