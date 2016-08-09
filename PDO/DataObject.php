@@ -4901,7 +4901,9 @@ class PDO_DataObject
             $behaviour = null;
         }
         
-        $error = &PEAR::getStaticProperty('DB_DataObject','lastError');
+        if (class_exists('PEAR')) {
+            $error = &PEAR::getStaticProperty('DB_DataObject','lastError');
+        }
         
       
         // no checks for production here?....... - we log  errors before we throw them.
