@@ -2165,8 +2165,8 @@ class PDO_DataObject
         
         if ($args && count($args) == 1) {
             return call_user_func_array(
-                        array($this->_introspection(), 'databaseStructure'),
-                    , $args);
+                    array($this->_introspection(), 'databaseStructure'),
+                    $args);
         }
         // Assignment code    
         if ($args && $inidata !== false) {
@@ -2213,8 +2213,8 @@ class PDO_DataObject
         
         if ( self::$config['proxy'])   {
             return call_user_func_array(
-                        array($this->_introspection(), 'databaseStructure'),
-                    , $args);
+                    array($this->_introspection(), 'databaseStructure'),
+                    $args);
         }
             
         // basic idea here..
