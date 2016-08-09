@@ -367,7 +367,7 @@ class PDO_DataObject
         }
         
         if (self::$debug) {
-            $this->debug("NEW CONNECTION TO DATABASE :" .$this->_database , "CONNECT",3);
+            $this->debug("NEW CONNECTION TO DATABASE :" .$dsn , "CONNECT",3);
             /* actualy make a connection */
             $this->debug(print_r($dsn,true) . ' ' . $pdo_dsn . ' ' . $this->_database_dsn_md5, "CONNECT",3);
         }    
