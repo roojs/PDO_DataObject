@@ -4898,7 +4898,7 @@ class PDO_DataObject
         
         // default behaviour now...
         if (self::$config['exceptions']) {
-            
+            //?? is this it???
             throw new Exception($message, $type, $previous_exception);
         }
         
