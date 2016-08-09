@@ -4909,17 +4909,12 @@ class PDO_DataObject
             $behaviour = null;
         }
         
+        
         class_exists('PEAR') ? '' : require_once 'PEAR.php';
         
         
         $error = &PEAR::getStaticProperty('DB_DataObject','lastError');
-        
-      
-        // no checks for production here?....... - we log  errors before we throw them.
-        PDO_DataObject::debug($message,'ERROR',1);
-        
-        
-        
+          
         if (PEAR::isError($message)) {
             $error = $message;
             self::$lasterror = $error;
