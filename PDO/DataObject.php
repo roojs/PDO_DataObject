@@ -4846,9 +4846,7 @@ class PDO_DataObject
             flush();
             return;
         }
-        if (!is_string($message)) {
-            $message = print_r($message,true);
-        }
+        
         $colorize = ($logtype == 'ERROR') ? '<font color="red">' : '<font>';
         echo "<code>{$colorize}<B>$class: $logtype:</B> ". nl2br(htmlspecialchars($message)) . "</font></code><BR>\n";
     }
