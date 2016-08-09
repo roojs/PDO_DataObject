@@ -4861,13 +4861,14 @@ class PDO_DataObject
      */
     static function debugLevel($v = null)
     {
-        global $_DB_DATAOBJECT;
-        if (empty($_DB_DATAOBJECT['CONFIG'])) {
-            DB_DataObject::_loadConfig();
-        }
+        // can be slow....
+        DB_DataObject::loadConfig();
+        
         if ($v !== null) {
-            $r = isset($_DB_DATAOBJECT['CONFIG']['debug']) ? $_DB_DATAOBJECT['CONFIG']['debug'] : 0;
-            $_DB_DATAOBJECT['CONFIG']['debug']  = $v;
+            
+            $r = self::$debug;
+            self::$debug; = $v;
+            self::$config['debug'] = $v;// for reference only
             return $r;
         }
         return isset($_DB_DATAOBJECT['CONFIG']['debug']) ? $_DB_DATAOBJECT['CONFIG']['debug'] : 0;
