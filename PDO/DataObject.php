@@ -120,6 +120,12 @@ class PDO_DataObject
                 // currently it only lowercases the tablename when you call tableName(), and
                 // flatten's ini files ..
         
+        
+            // debuging - only relivant on initialization - modifying it after, may be ignored.
+            'debug' => 0,
+            
+        
+        
             // -------- Error handling --------
             // new behaviour is to throw exceptions - everywhere!!!
             // to turn on 'old' behaviour - use 'exceptions' => false
