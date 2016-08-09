@@ -2164,7 +2164,9 @@ class PDO_DataObject
         }
         
         if ($args && count($args) == 1) {
-            return $this->_introspection()->databaseStructure($database);
+            return call_user_func_array(
+                        array($this->_introspection(), 'databaseStructure'),
+                    , $args);
         }
         // Assignment code    
         if ($args && $inidata !== false) {
@@ -2210,7 +2212,9 @@ class PDO_DataObject
         // if we are configured to use the proxy..
         
         if ( self::$config['proxy'])   {
-            return $this->_introspection()->databaseStructure($database = false, $inidata = array(), $linksdata=array(), $overwrite = false);
+            return call_user_func_array(
+                        array($this->_introspection(), 'databaseStructure'),
+                    , $args);
         }
             
         // basic idea here..
