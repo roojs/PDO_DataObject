@@ -29,13 +29,14 @@ PDO_DataObject::$config['tables']['account_transaction']='anotherdb';
 $obj = new PDO_DataObject();
 $obj->__table = 'account_transaction';
 
-
-// does not actually connect to the DB - as we only do a db connection if we do not know the database name..
+// does connect to the db - as we it needs to work out which database to use..
 print_r($obj->databaseStructure('anotherdb', false));
 
 
-
 // test structure from introspection
+
+
+
 
 // set structure + retrieve it.
  
