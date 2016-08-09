@@ -2222,7 +2222,9 @@ class PDO_DataObject
         
         // uses 'ini_* settings..
         if (isset(self::$config['ini_'. $this->_database ])) {
-            return $this->_databaseStructureIntrospection();
+            return call_user_func_array(
+                    array($this->_introspection(), 'databaseStructure'),
+                    $args);
         }
         
         $ini = self::$config['schema_location'] .'/'. $this->_database .'.ini';
