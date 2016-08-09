@@ -129,7 +129,7 @@ class PDO_DataObject_Introspection
         
         if ( PDO_DataObject::$config['proxy'])  {
             
-            $this->relayGenerator('fillTableSchema', array($database, $table));
+            $this->generator()->fillTableSchema($database, $table);
             return true;
         }
             
