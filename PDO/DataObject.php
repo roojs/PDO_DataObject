@@ -2266,7 +2266,7 @@ class PDO_DataObject
          
     }
     /**
-     * 'complex' versions of databaseStructure (may be needs generic relay?)
+     * create an instance of introspection. 
      * - manual set
      * - proxy
      * - ini_****
