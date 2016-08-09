@@ -2158,7 +2158,7 @@ class PDO_DataObject
         
         if ($args = func_get_args() && count($args) == 1) {
             
-            return $this->_databaseStructureIntrospection();
+            return $this->_databaseStructureIntrospection($args);
         }
         
         if ($args && $inidata !== false) {
