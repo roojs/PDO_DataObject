@@ -2169,7 +2169,7 @@ class PDO_DataObject
             return $this->_databaseStructureIntrospection();
         }
         
-        if ($args) {
+        if ($args && $inidata !== false) {
         
             // databaseStructure('mydb',   a$tabledatarray(.... schema....), array( ... links')
             if ($inidata !== false) {
