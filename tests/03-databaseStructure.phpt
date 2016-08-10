@@ -66,6 +66,7 @@ PDO_DataObject::$config['PDO'] = 'PDO_Dummy';
 // test structure from introspection
 
 echo "\n\nDATABASE INSTROSPECT - mysql dummy\n";
+PDO_DataObject::$config['tables']['Events']='anotherdb';
 
 $obj = new PDO_DataObject();
 $obj->__table = 'Events';
