@@ -1349,7 +1349,7 @@ class PDO_DataObject_Generator extends PDO_DataObject
         
         $defs = $this->_introspection()->tableInfo($quotedTable);
          
-        if (is_a('PEAR_Error',$defs)) {
+        if (is_a($defs,'PEAR_Error')) {
             return $defs;
         }
         
