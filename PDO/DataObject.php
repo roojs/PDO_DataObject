@@ -2809,7 +2809,7 @@ class PDO_DataObject
         // previously we used _DB_resultid as a pointer to a result array..
         // hopefully this will result in better memory management???
         $this->_result = $result;
-        
+        $this->_result->complete = false;
         $this->N = $result->rowCount();
         
         return $this; // for chaining...
