@@ -48,15 +48,14 @@ print_r($obj->databaseStructure('hebe'));
 echo "\n\nREAL DATABASE CONNECT - NOT IN FINAL TEST\n";
 
 PDO_DataObject::$config['PDO'] = 'PDO';
-PDO_DataObject::$config['tables']['account_transaction']='hebe';
-PDO_DataObject::$config['databases']['hebe']='pgsql://admin:pass4xtuple@localhost/xtuplehk';
-
+PDO_DataObject::$config['tables']['accnt']='xtuplehk';
+PDO_DataObject::$config['databases']['xtuplehk']='pgsql://admin:pass4xtuple@localhost/xtuplehk';
 PDO_DataObject::$config['proxy'] = true;
 
 $obj = new PDO_DataObject();
-$obj->__table = 'account_transaction';
+$obj->__table = 'accnt';
 $obj->PDO(true);
-print_r($obj->databaseStructure('hebe'));
+print_r($obj->databaseStructure('xtuplehk'));
 
 
 
