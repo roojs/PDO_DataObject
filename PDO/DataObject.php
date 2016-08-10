@@ -374,6 +374,7 @@ class PDO_DataObject
                 $pdo_dsn =      $dsn_ar['scheme'] . ':' .$dsn_ar['path']; // urldecode perhaps?
                 $database = basename($dsn_ar['path']);
                 break;
+            
             case 'sqlsrv':
                 $pdo_dsn =
                     $dsn_ar['scheme'] . ':' .
@@ -425,6 +426,7 @@ class PDO_DataObject
         // might throw an eror..
         try {
             self::$connections[$md5] = new $PDO($pdo_dsn, $username, $password, $opts );
+            self::$connections[$md5]->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION); // just in case?
         } catch (PDOException $ex) {
             $this->debug( (string) $ex , "CONNECT FAILED",5);
             return $this->raiseError("Connect failed, turn on debugging to 5 see why",0,self::ERROR_DIE, $ex );
@@ -2350,11 +2352,11 @@ class PDO_DataObject
         
         // now have we loaded the structure.. 
         
-        if (!empty(self::$ini[$database]) {
+        if (!empty(self::$ini[$database])) {
             return self::$ini[$database];
         }
        
-        $this->debug("Cant find database schema: {$this->_database}/{$this->tableName()} \n".
+        $this->debug("Cant find database schema: {$this->_database}\n".
                     "in links file data: " . print_r(self::$ini,true),"databaseStructure",5);
         // we have to die here!! - it causes chaos if we dont (including looping forever!)
         $this->raiseError( "Unable to load schema for database and table (turn debugging up to 5 for full error message)",
