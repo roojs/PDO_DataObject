@@ -801,7 +801,7 @@ class PDO_DataObject_Generator extends PDO_DataObject
                 $sn = 'N';
                 if ($dbtype == 'pgsql' && !empty($m[2])) { 
                     $sn = preg_replace('/[("]+/','', $m[2]);
-                    $sn = preg_replace('/::.*$/', $sn); // new query for postgresql returns nextval('XXXX'::type)
+                    $sn = preg_replace('/::.*$/', '', $sn); // new query for postgresql returns nextval('XXXX'::type)
                     $sn = trim($sn, "'");
                     //echo urldecode($t->flags) . "\n" ;
                 }
@@ -1337,6 +1337,7 @@ class PDO_DataObject_Generator extends PDO_DataObject
         $this->_database  = $database; 
         $options = PDO_DataObject::$config;
         $pdo = $this->PDO();
+      
         $table = trim($table);
         
         // a little bit of sanity testing.
