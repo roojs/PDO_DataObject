@@ -2689,7 +2689,7 @@ class PDO_DataObject
         
         
         if (self::$debug) {
-            $this->debug( md5($string) . ' : ' . $string,$log="QUERY");
+            $this->debug( md5($string) . ' : ' . $string,"QUERY");
             
         }
         
