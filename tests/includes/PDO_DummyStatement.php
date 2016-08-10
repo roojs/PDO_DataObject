@@ -61,11 +61,20 @@ class PDO_DummyStatement {
         ),
         // another DB...
     );
+    var $result = false;
+    var $row = 0;
     
     function __construct($db, $query)
     {
-        $this->result = $array;
+        if (!isset(self::$results[$db][$query])) {
+            throw new Exception(__CLASS__  . " missing query: DB: $db  QUERY=$query ");
+        }
+        $this->result = self::$results[$db][$query];
         
     }
+    
+    
+    function fetch()
+    
     
 }
