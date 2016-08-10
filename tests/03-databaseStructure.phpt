@@ -99,7 +99,7 @@ PDO_DataObject::$config['PDO'] = 'PDO'; // we can do this for real...
 PDO_DataObject::$config['tables']['Customers']='EssentialSQL';
 PDO_DataObject::$config['databases']['EssentialSQL']='sqlite:'.__DIR__.'/includes/EssentialSQL.db';
 PDO_DataObject::$config['proxy'] = true;
-PDO_DataObject::debugLevel(5);
+//PDO_DataObject::debugLevel(5);
 $obj = new PDO_DataObject();
 $obj->__table = 'Customers';
 $obj->PDO(true);
@@ -119,6 +119,7 @@ print_r($obj->databaseStructure('EssentialSQL'));
 --EXPECT--
 SINGLE INI FILE 
 __construct==["mysql:dbname=somedb;host=localhost;port=3344","username","test",[]]
+setAttribute==[3,2]
 Array
 (
     [account_code] => Array
@@ -140,6 +141,7 @@ Array
 
 \TWO INI FILES
 __construct==["mysql:dbname=anotherdb;host=localhost;port=3344","username","test",[]]
+setAttribute==[3,2]
 Array
 (
     [account_transaction] => Array
@@ -169,6 +171,8 @@ Array
 
 DATABASE INSTROSPECT - mysql dummy
 __construct==["mysql:dbname=anotherdb;host=localhost;port=3344","username","test",[]]
+setAttribute==[3,2]
+getAttribute==[16] => mysql
 getAttribute==[16] => mysql
 QUERY: SHOW TABLES  
 Fetch Row 0 / 3
@@ -176,6 +180,7 @@ Fetch Row 1 / 3
 Fetch Row 2 / 3
 Fetch Row 3 / 3
 Close Cursor
+getAttribute==[16] => mysql
 getAttribute==[16] => mysql
 QUERY: DESCRIBE Companies  
 Fetch Row 0 / 23
@@ -205,6 +210,7 @@ Fetch Row 23 / 23
 Close Cursor
 getAttribute==[16] => mysql
 getAttribute==[16] => mysql
+getAttribute==[16] => mysql
 QUERY: DESCRIBE Events  
 Fetch Row 0 / 10
 Fetch Row 1 / 10
@@ -218,6 +224,7 @@ Fetch Row 8 / 10
 Fetch Row 9 / 10
 Fetch Row 10 / 10
 Close Cursor
+getAttribute==[16] => mysql
 getAttribute==[16] => mysql
 getAttribute==[16] => mysql
 QUERY: DESCRIBE Groups  
@@ -321,6 +328,8 @@ Array
 
 DATABASE INSTROSPECT - mysql postgres dummyu
 __construct==["pgsql:dbname=xtuple;host=localhost","user","nopass",[]]
+setAttribute==[3,2]
+getAttribute==[16] => pgsql
 getAttribute==[16] => pgsql
 QUERY: SELECT table_name FROM information_schema.tables WHERE table_type = 'BASE TABLE' AND table_schema = 'public' order by table_name ASC  
 Fetch Row 0 / 3
@@ -328,6 +337,7 @@ Fetch Row 1 / 3
 Fetch Row 2 / 3
 Fetch Row 3 / 3
 Close Cursor
+getAttribute==[16] => pgsql
 getAttribute==[16] => pgsql
 QUERY: SELECT  
                         f.attnum AS number,  
@@ -377,6 +387,7 @@ Fetch Row 3 / 5
 Fetch Row 4 / 5
 Fetch Row 5 / 5
 Close Cursor
+getAttribute==[16] => pgsql
 getAttribute==[16] => pgsql
 getAttribute==[16] => pgsql
 QUERY: SELECT  
@@ -439,6 +450,7 @@ Fetch Row 15 / 17
 Fetch Row 16 / 17
 Fetch Row 17 / 17
 Close Cursor
+getAttribute==[16] => pgsql
 getAttribute==[16] => pgsql
 getAttribute==[16] => pgsql
 QUERY: SELECT  
@@ -556,6 +568,83 @@ Array
     [addr__keys] => Array
         (
             [addr_id] => addr_addr_id_seq
+        )
+
+)
+Array
+(
+    [Customers] => Array
+        (
+            [CustomerID] => 1
+            [CompanyName] => 2
+            [ContactName] => 2
+            [ContactTitle] => 2
+            [Address] => 2
+            [City] => 2
+            [State] => 2
+        )
+
+    [Customers__keys] => Array
+        (
+            [CustomerID] => N
+        )
+
+    [Employees] => Array
+        (
+            [EmployeeID] => 1
+            [LastName] => 2
+            [FirstName] => 2
+            [Title] => 2
+            [Address] => 2
+            [HireDate] => 2
+        )
+
+    [Employees__keys] => Array
+        (
+            [EmployeeID] => N
+        )
+
+    [OrderDetails] => Array
+        (
+            [OrderDetailID] => 1
+            [OrderID] => 1
+            [ProductID] => 1
+            [UnitPrice] => 1
+            [Quantity] => 1
+        )
+
+    [OrderDetails__keys] => Array
+        (
+            [OrderDetailID] => N
+        )
+
+    [Orders] => Array
+        (
+            [OrderID] => 1
+            [CustomerID] => 1
+            [EmployeeID] => 1
+            [OrderDate] => 2
+            [RequiredDate] => 2
+            [ShippedDate] => 2
+            [ShipVia] => 1
+            [FreightCharge] => 1
+        )
+
+    [Orders__keys] => Array
+        (
+            [OrderID] => N
+        )
+
+    [Shippers] => Array
+        (
+            [ShipperID] => 1
+            [CompanyName] => 2
+            [Phone] => 2
+        )
+
+    [Shippers__keys] => Array
+        (
+            [ShipperID] => N
         )
 
 )
