@@ -40,21 +40,16 @@ class PDO_DataObject_Introspection_sqlite extends PDO_DataObject_Introspection
      * Obtains the query string needed for listing a given type of objects
      *
      * @param string $type  the kind of objects you want to retrieve
-     * @param array  $args  SQLITE DRIVER ONLY: a private array of arguments
-     *                       used by the getSpecialQuery().  Do not use
-     *                       this directly.
+ 
      *
      * @return string  the SQL query string or null if the driver doesn't
      *                  support the object type requested
      *
      * @access protected
-     * @see DB_common::getListOf()
-     */
-    function getSpecialQuery($type, $args = array())
+      */
+    function getSpecialQuery($type   )
     {
-        if (!is_array($args)) {
-            return $this->do->raiseError('no key specified - Argument has to be an array.');
-        }
+     
 
         switch ($type) {
             case 'master':
