@@ -104,9 +104,11 @@ class PDO_DataObject_Introspection_pgsql extends PDO_DataObject_Introspection
     function tableInfo($table)
     {
         // currently only queries 'public'???
-        $bits = explode('.', $table);
-        $table = array_pop($bits);
-        $schema = empty($bits) ? 'public' : $bits[0];
+        $schema  ='public';
+        if (strpos($table,'.') !== false) {
+            list($schema, $table) =explode('.', $table);
+        }
+        
         
         $database = $this->do->database();
         
@@ -148,7 +150,7 @@ class PDO_DataObject_Introspection_pgsql extends PDO_DataObject_Introspection
                         LEFT JOIN pg_constraint p ON p.conrelid = c.oid AND f.attnum = ANY (p.conkey)  
                         LEFT JOIN pg_class AS g ON p.confrelid = g.oid  
                     WHERE c.relkind = 'r'::char  
-                        AND n.nspname = '{$chema}'  
+                        AND n.nspname = '{$schema}'  
                         AND c.relname = '{$table}'  
                         AND f.attnum > 0 ORDER BY number
             ")
@@ -177,7 +179,7 @@ class PDO_DataObject_Introspection_pgsql extends PDO_DataObject_Introspection
                 'flags' =>   ($r['notnull'] != '' ? ' not_null' : '').
                         ($r['primarykey'] == 't' ? ' primary' : '').
                         ($r['uniquekey'] == 't' ? ' unique' : '') .
-                        $r['default']
+                        ' '. $r['default']
                        
                         
             );
