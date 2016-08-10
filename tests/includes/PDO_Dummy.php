@@ -45,7 +45,6 @@ class PDO_Dummy {
         
         require_once __DIR__ .'/PDO_DummyStatement.php';
         
-        
         return new PDO_DummyStatement($this->databased, $str);
         
         
