@@ -460,13 +460,13 @@ class PDO_DataObject
      * PEAR::getStaticProperty('PDO_DataObject','options');
      * (part of PEAR5.php)
      * This is available for backward Compatibility - new versions should just include this file
-     * and set the options
-     *  (Just including this file does not load anything else -- like pear.. etc..
-     *  So it's a relatively low overhead..)
+     * and set the options via loadConfig({array})
+     *  Just including this file does not load anything else -- like pear.. etc..
+     *  So it's a relatively low overhead..
      *
      *
-     * @access   public
-     * @return   object an error object
+     * @access   private
+     * @return   Void
      */
     private static function _loadPEARConfig()
     {
