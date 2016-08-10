@@ -440,7 +440,9 @@ class PDO_DataObject
       
         
         self::$connections[$md5]->database = $database;
-        $this->_database = $database;
+        if (empty($this->database)) {
+            $this->_database = $database;
+        }
          
         // Oracle need to optimize for portibility - not sure exactly what this does though :)
          
