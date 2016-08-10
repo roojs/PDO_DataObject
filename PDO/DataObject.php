@@ -879,6 +879,7 @@ class PDO_DataObject
             $this->_result->closeCursor();
             $this->_result = new StdClass;
             $this->_result->fields  = $fields;
+            $this->_result->complete = true;
             return false; // no more data... -- and this fetch did not return any...
              
         }
