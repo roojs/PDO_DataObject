@@ -93,8 +93,17 @@ print_r($obj->databaseStructure('xtuplehk'));
 
  
 // sqlite
+PDO_DataObject::$config['PDO'] = 'PDO'; // we can do this for real...
 
+ 
+PDO_DataObject::$config['tables']['Customers']='EssentialSQL';
+PDO_DataObject::$config['databases']['xtuplehk']='sqlite://'.__DIR__.'/includes/EssentialSQL.db';
+PDO_DataObject::$config['proxy'] = true;
 
+$obj = new PDO_DataObject();
+$obj->__table = 'Customers';
+$obj->PDO(true);
+print_r($obj->databaseStructure('EssentialSQL'));
 
 
 // set structure + retrieve it.
