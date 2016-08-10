@@ -84,35 +84,23 @@ class PDO_DummyStatement {
     
     function fetch($method , &$obj=null)
     {
-        if ($method & PDO::FETCH_INTO)
+        $row = count($this->result) >= $this->row ? false : (array)$this->result[$this->row++];
+        if ($row === false) {
+            return $row;
+        }
+        if ($method & PDO::FETCH_INTO) {
+            foreach($row as $k=>$v) {
+                $obj->$k = $v;
+            }
+        }
+        if ($method & PDO::FETCH_ASSOC) {
+            return $row;
+        }
+        throw new Exception("invalid argument for Fetch in dummy PDOStatement");
+        
         
     }
     
-      if (self::$config['fetch_into']) {
-            $array = $this->_result->fetch(PDO::FETCH_INTO|PDO::FETCH_ASSOC, $this);
-        } else {
-            $array = $this->_result->fetch(PDO::FETCH_ASSOC);
-            if (self::$debug) {
-                $this->debug(json_encode($array),"FETCH");
-            }
-        }
-        
-         
-        
-        if (!$array) {
-                
-            if (self::$debug) {
-                $t= explode(' ',microtime());
-            
-                $this->debug("Last Data Fetch'ed after " . 
-                        ($t[0]+$t[1]- $this->_time_query_start ) . 
-                        " seconds",
-                    "FETCH", 1);
-            }
-            $fields = $this->_result->fields;
-            $this->_result->
-    
-    function fetch()
-    
+      
     
 }
