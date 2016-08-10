@@ -104,7 +104,7 @@ class PDO_DataObject_Introspection_pgsql extends PDO_DataObject_Introspection
     function tableInfo($table)
     {
         
-        $database = $this->database();
+        $database = $this->do->database();
         
         $records =  $this->do
             ->query("SELECT  
