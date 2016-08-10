@@ -64,6 +64,11 @@ class PDO_DataObject
     */
     const WHEREADD_ONLY = true;
 
+    /**
+     * used by config[portability]
+     */
+    
+    const PORTABILITY_LOWERCASE =  1;  // from PEAR_ERROR_DIE
     
     /**
      * #FIXME - MAY BE REMOVED...
@@ -117,7 +122,7 @@ class PDO_DataObject
             
             
             'portability' => 0,
-                //similar to DB's portability setting,
+                // similar to DB's portability setting,
                 // currently it only lowercases the tablename when you call tableName(), and
                 // flatten's ini files ..
         
@@ -2352,7 +2357,7 @@ class PDO_DataObject
      * - proxy
      * - ini_****
      */
-    private function _introspection()
+    protected function _introspection()
     {
         $type  = $this->PDO()->getAttribute(PDO::ATTR_DRIVER_NAME);
         $class = 'PDO_DataObject_Introspection_'. $type;
