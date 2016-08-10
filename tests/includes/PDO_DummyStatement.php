@@ -6,7 +6,7 @@ class PDO_DummyStatement {
     static $results = array(
         
         // database
-        'somedb' => array(
+        'anotherdb' => array(
             
             'SHOW TABLES' =>  '[
                     {"Tables_in_somedb":"Companies"}
