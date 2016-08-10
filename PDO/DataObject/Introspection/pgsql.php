@@ -170,12 +170,21 @@ class PDO_DataObject_Introspection_pgsql extends PDO_DataObject_Introspection
         foreach($records as $r) {
             
             $bits = explode('(',$r['type']);
-               
+            switch($bits[[0]]){
+                case 'character':
+                    $bits[0]  = 'char';
+                    break;
+                case 'character varying':
+                    $bits[0]  = 'varchar';
+                    break;
+            }
+            
+            
             $res[] = array(
-                'table' => $case_func($string),
+                'table' => $case_func($table),
                 'name'  => $case_func($r['name']),
-                'type'  => $r['type'],
-                'len'   => '??',
+                'type'  => $bits[0],
+                'len'   => isset($bits[1]) ? str_replace(')','', $bits[1])  : '',
                 'flags' =>   ($r['notnull'] != '' ? ' not_null' : '').
                         ($r['primarykey'] == 't' ? ' primary' : '').
                         ($r['uniquekey'] == 't' ? ' unique' : '') .
