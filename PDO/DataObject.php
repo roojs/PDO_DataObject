@@ -901,6 +901,7 @@ class PDO_DataObject
                         break;
                     
                     case 'VAR_STRING':
+                    case 'BLOB':
                         $v = self::STR;
                         break;
                     
