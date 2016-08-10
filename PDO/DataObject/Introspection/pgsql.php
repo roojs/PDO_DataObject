@@ -196,10 +196,7 @@ class PDO_DataObject_Introspection_pgsql extends PDO_DataObject_Introspection
                 case 'timestamp with time zone':
                     $bits[0]  = 'timestamptz';
             }
-            if (preg_match('/^nextval', $r['default'])) {
-                
-                
-            }
+           
             
             $res[] = array(
                 'table' => $case_func($table),
