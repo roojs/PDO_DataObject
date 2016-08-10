@@ -166,6 +166,7 @@ class PDO_DataObject_Introspection_pgsql extends PDO_DataObject_Introspection
         
         $res   = array();
 
+        print_r($records);
         
         foreach($records as $r) {
             
