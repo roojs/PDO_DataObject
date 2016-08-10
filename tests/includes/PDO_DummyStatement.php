@@ -64,19 +64,30 @@ class PDO_DummyStatement {
     var $result = false;
     var $row = 0;
     
-    function closeCursor()
-    {
-        echo "Close Cursor\n";
-    }
+  
+    
+    
     
     function __construct($db, $query)
     {
         if (!isset(self::$results[$db][$query])) {
             throw new Exception(__CLASS__  . " missing query: DB: $db  QUERY=$query ");
         }
-        $this->result = self::$results[$db][$query];
+        $this->result = json_decode(self::$results[$db][$query]);
         
     }
+    
+    function closeCursor()
+    {
+        echo "Close Cursor\n";
+    }
+    
+    function fetch($method , &$obj=null)
+    {
+        if ($method & PDO::FETCH_INTO)
+        
+    }
+    
       if (self::$config['fetch_into']) {
             $array = $this->_result->fetch(PDO::FETCH_INTO|PDO::FETCH_ASSOC, $this);
         } else {
