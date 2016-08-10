@@ -37,6 +37,20 @@ class PDO_Dummy {
         }
         return "???";
     }
+    
+    function setAttribute($key, $value)
+    {
+        echo __FUNCTION__ . '==' .  json_encode(func_get_args()). "\n";
+        switch($key) {
+            
+            case PDO::ATTR_ERRMODE:
+                return; // all ok..
+                break;
+            default:
+                throw new Exception("setAttribute - invalid arguments");
+        }
+    }
+    
     function query($str)
     {
         

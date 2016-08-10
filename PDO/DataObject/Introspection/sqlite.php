@@ -28,8 +28,7 @@
  * @version    1.0
  * @link       https://github.com/roojs/PDO_DataObject
  */
-  
-  
+   
 class_exists('PDO_DataObject_Introspection') ? '' : require_once 'PDO/DataObject/Introspection.php';
 // move me to seperate classes...
 class PDO_DataObject_Introspection_sqlite extends PDO_DataObject_Introspection
@@ -53,16 +52,16 @@ class PDO_DataObject_Introspection_sqlite extends PDO_DataObject_Introspection
 
         switch ($type) {
             case 'master':
-                return 'SELECT * FROM sqlite_master;';
+                return 'SELECT * FROM sqlite_master';
             case 'tables':
                 return "SELECT name FROM sqlite_master WHERE type='table' "
                        . 'UNION ALL SELECT name FROM sqlite_temp_master '
-                       . "WHERE type='table' ORDER BY name;";
+                       . "WHERE type='table' ORDER BY name";
             case 'schema':
                 return 'SELECT sql FROM (SELECT * FROM sqlite_master '
                        . 'UNION ALL SELECT * FROM sqlite_temp_master) '
                        . "WHERE type!='meta' "
-                       . 'ORDER BY tbl_name, type DESC, name;';
+                       . 'ORDER BY tbl_name, type DESC, name';
             
             default:
                 return null;
@@ -101,10 +100,9 @@ class PDO_DataObject_Introspection_sqlite extends PDO_DataObject_Introspection
             $case_func = 'strtolower';
         }
         
-        
+        $res = array();
         foreach($records as $r) {
-
-        for ($i = 0; $i < $count; $i++) {
+ 
             if (strpos($r['type'], '(') !== false) {
                 $bits = explode('(', $r['type']);
                 $type = $bits[0];
@@ -129,7 +127,7 @@ class PDO_DataObject_Introspection_sqlite extends PDO_DataObject_Introspection
             }
             $flags = trim($flags);
 
-            $res[$i] = array(
+            $res[] = array(
                 'table' => $case_func($table),
                 'name'  => $case_func($r['name']),
                 'type'  => $type,

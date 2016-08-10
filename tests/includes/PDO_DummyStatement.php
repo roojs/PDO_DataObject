@@ -59,7 +59,7 @@ class PDO_DummyStatement {
                 {"Field":"leader","Type":"int(11)","Null":"NO","Key":"","Default":"0","Extra":""}
             ]',
         ),
-        'pgsql://user:nopass/xtuple' => array(
+        'pgsql:dbname=xtuple;host=localhost' => array(
             "SELECT table_name FROM information_schema.tables WHERE table_type = 'BASE TABLE' AND table_schema = 'public' order by table_name ASC" => '[
                 {"table_name":"acalitem"},
                 {"table_name":"accnt"},
@@ -72,7 +72,7 @@ class PDO_DummyStatement {
                 {"number":2,"name":"acalitem_calhead_id","attnum":2,"notnull":false,"type":"integer","primarykey":"f","uniquekey":"f","foreignkey":null,"foreignkey_fieldnum":null,"foreignkey_connnum":null,"default":null},
                 {"number":3,"name":"acalitem_periodstart","attnum":3,"notnull":false,"type":"date","primarykey":"f","uniquekey":"f","foreignkey":null,"foreignkey_fieldnum":null,"foreignkey_connnum":null,"default":null},
                 {"number":4,"name":"acalitem_periodlength","attnum":4,"notnull":false,"type":"integer","primarykey":"f","uniquekey":"f","foreignkey":null,"foreignkey_fieldnum":null,"foreignkey_connnum":null,"default":null},
-                {"number":5,"name":"acalitem_name","attnum":5,"notnull":false,"type":"text","primarykey":"f","uniquekey":"f","foreignkey":null,"foreignkey_fieldnum":null,"foreignkey_connnum":null,"default":null},
+                {"number":5,"name":"acalitem_name","attnum":5,"notnull":false,"type":"text","primarykey":"f","uniquekey":"f","foreignkey":null,"foreignkey_fieldnum":null,"foreignkey_connnum":null,"default":null}
             ]',
             // def for accnt
             '910efae3bc8352cab9a73df70006a9bc' => '[
@@ -94,6 +94,7 @@ class PDO_DummyStatement {
                 {"number":16,"name":"accnt_code_alt","attnum":16,"notnull":false,"type":"text","primarykey":"f","uniquekey":"f","foreignkey":null,"foreignkey_fieldnum":null,"foreignkey_connnum":null,"default":"\'\'::text"},
                 {"number":17,"name":"accnt_descrip_alt","attnum":17,"notnull":false,"type":"text","primarykey":"f","uniquekey":"f","foreignkey":null,"foreignkey_fieldnum":null,"foreignkey_connnum":null,"default":"\'\'::text"}
             ]',
+            // for addr
             '0464cd1439d5cf9ac030e8cbe858bbfd' => '[
                 {"number":1,"name":"addr_id","attnum":1,"notnull":true,"type":"integer","primarykey":"t","uniquekey":"f","foreignkey":null,"foreignkey_fieldnum":null,"foreignkey_connnum":null,"default":"nextval(\'addr_addr_id_seq\'::regclass)"},
                 {"number":2,"name":"addr_active","attnum":2,"notnull":false,"type":"boolean","primarykey":"f","uniquekey":"f","foreignkey":null,"foreignkey_fieldnum":null,"foreignkey_connnum":null,"default":"true"},
@@ -105,7 +106,7 @@ class PDO_DummyStatement {
                 {"number":8,"name":"addr_postalcode","attnum":8,"notnull":false,"type":"text","primarykey":"f","uniquekey":"f","foreignkey":null,"foreignkey_fieldnum":null,"foreignkey_connnum":null,"default":"\'\'::text"},
                 {"number":9,"name":"addr_country","attnum":9,"notnull":false,"type":"text","primarykey":"f","uniquekey":"f","foreignkey":null,"foreignkey_fieldnum":null,"foreignkey_connnum":null,"default":"\'\'::text"},
                 {"number":10,"name":"addr_notes","attnum":10,"notnull":false,"type":"text","primarykey":"f","uniquekey":"f","foreignkey":null,"foreignkey_fieldnum":null,"foreignkey_connnum":null,"default":"\'\'::text"},
-                {"number":11,"name":"addr_number","attnum":11,"notnull":true,"type":"text","primarykey":"f","uniquekey":"t","foreignkey":null,"foreignkey_fieldnum":null,"foreignkey_connnum":null,"default":null},
+                {"number":11,"name":"addr_number","attnum":11,"notnull":true,"type":"text","primarykey":"f","uniquekey":"t","foreignkey":null,"foreignkey_fieldnum":null,"foreignkey_connnum":null,"default":null}
  
             ]'
         )
