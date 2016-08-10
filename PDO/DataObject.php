@@ -456,12 +456,14 @@ class PDO_DataObject
     
     
     /**
-     * Define the global $_DB_DATAOBJECT['CONFIG'] as an alias to  PEAR::getStaticProperty('DB_DataObject','options');
+     * Configuration can be loaded from 
+     * PEAR::getStaticProperty('PDO_DataObject','options');
+     * (part of PEAR5.php)
+     * This is available for backward Compatibility - new versions should just include this file
+     * and set the options
+     *  (Just including this file does not load anything else -- like pear.. etc..
+     *  So it's a relatively low overhead..)
      *
-     * After Profiling DB_DataObject, I discoved that the debug calls where taking
-     * considerable time (well 0.1 ms), so this should stop those calls happening. as
-     * all calls to debug are wrapped with direct variable queries rather than actually calling the funciton
-     * THIS STILL NEEDS FURTHER INVESTIGATION
      *
      * @access   public
      * @return   object an error object
@@ -478,7 +480,7 @@ class PDO_DataObject
             return;
         }
         
-        $cfg = PEAR::getStaticProperty('DB_DataObject','options');
+        $cfg = PEAR::getStaticProperty('PDO_DataObject','options');
         foreach ($cfg as $k=>$v) {
             self::$config[$k] = $v;
         }
@@ -2794,7 +2796,7 @@ class PDO_DataObject
         if (self::$debug) {
             $t= explode(' ',microtime());
             $this->_time_query_start = $t[0]+$t[1];
-            $this->debug('QUERY DONE IN  '.round($t[0]+$t[1]-$time,3)." seconds", 'query',1);
+            $this->debug('QUERY DONE IN  '.number_format($t[0]+$t[1]-$time,3)." seconds", 'query',1);
             $this->debug('NO# of results: '.$result->rowCount(), 'query',1);
         }
         
