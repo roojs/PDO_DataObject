@@ -821,7 +821,7 @@ class PDO_DataObject
 
         
         if (!self::$config_loaded) {
-            DB_DataObject::loadConfig();
+            PDO_DataObject::loadConfig();
         }
         if ($this->N === false) {
             $this->raiseError("Fetch Called without Query being run");
