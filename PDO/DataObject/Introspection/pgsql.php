@@ -173,7 +173,8 @@ class PDO_DataObject_Introspection_pgsql extends PDO_DataObject_Introspection
                 'flags' => $r['Extra'] . 
                         ($r['notnull'] != '' ? ' not_null' : '').
                         ($r['primarykey'] == 't' ? ' primary' : '').
-                        ($r['uniquekey'] == 't' ? ' unique' : '') 
+                        ($r['uniquekey'] == 't' ? ' unique' : '') .
+                        $r['default']
                        
                         
             );
