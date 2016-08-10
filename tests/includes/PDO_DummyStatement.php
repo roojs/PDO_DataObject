@@ -5,13 +5,17 @@ class PDO_DummyStatement {
     
     static $results = array(
         
-        'SHOW TABLES' => array (
-   
-            array('avalue' => 'account_code'),
-            array('avalue' => 'account_month'),
-            array('avalue' => 'account_transaction')
+        // database
+        'somedb' => array(
             
-        ),
+            'SHOW TABLES' =>  '[
+                    {"Tables_in_somedb":"Companies"}
+                    {"Tables_in_somedb":"Events"}
+                    {"Tables_in_somedb":"Groups"}
+                ]',
+            
+                
+            ),
  
     );
     
