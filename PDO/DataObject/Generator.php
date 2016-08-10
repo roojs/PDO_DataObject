@@ -592,19 +592,23 @@ class PDO_DataObject_Generator extends PDO_DataObject
      */
     function _generateDefinitionsTable()
     {
-        global $_DB_DATAOBJECT;
-        $options = PEAR::getStaticProperty('DB_DataObject','options');
+        
+        $options = PDO_DataObject::$config;
+        
         $defs = $this->_definitions[$this->table];
+        
         $this->_newConfig .= "\n[{$this->table}]\n";
+        
         $keys_out =  "\n[{$this->table}__keys]\n";
         $keys_out_primary = '';
         $keys_out_secondary = '';
-        if (@$_DB_DATAOBJECT['CONFIG']['debug'] > 2) {
-            echo "TABLE STRUCTURE FOR {$this->table}\n";
-            print_r($defs);
-        }
-        $DB = $this->getDatabaseConnection();
-        $dbtype = $DB->phptype;
+        
+        $this->debug("TABLE STRUCTURE FOR {$this->table}",__FUNCTION__, 3)
+        $this->debug(print_r($defs,true),__FUNCTION__, 3)
+        
+        
+        
+        $dbtype = $this->PDO()->getAttribute(PDO::ATTR_DRIVER_NAME);
         
         $ret = array(
                 'table' => array(),
