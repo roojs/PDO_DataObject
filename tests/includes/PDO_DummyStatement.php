@@ -65,7 +65,8 @@ class PDO_DummyStatement {
                 {"table_name":"accnt"},
                 {"table_name":"addr"}
             ]',
-            
+            // table def for acalitem
+            '08e4aa9f52824fa6d6c01dfea04d5efd' => '[
             
             
         )
