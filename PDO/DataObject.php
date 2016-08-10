@@ -2337,7 +2337,7 @@ class PDO_DataObject
         }
         
         
-        self::$ini[$this->_database] =  parse_ini_file($ini, true);
+        self::$ini[$database] =  parse_ini_file($ini, true);
                 
                
         // are table name lowecased..
