@@ -2300,8 +2300,8 @@ class PDO_DataObject
         }
         
         // initialize the ini data.. if empt..
-        if (empty(self::$ini[$this->_database])) {
-            self::$ini[$this->_database] = array();
+        if (empty(self::$ini[$database])) {
+            self::$ini[$database] = array();
         }
          
         if (!self::$config_loaded) {
