@@ -439,7 +439,7 @@ class PDO_DataObject
 
       
         
-        self::$connections[$md5]->database = $database;
+        self::$connections[$md5]->database_nickname = $database;
         if (empty($this->database)) {
             $this->_database = $database;
         }
