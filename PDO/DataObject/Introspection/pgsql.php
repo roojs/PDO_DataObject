@@ -166,17 +166,20 @@ class PDO_DataObject_Introspection_pgsql extends PDO_DataObject_Introspection
         
         $res   = array();
 
-        print_r($records);
+        //print_r($records);
         
         foreach($records as $r) {
             
             $bits = explode('(',$r['type']);
-            switch($bits[[0]]){
+            switch($bits[0]){
                 case 'character':
                     $bits[0]  = 'char';
                     break;
                 case 'character varying':
                     $bits[0]  = 'varchar';
+                    break;
+                case 'timestamp without time zone':
+                    $bits[0]  = 'datetime';
                     break;
             }
             
