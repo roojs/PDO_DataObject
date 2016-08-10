@@ -24,6 +24,7 @@ class PDO_DataObject_Introspection_mysql extends PDO_DataObject_Introspection
      * Returns information about a table or a result set
      *
      * @param  string  $table   string containing the name of a table.
+     *                           MUST BE QUOTED if required....
      *                          
      
      * @return array  an associative array with the information requested.
@@ -33,7 +34,7 @@ class PDO_DataObject_Introspection_mysql extends PDO_DataObject_Introspection
      */
     function tableInfo($string)
     {
-        $tableQuoted = $this->do->quoteIdentifiers($table)
+         
         
         $this->do->PDO()->query("SELECT * FROM $string LIMIT 0")
          
