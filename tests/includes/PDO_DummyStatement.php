@@ -60,16 +60,13 @@ class PDO_DummyStatement {
             ]',
         ),
         'pgsql://user:nopass/xtuple' => array(
-            "SELECT table_name
-                    FROM
-                        information_schema.tables
-                    WHERE
-                        table_type = 'BASE TABLE'
-                    AND
-                        table_schema = 'public' order by table_name ASC"
-            PDO_DataObject   : FETCH       : {"table_name":"acalitem"}
-PDO_DataObject   : FETCH       : {"table_name":"accnt"}
-PDO_DataObject   : FETCH       : {"table_name":"addr"}
+            "SELECT table_name FROM information_schema.tables WHERE table_type = 'BASE TABLE' AND table_schema = 'public' order by table_name ASC" => '[
+                {"table_name":"acalitem"},
+                {"table_name":"accnt"},
+                {"table_name":"addr"}
+            ]",
+            
+            
             
         )
         // another DB...
