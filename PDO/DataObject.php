@@ -2705,7 +2705,7 @@ class PDO_DataObject
         
         if (self::$debug) {
             $this->debug( md5($string) . ' : ' . $string,"QUERY");
-            
+            $this->debug( "Driver: " . $pdo->getAttribute(PDO::ATTR_DRIVER_NAME), 'QUERY', 3);
         }
         
         if (
@@ -2750,9 +2750,16 @@ class PDO_DataObject
         for ($tries = 0;$tries < 3;$tries++) {
             
             try {
-                $result = $pdo->query($string);
+                if ($pdo->getAttribute(PDO::ATTR_DRIVER_NAME) == 'sqlite') {
+                    $result = $pdo->prepare($string);
+                    $result->execute();
+                } else {
+                    $result = $pdo->query($string);
+                }
+                
+                
             } catch (PDOException $e) {
-                this->debug("Got database Error");
+                $this->debug((string)$result, "Query Error",1 );
                 $result = $e;
                 switch($e->errorCode()) {
                     // see http://www.csee.umbc.edu/portal/help/oracle8/server.815/a58231/appd.htm
@@ -2766,6 +2773,7 @@ class PDO_DataObject
                         $this->PDO(true);
                         continue;
                 }
+        
             }
             break;
         }
