@@ -87,6 +87,81 @@ class PDO_DataObject_Introspection_sqlite extends PDO_DataObject_Introspection
         
      *
      */
+    
+    function tableInfo($table)
+    {
+        
+        $this->query("PRAGMA table_info('$table');")->fetchAll(false,false,'toArray'));
+        
+        
+        $id = @sqlite_array_query($this->connection,
+                                      "PRAGMA table_info('$result');",
+                                      SQLITE_ASSOC);
+            $got_string = true;
+        } else {
+            $this->last_query = '';
+            return $this->raiseError(DB_ERROR_NOT_CAPABLE, null, null, null,
+                                     'This DBMS can not obtain tableInfo' .
+                                     ' from result sets');
+        }
+
+        if ($this->options['portability'] & DB_PORTABILITY_LOWERCASE) {
+            $case_func = 'strtolower';
+        } else {
+            $case_func = 'strval';
+        }
+
+        $count = count($id);
+        $res   = array();
+
+        if ($mode) {
+            $res['num_fields'] = $count;
+        }
+
+        for ($i = 0; $i < $count; $i++) {
+            if (strpos($id[$i]['type'], '(') !== false) {
+                $bits = explode('(', $id[$i]['type']);
+                $type = $bits[0];
+                $len  = rtrim($bits[1],')');
+            } else {
+                $type = $id[$i]['type'];
+                $len  = 0;
+            }
+
+            $flags = '';
+            if ($id[$i]['pk']) {
+                $flags .= 'primary_key ';
+                if (strtoupper($type) == 'INTEGER') {
+                    $flags .= 'auto_increment ';
+                }
+            }
+            if ($id[$i]['notnull']) {
+                $flags .= 'not_null ';
+            }
+            if ($id[$i]['dflt_value'] !== null) {
+                $flags .= 'default_' . rawurlencode($id[$i]['dflt_value']);
+            }
+            $flags = trim($flags);
+
+            $res[$i] = array(
+                'table' => $case_func($result),
+                'name'  => $case_func($id[$i]['name']),
+                'type'  => $type,
+                'len'   => $len,
+                'flags' => $flags,
+            );
+
+            if ($mode & DB_TABLEINFO_ORDER) {
+                $res['order'][$res[$i]['name']] = $i;
+            }
+            if ($mode & DB_TABLEINFO_ORDERTABLE) {
+                $res['ordertable'][$res[$i]['table']][$res[$i]['name']] = $i;
+            }
+        }
+
+        return $res;
+    }
+    
     function tableInfo($table)
     {
         // currently only queries 'public'???
