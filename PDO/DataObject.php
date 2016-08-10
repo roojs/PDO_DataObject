@@ -2325,7 +2325,7 @@ class PDO_DataObject
                     $args);
         }
         
-        $ini = rtrim(self::$config['schema_location'] ,'/') .'/'. $this->_database .'.ini';
+        $ini = rtrim(self::$config['schema_location'] ,'/') .'/'. $database .'.ini';
         
         if (!file_exists($ini) || !is_file($ini) || !is_readable ($ini)) {
             if (self::$debug) {
