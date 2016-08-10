@@ -53,8 +53,7 @@ class PDO_DataObject_Introspection_sqlite extends PDO_DataObject_Introspection
     function getSpecialQuery($type, $args = array())
     {
         if (!is_array($args)) {
-            return $this->do->raiseError('no key specified', null, null, null,
-                                     'Argument has to be an array.');
+            return $this->do->raiseError('no key specified - Argument has to be an array.');
         }
 
         switch ($type) {
@@ -69,55 +68,7 @@ class PDO_DataObject_Introspection_sqlite extends PDO_DataObject_Introspection
                        . 'UNION ALL SELECT * FROM sqlite_temp_master) '
                        . "WHERE type!='meta' "
                        . 'ORDER BY tbl_name, type DESC, name;';
-            case 'schemax':
-            case 'schema_x':
-                /*
-                 * Use like:
-                 * $res = $db->query($db->getSpecialQuery('schema_x',
-                 *                   array('table' => 'table3')));
-                 */
-                return 'SELECT sql FROM (SELECT * FROM sqlite_master '
-                       . 'UNION ALL SELECT * FROM sqlite_temp_master) '
-                       . "WHERE tbl_name LIKE '{$args['table']}' "
-                       . "AND type!='meta' "
-                       . 'ORDER BY type DESC, name;';
-            case 'alter':
-                /*
-                 * SQLite does not support ALTER TABLE; this is a helper query
-                 * to handle this. 'table' represents the table name, 'rows'
-                 * the news rows to create, 'save' the row(s) to keep _with_
-                 * the data.
-                 *
-                 * Use like:
-                 * $args = array(
-                 *     'table' => $table,
-                 *     'rows'  => "id INTEGER PRIMARY KEY, firstname TEXT, surname TEXT, datetime TEXT",
-                 *     'save'  => "NULL, titel, content, datetime"
-                 * );
-                 * $res = $db->query( $db->getSpecialQuery('alter', $args));
-                 */
-                $rows = strtr($args['rows'], $this->keywords);
-
-                $q = array(
-                    'BEGIN TRANSACTION',
-                    "CREATE TEMPORARY TABLE {$args['table']}_backup ({$args['rows']})",
-                    "INSERT INTO {$args['table']}_backup SELECT {$args['save']} FROM {$args['table']}",
-                    "DROP TABLE {$args['table']}",
-                    "CREATE TABLE {$args['table']} ({$args['rows']})",
-                    "INSERT INTO {$args['table']} SELECT {$rows} FROM {$args['table']}_backup",
-                    "DROP TABLE {$args['table']}_backup",
-                    'COMMIT',
-                );
-
-                /*
-                 * This is a dirty hack, since the above query will not get
-                 * executed with a single query call so here the query method
-                 * will be called directly and return a select instead.
-                 */
-                foreach ($q as $query) {
-                    $this->query($query);
-                }
-                return "SELECT * FROM {$args['table']};";
+            
             default:
                 return null;
         }
