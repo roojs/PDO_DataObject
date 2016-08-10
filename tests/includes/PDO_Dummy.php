@@ -17,6 +17,7 @@ class PDO_Dummy {
         $this->_dsn = $dsn;
         $ar = explode(':', $dsn);
         $this->_dbtype = array_shift($ar);
+        $this->database = substr($dsn['path'],1);
         
         $this->user = $user;
         $this->pass = $pass;
@@ -45,7 +46,7 @@ class PDO_Dummy {
         
         require_once __DIR__ .'/PDO_DummyStatement.php';
         
-        return new PDO_DummyStatement($this->databased, $str);
+        return new PDO_DummyStatement($this->database, $str);
         
         
         
