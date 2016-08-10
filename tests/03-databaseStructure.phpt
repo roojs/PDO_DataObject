@@ -28,7 +28,7 @@ print_r($obj->databaseStructure('anotherdb', false));
 
 
 
-/*
+
 // -- normally disabled - used to geenrate the test data...
 
 echo "\n\nREAL DATABASE CONNECT - NOT IN FINAL TEST\n";
@@ -43,14 +43,12 @@ $obj = new PDO_DataObject();
 $obj->__table = 'account_transaction';
 $obj->PDO(true);
 print_r($obj->databaseStructure('hebe'));
-*/
-/*
 
 echo "\n\nREAL DATABASE CONNECT - NOT IN FINAL TEST\n";
 
 PDO_DataObject::$config['PDO'] = 'PDO';
 PDO_DataObject::$config['tables']['accnt']='xtuplehk';
-PDO_DataObject::$config['databases']['xtuplehk']='xxx';
+PDO_DataObject::$config['databases']['xtuplehk']='pgsql://admin:pass4xtuple@localhost/xtuplehk';
 PDO_DataObject::$config['proxy'] = true;
 PDO_DataObject::debugLevel(1);
 
@@ -58,7 +56,9 @@ $obj = new PDO_DataObject();
 $obj->__table = 'accnt';
 $obj->PDO(true);
 print_r($obj->databaseStructure('xtuplehk'));
-*/
+
+PDO_DataObject::$config['PDO'] = 'PDO_Dummy';
+
 
 
 
@@ -66,13 +66,20 @@ print_r($obj->databaseStructure('xtuplehk'));
 // test structure from introspection
 
 echo "\n\nDATABASE INSTROSPECT - mysql dummy\n";
- 
+
+$obj = new PDO_DataObject();
+$obj->__table = 'account_transaction';
+$obj->PDO(true);
 PDO_DataObject::$config['proxy'] = true;
+print_r($obj->databaseStructure('anotherdb'));
+
+
+
 print_r($obj->databaseStructure('anotherdb'));
 
 // postgresql
 echo "\n\nDATABASE INSTROSPECT - mysql postgres dummyu\n";
-PDO_DataObject::debugLevel(5);
+ 
 PDO_DataObject::$config['tables']['accnt']='xtuplehk';
 PDO_DataObject::$config['databases']['xtuplehk']='pgsql://user:nopass@localhost/xtuple';
 PDO_DataObject::$config['proxy'] = true;
