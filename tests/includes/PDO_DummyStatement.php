@@ -4,10 +4,10 @@
 class PDO_DummyStatement {
     
     static $results = array(
-        
-        // database
-        'anotherdb' => array(
+        // Dsn
+        'mysql:dbname=anotherdb;host=localhost;port=3344' => array(
             
+            // QUeries
             'SHOW TABLES' =>  '[
                     {"Tables_in_somedb":"Companies"}
                     {"Tables_in_somedb":"Events"}
@@ -104,6 +104,6 @@ class PDO_DummyStatement {
       
     function rowCount()
     {
-        return count(array_keys($this->result[0]))
+        return count(array_keys((array)$this->result[0]));
     }
 }
