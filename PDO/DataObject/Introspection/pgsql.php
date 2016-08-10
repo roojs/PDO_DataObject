@@ -41,13 +41,9 @@ class PDO_DataObject_Introspection_pgsql extends PDO_DataObject_Introspection
             
             case 'tables':
                 
-                return "SELECT table_name
-                    FROM
-                        information_schema.tables
-                    WHERE
-                        table_type = 'BASE TABLE'
-                    AND
-                        table_schema = 'public' order by table_name ASC";
+                return "SELECT table_name FROM information_schema.tables "
+                        "WHERE table_type = 'BASE TABLE' " .
+                        "AND table_schema = 'public' order by table_name ASC";
             
             case 'tables.all': /// not sure if this really works....
                 return 'SELECT c.relname AS "Name"'
