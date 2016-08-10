@@ -130,126 +130,18 @@ class PDO_DataObject_Introspection_sqlite extends PDO_DataObject_Introspection
             $flags = trim($flags);
 
             $res[$i] = array(
-                'table' => $case_func($result),
-                'name'  => $case_func($id[$i]['name']),
+                'table' => $case_func($table),
+                'name'  => $case_func($r['name']),
                 'type'  => $type,
                 'len'   => $len,
                 'flags' => $flags,
             );
 
-            if ($mode & DB_TABLEINFO_ORDER) {
-                $res['order'][$res[$i]['name']] = $i;
-            }
-            if ($mode & DB_TABLEINFO_ORDERTABLE) {
-                $res['ordertable'][$res[$i]['table']][$res[$i]['name']] = $i;
-            }
+            
         }
 
         return $res;
     }
     
-    function tableInfo($table)
-    {
-        // currently only queries 'public'???
-        $schema  ='public';
-        if (strpos($table,'.') !== false) {
-            list($schema, $table) =explode('.', $table);
-        }
-        
-        
-        $database = $this->do->database();
-        
-        $records =  $this->do
-            ->query("SELECT  
-                        f.attnum AS number,  
-                        f.attname AS name,  
-                        f.attnum,  
-                        f.attnotnull AS notnull,  
-                        pg_catalog.format_type(f.atttypid,f.atttypmod) AS type,  
-                        CASE  
-                            WHEN p.contype = 'p' THEN 't'  
-                            ELSE 'f'  
-                        END AS primarykey,  
-                        CASE  
-                            WHEN p.contype = 'u' THEN 't'  
-                            ELSE 'f'
-                        END AS uniquekey,
-                        CASE
-                            WHEN p.contype = 'f' THEN g.relname
-                        END AS foreignkey,
-                        CASE
-                            WHEN p.contype = 'f' THEN p.confkey
-                        END AS foreignkey_fieldnum,
-                        CASE
-                            WHEN p.contype = 'f' THEN g.relname
-                        END AS foreignkey,
-                        CASE
-                            WHEN p.contype = 'f' THEN p.conkey
-                        END AS foreignkey_connnum,
-                        CASE
-                            WHEN f.atthasdef = 't' THEN d.adsrc
-                        END AS default
-                    FROM pg_attribute f  
-                        JOIN pg_class c ON c.oid = f.attrelid  
-                        JOIN pg_type t ON t.oid = f.atttypid  
-                        LEFT JOIN pg_attrdef d ON d.adrelid = c.oid AND d.adnum = f.attnum  
-                        LEFT JOIN pg_namespace n ON n.oid = c.relnamespace  
-                        LEFT JOIN pg_constraint p ON p.conrelid = c.oid AND f.attnum = ANY (p.conkey)  
-                        LEFT JOIN pg_class AS g ON p.confrelid = g.oid  
-                    WHERE c.relkind = 'r'::char  
-                        AND n.nspname = '{$schema}'  
-                        AND c.relname = '{$table}'  
-                        AND f.attnum > 0 ORDER BY number
-            ")
-            ->fetchAll(false,false,'toArray');
-        
-        
-        if (PDO_DataObject::$config['portability'] & PDO_DataObject::PORTABILITY_LOWERCASE) {
-            $case_func = 'strtolower';
-        } else {
-            $case_func = 'strval';
-        }
-
-        
-        $res   = array();
-
-        //print_r($records);
-        
-        foreach($records as $r) {
-            
-            $bits = explode('(',$r['type']);
-            switch($bits[0]){
-                case 'character':
-                    $bits[0]  = 'char';
-                    break;
-                case 'character varying':
-                    $bits[0]  = 'varchar';
-                    break;
-                case 'timestamp without time zone':
-                    $bits[0]  = 'datetime';
-                    break;
-                case 'timestamp with time zone':
-                    $bits[0]  = 'timestamptz';
-            }
-           
-            
-            $res[] = array(
-                'table' => $case_func($table),
-                'name'  => $case_func($r['name']),
-                'type'  => $bits[0],
-                'len'   => isset($bits[1]) ? str_replace(')','', $bits[1])  : '',
-                'flags' =>   ($r['notnull'] != '' ? ' not_null' : '').
-                        ($r['primarykey'] == 't' ? ' primary' : '').
-                        ($r['uniquekey'] == 't' ? ' unique' : '') .
-                        ' '. $r['default']
-                       
-                        
-            );
-           
-        }
-
-        
-        return $res;
-    }
     
 }
