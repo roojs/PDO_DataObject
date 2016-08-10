@@ -39,7 +39,7 @@ class PDO_DataObject_Introspection_mysql extends PDO_DataObject_Introspection
     {
          
         
-        $records =  $this->do->PDO()
+        $records =  $this->do
             ->query("DESCRIBE $string")
             ->fetchAll(false,false,'toArray');
         
