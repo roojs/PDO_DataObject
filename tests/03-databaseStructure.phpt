@@ -51,6 +51,7 @@ PDO_DataObject::$config['PDO'] = 'PDO';
 PDO_DataObject::$config['tables']['accnt']='xtuplehk';
 PDO_DataObject::$config['databases']['xtuplehk']='pgsql://admin:pass4xtuple@localhost/xtuplehk';
 PDO_DataObject::$config['proxy'] = true;
+PDO_DataObject::debugLevel(1);
 
 $obj = new PDO_DataObject();
 $obj->__table = 'accnt';
@@ -69,6 +70,17 @@ PDO_DataObject::$config['proxy'] = true;
 print_r($obj->databaseStructure('anotherdb'));
 
 // postgresql
+
+
+PDO_DataObject::$config['tables']['accnt']='xtuplehk';
+PDO_DataObject::$config['databases']['xtuplehk']='pgsql://admin:pass4xtuple@localhost/xtuplehk';
+PDO_DataObject::$config['proxy'] = true;
+
+$obj = new PDO_DataObject();
+$obj->__table = 'accnt';
+$obj->PDO(true);
+print_r($obj->databaseStructure('xtuplehk'));
+
 
 
 // sqlite
