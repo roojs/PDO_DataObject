@@ -55,6 +55,11 @@ echo "\n\nDATABASE INSTROSPECT\n";
 PDO_DataObject::$config['proxy'] = true;
 print_r($obj->databaseStructure('anotherdb'));
 
+// postgresql
+
+
+// sqlite
+
 
 
 
