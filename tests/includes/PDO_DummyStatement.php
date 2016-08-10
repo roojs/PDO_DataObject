@@ -102,5 +102,8 @@ class PDO_DummyStatement {
     }
     
       
-    
+    function rowCount()
+    {
+        return count(array_keys($this->result[0]))
+    }
 }
