@@ -84,6 +84,8 @@ class PDO_DummyStatement {
     
     function fetch($method , &$obj=null)
     {
+        echo "Fetch Row {$this_>row} / " .count($this->result) . "\n";
+        
         $row = count($this->result) >= $this->row ? false : (array)$this->result[$this->row++];
         if ($row === false) {
             return $row;
