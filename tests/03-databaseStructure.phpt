@@ -73,7 +73,7 @@ print_r($obj->databaseStructure('anotherdb'));
 
 
 PDO_DataObject::$config['tables']['accnt']='xtuplehk';
-PDO_DataObject::$config['databases']['xtuplehk']='pgsql://admin:pass4xtuple@localhost/xtuplehk';
+PDO_DataObject::$config['databases']['xtuplehk']='pgsql://user:nopass/xtuple';
 PDO_DataObject::$config['proxy'] = true;
 
 $obj = new PDO_DataObject();
