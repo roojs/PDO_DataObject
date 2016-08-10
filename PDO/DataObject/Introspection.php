@@ -99,7 +99,10 @@ class PDO_DataObject_Introspection
             $cls = get_class($this);
              
             $tables = (new $cls ($x))->getListOf('tables');
-            print_r($x);
+           
+            if (empty($tables)) {
+                $this->do->raiseError("Could not introspect database, no table returned from getListOf(tables)");
+            }
                
             foreach($tables as $table) {
                 
