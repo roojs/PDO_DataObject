@@ -30,62 +30,48 @@ class PDO_DataObject_Introspection_mysql extends PDO_DataObject_Introspection
      * @return array  an associative array with the information requested.
      *                 A DB_Error object on failure.
      *
-     * @see DB_common::tableInfo()
+     *
+     *  multiple_key
+        
+     *
      */
     function tableInfo($string)
     {
          
         
-        $this->do->PDO()->query("SELECT * FROM $string LIMIT 0")
-         
-            /*
-             * Probably received a table name.
-             * Create a result resource identifier.
-             */
-            $id = @mysql_query("SELECT * FROM $result LIMIT 0",
-                               $this->connection);
-            $got_string = true;
-        } elseif (isset($result->result)) {
-            /*
-             * Probably received a result object.
-             * Extract the result resource identifier.
-             */
-            $id = $result->result;
-            $got_string = false;
-        } else {
-            /*
-             * Probably received a result resource identifier.
-             * Copy it.
-             * Deprecated.  Here for compatibility only.
-             */
-            $id = $result;
-            $got_string = false;
-        }
-
-        if (!is_resource($id)) {
-            return $this->mysqlRaiseError(DB_ERROR_NEED_MORE_DATA);
-        }
-
+        $records =  $this->do->PDO()
+            ->query("DESCRIBE $string")
+            ->fetchAll(false,false,'toArray');
+        
+        
         if ($this->options['portability'] & DB_PORTABILITY_LOWERCASE) {
             $case_func = 'strtolower';
         } else {
             $case_func = 'strval';
         }
 
-        $count = @mysql_num_fields($id);
+        
         $res   = array();
 
-        if ($mode) {
-            $res['num_fields'] = $count;
-        }
-
-        for ($i = 0; $i < $count; $i++) {
-            $res[$i] = array(
-                'table' => $case_func(@mysql_field_table($id, $i)),
-                'name'  => $case_func(@mysql_field_name($id, $i)),
-                'type'  => @mysql_field_type($id, $i),
-                'len'   => @mysql_field_len($id, $i),
-                'flags' => @mysql_field_flags($id, $i),
+        
+        foreach($records as $r) {
+            
+            $bits = explode('(',$r['Type']);
+            
+            
+            
+            
+            $res[] = array(
+                'table' => $case_func($table),
+                'name'  => $case_func($r['Field']),
+                'type'  => $bits[0],
+                'len'   => isset($bits[1]) ? str_replace(')','', $bits[1])  : '',
+                'flags' => $r['Extra'] . 
+                        ($r['Null'] == 'NO' ? ' not_null' : '').
+                        ($r['Key'] == 'PRI' ? ' primary' : '').
+                        ($r['Key'] == 'UNI' ? ' unique' : '')
+                        ($r['Key'] == 'MUL' ? ' multiple_key' : '')
+                        
             );
             if ($mode & DB_TABLEINFO_ORDER) {
                 $res['order'][$res[$i]['name']] = $i;
