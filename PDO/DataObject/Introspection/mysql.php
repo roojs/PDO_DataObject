@@ -59,7 +59,7 @@ class PDO_DataObject_Introspection_mysql extends PDO_DataObject_Introspection
             $bits = explode('(',$r['Type']);
                
             $res[] = array(
-                'table' => $case_func($table),
+                'table' => $case_func($string),
                 'name'  => $case_func($r['Field']),
                 'type'  => $bits[0],
                 'len'   => isset($bits[1]) ? str_replace(')','', $bits[1])  : '',
