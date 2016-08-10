@@ -68,7 +68,32 @@ class PDO_DummyStatement {
             // table def for acalitem
             '08e4aa9f52824fa6d6c01dfea04d5efd' => '[
             
-            
+                {"number":1,"name":"acalitem_id","attnum":1,"notnull":true,"type":"integer","primarykey":"t","uniquekey":"f","foreignkey":null,"foreignkey_fieldnum":null,"foreignkey_connnum":null,"default":"nextval((\'\"xcalitem_xcalitem_id_seq\"\'::text)::regclass)"},
+                {"number":2,"name":"acalitem_calhead_id","attnum":2,"notnull":false,"type":"integer","primarykey":"f","uniquekey":"f","foreignkey":null,"foreignkey_fieldnum":null,"foreignkey_connnum":null,"default":null},
+                {"number":3,"name":"acalitem_periodstart","attnum":3,"notnull":false,"type":"date","primarykey":"f","uniquekey":"f","foreignkey":null,"foreignkey_fieldnum":null,"foreignkey_connnum":null,"default":null},
+                {"number":4,"name":"acalitem_periodlength","attnum":4,"notnull":false,"type":"integer","primarykey":"f","uniquekey":"f","foreignkey":null,"foreignkey_fieldnum":null,"foreignkey_connnum":null,"default":null},
+                {"number":5,"name":"acalitem_name","attnum":5,"notnull":false,"type":"text","primarykey":"f","uniquekey":"f","foreignkey":null,"foreignkey_fieldnum":null,"foreignkey_connnum":null,"default":null},
+            ]',
+            // def for accnt
+            '910efae3bc8352cab9a73df70006a9bc' => '[
+                {"number":1,"name":"accnt_id","attnum":1,"notnull":true,"type":"integer","primarykey":"t","uniquekey":"f","foreignkey":null,"foreignkey_fieldnum":null,"foreignkey_connnum":null,"default":"nextval((\'accnt_accnt_id_seq\'::text)::regclass)"},
+                {"number":2,"name":"accnt_number","attnum":2,"notnull":false,"type":"text","primarykey":"f","uniquekey":"f","foreignkey":null,"foreignkey_fieldnum":null,"foreignkey_connnum":null,"default":null},
+                {"number":3,"name":"accnt_descrip","attnum":3,"notnull":false,"type":"text","primarykey":"f","uniquekey":"f","foreignkey":null,"foreignkey_fieldnum":null,"foreignkey_connnum":null,"default":null},
+                {"number":4,"name":"accnt_comments","attnum":4,"notnull":false,"type":"text","primarykey":"f","uniquekey":"f","foreignkey":null,"foreignkey_fieldnum":null,"foreignkey_connnum":null,"default":null},
+                {"number":5,"name":"accnt_profit","attnum":5,"notnull":false,"type":"text","primarykey":"f","uniquekey":"f","foreignkey":null,"foreignkey_fieldnum":null,"foreignkey_connnum":null,"default":null},
+                {"number":6,"name":"accnt_sub","attnum":6,"notnull":false,"type":"text","primarykey":"f","uniquekey":"f","foreignkey":null,"foreignkey_fieldnum":null,"foreignkey_connnum":null,"default":null},
+                {"number":7,"name":"accnt_type","attnum":7,"notnull":true,"type":"character(1)","primarykey":"f","uniquekey":"f","foreignkey":null,"foreignkey_fieldnum":null,"foreignkey_connnum":null,"default":null},
+                {"number":8,"name":"accnt_extref","attnum":8,"notnull":false,"type":"text","primarykey":"f","uniquekey":"f","foreignkey":null,"foreignkey_fieldnum":null,"foreignkey_connnum":null,"default":null},
+                {"number":9,"name":"accnt_company","attnum":9,"notnull":false,"type":"text","primarykey":"f","uniquekey":"f","foreignkey":"company","foreignkey_fieldnum":"{2}","foreignkey_connnum":"{9}","default":null},
+                {"number":10,"name":"accnt_closedpost","attnum":10,"notnull":false,"type":"boolean","primarykey":"f","uniquekey":"f","foreignkey":null,"foreignkey_fieldnum":null,"foreignkey_connnum":null,"default":null},
+                {"number":11,"name":"accnt_forwardupdate","attnum":11,"notnull":false,"type":"boolean","primarykey":"f","uniquekey":"f","foreignkey":null,"foreignkey_fieldnum":null,"foreignkey_connnum":null,"default":null},
+                {"number":12,"name":"accnt_subaccnttype_code","attnum":12,"notnull":false,"type":"text","primarykey":"f","uniquekey":"f","foreignkey":null,"foreignkey_fieldnum":null,"foreignkey_connnum":null,"default":null},
+                {"number":13,"name":"accnt_curr_id","attnum":13,"notnull":false,"type":"integer","primarykey":"f","uniquekey":"f","foreignkey":"curr_symbol","foreignkey_fieldnum":"{1}","foreignkey_connnum":"{13}","default":"basecurrid()"},
+                {"number":14,"name":"accnt_active","attnum":14,"notnull":true,"type":"boolean","primarykey":"f","uniquekey":"f","foreignkey":null,"foreignkey_fieldnum":null,"foreignkey_connnum":null,"default":"true"},
+                {"number":15,"name":"accnt_name","attnum":15,"notnull":false,"type":"text","primarykey":"f","uniquekey":"f","foreignkey":null,"foreignkey_fieldnum":null,"foreignkey_connnum":null,"default":null},
+                {"number":16,"name":"accnt_code_alt","attnum":16,"notnull":false,"type":"text","primarykey":"f","uniquekey":"f","foreignkey":null,"foreignkey_fieldnum":null,"foreignkey_connnum":null,"default":"\'\'::text"},
+                {"number":17,"name":"accnt_descrip_alt","attnum":17,"notnull":false,"type":"text","primarykey":"f","uniquekey":"f","foreignkey":null,"foreignkey_fieldnum":null,"foreignkey_connnum":null,"default":"\'\'::text"}
+            ]'
         )
         // another DB...
     );
