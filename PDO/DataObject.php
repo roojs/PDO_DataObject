@@ -2304,9 +2304,6 @@ class PDO_DataObject
             self::$ini[$database] = array();
         }
          
-        if (!self::$config_loaded) {
-            self::loadConfig();
-        }
          
         // we do not have the data for this table yet...
         
