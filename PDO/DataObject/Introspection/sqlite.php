@@ -91,47 +91,41 @@ class PDO_DataObject_Introspection_sqlite extends PDO_DataObject_Introspection
     function tableInfo($table)
     {
         
-        $result = $this->do
+        $records  = $this->do
             ->query("PRAGMA table_info('$table');")
             ->fetchAll(false,false,'toArray');
         
         
-        
-        if ($this->options['portability'] & DB_PORTABILITY_LOWERCASE) {
+        $case_func = 'strval';
+        if (PDO_DataObject::$config['portability'] & PDO_DataObject::PORTABILITY_LOWERCASE) {
             $case_func = 'strtolower';
-        } else {
-            $case_func = 'strval';
         }
-
-        $count = count($id);
-        $res   = array();
-
-        if ($mode) {
-            $res['num_fields'] = $count;
-        }
+        
+        
+        foreach($records as $r) {
 
         for ($i = 0; $i < $count; $i++) {
-            if (strpos($id[$i]['type'], '(') !== false) {
-                $bits = explode('(', $id[$i]['type']);
+            if (strpos($r['type'], '(') !== false) {
+                $bits = explode('(', $r['type']);
                 $type = $bits[0];
                 $len  = rtrim($bits[1],')');
             } else {
-                $type = $id[$i]['type'];
+                $type = $r['type'];
                 $len  = 0;
             }
 
             $flags = '';
-            if ($id[$i]['pk']) {
+            if ($r['pk']) {
                 $flags .= 'primary_key ';
                 if (strtoupper($type) == 'INTEGER') {
                     $flags .= 'auto_increment ';
                 }
             }
-            if ($id[$i]['notnull']) {
+            if ($r['notnull']) {
                 $flags .= 'not_null ';
             }
-            if ($id[$i]['dflt_value'] !== null) {
-                $flags .= 'default_' . rawurlencode($id[$i]['dflt_value']);
+            if ($r['dflt_value'] !== null) {
+                $flags .= 'default_' . rawurlencode($r['dflt_value']);
             }
             $flags = trim($flags);
 
