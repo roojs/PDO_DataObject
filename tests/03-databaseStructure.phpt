@@ -99,7 +99,7 @@ PDO_DataObject::$config['PDO'] = 'PDO'; // we can do this for real...
 PDO_DataObject::$config['tables']['Customers']='EssentialSQL';
 PDO_DataObject::$config['databases']['EssentialSQL']='sqlite:'.__DIR__.'/includes/EssentialSQL.db';
 PDO_DataObject::$config['proxy'] = true;
-
+PDO_DataObject::debugLevel(5);
 $obj = new PDO_DataObject();
 $obj->__table = 'Customers';
 $obj->PDO(true);
