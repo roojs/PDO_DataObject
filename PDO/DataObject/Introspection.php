@@ -90,7 +90,7 @@ class PDO_DataObject_Introspection
              
                 // this returns all the tables and their structure..
                 
-            $this->do->debug("Loading Generator as databaseStructure called with args",1);
+            $this->do->debug("Loading Generator as databaseStructure called with args for database = {$args[0]}",1);
             
             
             $x = new PDO_DataObject();
@@ -109,7 +109,7 @@ class PDO_DataObject_Introspection
             // prevent recursion...
             
             PDO_DataObject::$config['proxy'] = false;
-            $ret = $this->do->databaseStructure($args[0],false); 
+            $ret = $this->do->databaseStructure($x->database(),false); 
             PDO_DataObject::$config['proxy'] = $proxy;
             return $ret;
             // databaseStructure('mydb',   array(.... schema....), array( ... links')
