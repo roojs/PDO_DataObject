@@ -902,6 +902,7 @@ class PDO_DataObject
                         $v = self::INT;
                         break;
                     
+                    case 'text': // pgsql ?!?
                     case 'name': // pgsql ?!?
                     case 'VAR_STRING':
                     case 'BLOB':
