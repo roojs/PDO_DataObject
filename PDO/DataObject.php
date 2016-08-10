@@ -917,7 +917,7 @@ class PDO_DataObject
                     
                     default:
                         print_r($meta);
-                        throw new Exception('Unknown type ');
+                        throw new Exception("Unknown type {$meta['native_type']} ");
     
                 }
                 $this->_result->fields[$kk] = 0; // unknown type...
