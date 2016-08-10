@@ -73,18 +73,10 @@ class PDO_DataObject_Introspection_mysql extends PDO_DataObject_Introspection
                         ($r['Key'] == 'MUL' ? ' multiple_key' : '')
                         
             );
-            if ($mode & DB_TABLEINFO_ORDER) {
-                $res['order'][$res[$i]['name']] = $i;
-            }
-            if ($mode & DB_TABLEINFO_ORDERTABLE) {
-                $res['ordertable'][$res[$i]['table']][$res[$i]['name']] = $i;
-            }
+           
         }
 
-        // free the result only if we were called on a table
-        if ($got_string) {
-            @mysql_free_result($id);
-        }
+        
         return $res;
     }
     
