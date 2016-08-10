@@ -44,7 +44,7 @@ class PDO_DataObject_Introspection_mysql extends PDO_DataObject_Introspection
             ->fetchAll(false,false,'toArray');
         
         
-        if (PDO_DataObject::$config['portability'] & DB_PORTABILITY_LOWERCASE) {
+        if (PDO_DataObject::$config['portability'] & PDO_DataObject::PORTABILITY_LOWERCASE) {
             $case_func = 'strtolower';
         } else {
             $case_func = 'strval';
@@ -57,10 +57,7 @@ class PDO_DataObject_Introspection_mysql extends PDO_DataObject_Introspection
         foreach($records as $r) {
             
             $bits = explode('(',$r['Type']);
-            
-            
-            
-            
+               
             $res[] = array(
                 'table' => $case_func($table),
                 'name'  => $case_func($r['Field']),
