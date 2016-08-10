@@ -99,7 +99,7 @@ PDO_DataObject::$config['PDO'] = 'PDO'; // we can do this for real...
 PDO_DataObject::$config['tables']['Customers']='EssentialSQL';
 PDO_DataObject::$config['databases']['EssentialSQL']='sqlite:'.__DIR__.'/includes/EssentialSQL.db';
 PDO_DataObject::$config['proxy'] = true;
-//PDO_DataObject::debugLevel(1);
+PDO_DataObject::debugLevel(1);
 $obj = new PDO_DataObject();
 $obj->__table = 'Customers';
 $obj->PDO(true);
@@ -571,6 +571,117 @@ Array
         )
 
 )
+PDO_DataObject   : CONNECT       : Checking for database specific ini ('EssentialSQL') : config[databases][EssentialSQL] in options
+PDO_DataObject   : databaseStructure       : CALL:["EssentialSQL"]
+PDO_DataObject   : CONNECT       : Using Cached connection
+PDO_DataObject   : _introspection       : Creating Introspection for PDO_DataObject_Introspection_sqlite
+PDO_DataObject   : 1       : Loading Generator as databaseStructure called with args for database = EssentialSQL
+PDO_DataObject   : CONNECT       : Checking for database specific ini ('EssentialSQL') : config[databases][EssentialSQL] in options
+PDO_DataObject   : getListOf       : tables
+PDO_DataObject   : getListOf       : SELECT name FROM sqlite_master WHERE type='table' UNION ALL SELECT name FROM sqlite_temp_master WHERE type='table' ORDER BY name
+PDO_DataObject   : CONNECT       : Using Cached connection
+PDO_DataObject   : QUERY       : ea3ca8779fe015d52cc1a09a3bb4010d : SELECT name FROM sqlite_master WHERE type='table' UNION ALL SELECT name FROM sqlite_temp_master WHERE type='table' ORDER BY name
+PDO_DataObject   : query       : QUERY DONE IN  0.00036001205444336 seconds
+PDO_DataObject   : query       : NO# of results: 0
+PDO_DataObject   : FETCH       : {"name":"Customers"}
+PDO_DataObject   : FETCH       : {"name":"Employees"}
+PDO_DataObject   : FETCH       : {"name":"OrderDetails"}
+PDO_DataObject   : FETCH       : {"name":"Orders"}
+PDO_DataObject   : FETCH       : {"name":"Shippers"}
+PDO_DataObject   : FETCH       : false
+PDO_DataObject   : FETCH       : Last Data Fetch'ed after 0.00011706352233887 seconds
+PDO_DataObject   : CONNECT       : Using Cached connection
+PDO_DataObject   : CONNECT       : Checking for database specific ini ('EssentialSQL') : config[databases][EssentialSQL] in options
+PDO_DataObject   : CONNECT       : Using Cached connection
+PDO_DataObject   : _introspection       : Creating Introspection for PDO_DataObject_Introspection_sqlite
+PDO_DataObject   : CONNECT       : Using Cached connection
+PDO_DataObject   : QUERY       : e459bf5d26556fa01d255e9f4f45900f : PRAGMA table_info('Customers');
+PDO_DataObject   : query       : QUERY DONE IN  2.6941299438477E-5 seconds
+PDO_DataObject   : query       : NO# of results: 0
+PDO_DataObject   : FETCH       : {"cid":"0","name":"CustomerID","type":"INTEGER","notnull":"0","dflt_value":null,"pk":"1"}
+PDO_DataObject   : FETCH       : {"cid":"1","name":"CompanyName","type":"VARCHAR(60)","notnull":"0","dflt_value":null,"pk":"0"}
+PDO_DataObject   : FETCH       : {"cid":"2","name":"ContactName","type":"VARCHAR(40)","notnull":"0","dflt_value":null,"pk":"0"}
+PDO_DataObject   : FETCH       : {"cid":"3","name":"ContactTitle","type":"VARCHAR(60)","notnull":"0","dflt_value":null,"pk":"0"}
+PDO_DataObject   : FETCH       : {"cid":"4","name":"Address","type":"VARCHAR(60)","notnull":"0","dflt_value":null,"pk":"0"}
+PDO_DataObject   : FETCH       : {"cid":"5","name":"City","type":"VARCHAR(60)","notnull":"0","dflt_value":null,"pk":"0"}
+PDO_DataObject   : FETCH       : {"cid":"6","name":"State","type":"VARCHAR(2)","notnull":"0","dflt_value":null,"pk":"0"}
+PDO_DataObject   : FETCH       : false
+PDO_DataObject   : FETCH       : Last Data Fetch'ed after 0.00018095970153809 seconds
+PDO_DataObject   : CONNECT       : Using Cached connection
+PDO_DataObject   : databaseStructure       : CALL:["EssentialSQL",{"Customers":{"CustomerID":1,"CompanyName":2,"ContactName":2,"ContactTitle":2,"Address":2,"City":2,"State":2},"Customers__keys":{"CustomerID":"N"}}]
+PDO_DataObject   : CONNECT       : Using Cached connection
+PDO_DataObject   : CONNECT       : Checking for database specific ini ('EssentialSQL') : config[databases][EssentialSQL] in options
+PDO_DataObject   : CONNECT       : Using Cached connection
+PDO_DataObject   : _introspection       : Creating Introspection for PDO_DataObject_Introspection_sqlite
+PDO_DataObject   : CONNECT       : Using Cached connection
+PDO_DataObject   : QUERY       : f4f6e6dea2ce91edc63339a63a63557d : PRAGMA table_info('Employees');
+PDO_DataObject   : query       : QUERY DONE IN  2.3841857910156E-5 seconds
+PDO_DataObject   : query       : NO# of results: 0
+PDO_DataObject   : FETCH       : {"cid":"0","name":"EmployeeID","type":"INTEGER","notnull":"0","dflt_value":null,"pk":"1"}
+PDO_DataObject   : FETCH       : {"cid":"1","name":"LastName","type":"VARCHAR(20)","notnull":"0","dflt_value":null,"pk":"0"}
+PDO_DataObject   : FETCH       : {"cid":"2","name":"FirstName","type":"VARCHAR(20)","notnull":"0","dflt_value":null,"pk":"0"}
+PDO_DataObject   : FETCH       : {"cid":"3","name":"Title","type":"VARCHAR(60)","notnull":"0","dflt_value":null,"pk":"0"}
+PDO_DataObject   : FETCH       : {"cid":"4","name":"Address","type":"VARCHAR(40)","notnull":"0","dflt_value":null,"pk":"0"}
+PDO_DataObject   : FETCH       : {"cid":"5","name":"HireDate","type":"VARCHAR(25)","notnull":"0","dflt_value":null,"pk":"0"}
+PDO_DataObject   : FETCH       : false
+PDO_DataObject   : FETCH       : Last Data Fetch'ed after 0.00015711784362793 seconds
+PDO_DataObject   : CONNECT       : Using Cached connection
+PDO_DataObject   : databaseStructure       : CALL:["EssentialSQL",{"Employees":{"EmployeeID":1,"LastName":2,"FirstName":2,"Title":2,"Address":2,"HireDate":2},"Employees__keys":{"EmployeeID":"N"}}]
+PDO_DataObject   : CONNECT       : Using Cached connection
+PDO_DataObject   : CONNECT       : Checking for database specific ini ('EssentialSQL') : config[databases][EssentialSQL] in options
+PDO_DataObject   : CONNECT       : Using Cached connection
+PDO_DataObject   : _introspection       : Creating Introspection for PDO_DataObject_Introspection_sqlite
+PDO_DataObject   : CONNECT       : Using Cached connection
+PDO_DataObject   : QUERY       : 4be38faf7194500e1894f7d5150da013 : PRAGMA table_info('OrderDetails');
+PDO_DataObject   : query       : QUERY DONE IN  2.3841857910156E-5 seconds
+PDO_DataObject   : query       : NO# of results: 0
+PDO_DataObject   : FETCH       : {"cid":"0","name":"OrderDetailID","type":"INTEGER","notnull":"0","dflt_value":null,"pk":"1"}
+PDO_DataObject   : FETCH       : {"cid":"1","name":"OrderID","type":"INTEGER","notnull":"0","dflt_value":null,"pk":"0"}
+PDO_DataObject   : FETCH       : {"cid":"2","name":"ProductID","type":"INTEGER","notnull":"0","dflt_value":null,"pk":"0"}
+PDO_DataObject   : FETCH       : {"cid":"3","name":"UnitPrice","type":"REAL","notnull":"0","dflt_value":null,"pk":"0"}
+PDO_DataObject   : FETCH       : {"cid":"4","name":"Quantity","type":"INTEGER","notnull":"0","dflt_value":null,"pk":"0"}
+PDO_DataObject   : FETCH       : false
+PDO_DataObject   : FETCH       : Last Data Fetch'ed after 0.00013518333435059 seconds
+PDO_DataObject   : CONNECT       : Using Cached connection
+PDO_DataObject   : databaseStructure       : CALL:["EssentialSQL",{"OrderDetails":{"OrderDetailID":1,"OrderID":1,"ProductID":1,"UnitPrice":1,"Quantity":1},"OrderDetails__keys":{"OrderDetailID":"N"}}]
+PDO_DataObject   : CONNECT       : Using Cached connection
+PDO_DataObject   : CONNECT       : Checking for database specific ini ('EssentialSQL') : config[databases][EssentialSQL] in options
+PDO_DataObject   : CONNECT       : Using Cached connection
+PDO_DataObject   : _introspection       : Creating Introspection for PDO_DataObject_Introspection_sqlite
+PDO_DataObject   : CONNECT       : Using Cached connection
+PDO_DataObject   : QUERY       : d274cc9a18844d15cb63cad939785fba : PRAGMA table_info('Orders');
+PDO_DataObject   : query       : QUERY DONE IN  2.5033950805664E-5 seconds
+PDO_DataObject   : query       : NO# of results: 0
+PDO_DataObject   : FETCH       : {"cid":"0","name":"OrderID","type":"INTEGER","notnull":"0","dflt_value":null,"pk":"1"}
+PDO_DataObject   : FETCH       : {"cid":"1","name":"CustomerID","type":"INTEGER","notnull":"0","dflt_value":null,"pk":"0"}
+PDO_DataObject   : FETCH       : {"cid":"2","name":"EmployeeID","type":"INTEGER","notnull":"0","dflt_value":null,"pk":"0"}
+PDO_DataObject   : FETCH       : {"cid":"3","name":"OrderDate","type":"VARCHAR(25)","notnull":"0","dflt_value":null,"pk":"0"}
+PDO_DataObject   : FETCH       : {"cid":"4","name":"RequiredDate","type":"VARCHAR(25)","notnull":"0","dflt_value":null,"pk":"0"}
+PDO_DataObject   : FETCH       : {"cid":"5","name":"ShippedDate","type":"VARCHAR(25)","notnull":"0","dflt_value":null,"pk":"0"}
+PDO_DataObject   : FETCH       : {"cid":"6","name":"ShipVia","type":"INTEGER","notnull":"0","dflt_value":null,"pk":"0"}
+PDO_DataObject   : FETCH       : {"cid":"7","name":"FreightCharge","type":"REAL","notnull":"0","dflt_value":null,"pk":"0"}
+PDO_DataObject   : FETCH       : false
+PDO_DataObject   : FETCH       : Last Data Fetch'ed after 0.00019097328186035 seconds
+PDO_DataObject   : CONNECT       : Using Cached connection
+PDO_DataObject   : databaseStructure       : CALL:["EssentialSQL",{"Orders":{"OrderID":1,"CustomerID":1,"EmployeeID":1,"OrderDate":2,"RequiredDate":2,"ShippedDate":2,"ShipVia":1,"FreightCharge":1},"Orders__keys":{"OrderID":"N"}}]
+PDO_DataObject   : CONNECT       : Using Cached connection
+PDO_DataObject   : CONNECT       : Checking for database specific ini ('EssentialSQL') : config[databases][EssentialSQL] in options
+PDO_DataObject   : CONNECT       : Using Cached connection
+PDO_DataObject   : _introspection       : Creating Introspection for PDO_DataObject_Introspection_sqlite
+PDO_DataObject   : CONNECT       : Using Cached connection
+PDO_DataObject   : QUERY       : 02f4528d77058145e7f11034d44c4289 : PRAGMA table_info('Shippers');
+PDO_DataObject   : query       : QUERY DONE IN  2.1934509277344E-5 seconds
+PDO_DataObject   : query       : NO# of results: 0
+PDO_DataObject   : FETCH       : {"cid":"0","name":"ShipperID","type":"INTEGER","notnull":"0","dflt_value":null,"pk":"1"}
+PDO_DataObject   : FETCH       : {"cid":"1","name":"CompanyName","type":"VARCHAR(60)","notnull":"0","dflt_value":null,"pk":"0"}
+PDO_DataObject   : FETCH       : {"cid":"2","name":"Phone","type":"VARCHAR(20)","notnull":"0","dflt_value":null,"pk":"0"}
+PDO_DataObject   : FETCH       : false
+PDO_DataObject   : FETCH       : Last Data Fetch'ed after 9.918212890625E-5 seconds
+PDO_DataObject   : CONNECT       : Using Cached connection
+PDO_DataObject   : databaseStructure       : CALL:["EssentialSQL",{"Shippers":{"ShipperID":1,"CompanyName":2,"Phone":2},"Shippers__keys":{"ShipperID":"N"}}]
+PDO_DataObject   : CONNECT       : Using Cached connection
+PDO_DataObject   : databaseStructure       : CALL:["EssentialSQL",false]
+PDO_DataObject   : CONNECT       : Using Cached connection
 Array
 (
     [Customers] => Array
