@@ -33,7 +33,7 @@
 class PDO_DataObject_Introspection
 {
     
-    private $do;
+    protected $do;
     
     /**
      * Constructor
@@ -86,7 +86,7 @@ class PDO_DataObject_Introspection
         
         // Generator code
         
-        if ($args = func_get_args()) {
+        if ($args = func_get_args()) { 
              
                 // this returns all the tables and their structure..
                 
@@ -109,7 +109,7 @@ class PDO_DataObject_Introspection
             // prevent recursion...
             
             PDO_DataObject::$config['proxy'] = false;
-            $ret = PDO_DataObject::databaseStructure($database,false); 
+            $ret = $this->do->databaseStructure($database,false); 
             PDO_DataObject::$config['proxy'] = $proxy;
             return $ret;
             // databaseStructure('mydb',   array(.... schema....), array( ... links')
