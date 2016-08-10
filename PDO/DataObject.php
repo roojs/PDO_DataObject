@@ -235,7 +235,7 @@ class PDO_DataObject
     private $_database_dsn_md5 = '';
 
     /**
-     * The Database name
+     * The Database nick-name (usually matches the real database name, but may not..)
      * created in __connection
      *
      * @access  private (ish) - extended classes can overide this
@@ -2284,7 +2284,7 @@ class PDO_DataObject
             $this->PDO();
         }
         
-        print_r(array($this->_database,$this->tableName()));
+         
         // if this table is already loaded this table..
         if (!empty(self::$ini[$this->_database][$this->tableName()])) {
             return self::$ini[$this->_database];
@@ -2319,7 +2319,7 @@ class PDO_DataObject
                     $args);
         }
         
-        $ini = self::$config['schema_location'] .'/'. $this->_database .'.ini';
+        $ini = rtrim(self::$config['schema_location'] ,'/') .'/'. $this->_database .'.ini';
         
         if (!file_exists($ini) || !is_file($ini) || !is_readable ($ini)) {
             if (self::$debug) {
