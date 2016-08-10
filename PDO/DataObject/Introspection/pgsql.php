@@ -169,7 +169,7 @@ class PDO_DataObject_Introspection_pgsql extends PDO_DataObject_Introspection
         
         foreach($records as $r) {
             
-             
+            $bits = explode('(',$r['type']);
                
             $res[] = array(
                 'table' => $case_func($string),
@@ -179,7 +179,7 @@ class PDO_DataObject_Introspection_pgsql extends PDO_DataObject_Introspection
                 'flags' =>   ($r['notnull'] != '' ? ' not_null' : '').
                         ($r['primarykey'] == 't' ? ' primary' : '').
                         ($r['uniquekey'] == 't' ? ' unique' : '') .
-                        ' '. $r['default'] 
+                        ' '. $r['default']
                        
                         
             );
