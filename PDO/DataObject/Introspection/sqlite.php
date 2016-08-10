@@ -35,61 +35,94 @@ class_exists('PDO_DataObject_Introspection') ? '' : require_once 'PDO/DataObject
 class PDO_DataObject_Introspection_sqlite extends PDO_DataObject_Introspection
 {
     
-    function getSpecialQuery($type)
+ 
+    /**
+     * Obtains the query string needed for listing a given type of objects
+     *
+     * @param string $type  the kind of objects you want to retrieve
+     * @param array  $args  SQLITE DRIVER ONLY: a private array of arguments
+     *                       used by the getSpecialQuery().  Do not use
+     *                       this directly.
+     *
+     * @return string  the SQL query string or null if the driver doesn't
+     *                  support the object type requested
+     *
+     * @access protected
+     * @see DB_common::getListOf()
+     */
+    function getSpecialQuery($type, $args = array())
     {
+        if (!is_array($args)) {
+            return $this->do->raiseError('no key specified', null, null, null,
+                                     'Argument has to be an array.');
+        }
+
         switch ($type) {
-            
+            case 'master':
+                return 'SELECT * FROM sqlite_master;';
             case 'tables':
-                
-                return "SELECT table_name FROM information_schema.tables" .
-                        " WHERE table_type = 'BASE TABLE'" .
-                        " AND table_schema = 'public' order by table_name ASC";
-            
-            case 'tables.all': /// not sure if this really works....
-                return 'SELECT c.relname AS "Name"'
-                        . ' FROM pg_class c, pg_user u'
-                        . ' WHERE c.relowner = u.usesysid'
-                        . " AND c.relkind = 'r'"
-                        . ' AND NOT EXISTS'
-                        . ' (SELECT 1 FROM pg_views'
-                        . '  WHERE viewname = c.relname)'
-                        . " AND c.relname !~ '^(pg_|sql_)'"
-                        . ' UNION'
-                        . ' SELECT c.relname AS "Name"'
-                        . ' FROM pg_class c'
-                        . " WHERE c.relkind = 'r'"
-                        . ' AND NOT EXISTS'
-                        . ' (SELECT 1 FROM pg_views'
-                        . '  WHERE viewname = c.relname)'
-                        . ' AND NOT EXISTS'
-                        . ' (SELECT 1 FROM pg_user'
-                        . '  WHERE usesysid = c.relowner)'
-                        . " AND c.relname !~ '^pg_'";
-            case 'schema.tables':
-                return "SELECT schemaname || '.' || tablename"
-                        . ' AS "Name"'
-                        . ' FROM pg_catalog.pg_tables'
-                        . ' WHERE schemaname NOT IN'
-                        . " ('pg_catalog', 'information_schema', 'pg_toast')";
-            case 'schema.views':
-                return "SELECT schemaname || '.' || viewname from pg_views WHERE schemaname"
-                        . " NOT IN ('information_schema', 'pg_catalog')";
-            case 'views':
-                // Table cols: viewname | viewowner | definition
-                return 'SELECT viewname from pg_views WHERE schemaname'
-                        . " NOT IN ('information_schema', 'pg_catalog')";
-            case 'users':
-                // cols: usename |usesysid|usecreatedb|usetrace|usesuper|usecatupd|passwd  |valuntil
-                return 'SELECT usename FROM pg_user';
-            case 'databases':
-                return 'SELECT datname FROM pg_database';
-            case 'functions':
-            case 'procedures':
-                return 'SELECT proname FROM pg_proc WHERE proowner <> 1';
+                return "SELECT name FROM sqlite_master WHERE type='table' "
+                       . 'UNION ALL SELECT name FROM sqlite_temp_master '
+                       . "WHERE type='table' ORDER BY name;";
+            case 'schema':
+                return 'SELECT sql FROM (SELECT * FROM sqlite_master '
+                       . 'UNION ALL SELECT * FROM sqlite_temp_master) '
+                       . "WHERE type!='meta' "
+                       . 'ORDER BY tbl_name, type DESC, name;';
+            case 'schemax':
+            case 'schema_x':
+                /*
+                 * Use like:
+                 * $res = $db->query($db->getSpecialQuery('schema_x',
+                 *                   array('table' => 'table3')));
+                 */
+                return 'SELECT sql FROM (SELECT * FROM sqlite_master '
+                       . 'UNION ALL SELECT * FROM sqlite_temp_master) '
+                       . "WHERE tbl_name LIKE '{$args['table']}' "
+                       . "AND type!='meta' "
+                       . 'ORDER BY type DESC, name;';
+            case 'alter':
+                /*
+                 * SQLite does not support ALTER TABLE; this is a helper query
+                 * to handle this. 'table' represents the table name, 'rows'
+                 * the news rows to create, 'save' the row(s) to keep _with_
+                 * the data.
+                 *
+                 * Use like:
+                 * $args = array(
+                 *     'table' => $table,
+                 *     'rows'  => "id INTEGER PRIMARY KEY, firstname TEXT, surname TEXT, datetime TEXT",
+                 *     'save'  => "NULL, titel, content, datetime"
+                 * );
+                 * $res = $db->query( $db->getSpecialQuery('alter', $args));
+                 */
+                $rows = strtr($args['rows'], $this->keywords);
+
+                $q = array(
+                    'BEGIN TRANSACTION',
+                    "CREATE TEMPORARY TABLE {$args['table']}_backup ({$args['rows']})",
+                    "INSERT INTO {$args['table']}_backup SELECT {$args['save']} FROM {$args['table']}",
+                    "DROP TABLE {$args['table']}",
+                    "CREATE TABLE {$args['table']} ({$args['rows']})",
+                    "INSERT INTO {$args['table']} SELECT {$rows} FROM {$args['table']}_backup",
+                    "DROP TABLE {$args['table']}_backup",
+                    'COMMIT',
+                );
+
+                /*
+                 * This is a dirty hack, since the above query will not get
+                 * executed with a single query call so here the query method
+                 * will be called directly and return a select instead.
+                 */
+                foreach ($q as $query) {
+                    $this->query($query);
+                }
+                return "SELECT * FROM {$args['table']};";
             default:
                 return null;
         }
     }
+
 
     
     
