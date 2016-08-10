@@ -59,6 +59,19 @@ class PDO_DummyStatement {
                 {"Field":"leader","Type":"int(11)","Null":"NO","Key":"","Default":"0","Extra":""}
             ]',
         ),
+        'pgsql://user:nopass/xtuple' => array(
+            "SELECT table_name
+                    FROM
+                        information_schema.tables
+                    WHERE
+                        table_type = 'BASE TABLE'
+                    AND
+                        table_schema = 'public' order by table_name ASC"
+            PDO_DataObject   : FETCH       : {"table_name":"acalitem"}
+PDO_DataObject   : FETCH       : {"table_name":"accnt"}
+PDO_DataObject   : FETCH       : {"table_name":"addr"}
+            
+        )
         // another DB...
     );
     var $result = false;
