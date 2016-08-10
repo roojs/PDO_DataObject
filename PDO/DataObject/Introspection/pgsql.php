@@ -168,13 +168,13 @@ class PDO_DataObject_Introspection_pgsql extends PDO_DataObject_Introspection
             $res[] = array(
                 'table' => $case_func($string),
                 'name'  => $case_func($r['name']),
-                'type'  => $r['type'])
+                'type'  => $r['type'],
                 'len'   => isset($bits[1]) ? str_replace(')','', $bits[1])  : '',
                 'flags' => $r['Extra'] . 
                         ($r['notnull'] != '' ? ' not_null' : '').
-                        ($r['Key'] == 'PRI' ? ' primary' : '').
-                        ($r['Key'] == 'UNI' ? ' unique' : '').
-                        ($r['Key'] == 'MUL' ? ' multiple_key' : '')
+                        ($r['primarykey'] == 't' ? ' primary' : '').
+                        ($r['uniquekey'] == 't' ? ' unique' : '') 
+                       
                         
             );
            
