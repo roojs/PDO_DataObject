@@ -62,7 +62,7 @@ class PDO_DummyStatement {
         // another DB...
     );
     
-    function __construct($array)
+    function __construct($db, $query)
     {
         $this->result = $array;
         
