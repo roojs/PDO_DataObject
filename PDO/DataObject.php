@@ -834,12 +834,15 @@ class PDO_DataObject
         if ($this->N === false) {
             $this->raiseError("Fetch Called without Query being run");
         }
+        /*
+        Some drivers may return '0' ?? SQLITE???
         if (empty($this->N)) {
             if (self::$debug) {
                 $this->debug("No data returned from FIND (eg. N is 0)","FETCH", 3);
             }
             return false;
         }
+        */
         
         if ($this->_result === 0 || is_a($this->_result,'StdClass'))
         {
