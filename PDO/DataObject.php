@@ -2342,16 +2342,16 @@ class PDO_DataObject
                
         // are table name lowecased..
         if (self::$config['portability'] & 1) {
-            foreach(self::$ini[$this->_database] as $k=>$v) {
+            foreach(self::$ini[$database] as $k=>$v) {
                 // results in duplicate cols.. but not a big issue..
-                self::$ini[$this->_database][strtolower($k)] = $v;
+                self::$ini[$database ][strtolower($k)] = $v;
             }
         }
         
         // now have we loaded the structure.. 
         
-        if (!empty(self::$ini[$this->_database][$this->tableName()])) {
-            return self::$ini[$this->_database];
+        if (!empty(self::$ini[$database]) {
+            return self::$ini[$database];
         }
        
         $this->debug("Cant find database schema: {$this->_database}/{$this->tableName()} \n".
