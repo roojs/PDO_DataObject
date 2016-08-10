@@ -103,7 +103,7 @@ class PDO_DataObject_Introspection_pgsql extends PDO_DataObject_Introspection
      */
     function tableInfo($table)
     {
-        
+        // currently only queries 'public'???
         $database = $this->do->database();
         
         $records =  $this->do
