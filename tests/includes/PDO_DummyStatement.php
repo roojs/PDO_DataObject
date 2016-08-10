@@ -64,6 +64,11 @@ class PDO_DummyStatement {
     var $result = false;
     var $row = 0;
     
+    function closeCursor()
+    {
+        echo "Close Cursor\n";
+    }
+    
     function __construct($db, $query)
     {
         if (!isset(self::$results[$db][$query])) {
@@ -72,7 +77,29 @@ class PDO_DummyStatement {
         $this->result = self::$results[$db][$query];
         
     }
-    
+      if (self::$config['fetch_into']) {
+            $array = $this->_result->fetch(PDO::FETCH_INTO|PDO::FETCH_ASSOC, $this);
+        } else {
+            $array = $this->_result->fetch(PDO::FETCH_ASSOC);
+            if (self::$debug) {
+                $this->debug(json_encode($array),"FETCH");
+            }
+        }
+        
+         
+        
+        if (!$array) {
+                
+            if (self::$debug) {
+                $t= explode(' ',microtime());
+            
+                $this->debug("Last Data Fetch'ed after " . 
+                        ($t[0]+$t[1]- $this->_time_query_start ) . 
+                        " seconds",
+                    "FETCH", 1);
+            }
+            $fields = $this->_result->fields;
+            $this->_result->
     
     function fetch()
     
