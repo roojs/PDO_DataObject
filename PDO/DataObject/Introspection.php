@@ -235,12 +235,13 @@ class PDO_DataObject_Introspection
     
     function getListOf($type)
     {
+        $this->do->debug($type, __FUNCTION__)
         $sql = $this->getSpecialQuery($type); // can throw an exception...
         if ($sql === null) {
             $this->last_query = '';
             return $this->do->raiseError("Can not get Listof $type", PDO_DataObject::ERROR_INVALIDCONFIG);
         }
-        
+        $this->do->debug($sql, __FUNCTION__)
       
         if (is_array($sql)) {
             // Already the result
