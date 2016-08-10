@@ -386,7 +386,10 @@ class PDO_DataObject
             // others go here...
         
             default:
-            
+                // by default we need to validate a little bit..
+                if (empty($dsn_ar['host']) || empty($dsn_ar['path'])  || strlen($dsn_ar['path']) < 2) {
+                    return $this->raiseError("Invalid syntax of DSN : ". $dsn, 0, self::ERROR_DIE);
+                }
                 $pdo_dsn =
                     $dsn_ar['scheme'] . ':' .
                     'dbname=' . substr($dsn_ar['path'],1) .
@@ -2249,7 +2252,7 @@ class PDO_DataObject
         $args = func_get_args();
     
         if (self::$debug) {
-            self::debug(json_encode($args, true), __FUNCTION__ , 1);
+            self::debug('CALL:' . json_encode($args, true), __FUNCTION__ , 1);
         }
         
         if ($args && count($args) == 1) {
@@ -2363,6 +2366,10 @@ class PDO_DataObject
     protected function _introspection()
     {
         $type  = $this->PDO()->getAttribute(PDO::ATTR_DRIVER_NAME);
+        if (empty($type)) {
+            print_R($this->PDO());
+            throw new Exception("could not work out database type");
+        }
         $class = 'PDO_DataObject_Introspection_'. $type;
         class_exists($class)  ? '' : require_once 'PDO/DataObject/Introspection/'. $type. '.php';
         $this->debug("Creating Introspection for $class", "_introspection");
