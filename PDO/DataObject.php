@@ -494,6 +494,8 @@ class PDO_DataObject
     /**
      * Set the global configuration...
      * Used to be via PEAR::getStaticProperty() - now depricated..
+     *
+     * ?? should we use this as a generic 'set config' - and make the config private?
      * 
      * @param   array  key/value - see self::$config
      * @static
