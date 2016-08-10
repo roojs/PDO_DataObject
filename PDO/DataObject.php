@@ -879,7 +879,6 @@ class PDO_DataObject
             $this->_result->closeCursor();
             $this->_result = new StdClass;
             $this->_result->fields  = $fields;
-            $this->_result->complete = true;
             return false; // no more data... -- and this fetch did not return any...
              
         }
@@ -2809,7 +2808,6 @@ class PDO_DataObject
         // previously we used _DB_resultid as a pointer to a result array..
         // hopefully this will result in better memory management???
         $this->_result = $result;
-        $this->_result->complete = false;
         $this->N = $result->rowCount();
         
         return $this; // for chaining...
