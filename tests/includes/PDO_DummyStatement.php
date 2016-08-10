@@ -64,7 +64,7 @@ class PDO_DummyStatement {
                 {"table_name":"acalitem"},
                 {"table_name":"accnt"},
                 {"table_name":"addr"}
-            ]",
+            ]',
             
             
             
