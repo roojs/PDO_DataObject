@@ -871,7 +871,7 @@ class PDO_DataObject
                 $t= explode(' ',microtime());
             
                 $this->debug("Last Data Fetch'ed after " . 
-                        ($t[0]+$t[1]- $this->_time_query_start ) . 
+                        number_format($t[0]+$t[1]- $this->_time_query_start ,3) . 
                         " seconds",
                     "FETCH", 1);
             }
@@ -2794,7 +2794,7 @@ class PDO_DataObject
         if (self::$debug) {
             $t= explode(' ',microtime());
             $this->_time_query_start = $t[0]+$t[1];
-            $this->debug('QUERY DONE IN  '.($t[0]+$t[1]-$time)." seconds", 'query',1);
+            $this->debug('QUERY DONE IN  '.round($t[0]+$t[1]-$time,3)." seconds", 'query',1);
             $this->debug('NO# of results: '.$result->rowCount(), 'query',1);
         }
         
