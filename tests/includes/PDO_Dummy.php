@@ -40,12 +40,13 @@ class PDO_Dummy {
     function query($str)
     {
         
+        // hopefully database is set!!!
         
         echo "QUERY: $str  \n";
         
         require_once __DIR__ .'/PDO_DummyStatement.php';
         
-        return new PDO_DummyStatement($this->database, $str);
+        return new PDO_DummyStatement($this->_dsn, $str);
         
         
         

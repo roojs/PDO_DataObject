@@ -1378,7 +1378,8 @@ class PDO_DataObject_Generator extends PDO_DataObject
         $add[$table] = $ret['table'];
         $add[$table.'__keys'] = $ret['keys'];
         
-        $this->tableStructure($database, $add);
+        $this->databaseStructure($database, $add);
+        
         return false;
         
     }

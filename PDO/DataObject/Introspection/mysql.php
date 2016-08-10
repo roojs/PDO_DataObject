@@ -66,7 +66,7 @@ class PDO_DataObject_Introspection_mysql extends PDO_DataObject_Introspection
                 'flags' => $r['Extra'] . 
                         ($r['Null'] == 'NO' ? ' not_null' : '').
                         ($r['Key'] == 'PRI' ? ' primary' : '').
-                        ($r['Key'] == 'UNI' ? ' unique' : '')
+                        ($r['Key'] == 'UNI' ? ' unique' : '').
                         ($r['Key'] == 'MUL' ? ' multiple_key' : '')
                         
             );
