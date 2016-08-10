@@ -2252,6 +2252,8 @@ class PDO_DataObject
     function databaseStructure($database = false, $inidata = array(), $linksdata=array(), $overwrite = false)
     {
 
+        
+    
         $args = func_get_args();
     
         if (self::$debug) {
@@ -2282,7 +2284,11 @@ class PDO_DataObject
             
             // will not get here....
         }
-          
+        if (false === $database) {
+            $database = $this->_database;
+        }
+        
+        // not sure why we need to connect here...
         //if (!$this->_database) {
         $this->PDO();
         //}
