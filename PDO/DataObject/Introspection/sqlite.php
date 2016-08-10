@@ -91,20 +91,12 @@ class PDO_DataObject_Introspection_sqlite extends PDO_DataObject_Introspection
     function tableInfo($table)
     {
         
-        $this->query("PRAGMA table_info('$table');")->fetchAll(false,false,'toArray'));
+        $result = $this->do
+            ->query("PRAGMA table_info('$table');")
+            ->fetchAll(false,false,'toArray');
         
         
-        $id = @sqlite_array_query($this->connection,
-                                      "PRAGMA table_info('$result');",
-                                      SQLITE_ASSOC);
-            $got_string = true;
-        } else {
-            $this->last_query = '';
-            return $this->raiseError(DB_ERROR_NOT_CAPABLE, null, null, null,
-                                     'This DBMS can not obtain tableInfo' .
-                                     ' from result sets');
-        }
-
+        
         if ($this->options['portability'] & DB_PORTABILITY_LOWERCASE) {
             $case_func = 'strtolower';
         } else {
