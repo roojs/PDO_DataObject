@@ -885,8 +885,10 @@ class PDO_DataObject
 
             
             for ($i = 0; $i < $this->_result->columnCount();$i++) {
+                 
                 $meta = $this->_result->getColumnMeta($i);
-                if (!$meta) {
+                
+                if (!$meta) { // not sure what is actually returned if it's not supported by the driver..
                     break;
                 }
                 $k = $meta['name'];
