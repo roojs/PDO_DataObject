@@ -3,7 +3,7 @@ databaseStructure
 --FILE--
 <?php
 require_once 'includes/init.php';
-//PDO_DataObject::debugLevel(1);
+PDO_DataObject::debugLevel(1);
 
 echo "\n\nSINGLE INI FILE \n";
 // test structure from single ini file
