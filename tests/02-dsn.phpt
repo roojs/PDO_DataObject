@@ -51,11 +51,11 @@ PDO_DataObject::$config['database']='sqlsrv://UserName%4012345abcde:Password@(lo
 
 // Sqlite
 
-PDO_DataObject::$config['database']='sqlite://file:/opt/databases/mydb.sq3';
+PDO_DataObject::$config['database']='sqlite:/opt/databases/mydb.sq3';
 (new PDO_DataObject())->PDO();
 PDO_DataObject::$config['database']='sqlite::memory:';
 (new PDO_DataObject())->PDO();
-PDO_DataObject::$config['database']='sqlite2:/file:/opt/databases/mydb.sq2#ATTR_PERSISTENT=1';
+PDO_DataObject::$config['database']='sqlite2:/opt/databases/mydb.sq2#ATTR_PERSISTENT=1';
 (new PDO_DataObject())->PDO();
 PDO_DataObject::$config['database']='sqlite2::memory:';
 (new PDO_DataObject())->PDO();
