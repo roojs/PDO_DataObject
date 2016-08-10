@@ -1009,8 +1009,9 @@ class PDO_DataObject
                 $this->selectAdd($v);
             }
         }
-        
-        $this->find();
+        if (!$this->_result) {
+            $this->find();
+        }
         $ret = array();
         while ($this->fetch()) {
             if ($v !== false) {
