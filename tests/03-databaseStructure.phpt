@@ -68,7 +68,7 @@ PDO_DataObject::$config['PDO'] = 'PDO_Dummy';
 echo "\n\nDATABASE INSTROSPECT - mysql dummy\n";
 
 $obj = new PDO_DataObject();
-$obj->__table = 'account_transaction';
+$obj->__table = 'Events';
 $obj->PDO(true);
 PDO_DataObject::$config['proxy'] = true;
 print_r($obj->databaseStructure('anotherdb'));
