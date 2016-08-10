@@ -896,27 +896,24 @@ class PDO_DataObject
                     $k : str_replace($replace, '_', $k);
                 
                 $v = 0;
-                switch($meta['native_type']) {
+                switch($meta['pdo_type']) { // tried using 'native_type' - just returns junk!
                     // we could be smarter here...
-                    case 'integer':
+                    case 1:
                         $v = self::INT;
                         break;
                     
-                    case 'text': // pgsql ?!?
-                    case 'name': // pgsql ?!?
-                    case 'VAR_STRING':
-                    case 'BLOB':
+                    case 2:
                         $v = self::STR;
                         break;
                     
-                    case 'boolean':
+                    case 5:
                         $v = self::BOOL;
                         break;
-                    
+                    /*
                     case 'float':
                         $v = self::INT;
                         break;
-                    
+                    */
                     default:
                         print_r($meta);
                         throw new Exception("Unknown type {$meta['native_type']} ");
@@ -936,7 +933,7 @@ class PDO_DataObject
                     $k : str_replace($replace, '_', $k);
                     
                 if (self::$debug) {
-                    $this->debug("$kk = ". $array[$k], "fetchrow LINE", 3);
+                    $this->debug("$kk = ". $array[$k], "fetchrow LINE", 4);
                 }
                 $this->$kk = $array[$k];
             }
