@@ -1340,7 +1340,7 @@ class PDO_DataObject_Generator extends PDO_DataObject
         
         //WHY HERE????
         try {
-            $this->tables = $__DB->getListOf('schema.tables');
+            $this->tables = $this->_introspection()->getListOf('schema.tables');
         }  catch(Exception $e) {
                
         }
@@ -1415,8 +1415,10 @@ class PDO_DataObject_Generator extends PDO_DataObject
             $getters .= "   /**\n";
             $getters .= "    * Getter for \${$t->name}\n";
             $getters .= "    *\n";
-            $getters .= (stristr($t->flags, 'multiple_key')) ? "    * @return   object\n"
-                                                             : "    * @return   {$t->type}\n";
+            // this makes no sense - mysql multiple key (MUL) - is just for indexed columns?
+           // $getters .= (stristr($t->flags, 'multiple_key')) ? "    * @return   object\n"
+           //                                                  : "    * @return   {$t->type}\n";
+            $getters .= "    * @return   {$t->type}\n"
             $getters .= "    * @access   public\n";
             $getters .= "    */\n";
             $getters .= (substr(phpversion(),0,1) > 4) ? '    public '
