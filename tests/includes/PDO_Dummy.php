@@ -41,16 +41,12 @@ class PDO_Dummy {
     {
         
         
-        echo $str . "\n";
+        echo "QUERY: $str  \n";
         
         require_once __DIR__ .'/PDO_DummyStatement.php';
-        if (!isset(PDO_DummyStatement::$results[$str])) {
-            throw new Exception("Cound not find response to query");
-        }
-        // what if the response is a failure..??? we need to build a PDOException..
         
         
-        return new PDO_DummyStatement(PDO_DummyStatement::$results[$str]);
+        return new PDO_DummyStatement($this->databased, $str);
         
         
         
