@@ -148,7 +148,7 @@ class PDO_DataObject_Introspection_pgsql extends PDO_DataObject_Introspection
                         LEFT JOIN pg_constraint p ON p.conrelid = c.oid AND f.attnum = ANY (p.conkey)  
                         LEFT JOIN pg_class AS g ON p.confrelid = g.oid  
                     WHERE c.relkind = 'r'::char  
-                        AND n.nspname = 'public'  
+                        AND n.nspname = '{$chema}'  
                         AND c.relname = '{$table}'  
                         AND f.attnum > 0 ORDER BY number
             ")
