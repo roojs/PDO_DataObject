@@ -1344,11 +1344,11 @@ class PDO_DataObject_Generator extends PDO_DataObject
         
         
         //WHY HERE????
-        try {
-            $this->tables = $this->_introspection()->getListOf('schema.tables');
-        }  catch(Exception $e) {
-               
-        }
+        //try {
+        //    $this->tables = $this->_introspection()->getListOf('schema.tables');
+        //}  catch(Exception $e) {
+        //       
+       // }
         
         $quotedTable = $options['quote_identifiers_tableinfo'] ?  $this->quoteIdentifier($table) : $table;
         
