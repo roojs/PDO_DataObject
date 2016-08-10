@@ -120,10 +120,17 @@ class PDO_DummyStatement {
     
     function __construct($db, $query)
     {
-        if (!isset(self::$results[$db][$query])) {
-            throw new Exception(__CLASS__  . " missing query: DB: $db  QUERY=$query ");
+        if (isset(self::$results[$db][$query])) {
+            $this->result = json_decode(self::$results[$db][$query]);
+            return;
         }
-        $this->result = json_decode(self::$results[$db][$query]);
+        if (isset(self::$results[$db][md5($query)])) {
+            $this->result = json_decode(self::$results[$db][md5($query)]);
+            return;
+        }
+        throw new Exception(__CLASS__  . " missing query: DB: $db  QUERY=$query ");
+        
+        
         
     }
     
