@@ -25,15 +25,35 @@ class PDO_Dummy {
     
     function getAttribute($key)
     {
-        echo __FUNCTION__ . '==' .  json_encode(func_get_args()). "\n";
+        
         switch($key) {
             case PDO::ATTR_DRIVER_NAME:
+                echo __FUNCTION__ . '==' .  json_encode(func_get_args()) . " => " . $this->_dbtype  . "\n";
                 return $this->_dbtype;
                 break;
             default:
+                echo __FUNCTION__ . '==' .  json_encode(func_get_args()). "\n";
                 throw new Exception("getAttribute - invalid argument");
         }
         return "???";
+    }
+    function query($str)
+    {
+        
+        
+        echo $str . "\n";
+        
+        require_once __DIR__ .'/PDO_DummyStatement.php';
+        if (!isset(PDO_DummyStatement::$results[$str])) {
+            throw new Exception("Cound not find response to query");
+        }
+        // what if the response is a failure..??? we need to build a PDOException..
+        
+        
+        return new PDO_DummyStatement(PDO_DummyStatement::$results[$str]);
+        
+        
+        
     }
     
 }

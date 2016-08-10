@@ -3,7 +3,7 @@ dsn - test various formats of dsn.
 --FILE--
 <?php
 require_once 'includes/init.php';
-
+PDO_DataObject::debugLevel(1);
 // Mysql
 
     

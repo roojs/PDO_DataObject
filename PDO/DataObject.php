@@ -93,26 +93,27 @@ class PDO_DataObject
      * @var     array
      */
     static $config = array(
-            /**
-             * The database DSN - @see _PDO
-             *
-             * used to allow arrays - but if you are using a 'pool' - use a proxy.. dont' do it here..
-             */
-            'database' => false,  
+            
+            'database' => false,
+                //  the default database dsn (not PDO standard = see @$_database for details)
+                // it's similar format to PEAR::DB..
         
-            /**
-            * PDO Class - this can be changed for unit testing. (normally leave as default.)
-            */
+            
             'PDO' => 'PDO',  
-         
-            'tables' => array(), // map of tables names to database names 
-            'databases' => array(), // map of database names to connection dsn's
+                // what class to use as PDO - we use PDO_Dummy for the unittests
+            
+            'tables' => array(),
+                // map of tables names to database names
+                
+            'databases' => array(),
+                // map of database names to connection dsn's
            
         
             'proxy' => false,
                 // normally we use pre-created 'ini' files, but if you use proxy, it will generate the
                 // the database schema on the fly..
-            // fill me in..
+            
+            
             
             
             'portability' => 0,
@@ -120,23 +121,39 @@ class PDO_DataObject
                 // currently it only lowercases the tablename when you call tableName(), and
                 // flatten's ini files ..
         
-        
-            // debuging - only relivant on initialization - modifying it after, may be ignored.
-            'debug' => 0,
+             //  NEW ------------   peformance 
+             
+            'fetch_into' => false,
+                // use PDO's fetch_INTO for performance... - not sure what other effects this may have..
             
+            // -----   behavior
+            
+            'keep_query_after_fetch' => false,
+                // the query building will be cleared after a fetch , or find 
+                // To disable this behavior set this to 1
+
+                
+            'debug' => 0,
+                // debuging - only relivant on initialization - modifying it after, may be ignored.
         
         
             // -------- Error handling --------
-            // new behaviour is to throw exceptions - everywhere!!!
-            // to turn on 'old' behaviour - use 'exceptions' => false
             
             'exceptions' => true,
+                // new behaviour is to throw exceptions - everywhere!!!
+                // to turn on 'old' behaviour - use 'exceptions' => false
+                
             
-            // if non-exception behaviour is on then we trigger PEAR error's with
-            // if a fatal erorr occurs - we normally die.. but this can be prevented by
-            // this flag -- I'm not sure how usefull it is, as if you use a global pear error handler
-            // you can catch the error anyway
-            'dont_die' => false,   // normally errors are triggered
+            'dont_die' => false,
+                // normally errors are triggered
+                // if non-exception behaviour is on then we trigger PEAR error's with
+                // if a fatal erorr occurs - we normally die.. but this can be prevented by
+                // this flag -- I'm not sure how usefull it is, as if you use a global pear error handler
+                // you can catch the error anyway
+        
+            // ---- Generator
+            'quote_identifiers_tableinfo' => false,
+            
         
     );
     
@@ -170,13 +187,18 @@ class PDO_DataObject
     /**
      * The Database table (used by table extends)
      *
-     * @access  private
+     * @access  semi-private (not recommened - by you can modify it...)
      * @var     string
      */
     var $__table = '';  // database table
 
-    
-    
+    /**
+     * When the current query started.
+     *
+     * @access  private
+     * @var     number
+     */
+    private $_time_query_start = 0;
     
     
     /* ---------------- ---------------- connecting to the database  -------------------------------- */
@@ -205,7 +227,7 @@ class PDO_DataObject
      * @access  private (ish) - extended classes can overide this
      * @var     string
      */
-    public $_database_dsn_md5 = '';
+    private $_database_dsn_md5 = '';
 
     /**
      * The Database name
@@ -217,7 +239,15 @@ class PDO_DataObject
     public $_database = false;
 
     
-     
+    /**
+     * The PDOStatement Result object.
+     * created in _query()
+     *
+     * @access  private 
+     * @var  PDOStatement|StdClass|false
+     */
+    private $_result = false;
+
     /**
      * connects to the database
      *
@@ -230,7 +260,7 @@ class PDO_DataObject
      * @access private
      * @return PDO Object the connection
      */
-    public function PDO()
+    public function PDO($force = false)
     {
         
         $config = self::loadConfig();
@@ -238,6 +268,9 @@ class PDO_DataObject
         // We can use a fake PDO class when testing..
         $PDO = $config['PDO'];
         
+        if ($force) {
+            self::$connections = array();
+        }
         
         // is it already connected ?    
         if ($this->_database_dsn_md5 && !empty(self::$connections[$this->_database_dsn_md5])) {
@@ -249,7 +282,7 @@ class PDO_DataObject
                 
                 return $this->raiseError(
                         $con->message,
-                        $con->code, PEAR_ERROR_DIE
+                        $con->code, self::ERROR_DIE
                 );
                  
             }
@@ -386,7 +419,7 @@ class PDO_DataObject
             self::$connections[$md5] = new $PDO($pdo_dsn, $username, $password, $opts );
         } catch (PDOException $ex) {
             $this->debug( (string) $ex , "CONNECT FAILED",5);
-            return $this->raiseError("Connect failed, turn on debugging to 5 see why",$ex,PEAR_ERROR_DIE );
+            return $this->raiseError("Connect failed, turn on debugging to 5 see why",0,self::ERROR_DIE, $ex );
         }
         
         
@@ -781,81 +814,129 @@ class PDO_DataObject
     function fetch()
     {
 
-        global $_DB_DATAOBJECT;
-        if (empty($_DB_DATAOBJECT['CONFIG'])) {
-            DB_DataObject::_loadConfig();
+        
+        if (!self::$config_loaded) {
+            DB_DataObject::loadConfig();
+        }
+        if ($this->N === false) {
+            $this->raiseError("Fetch Called without Query being run");
         }
         if (empty($this->N)) {
-            if (!empty($_DB_DATAOBJECT['CONFIG']['debug'])) {
+            if (self::$debug) {
                 $this->debug("No data returned from FIND (eg. N is 0)","FETCH", 3);
             }
             return false;
         }
         
-        if (empty($_DB_DATAOBJECT['RESULTS'][$this->_DB_resultid]) || 
-            !is_object($result = $_DB_DATAOBJECT['RESULTS'][$this->_DB_resultid])) 
+        if ($this->_result === 0 || is_a($this->_result,'StdClass'))
         {
-            if (!empty($_DB_DATAOBJECT['CONFIG']['debug'])) {
+            if (self::$debug) {
                 $this->debug('fetched on object after fetch completed (no results found)');
             }
             return false;
         }
+        //PDO::FETCH_ASSOC
         
-        
-        $array = $result->fetchRow(DB_DATAOBJECT_FETCHMODE_ASSOC);
-        if (!empty($_DB_DATAOBJECT['CONFIG']['debug'])) {
-            $this->debug(serialize($array),"FETCH");
+        // fast_fetch - experimentall... - not sure what happens on missing/null values etc.. on rows.
+        if (self::$config['fetch_into']) {
+            $array = $this->_result->fetch(PDO::FETCH_INTO|PDO::FETCH_ASSOC, $this);
+        } else {
+            $array = $this->_result->fetch(PDO::FETCH_ASSOC);
+            if (self::$debug) {
+                $this->debug(json_encode($array),"FETCH");
+            }
         }
         
-        // fetched after last row..
-        if ($array === null) {
-            if (!empty($_DB_DATAOBJECT['CONFIG']['debug'])) {
+         
+        
+        if (!$array) {
+                
+            if (self::$debug) {
                 $t= explode(' ',microtime());
             
                 $this->debug("Last Data Fetch'ed after " . 
-                        ($t[0]+$t[1]- $_DB_DATAOBJECT['QUERYENDTIME']  ) . 
+                        ($t[0]+$t[1]- $this->_time_query_start ) . 
                         " seconds",
                     "FETCH", 1);
             }
-            // reduce the memory usage a bit... (but leave the id in, so count() works ok on it)
-            unset($_DB_DATAOBJECT['RESULTS'][$this->_DB_resultid]);
+            $fields = $this->_result->fields;
+            $this->_result->closeCursor();
+            $this->_result = new StdClass;
+            $this->_result->fields  = $fields;
+            return false; // no more data... -- and this fetch did not return any...
+             
+        }
+        static $replace = array('.', ' ');
+
+        if (!isset($this->_result->fields)) {
             
-            // we need to keep a copy of resultfields locally so toArray() still works
-            // however we dont want to keep it in the global cache..
             
-            if (!empty($_DB_DATAOBJECT['RESULTFIELDS'][$this->_DB_resultid])) {
-                $this->_resultFields = $_DB_DATAOBJECT['RESULTFIELDS'][$this->_DB_resultid];
-                unset($_DB_DATAOBJECT['RESULTFIELDS'][$this->_DB_resultid]);
+            $this->_result->fields = array();
+            foreach($array as $k=>$v) {
+                $kk =  (strpos($k, '.') === false && strpos($k, ' ') === false) ?
+                    $k : str_replace($replace, '_', $k);
+                $this->_result->fields[$kk] = 0; // unknown type...
             }
-            // this is probably end of data!!
-            //DB_DataObject::raiseError("fetch: no data returned", DB_DATAOBJECT_ERROR_NODATA);
-            return false;
-        }
-        // make sure resultFields is always empty..
-        $this->_resultFields = false;
-        
-        if (!isset($_DB_DATAOBJECT['RESULTFIELDS'][$this->_DB_resultid])) {
-            // note: we dont declare this to keep the print_r size down.
-            $_DB_DATAOBJECT['RESULTFIELDS'][$this->_DB_resultid]= array_flip(array_keys($array));
-        }
-        $replace = array('.', ' ');
-        foreach($array as $k=>$v) {
-            // use strpos as str_replace is slow.
-            $kk =  (strpos($k, '.') === false && strpos($k, ' ') === false) ?
-                $k : str_replace($replace, '_', $k);
+
+            
+            for ($i = 0; $i < $this->_result->columnCount();$i++) {
+                $meta = $this->_result->getColumnMeta($i);
+                if (!$meta) {
+                    break;
+                }
+                $k = $meta['name'];
+                $kk =  (strpos($k, '.') === false && strpos($k, ' ') === false) ?
+                    $k : str_replace($replace, '_', $k);
                 
-            if (!empty($_DB_DATAOBJECT['CONFIG']['debug'])) {
-                $this->debug("$kk = ". $array[$k], "fetchrow LINE", 3);
+                $v = 0;
+                switch($meta['native_type']) {
+                    // we could be smarter here...
+                    case 'integer':
+                        $v = self::INT;
+                        break;
+                    
+                    case 'VAR_STRING':
+                        $v = self::STR;
+                        break;
+                    
+                    case 'boolean':
+                        $v = self::BOOL;
+                        break;
+                    
+                    case 'float':
+                        $v = self::INT;
+                        break;
+                    
+                    default:
+                        print_r($meta);
+                        throw new Exception('Unknown type ');
+    
+                }
+                $this->_result->fields[$kk] = 0; // unknown type...
             }
-            $this->$kk = $array[$k];
+                
         }
         
+         
+        // make sure resultFields is always empty..
+        if (!self::$config['fetch_into']) {
+            foreach($array as $k=>$v) {
+                // use strpos as str_replace is slow.
+                $kk =  (strpos($k, '.') === false && strpos($k, ' ') === false) ?
+                    $k : str_replace($replace, '_', $k);
+                    
+                if (self::$debug) {
+                    $this->debug("$kk = ". $array[$k], "fetchrow LINE", 3);
+                }
+                $this->$kk = $array[$k];
+            }
+        }
         // set link flag
-        $this->_link_loaded=false;
-        if (!empty($_DB_DATAOBJECT['CONFIG']['debug'])) {
+        $this->_link_loaded = false;
+        if (self::$debug) {
             $this->debug("{$this->tableName()} DONE", "fetchrow",2);
         }
-        if (($this->_query !== false) &&  empty($_DB_DATAOBJECT['CONFIG']['keep_query_after_fetch'])) {
+        if (($this->_query !== false) &&  !self::$config['keep_query_after_fetch']) {
             $this->_query = false;
         }
         return true;
@@ -2273,9 +2354,11 @@ class PDO_DataObject
      */
     private function _introspection()
     {
-        class_exists('PDO_DataObject_Introspection') ? '' : require_once 'PDO/DataObject/Introspection.php';
-        $this->debug("Calling Introspection", "databaseStructure");
-        return new PDO_DataObject_Introspection($this);
+        $type  = $this->PDO()->getAttribute(PDO::ATTR_DRIVER_NAME);
+        $class = 'PDO_DataObject_Introspection_'. $type;
+        class_exists($class)  ? '' : require_once 'PDO/DataObject/Introspection/'. $type. '.php';
+        $this->debug("Creating Introspection for $class", "_introspection");
+        return new $class($this);
        
     }
 
@@ -2316,7 +2399,7 @@ class PDO_DataObject
         if (count($args)) {
             $this->_database = $args[0];
         } else {
-            $this->_connect();
+            $this->PDO();
         }
         
         return $this->_database;
@@ -2336,10 +2419,10 @@ class PDO_DataObject
         // note this is not declared as we dont want to bloat the print_r output
         $args = func_get_args();
         if (count($args)) {
-            $this->_database_fields = $args[0];
+            $this->_result->fields = $args[0];
         }
-        if (isset($this->_database_fields)) {
-            return $this->_database_fields;
+        if (isset($this->_result->fields)) {
+            return $this->_result->fields;
         }
         
         
@@ -2578,194 +2661,7 @@ class PDO_DataObject
     }
     
     
-    /**
-     * connects to the database
-     *
-     *
-     * TODO: tidy this up - This has grown to support a number of connection options like
-     *  a) dynamic changing of ini file to change which database to connect to
-     *  b) multi data via the table_{$table} = dsn ini option
-     *  c) session based storage.
-     *
-     * @access private
-     * @return true | PEAR::error
-     */
-    function _connect()
-    {
-        global $_DB_DATAOBJECT;
-        if (empty($_DB_DATAOBJECT['CONFIG'])) {
-            $this->_loadConfig();
-        }
-        // Set database driver for reference 
-        $db_driver = empty($_DB_DATAOBJECT['CONFIG']['db_driver']) ? 
-                'DB' : $_DB_DATAOBJECT['CONFIG']['db_driver'];
-        
-        // is it already connected ?    
-        if ($this->_database_dsn_md5 && !empty($_DB_DATAOBJECT['CONNECTIONS'][$this->_database_dsn_md5])) {
-            
-            // connection is an error...
-            if (PEAR::isError($_DB_DATAOBJECT['CONNECTIONS'][$this->_database_dsn_md5])) {
-                return $this->raiseError(
-                        $_DB_DATAOBJECT['CONNECTIONS'][$this->_database_dsn_md5]->message,
-                        $_DB_DATAOBJECT['CONNECTIONS'][$this->_database_dsn_md5]->code, PEAR_ERROR_DIE
-                );
-                 
-            }
-
-            if (empty($this->_database)) {
-                $this->_database = $_DB_DATAOBJECT['CONNECTIONS'][$this->_database_dsn_md5]->dsn['database'];
-                $hasGetDatabase = method_exists($_DB_DATAOBJECT['CONNECTIONS'][$this->_database_dsn_md5], 'getDatabase');
-                
-                $this->_database = ($db_driver != 'DB' && $hasGetDatabase)  
-                        ? $_DB_DATAOBJECT['CONNECTIONS'][$this->_database_dsn_md5]->getDatabase() 
-                        : $_DB_DATAOBJECT['CONNECTIONS'][$this->_database_dsn_md5]->dsn['database'];
-
-                
-                
-                if (($_DB_DATAOBJECT['CONNECTIONS'][$this->_database_dsn_md5]->dsn['phptype'] == 'sqlite') 
-                    && is_file($this->_database))  {
-                    $this->_database = basename($this->_database);
-                }
-                if ($_DB_DATAOBJECT['CONNECTIONS'][$this->_database_dsn_md5]->dsn['phptype'] == 'ibase')  {
-                    $this->_database = substr(basename($this->_database), 0, -4);
-                }
-                
-            }
-            // theoretically we have a md5, it's listed in connections and it's not an error.
-            // so everything is ok!
-            return true;
-            
-        }
-
-        // it's not currently connected!
-        // try and work out what to use for the dsn !
-
-        $options= $_DB_DATAOBJECT['CONFIG'];
-        // if the databse dsn dis defined in the object..
-        $dsn = isset($this->_database_dsn) ? $this->_database_dsn : null;
-        
-        if (!$dsn) {
-            if (!$this->_database && !strlen($this->tableName())) {
-                $this->_database = isset($options["table_{$this->tableName()}"]) ? $options["table_{$this->tableName()}"] : null;
-            }
-            if (!empty($_DB_DATAOBJECT['CONFIG']['debug'])) {
-                $this->debug("Checking for database specific ini ('{$this->_database}') : database_{$this->_database} in options","CONNECT");
-            }
-            
-            if ($this->_database && !empty($options["database_{$this->_database}"]))  {
-                $dsn = $options["database_{$this->_database}"];
-            } else if (!empty($options['database'])) {
-                $dsn = $options['database'];
-                  
-            }
-        }
-
-        // if still no database...
-        if (!$dsn) {
-            return $this->raiseError(
-                "No database name / dsn found anywhere",
-                DB_DATAOBJECT_ERROR_INVALIDCONFIG, PEAR_ERROR_DIE
-            );
-                 
-        }
-        
-        
-        if (is_string($dsn)) {
-            $this->_database_dsn_md5 = md5($dsn);
-        } else {
-            /// support array based dsn's
-            $this->_database_dsn_md5 = md5(serialize($dsn));
-        }
-
-        if (!empty($_DB_DATAOBJECT['CONNECTIONS'][$this->_database_dsn_md5])) {
-            if (!empty($_DB_DATAOBJECT['CONFIG']['debug'])) {
-                $this->debug("USING CACHED CONNECTION", "CONNECT",3);
-            }
-            
-            
-            
-            if (!$this->_database) {
-
-                $hasGetDatabase = method_exists($_DB_DATAOBJECT['CONNECTIONS'][$this->_database_dsn_md5], 'getDatabase');
-                $this->_database = ($db_driver != 'DB' && $hasGetDatabase)  
-                        ? $_DB_DATAOBJECT['CONNECTIONS'][$this->_database_dsn_md5]->getDatabase() 
-                        : $_DB_DATAOBJECT['CONNECTIONS'][$this->_database_dsn_md5]->dsn['database'];
-                
-                if (($_DB_DATAOBJECT['CONNECTIONS'][$this->_database_dsn_md5]->dsn['phptype'] == 'sqlite') 
-                    && is_file($this->_database)) 
-                {
-                    $this->_database = basename($this->_database);
-                }
-            }
-            return true;
-        }
-
-        
-        if (!empty($_DB_DATAOBJECT['CONFIG']['debug'])) {
-            $this->debug("NEW CONNECTION TP DATABASE :" .$this->_database , "CONNECT",3);
-            /* actualy make a connection */
-            $this->debug(print_r($dsn,true) ." {$this->_database_dsn_md5}", "CONNECT",3);
-        }
-        
-        // Note this is verbose deliberatly! 
-        
-        if ($db_driver == 'DB') {
-            
-            /* PEAR DB connect */
-            
-            // this allows the setings of compatibility on DB 
-            $db_options = PEAR::getStaticProperty('DB','options');
-            require_once 'DB.php';
-            if ($db_options) {
-                $_DB_DATAOBJECT['CONNECTIONS'][$this->_database_dsn_md5] = DB::connect($dsn,$db_options);
-            } else {
-                $_DB_DATAOBJECT['CONNECTIONS'][$this->_database_dsn_md5] = DB::connect($dsn);
-            }
-             
-        } else {
-            /* assumption is MDB2 */
-            require_once 'MDB2.php';
-            // this allows the setings of compatibility on MDB2 
-            $db_options = PEAR::getStaticProperty('MDB2','options');
-            $db_options = is_array($db_options) ? $db_options : array();
-            $db_options['portability'] = isset($db_options['portability'] )
-                ? $db_options['portability']  : MDB2_PORTABILITY_ALL ^ MDB2_PORTABILITY_FIX_CASE;
-            $_DB_DATAOBJECT['CONNECTIONS'][$this->_database_dsn_md5] = MDB2::connect($dsn,$db_options);
-            
-        }
- 
-        
-        if (!empty($_DB_DATAOBJECT['CONFIG']['debug'])) {
-            $this->debug(print_r($_DB_DATAOBJECT['CONNECTIONS'],true), "CONNECT",5);
-        }
-        if (PEAR::isError($_DB_DATAOBJECT['CONNECTIONS'][$this->_database_dsn_md5])) {
-            $this->debug($_DB_DATAOBJECT['CONNECTIONS'][$this->_database_dsn_md5]->toString(), "CONNECT FAILED",5);
-            return $this->raiseError(
-                    "Connect failed, turn on debugging to 5 see why",
-                        $_DB_DATAOBJECT['CONNECTIONS'][$this->_database_dsn_md5]->code, PEAR_ERROR_DIE
-            );
-
-        }
-         
-        if (empty($this->_database)) {
-            $hasGetDatabase = method_exists($_DB_DATAOBJECT['CONNECTIONS'][$this->_database_dsn_md5], 'getDatabase');
-            
-            $this->_database = ($db_driver != 'DB' && $hasGetDatabase)  
-                    ? $_DB_DATAOBJECT['CONNECTIONS'][$this->_database_dsn_md5]->getDatabase() 
-                    : $_DB_DATAOBJECT['CONNECTIONS'][$this->_database_dsn_md5]->dsn['database'];
-
-
-            if (($_DB_DATAOBJECT['CONNECTIONS'][$this->_database_dsn_md5]->dsn['phptype'] == 'sqlite') 
-                && is_file($this->_database)) 
-            {
-                $this->_database = basename($this->_database);
-            }
-        }
-        
-        // Oracle need to optimize for portibility - not sure exactly what this does though :)
-         
-        return true;
-    }
+     
 
     /**
      * sends query to database - this is the private one that must work 
@@ -2773,22 +2669,18 @@ class PDO_DataObject
      *
      * @param  string  $string
      * @access private
-     * @return mixed none or PEAR_Error
+     * @return PDO_DataObject|number (self for chaining) - insert/update/delete - return a number.
      */
-    function _query($string)
+    private function _query($string)
     {
-        global $_DB_DATAOBJECT;
-        $this->_connect();
+        $pdo = $this->PDO();
+
         
 
-        $DB = $_DB_DATAOBJECT['CONNECTIONS'][$this->_database_dsn_md5];
-
-        $options = $_DB_DATAOBJECT['CONFIG'];
+        //$options = $_DB_DATAOBJECT['CONFIG'];
         
-        $_DB_driver = empty($_DB_DATAOBJECT['CONFIG']['db_driver']) ? 
-                    'DB':  $_DB_DATAOBJECT['CONFIG']['db_driver'];
         
-        if (!empty($_DB_DATAOBJECT['CONFIG']['debug'])) {
+        if (self::$debug) {
             $this->debug($string,$log="QUERY");
             
         }
@@ -2797,134 +2689,95 @@ class PDO_DataObject
             strtoupper($string) == 'BEGIN' ||
             strtoupper($string) == 'START TRANSACTION'
         ) {
-            $this->debug('BEGIN');
-            if ($_DB_driver == 'DB') {
-                $DB->autoCommit(false);
-                $DB->simpleQuery('BEGIN');
-            } else {
-                $DB->beginTransaction();
+            if (self::$debug) {
+                $this->debug('BEGIN');
             }
-            return true;
+            $pdo->beginTranaction();
+            
+            return $this;
         }
         
         if (strtoupper($string) == 'COMMIT') {
-            $this->debug('COMMIT');
-            $res = $DB->commit();
-            if ($_DB_driver == 'DB') {
-                $DB->autoCommit(true);
+            if (self::$debug) {
+                $this->debug('COMMIT');
             }
-            return $res;
+            $pdo->commit();
+            $pdo->setAttribute(PDO::ATTR_AUTOCOMMIT, true); // not sure if needed...
+            return $this;
         }
         
+        
         if (strtoupper($string) == 'ROLLBACK') {
-            $this->debug('ROLLBACK');
-            $DB->rollback();
-            if ($_DB_driver == 'DB') {
-                $DB->autoCommit(true);
+            if (self::$debug) {
+                $this->debug('ROLLBACK');
             }
+            $pdo->rollBack();
+            $pdo->setAttribute(PDO::ATTR_AUTOCOMMIT, true); // not sure if needed...
+            
             return true;
         }
         
-
-        if (!empty($options['debug_ignore_updates']) &&
-            (strtolower(substr(trim($string), 0, 6)) != 'select') &&
-            (strtolower(substr(trim($string), 0, 4)) != 'show') &&
-            (strtolower(substr(trim($string), 0, 8)) != 'describe')) {
-
-            $this->debug('Disabling Update as you are in debug mode');
-            return $this->raiseError("Disabling Update as you are in debug mode", null) ;
-
-        }
-        //if (@$_DB_DATAOBJECT['CONFIG']['debug'] > 1) {
-            // this will only work when PEAR:DB supports it.
-            //$this->debug($DB->getAll('explain ' .$string,DB_DATAOBJECT_FETCHMODE_ASSOC), $log="sql",2);
-        //}
+        
         
         // some sim
         $t= explode(' ',microtime());
-        $_DB_DATAOBJECT['QUERYENDTIME'] = $time = $t[0]+$t[1];
+        $this->_time_query_start = $time = $t[0]+$t[1];
          
         
         for ($tries = 0;$tries < 3;$tries++) {
             
-            if ($_DB_driver == 'DB') {
-                
-                $result = $DB->query($string);
-            } else {
-                switch (strtolower(substr(trim($string),0,6))) {
-                
-                    case 'insert':
-                    case 'update':
-                    case 'delete':
-                        $result = $DB->exec($string);
-                        break;
-                        
-                    default:
-                        $result = $DB->query($string);
-                        break;
+            try {
+                $result = $pdo->query($string);
+            } catch (PDOException $e) {
+                $result = $e;
+                switch($e->errorCode()) {
+                    // see http://www.csee.umbc.edu/portal/help/oracle8/server.815/a58231/appd.htm
+                    // may need fine tuning...
+                    case 1002:
+                    case 8000:
+                    case 8003:
+                    case 8004:
+                    case 8006:
+                        sleep(1);
+                        $this->PDO(true);
+                        continue;
                 }
             }
-            
-            // see if we got a failure.. - try again a few times..
-            if (!is_object($result) || !is_a($result,'PEAR_Error')) {
-                break;
-            }
-            if ($result->getCode() != -14) {  // *DB_ERROR_NODBSELECTED
-                break; // not a connection error..
-            }
-            sleep(1); // wait before retyring..
-            $DB->connect($DB->dsn);
+            break;
         }
        
 
-        if (is_object($result) && is_a($result,'PEAR_Error')) {
-            if (!empty($_DB_DATAOBJECT['CONFIG']['debug'])) { 
-                $this->debug($result->toString(), "Query Error",1 );
+        if (is_a($result,'PDOException')) {
+            if (self::$debug) { 
+                $this->debug((string)$result, "Query Error",1 );
             }
             $this->N = false;
-            return $this->raiseError($result);
+            return $this->raiseError("Could not run Query", 0, self::ERROR_DIE, $result);
         }
-        if (!empty($_DB_DATAOBJECT['CONFIG']['debug'])) {
+        
+        
+        if (self::$debug) {
             $t= explode(' ',microtime());
-            $_DB_DATAOBJECT['QUERYENDTIME'] = $t[0]+$t[1];
+            $this->_time_query_start = $t[0]+$t[1];
             $this->debug('QUERY DONE IN  '.($t[0]+$t[1]-$time)." seconds", 'query',1);
+            $this->debug('NO# of results: '.$result->rowCount(), 'query',1);
         }
+        
         switch (strtolower(substr(trim($string),0,6))) {
             case 'insert':
             case 'update':
             case 'delete':
-                if ($_DB_driver == 'DB') {
-                    // pear DB specific
-                    return $DB->affectedRows(); 
-                }
-                return $result;
+                return $result->rowCount();
         }
-        if (is_object($result)) {
-            // lets hope that copying the result object is OK!
-            
-            $_DB_resultid  = $GLOBALS['_DB_DATAOBJECT']['RESULTSEQ']++;
-            $_DB_DATAOBJECT['RESULTS'][$_DB_resultid] = $result; 
-            $this->_DB_resultid = $_DB_resultid;
-        }
-        $this->N = 0;
-        if (!empty($_DB_DATAOBJECT['CONFIG']['debug'])) {
-            $this->debug(serialize($result), 'RESULT',5);
-        }
-        if (method_exists($result, 'numRows')) {
-            if ($_DB_driver == 'DB') {
-                $DB->expectError(DB_ERROR_UNSUPPORTED);
-            } else {
-                $DB->expectError(MDB2_ERROR_UNSUPPORTED);
-            }
-            
-            $this->N = $result->numRows();
-            //var_dump($this->N);
-            
-            if (is_object($this->N) && is_a($this->N,'PEAR_Error')) {
-                $this->N = true;
-            }
-            $DB->popExpect();
-        }
+        
+        // previously we used _DB_resultid as a pointer to a result array..
+        // hopefully this will result in better memory management???
+        $this->_result = $result;
+        
+        $this->N = $result->rowCount();
+        
+        return $this; // for chaining...
+     
     }
 
     /**
@@ -4362,15 +4215,15 @@ class PDO_DataObject
 
     function toArray($format = '%s', $hideEmpty = false) 
     {
-        global $_DB_DATAOBJECT;
-        
+         
         // we use false to ignore sprintf.. (speed up..)
         $format = $format == '%s' ? false : $format;
         
         $ret = array();
-        $rf = ($this->_resultFields !== false) ? $this->_resultFields : 
-                (isset($_DB_DATAOBJECT['RESULTFIELDS'][$this->_DB_resultid]) ?
-                 $_DB_DATAOBJECT['RESULTFIELDS'][$this->_DB_resultid] : false);
+        $rf = isset($this->_result->fields) ? $this->_result->fields: false;
+        
+        // table knows better...??? -- table() will use result->fields anyway...
+        // need to look at this... -- 
         
         $ar = ($rf !== false) ?
             (($hideEmpty === 0) ? $rf : array_merge($rf, $this->table())) :

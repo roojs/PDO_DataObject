@@ -203,12 +203,10 @@ joinAdd / autoJoin -- move code to PDO_DataObject_Join()
 toArray - needs resultfields - to determine fields that where returned..
 -> ?? depricate link_loaded?? - it's so not recomended to use this.
 
-staticGet -- depricate?
 
------------
-Directly accessing database (BC BREAK!)
-getDatabaseConnection() -- this will have to throw an error... - as it's can not work..
-PDO() << replacement?
+
+
+
 
 -----
 Things that need implementations (not really provided by PDO?)
@@ -312,6 +310,21 @@ database -> new format?
 need to support 'username' & 'password' ?
 db_driver << not needed anymore..
 dont_use_pear_sequences <<??? need to work out how this affects our code.!?!?
+
+
+-----------
+Backward Compatibility Breaks. / removed features..
+
+Directly accessing database (BC BREAK!)
+getDatabaseConnection() -- this will have to throw an error... - as it's can not work..
+PDO() << replacement?
+
+config:: debug_ignore_updates << removed.
+
+staticGet -- removed?
+
+
+
 
 
 

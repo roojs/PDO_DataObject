@@ -1,27 +1,37 @@
 <?php
 /**
- * Generation tools for DB_DataObject
+ * Generation tools for PDO_DataObject
  *
- * PHP versions 4 and 5
+ * For PHP versions  5 and 7
+ * 
+ * 
+ * Copyright (c) 2015 Alan Knowles
+ * 
+ * This program is free software: you can redistribute it and/or modify  
+ * it under the terms of the GNU Lesser General Public License as   
+ * published by the Free Software Foundation, version 3.
  *
- * LICENSE: This source file is subject to version 3.01 of the PHP license
- * that is available through the world-wide-web at the following URI:
- * http://www.php.net/license/3_01.txt.  If you did not receive a copy of
- * the PHP License and are unable to obtain it through the web, please
- * send a note to license@php.net so we can mail you a copy immediately.
+ * This program is distributed in the hope that it will be useful, but 
+ * WITHOUT ANY WARRANTY; without even the implied warranty of 
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU 
+ * Lesser General Lesser Public License for more details.
  *
+ * You should have received a copy of the GNU Lesser General Public License
+ * along with this program. If not, see <http://www.gnu.org/licenses/>.
+ *  
  * @category   Database
- * @package    DB_DataObject
- * @author     Alan Knowles <alan@akbkhome.com>
- * @copyright  1997-2006 The PHP Group
- * @license    http://www.php.net/license/3_01.txt  PHP License 3.01
- * @version    CVS: $Id: Generator.php 315531 2011-08-26 02:21:29Z alan_k $
- * @link       http://pear.php.net/package/DB_DataObject
+ * @package    PDO_DataObject
+ * @author     Alan Knowles <alan@roojs.com>
+ * @copyright  2016 Alan Knowles
+ * @license    https://www.gnu.org/licenses/lgpl-3.0.en.html  LGPL 3
+ * @version    1.0
+ * @link       https://github.com/roojs/PDO_DataObject
  */
+  
  
  /*
  * Security Notes:
- *   This class uses eval to create classes on the fly.
+ *   This class may use eval to create classes on the fly.
  *   The table name and database name are used to check the database before writing the
  *   class definitions, we now check for quotes and semi-colon's in both variables
  *   so I cant see how it would be possible to generate code even if
@@ -32,14 +42,14 @@
  
  /**
  * 
- * Config _$ptions
- * [DB_DataObject]
+ * Config _$options
+ * [PDO_DataObject]
  * ; optional default = DB/DataObject.php
  * extends_location =
  * ; optional default = DB_DataObject
  * extends =
- * ; alter the extends field when updating a class (defaults to only replacing DB_DataObject)
- * generator_class_rewrite = ANY|specific_name   // default is DB_DataObject
+ * ; alter the extends field when updating a class (defaults to only replacing PDO_DataObject)
+ * generator_class_rewrite = ANY|specific_name   // default is PDO_DataObject
  *
  */
 
@@ -48,15 +58,15 @@
  * We lazy load here, due to problems with the tests not setting up include path correctly.
  * FIXME!
  */
-class_exists('DB_DataObject') ? '' : require_once 'DB/DataObject.php';
+class_exists('PDO_DataObject') ? '' : require_once 'PDO/DataObject.php';
 //require_once('Config.php');
 
 /**
  * Generator class
  *
- * @package DB_DataObject
+ * @package PDO_DataObject
  */
-class DB_DataObject_Generator extends DB_DataObject
+class PDO_DataObject_Generator extends PDO_DataObject
 {
     /* =========================================================== */
     /*  Utility functions - for building db config files           */
@@ -102,9 +112,8 @@ class DB_DataObject_Generator extends DB_DataObject
      */
     function start()
     {
-        $options = &PEAR::getStaticProperty('DB_DataObject','options');
-        $db_driver = empty($options['db_driver']) ? 'DB' : $options['db_driver'];
-
+        $options = PDO::$config;
+        
         $databases = array();
         foreach($options as $k=>$v) {
             if (substr($k,0,9) == 'database_') {
@@ -113,16 +122,26 @@ class DB_DataObject_Generator extends DB_DataObject
         }
 
         if (isset($options['database'])) {
-            if ($db_driver == 'DB') {
-                require_once 'DB.php';
-                $dsn = DB::parseDSN($options['database']);
-            } else {
-                require_once 'MDB2.php';
-                $dsn = MDB2::parseDSN($options['database']);
-            }
-
-            if (!isset($database[$dsn['database']])) {
-                $databases[$dsn['database']] = $options['database'];
+            $dsn_ar = parse_url($options['database']);
+            
+            switch($dsn_ar['scheme'] ) {
+                case 'sqlite':
+                case 'sqlite2':
+                    $dname = basename($dsn_ar['path']);
+                    break;
+                case 'sqlsrv':
+                    $dname = substr($dsn_ar['path'],1);
+                    break;
+                
+                // others go here...
+            
+                default:
+                    $dname= substr($dsn_ar['path'],1);
+                   break;
+            }    
+           
+            if (!isset($database[$dname])){
+                $databases[$dname] = $options['database'];
             }
         }
 
@@ -134,20 +153,10 @@ class DB_DataObject_Generator extends DB_DataObject
             $class = get_class($this);
             $t = new $class;
             $t->_database_dsn = $database;
-
-
+ 
             $t->_database = $databasename;
-            if ($db_driver == 'DB') {
-                require_once 'DB.php';
-                $dsn = DB::parseDSN($database);
-            } else {
-                require_once 'MDB2.php';
-                $dsn = MDB2::parseDSN($database);
-            }
-
-            if (($dsn['phptype'] == 'sqlite') && is_file($databasename)) {
-                $t->_database = basename($t->_database);
-            }
+            
+ 
             $t->_createTableList();
             $t->_createForiegnKeys();
 
@@ -1312,69 +1321,41 @@ class DB_DataObject_Generator extends DB_DataObject
     */
     function fillTableSchema($database,$table) 
     {
-        global $_DB_DATAOBJECT;
+         
          // a little bit of sanity testing.
         if ((false !== strpos($database,"'")) || (false !== strpos($database,";"))) {   
-            return PEAR::raiseError("Error: Database name contains a quote or semi-colon", null, PEAR_ERROR_DIE);
+            return $this->raiseError("Error: Database name contains a quote or semi-colon", null, PDO_DataObject::ERROR_DIE);
         }
         
         $this->_database  = $database; 
-        
-        $this->_connect();
+        $options = PDO_DataObject::$config;
+        $pdo = $this->PDO();
         $table = trim($table);
         
         // a little bit of sanity testing.
         if ((false !== strpos($table,"'")) || (false !== strpos($table,";"))) {   
-            return PEAR::raiseError("Error: Table contains a quote or semi-colon", null, PEAR_ERROR_DIE);
+            return $this->raiseError("Error: Table contains a quote or semi-colon", null, PDO_DataObject::ERROR_DIE);
         }
-        $__DB= &$GLOBALS['_DB_DATAOBJECT']['CONNECTIONS'][$this->_database_dsn_md5];
         
         
-        $options   = PEAR::getStaticProperty('DB_DataObject','options');
-        $db_driver = empty($options['db_driver']) ? 'DB' : $options['db_driver'];
-        $is_MDB2   = ($db_driver != 'DB') ? true : false;
-        
-        if (!$is_MDB2) {
-            // try getting a list of schema tables first. (postgres)
-            $__DB->expectError(DB_ERROR_UNSUPPORTED);
+        //WHY HERE????
+        try {
             $this->tables = $__DB->getListOf('schema.tables');
-            $__DB->popExpect();
-        } else {
-            /**
-             * set portability and some modules to fetch the informations
-             */
-            $__DB->setOption('portability', MDB2_PORTABILITY_ALL ^ MDB2_PORTABILITY_FIX_CASE);
-            $__DB->loadModule('Manager');
-            $__DB->loadModule('Reverse');
-        }
-        $quotedTable = !empty($options['quote_identifiers_tableinfo']) ? 
-                $__DB->quoteIdentifier($table) : $table;
-          
-        if (!$is_MDB2) {
-            $defs =  $__DB->tableInfo($quotedTable);
-        } else {
-            $defs =  $__DB->reverse->tableInfo($quotedTable);
-            if (PEAR::isError($defs)) {
-                return $defs;
-            }
-            foreach ($defs as $k => $v) {
-                if (!isset($defs[$k]['length'])) {
-                    continue;
-                }
-                $defs[$k]['len'] = $defs[$k]['length'];
-            }
+        }  catch(Exception $e) {
+               
         }
         
-        if (PEAR::isError($defs)) {
+        $quotedTable = $options['quote_identifiers_tableinfo'] ?  $this->quoteIdentifier($table) : $table;
+        
+        $defs = $this->_introspection()->tableInfo($quotedTable);
+         
+        if (is_a('PEAR_Error',$defs)) {
             return $defs;
-        } 
-        
-        
-        
-        if (@$_DB_DATAOBJECT['CONFIG']['debug'] > 2) {
-            $this->debug("getting def for $database/$table",'fillTable');
-            $this->debug(print_r($defs,true),'defs');
         }
+        
+        $this->debug("getting def for $database/$table",'fillTable',3);
+        $this->debug(print_r($defs,true),'defs',3);
+        
         // cast all definitions to objects - as we deal with that better.
         
             
@@ -1384,11 +1365,15 @@ class DB_DataObject_Generator extends DB_DataObject
             }
         }
 
-        $this->table = trim($table);
+        $this->table = $table;
+        
         $ret = $this->_generateDefinitionsTable();
         
-        $_DB_DATAOBJECT['INI'][$database][$table] = $ret['table'];
-        $_DB_DATAOBJECT['INI'][$database][$table.'__keys'] = $ret['keys'];
+        $add = array();
+        $add[$table] = $ret['table'];
+        $add[$table.'__keys'] = $ret['keys'];
+        
+        $this->tableStructure($database, $add);
         return false;
         
     }

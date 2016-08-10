@@ -81,7 +81,7 @@ class PDO_DataObject_Introspection
     
     function databaseStructure()
     {
-        
+        $proxy = PDO_DataObject::$config['proxy'];
          
         
         // Generator code
@@ -96,18 +96,22 @@ class PDO_DataObject_Introspection
             $x = new PDO_DataObject();
             $x->database( $args[0]);
             $x->PDO();
+            $cls = get_class($this);
              
-            $tables = (new PDO_DataObject_Introspection($x))->getListOf('tables');
+            $tables = (new $cls ($x))->getListOf('tables');
             
                
             foreach($tables as $table) {
                 
-                $this->generator()->fillTableSchema($x->database(), $table);
+                $this->_generator()->fillTableSchema($x->database(), $table);
                 
             }
+            // prevent recursion...
             
-            return PDO_DataObject::databaseStructure($database,false);            
-         
+            PDO_DataObject::$config['proxy'] = false;
+            $ret = PDO_DataObject::databaseStructure($database,false); 
+            PDO_DataObject::$config['proxy'] = $proxy;
+            return $ret;
             // databaseStructure('mydb',   array(.... schema....), array( ... links')
          
             // will not get here....
@@ -127,10 +131,15 @@ class PDO_DataObject_Introspection
         
         // if we are configured to use the proxy..
         
-        if ( PDO_DataObject::$config['proxy'])  {
+        if ( $proxy )  {
             
-            $this->generator()->fillTableSchema($database, $table);
-            return PDO_DataObject::databaseStructure($database,false); 
+            $this->_generator()->fillTableSchema($database, $table);
+        
+           
+            PDO_DataObject::$config['proxy'] = false;
+            $ret = PDO_DataObject::databaseStructure($database,false); 
+            PDO_DataObject::$config['proxy'] = $proxy;
+            return $ret;
         }
             
              
@@ -176,11 +185,15 @@ class PDO_DataObject_Introspection
         if (!empty($ini_out)) {
             PDO_DataObject::databaseStructure($database,$ini_out,false, true);
         }
-        $dbini = PDO_DataObject::databaseStructure($database,false);
+        
+       
+        PDO_DataObject::$config['proxy'] = false;
+        $dbini = PDO_DataObject::databaseStructure($database,false); 
+        PDO_DataObject::$config['proxy'] = $proxy;
         
         // now have we loaded the structure.. 
         
-        if (!empty($dbini[$this->tableName()])) {
+        if (!empty($dbini[$this->do->tableName()])) {
             return $dbini;
         }
         // previously we tried proxy here... - but it's already supposed to be tried at this point anyway.
@@ -208,7 +221,42 @@ class PDO_DataObject_Introspection
         return new PDO_DataObject_Generator();
     }
     
+    /**
+     * Lists internal database information
+     *
+     * @param string $type  type of information being sought.
+     *                       Common items being sought are:
+     *                       tables, databases, users, views, functions
+     *                       Each DBMS's has its own capabilities.
+     *
+     * @return array  an array listing the items sought.
+     *                Or throws an error..
+     */
     
-    
+    function getListOf($type)
+    {
+        $sql = $this->getSpecialQuery($type); // can throw an exception...
+        if ($sql === null) {
+            $this->last_query = '';
+            return $this->do->raiseError("Can not get Listof $type", PDO_DataObject::ERROR_INVALIDCONFIG);
+        }
+        
+      
+        if (is_array($sql)) {
+            // Already the result
+            return $sql;
+        }
+        $this->do->query($sql);
+        $ret = array();
+        while ($this->do->fetch()) {
+            // pretty slow way to do this, but if we are doing this stuff it's slow anyway.
+            $ret[] = array_values($this->do->toArray())[0];
+        }
+        //var_export($ret);
+        
+        return $ret;
+    }
     
 }
+
+
