@@ -2284,7 +2284,7 @@ class PDO_DataObject
             $this->PDO();
         }
         
-        
+        print_r(array($this->_database,$this->tableName()));
         // if this table is already loaded this table..
         if (!empty(self::$ini[$this->_database][$this->tableName()])) {
             return self::$ini[$this->_database];
