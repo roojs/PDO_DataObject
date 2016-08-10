@@ -2752,6 +2752,7 @@ class PDO_DataObject
             try {
                 $result = $pdo->query($string);
             } catch (PDOException $e) {
+                this->debug("Got database Error");
                 $result = $e;
                 switch($e->errorCode()) {
                     // see http://www.csee.umbc.edu/portal/help/oracle8/server.815/a58231/appd.htm
