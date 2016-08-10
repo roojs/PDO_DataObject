@@ -28,7 +28,7 @@ print_r($obj->databaseStructure('anotherdb', false));
 
 
 
-
+/*
 // -- normally disabled - used to geenrate the test data...
 
 echo "\n\nREAL DATABASE CONNECT - NOT IN FINAL TEST\n";
@@ -43,7 +43,7 @@ $obj = new PDO_DataObject();
 $obj->__table = 'account_transaction';
 $obj->PDO(true);
 print_r($obj->databaseStructure('hebe'));
-
+*/
 
 
 
