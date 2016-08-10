@@ -51,8 +51,7 @@ print_r($obj->databaseStructure('hebe'));
 // test structure from introspection
 
 echo "\n\DATABASE INSTROSPECT\n";
-
-
+ 
 PDO_DataObject::$config['proxy'] = true;
 print_r($obj->databaseStructure('anotherdb'));
 
@@ -60,8 +59,12 @@ print_r($obj->databaseStructure('anotherdb'));
 
 
 // set structure + retrieve it.
+// test not really needed as proxy really tests this..
+
  
 // test error conditions?!? 
+// not sure about this one...
+
 
 
 ?>
