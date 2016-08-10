@@ -109,7 +109,7 @@ class PDO_DataObject_Introspection
             // prevent recursion...
             
             PDO_DataObject::$config['proxy'] = false;
-            $ret = $this->do->databaseStructure($x->database(),false); 
+            $ret = $x->databaseStructure($x->database(),false); 
             PDO_DataObject::$config['proxy'] = $proxy;
             return $ret;
             // databaseStructure('mydb',   array(.... schema....), array( ... links')
