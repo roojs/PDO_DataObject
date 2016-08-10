@@ -44,7 +44,7 @@ class PDO_DataObject_Introspection_mysql extends PDO_DataObject_Introspection
             ->fetchAll(false,false,'toArray');
         
         
-        if ($this->options['portability'] & DB_PORTABILITY_LOWERCASE) {
+        if (PDO_DataObject::$config['portability'] & DB_PORTABILITY_LOWERCASE) {
             $case_func = 'strtolower';
         } else {
             $case_func = 'strval';
