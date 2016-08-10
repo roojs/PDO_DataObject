@@ -603,8 +603,9 @@ class PDO_DataObject_Generator extends PDO_DataObject
         $keys_out_primary = '';
         $keys_out_secondary = '';
         
-        $this->debug("TABLE STRUCTURE FOR {$this->table}",__FUNCTION__, 3)
-        $this->debug(print_r($defs,true),__FUNCTION__, 3)
+        $this->debug("TABLE STRUCTURE FOR {$this->table}",__FUNCTION__, 3);
+        
+        $this->debug(print_r($defs,true),__FUNCTION__, 3);
         
         
         
@@ -639,9 +640,9 @@ class PDO_DataObject_Generator extends PDO_DataObject
                 case 'SMALLINT':
                 case 'MEDIUMINT':
                 case 'BIGINT':
-                    $type = DB_DATAOBJECT_INT;
+                    $type = PDO_DataObject::INT;
                     if ($t->len == 1) {
-                        $type +=  DB_DATAOBJECT_BOOL;
+                        $type +=  PDO_DataObject::BOOL;
                     }
                     break;
                
@@ -655,21 +656,21 @@ class PDO_DataObject_Generator extends PDO_DataObject
                 case 'MONEY':  // mssql and maybe others
                 case 'NUMERIC':
                 case 'NUMBER': // oci8 
-                    $type = DB_DATAOBJECT_INT; // should really by FLOAT!!! / MONEY...
+                    $type = PDO_DataObject::INT; // should really by FLOAT!!! / MONEY...
                     break;
                     
                 case 'YEAR':
-                    $type = DB_DATAOBJECT_INT; 
+                    $type = PDO_DataObject::INT; 
                     break;
                     
                 case 'BIT':
                 case 'BOOL':   
                 case 'BOOLEAN':   
                 
-                    $type = DB_DATAOBJECT_BOOL;
+                    $type = PDO_DataObject::BOOL;
                     // postgres needs to quote '0'
                     if ($dbtype == 'pgsql') {
-                        $type +=  DB_DATAOBJECT_STR;
+                        $type +=  PDO_DataObject::STR;
                     }
                     break;
                     
@@ -695,7 +696,7 @@ class PDO_DataObject_Generator extends PDO_DataObject
                 case 'INTEGER[]':   // postgres type
                 case 'BOOLEAN[]':   // postgres type
                 
-                    $type = DB_DATAOBJECT_STR;
+                    $type = PDO_DataObject::STR;
                     break;
                 
                 case 'TEXT':
@@ -703,29 +704,29 @@ class PDO_DataObject_Generator extends PDO_DataObject
                 case 'LONGTEXT':
                 case '_TEXT':   //postgres (?? view ??)
                     
-                    $type = DB_DATAOBJECT_STR + DB_DATAOBJECT_TXT;
+                    $type = PDO_DataObject::STR + PDO_DataObject::TXT;
                     break;
                 
                 
                 case 'DATE':    
-                    $type = DB_DATAOBJECT_STR + DB_DATAOBJECT_DATE;
+                    $type = PDO_DataObject::STR + PDO_DataObject::DATE;
                     break;
                     
                 case 'TIME':    
-                    $type = DB_DATAOBJECT_STR + DB_DATAOBJECT_TIME;
+                    $type = PDO_DataObject::STR + PDO_DataObject::TIME;
                     break;    
                     
                 
                 case 'DATETIME': 
                      
-                    $type = DB_DATAOBJECT_STR + DB_DATAOBJECT_DATE + DB_DATAOBJECT_TIME;
+                    $type = PDO_DataObject::STR + PDO_DataObject::DATE + PDO_DataObject::TIME;
                     break;    
                     
                 case 'TIMESTAMP': // do other databases use this???
                     
                     $type = ($dbtype == 'mysql' || $dbtype == 'mysqli') ?
-                        DB_DATAOBJECT_MYSQLTIMESTAMP : 
-                        DB_DATAOBJECT_STR + DB_DATAOBJECT_DATE + DB_DATAOBJECT_TIME;
+                        PDO_DataObject::MYSQLTIMESTAMP : 
+                        PDO_DataObject::STR + PDO_DataObject::DATE + PDO_DataObject::TIME;
                     break;    
                     
                 
@@ -737,7 +738,7 @@ class PDO_DataObject_Generator extends PDO_DataObject
                 case 'CLOB': // oracle character lob support
                 
                 case 'BYTEA':   // postgres blob support..
-                    $type = DB_DATAOBJECT_STR + DB_DATAOBJECT_BLOB;
+                    $type = PDO_DataObject::STR + PDO_DataObject::BLOB;
                     break;
                     
                 default:     
@@ -770,7 +771,7 @@ class PDO_DataObject_Generator extends PDO_DataObject
             }
             
             if (preg_match('/not[ _]null/i',$t->flags)) {
-                $type += DB_DATAOBJECT_NOTNULL;
+                $type += PDO_DataObject::NOTNULL;
             }
            
            
@@ -798,7 +799,7 @@ class PDO_DataObject_Generator extends PDO_DataObject
                 || (isset($t->autoincrement) && ($t->autoincrement === true))) {
                 
                 $sn = 'N';
-                if ($DB->phptype == 'pgsql' && !empty($m[2])) { 
+                if ($dbtype == 'pgsql' && !empty($m[2])) { 
                     $sn = preg_replace('/[("]+/','', $m[2]);
                     //echo urldecode($t->flags) . "\n" ;
                 }
@@ -1653,14 +1654,14 @@ class PDO_DataObject_Generator extends PDO_DataObject
             }  
         
             if (in_array($dbtype , array( 'mysql', 'mysqli', 'mssql', 'ifx')) && 
-                ($table[$usekey] & DB_DATAOBJECT_INT) && 
+                ($table[$usekey] & PDO_DataObject::INT) && 
                 isset($realkeys[$usekey]) && ($realkeys[$usekey] == 'N')
                 ) {
                 // use native sequence keys.
                 $ar =  array($usekey,true,$seqname);
             } else {
                 // use generated sequence keys..
-                if ($table[$usekey] & DB_DATAOBJECT_INT) {
+                if ($table[$usekey] & PDO_DataObject::INT) {
                     $ar = array($usekey,false,$seqname);
                 }
             }
@@ -1723,17 +1724,17 @@ class PDO_DataObject_Generator extends PDO_DataObject
                     $defaults[$ar['Field']]  = 'null';
                     break;
                 
-                case ($type & DB_DATAOBJECT_DATE): 
-                case ($type & DB_DATAOBJECT_TIME): 
-                case ($type & DB_DATAOBJECT_MYSQLTIMESTAMP): // not supported yet..
+                case ($type & PDO_DataObject::DATE): 
+                case ($type & PDO_DataObject::TIME): 
+                case ($type & PDO_DataObject::MYSQLTIMESTAMP): // not supported yet..
                     break;
                     
-                case ($type & DB_DATAOBJECT_BOOL): 
+                case ($type & PDO_DataObject::BOOL): 
                     $defaults[$ar['Field']] = (int)(boolean) $ar['Default'];
                     break;
                     
                 
-                case ($type & DB_DATAOBJECT_STR): 
+                case ($type & PDO_DataObject::STR): 
                     $defaults[$ar['Field']] =  "'" . addslashes($ar['Default']) . "'";
                     break;
                 
