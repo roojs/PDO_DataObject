@@ -29,6 +29,8 @@ print_r($obj->databaseStructure('anotherdb', false));
 
 
 
+
+/*
 // -- normally disabled - used to geenrate the test data...
 
 echo "\n\nREAL DATABASE CONNECT - NOT IN FINAL TEST\n";
@@ -60,7 +62,7 @@ print_r($obj->databaseStructure('xtuplehk'));
 PDO_DataObject::$config['PDO'] = 'PDO_Dummy';
 
 
-
+*/
 
 
 // test structure from introspection
@@ -76,8 +78,7 @@ print_r($obj->databaseStructure('anotherdb'));
 
 
 
-print_r($obj->databaseStructure('anotherdb'));
-
+ 
 // postgresql
 echo "\n\nDATABASE INSTROSPECT - mysql postgres dummyu\n";
  
