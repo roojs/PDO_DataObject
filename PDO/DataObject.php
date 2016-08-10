@@ -2283,9 +2283,9 @@ class PDO_DataObject
             // will not get here....
         }
           
-        if (!$this->_database) {
-            $this->PDO();
-        }
+        //if (!$this->_database) {
+        $this->PDO();
+        //}
         
          
         // if this table is already loaded this table..
