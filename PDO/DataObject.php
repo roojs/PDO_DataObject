@@ -199,6 +199,14 @@ class PDO_DataObject
      * @var     string
      */
     public $__table = '';  // database table
+    /**
+     * The Database nick-name (usually matches the real database name, but may not..)
+     * created in __connection
+     *
+     * @access  private (ish) - extended classes can overide this
+     * @var  string
+     */
+    public $_database = false;
 
     /**
      * When the current query started.
@@ -231,15 +239,7 @@ class PDO_DataObject
      */
     private $_result = false;
     
-    /**
-     * The Database nick-name (usually matches the real database name, but may not..)
-     * created in __connection
-     *
-     * @access  private (ish) - extended classes can overide this
-     * @var  string
-     */
-    public $_database = false;
-
+    
     
 
     /**
@@ -248,7 +248,7 @@ class PDO_DataObject
      * @access  public
      * @var     int
      */
-    public $N = 0;  // Number of rows returned from a query
+    public $N = false;  // Number of rows returned from a query
     /**
      * The QUERY rules
      * This replaces alot of the private variables 
