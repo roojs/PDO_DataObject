@@ -5,6 +5,10 @@ databaseStructure
 require_once 'includes/init.php';
 PDO_DataObject::debugLevel(0);
 
+PDO_DataObject::config()
+
+
+
 echo "\n\nSINGLE INI FILE \n";
 
 // test structure from single ini file
