@@ -285,7 +285,19 @@ class PDO_DataObject
      */
     public $_join = '';
 
-  
+    /**
+     * array of links.. - if relivant.
+     * NOTE - only defined if created by PDO_DataObject_Links
+     * Not generally recommended -- JOIN or using the generator is a better method of
+     * cross referencing related objects.
+     *
+     * @access  private
+     * @var     boolean | array
+     */
+    // var $_link_loaded = false;
+    
+    
+    
     /**
      * connects to the database
      *
@@ -3050,14 +3062,7 @@ class PDO_DataObject
     
     
     
-    /**
-     * Have the links been loaded?
-     * if they have it contains a array of those variables.
-     *
-     * @access  private
-     * @var     boolean | array
-     */
-    var $_link_loaded = false;
+    
     
     /**
     * Get the links associate array  as defined by the links.ini file.
