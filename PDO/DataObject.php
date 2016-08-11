@@ -318,6 +318,9 @@ class PDO_DataObject
         if ($cfg === false) {
             return;
         }
+        if (self::$debug) {
+            $this->debug(json_encode(func_get_args()), __FUNCTION__,1);
+        }
         if (!is_array($cfg)) {
             $cfg = explode('/', $cfg);
         }
@@ -328,8 +331,11 @@ class PDO_DataObject
         }
         // only supplied table..
         if (isset(self::$config['tables'][$this->__table])) {
+            
             $this->_database = self::$config['tables'][$this->__table];
+            
         }
+        
         
         
         // should this trigger a tableStructure..
