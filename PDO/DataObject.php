@@ -208,7 +208,7 @@ class PDO_DataObject
      */
     private $_time_query_start = 0;
     
-    
+   
     /* ---------------- ---------------- connecting to the database  -------------------------------- */
 
     
@@ -221,7 +221,15 @@ class PDO_DataObject
      * @var     string
      */
     private $_database_dsn_md5 = '';
-
+    /**
+     * The PDOStatement Result object.
+     * created in _query()
+     *
+     * @access  private 
+     * @var  PDOStatement|StdClass|false
+     */
+    private $_result = false;
+    
     /**
      * The Database nick-name (usually matches the real database name, but may not..)
      * created in __connection
@@ -232,14 +240,14 @@ class PDO_DataObject
     public $_database = false;
 
     
+
     /**
-     * The PDOStatement Result object.
-     * created in _query()
+     * The Number of rows returned from a query
      *
-     * @access  private 
-     * @var  PDOStatement|StdClass|false
+     * @access  public
+     * @var     int
      */
-    private $_result = false;
+    public $N = 0;  // Number of rows returned from a query
 
     /**
      * connects to the database
@@ -526,15 +534,7 @@ class PDO_DataObject
 
     
      
-    
-    /**
-     * The Number of rows returned from a query
-     *
-     * @access  public
-     * @var     int
-     */
-    var $N = 0;  // Number of rows returned from a query
-
+ 
     /* ============================================================= */
     /*                      Major Public Methods                     */
     /* (designed to be optionally then called with parent::method()) */
