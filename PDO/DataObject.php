@@ -2305,12 +2305,44 @@ class PDO_DataObject
         // if we have a really simple format - do that here.. otherwise pass to introspection to sort out.
         
         // uses 'ini_* settings..
-        if (isset(self::$config['ini_'. $this->_database ])) {
-            return call_user_func_array(
-                    array($this->_introspection(), 'databaseStructure'),
-                    $args);
+        $schemas = array();
+        
+        if (is_array(self::$config['config_schema'])) {
+            $schemas = is_array(PDO_DataObject::$config['config_schema'][$database]) ?
+                PDO_DataObject::$config['config_schema'][$database]:
+                explode(PATH_SEPARATOR,PDO_DataObject::$config['config_schema'][$database]);
+        
+        
+        if (is_string(self::$config['config_schema'])) {
+            $locs = explode(PATH_SEPARATOR,PDO_DataObject::$config['config_schema']);
+        } else {
+            
         }
         
+         $schemas = is_array(PDO_DataObject::$config["ini_{$database}"]) ?
+            PDO_DataObject::$config["ini_{$database}"] :
+            explode(PATH_SEPARATOR,PDO_DataObject::$config["ini_{$database}"]);
+        
+                    
+         
+        $ini_out  = array();
+        foreach ($schemas as $ini) {
+            if (empty($ini)) {
+                continue;
+            }
+            if (!file_exists($ini) || !is_file($ini) || !is_readable ($ini)) {
+                $this->do->debug("ini file is not readable / does not exist: $ini","databaseStructure",1);
+                return $this->do->raiseError( "Unable to load schema for database and table (turn debugging up to 5 for full error message)",
+                                   PDO_DataObject::ERROR_INVALIDARGS, PDO_DataObject::ERROR_DIE);
+       
+            }
+            $ini_out = array_merge(
+                $ini_out,
+                parse_ini_file($ini, true)
+            );
+                
+             
+        }
         $ini = rtrim(self::$config['schema_location'] ,'/') .'/'. $database .'.ini';
         
         if (!file_exists($ini) || !is_file($ini) || !is_readable ($ini)) {
