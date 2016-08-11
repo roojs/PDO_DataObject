@@ -221,8 +221,9 @@ class PDO_DataObject
      * @var     string
      */
     private $_database_dsn_md5 = '';
+    
     /**
-     * The PDOStatement Result object.
+     * The PDOStatement Result object. ?? accesable by ??? result() ????
      * created in _query()
      *
      * @access  private 
