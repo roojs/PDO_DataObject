@@ -317,8 +317,7 @@ dont_use_pear_sequences <<??? need to work out how this affects our code.!?!?
 -----------
 Backward Compatibility Breaks. / removed features..
 
-Directly accessing database (BC BREAK!)
-getDatabaseConnection() -- use PDO() - however API is different...
+getDatabaseConnection() removed -- use PDO() - however API is different... (IMPORTANT)
 config:: debug_ignore_updates << removed. (use config[PDO] == {fake PDO}
 staticGet -- removed? - create your own cache layer .. it's pretty trivial.
 fetchRow  -- removed (use PDO()->fetch(...))
