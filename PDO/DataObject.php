@@ -2356,7 +2356,7 @@ class PDO_DataObject
                 
                
         // are table name lowecased..
-        if (self::$config['portability'] & 1) {
+        if (self::$config['portability'] & self::PORTABILITY_LOWERCASE) {
             foreach($ini_out as $k=>$v) {
                 // results in duplicate cols.. but not a big issue..
                 $ini_out[strtolower($k)] = $v;
