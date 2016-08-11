@@ -117,12 +117,12 @@ class PDO_DataObject
                 // String = directory, or list of directories (with path Seperator..)
                 //         eg. if your database schema is in /var/www/mysite/Myproejct/DataObject/mydb.ini
                 //         then schema_location = /var/www/mysite/Myproejct/DataObject/
-                //         you can use path seperator if there are multiple paths. and combined                
+                //              you can use path seperator if there are multiple paths. and combined           
                 
                 // Array = map of database names to exact locations.
                 //         eg.
                 //         mydb => /var/www/mysite/Myproejct/DataObject/mydb.ini
-                //              ?? should this support PATH_SEPERATOR????
+                //              value can be an array of absolute paths, or PATH_SEPERATED
                 
                 
             
@@ -2307,10 +2307,16 @@ class PDO_DataObject
         // uses 'ini_* settings..
         $schemas = array();
         
-        if (is_array(self::$config['config_schema'])) {
-            $schemas = is_array(PDO_DataObject::$config['config_schema'][$database]) ?
-                PDO_DataObject::$config['config_schema'][$database]:
-                explode(PATH_SEPARATOR,PDO_DataObject::$config['config_schema'][$database]);
+        if (is_array(self::$config['schema_location'])) {
+            if (!isset(PDO_DataObject::$config['schema_location'][$database])) {
+                $this->raiseError("Could not find configuration for database $database in schema_location",
+                        self::ERROR_INVALIDCONFIG, self::ERROR_DIE
+                );
+            }
+            
+            $schemas = is_array(PDO_DataObject::$config['schema_location'][$database]) ?
+                PDO_DataObject::$config['schema_location'][$database]:
+                explode(PATH_SEPARATOR, PDO_DataObject::$config['schema_location'][$database]);
         
         
         if (is_string(self::$config['config_schema'])) {
