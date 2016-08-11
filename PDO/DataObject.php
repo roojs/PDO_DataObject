@@ -198,7 +198,7 @@ class PDO_DataObject
      * @access  semi-private (not recommened - by you can modify it...)
      * @var     string
      */
-    var $__table = '';  // database table
+    public $__table = '';  // database table
 
     /**
      * When the current query started.
