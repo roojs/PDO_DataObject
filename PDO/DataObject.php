@@ -572,24 +572,17 @@ class PDO_DataObject
             $cfg[$k] = $value;
         }
          
-        if (is_array($cfg)) {
-        
-            foreach ($cfg as $k=>$v) {
-                if (!isset(self::$config[$k])) {
-                    $this->raiseError("Invalid Configuration setting : $k",
-                            self::ERROR_INVALIDCONFIG, self::ERROR_DIE);
-                }
-                self::$config[$k] = $v;
-            }
-            if (isset($cfg['debug'])) {
-                self::$debug = $cfg['debug'];
-            }
-        }
-        
-            $k = $cfg;
+    
+    
+        foreach ($cfg as $k=>$v) {
             if (!isset(self::$config[$k])) {
-                $this->raiseError("Invalid Configuration setting : $k", self::ERROR_INVALIDCONFIG, self::ERROR_DIE);
+                $this->raiseError("Invalid Configuration setting : $k",
+                        self::ERROR_INVALIDCONFIG, self::ERROR_DIE);
             }
+            self::$config[$k] = $v;
+        }
+        if (isset($cfg['debug'])) {
+            self::$debug = $cfg['debug'];
         }
         
         
