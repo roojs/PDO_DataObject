@@ -129,9 +129,6 @@ echo "\n\nDATABASE INSTROSPECT - mysql dummy\n";
 (new PDO_DataObject())->reset();
 
 
-PDO_DataObject::$config['tables']['Events']='anotherdb';
-
-$obj = new PDO_DataObject('mysql_anotherdb/Events');
 PDO_DataObject::config(
     array(
         'schema_location' => false,
@@ -139,14 +136,17 @@ PDO_DataObject::config(
         'proxy' => true,
     )
 );
+
+$obj = new PDO_DataObject('mysql_anotherdb/Events');
 print_r($obj->databaseStructure('anotherdb'));
 
 
 
  
 // postgresql
-echo "\n\nDATABASE INSTROSPECT - mysql postgres dummyu\n";
+echo "\n\nDATABASE INSTROSPECT - postgres dummyu\n";
 (new PDO_DataObject())->reset();
+
 PDO_DataObject::$config['tables']['accnt']='xtuplehk';
 PDO_DataObject::$config['databases']['xtuplehk']='pgsql://user:nopass@localhost/xtuple';
 PDO_DataObject::$config['proxy'] = true;
