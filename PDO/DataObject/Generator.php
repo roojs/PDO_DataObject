@@ -112,7 +112,7 @@ class PDO_DataObject_Generator extends PDO_DataObject
      */
     function start()
     {
-        $options = PDO::$config;
+        $options = PDO::config();
         
         $databases = array();
         foreach($options as $k=>$v) {
@@ -593,7 +593,7 @@ class PDO_DataObject_Generator extends PDO_DataObject
     function _generateDefinitionsTable()
     {
         
-        $options = PDO_DataObject::$config;
+        $options = PDO_DataObject::config();
         
         $defs = $this->_definitions[$this->table];
         
@@ -1335,7 +1335,7 @@ class PDO_DataObject_Generator extends PDO_DataObject
         }
         
         $this->_database  = $database; 
-        $options = PDO_DataObject::$config;
+        $options = PDO_DataObject::config();;
         $pdo = $this->PDO();
       
         $table = trim($table);
