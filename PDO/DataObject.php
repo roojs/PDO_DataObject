@@ -2705,7 +2705,7 @@ class PDO_DataObject
     {
         $pdo = $this->PDO();
 
-        
+        $dbtype = $pdo->getAttribute(PDO::ATTR_DRIVER_NAME);
 
         //$options = $_DB_DATAOBJECT['CONFIG'];
         
@@ -2757,7 +2757,8 @@ class PDO_DataObject
         for ($tries = 0;$tries < 3;$tries++) {
             
             try {
-                if ($pdo->getAttribute(PDO::ATTR_DRIVER_NAME) == 'sqlite') {
+                // not sure if needed..
+                if ($dbtype  == 'sqlite') {
                     $result = $pdo->prepare($string);
                     $result->execute();
                 } else {
