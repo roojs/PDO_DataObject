@@ -32,7 +32,9 @@
   
 class PDO_DataObject_Introspection
 {
-    
+    /**
+     * @var PDO_DataObject $do - the dataobject.
+     */
     protected $do;
     
     /**
@@ -260,6 +262,9 @@ class PDO_DataObject_Introspection
         
         return $ret;
     }
+    
+    // we could put a generic tableInfo here... - using ColumnMeta ??
+    
     
 }
 
