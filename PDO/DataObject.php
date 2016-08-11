@@ -323,7 +323,7 @@ class PDO_DataObject
         }
         $this->__table = count($cfg) > 1 ? $cfg[1] : $cfg[0];
         if (count($cfg) > 1) {
-            $this->_database = $cfg;
+            $this->_database = $cfg[0];
         }
         
         // should this trigger a tableStructure..
@@ -2248,7 +2248,7 @@ class PDO_DataObject
         
         
         // Assignment code    
-        if ($args && $inidata !== false) {
+        if ($args && count($args > 0)) {
         
             // databaseStructure('mydb',   a$tabledatarray(.... schema....), array( ... links')
             if ($inidata !== false) {
@@ -2328,7 +2328,7 @@ class PDO_DataObject
             if (empty($ini)) {
                 continue;
             }
-            $fn = $suffix ? rtirm($ini ,'/') . $suffix : $ini;
+            $fn = $suffix ? rtrim($ini ,'/') . $suffix : $ini;
             $tried[] = $fn;
             if (!file_exists($fn) || !is_file($fn) || !is_readable ($fn)) {
                 continue;
@@ -2336,7 +2336,7 @@ class PDO_DataObject
             
             $ini_out = array_merge(
                 $ini_out,
-                parse_ini_file($ini, true)
+                parse_ini_file($fn, true)
             );
                 
              
@@ -4771,10 +4771,8 @@ class PDO_DataObject
         if (self::$config['exceptions']) {
             //?? is this it???
             
-            $ex =  new Exception($message, $type, $previous_exception);
-            self::$lasterror = $error;
-            $this->_lastError = $error;
-            throw $ex;
+            throw  new Exception($message, $type, $previous_exception);
+            
         }
         
          
@@ -4790,8 +4788,6 @@ class PDO_DataObject
           
         if (PEAR::isError($message)) {
             $error = $message;
-            self::$lasterror = $error;
-            $this->_lastError = $error;
             return $error;
         }
         
@@ -4804,9 +4800,7 @@ class PDO_DataObject
         // this will never work totally with PHP's object model.
         // as this is passed on static calls (like staticGet in our case)
  
-        self::$lasterror = $error;
-        $this->_lastError = $error;
-   
+        
         return $error;
     }
 
