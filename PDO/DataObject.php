@@ -2314,13 +2314,13 @@ class PDO_DataObject
             $schemas = is_array(PDO_DataObject::$config['schema_location'][$database]) ?
                 PDO_DataObject::$config['schema_location'][$database]:
                 explode(PATH_SEPARATOR, PDO_DataObject::$config['schema_location'][$database]);
-        }
-        
-        if (is_string(self::$config['schema_location'])) {
+        } else if (is_string(self::$config['schema_location'])) {
             $schemas  = explode(PATH_SEPARATOR,PDO_DataObject::$config['schema_location']);
             $suffix = '/'. $database .'.ini';
         } else {
-            
+            $this->raiseError("Invalid format for config[schema_location[",
+                            self::ERROR_INVALIDCONFIG, self::ERROR_DIE
+            );
         }
         $tried = array();
         $ini_out  = array();
