@@ -8,8 +8,7 @@ $base_config = PDO_DataObject::config();
 
 
 
-PDO_DataObject::config(array_merge(
-    PDO_DataObject::config(),
+PDO_DataObject::config(
     array(
         'databases' => array(
             'mysql_somedb' => 'mysql://username:test@localhost:3344/somedb',
@@ -18,7 +17,7 @@ PDO_DataObject::config(array_merge(
         ),
         'debug' => 3,
     )
-));
+);
 
 
 
@@ -36,22 +35,33 @@ echo "\n\MULTIPLE LOCATIONS INI FILES\n";
 (new PDO_DataObject())->reset();
 
 
-PDO_DataObject::config(array_merge(
-    PDO_DataObject::config(),
+PDO_DataObject::config(
     array(
-        'schema_location' => __DIR__.'/includes'.PATH_SEPARATOR .__DIR__.'/includes/ini_test'
+        'schema_location' => __DIR__.'/includes'.PATH_SEPARATOR .__DIR__.'/includes/test_ini'
     )
-));
+);
 // test structure from two ini files. (using database)
 
 $obj = new PDO_DataObject('mysql_anotherdb/account_transaction');
-
-// does not actually connect to the DB - as we only do a db connection if we do not know the database name..
 print_r($obj->databaseStructure('mysql_anotherdb'));
 
 
+// -- TO ADD::: - exact location ...
+
+echo "\n\EXACT LOCATIONS INI FILES\n";
+(new PDO_DataObject())->reset();
+
+PDO_DataObject::config(
+    array(
+        'schema_location' => array(
+            'mysql_anotherdb' => __DIR__.'/includes/test_ini/mysql_anotherdb.ini'
+    )
+);
+$obj = new PDO_DataObject('mysql_anotherdb/account_transaction');
+print_r($obj->databaseStructure('mysql_anotherdb'));
 
 
+ 
 
 /*
 // -- normally disabled - used to geenrate the test data...
