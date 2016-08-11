@@ -21,10 +21,10 @@ a) skeleton class
      INI:: PDO_DataObject::$ini
      LINKS:: PDO_DataObject::$links
      SEQUENCE:: PDO_DataObject::$sequence ??? -- cache of sequence keys (modifyable)
-     LASTERROR  PDO_DataObject::$last_error -- just used for reference by others.
-     CACHE -- part of staticGet? - should we remove this?
-     OVERLOADED -- remove
-     QUERYENDTIME -- we can probably add this to the $_pdo_result / PDOStatement Object
+     LASTERROR  removed 
+     CACHE removed -- part of staticGet? - should we remove this?
+     OVERLOADED -- removed
+     QUERYENDTIME -- stored in $this->_result->time_query_end;
 
     debug - callinging LoadConfig with 'debug' - sets self::$debug (not stored in self::$config['debug'])
     
@@ -328,7 +328,8 @@ free  -- reset() does something similar,
 
 $do->_database_dsn - removed - this was a security hole wating to fail... (Accidental print_r's etc...)
 $do->_DB_resultid removed
-$do->_lastError - removed - use PDO_DataObject::$lastError  -- not really recommended anyway.
+$do->_lastError - removed - ?? Not sure if this is every used anymore..
+
 
 
 
