@@ -544,10 +544,9 @@ class PDO_DataObject
     }
     
     /**
-     * Set the global configuration...
+     * Set/get the global configuration...
      * Used to be via PEAR::getStaticProperty() - now depricated..
      *
-     * ?? should we use this as a generic 'set config' - and make the config private?
      * 
      * @param   array  key/value - see self::$config
      * @static
@@ -555,15 +554,26 @@ class PDO_DataObject
      * @return - the current config..
      */
      
-    public static function config($cfg = array()) 
+    public static function config($cfg = array(), $value=false) 
     {
         self::_loadPEARConfig();
-        foreach ($cfg as $k=>$v) {
-            self::$config[$k] = $v;
+        
+        if (is_array($cfg)) {
+        
+            foreach ($cfg as $k=>$v) {
+                self::$config[$k] = $v;
+            }
+            if (isset($cfg['debug'])) {
+                self::$debug = $cfg['debug'];
+            }
         }
-        if (isset($cfg['debug'])) {
-            self::$debug = $cfg['debug'];
+        if (func_num_args() > 1) {
+            if (!isset(self::$config[$k])) {
+                $this->raiseError("Invalid Configuration setting : $k");
+            }
         }
+        
+        
         return self::$config;
     }
     
