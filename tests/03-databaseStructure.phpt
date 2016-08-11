@@ -5,7 +5,14 @@ databaseStructure
 require_once 'includes/init.php';
 PDO_DataObject::debugLevel(0);
 
-PDO_DataObject::config()
+PDO_DataObject::config(array_merge
+    PDO_DataObject::config(),
+    array(
+        'databases' => array(
+            'mysql_somedb' => 'mysql://username:test@localhost:3344/somedb';
+        )
+    )
+);
 
 
 
