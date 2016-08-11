@@ -40,7 +40,7 @@ echo "\n\TWO INI FILES\n";
 $obj = new PDO_DataObject('mysql_anotherdb/account_transaction');
 
 // does not actually connect to the DB - as we only do a db connection if we do not know the database name..
-print_r($obj->databaseStructure('anotherdb', false));
+print_r($obj->databaseStructure('mysql_anotherdb', false));
 
 
 
