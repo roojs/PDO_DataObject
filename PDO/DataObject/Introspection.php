@@ -48,23 +48,9 @@ class PDO_DataObject_Introspection
         
     }
     /**
-     * 'complex' version of databaseStructure - this is not so 'speed sensitive'
+     * 'proxy' version of databaseStructure - this is not so 'speed sensitive'
      * only used when
      * b) proxy is set..
-     * c) ini_**** is set...
-     *
-     *
-     *
-     *    
-     * usage :
-     * DB_DataObject::databaseStructure(  'databasename',
-     *                                    parse_ini_file('mydb.ini',true), 
-     *                                    parse_ini_file('mydb.link.ini',true)); 
-     *
-     * 1 argument:
-     * DB_DataObject::databaseStructure(  'databasename')
-     *  - returns the structure
-     *  - always calls generator...
      
     *
      *  - set's the structure.. and the links data..
@@ -81,9 +67,11 @@ class PDO_DataObject_Introspection
      * @return (varies) - depends if you are setting or getting...
      */
     
-    function databaseStructure()
+    function databaseStructureProxy($database, $table = false)
     {
-        $proxy = PDO_DataObject::$config['proxy'];
+
+
+        
          
         
         // Generator code
@@ -214,6 +202,9 @@ class PDO_DataObject_Introspection
          
         
     }
+    
+    
+    
     /**
      * Create an instance of the generator.
      *
