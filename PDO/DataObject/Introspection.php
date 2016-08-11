@@ -70,21 +70,15 @@ class PDO_DataObject_Introspection
     function databaseStructureProxy($database, $table = false)
     {
 
-
-        
-         
-        
-        // Generator code
-        
-        if ($args = func_get_args()) { 
-             
-                // this returns all the tables and their structure..
-                
-            $this->do->debug("Loading Generator as databaseStructure called with args for database = {$args[0]}",1);
+        $config = PDO_DataObject::config();
+        if ($table === false) {
+            // get all 
+            $this->do->debug("Loading Generator as databaseStructure called with args for database = {$database}",1);
+            
             
             
             $x = new PDO_DataObject();
-            $x->database( $args[0]);
+            $x->database( $database );
             $x->PDO();
             $cls = get_class($this);
              
@@ -93,17 +87,20 @@ class PDO_DataObject_Introspection
             if (empty($tables)) {
                 $this->do->raiseError("Could not introspect database, no table returned from getListOf(tables)");
             }
-               
-            foreach($tables as $table) {
-                
-                $this->_generator()->fillTableSchema($x->database(), $table);
-                
-            }
+        } else {
+            $tables = array($tables);
+        }
+        
+        foreach($tables as $table) {
+            
+            $this->_generator()->fillTableSchema($x->database(), $table);
+            
+        }
             // prevent recursion...
             
-            PDO_DataObject::$config['proxy'] = false;
-            $ret = $x->databaseStructure($x->database(),false); 
-            PDO_DataObject::$config['proxy'] = $proxy;
+        PDO_DataObject::config('proxy', false);
+        $ret = $x->databaseStructure($x->database()); 
+        PDO_DataObject::config($config );
             return $ret;
             // databaseStructure('mydb',   array(.... schema....), array( ... links')
          
