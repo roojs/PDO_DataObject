@@ -203,15 +203,7 @@ class PDO_DataObject
      * @var  string
      */
     public $_database = false;
-
-    /**
-     * When the current query started.
-     *
-     * @access  private
-     * @var     number
-     */
-    private $_time_query_start = 0;
-    
+ 
    
     /* ---------------- ---------------- connecting to the database  -------------------------------- */
 
@@ -898,7 +890,7 @@ class PDO_DataObject
                 $t= explode(' ',microtime());
             
                 $this->debug("Last Data Fetch'ed after " . 
-                        number_format($t[0]+$t[1]- $this->_time_query_start ,3) . 
+                        number_format($t[0]+$t[1]- $this->_result->time_query_end ,3) . 
                         " seconds",
                     "FETCH", 1);
             }
