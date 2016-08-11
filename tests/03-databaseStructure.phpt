@@ -32,7 +32,7 @@ print_r($obj->databaseStructure('mysql_somedb'));
 
 
 
-echo "\n\FROM ANOTHER DATABASE INI FILES\n";
+echo "\n\MULTIPLE LOCATIONS INI FILES\n";
 (new PDO_DataObject())->reset();
  
 // test structure from two ini files. (using database)
