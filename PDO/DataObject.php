@@ -4810,7 +4810,7 @@ class PDO_DataObject
                     is_object($this->{$do}) &&
                     method_exists($this->{$do}, 'free')
                 ) {
-                $this->{$do}->_resut = free;
+                $this->{$do}->free();
             }
         }
         
