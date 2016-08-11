@@ -2248,7 +2248,7 @@ class PDO_DataObject
         
         
         // Assignment code    
-        if (count($args > 1)) {
+        if (count($args) > 1) {
             
             // databaseStructure('mydb',   a$tabledatarray(.... schema....), array( ... links')
             if ($inidata !== false) {
@@ -2256,7 +2256,7 @@ class PDO_DataObject
                     self::$ini[$database] + $inidata :
                     $inidata;
             }
-            if (count($args) > 2 && $linksdata !== false)  {
+            if ($linksdata !== false)  {
                 self::$links[$database] = isset(self::$links[$database]) && !$overwrite ?  
                     self::$links[$database] + $linksdata :
                     $linksdata;
@@ -2334,7 +2334,7 @@ class PDO_DataObject
             if (!file_exists($fn) || !is_file($fn) || !is_readable ($fn)) {
                 continue;
             }
-            
+            $this->debug("load schema from: ". $fn , "SCHEMA", 3);
             $ini_out = array_merge(
                 $ini_out,
                 parse_ini_file($fn, true)

@@ -34,7 +34,14 @@ print_r($obj->databaseStructure('mysql_somedb'));
 
 echo "\n\MULTIPLE LOCATIONS INI FILES\n";
 (new PDO_DataObject())->reset();
- 
+
+
+PDO_DataObject::config(array_merge(
+    PDO_DataObject::config(),
+    array(
+        'schema_location' => __DIR__.'/includes'.PATH_SEPARATOR .__DIR__.'/includes/ini_test'
+    )
+));
 // test structure from two ini files. (using database)
 
 $obj = new PDO_DataObject('mysql_anotherdb/account_transaction');
