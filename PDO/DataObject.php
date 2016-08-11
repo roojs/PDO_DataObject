@@ -2352,16 +2352,18 @@ class PDO_DataObject
             );
         }
         
-        self::$ini[$database] =  $ini_out;
+        
                 
                
         // are table name lowecased..
         if (self::$config['portability'] & 1) {
-            foreach(self::$ini[$database] as $k=>$v) {
+            foreach($ini_out as $k=>$v) {
                 // results in duplicate cols.. but not a big issue..
-                self::$ini[$database ][strtolower($k)] = $v;
+                $ini_out[strtolower($k)] = $v;
             }
         }
+        
+        self::$ini[$database] =  $ini_out;
         
         // now have we loaded the structure.. 
         
