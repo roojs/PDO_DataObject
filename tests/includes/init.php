@@ -8,6 +8,7 @@ PDO_DataObject::loadConfig(array(
     'database' => 'mysql://user:pass@localhost/testdb',
     'PDO' => 'PDO_Dummy',
     'debug' => 5,
+    'schema_location' => dirname(__FILE__),
     
 ));
 
