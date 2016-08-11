@@ -2293,9 +2293,7 @@ class PDO_DataObject
         // if we are configured to use the proxy..
         
         if ( self::$config['proxy'])   {
-            return call_user_func_array(
-                    array($this->_introspection(), 'databaseStructureProxy'),
-                    $args);
+            return $this->_introspection()->databaseStructureProxy($database);
         }
             
         // basic idea here..
