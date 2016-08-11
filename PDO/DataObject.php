@@ -4796,32 +4796,24 @@ class PDO_DataObject
      */
     function free() 
     {
-        global $_DB_DATAOBJECT;
-          
-        if (isset($_DB_DATAOBJECT['RESULTFIELDS'][$this->_DB_resultid])) {
-            unset($_DB_DATAOBJECT['RESULTFIELDS'][$this->_DB_resultid]);
+        
+        self::$connections = array();
+        
+        $this->_result = false;
+        
+        if (!is_array($this->_link_loaded)) {
+            return;
         }
-        if (isset($_DB_DATAOBJECT['RESULTS'][$this->_DB_resultid])) {     
-            unset($_DB_DATAOBJECT['RESULTS'][$this->_DB_resultid]);
-        }
-        // clear the staticGet cache as well.
-        $this->_clear_cache();
-        // this is a huge bug in DB!
-        if (isset($_DB_DATAOBJECT['CONNECTIONS'][$this->_database_dsn_md5])) {
-            $_DB_DATAOBJECT['CONNECTIONS'][$this->_database_dsn_md5]->num_rows = array();
-        }
-
-        if (is_array($this->_link_loaded)) {
-            foreach ($this->_link_loaded as $do) {
-                if (
-                        !empty($this->{$do}) &&
-                        is_object($this->{$do}) &&
-                        method_exists($this->{$do}, 'free')
-                    ) {
-                    $this->{$do}->free();
-                }
+        foreach ($this->_link_loaded as $do) {
+            if (
+                    !empty($this->{$do}) &&
+                    is_object($this->{$do}) &&
+                    method_exists($this->{$do}, 'free')
+                ) {
+                $this->{$do}->free();
             }
         }
+        
 
         
     }
