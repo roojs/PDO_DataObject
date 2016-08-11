@@ -310,7 +310,7 @@ class PDO_DataObject
         if (count($cfg) > 1) {
             $this->_database = $cfg;
         }
-        
+        // should this trigger a tableStructure..
     }
     
     
