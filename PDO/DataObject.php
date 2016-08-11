@@ -68,14 +68,12 @@ class PDO_DataObject
      * used by config[portability]
      */
     
-    const PORTABILITY_LOWERCASE =  1;  // from PEAR_ERROR_DIE
+    const PORTABILITY_LOWERCASE =  1;  // from Pear DB compatibility options..
     
     /**
-     * #FIXME - MAY BE REMOVED...
-     * Theses are the standard error codes, most methods will fail silently - and return false
-     * to access the error message either use $table->_lastError
-     * or $last_error = PEAR::getStaticProperty('DB_DataObject','lastError');
-     * the code is $last_error->code, and the message is $last_error->message (a standard PEAR error)
+     * 
+     * Theses are the standard error codes - 
+     * 
      */
     
     const ERROR_INVALIDARGS =   -1;  // wrong args to function
@@ -163,8 +161,12 @@ class PDO_DataObject
     );
     
     static $debug = 0;
-    
-    
+    /**
+     * The last error that occured. - not really needed anymore.. 
+     *
+     */
+    static $lastError   = false; // pear error objects for last error event. accesss with lastError() ???
+  
     private static $config_loaded = false; // flag to indicate if we have attempted to load config from PEAR::getStaticProperty
     
     
@@ -187,8 +189,7 @@ class PDO_DataObject
     private static $sequence = array(); 
     
     
-    private static $lasterror   = false; // pear error objects for last error event. accesss with lastError() ???
-    
+     
     
     /* ---------------- ---------------- non-static  -------------------------------- */
     
