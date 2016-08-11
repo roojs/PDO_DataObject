@@ -4288,10 +4288,9 @@ class PDO_DataObject
  
     /**
      * Gets the DB result object related to the objects active query
-     *  - so you can use funky pear stuff with it - like pager for example.. :)
      *
      * @access public
-     * @return object The DB result object
+     * @return PDOStatement 
      */
      
     function result()
