@@ -535,7 +535,8 @@ class PDO_DataObject
         $cfg = PEAR::getStaticProperty('PDO_DataObject','options');
         foreach ($cfg as $k=>$v) {
             if (!isset(self::$config[$k])) {
-                $this->raiseError("Invalid PEAR PDO_DataObject Configuration setting : $k", self::ERROR_INVALIDCONFIG, self::ERROR_DIE);
+                $this->raiseError("Invalid PEAR PDO_DataObject Configuration setting : $k",
+                                  self::ERROR_INVALIDCONFIG, self::ERROR_DIE);
             }
             self::$config[$k] = $v;
         }
@@ -561,11 +562,17 @@ class PDO_DataObject
     {
         self::_loadPEARConfig();
         
+        if (func_num_args() > 1 && is_array($cfg)) {
+            $this->raiseError("Invalid Call to config Array+anther value",
+                              self::ERROR_INVALIDARGS, self::ERROR_DIE);
+        }
+        
         if (is_array($cfg)) {
         
             foreach ($cfg as $k=>$v) {
                 if (!isset(self::$config[$k])) {
-                    $this->raiseError("Invalid Configuration setting : $k", self::ERROR_INVALIDCONFIG, self::ERROR_DIE);
+                    $this->raiseError("Invalid Configuration setting : $k",
+                            self::ERROR_INVALIDCONFIG, self::ERROR_DIE);
                 }
                 self::$config[$k] = $v;
             }
@@ -573,7 +580,8 @@ class PDO_DataObject
                 self::$debug = $cfg['debug'];
             }
         }
-        if (func_num_args() > 1) {
+        
+            $k = $cfg;
             if (!isset(self::$config[$k])) {
                 $this->raiseError("Invalid Configuration setting : $k", self::ERROR_INVALIDCONFIG, self::ERROR_DIE);
             }
