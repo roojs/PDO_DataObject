@@ -289,6 +289,7 @@ class PDO_DataObject
      * -- not normally used. - use factory to load extended dataObjects.
      *
      * Can be used to create on-the fly DataObjects. not heavily tested yet though...
+     * Should be used with config[proxy] = true  
      *
      * Normally you would extend this class an fill it up with methods that relate to actions on that table
      *
@@ -310,7 +311,9 @@ class PDO_DataObject
         if (count($cfg) > 1) {
             $this->_database = $cfg;
         }
+        
         // should this trigger a tableStructure..
+        // if you are using it this way then using 'proxy' = true is probably required..
     }
     
     
