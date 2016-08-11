@@ -282,7 +282,7 @@ class PDO_DataObject
      * @access  private
      * @var     boolean | array
      */
-    // public $_link_loaded = false;
+    public $_link_loaded = false;
     
     /**
      * Constructor
