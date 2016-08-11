@@ -3243,7 +3243,7 @@ class PDO_DataObject
      * @access public
      * @return boolean , true on success
      */
-    function getLinks($format = '_%s')
+    function applyLinks($format = '_%s')
     {
         require_once 'DB/DataObject/Links.php';
          $l = new DB_DataObject_Links($this);
@@ -3251,20 +3251,10 @@ class PDO_DataObject
            
     }
 
-    /**
-     * deprecited : @use link() 
-     */
-    function getLink($row, $table = null, $link = false)
-    {
-        require_once 'DB/DataObject/Links.php';
-        $l = new DB_DataObject_Links($this);
-        return $l->getLink($row, $table === null ? false: $table, $link);
-         
-        
-    }
+ 
 
     /**
-     * getLinkArray
+     * linkArray
      * Fetch an array of related objects. This should be used in conjunction with a <dbname>.links.ini file configuration (see the introduction on linking for details on this).
      * You may also use this with all parameters to specify, the column and related table.
      * This is highly dependant on naming columns 'correctly' :)
@@ -3290,7 +3280,7 @@ class PDO_DataObject
      * }
      * 
      */
-    function getLinkArray($row, $table = null)
+    function linkArray($row, $table = null)
     {
         require_once 'DB/DataObject/Links.php';
         $l = new DB_DataObject_Links($this);
