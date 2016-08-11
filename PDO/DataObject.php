@@ -324,7 +324,13 @@ class PDO_DataObject
         $this->__table = count($cfg) > 1 ? $cfg[1] : $cfg[0];
         if (count($cfg) > 1) {
             $this->_database = $cfg[0];
+            return;
         }
+        // only supplied table..
+        if (isset(self::$config['tables'][$this->__table])) {
+            $this->_database = self::$config['tables'][$this->__table];
+        }
+        
         
         // should this trigger a tableStructure..
         // if you are using it this way then using 'proxy' = true is probably required..
@@ -377,7 +383,7 @@ class PDO_DataObject
             }
             
             if (self::$debug) {
-                $this->debug("Using Cached connection","CONNECT");
+                $this->debug("Using Cached connection",__FUNCTION__);
             }
             // theoretically we have a md5, it's listed in connections and it's not an error.
             // so everything is ok!
@@ -392,7 +398,7 @@ class PDO_DataObject
             $this->_database = isset(self::$config['tables'][$tn]) ? self::$config['tables'][$tn] : false;
         }
         if (self::$debug && $this->_database) {
-            $this->debug("Checking for database specific ini ('{$this->_database}') : config[databases][$this->_database] in options","CONNECT");
+            $this->debug("Checking for database specific ini ('{$this->_database}') : config[databases][$this->_database] in options",__FUNCTION__);
         }
         
         if ($this->_database && !empty(self::$config['databases'][$this->_database]))  {
@@ -420,7 +426,7 @@ class PDO_DataObject
         
         if (!empty(self::$connections[$md5])) {
             if (self::$debug) {
-                $this->debug("USING CACHED CONNECTION", "CONNECT",3);
+                $this->debug("USING CACHED CONNECTION", __FUNCTION__,3);
             }
             
             
@@ -484,9 +490,9 @@ class PDO_DataObject
         }
         
         if (self::$debug) {
-            $this->debug("NEW CONNECTION TO DATABASE :" .$database , "CONNECT",3);
+            $this->debug("NEW CONNECTION TO DATABASE :" .$database , __FUNCTION__,3);
             /* actualy make a connection */
-            $this->debug(print_r($dsn,true) . ' ' . $pdo_dsn . ' ' . $this->_database_dsn_md5, "CONNECT",3);
+            $this->debug(print_r($dsn,true) . ' ' . $pdo_dsn . ' ' . $this->_database_dsn_md5, __FUNCTION__,3);
         }    
             
         $username = isset($dsn_ar['user']) ? urldecode( $dsn_ar['user'] ): '';
@@ -504,7 +510,7 @@ class PDO_DataObject
         
         
         if (self::$debug) {
-            $this->debug(print_r(self::$connections,true), "CONNECT",5);
+            $this->debug(print_r(self::$connections,true), __FUNCTION__,5);
         } 
         
 
@@ -2383,9 +2389,9 @@ class PDO_DataObject
      */
     protected function _introspection()
     {
+        
         $type  = $this->PDO()->getAttribute(PDO::ATTR_DRIVER_NAME);
         if (empty($type)) {
-            print_R($this->PDO());
             throw new Exception("could not work out database type");
         }
         $class = 'PDO_DataObject_Introspection_'. $type;
