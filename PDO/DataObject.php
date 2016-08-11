@@ -4757,7 +4757,7 @@ class PDO_DataObject
     function free() 
     {
         
-        
+
         
         $this->_result = false;
         $this->_query = 
