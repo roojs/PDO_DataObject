@@ -339,8 +339,8 @@ getLink - removed - used link()
 getLinkArray - renamed - linkArray()
 getLinks - renamed - applyLinks()
 
-Private methods removed
-_connect() -> PDO()
+Private methods removed/renamed..
+_connect() -> public PDO()
 
 
 $do->_database_dsn - removed - this was a security hole wating to fail... (Accidental print_r's etc...)
