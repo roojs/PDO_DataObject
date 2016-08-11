@@ -38,7 +38,7 @@ class PDO_DataObject
     * @access   private
     * @var      string
     */
-    var $_PDO_DataObject_version = "1.0";
+    public $_PDO_DataObject_version = "1.0";
  
     /* ---------------- ---------------- Constants  -------------------------------- */
 
@@ -212,22 +212,7 @@ class PDO_DataObject
     /* ---------------- ---------------- connecting to the database  -------------------------------- */
 
     
-      /**
-     * The Database connection dsn (similar to PEAR DB)
-     * only used really if you are writing a very simple application/test..
-     * try not to use this - it is better stored in configuration files..
-     *
-     * Format:
-     * 
-     *  PDO_DRIVER://USER:PASSWORD@HOST/DATABASE?a=b&c=d
-     *  -> converts to PDO connect
-     *  PDO_DRIVER:host=HOST;dbname=DATABASE;a=b;c=d   USER , PASSWORD
-     * 
-     *
-     * @access  private (ish) - extended classes can overide this
-     * @var     string
-     */
-    public $_database_dsn = false;
+      
 
     /**
      * The Database connection id (md5 sum of databasedsn)
@@ -309,28 +294,22 @@ class PDO_DataObject
             
         }
 
-        // it's not currently connected!
-        // try and work out what to use for the dsn !
-
         
-        // if the databse dsn dis defined in the object..
-        $dsn = $this->_database_dsn;
         
-        if (!$dsn) {
-            $tn = $this->tableName();
-            if (!$this->_database && strlen($tn)) {
-                $this->_database = isset(self::$config['tables'][$tn]) ? self::$config['tables'][$tn] : false;
-            }
-            if (self::$debug && $this->_database) {
-                $this->debug("Checking for database specific ini ('{$this->_database}') : config[databases][$this->_database] in options","CONNECT");
-            }
-            
-            if ($this->_database && !empty(self::$config['databases'][$this->_database]))  {
-                $dsn = self::$config['databases'][$this->_database];
-            } else if (false !== self::$config['database']) {
-                $dsn = self::$config['database'];
-            }
+        $tn = $this->tableName();
+        if (!$this->_database && strlen($tn)) {
+            $this->_database = isset(self::$config['tables'][$tn]) ? self::$config['tables'][$tn] : false;
         }
+        if (self::$debug && $this->_database) {
+            $this->debug("Checking for database specific ini ('{$this->_database}') : config[databases][$this->_database] in options","CONNECT");
+        }
+        
+        if ($this->_database && !empty(self::$config['databases'][$this->_database]))  {
+            $dsn = self::$config['databases'][$this->_database];
+        } else if (false !== self::$config['database']) {
+            $dsn = self::$config['database'];
+        }
+    
 
         // if still no database...
         if (!$dsn) {
@@ -4794,9 +4773,10 @@ class PDO_DataObject
     function free() 
     {
         
-        self::$connections = array();
+        
         
         $this->_result = false;
+        $this->_query = 
         
         if (!is_array($this->_link_loaded)) {
             return;
