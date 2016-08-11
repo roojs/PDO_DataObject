@@ -561,6 +561,9 @@ class PDO_DataObject
         if (is_array($cfg)) {
         
             foreach ($cfg as $k=>$v) {
+                if (!isset(self::$config[$k])) {
+                    $this->raiseError("Invalid Configuration setting : $k", self::ERROR_INVALIDCONFIG, self::ERROR_DIE);
+                }
                 self::$config[$k] = $v;
             }
             if (isset($cfg['debug'])) {
@@ -569,7 +572,7 @@ class PDO_DataObject
         }
         if (func_num_args() > 1) {
             if (!isset(self::$config[$k])) {
-                $this->raiseError("Invalid Configuration setting : $k");
+                $this->raiseError("Invalid Configuration setting : $k", self::ERROR_INVALIDCONFIG, self::ERROR_DIE);
             }
         }
         
