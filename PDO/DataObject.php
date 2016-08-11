@@ -4745,8 +4745,24 @@ class PDO_DataObject
             $this->{$do}->free();
              
         }
-        
-
+          
+    }
+     /**
+     * Free the global statics - like connections, and loaded links files etc..
+     * and resets other variables...
+     *
+     * Note - this is realy only for testing - calling it will likely slow down any future calls to the database
+     *
+     * @access   public
+     * @return   none
+     */
+    static function reset()
+    {
+        self::$config_loaded = false;
+        self::$connections = array(); 
+        self::$ini = array();
+        self::$links = array();
+        self::$sequence = array();
         
     }
     /**
@@ -4799,98 +4815,9 @@ class PDO_DataObject
         
     	
     }
-    
-    /**
-     * (deprecated - use ::get / and your own caching method)
-     */
-    static function staticGet($class, $k, $v = null)
-    {
-        $lclass = strtolower($class);
-        global $_DB_DATAOBJECT;
-        if (empty($_DB_DATAOBJECT['CONFIG'])) {
-            DB_DataObject::_loadConfig();
-        }
-
-        
-
-        $key = "$k:$v";
-        if ($v === null) {
-            $key = $k;
-        }
-        if (!empty($_DB_DATAOBJECT['CONFIG']['debug'])) {
-            DB_DataObject::debug("$class $key","STATIC GET - TRY CACHE");
-        }
-        if (!empty($_DB_DATAOBJECT['CACHE'][$lclass][$key])) {
-            return $_DB_DATAOBJECT['CACHE'][$lclass][$key];
-        }
-        if (!empty($_DB_DATAOBJECT['CONFIG']['debug'])) {
-            DB_DataObject::debug("$class $key","STATIC GET - NOT IN CACHE");
-        }
-
-        $obj = DB_DataObject::factory(substr($class,strlen($_DB_DATAOBJECT['CONFIG']['class_prefix'])));
-        if (PEAR::isError($obj)) {
-            $dor = new DB_DataObject();
-            $dor->raiseError("could not autoload $class", DB_DATAOBJECT_ERROR_NOCLASS);
-            $r = false;
-            return $r;
-        }
-        
-        if (!isset($_DB_DATAOBJECT['CACHE'][$lclass])) {
-            $_DB_DATAOBJECT['CACHE'][$lclass] = array();
-        }
-        if (!$obj->get($k,$v)) {
-            $dor = new DB_DataObject();
-            $dor->raiseError("No Data return from get $k $v", DB_DATAOBJECT_ERROR_NODATA);
-            
-            $r = false;
-            return $r;
-        }
-        $_DB_DATAOBJECT['CACHE'][$lclass][$key] = $obj;
-        return $_DB_DATAOBJECT['CACHE'][$lclass][$key];
-    }
-    
-    /**
-     * autoload Class relating to a table
-     * (deprecited - use ::factory)
-     *
-     * @param  string  $table  table
-     * @access private
-     * @return string classname on Success
-     */
-    function staticAutoloadTable($table)
-    {
-        global $_DB_DATAOBJECT;
-        if (empty($_DB_DATAOBJECT['CONFIG'])) {
-            DB_DataObject::_loadConfig();
-        }
-        $p = isset($_DB_DATAOBJECT['CONFIG']['class_prefix']) ?
-            $_DB_DATAOBJECT['CONFIG']['class_prefix'] : '';
-        $class = $p . preg_replace('/[^A-Z0-9]/i','_',ucfirst($table));
-        
-        $ce = substr(phpversion(),0,1) > 4 ? class_exists($class,false) : class_exists($class);
-        $class = $ce ? $class  : DB_DataObject::_autoloadClass($class);
-        return $class;
-    }
-    
-    /* ---- LEGACY BC METHODS - NOT DOCUMENTED - See Documentation on New Methods. ---*/
-    
-    function _get_table() { return $this->table(); }
-    function _get_keys()  { return $this->keys();  }
+     
     
     
     
-    
-}
-// technially 4.3.2RC1 was broken!!
-// looks like 4.3.3 may have problems too....
-if (!defined('DB_DATAOBJECT_NO_OVERLOAD')) {
-
-    if ((phpversion() != '4.3.2-RC1') && (version_compare( phpversion(), "4.3.1") > 0)) {
-        if (version_compare( phpversion(), "5") < 0) {
-           overload('DB_DataObject');
-        } 
-        $GLOBALS['_DB_DATAOBJECT']['OVERLOADED'] = true;
-    }
-}
-
+} 
 
