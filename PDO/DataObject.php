@@ -111,13 +111,19 @@ class PDO_DataObject
            
             'schema_location' => false,
                 // unless you are using 'proxy' then schema_location is required.
-                // eg. if your database schema is in /var/www/mysite/Myproejct/DataObject/mydb.ini
-                //     then schema_location = /var/www/mysite/Myproejct/DataObject/
-                // if you have multiple schema locations then schema_location can either be
-                // a)  Key/value array()  'nickname'=>location
-                // b) an array() list of search paths.
-                // c) a path seperated list of search paths.
-                // ** ini_**** is now not used - 
+                
+                // possible values:
+                
+                // String = directory, or list of directories (with path Seperator..)
+                //         eg. if your database schema is in /var/www/mysite/Myproejct/DataObject/mydb.ini
+                //         then schema_location = /var/www/mysite/Myproejct/DataObject/
+                //         you can use path seperator if there are multiple paths. and combined                
+                
+                // Array = map of database names to exact locations.
+                //         eg.
+                //         mydb => /var/www/mysite/Myproejct/DataObject/mydb.ini
+                //              ?? should this support PATH_SEPERATOR????
+                
                 
             
             'tables' => array(),
