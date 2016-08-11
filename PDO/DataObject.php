@@ -119,7 +119,7 @@ class PDO_DataObject
                 //         then schema_location = /var/www/mysite/Myproejct/DataObject/
                 //              you can use path seperator if there are multiple paths. and combined           
                 
-                // Array = map of database names to exact locations.
+                // Array = map of database names to exact location(s).
                 //         eg.
                 //         mydb => /var/www/mysite/Myproejct/DataObject/mydb.ini
                 //              value can be an array of absolute paths, or PATH_SEPERATED
