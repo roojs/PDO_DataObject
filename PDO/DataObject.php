@@ -524,7 +524,7 @@ class PDO_DataObject
         
         self::$connections[$md5]->database_realname = $database;
         self::$connections[$md5]->database_nickname = $this->_database;
-        if (empty($this->database)) {
+        if (empty($this->_database)) {
             $this->_database = $database;
         }
          
