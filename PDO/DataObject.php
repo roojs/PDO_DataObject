@@ -2235,7 +2235,7 @@ class PDO_DataObject
      * @return Array(databse Structure)|PEAR_Error|false     if no file exists
      *              or the array(tablename => array(column_name=>type)) if called with 1 argument.. (databasename)
      */
-    function databaseStructure($database = false, $inidata = array(), $linksdata=array(), $overwrite = false)
+    function databaseStructure($database = false, $inidata = false, $linksdata=false, $overwrite = false)
     {
 
         
