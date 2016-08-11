@@ -4294,15 +4294,11 @@ class PDO_DataObject
      * @return object The DB result object
      */
      
-    function getDatabaseResult()
+    function result()
     {
-        global $_DB_DATAOBJECT;
-        $this->_connect();
-        if (!isset($_DB_DATAOBJECT['RESULTS'][$this->_DB_resultid])) {
-            $r = false;
-            return $r;
-        }
-        return $_DB_DATAOBJECT['RESULTS'][$this->_DB_resultid];
+        return !$this->_result ? false :
+            (is_a($this->_result,'StdClass') ? false : $this->_result);
+        
     }
 
     /**
