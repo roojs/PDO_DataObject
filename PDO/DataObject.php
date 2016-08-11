@@ -284,6 +284,25 @@ class PDO_DataObject
      */
     // public $_link_loaded = false;
     
+    /**
+     * Constructor
+     * -- not normally used.
+     *
+     * Can be used to create on-the fly DataObjects. not heavily tested yet though...
+     *
+     *
+     *
+     */
+    
+    
+    function __construct($cfg = false)
+    {
+        
+        if (empty($args))
+        
+        
+    }
+    
     
     
      /**
