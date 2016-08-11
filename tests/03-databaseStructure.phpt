@@ -71,7 +71,7 @@ PDO_DataObject::$config['PDO'] = 'PDO_Dummy';
 // test structure from introspection
 
 echo "\n\nDATABASE INSTROSPECT - mysql dummy\n";
-(new PDO_DataObject())->free();
+(new PDO_DataObject())->reset();
 
 PDO_DataObject::$config['tables']['Events']='anotherdb';
 
@@ -86,7 +86,7 @@ print_r($obj->databaseStructure('anotherdb'));
  
 // postgresql
 echo "\n\nDATABASE INSTROSPECT - mysql postgres dummyu\n";
-(new PDO_DataObject())->free();
+(new PDO_DataObject())->reset();
 PDO_DataObject::$config['tables']['accnt']='xtuplehk';
 PDO_DataObject::$config['databases']['xtuplehk']='pgsql://user:nopass@localhost/xtuple';
 PDO_DataObject::$config['proxy'] = true;
