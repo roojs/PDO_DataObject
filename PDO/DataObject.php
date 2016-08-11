@@ -2630,6 +2630,9 @@ class PDO_DataObject
         
         
         if (self::$debug) {
+            $t= explode(' ',microtime());
+            $time = $t[0]+$t[1];
+         
             $this->debug( md5($string) . ' : ' . $string,"QUERY");
             $this->debug( "Driver: " . $pdo->getAttribute(PDO::ATTR_DRIVER_NAME), 'QUERY', 3);
         }
@@ -2669,9 +2672,7 @@ class PDO_DataObject
         
         
         // some sim
-        $t= explode(' ',microtime());
-        $time = $t[0]+$t[1];
-         
+      
         
         for ($tries = 0;$tries < 3;$tries++) {
             
