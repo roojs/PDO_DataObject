@@ -249,7 +249,33 @@ class PDO_DataObject
      * @var     int
      */
     public $N = 0;  // Number of rows returned from a query
-
+    /**
+     * The QUERY rules
+     * This replaces alot of the private variables 
+     * used to build a query, it is unset after find() is run.
+     * 
+     *
+     *
+     * @access  private
+     * @var     array
+     */
+    var $_query = array(
+        'condition'   => '', // the WHERE condition
+        'group_by'    => '', // the GROUP BY condition
+        'order_by'    => '', // the ORDER BY condition
+        'having'      => '', // the HAVING condition
+        'useindex'   => '', // the USE INDEX condition
+        'limit_start' => '', // the LIMIT condition
+        'limit_count' => '', // the LIMIT condition
+        'data_select' => '*', // the columns to be SELECTed
+        'unions'      => array(), // the added unions,
+        'derive_table' => '', // derived table name (BETA)
+        'derive_select' => '', // derived table select (BETA)
+    );
+        
+    
+  
+  
     /**
      * connects to the database
      *
@@ -2092,50 +2118,7 @@ class PDO_DataObject
     
     
     
-    /**
-     * The QUERY rules
-     * This replaces alot of the private variables 
-     * used to build a query, it is unset after find() is run.
-     * 
-     *
-     *
-     * @access  private
-     * @var     array
-     */
-    var $_query = array(
-        'condition'   => '', // the WHERE condition
-        'group_by'    => '', // the GROUP BY condition
-        'order_by'    => '', // the ORDER BY condition
-        'having'      => '', // the HAVING condition
-        'useindex'   => '', // the USE INDEX condition
-        'limit_start' => '', // the LIMIT condition
-        'limit_count' => '', // the LIMIT condition
-        'data_select' => '*', // the columns to be SELECTed
-        'unions'      => array(), // the added unions,
-        'derive_table' => '', // derived table name (BETA)
-        'derive_select' => '', // derived table select (BETA)
-    );
-        
     
-  
-
-    /**
-     * Database result id (references global $_DB_DataObject[results]
-     *
-     * @access  private
-     * @var     integer
-     */
-    var $_DB_resultid;
-     
-     /**
-     * ResultFields - on the last call to fetch(), resultfields is sent here,
-     * so we can clean up the memory.
-     *
-     * @access  public
-     * @var     array
-     */
-    var $_resultFields = false; 
-
 
     /* ============================================================== */
     /*  Table definition layer (started of very private but 'came out'*/
