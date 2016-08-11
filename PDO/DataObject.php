@@ -100,18 +100,29 @@ class PDO_DataObject
             'database' => false,
                 //  the default database dsn (not PDO standard = see @$_database for details)
                 // it's similar format to PEAR::DB..
-        
+            
+            'databases' => array(),
+                // map of database nick-names to connection dsn's
             
             'PDO' => 'PDO',  
                 // what class to use as PDO - we use PDO_Dummy for the unittests
+
+                
+           
+            'schema_location' => false,
+                // unless you are using 'proxy' then schema_location is required.
+                // eg. if your database schema is in /var/www/mysite/Myproejct/DataObject/mydb.ini
+                //     then schema_location = /var/www/mysite/Myproejct/DataObject/
+                // if you have multiple schema locations then schema_location can either be
+                // a)  Key/value array()  'nickname'=>location
+                // b) an array() list of search paths.
+                // c) a path seperated list of search paths.
+                
+                
             
             'tables' => array(),
-                // map of tables names to database names
+                // map of tables names to database 'nick-names'
                 
-            'databases' => array(),
-                // map of database names to connection dsn's
-           
-        
             'proxy' => false,
                 // normally we use pre-created 'ini' files, but if you use proxy, it will generate the
                 // the database schema on the fly..
