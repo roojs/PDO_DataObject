@@ -317,6 +317,13 @@ db_driver << not needed anymore..
 dont_use_pear_sequences <<??? need to work out how this affects our code.!?!?
 
 
+
+-----------
+New Methods
+PDO()
+result()
+reset() - not for general ussaged..
+
 -----------
 Backward Compatibility Breaks. / removed features..
 
@@ -332,6 +339,8 @@ getLink - removed - used link()
 getLinkArray - renamed - linkArray()
 getLinks - renamed - applyLinks()
 
+Private methods removed
+_connect() -> PDO()
 
 
 $do->_database_dsn - removed - this was a security hole wating to fail... (Accidental print_r's etc...)
