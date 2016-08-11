@@ -534,6 +534,9 @@ class PDO_DataObject
         
         $cfg = PEAR::getStaticProperty('PDO_DataObject','options');
         foreach ($cfg as $k=>$v) {
+            if (!isset(self::$config[$k])) {
+                $this->raiseError("Invalid PEAR PDO_DataObject Configuration setting : $k", self::ERROR_INVALIDCONFIG, self::ERROR_DIE);
+            }
             self::$config[$k] = $v;
         }
         if (isset($cfg['debug'])) {
