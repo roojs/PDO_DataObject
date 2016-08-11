@@ -117,7 +117,7 @@ class PDO_DataObject
                 // a)  Key/value array()  'nickname'=>location
                 // b) an array() list of search paths.
                 // c) a path seperated list of search paths.
-                
+                // ** ini_**** is now not used - 
                 
             
             'tables' => array(),
