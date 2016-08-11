@@ -2247,12 +2247,6 @@ class PDO_DataObject
         }
         
         
-        // called with only one argument -- it's a force proxy...??? VALID???
-        if ($args && count($args) == 1) {
-            return call_user_func_array(
-                    array($this->_introspection(), 'databaseStructure'),
-                    $args);
-        }
         // Assignment code    
         if ($args && $inidata !== false) {
         
