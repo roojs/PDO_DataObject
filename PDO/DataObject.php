@@ -4290,7 +4290,7 @@ class PDO_DataObject
      * Gets the DB result object related to the objects active query
      *
      * @access public
-     * @return PDOStatement 
+     * @return PDOStatement|false
      */
      
     function result()
