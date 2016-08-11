@@ -2306,6 +2306,7 @@ class PDO_DataObject
         
         // uses 'ini_* settings..
         $schemas = array();
+        $suffix = '';
         
         if (is_array(self::$config['schema_location'])) {
             if (!isset(PDO_DataObject::$config['schema_location'][$database])) {
@@ -2317,10 +2318,11 @@ class PDO_DataObject
             $schemas = is_array(PDO_DataObject::$config['schema_location'][$database]) ?
                 PDO_DataObject::$config['schema_location'][$database]:
                 explode(PATH_SEPARATOR, PDO_DataObject::$config['schema_location'][$database]);
-        
+        }
         
         if (is_string(self::$config['config_schema'])) {
-            $locs = explode(PATH_SEPARATOR,PDO_DataObject::$config['config_schema']);
+            $schemas  = explode(PATH_SEPARATOR,PDO_DataObject::$config['config_schema']);
+            $suffix = '/'. $database .'.ini';
         } else {
             
         }
