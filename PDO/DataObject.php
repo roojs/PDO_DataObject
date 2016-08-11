@@ -274,7 +274,17 @@ class PDO_DataObject
     );
         
     
-  
+     
+    
+    /**
+     * The JOIN condition - this get's modified by extended classes alot
+     * 
+     *
+     * @access  public
+     * @var     string
+     */
+    public $_join = '';
+
   
     /**
      * connects to the database
@@ -3331,16 +3341,7 @@ class PDO_DataObject
         return $obj;
     }
 
-    
-    
-    /**
-     * The JOIN condition
-     *
-     * @access  private
-     * @var     string
-     */
-    var $_join = '';
-
+ 
     /**
      * joinAdd - adds another dataobject to this, building a joined query.
      *
