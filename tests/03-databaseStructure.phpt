@@ -92,7 +92,7 @@ print_r($obj->databaseStructure('hebe'));
 exit;
 */
 
-
+/*
 echo "\n\nREAL DATABASE CONNECT - NOT IN FINAL TEST (postgres)\n";
 
 (new PDO_DataObject())->reset();
