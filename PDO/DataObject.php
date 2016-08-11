@@ -294,9 +294,18 @@ class PDO_DataObject
      * @access  private
      * @var     boolean | array
      */
-    // var $_link_loaded = false;
+    // public $_link_loaded = false;
     
     
+    /**
+     * Last Error that has occured
+     * - use $this->_lastError or
+     * $last_error = PEAR::getStaticProperty('DB_DataObject','lastError');
+     *
+     * @access  public
+     * @var     object PEAR_Error (or false)
+     */
+    public $_lastError = false;
     
     /**
      * connects to the database
@@ -4681,15 +4690,6 @@ class PDO_DataObject
         return self::$debug;
     }
 
-    /**
-     * Last Error that has occured
-     * - use $this->_lastError or
-     * $last_error = PEAR::getStaticProperty('DB_DataObject','lastError');
-     *
-     * @access  public
-     * @var     object PEAR_Error (or false)
-     */
-    var $_lastError = false;
 
     /**
      * Default error handling is to create throw an exception , unless config[excpetions] == false
