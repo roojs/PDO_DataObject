@@ -63,6 +63,10 @@ Tests:
    == do a test of all the methods... - based on dummy $pdo ? 
   -- these tests are not relivant to compatibility..
 
+-- errors?
+
+
+
 
 Target:END OF WEEK 3 (est. 4 days)
 -------------------------
@@ -207,7 +211,7 @@ toArray - needs resultfields - to determine fields that where returned..
 
 
 
-
+free - DONE
 
 
 -----
