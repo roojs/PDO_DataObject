@@ -321,10 +321,13 @@ dont_use_pear_sequences <<??? need to work out how this affects our code.!?!?
 Backward Compatibility Breaks. / removed features..
 
 getDatabaseConnection() removed -- use PDO() - however API is different... (IMPORTANT)
-config:: debug_ignore_updates << removed. (use config[PDO] == {fake PDO}
+getDatabaseResult() - renamed - result() - returns a different object....
+
+
 staticGet -- removed? - create your own cache layer .. it's pretty trivial.
 fetchRow  -- removed (use PDO()->fetch(...))
-free  -- reset() does something similar, 
+ 
+
 getLink - removed - used link()
 getLinkArray - renamed - linkArray()
 getLinks - renamed - applyLinks()
@@ -335,7 +338,8 @@ $do->_database_dsn - removed - this was a security hole wating to fail... (Accid
 $do->_DB_resultid removed
 $do->_lastError - removed - ?? Not sure if this is every used anymore..
 
-getDatabaseResult() - renamed - result() - returns a different object....
+config changes
+debug_ignore_updates << removed. use config[PDO] == {fake PDO}
  
 
 
