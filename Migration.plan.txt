@@ -336,8 +336,7 @@ $do->_DB_resultid removed
 $do->_lastError - removed - ?? Not sure if this is every used anymore..
 
 getDatabaseResult() - renamed - result() - returns a different object....
-
-
+ 
 
 
 ----------------------------------------------------
