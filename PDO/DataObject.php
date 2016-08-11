@@ -4757,7 +4757,9 @@ class PDO_DataObject
     function free() 
     {
         
-
+        $qref = (new ReflectionClass(__CLASS__))->getProperty('_query');
+        $qref->setAccessible(true);
+        $this->_query = $qref->getValue($this);
         
         $this->_result = false;
         $this->_query = 
