@@ -177,11 +177,14 @@ class PDO_DataObject
     
     
     // use databaseStructure to set these...
-    private static $ini = array(); // mapping of database to ini file results
-    private static $links = array(); //  mapping of database to links file
+    // mapping of database(??realname??) to ini file results
+    private static $ini = array();
     
+    //  mapping of database to links file (foreign keys really)
+    private static $links = array(); 
     
-    private static $sequence = array(); // cache of sequence keys (modifyable)
+    // cache of sequence keys ??- used by autoincrement?? -- need to check..
+    private static $sequence = array(); 
     
     
     private static $lasterror   = false; // pear error objects for last error event. accesss with lastError() ???
@@ -4743,7 +4746,10 @@ class PDO_DataObject
         if (self::$config['exceptions']) {
             //?? is this it???
             
-            throw new Exception($message, $type, $previous_exception);
+            $ex =  new Exception($message, $type, $previous_exception);
+            self::$lasterror = $error;
+            $this->_lastError = $error;
+            throw $ex;
         }
         
          
