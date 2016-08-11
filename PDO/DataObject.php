@@ -161,12 +161,7 @@ class PDO_DataObject
     );
     
     static $debug = 0;
-    /**
-     * The last error that occured. - not really needed anymore.. 
-     *
-     */
-    static $lastError   = false; // pear error objects for last error event. accesss with lastError() ???
-  
+    
     private static $config_loaded = false; // flag to indicate if we have attempted to load config from PEAR::getStaticProperty
     
     
@@ -2675,7 +2670,7 @@ class PDO_DataObject
         
         // some sim
         $t= explode(' ',microtime());
-        $this->_time_query_start = $time = $t[0]+$t[1];
+        $time = $t[0]+$t[1];
          
         
         for ($tries = 0;$tries < 3;$tries++) {
@@ -2709,7 +2704,7 @@ class PDO_DataObject
             }
             break;
         }
-       
+        
 
         if (is_a($result,'PDOException')) {
             if (self::$debug) { 
@@ -2722,10 +2717,11 @@ class PDO_DataObject
         
         if (self::$debug) {
             $t= explode(' ',microtime());
-            $this->_time_query_start = $t[0]+$t[1];
+            $this->result->time_query_end = $t[0]+$t[1];
             $this->debug('QUERY DONE IN  '.number_format($t[0]+$t[1]-$time,3)." seconds", 'query',1);
             $this->debug('NO# of results: '.$result->rowCount(), 'query',1);
         }
+        
         
         switch (strtolower(substr(trim($string),0,6))) {
             case 'insert':
