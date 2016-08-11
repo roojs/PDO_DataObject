@@ -259,7 +259,7 @@ class PDO_DataObject
      * @access  private
      * @var     array
      */
-    var $_query = array(
+    private $_query = array(
         'condition'   => '', // the WHERE condition
         'group_by'    => '', // the GROUP BY condition
         'order_by'    => '', // the ORDER BY condition
