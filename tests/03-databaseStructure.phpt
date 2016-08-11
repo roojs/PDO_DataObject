@@ -15,7 +15,8 @@ PDO_DataObject::config(array_merge(
             'mysql_somedb' => 'mysql://username:test@localhost:3344/somedb',
             'mysql_anotherdb' =>  'mysql://username:test@localhost:3344/anotherdb',
             
-        )
+        ),
+        'debug' => 3,
     )
 ));
 
@@ -31,10 +32,9 @@ print_r($obj->databaseStructure('mysql_somedb'));
 
 
 
-echo "\n\TWO INI FILES\n";
+echo "\n\FROM ANOTHER DATABASE INI FILES\n";
 (new PDO_DataObject())->reset();
-
-
+ 
 // test structure from two ini files. (using database)
 
 $obj = new PDO_DataObject('mysql_anotherdb/account_transaction');
