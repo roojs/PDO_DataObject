@@ -15,7 +15,7 @@ PDO_DataObject::config(
             'mysql_anotherdb' =>  'mysql://username:test@localhost:3344/anotherdb',
             
         ),
-        'debug' => 3,
+        'debug' => 1,
     )
 );
 
@@ -55,6 +55,7 @@ PDO_DataObject::config(
     array(
         'schema_location' => array(
             'mysql_anotherdb' => __DIR__.'/includes/test_ini/mysql_anotherdb.ini'
+        )
     )
 );
 $obj = new PDO_DataObject('mysql_anotherdb/account_transaction');
@@ -63,39 +64,62 @@ print_r($obj->databaseStructure('mysql_anotherdb'));
 
  
 
-/*
-// -- normally disabled - used to geenrate the test data...
 
+// -- normally disabled - used to geenrate the test data...
+/*
 echo "\n\nREAL DATABASE CONNECT - NOT IN FINAL TEST\n";
 
 (new PDO_DataObject())->reset();
-PDO_DataObject::$config['PDO'] = 'PDO';
-PDO_DataObject::$config['tables']['account_transaction']='hebe';
-PDO_DataObject::$config['databases']['hebe']='mysql://root:@localhost/hebe';
 
-PDO_DataObject::$config['proxy'] = true;
 
-$obj = new PDO_DataObject();
-$obj->__table = 'account_transaction';
+
+PDO_DataObject::config(
+    array(
+        'schema_location' => false,
+        'PDO' => 'PDO',
+        'databases' => array(
+            'hebe' => 'mysql://root:@localhost/hebe'
+        ),
+        'proxy' => true,
+        
+    )
+);
+
+$obj = new PDO_DataObject('hebe/account_transaction');
 $obj->PDO();
 print_r($obj->databaseStructure('hebe'));
 
-echo "\n\nREAL DATABASE CONNECT - NOT IN FINAL TEST\n";
+exit;
+*/
+
+
+echo "\n\nREAL DATABASE CONNECT - NOT IN FINAL TEST (postgres)\n";
+
 (new PDO_DataObject())->reset();
-PDO_DataObject::$config['PDO'] = 'PDO';
-PDO_DataObject::$config['tables']['accnt']='xtuplehk';
-PDO_DataObject::$config['databases']['xtuplehk']='pgsql://admin:pass4xtuple@localhost/xtuplehk';
-PDO_DataObject::$config['proxy'] = true;
-PDO_DataObject::debugLevel(1);
 
-$obj = new PDO_DataObject();
-$obj->__table = 'accnt';
+PDO_DataObject::config(
+    array(
+        'schema_location' => false,
+        'PDO' => 'PDO',
+        'databases' => array(
+            'xtuple_db' => 'pgsql://admin:pass4xtuple@localhost/xtuplehk'
+        ),
+        'tables' => array(
+            'accnt' => 'xtuple_db'
+        ),
+        'proxy' => true,
+        
+    )
+);
+
+
+
+$obj = new PDO_DataObject('accnt');
 $obj->PDO();
-print_r($obj->databaseStructure('xtuplehk'));
+print_r($obj->databaseStructure());
 
-PDO_DataObject::$config['PDO'] = 'PDO_Dummy';
-
-
+exit;
+/*
 */
 
 
