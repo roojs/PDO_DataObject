@@ -219,7 +219,7 @@ class PDO_DataObject
     private $_database_dsn_md5 = '';
     
     /**
-     * The PDOStatement Result object. ?? accesable by ??? result() ????
+     * The PDOStatement Result object.  accesable by  result() ????
      * created in _query()
      *
      * @access  private 
@@ -4290,7 +4290,7 @@ class PDO_DataObject
      * Gets the DB result object related to the objects active query
      *
      * @access public
-     * @return PDOStatement|false
+     * @return PDOStatement|false  
      */
      
     function result()

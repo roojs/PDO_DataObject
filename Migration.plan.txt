@@ -335,7 +335,7 @@ $do->_database_dsn - removed - this was a security hole wating to fail... (Accid
 $do->_DB_resultid removed
 $do->_lastError - removed - ?? Not sure if this is every used anymore..
 
-getDatabaseResult - renamed - result() - returns a different object....
+getDatabaseResult() - renamed - result() - returns a different object....
 
 
 
