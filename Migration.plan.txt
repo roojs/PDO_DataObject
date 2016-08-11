@@ -327,8 +327,8 @@ fetchRow  -- removed (use PDO()->fetch(...))
 free  -- reset() does something similar, 
 
 $do->_database_dsn - removed - this was a security hole wating to fail... (Accidental print_r's etc...)
-
-
+$do->_DB_resultid removed
+$do->_lastError - removed - use PDO_DataObject::$lastError  -- not really recommended anyway.
 
 
 
