@@ -2717,7 +2717,7 @@ class PDO_DataObject
         
         if (self::$debug) {
             $t= explode(' ',microtime());
-            $this->result->time_query_end = $t[0]+$t[1];
+            $result->time_query_end = $t[0]+$t[1];
             $this->debug('QUERY DONE IN  '.number_format($t[0]+$t[1]-$time,3)." seconds", 'query',1);
             $this->debug('NO# of results: '.$result->rowCount(), 'query',1);
         }
