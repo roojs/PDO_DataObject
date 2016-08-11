@@ -286,20 +286,30 @@ class PDO_DataObject
     
     /**
      * Constructor
-     * -- not normally used.
+     * -- not normally used. - use factory to load extended dataObjects.
      *
      * Can be used to create on-the fly DataObjects. not heavily tested yet though...
      *
+     * Normally you would extend this class an fill it up with methods that relate to actions on that table
      *
+     * @param string|array    either tablename or databasename/tablename or array(database,tablename)
+     * 
      *
      */
     
     
     function __construct($cfg = false)
     {
-        
-        if (empty($args))
-        
+        if ($cfg === false) {
+            return;
+        }
+        if (!is_array($cfg)) {
+            $cfg = explode('/', $cfg);
+        }
+        $this->__table = count($cfg) > 1 ? $cfg[1] : $cfg[0];
+        if (count($cfg) > 1) {
+            $this->_database = $cfg;
+        }
         
     }
     
