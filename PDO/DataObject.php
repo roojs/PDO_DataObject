@@ -268,17 +268,13 @@ class PDO_DataObject
      * @access private
      * @return PDO Object the connection
      */
-    public function PDO($force = false)
+    public function PDO()
     {
         
         $config = self::loadConfig();
          
         // We can use a fake PDO class when testing..
         $PDO = $config['PDO'];
-        
-        if ($force) {
-            self::$connections = array();
-        }
         
         // is it already connected ?    
         if ($this->_database_dsn_md5 && !empty(self::$connections[$this->_database_dsn_md5])) {
