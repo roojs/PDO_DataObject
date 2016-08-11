@@ -4784,7 +4784,8 @@ class PDO_DataObject
 
     
      /**
-     * Free global arrays associated with this object.
+     * Free the result object.
+     * and resets other variables...
      *
      *
      * @access   public
