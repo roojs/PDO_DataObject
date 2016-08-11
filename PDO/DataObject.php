@@ -2248,8 +2248,9 @@ class PDO_DataObject
         
         
         // Assignment code    
-        if ($args && count($args > 0)) {
+        if (count($args > 1)) {
         
+            
             // databaseStructure('mydb',   a$tabledatarray(.... schema....), array( ... links')
             if ($inidata !== false) {
                 self::$ini[$database] = isset( self::$ini[$database]) && !$overwrite ?
