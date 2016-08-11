@@ -101,104 +101,12 @@ class PDO_DataObject_Introspection
         PDO_DataObject::config('proxy', false);
         $ret = $x->databaseStructure($x->database()); 
         PDO_DataObject::config($config );
-            return $ret;
+        return $ret;
             // databaseStructure('mydb',   array(.... schema....), array( ... links')
          
             // will not get here....
-        }
-        
-        
-        $this->PDO();
-        
-        
-        $database = $this->do->database();
-        $table = $this->do->tableName();
-        
-        // probably not need (pdo() will load it..)
-        $orig_config = PDO_DataObject::config();
-        
-        // we do not have the data for this table yet...
-        
-        // if we are configured to use the proxy..
-        
-        if ( $proxy )  {
-            
-            $this->_generator()->fillTableSchema($database, $table);
-        
-           
-            PDO_DataObject::config('proxy', false);
-            $ret = PDO_DataObject::databaseStructure($database,false);
-            PDO_DataObject::config($orig_config);
-             return $ret;
-        }
-            
-             
-        
-        
-        // if you supply this with arguments, then it will take those
-        // as the database and links array...
-         
-        //           
-        
-        $schemas = is_array(PDO_DataObject::$config["ini_{$database}"]) ?
-            PDO_DataObject::$config["ini_{$database}"] :
-            explode(PATH_SEPARATOR,PDO_DataObject::$config["ini_{$database}"]);
-        
-                    
-         
-        $ini_out  = array();
-        foreach ($schemas as $ini) {
-            if (empty($ini)) {
-                continue;
-            }
-            if (!file_exists($ini) || !is_file($ini) || !is_readable ($ini)) {
-                $this->do->debug("ini file is not readable / does not exist: $ini","databaseStructure",1);
-                return $this->do->raiseError( "Unable to load schema for database and table (turn debugging up to 5 for full error message)",
-                                   PDO_DataObject::ERROR_INVALIDARGS, PDO_DataObject::ERROR_DIE);
-       
-            }
-            $ini_out = array_merge(
-                $ini_out,
-                parse_ini_file($ini, true)
-            );
-                
-             
-        }
-        
-        // are table name lowecased..
-        if (PDO_DataObject::$config['portability'] & 1) {
-            foreach($ini_out as $k=>$v) {
-                // results in duplicate cols.. but not a big issue..
-                $ini_out[strtolower($k)] = $v;
-            }
-        }
-        if (!empty($ini_out)) {
-            PDO_DataObject::databaseStructure($database,$ini_out,false, true);
-        }
-        
-       
-        PDO_DataObject::$config['proxy'] = false;
-        $dbini = PDO_DataObject::databaseStructure($database,false); 
-        PDO_DataObject::$config['proxy'] = $proxy;
-        
-        // now have we loaded the structure.. 
-        
-        if (!empty($dbini[$this->do->tableName()])) {
-            return $dbini;
-        }
-        // previously we tried proxy here... - but it's already supposed to be tried at this point anyway.
-        
-       
-        $this->do->debug("Cant find database schema: {$database}/{$table} \n".
-                    "in links file data: " . print_r($dbini,true),"databaseStructure",5);
-        // we have to die here!! - it causes chaos if we dont (including looping forever!)
-        $this->do->raiseError( "Unable to load schema for database and table (turn debugging up to 5 for full error message)", 
-                                   PDO_DataObject::ERROR_INVALIDARGS, PDO_DataObject::ERROR_DIE);
-        return false;
-        
-         
-        
     }
+     
     
     
     
