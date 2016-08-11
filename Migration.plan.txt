@@ -8,14 +8,14 @@ a) skeleton class
       PDO_DataObject::ERROR_INVALIDARGS
       PDO_DataObject::WHEREADD_ONLY
 
- - connect?
+ - connect => PDO() 
 
 
 - globals replacements
      CONFIG:: -> PDO_DataObject::$config
-     RESULTS:: ?? not needed? << use private $_pdo_result
+     RESULTS:: ?? not needed? << use private $_result
      RESULTSEQ:: ?? not needed...
-     RESULTFIELDS:: probably not needed - info available from $_pdo_result->getColumnMeta / numColumns()
+     RESULTFIELDS:: probably not needed - info available from $_result->fields 
      
      CONNECTIONS:: PDO_DataObject::$connections
      INI:: PDO_DataObject::$ini
@@ -53,6 +53,7 @@ b) PDO_DataObjects_Introspection
       tableInfo()
       
 
+
 Tests:
    $do = new PDO_DataObjects( array( 'table' => 'test', 'database' => 'xxxx' )); ?? for testing only?
    or  new PDO_DataObjects('xxxx/test');
@@ -61,6 +62,7 @@ Tests:
    $x->getListOf(...)
    == do a test of all the methods... - based on dummy $pdo ? 
   -- these tests are not relivant to compatibility..
+
 
 Target:END OF WEEK 3 (est. 4 days)
 -------------------------
@@ -319,9 +321,9 @@ Directly accessing database (BC BREAK!)
 getDatabaseConnection() -- this will have to throw an error... - as it's can not work..
 PDO() << replacement?
 
-config:: debug_ignore_updates << removed.
-
-staticGet -- removed?
+config:: debug_ignore_updates << removed. (use config[PDO] == {fake PDO}
+staticGet -- removed? - create your own cache layer .. it's pretty trivial.
+fetchRow  -- removed (use PDO()->fetch(...))
 
 
 
