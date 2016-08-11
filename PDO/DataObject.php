@@ -4759,7 +4759,7 @@ class PDO_DataObject
         
         $qref = (new ReflectionClass(__CLASS__))->getProperty('_query');
         $qref->setAccessible(true);
-        $this->_query = $qref->getValue($this);
+        $this->_query = $qref->getValue(new __CLASS__);
         
         $this->_result = false;
         $this->_query = 
