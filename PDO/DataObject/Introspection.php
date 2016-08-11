@@ -130,7 +130,7 @@ class PDO_DataObject_Introspection
         $table = $this->do->tableName();
         
         // probably not need (pdo() will load it..)
-        PDO_DataObject::loadConfig();
+        $orig_config = PDO_DataObject::config();
         
         // we do not have the data for this table yet...
         
@@ -141,10 +141,10 @@ class PDO_DataObject_Introspection
             $this->_generator()->fillTableSchema($database, $table);
         
            
-            PDO_DataObject::$config['proxy'] = false;
-            $ret = PDO_DataObject::databaseStructure($database,false); 
-            PDO_DataObject::$config['proxy'] = $proxy;
-            return $ret;
+            PDO_DataObject::config('proxy', false);
+            $ret = PDO_DataObject::databaseStructure($database,false);
+            PDO_DataObject::config($orig_config);
+             return $ret;
         }
             
              
