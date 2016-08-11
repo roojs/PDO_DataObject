@@ -128,12 +128,17 @@ exit;
 echo "\n\nDATABASE INSTROSPECT - mysql dummy\n";
 (new PDO_DataObject())->reset();
 
+
 PDO_DataObject::$config['tables']['Events']='anotherdb';
 
-$obj = new PDO_DataObject();
-$obj->__table = 'Events';
-$obj->PDO();
-PDO_DataObject::$config['proxy'] = true;
+$obj = new PDO_DataObject('mysql_anotherdb/Events');
+PDO_DataObject::config(
+    array(
+        'schema_location' => false,
+        'PDO' => 'PDO_Dummy',
+        'proxy' => true,
+    )
+);
 print_r($obj->databaseStructure('anotherdb'));
 
 
