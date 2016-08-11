@@ -2246,6 +2246,8 @@ class PDO_DataObject
             self::debug('CALL:' . json_encode($args, true), __FUNCTION__ , 1);
         }
         
+        
+        // called with only one argument -- it's a force proxy...
         if ($args && count($args) == 1) {
             return call_user_func_array(
                     array($this->_introspection(), 'databaseStructure'),
