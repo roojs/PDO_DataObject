@@ -17,7 +17,7 @@ print_r($obj->databaseStructure('somedb', false));
 
 
 echo "\n\TWO INI FILES\n";
-(new PDO_DataObject())->free();
+(new PDO_DataObject())->reset();
 // test structure from two ini files. (using database)
 PDO_DataObject::$config['databases']['anotherdb']='mysql://username:test@localhost:3344/anotherdb';
 
@@ -37,7 +37,7 @@ print_r($obj->databaseStructure('anotherdb', false));
 
 echo "\n\nREAL DATABASE CONNECT - NOT IN FINAL TEST\n";
 
-(new PDO_DataObject())->free();
+(new PDO_DataObject())->reset();
 PDO_DataObject::$config['PDO'] = 'PDO';
 PDO_DataObject::$config['tables']['account_transaction']='hebe';
 PDO_DataObject::$config['databases']['hebe']='mysql://root:@localhost/hebe';
@@ -50,7 +50,7 @@ $obj->PDO();
 print_r($obj->databaseStructure('hebe'));
 
 echo "\n\nREAL DATABASE CONNECT - NOT IN FINAL TEST\n";
-(new PDO_DataObject())->free();
+(new PDO_DataObject())->reset();
 PDO_DataObject::$config['PDO'] = 'PDO';
 PDO_DataObject::$config['tables']['accnt']='xtuplehk';
 PDO_DataObject::$config['databases']['xtuplehk']='pgsql://admin:pass4xtuple@localhost/xtuplehk';
