@@ -297,17 +297,8 @@ class PDO_DataObject
     // public $_link_loaded = false;
     
     
-    /**
-     * Last Error that has occured
-     * - use $this->_lastError or
-     * $last_error = PEAR::getStaticProperty('DB_DataObject','lastError');
-     *
-     * @access  public
-     * @var     object PEAR_Error (or false)
-     */
-    public $_lastError = false;
     
-    /**
+     /**
      * connects to the database
      *
      *  Uses database DSN to connect
