@@ -2316,8 +2316,8 @@ class PDO_DataObject
                 explode(PATH_SEPARATOR, PDO_DataObject::$config['schema_location'][$database]);
         }
         
-        if (is_string(self::$config['config_schema'])) {
-            $schemas  = explode(PATH_SEPARATOR,PDO_DataObject::$config['config_schema']);
+        if (is_string(self::$config['schema_location'])) {
+            $schemas  = explode(PATH_SEPARATOR,PDO_DataObject::$config['schema_location']);
             $suffix = '/'. $database .'.ini';
         } else {
             
