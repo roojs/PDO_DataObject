@@ -330,7 +330,7 @@ class PDO_DataObject
     public function PDO()
     {
         
-        $config = self::loadConfig();
+        $config = self::config();
          
         // We can use a fake PDO class when testing..
         $PDO = $config['PDO'];
@@ -512,7 +512,7 @@ class PDO_DataObject
      * PEAR::getStaticProperty('PDO_DataObject','options');
      * (part of PEAR5.php)
      * This is available for backward Compatibility - new versions should just include this file
-     * and set the options via loadConfig({array})
+     * and set the options via config({array})
      *  Just including this file does not load anything else -- like pear.. etc..
      *  So it's a relatively low overhead..
      *
@@ -555,7 +555,7 @@ class PDO_DataObject
      * @return - the current config..
      */
      
-    public static function loadConfig($cfg = array()) 
+    public static function config($cfg = array()) 
     {
         self::_loadPEARConfig();
         foreach ($cfg as $k=>$v) {
@@ -630,7 +630,7 @@ class PDO_DataObject
     {
         global $_DB_DATAOBJECT;
         if (empty($_DB_DATAOBJECT['CONFIG'])) {
-            DB_DataObject::_loadConfig();
+            PDO_DataObject::config();
         }
         $keys = array();
         
@@ -768,7 +768,7 @@ class PDO_DataObject
         }
         
         if (empty($_DB_DATAOBJECT['CONFIG'])) {
-            DB_DataObject::_loadConfig();
+            PDO_DataObject::config();
         }
 
         if (!empty($_DB_DATAOBJECT['CONFIG']['debug'])) {
@@ -877,7 +877,7 @@ class PDO_DataObject
 
         
         if (!self::$config_loaded) {
-            PDO_DataObject::loadConfig();
+            PDO_DataObject::config();
         }
         if ($this->N === false) {
             $this->raiseError("Fetch Called without Query being run");
@@ -2888,7 +2888,7 @@ class PDO_DataObject
         }
          
         if (empty($_DB_DATAOBJECT['CONFIG'])) {
-            DB_DataObject::_loadConfig();
+            PDO_DataObject::config();
         }
         // no configuration available for database
         if (!empty($database) && empty($_DB_DATAOBJECT['CONFIG']['database_'.$database])) {
@@ -2991,7 +2991,7 @@ class PDO_DataObject
         global $_DB_DATAOBJECT;
         
         if (empty($_DB_DATAOBJECT['CONFIG'])) {
-            DB_DataObject::_loadConfig();
+            PDO_DataObject::config();
         }
         $class_prefix = empty($_DB_DATAOBJECT['CONFIG']['class_prefix']) ? 
                 '' : $_DB_DATAOBJECT['CONFIG']['class_prefix'];
@@ -3107,7 +3107,7 @@ class PDO_DataObject
     {
         global $_DB_DATAOBJECT;
         if (empty($_DB_DATAOBJECT['CONFIG'])) {
-            $this->_loadConfig();
+            $this->config();
         }
         // have to connect.. -> otherwise things break later.
         $this->_connect();
@@ -4673,7 +4673,7 @@ class PDO_DataObject
     static function debugLevel($v = null)
     {
         // can be slow....
-        PDO_DataObject::loadConfig();
+        PDO_DataObject::config();
         
         if ($v !== null) {
             
