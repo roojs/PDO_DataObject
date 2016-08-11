@@ -326,6 +326,7 @@ staticGet -- removed? - create your own cache layer .. it's pretty trivial.
 fetchRow  -- removed (use PDO()->fetch(...))
 free  -- reset() does something similar, 
 
+$do->_database_dsn - removed - this was a security hole wating to fail...
 
 
 
