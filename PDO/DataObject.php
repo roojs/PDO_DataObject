@@ -2326,24 +2326,18 @@ class PDO_DataObject
         } else {
             
         }
-        
-         $schemas = is_array(PDO_DataObject::$config["ini_{$database}"]) ?
-            PDO_DataObject::$config["ini_{$database}"] :
-            explode(PATH_SEPARATOR,PDO_DataObject::$config["ini_{$database}"]);
-        
-                    
-         
+        $tried = array();
         $ini_out  = array();
         foreach ($schemas as $ini) {
             if (empty($ini)) {
                 continue;
             }
-            if (!file_exists($ini) || !is_file($ini) || !is_readable ($ini)) {
-                $this->do->debug("ini file is not readable / does not exist: $ini","databaseStructure",1);
-                return $this->do->raiseError( "Unable to load schema for database and table (turn debugging up to 5 for full error message)",
-                                   PDO_DataObject::ERROR_INVALIDARGS, PDO_DataObject::ERROR_DIE);
-       
+            $fn = $suffix ? rtirm($ini ,'/') . $suffix : $ini;
+            $tried[] = $fn;
+            if (!file_exists($fn) || !is_file($fn) || !is_readable ($fn)) {
+                continue;
             }
+            
             $ini_out = array_merge(
                 $ini_out,
                 parse_ini_file($ini, true)
@@ -2351,19 +2345,14 @@ class PDO_DataObject
                 
              
         }
-        $ini = rtrim(self::$config['schema_location'] ,'/') .'/'. $database .'.ini';
         
-        if (!file_exists($ini) || !is_file($ini) || !is_readable ($ini)) {
-            if (self::$debug) {
-                $this->debug("Can not read ini file: $ini - not (exists|file|readable)","databaseStructure",1);
-            }
-            $this->raiseError( "Unable to load schema for database and table (turn debugging up to 5 for full error message)",
-                                self::ERROR_INVALIDARGS, self::ERROR_DIE);
-            return false;
+        if (empty($ini_out)) {
+            $this->raiseError("Failed to load any schema from these files " . json_encode($tried),
+                         self::ERROR_INVALIDCONFIG, self::ERROR_DIE
+            );
         }
         
-        
-        self::$ini[$database] =  parse_ini_file($ini, true);
+        self::$ini[$database] =  $ini_out;
                 
                
         // are table name lowecased..
