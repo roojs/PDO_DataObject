@@ -571,9 +571,7 @@ class PDO_DataObject
             $cfg = array();
             $cfg[$k] = $value;
         }
-         
-    
-    
+          
         foreach ($cfg as $k=>$v) {
             if (!isset(self::$config[$k])) {
                 $this->raiseError("Invalid Configuration setting : $k",
