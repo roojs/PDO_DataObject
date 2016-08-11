@@ -592,7 +592,8 @@ class PDO_DataObject
         self::_loadPEARConfig();
         
         if (!is_array($cfg) || (func_num_args() > 1 && !is_string($cfg))) {
-            $this->raiseError("Invalid Call to config should be string+anther value or array",
+            
+            (new PDO_DataObject()->raiseError("Invalid Call to config should be string+anther value or array",
                               self::ERROR_INVALIDARGS, self::ERROR_DIE);
         }
         if (func_num_args() > 1) {
@@ -603,7 +604,7 @@ class PDO_DataObject
           
         foreach ($cfg as $k=>$v) {
             if (!isset(self::$config[$k])) {
-                $this->raiseError("Invalid Configuration setting : $k",
+                (new PDO_DataObject()->raiseError("Invalid Configuration setting : $k",
                         self::ERROR_INVALIDCONFIG, self::ERROR_DIE);
             }
             self::$config[$k] = $v;
