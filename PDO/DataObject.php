@@ -1977,68 +1977,7 @@ class PDO_DataObject
             return false;
         }
     }
-
-    /**
-     * fetches a specific row into this object variables
-     *
-     * Not recommended - better to use fetch()
-     *
-     * Returens true on success
-     *
-     * @param  int   $row  row
-     * @access public
-     * @return boolean true on success
-     */
-    function fetchRow($row = null)
-    {
-        global $_DB_DATAOBJECT;
-        if (empty($_DB_DATAOBJECT['CONFIG'])) {
-            $this->_loadConfig();
-        }
-        if (!empty($_DB_DATAOBJECT['CONFIG']['debug'])) {
-            $this->debug("{$this->tableName()} $row of {$this->N}", "fetchrow",3);
-        }
-        if (!$this->tableName()) {
-            $this->raiseError("fetchrow: No table", DB_DATAOBJECT_ERROR_INVALIDCONFIG);
-            return false;
-        }
-        if ($row === null) {
-            $this->raiseError("fetchrow: No row specified", DB_DATAOBJECT_ERROR_INVALIDARGS);
-            return false;
-        }
-        if (!$this->N) {
-            $this->raiseError("fetchrow: No results avaiable", DB_DATAOBJECT_ERROR_NODATA);
-            return false;
-        }
-        if (!empty($_DB_DATAOBJECT['CONFIG']['debug'])) {
-            $this->debug("{$this->tableName()} $row of {$this->N}", "fetchrow",3);
-        }
-
-
-        $result = $_DB_DATAOBJECT['RESULTS'][$this->_DB_resultid];
-        $array  = $result->fetchrow(DB_DATAOBJECT_FETCHMODE_ASSOC,$row);
-        if (!is_array($array)) {
-            $this->raiseError("fetchrow: No results available", DB_DATAOBJECT_ERROR_NODATA);
-            return false;
-        }
-        $replace = array('.', ' ');
-        foreach($array as $k => $v) {
-            // use strpos as str_replace is slow.
-            $kk =  (strpos($k, '.') === false && strpos($k, ' ') === false) ?
-                $k : str_replace($replace, '_', $k);
-            
-            if (!empty($_DB_DATAOBJECT['CONFIG']['debug'])) {
-                $this->debug("$kk = ". $array[$k], "fetchrow LINE", 3);
-            }
-            $this->$kk = $array[$k];
-        }
-
-        if (!empty($_DB_DATAOBJECT['CONFIG']['debug'])) {
-            $this->debug("{$this->tableName()} DONE", "fetchrow", 3);
-        }
-        return true;
-    }
-
+ 
     /**
      * Find the number of results from a simple query
      *
