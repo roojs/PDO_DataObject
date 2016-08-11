@@ -275,7 +275,7 @@ class PDO_DataObject
 
     /**
      * array of links.. - if relivant.
-     * NOTE - only defined if created by PDO_DataObject_Links
+     * NOTE - not sure if we should leave this defined here?? only defined if created by PDO_DataObject_Links
      * Not generally recommended -- JOIN or using the generator is a better method of
      * cross referencing related objects.
      *
