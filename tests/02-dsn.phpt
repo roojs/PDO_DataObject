@@ -8,7 +8,7 @@ PDO_DataObject::debugLevel(1);
 
     
 
-PDO_DataObject::$config['database']='mysql://username:test@localhost:3344/somedb#' . implode( '|',
+PDO_DataObject::config('database', 'mysql://username:test@localhost:3344/somedb#' . implode( '|',
     array(
         'MYSQL_ATTR_SSL_KEY=/path/to/client-key.pem',
         'MYSQL_ATTR_SSL_CERT=/path/to/client-cert.pem',
@@ -27,37 +27,37 @@ PDO_DataObject::$config['database']='mysql://username:test@localhost:3344/somedb
         'MYSQL_ATTR_SSL_KEY=11',
         'MYSQL_ATTR_MULTI_STATEMENTS=12',
         
-    ));
+    )));
 (new PDO_DataObject())->PDO();
 
 // Postgres
 
-PDO_DataObject::$config['database']='pgsql://nobody:change_me@localhost:3434/example';
+PDO_DataObject::config('database', 'pgsql://nobody:change_me@localhost:3434/example';
 (new PDO_DataObject())->PDO();
 
 // postgres (with user/pass in dsn..
 
-PDO_DataObject::$config['database']='pgsql://localhost:3434/example?user=nobody&password=change_me';
+PDO_DataObject::config('database', 'pgsql://localhost:3434/example?user=nobody&password=change_me';
 (new PDO_DataObject())->PDO();
 
 // SQL server
 
-PDO_DataObject::$config['database']='sqlsrv://test@localhost/somedb';
+PDO_DataObject::config('database', 'sqlsrv://test@localhost/somedb';
 (new PDO_DataObject())->PDO();
-PDO_DataObject::$config['database']='sqlsrv://UserName%4012345abcde:Password@12345abcde.database.windows.net/somedb';
+PDO_DataObject::config('database', 'sqlsrv://UserName%4012345abcde:Password@12345abcde.database.windows.net/somedb';
 (new PDO_DataObject())->PDO();
-PDO_DataObject::$config['database']='sqlsrv://UserName%4012345abcde:Password@(localdb)\\v11.0/somedb?AttachDBFilename=C:\Users\user\my_db.mdf';
+PDO_DataObject::config('database', 'sqlsrv://UserName%4012345abcde:Password@(localdb)\\v11.0/somedb?AttachDBFilename=C:\Users\user\my_db.mdf';
 (new PDO_DataObject())->PDO();
 
 // Sqlite
 
-PDO_DataObject::$config['database']='sqlite:/opt/databases/mydb.sq3';
+PDO_DataObject::config('database', 'sqlite:/opt/databases/mydb.sq3';
 (new PDO_DataObject())->PDO();
-PDO_DataObject::$config['database']='sqlite::memory:';
+PDO_DataObject::config('database', 'sqlite::memory:';
 (new PDO_DataObject())->PDO();
-PDO_DataObject::$config['database']='sqlite2:/opt/databases/mydb.sq2#ATTR_PERSISTENT=1';
+PDO_DataObject::config('database', 'sqlite2:/opt/databases/mydb.sq2#ATTR_PERSISTENT=1';
 (new PDO_DataObject())->PDO();
-PDO_DataObject::$config['database']='sqlite2::memory:';
+PDO_DataObject::config('database', 'sqlite2::memory:';
 (new PDO_DataObject())->PDO();
  
 
