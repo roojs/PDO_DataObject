@@ -21,6 +21,13 @@ class PDO_Dummy {
         $this->user = $user;
         $this->pass = $pass;
         $this->options = $options;
+        
+        // for connect to work - we have to have something in dummystatement
+        require_once __DIR__ .'/PDO_DummyStatement.php';
+        if (!isset(PDO_DummyStatement::$results[$dsn])) {
+            throw new Exception("Fake connection failed to non-existant database");
+        }
+     
     }
     
     function getAttribute($key)

@@ -17,6 +17,8 @@ class PDO_DummyStatement {
         'sqlsrv:Database=somedb;Server=(localdb)\v11.0;AttachDBFilename=C:\Users\user\my_db.mdf' => array(),
         'sqlite:/opt/databases/mydb.sq3'=> array(),
         'sqlite::memory:'=> array(),
+        'sqlite2:/opt/databases/mydb.sq2'=> array(),
+        'sqlite2::memory:'=> array(),
 
         // 03 - databaseStructure tests.
         'mysql:dbname=anotherdb;host=localhost;port=3344' => array(
