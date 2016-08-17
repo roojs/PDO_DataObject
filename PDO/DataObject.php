@@ -1472,10 +1472,10 @@ class PDO_DataObject
     function limit($a = null, $b = null)
     {
         if ($this->_query === false) {
-            $this->raiseError(
+            return $this->raiseError(
                 "You cannot do two queries on the same object (copy it before finding)", 
                 self::ERROR_INVALIDARGS);
-            return false;
+            
         }
         
         if (!func_num_args()) {
