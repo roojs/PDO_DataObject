@@ -698,8 +698,15 @@ class PDO_DataObject
     {
         $start = $this->_query['limit_start'];
         $count = $this->_query['limit_count'];
+        if ($start === '' && $end === '') {
+            return $sql;
+        }
+        
         switch($this->PDO()->getAttribute(PDO::ATTR_DRIVER_NAME)) {
-            
+            case 'mysql':
+                $start = empty($start) ? '': ($start .',');
+                return "$sql LIMIT $start $end";
+                
         }
         
         
