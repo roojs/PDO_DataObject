@@ -1484,13 +1484,13 @@ class PDO_DataObject
            return $this;
         }
         // check input...= 0 or '    ' == error!
-        if (!is_numeric($a) || func_num_args() < 2) || !is_numeric($b) {
+        if (!is_numeric($a) || (func_num_args() > 1 && !is_numeric($b))) {
             return $this->raiseError("limit: No Valid Arguments", self::ERROR_INVALIDARGS);
         }
         // used to connect here?? why?
         
-        $this->_query['limit_start'] = ($b == null) ? 0 : (int)$a;
-        $this->_query['limit_count'] = ($b == null) ? (int)$a : (int)$b;
+        $this->_query['limit_start'] = func_num_args() < 2 ? 0 : (int)$a;
+        $this->_query['limit_count'] = func_num_args() <2  ? (int)$a : (int)$b;
         
     }
 
