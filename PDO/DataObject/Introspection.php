@@ -48,6 +48,8 @@ class PDO_DataObject_Introspection
         
     }
     /**
+     * ?? might be better in generator?
+     *
      * 'proxy' version of databaseStructure - this is not so 'speed sensitive'
      * only used when
      * b) proxy is set..
