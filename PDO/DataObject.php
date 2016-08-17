@@ -256,6 +256,7 @@ class PDO_DataObject
      * @var     int
      */
     public $N = false;  // Number of rows returned from a query
+    
     /**
      * The QUERY rules
      * This replaces alot of the private variables 
