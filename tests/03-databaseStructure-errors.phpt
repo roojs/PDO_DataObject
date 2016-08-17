@@ -39,6 +39,8 @@ try {
 } catch(Exception $e) {
    echo "Exception Thrown: ". $e->getMessage() ."\n";
 }
+PDO_DataObject::config( 'schema_location' , $old);
+
 
 
 
