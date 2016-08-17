@@ -215,7 +215,7 @@ class PDO_DataObject_Generator extends PDO_DataObject
         
         foreach($tables as $table) {
             
-            $this->fillTableSchema($x->database(), $table);
+            $this->fillTableSchema($this->database(), $table);
             
         }
             // prevent recursion...
