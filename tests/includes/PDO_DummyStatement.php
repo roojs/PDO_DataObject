@@ -5,6 +5,10 @@ class PDO_DummyStatement {
     
     static $results = array(
         // Dsn
+        'mysql:dbname=somedb;host=localhost' => array(), // only used for connect tests.
+        'sybase:dbname=somedb;host=localhost' => array(),
+        
+        
         'mysql:dbname=anotherdb;host=localhost;port=3344' => array(
             
             // QUeries
