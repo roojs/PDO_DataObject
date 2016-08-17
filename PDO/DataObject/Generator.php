@@ -221,7 +221,7 @@ class PDO_DataObject_Generator extends PDO_DataObject
             // prevent recursion...
             
         PDO_DataObject::config('proxy', false);
-        $ret = $this->databaseStructure($x->database()); 
+        $ret = $this->databaseStructure(); 
         PDO_DataObject::config($config );
         return $ret;
             // databaseStructure('mydb',   array(.... schema....), array( ... links')
