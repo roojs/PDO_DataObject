@@ -708,7 +708,8 @@ class PDO_DataObject
         if ($start === '' && $end === '') {
             return $sql;
         }
-        
+        $count = (int)$count;
+        $start = (int)$start;
         switch($this->PDO()->getAttribute(PDO::ATTR_DRIVER_NAME)) {
             case 'mysql':
                 if ($manip && $start) {
@@ -716,7 +717,11 @@ class PDO_DataObject
                             self::ERROR_INVALIDARGS, self::ERROR_DIE); // from PEAR DB?
                 }
                 $start = empty($start) ? '': ($start .',');
-                return "$sql LIMIT $start $end";
+                return "$sql LIMIT $start $count";
+            
+            case 'pgsql':
+                return "$sql LIMIT $start OFFSET $count";
+                
             
         }
         
