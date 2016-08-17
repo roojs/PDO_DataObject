@@ -2342,7 +2342,7 @@ class PDO_DataObject
         // if we are configured to use the proxy..
         
         if ( self::$config['proxy'])   {
-            return $this->_introspection()->databaseStructureProxy($database);
+            return $this->_generator()->databaseStructureProxy($database);
         }
             
         // basic idea here..
@@ -2428,9 +2428,15 @@ class PDO_DataObject
     
     private function _generator()
     {
-        class_exists('PDO_DataObject_Generator') ? '' : 
+        $dcls = 'PDO_DataObject_Generator';
+        $cls = (is_string(self::$config['proxy']) && strpos(self::$config['proxy'], '::') !== false) ?
+            explode('::', self::$config['proxy'])[0] : $dcls;
+            
+        if ($dcls == $cls) {
+            class_exists('PDO_DataObject_Generator') ? '' : 
                 require_once 'PDO/DataObject/Generator.php';
-        return new PDO_DataObject_Generator();
+        }
+        return new $cls();
     }
     
     
