@@ -318,6 +318,8 @@ class PDO_DataObject
         if ($cfg === false) {
             return;
         }
+        
+        
         if (self::$debug) {
             $this->debug(json_encode(func_get_args()), __FUNCTION__,1);
         }
@@ -334,6 +336,11 @@ class PDO_DataObject
             
             $this->_database = self::$config['tables'][$this->__table];
             
+        }
+        
+        $ds = $this->databaseStructure();
+        if (!isset($ds[$this->__table])) {
+            $this->raiseError("Constructor called on non-existant database", self::ERROR_INVALIDARGS, self::ERROR_DIE );
         }
         
         
