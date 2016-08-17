@@ -711,7 +711,7 @@ class PDO_DataObject
         
         switch($this->PDO()->getAttribute(PDO::ATTR_DRIVER_NAME)) {
             case 'mysql':
-                $start = empty($start) ? '': ($start .',');
+                $start = empty($start) || $manip ? '': ($start .',');
                 return "$sql LIMIT $start $end";
             
         }
