@@ -21,9 +21,25 @@ PDO_DataObject::config(
 
 
 // connect to a table that does not exist
+try {
+    $obj = new PDO_DataObject('mysql_somedb/do_not_exist');
+} catch(Exception $e) {
+   echo "Exception Thrown: ". $e->getMessage() ."\n";
+}
 
-$obj = new PDO_DataObject('mysql_somedb/do_not_exist');
-print_r($obj->databaseStructure());
+echo "-- check invalid database --";
+
+// reset the schema location.
+
+$old = PDO_DataObject::config( 'schema_location' , '');
+        
+
+try {
+    $obj = new PDO_DataObject('do_not_exist');
+} catch(Exception $e) {
+   echo "Exception Thrown: ". $e->getMessage() ."\n";
+}
+
 
 
 
