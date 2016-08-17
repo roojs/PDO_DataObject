@@ -171,6 +171,30 @@ class PDO_DataObject_Generator extends PDO_DataObject
         $this->debug("DONE\n\n");
     }
 
+    
+    
+     /**
+     * create an instance of introspection. 
+     * - manual set
+     * - proxy
+     * - ini_****
+     */
+    protected function _introspection()
+    {
+        
+        $type  = $this->PDO()->getAttribute(PDO::ATTR_DRIVER_NAME);
+        if (empty($type)) {
+            throw new Exception("could not work out database type");
+        }
+        $class = 'PDO_DataObject_Introspection_'. $type;
+        class_exists($class)  ? '' : require_once 'PDO/DataObject/Introspection/'. $type. '.php';
+        $this->debug("Creating Introspection for $class", "_introspection");
+        return new $class($this);
+       
+    }
+
+    
+    
     /**
      * Output File was config object, now just string
      * Used to generate the Tables
