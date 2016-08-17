@@ -5,13 +5,13 @@ quoteIdentifiers
 require_once 'includes/init.php';
 PDO_DataObject::debugLevel(1);
 
-PDO_DataObject::$config['database']='mysql://test@localhost/somedb';
+PDO_DataObject::config('database','mysql://test@localhost/somedb');
 var_dump((new PDO_DataObject())->quoteIdentifier('fred'));
 
-PDO_DataObject::$config['database']='pgsql://test@localhost/somedb';
+PDO_DataObject::config('database','pgsql://test@localhost/somedb');
 var_dump((new PDO_DataObject())->quoteIdentifier('fred'));
 
-PDO_DataObject::$config['database']='sybase://test@localhost/somedb';
+PDO_DataObject::config('database','sybase://test@localhost/somedb)';
 var_dump((new PDO_DataObject())->quoteIdentifier('fred'));
 
 
