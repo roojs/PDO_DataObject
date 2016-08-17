@@ -194,11 +194,14 @@ class PDO_DataObject_Generator extends PDO_DataObject
     
     function databaseStructureProxy($database, $table = false)
     {
-
+        $x = new PDO_DataObject();
+        $x->database( $database );
+        $x->PDO();
+    
         $config = PDO_DataObject::config();
         if ($table === false) {
             // get all 
-            $this->do->debug("Loading Generator as databaseStructure called with args for database = {$database}",1);
+            $this->debug("Loading Generator as databaseStructure called with args for database = {$database}",1);
             
             
             
@@ -207,18 +210,19 @@ class PDO_DataObject_Generator extends PDO_DataObject
             $x->PDO();
             $cls = get_class($this);
              
-            $tables = (new $cls ($x))->getListOf('tables');
+            $tables = $this->_introspection()->getListOf('tables');
            
             if (empty($tables)) {
-                $this->do->raiseError("Could not introspect database, no table returned from getListOf(tables)");
+                $this->raiseError("Could not introspect database, no table returned from getListOf(tables)");
             }
         } else {
             $tables = array($tables);
+            
         }
         
         foreach($tables as $table) {
             
-            $this->_generator()->fillTableSchema($x->database(), $table);
+            $this->fillTableSchema($x->database(), $table);
             
         }
             // prevent recursion...
