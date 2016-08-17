@@ -690,6 +690,21 @@ class PDO_DataObject
         
     }
     
+    /**
+     *
+     * modifyLimitQuery - modifies an sql query, filling in the limit's as defined in _query[limit_start / limit_count]
+     */
+    function modifyLimitQuery($sql)
+    {
+        $start = $this->_query['limit_start'];
+        $count = $this->_query['limit_count'];
+        switch($this->PDO()->getAttribute(PDO::ATTR_DRIVER_NAME)) {
+            
+        }
+        
+        
+        
+    }
     
     
      
