@@ -1,5 +1,5 @@
 --TEST--
-databaseStructure
+databaseStructure - error checking
 --FILE--
 <?php
 require_once 'includes/init.php';
