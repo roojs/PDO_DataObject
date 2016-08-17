@@ -656,7 +656,13 @@ class PDO_DataObject
      
     
     /* ---------------- ---------------- database  portability methods -------------------------------- */
-    
+    /**
+     * Quote identifiers - similar to escape - but for identifiers, like column names.
+     *
+     * @param string $identifier
+     * @result string wrapped string  
+     *
+     */
     function quoteIdentifier($str)
     {
         $pdo = $this->PDO();
@@ -683,7 +689,8 @@ class PDO_DataObject
         
         
     }
-
+    
+    
     
      
  
