@@ -589,11 +589,14 @@ class PDO_DataObject
      * Fetch the current config.
      * $cfg = PDO_DataObject::config(); 
      *
-     * $old = PDO_DataObject::config('schema_location', '');  -- set a value and return old one.
+     * SET a configuration value. (returns old value.)
+     * $old = PDO_DataObject::config('schema_location', '');  
      *
-     * somevar = PDO_DataObject::config()['schema_location'];  -- get the current value
+     * GET a specific value ** does not do this directly to stop errors...
+     * somevar = PDO_DataObject::config()['schema_location'];  
      *
-     * somevar = PDO_DataObject::config()['schema_location'];  -- get the current value
+     * SET multiple values (returns 'old' configuration)
+     * somevar = PDO_DataObject::config()['schema_location'];  
      * 
      * 
      * @param   array  key/value - see self::$config
@@ -602,7 +605,7 @@ class PDO_DataObject
      * @return - the current config..
      */
      
-    public static function config($cfg = array(), $value=false) 
+    public static function config($cfg_in = array(), $value=false) 
     {
         self::_loadPEARConfig();
         
@@ -610,24 +613,27 @@ class PDO_DataObject
             return self::$config;
         }
         
-        if (!is_array($cfg) && func_num_args() < 2) {
+        if (!is_array($cfg_in) && func_num_args() < 2) {
             // one arg = not an array..
             (new PDO_DataObject())->raiseError("Invalid Call to config should be string+anther value or array",
                               self::ERROR_INVALIDARGS, self::ERROR_DIE);
         }
         
         $old = self::$config;
+        
+        $cfg = $cfg_in;
+        
         if (func_num_args() > 1) {
             // two args..
-            if (!is_string($cfg)) {
+            if (!is_string($cfg_in)) {
                 (new PDO_DataObject())->raiseError("Invalid Call to config should be string+anther value or array",
                               self::ERROR_INVALIDARGS, self::ERROR_DIE);    
             }
             
-            $k = $cfg;
+            $k = $cfg_in;
             $cfg = array();
             $cfg[$k] = $value;
-        }
+        } 
           
         foreach ($cfg as $k=>$v) {
             if (!isset(self::$config[$k])) {
@@ -641,7 +647,7 @@ class PDO_DataObject
         }
         
         
-        return self::$config;
+        return is_array($cfg_in) ? $old : $old[$cfg_in];
     }
     
      
