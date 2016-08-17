@@ -164,7 +164,7 @@ class PDO_DataObject_Introspection_pgsql extends PDO_DataObject_Introspection
             ->fetchAll(false,false,'toArray');
         
         
-        if (sqlite_somedb & PDO_DataObject::PORTABILITY_LOWERCASE) {
+        if (PDO_DataObject::config()['portability'] & PDO_DataObject::PORTABILITY_LOWERCASE) {
             $case_func = 'strtolower';
         } else {
             $case_func = 'strval';
