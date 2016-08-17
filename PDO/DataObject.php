@@ -1483,7 +1483,7 @@ class PDO_DataObject
             $old = $this->_query;
             $this->_query['limit_start'] = '';
             $this->_query['limit_count'] = '';
-            return array(;
+            return array( $old['limit_start'],$old['limit_count'] );
         }
         // check input...= 0 or '    ' == error!
         if (!is_numeric($a) || (func_num_args() > 1 && !is_numeric($b))) {
