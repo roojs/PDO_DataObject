@@ -47,83 +47,12 @@ class PDO_DataObject_Introspection
         $this->do = $do;
         
     }
-    /**
-     * ?? might be better in generator?
-     *
-     * 'proxy' version of databaseStructure - this is not so 'speed sensitive'
-     * only used when
-     * b) proxy is set..
-     
-    *
-     *  - set's the structure.. and the links data..
-          
-     *
-     * obviously you dont have to use ini files.. (just return array similar to ini files..)
-     *  
-     * It should append to the table structure array 
-     *
-     *     
-     * @param optional string  name of database to assign / read
-     * @param optional array   structure of database, and keys
-     * @param optional array  table links
-     * @return (varies) - depends if you are setting or getting...
-     */
-    
-    function databaseStructureProxy($database, $table = false)
-    {
-
-        $config = PDO_DataObject::config();
-        if ($table === false) {
-            // get all 
-            $this->do->debug("Loading Generator as databaseStructure called with args for database = {$database}",1);
-            
-            
-            
-            $x = new PDO_DataObject();
-            $x->database( $database );
-            $x->PDO();
-            $cls = get_class($this);
-             
-            $tables = (new $cls ($x))->getListOf('tables');
-           
-            if (empty($tables)) {
-                $this->do->raiseError("Could not introspect database, no table returned from getListOf(tables)");
-            }
-        } else {
-            $tables = array($tables);
-        }
-        
-        foreach($tables as $table) {
-            
-            $this->_generator()->fillTableSchema($x->database(), $table);
-            
-        }
-            // prevent recursion...
-            
-        PDO_DataObject::config('proxy', false);
-        $ret = $x->databaseStructure($x->database()); 
-        PDO_DataObject::config($config );
-        return $ret;
-            // databaseStructure('mydb',   array(.... schema....), array( ... links')
-         
-            // will not get here....
-    }
+  
      
     
     
     
-    /**
-     * Create an instance of the generator.
-     *
-     * @returns PDO_DataObject_Generator
-     */
-    private function _generator()
-    {
-        class_exists('PDO_DataObject_Generator') ? '' : 
-                require_once 'PDO/DataObject/Generator.php';
-        return new PDO_DataObject_Generator();
-    }
-    
+     
     /**
      * Lists internal database information
      *
