@@ -1484,9 +1484,8 @@ class PDO_DataObject
            return $this;
         }
         // check input...= 0 or '    ' == error!
-        if ((!is_int($a) && ((string)((int)$a) !== (string)$a)) 
-            || (($b !== null) && (!is_int($b) && ((string)((int)$b) !== (string)$b)))) {
-            return $this->raiseError("limit: No Valid Arguments", DB_DATAOBJECT_ERROR_INVALIDARGS);
+        if (!is_numeric($a) || func_num_args() < 2) || !is_numeric($b) {
+            return $this->raiseError("limit: No Valid Arguments", self::ERROR_INVALIDARGS);
         }
         global $_DB_DATAOBJECT;
         $this->_connect();
