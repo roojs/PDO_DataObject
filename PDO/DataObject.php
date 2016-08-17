@@ -1460,7 +1460,7 @@ class PDO_DataObject
      * $object->limit(12);
      * $object->limit(12,10);
      *
-     * Note this will emit an error on databases other than mysql/postgress
+     * Note may result in an error on databases other than mysql/postgress/sqlite
      * as there is no 'clean way' to implement it. - you should consider refering to
      * your database manual to decide how you want to implement it.
      *
