@@ -1456,7 +1456,7 @@ class PDO_DataObject
     /**
      * Sets the Limit
      *
-     * $boject->limit(); // clear limit
+     * $boject->limit(); // clear limit - returns 'previous settings.
      * $object->limit(12);
      * $object->limit(12,10);
      *
@@ -1467,7 +1467,7 @@ class PDO_DataObject
      * @param  string $a  limit start (or number), or blank to reset
      * @param  string $b  number
      * @access public
-     * @return self  (for chaining)
+     * @return self  (for chaining) - except 'reset' call
      */
     function limit($a = null, $b = null)
     {
