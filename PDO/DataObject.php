@@ -329,8 +329,7 @@ class PDO_DataObject
         $this->__table = count($cfg) > 1 ? $cfg[1] : $cfg[0];
         if (count($cfg) > 1) {
             $this->_database = $cfg[0];
-            return;
-        }
+         }
         // only supplied table..
         if (isset(self::$config['tables'][$this->__table])) {
             
