@@ -132,7 +132,9 @@ class PDO_DataObject
             'proxy' => false,
                 // normally we use pre-created 'ini' files, but if you use proxy, it will generate the
                 // the database schema on the fly..
-            
+                // true - calls PDO_DataObject_Generator->
+                // full|light ??? - not sure what these do ....
+                // YourClass::somemethod... --- calls some other method to generate proxy..
             
             
             
