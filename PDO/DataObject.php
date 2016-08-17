@@ -1467,7 +1467,7 @@ class PDO_DataObject
      * @param  string $a  limit start (or number), or blank to reset
      * @param  string $b  number
      * @access public
-     * @return none|PEAR::Error - invalid args only
+     * @return self  (for chaining)
      */
     function limit($a = null, $b = null)
     {
