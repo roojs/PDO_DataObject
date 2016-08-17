@@ -95,7 +95,7 @@ class PDO_DataObject
      * @static
      * @var     array
      */
-    static $config = array(
+    private static $config = array(
             
             'database' => false,
                 //  the default database dsn (not PDO standard = see @$_database for details)
