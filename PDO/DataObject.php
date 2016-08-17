@@ -710,7 +710,8 @@ class PDO_DataObject
         }
         $count = (int)$count;
         $start = (int)$start;
-        switch($this->PDO()->getAttribute(PDO::ATTR_DRIVER_NAME)) {
+        $drv = $this->PDO()->getAttribute(PDO::ATTR_DRIVER_NAME);
+        switch($drv) {
             case 'mysql':
                 if ($manip && $start) {
                     $this->raiseError("Mysql may not support offset in modification queries",
@@ -724,9 +725,10 @@ class PDO_DataObject
             case 'pgsql':
                 return "$sql LIMIT $start OFFSET $count";
                 
-            
+            default:
+                $this->raiseError("The Database $drv, does not support limit queries - if you know how this can be added, please send a patch.",
+                    self::ERROR_INVALIDARGS, self::ERROR_DIE); // from PEAR DB?
         }
-        
         
         
     }
