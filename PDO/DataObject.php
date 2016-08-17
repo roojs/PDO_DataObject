@@ -2425,6 +2425,11 @@ class PDO_DataObject
         
          
     }
+    /**
+     * create an instance of the generator.
+     * class can be set by using proxy = {classname}::
+     * We do not really care if you have implemented it correctly....????
+     */
     
     private function _generator()
     {
