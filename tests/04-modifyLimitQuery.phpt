@@ -8,11 +8,14 @@ PDO_DataObject::debugLevel(1);
 
     
 
-PDO_DataObject::config('databases' => array(
+PDO_DataObject::config(array(
+    'databases' , array(
         'mysql_somedb' =>  'mysql://username:test@localhost:3344/somedb#',
         'pgsql_somedb' => 'pgsql://nobody:change_me@localhost:3434/example',
-        'sqlite_somedb'='sqlite:'.__DIR__.'/includes/EssentialSQL.db',
-));
+        'sqlite_somedb'=> 'sqlite:'.__DIR__.'/includes/EssentialSQL.db',
+    ),
+    'schema_location' => __DIR__FILE__
+);
 
 var_dump((new PDO_DataObject('mysql_somedb/Companies'))
     ->limit(10,4)
