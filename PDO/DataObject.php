@@ -2423,6 +2423,16 @@ class PDO_DataObject
         
          
     }
+    
+    private function _generator()
+    {
+        class_exists('PDO_DataObject_Generator') ? '' : 
+                require_once 'PDO/DataObject/Generator.php';
+        return new PDO_DataObject_Generator();
+    }
+    
+    
+    
     /**
      * create an instance of introspection. 
      * - manual set
