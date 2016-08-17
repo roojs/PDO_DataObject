@@ -719,6 +719,8 @@ class PDO_DataObject
                 $start = empty($start) ? '': ($start .',');
                 return "$sql LIMIT $start $count";
             
+            case 'sqlite':
+            case 'sqlite2':
             case 'pgsql':
                 return "$sql LIMIT $start OFFSET $count";
                 
