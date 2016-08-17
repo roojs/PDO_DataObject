@@ -2830,7 +2830,8 @@ class PDO_DataObject
                     case 8004:
                     case 8006:
                         sleep(1);
-                        $this->PDO(true);
+                        self::$connections = array();
+                        $this->PDO();
                         continue;
                 }
         
