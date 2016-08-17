@@ -200,7 +200,7 @@ class PDO_DataObject_Generator extends PDO_DataObject
     
          if ($table === false) {
             // get all 
-            $this->debug("Loading Generator as databaseStructure called with args for database = {$database}",1);
+            $this->debug("calling Get list of tablesdatabaseStructure called with args for database = {$database}", __FUNCTION__,1);
             
             $tables = $this->_introspection()->getListOf('tables');
            
