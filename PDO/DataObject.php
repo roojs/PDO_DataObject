@@ -693,8 +693,15 @@ class PDO_DataObject
     /**
      *
      * modifyLimitQuery - modifies an sql query, filling in the limit's as defined in _query[limit_start / limit_count]
+     *
+     * Note: the original code does determine 
+     *
+     * @param string $sql the query to modify
+     * @param bool $manip - is the query a manipluation?
+     * @return string - the modified string
+     * 
      */
-    function modifyLimitQuery($sql)
+    function modifyLimitQuery($sql, $manip=false)
     {
         $start = $this->_query['limit_start'];
         $count = $this->_query['limit_count'];
@@ -706,7 +713,7 @@ class PDO_DataObject
             case 'mysql':
                 $start = empty($start) ? '': ($start .',');
                 return "$sql LIMIT $start $end";
-                
+            
         }
         
         
