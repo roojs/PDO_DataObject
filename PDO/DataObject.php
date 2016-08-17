@@ -591,12 +591,20 @@ class PDO_DataObject
     {
         self::_loadPEARConfig();
         
-        if (!is_array($cfg) || (func_num_args() > 1 && !is_string($cfg))) {
-            
-            (new PDO_DataObject()->raiseError("Invalid Call to config should be string+anther value or array",
+        
+        if (!is_array($cfg) && func_num_args() < 2) {
+            // one arg = not an array..
+            (new PDO_DataObject())->raiseError("Invalid Call to config should be string+anther value or array",
                               self::ERROR_INVALIDARGS, self::ERROR_DIE);
         }
+        
         if (func_num_args() > 1) {
+            // two args..
+            if (!is_string($cfg)) {
+                (new PDO_DataObject())->raiseError("Invalid Call to config should be string+anther value or array",
+                              self::ERROR_INVALIDARGS, self::ERROR_DIE);    
+            }
+            
             $k = $cfg;
             $cfg = array();
             $cfg[$k] = $value;
@@ -604,7 +612,7 @@ class PDO_DataObject
           
         foreach ($cfg as $k=>$v) {
             if (!isset(self::$config[$k])) {
-                (new PDO_DataObject()->raiseError("Invalid Configuration setting : $k",
+                (new PDO_DataObject())->raiseError("Invalid Configuration setting : $k",
                         self::ERROR_INVALIDCONFIG, self::ERROR_DIE);
             }
             self::$config[$k] = $v;
@@ -971,7 +979,7 @@ class PDO_DataObject
                 $this->debug("Last Data Fetch'ed after " . 
                         number_format($t[0]+$t[1]- $this->_result->time_query_end ,3) . 
                         " seconds",
-                    "FETCH", 1);
+                    "FETCH", 2);
             }
             $fields = $this->_result->fields;
             $this->_result->closeCursor();
@@ -2816,7 +2824,7 @@ class PDO_DataObject
         if (self::$debug) {
             $t= explode(' ',microtime());
             $result->time_query_end = $t[0]+$t[1];
-            $this->debug('QUERY DONE IN  '.number_format($t[0]+$t[1]-$time,3)." seconds", 'query',1);
+            $this->debug('QUERY DONE IN  '.number_format($t[0]+$t[1]-$time,3)." seconds", 'query',2);
             $this->debug('NO# of results: '.$result->rowCount(), 'query',1);
         }
         
