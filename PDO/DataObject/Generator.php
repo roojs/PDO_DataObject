@@ -194,22 +194,15 @@ class PDO_DataObject_Generator extends PDO_DataObject
     
     function databaseStructureProxy($database, $table = false)
     {
-        $x = new PDO_DataObject();
-        $x->database( $database );
-        $x->PDO();
+        
+        $this->database( $database );
+        $this->PDO();
     
         $config = PDO_DataObject::config();
         if ($table === false) {
             // get all 
             $this->debug("Loading Generator as databaseStructure called with args for database = {$database}",1);
             
-            
-            
-            $x = new PDO_DataObject();
-            $x->database( $database );
-            $x->PDO();
-            $cls = get_class($this);
-             
             $tables = $this->_introspection()->getListOf('tables');
            
             if (empty($tables)) {
