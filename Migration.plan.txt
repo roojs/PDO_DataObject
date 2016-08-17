@@ -356,7 +356,7 @@ debug_ignore_updates << removed. use config[PDO] == {fake PDO}
 1 - basic QUERY and results.
 2 - Timers
 3 - Detail returned data
-
+4 - Full connection details (including DSN with password)
 ----------------------------------------------------
 
 

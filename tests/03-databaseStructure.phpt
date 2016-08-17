@@ -197,7 +197,7 @@ print_r($obj->databaseStructure('EssentialSQL'));
 
 
 ?>
---EXPECT--
+--EXPECTF--
 SINGLE INI FILE 
 PDO_DataObject   : __construct       : ["mysql_somedb\/account_code"]
 PDO_DataObject   : databaseStructure       : CALL:["mysql_somedb"]
@@ -306,7 +306,6 @@ getAttribute==[16] => mysql
 PDO_DataObject   : QUERY       : 9c36cac1372650b703400c60dd29042c : SHOW TABLES
 getAttribute==[16] => mysql
 QUERY: SHOW TABLES  
-PDO_DataObject   : query       : QUERY DONE IN  0.000 seconds
 PDO_DataObject   : query       : NO# of results: 3
 Fetch Row 0 / 3
 PDO_DataObject   : FETCH       : {"Tables_in_somedb":"Companies"}
@@ -316,7 +315,6 @@ Fetch Row 2 / 3
 PDO_DataObject   : FETCH       : {"Tables_in_somedb":"Groups"}
 Fetch Row 3 / 3
 PDO_DataObject   : FETCH       : false
-PDO_DataObject   : FETCH       : Last Data Fetch'ed after 0.000 seconds
 Close Cursor
 PDO_DataObject   : PDO       : Using Cached connection
 PDO_DataObject   : PDO       : Checking for database specific ini ('mysql_anotherdb') : config[databases][mysql_anotherdb] in options
@@ -328,7 +326,6 @@ getAttribute==[16] => mysql
 PDO_DataObject   : QUERY       : 16df8b2c9d4c9a5e5d29184cedc0f90d : DESCRIBE Companies
 getAttribute==[16] => mysql
 QUERY: DESCRIBE Companies  
-PDO_DataObject   : query       : QUERY DONE IN  0.000 seconds
 PDO_DataObject   : query       : NO# of results: 23
 Fetch Row 0 / 23
 PDO_DataObject   : FETCH       : {"Field":"id","Type":"int(11)","Null":"NO","Key":"PRI","Default":null,"Extra":"auto_increment"}
@@ -378,7 +375,6 @@ Fetch Row 22 / 23
 PDO_DataObject   : FETCH       : {"Field":"country","Type":"varchar(4)","Null":"NO","Key":"","Default":"","Extra":""}
 Fetch Row 23 / 23
 PDO_DataObject   : FETCH       : false
-PDO_DataObject   : FETCH       : Last Data Fetch'ed after 0.000 seconds
 Close Cursor
 PDO_DataObject   : PDO       : Using Cached connection
 getAttribute==[16] => mysql
@@ -393,7 +389,6 @@ getAttribute==[16] => mysql
 PDO_DataObject   : QUERY       : 5b30c8fedc52d8f73f669f2348ecf576 : DESCRIBE Events
 getAttribute==[16] => mysql
 QUERY: DESCRIBE Events  
-PDO_DataObject   : query       : QUERY DONE IN  0.000 seconds
 PDO_DataObject   : query       : NO# of results: 10
 Fetch Row 0 / 10
 PDO_DataObject   : FETCH       : {"Field":"id","Type":"int(11)","Null":"NO","Key":"PRI","Default":null,"Extra":"auto_increment"}
@@ -417,7 +412,6 @@ Fetch Row 9 / 10
 PDO_DataObject   : FETCH       : {"Field":"remarks","Type":"text","Null":"YES","Key":"","Default":null,"Extra":""}
 Fetch Row 10 / 10
 PDO_DataObject   : FETCH       : false
-PDO_DataObject   : FETCH       : Last Data Fetch'ed after 0.000 seconds
 Close Cursor
 PDO_DataObject   : PDO       : Using Cached connection
 getAttribute==[16] => mysql
@@ -432,7 +426,6 @@ getAttribute==[16] => mysql
 PDO_DataObject   : QUERY       : dcae9cad4d5f111b6b2ac65d922aa38f : DESCRIBE Groups
 getAttribute==[16] => mysql
 QUERY: DESCRIBE Groups  
-PDO_DataObject   : query       : QUERY DONE IN  0.000 seconds
 PDO_DataObject   : query       : NO# of results: 4
 Fetch Row 0 / 4
 PDO_DataObject   : FETCH       : {"Field":"id","Type":"int(11)","Null":"NO","Key":"PRI","Default":null,"Extra":"auto_increment"}
@@ -444,7 +437,6 @@ Fetch Row 3 / 4
 PDO_DataObject   : FETCH       : {"Field":"leader","Type":"int(11)","Null":"NO","Key":"","Default":"0","Extra":""}
 Fetch Row 4 / 4
 PDO_DataObject   : FETCH       : false
-PDO_DataObject   : FETCH       : Last Data Fetch'ed after 0.000 seconds
 Close Cursor
 PDO_DataObject   : PDO       : Using Cached connection
 getAttribute==[16] => mysql
@@ -539,7 +531,6 @@ getAttribute==[16] => pgsql
 PDO_DataObject   : QUERY       : e1cbe336d18feb312b6ec9685b9f64b2 : SELECT table_name FROM information_schema.tables WHERE table_type = 'BASE TABLE' AND table_schema = 'public' order by table_name ASC
 getAttribute==[16] => pgsql
 QUERY: SELECT table_name FROM information_schema.tables WHERE table_type = 'BASE TABLE' AND table_schema = 'public' order by table_name ASC  
-PDO_DataObject   : query       : QUERY DONE IN  0.000 seconds
 PDO_DataObject   : query       : NO# of results: 3
 Fetch Row 0 / 3
 PDO_DataObject   : FETCH       : {"table_name":"acalitem"}
@@ -549,7 +540,6 @@ Fetch Row 2 / 3
 PDO_DataObject   : FETCH       : {"table_name":"addr"}
 Fetch Row 3 / 3
 PDO_DataObject   : FETCH       : false
-PDO_DataObject   : FETCH       : Last Data Fetch'ed after 0.000 seconds
 Close Cursor
 PDO_DataObject   : PDO       : Using Cached connection
 PDO_DataObject   : PDO       : Checking for database specific ini ('dummy_xtuple') : config[databases][dummy_xtuple] in options
@@ -642,7 +632,6 @@ QUERY: SELECT
                         AND c.relname = 'acalitem'  
                         AND f.attnum > 0 ORDER BY number
               
-PDO_DataObject   : query       : QUERY DONE IN  0.000 seconds
 PDO_DataObject   : query       : NO# of results: 5
 Fetch Row 0 / 5
 PDO_DataObject   : FETCH       : {"number":1,"name":"acalitem_id","attnum":1,"notnull":true,"type":"integer","primarykey":"t","uniquekey":"f","foreignkey":null,"foreignkey_fieldnum":null,"foreignkey_connnum":null,"default":"nextval(('\"xcalitem_xcalitem_id_seq\"'::text)::regclass)"}
@@ -656,7 +645,6 @@ Fetch Row 4 / 5
 PDO_DataObject   : FETCH       : {"number":5,"name":"acalitem_name","attnum":5,"notnull":false,"type":"text","primarykey":"f","uniquekey":"f","foreignkey":null,"foreignkey_fieldnum":null,"foreignkey_connnum":null,"default":null}
 Fetch Row 5 / 5
 PDO_DataObject   : FETCH       : false
-PDO_DataObject   : FETCH       : Last Data Fetch'ed after 0.000 seconds
 Close Cursor
 PDO_DataObject   : PDO       : Using Cached connection
 getAttribute==[16] => pgsql
@@ -752,7 +740,6 @@ QUERY: SELECT
                         AND c.relname = 'accnt'  
                         AND f.attnum > 0 ORDER BY number
               
-PDO_DataObject   : query       : QUERY DONE IN  0.000 seconds
 PDO_DataObject   : query       : NO# of results: 17
 Fetch Row 0 / 17
 PDO_DataObject   : FETCH       : {"number":1,"name":"accnt_id","attnum":1,"notnull":true,"type":"integer","primarykey":"t","uniquekey":"f","foreignkey":null,"foreignkey_fieldnum":null,"foreignkey_connnum":null,"default":"nextval(('accnt_accnt_id_seq'::text)::regclass)"}
@@ -790,7 +777,6 @@ Fetch Row 16 / 17
 PDO_DataObject   : FETCH       : {"number":17,"name":"accnt_descrip_alt","attnum":17,"notnull":false,"type":"text","primarykey":"f","uniquekey":"f","foreignkey":null,"foreignkey_fieldnum":null,"foreignkey_connnum":null,"default":"''::text"}
 Fetch Row 17 / 17
 PDO_DataObject   : FETCH       : false
-PDO_DataObject   : FETCH       : Last Data Fetch'ed after 0.000 seconds
 Close Cursor
 PDO_DataObject   : PDO       : Using Cached connection
 getAttribute==[16] => pgsql
@@ -886,7 +872,6 @@ QUERY: SELECT
                         AND c.relname = 'addr'  
                         AND f.attnum > 0 ORDER BY number
               
-PDO_DataObject   : query       : QUERY DONE IN  0.000 seconds
 PDO_DataObject   : query       : NO# of results: 11
 Fetch Row 0 / 11
 PDO_DataObject   : FETCH       : {"number":1,"name":"addr_id","attnum":1,"notnull":true,"type":"integer","primarykey":"t","uniquekey":"f","foreignkey":null,"foreignkey_fieldnum":null,"foreignkey_connnum":null,"default":"nextval('addr_addr_id_seq'::regclass)"}
@@ -912,7 +897,6 @@ Fetch Row 10 / 11
 PDO_DataObject   : FETCH       : {"number":11,"name":"addr_number","attnum":11,"notnull":true,"type":"text","primarykey":"f","uniquekey":"t","foreignkey":null,"foreignkey_fieldnum":null,"foreignkey_connnum":null,"default":null}
 Fetch Row 11 / 11
 PDO_DataObject   : FETCH       : false
-PDO_DataObject   : FETCH       : Last Data Fetch'ed after 0.000 seconds
 Close Cursor
 PDO_DataObject   : PDO       : Using Cached connection
 getAttribute==[16] => pgsql
@@ -994,7 +978,6 @@ PDO_DataObject   : getListOf       : tables
 PDO_DataObject   : getListOf       : SELECT name FROM sqlite_master WHERE type='table' UNION ALL SELECT name FROM sqlite_temp_master WHERE type='table' ORDER BY name
 PDO_DataObject   : PDO       : Using Cached connection
 PDO_DataObject   : QUERY       : ea3ca8779fe015d52cc1a09a3bb4010d : SELECT name FROM sqlite_master WHERE type='table' UNION ALL SELECT name FROM sqlite_temp_master WHERE type='table' ORDER BY name
-PDO_DataObject   : query       : QUERY DONE IN  0.000 seconds
 PDO_DataObject   : query       : NO# of results: 0
 PDO_DataObject   : FETCH       : {"name":"Customers"}
 PDO_DataObject   : FETCH       : {"name":"Employees"}
@@ -1002,14 +985,12 @@ PDO_DataObject   : FETCH       : {"name":"OrderDetails"}
 PDO_DataObject   : FETCH       : {"name":"Orders"}
 PDO_DataObject   : FETCH       : {"name":"Shippers"}
 PDO_DataObject   : FETCH       : false
-PDO_DataObject   : FETCH       : Last Data Fetch'ed after 0.000 seconds
 PDO_DataObject   : PDO       : Using Cached connection
 PDO_DataObject   : PDO       : Checking for database specific ini ('EssentialSQL') : config[databases][EssentialSQL] in options
 PDO_DataObject   : PDO       : Using Cached connection
 PDO_DataObject   : _introspection       : Creating Introspection for PDO_DataObject_Introspection_sqlite
 PDO_DataObject   : PDO       : Using Cached connection
 PDO_DataObject   : QUERY       : e459bf5d26556fa01d255e9f4f45900f : PRAGMA table_info('Customers');
-PDO_DataObject   : query       : QUERY DONE IN  0.000 seconds
 PDO_DataObject   : query       : NO# of results: 0
 PDO_DataObject   : FETCH       : {"cid":"0","name":"CustomerID","type":"INTEGER","notnull":"0","dflt_value":null,"pk":"1"}
 PDO_DataObject   : FETCH       : {"cid":"1","name":"CompanyName","type":"VARCHAR(60)","notnull":"0","dflt_value":null,"pk":"0"}
@@ -1019,7 +1000,6 @@ PDO_DataObject   : FETCH       : {"cid":"4","name":"Address","type":"VARCHAR(60)
 PDO_DataObject   : FETCH       : {"cid":"5","name":"City","type":"VARCHAR(60)","notnull":"0","dflt_value":null,"pk":"0"}
 PDO_DataObject   : FETCH       : {"cid":"6","name":"State","type":"VARCHAR(2)","notnull":"0","dflt_value":null,"pk":"0"}
 PDO_DataObject   : FETCH       : false
-PDO_DataObject   : FETCH       : Last Data Fetch'ed after 0.000 seconds
 PDO_DataObject   : PDO       : Using Cached connection
 PDO_DataObject   : databaseStructure       : CALL:["EssentialSQL",{"Customers":{"CustomerID":1,"CompanyName":2,"ContactName":2,"ContactTitle":2,"Address":2,"City":2,"State":2},"Customers__keys":{"CustomerID":"N"}}]
 PDO_DataObject   : PDO       : Using Cached connection
@@ -1028,7 +1008,6 @@ PDO_DataObject   : PDO       : Using Cached connection
 PDO_DataObject   : _introspection       : Creating Introspection for PDO_DataObject_Introspection_sqlite
 PDO_DataObject   : PDO       : Using Cached connection
 PDO_DataObject   : QUERY       : f4f6e6dea2ce91edc63339a63a63557d : PRAGMA table_info('Employees');
-PDO_DataObject   : query       : QUERY DONE IN  0.000 seconds
 PDO_DataObject   : query       : NO# of results: 0
 PDO_DataObject   : FETCH       : {"cid":"0","name":"EmployeeID","type":"INTEGER","notnull":"0","dflt_value":null,"pk":"1"}
 PDO_DataObject   : FETCH       : {"cid":"1","name":"LastName","type":"VARCHAR(20)","notnull":"0","dflt_value":null,"pk":"0"}
@@ -1037,7 +1016,6 @@ PDO_DataObject   : FETCH       : {"cid":"3","name":"Title","type":"VARCHAR(60)",
 PDO_DataObject   : FETCH       : {"cid":"4","name":"Address","type":"VARCHAR(40)","notnull":"0","dflt_value":null,"pk":"0"}
 PDO_DataObject   : FETCH       : {"cid":"5","name":"HireDate","type":"VARCHAR(25)","notnull":"0","dflt_value":null,"pk":"0"}
 PDO_DataObject   : FETCH       : false
-PDO_DataObject   : FETCH       : Last Data Fetch'ed after 0.000 seconds
 PDO_DataObject   : PDO       : Using Cached connection
 PDO_DataObject   : databaseStructure       : CALL:["EssentialSQL",{"Employees":{"EmployeeID":1,"LastName":2,"FirstName":2,"Title":2,"Address":2,"HireDate":2},"Employees__keys":{"EmployeeID":"N"}}]
 PDO_DataObject   : PDO       : Using Cached connection
@@ -1046,7 +1024,6 @@ PDO_DataObject   : PDO       : Using Cached connection
 PDO_DataObject   : _introspection       : Creating Introspection for PDO_DataObject_Introspection_sqlite
 PDO_DataObject   : PDO       : Using Cached connection
 PDO_DataObject   : QUERY       : 4be38faf7194500e1894f7d5150da013 : PRAGMA table_info('OrderDetails');
-PDO_DataObject   : query       : QUERY DONE IN  0.000 seconds
 PDO_DataObject   : query       : NO# of results: 0
 PDO_DataObject   : FETCH       : {"cid":"0","name":"OrderDetailID","type":"INTEGER","notnull":"0","dflt_value":null,"pk":"1"}
 PDO_DataObject   : FETCH       : {"cid":"1","name":"OrderID","type":"INTEGER","notnull":"0","dflt_value":null,"pk":"0"}
@@ -1054,7 +1031,6 @@ PDO_DataObject   : FETCH       : {"cid":"2","name":"ProductID","type":"INTEGER",
 PDO_DataObject   : FETCH       : {"cid":"3","name":"UnitPrice","type":"REAL","notnull":"0","dflt_value":null,"pk":"0"}
 PDO_DataObject   : FETCH       : {"cid":"4","name":"Quantity","type":"INTEGER","notnull":"0","dflt_value":null,"pk":"0"}
 PDO_DataObject   : FETCH       : false
-PDO_DataObject   : FETCH       : Last Data Fetch'ed after 0.000 seconds
 PDO_DataObject   : PDO       : Using Cached connection
 PDO_DataObject   : databaseStructure       : CALL:["EssentialSQL",{"OrderDetails":{"OrderDetailID":1,"OrderID":1,"ProductID":1,"UnitPrice":1,"Quantity":1},"OrderDetails__keys":{"OrderDetailID":"N"}}]
 PDO_DataObject   : PDO       : Using Cached connection
@@ -1063,7 +1039,6 @@ PDO_DataObject   : PDO       : Using Cached connection
 PDO_DataObject   : _introspection       : Creating Introspection for PDO_DataObject_Introspection_sqlite
 PDO_DataObject   : PDO       : Using Cached connection
 PDO_DataObject   : QUERY       : d274cc9a18844d15cb63cad939785fba : PRAGMA table_info('Orders');
-PDO_DataObject   : query       : QUERY DONE IN  0.000 seconds
 PDO_DataObject   : query       : NO# of results: 0
 PDO_DataObject   : FETCH       : {"cid":"0","name":"OrderID","type":"INTEGER","notnull":"0","dflt_value":null,"pk":"1"}
 PDO_DataObject   : FETCH       : {"cid":"1","name":"CustomerID","type":"INTEGER","notnull":"0","dflt_value":null,"pk":"0"}
@@ -1074,7 +1049,6 @@ PDO_DataObject   : FETCH       : {"cid":"5","name":"ShippedDate","type":"VARCHAR
 PDO_DataObject   : FETCH       : {"cid":"6","name":"ShipVia","type":"INTEGER","notnull":"0","dflt_value":null,"pk":"0"}
 PDO_DataObject   : FETCH       : {"cid":"7","name":"FreightCharge","type":"REAL","notnull":"0","dflt_value":null,"pk":"0"}
 PDO_DataObject   : FETCH       : false
-PDO_DataObject   : FETCH       : Last Data Fetch'ed after 0.000 seconds
 PDO_DataObject   : PDO       : Using Cached connection
 PDO_DataObject   : databaseStructure       : CALL:["EssentialSQL",{"Orders":{"OrderID":1,"CustomerID":1,"EmployeeID":1,"OrderDate":2,"RequiredDate":2,"ShippedDate":2,"ShipVia":1,"FreightCharge":1},"Orders__keys":{"OrderID":"N"}}]
 PDO_DataObject   : PDO       : Using Cached connection
@@ -1083,13 +1057,11 @@ PDO_DataObject   : PDO       : Using Cached connection
 PDO_DataObject   : _introspection       : Creating Introspection for PDO_DataObject_Introspection_sqlite
 PDO_DataObject   : PDO       : Using Cached connection
 PDO_DataObject   : QUERY       : 02f4528d77058145e7f11034d44c4289 : PRAGMA table_info('Shippers');
-PDO_DataObject   : query       : QUERY DONE IN  0.000 seconds
 PDO_DataObject   : query       : NO# of results: 0
 PDO_DataObject   : FETCH       : {"cid":"0","name":"ShipperID","type":"INTEGER","notnull":"0","dflt_value":null,"pk":"1"}
 PDO_DataObject   : FETCH       : {"cid":"1","name":"CompanyName","type":"VARCHAR(60)","notnull":"0","dflt_value":null,"pk":"0"}
 PDO_DataObject   : FETCH       : {"cid":"2","name":"Phone","type":"VARCHAR(20)","notnull":"0","dflt_value":null,"pk":"0"}
 PDO_DataObject   : FETCH       : false
-PDO_DataObject   : FETCH       : Last Data Fetch'ed after 0.000 seconds
 PDO_DataObject   : PDO       : Using Cached connection
 PDO_DataObject   : databaseStructure       : CALL:["EssentialSQL",{"Shippers":{"ShipperID":1,"CompanyName":2,"Phone":2},"Shippers__keys":{"ShipperID":"N"}}]
 PDO_DataObject   : PDO       : Using Cached connection
