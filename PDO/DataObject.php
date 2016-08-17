@@ -585,6 +585,7 @@ class PDO_DataObject
      * Used to be via PEAR::getStaticProperty() - now depricated..
      *
      * 
+     * 
      * @param   array  key/value - see self::$config
      * @static
      * @access  public
@@ -595,6 +596,9 @@ class PDO_DataObject
     {
         self::_loadPEARConfig();
         
+        if (!func_num_args()) {
+            return self::$config;
+        }
         
         if (!is_array($cfg) && func_num_args() < 2) {
             // one arg = not an array..
@@ -2338,18 +2342,15 @@ class PDO_DataObject
             $schemas = is_array(PDO_DataObject::$config['schema_location'][$database]) ?
                 PDO_DataObject::$config['schema_location'][$database]:
                 explode(PATH_SEPARATOR, PDO_DataObject::$config['schema_location'][$database]);
-        } else if (is_string(self::$config['schema_location'])) {
+        } else if (is_string(self::$config['schema_location']) && !empty(self::$config['schema_location'])) {
             $schemas  = explode(PATH_SEPARATOR,PDO_DataObject::$config['schema_location']);
             $suffix = '/'. $database .'.ini';
         } else {
-            $this->raiseError("Invalid format for config[schema_location]",
+            $this->raiseError("Invalid format or empty value for config[schema_location]",
                             self::ERROR_INVALIDCONFIG, self::ERROR_DIE
             );
         }
-        if (empty($schemas)) {
-            $this->raiseError("Could not determine schema(ini) location for database={$this->_database}, table={$this->__table}");
-        }
-        
+          
         $tried = array();
         $ini_out  = array();
         foreach ($schemas as $ini) {
@@ -2357,7 +2358,7 @@ class PDO_DataObject
                 continue;
             }
             $fn = $suffix ? rtrim($ini ,'/') . $suffix : $ini;
-            $tried[] = $fn;
+            $tried[] = $ini;
             if (!file_exists($fn) || !is_file($fn) || !is_readable ($fn)) {
                 continue;
             }
@@ -2371,7 +2372,7 @@ class PDO_DataObject
         }
         
         if (empty($ini_out)) {
-            $this->raiseError("Failed to load any schema from these files " . json_encode($tried),
+            $this->raiseError("Failed to load any schema for database={$this->_database} from these files/locations" . json_encode($tried),
                          self::ERROR_INVALIDCONFIG, self::ERROR_DIE
             );
         }
