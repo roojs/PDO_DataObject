@@ -263,7 +263,6 @@ class PDO_DataObject
      * used to build a query, it is unset after find() is run.
      * 
      *
-     *
      * @access  private
      * @var     array
      */
