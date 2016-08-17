@@ -10,9 +10,14 @@ class PDO_DummyStatement {
         'pgsql:dbname=somedb;host=localhost' => array(),
         
         //02 dsn tests
-        'pgsql:dbname=example;host=localhost;port=3434' = array(),
-        
-        
+        'pgsql:dbname=example;host=localhost;port=3434' => array(),
+        'pgsql:dbname=example;host=localhost;port=3434;user=nobody;password=change_me' => array(),
+        'sqlsrv:Database=somedb;Server=localhost' => array(),
+        'sqlsrv:Database=somedb;Server=12345abcde.database.windows.net' => array(),
+        'sqlsrv:Database=somedb;Server=(localdb)\v11.0;AttachDBFilename=C:\Users\user\my_db.mdf' => array(),
+        'sqlite:/opt/databases/mydb.sq3'=> array(),
+        'sqlite::memory:'=> array(),
+
         // 03 - databaseStructure tests.
         'mysql:dbname=anotherdb;host=localhost;port=3344' => array(
             
