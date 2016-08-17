@@ -64,6 +64,7 @@ Tests:
   -- these tests are not relivant to compatibility..
 
 -- errors?
+  -- ini file does not exist in paths.
 
 
 
@@ -351,6 +352,10 @@ config changes
 debug_ignore_updates << removed. use config[PDO] == {fake PDO}
  
 
+-- Debug Levels
+1 - basic QUERY and results.
+2 - Timers
+3 - Detail returned data
 
 ----------------------------------------------------
 
