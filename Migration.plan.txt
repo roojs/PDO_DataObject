@@ -323,7 +323,7 @@ dont_use_pear_sequences <<??? need to work out how this affects our code.!?!?
 New Methods
 PDO()
 result()
-reset() - not for general usage..
+reset() - not for general usage.. - clears all 'cached' db connections?? - does not clear 
 
 -----------
 Backward Compatibility Breaks. / removed features..
