@@ -2227,12 +2227,7 @@ class PDO_DataObject
      */
     function escape($string, $likeEscape=false)
     {
-        global $_DB_DATAOBJECT;
-        $this->_connect();
-        $DB = $_DB_DATAOBJECT['CONNECTIONS'][$this->_database_dsn_md5];
-        // mdb2 uses escape...
-        $dd = empty($_DB_DATAOBJECT['CONFIG']['db_driver']) ? 'DB' : $_DB_DATAOBJECT['CONFIG']['db_driver'];
-        $ret = ($dd == 'DB') ? $DB->escapeSimple($string) : $DB->escape($string);
+        $ret = trim($this->PDO()->quote(),"'");
         if ($likeEscape) {
             $ret = str_replace(array('_','%'), array('\_','\%'), $ret);
         }
@@ -2240,8 +2235,6 @@ class PDO_DataObject
         
     }
 
-    
-    
     
     
 
@@ -2429,6 +2422,7 @@ class PDO_DataObject
      * create an instance of the generator.
      * class can be set by using proxy = {classname}::
      * We do not really care if you have implemented it correctly....????
+     * 
      */
     
     private function _generator()
