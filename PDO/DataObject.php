@@ -584,6 +584,16 @@ class PDO_DataObject
      * Set/get the global configuration...
      * Used to be via PEAR::getStaticProperty() - now depricated..
      *
+     * Usage:
+     *
+     * Fetch the current config.
+     * $cfg = PDO_DataObject::config(); 
+     *
+     * $old = PDO_DataObject::config('schema_location', '');  -- set a value and return old one.
+     *
+     * somevar = PDO_DataObject::config()['schema_location'];  -- get the current value
+     *
+     * somevar = PDO_DataObject::config()['schema_location'];  -- get the current value
      * 
      * 
      * @param   array  key/value - see self::$config
@@ -606,6 +616,7 @@ class PDO_DataObject
                               self::ERROR_INVALIDARGS, self::ERROR_DIE);
         }
         
+        $old = self::$config;
         if (func_num_args() > 1) {
             // two args..
             if (!is_string($cfg)) {
