@@ -109,16 +109,15 @@ class PDO_DummyStatement {
                 {"number":11,"name":"addr_number","attnum":11,"notnull":true,"type":"text","primarykey":"f","uniquekey":"t","foreignkey":null,"foreignkey_fieldnum":null,"foreignkey_connnum":null,"default":null}
  
             ]'
-        )
+        ),
           'mysql:dbname=somedb;host=localhost;port=3344' => array(
             
             // QUeries
             'SHOW TABLES' =>  '[
-                    {"Tables_in_somedb":"Companies"},
-                    {"Tables_in_somedb":"Events"},
+                   
                     {"Tables_in_somedb":"Groups"}
                 ]',
-       
+        ),
         
         // another DB...
     );
