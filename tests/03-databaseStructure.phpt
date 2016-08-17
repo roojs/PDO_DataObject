@@ -197,13 +197,15 @@ print_r($obj->databaseStructure('EssentialSQL'));
 
 
 ?>
---EXPECTF--
+--EXPECT--
 SINGLE INI FILE 
 PDO_DataObject   : __construct       : ["mysql_somedb\/account_code"]
-PDO_DataObject   : databaseStructure       : CALL:["mysql_somedb"]
+PDO_DataObject   : databaseStructure       : CALL:[]
 PDO_DataObject   : PDO       : Checking for database specific ini ('mysql_somedb') : config[databases][mysql_somedb] in options
 __construct==["mysql:dbname=somedb;host=localhost;port=3344","username","test",[]]
 setAttribute==[3,2]
+PDO_DataObject   : databaseStructure       : CALL:["mysql_somedb"]
+PDO_DataObject   : PDO       : Using Cached connection
 Array
 (
     [account_code] => Array
@@ -225,10 +227,12 @@ Array
 
 \MULTIPLE LOCATIONS INI FILES
 PDO_DataObject   : __construct       : ["mysql_anotherdb\/account_transaction"]
-PDO_DataObject   : databaseStructure       : CALL:["mysql_anotherdb"]
+PDO_DataObject   : databaseStructure       : CALL:[]
 PDO_DataObject   : PDO       : Checking for database specific ini ('mysql_anotherdb') : config[databases][mysql_anotherdb] in options
 __construct==["mysql:dbname=anotherdb;host=localhost;port=3344","username","test",[]]
 setAttribute==[3,2]
+PDO_DataObject   : databaseStructure       : CALL:["mysql_anotherdb"]
+PDO_DataObject   : PDO       : Using Cached connection
 Array
 (
     [account_transaction] => Array
@@ -257,10 +261,12 @@ Array
 
 \EXACT LOCATIONS INI FILES
 PDO_DataObject   : __construct       : ["mysql_anotherdb\/account_transaction"]
-PDO_DataObject   : databaseStructure       : CALL:["mysql_anotherdb"]
+PDO_DataObject   : databaseStructure       : CALL:[]
 PDO_DataObject   : PDO       : Checking for database specific ini ('mysql_anotherdb') : config[databases][mysql_anotherdb] in options
 __construct==["mysql:dbname=anotherdb;host=localhost;port=3344","username","test",[]]
 setAttribute==[3,2]
+PDO_DataObject   : databaseStructure       : CALL:["mysql_anotherdb"]
+PDO_DataObject   : PDO       : Using Cached connection
 Array
 (
     [account_transaction] => Array
@@ -294,11 +300,11 @@ PDO_DataObject   : databaseStructure       : CALL:[]
 PDO_DataObject   : PDO       : Checking for database specific ini ('mysql_anotherdb') : config[databases][mysql_anotherdb] in options
 __construct==["mysql:dbname=anotherdb;host=localhost;port=3344","root","",[]]
 setAttribute==[3,2]
+PDO_DataObject   : PDO       : Checking for database specific ini ('mysql_anotherdb') : config[databases][mysql_anotherdb] in options
+PDO_DataObject   : databaseStructureProxy       : calling Get list of tablesdatabaseStructure called with args for database = mysql_anotherdb
 PDO_DataObject   : PDO       : Using Cached connection
 getAttribute==[16] => mysql
 PDO_DataObject   : _introspection       : Creating Introspection for PDO_DataObject_Introspection_mysql
-PDO_DataObject   : 1       : Loading Generator as databaseStructure called with args for database = mysql_anotherdb
-PDO_DataObject   : PDO       : Checking for database specific ini ('mysql_anotherdb') : config[databases][mysql_anotherdb] in options
 PDO_DataObject   : getListOf       : tables
 PDO_DataObject   : getListOf       : SHOW TABLES
 PDO_DataObject   : PDO       : Using Cached connection
@@ -317,7 +323,7 @@ Fetch Row 3 / 3
 PDO_DataObject   : FETCH       : false
 Close Cursor
 PDO_DataObject   : PDO       : Using Cached connection
-PDO_DataObject   : PDO       : Checking for database specific ini ('mysql_anotherdb') : config[databases][mysql_anotherdb] in options
+PDO_DataObject   : PDO       : Using Cached connection
 PDO_DataObject   : PDO       : Using Cached connection
 getAttribute==[16] => mysql
 PDO_DataObject   : _introspection       : Creating Introspection for PDO_DataObject_Introspection_mysql
@@ -380,7 +386,7 @@ PDO_DataObject   : PDO       : Using Cached connection
 getAttribute==[16] => mysql
 PDO_DataObject   : databaseStructure       : CALL:["mysql_anotherdb",{"Companies":{"id":129,"code":130,"name":2,"remarks":34,"owner_id":129,"address":34,"tel":2,"fax":2,"email":2,"isOwner":1,"logo_id":129,"background_color":130,"comptype":2,"url":130,"main_office_id":129,"created_by":129,"created_dt":142,"updated_by":129,"updated_dt":142,"passwd":130,"dispatch_port":130,"province":130,"country":130},"Companies__keys":{"id":"N"}}]
 PDO_DataObject   : PDO       : Using Cached connection
-PDO_DataObject   : PDO       : Checking for database specific ini ('mysql_anotherdb') : config[databases][mysql_anotherdb] in options
+PDO_DataObject   : PDO       : Using Cached connection
 PDO_DataObject   : PDO       : Using Cached connection
 getAttribute==[16] => mysql
 PDO_DataObject   : _introspection       : Creating Introspection for PDO_DataObject_Introspection_mysql
@@ -417,7 +423,7 @@ PDO_DataObject   : PDO       : Using Cached connection
 getAttribute==[16] => mysql
 PDO_DataObject   : databaseStructure       : CALL:["mysql_anotherdb",{"Events":{"id":129,"person_name":2,"event_when":14,"action":2,"ipaddr":2,"on_id":1,"on_table":2,"person_id":1,"person_table":2,"remarks":34},"Events__keys":{"id":"N"}}]
 PDO_DataObject   : PDO       : Using Cached connection
-PDO_DataObject   : PDO       : Checking for database specific ini ('mysql_anotherdb') : config[databases][mysql_anotherdb] in options
+PDO_DataObject   : PDO       : Using Cached connection
 PDO_DataObject   : PDO       : Using Cached connection
 getAttribute==[16] => mysql
 PDO_DataObject   : _introspection       : Creating Introspection for PDO_DataObject_Introspection_mysql
@@ -441,8 +447,9 @@ Close Cursor
 PDO_DataObject   : PDO       : Using Cached connection
 getAttribute==[16] => mysql
 PDO_DataObject   : databaseStructure       : CALL:["mysql_anotherdb",{"Groups":{"id":129,"name":130,"type":1,"leader":129},"Groups__keys":{"id":"N"}}]
+PDO_DataObject   : databaseStructure       : CALL:[]
 PDO_DataObject   : PDO       : Using Cached connection
-PDO_DataObject   : databaseStructure       : CALL:["mysql_anotherdb"]
+PDO_DataObject   : databaseStructure       : CALL:[]
 PDO_DataObject   : PDO       : Using Cached connection
 Array
 (
@@ -519,11 +526,11 @@ PDO_DataObject   : databaseStructure       : CALL:[]
 PDO_DataObject   : PDO       : Checking for database specific ini ('dummy_xtuple') : config[databases][dummy_xtuple] in options
 __construct==["pgsql:dbname=xtuple;host=localhost","user","nopass",[]]
 setAttribute==[3,2]
+PDO_DataObject   : PDO       : Checking for database specific ini ('dummy_xtuple') : config[databases][dummy_xtuple] in options
+PDO_DataObject   : databaseStructureProxy       : calling Get list of tablesdatabaseStructure called with args for database = dummy_xtuple
 PDO_DataObject   : PDO       : Using Cached connection
 getAttribute==[16] => pgsql
 PDO_DataObject   : _introspection       : Creating Introspection for PDO_DataObject_Introspection_pgsql
-PDO_DataObject   : 1       : Loading Generator as databaseStructure called with args for database = dummy_xtuple
-PDO_DataObject   : PDO       : Checking for database specific ini ('dummy_xtuple') : config[databases][dummy_xtuple] in options
 PDO_DataObject   : getListOf       : tables
 PDO_DataObject   : getListOf       : SELECT table_name FROM information_schema.tables WHERE table_type = 'BASE TABLE' AND table_schema = 'public' order by table_name ASC
 PDO_DataObject   : PDO       : Using Cached connection
@@ -542,7 +549,7 @@ Fetch Row 3 / 3
 PDO_DataObject   : FETCH       : false
 Close Cursor
 PDO_DataObject   : PDO       : Using Cached connection
-PDO_DataObject   : PDO       : Checking for database specific ini ('dummy_xtuple') : config[databases][dummy_xtuple] in options
+PDO_DataObject   : PDO       : Using Cached connection
 PDO_DataObject   : PDO       : Using Cached connection
 getAttribute==[16] => pgsql
 PDO_DataObject   : _introspection       : Creating Introspection for PDO_DataObject_Introspection_pgsql
@@ -650,7 +657,7 @@ PDO_DataObject   : PDO       : Using Cached connection
 getAttribute==[16] => pgsql
 PDO_DataObject   : databaseStructure       : CALL:["dummy_xtuple",{"acalitem":{"acalitem_id":129,"acalitem_calhead_id":1,"acalitem_periodstart":6,"acalitem_periodlength":1,"acalitem_name":34},"acalitem__keys":{"acalitem_id":"xcalitem_xcalitem_id_seq"}}]
 PDO_DataObject   : PDO       : Using Cached connection
-PDO_DataObject   : PDO       : Checking for database specific ini ('dummy_xtuple') : config[databases][dummy_xtuple] in options
+PDO_DataObject   : PDO       : Using Cached connection
 PDO_DataObject   : PDO       : Using Cached connection
 getAttribute==[16] => pgsql
 PDO_DataObject   : _introspection       : Creating Introspection for PDO_DataObject_Introspection_pgsql
@@ -782,7 +789,7 @@ PDO_DataObject   : PDO       : Using Cached connection
 getAttribute==[16] => pgsql
 PDO_DataObject   : databaseStructure       : CALL:["dummy_xtuple",{"accnt":{"accnt_id":129,"accnt_number":34,"accnt_descrip":34,"accnt_comments":34,"accnt_profit":34,"accnt_sub":34,"accnt_type":130,"accnt_extref":34,"accnt_company":34,"accnt_closedpost":18,"accnt_forwardupdate":18,"accnt_subaccnttype_code":34,"accnt_curr_id":1,"accnt_active":146,"accnt_name":34,"accnt_code_alt":34,"accnt_descrip_alt":34},"accnt__keys":{"accnt_id":"accnt_accnt_id_seq"}}]
 PDO_DataObject   : PDO       : Using Cached connection
-PDO_DataObject   : PDO       : Checking for database specific ini ('dummy_xtuple') : config[databases][dummy_xtuple] in options
+PDO_DataObject   : PDO       : Using Cached connection
 PDO_DataObject   : PDO       : Using Cached connection
 getAttribute==[16] => pgsql
 PDO_DataObject   : _introspection       : Creating Introspection for PDO_DataObject_Introspection_pgsql
@@ -901,8 +908,9 @@ Close Cursor
 PDO_DataObject   : PDO       : Using Cached connection
 getAttribute==[16] => pgsql
 PDO_DataObject   : databaseStructure       : CALL:["dummy_xtuple",{"addr":{"addr_id":129,"addr_active":18,"addr_line1":34,"addr_line2":34,"addr_line3":34,"addr_city":34,"addr_state":34,"addr_postalcode":34,"addr_country":34,"addr_notes":34,"addr_number":162},"addr__keys":{"addr_id":"addr_addr_id_seq"}}]
+PDO_DataObject   : databaseStructure       : CALL:[]
 PDO_DataObject   : PDO       : Using Cached connection
-PDO_DataObject   : databaseStructure       : CALL:["dummy_xtuple"]
+PDO_DataObject   : databaseStructure       : CALL:[]
 PDO_DataObject   : PDO       : Using Cached connection
 Array
 (
@@ -970,10 +978,10 @@ Array
 PDO_DataObject   : PDO       : Checking for database specific ini ('EssentialSQL') : config[databases][EssentialSQL] in options
 PDO_DataObject   : databaseStructure       : CALL:["EssentialSQL"]
 PDO_DataObject   : PDO       : Using Cached connection
+PDO_DataObject   : PDO       : Checking for database specific ini ('EssentialSQL') : config[databases][EssentialSQL] in options
+PDO_DataObject   : databaseStructureProxy       : calling Get list of tablesdatabaseStructure called with args for database = EssentialSQL
 PDO_DataObject   : PDO       : Using Cached connection
 PDO_DataObject   : _introspection       : Creating Introspection for PDO_DataObject_Introspection_sqlite
-PDO_DataObject   : 1       : Loading Generator as databaseStructure called with args for database = EssentialSQL
-PDO_DataObject   : PDO       : Checking for database specific ini ('EssentialSQL') : config[databases][EssentialSQL] in options
 PDO_DataObject   : getListOf       : tables
 PDO_DataObject   : getListOf       : SELECT name FROM sqlite_master WHERE type='table' UNION ALL SELECT name FROM sqlite_temp_master WHERE type='table' ORDER BY name
 PDO_DataObject   : PDO       : Using Cached connection
@@ -986,7 +994,7 @@ PDO_DataObject   : FETCH       : {"name":"Orders"}
 PDO_DataObject   : FETCH       : {"name":"Shippers"}
 PDO_DataObject   : FETCH       : false
 PDO_DataObject   : PDO       : Using Cached connection
-PDO_DataObject   : PDO       : Checking for database specific ini ('EssentialSQL') : config[databases][EssentialSQL] in options
+PDO_DataObject   : PDO       : Using Cached connection
 PDO_DataObject   : PDO       : Using Cached connection
 PDO_DataObject   : _introspection       : Creating Introspection for PDO_DataObject_Introspection_sqlite
 PDO_DataObject   : PDO       : Using Cached connection
@@ -1003,7 +1011,7 @@ PDO_DataObject   : FETCH       : false
 PDO_DataObject   : PDO       : Using Cached connection
 PDO_DataObject   : databaseStructure       : CALL:["EssentialSQL",{"Customers":{"CustomerID":1,"CompanyName":2,"ContactName":2,"ContactTitle":2,"Address":2,"City":2,"State":2},"Customers__keys":{"CustomerID":"N"}}]
 PDO_DataObject   : PDO       : Using Cached connection
-PDO_DataObject   : PDO       : Checking for database specific ini ('EssentialSQL') : config[databases][EssentialSQL] in options
+PDO_DataObject   : PDO       : Using Cached connection
 PDO_DataObject   : PDO       : Using Cached connection
 PDO_DataObject   : _introspection       : Creating Introspection for PDO_DataObject_Introspection_sqlite
 PDO_DataObject   : PDO       : Using Cached connection
@@ -1019,7 +1027,7 @@ PDO_DataObject   : FETCH       : false
 PDO_DataObject   : PDO       : Using Cached connection
 PDO_DataObject   : databaseStructure       : CALL:["EssentialSQL",{"Employees":{"EmployeeID":1,"LastName":2,"FirstName":2,"Title":2,"Address":2,"HireDate":2},"Employees__keys":{"EmployeeID":"N"}}]
 PDO_DataObject   : PDO       : Using Cached connection
-PDO_DataObject   : PDO       : Checking for database specific ini ('EssentialSQL') : config[databases][EssentialSQL] in options
+PDO_DataObject   : PDO       : Using Cached connection
 PDO_DataObject   : PDO       : Using Cached connection
 PDO_DataObject   : _introspection       : Creating Introspection for PDO_DataObject_Introspection_sqlite
 PDO_DataObject   : PDO       : Using Cached connection
@@ -1034,7 +1042,7 @@ PDO_DataObject   : FETCH       : false
 PDO_DataObject   : PDO       : Using Cached connection
 PDO_DataObject   : databaseStructure       : CALL:["EssentialSQL",{"OrderDetails":{"OrderDetailID":1,"OrderID":1,"ProductID":1,"UnitPrice":1,"Quantity":1},"OrderDetails__keys":{"OrderDetailID":"N"}}]
 PDO_DataObject   : PDO       : Using Cached connection
-PDO_DataObject   : PDO       : Checking for database specific ini ('EssentialSQL') : config[databases][EssentialSQL] in options
+PDO_DataObject   : PDO       : Using Cached connection
 PDO_DataObject   : PDO       : Using Cached connection
 PDO_DataObject   : _introspection       : Creating Introspection for PDO_DataObject_Introspection_sqlite
 PDO_DataObject   : PDO       : Using Cached connection
@@ -1052,7 +1060,7 @@ PDO_DataObject   : FETCH       : false
 PDO_DataObject   : PDO       : Using Cached connection
 PDO_DataObject   : databaseStructure       : CALL:["EssentialSQL",{"Orders":{"OrderID":1,"CustomerID":1,"EmployeeID":1,"OrderDate":2,"RequiredDate":2,"ShippedDate":2,"ShipVia":1,"FreightCharge":1},"Orders__keys":{"OrderID":"N"}}]
 PDO_DataObject   : PDO       : Using Cached connection
-PDO_DataObject   : PDO       : Checking for database specific ini ('EssentialSQL') : config[databases][EssentialSQL] in options
+PDO_DataObject   : PDO       : Using Cached connection
 PDO_DataObject   : PDO       : Using Cached connection
 PDO_DataObject   : _introspection       : Creating Introspection for PDO_DataObject_Introspection_sqlite
 PDO_DataObject   : PDO       : Using Cached connection
@@ -1064,8 +1072,7 @@ PDO_DataObject   : FETCH       : {"cid":"2","name":"Phone","type":"VARCHAR(20)",
 PDO_DataObject   : FETCH       : false
 PDO_DataObject   : PDO       : Using Cached connection
 PDO_DataObject   : databaseStructure       : CALL:["EssentialSQL",{"Shippers":{"ShipperID":1,"CompanyName":2,"Phone":2},"Shippers__keys":{"ShipperID":"N"}}]
-PDO_DataObject   : PDO       : Using Cached connection
-PDO_DataObject   : databaseStructure       : CALL:["EssentialSQL"]
+PDO_DataObject   : databaseStructure       : CALL:[]
 PDO_DataObject   : PDO       : Using Cached connection
 Array
 (
