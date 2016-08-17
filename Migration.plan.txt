@@ -74,7 +74,7 @@ Target:END OF WEEK 3 (est. 4 days)
 c) Query  / fetch methods of PDO_DataObject
   -- needed for generator?
    modifyLimitQuery
-   escapeSimple
+   escapeSimple  DONE...
 Tests:
   -- make sure simple fake tests work... 
   
