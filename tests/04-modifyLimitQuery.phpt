@@ -26,3 +26,4 @@ var_dump((new PDO_DataObject('sqlite_somedb/Companies'))
     ->limit(10,4)
     ->modifyLimitQuery("SELECT * FROM TEST")
 );
+--EXPECT--
