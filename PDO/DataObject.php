@@ -334,10 +334,10 @@ class PDO_DataObject
             $this->_database = self::$config['tables'][$this->__table];
             
         } 
-        
+        // should error out if database is not set.. or know..
         $ds = $this->databaseStructure();
         if (!isset($ds[$this->__table])) {
-            $this->raiseError("Constructor called on non-existant database", self::ERROR_INVALIDARGS, self::ERROR_DIE );
+            $this->raiseError("Could not find INI values for database={$this->_database} and table={$this->__table}", self::ERROR_INVALIDARGS, self::ERROR_DIE );
         }
         
         
@@ -2342,10 +2342,14 @@ class PDO_DataObject
             $schemas  = explode(PATH_SEPARATOR,PDO_DataObject::$config['schema_location']);
             $suffix = '/'. $database .'.ini';
         } else {
-            $this->raiseError("Invalid format for config[schema_location[",
+            $this->raiseError("Invalid format for config[schema_location]",
                             self::ERROR_INVALIDCONFIG, self::ERROR_DIE
             );
         }
+        if (empty($schemas)) {
+            $this->raiseError("Could not determine schema(ini) location for database={$this->_database}, table={$this->__table}");
+        }
+        
         $tried = array();
         $ini_out  = array();
         foreach ($schemas as $ini) {
