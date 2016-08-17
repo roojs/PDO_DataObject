@@ -42,6 +42,8 @@ try {
 PDO_DataObject::config( 'schema_location' , $old);
 
 // ?? any other connection error conditions.?
+// proxy on database that does not exist..
+
 
 
 
