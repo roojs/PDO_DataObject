@@ -1,7 +1,8 @@
 <?php
 /**
  * Object Based Database Query Builder and data store
- *  - Introspection Component.
+ *  - Introspection Component. == available from Generator...
+ *  
  *
  * For PHP versions  5 and 7
  * 
