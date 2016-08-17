@@ -198,8 +198,7 @@ class PDO_DataObject_Generator extends PDO_DataObject
         $this->database( $database );
         $this->PDO();
     
-        $config = PDO_DataObject::config();
-        if ($table === false) {
+         if ($table === false) {
             // get all 
             $this->debug("Loading Generator as databaseStructure called with args for database = {$database}",1);
             
@@ -220,9 +219,9 @@ class PDO_DataObject_Generator extends PDO_DataObject
         }
             // prevent recursion...
             
-        PDO_DataObject::config('proxy', false);
+        $old = PDO_DataObject::config('proxy', false);
         $ret = $this->databaseStructure(); 
-        PDO_DataObject::config($config );
+        PDO_DataObject::config('proxy', $old);
         return $ret;
             // databaseStructure('mydb',   array(.... schema....), array( ... links')
          
