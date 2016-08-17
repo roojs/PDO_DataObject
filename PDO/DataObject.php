@@ -599,7 +599,8 @@ class PDO_DataObject
      * $old_array = PDO_DataObject::config( array( 'schema_location' => '' ));
      * 
      * 
-     * @param   array  key/value - see self::$config
+     * @param   array  key/value 
+     * @param   mixed value 
      * @static
      * @access  public
      * @return - the current config..
