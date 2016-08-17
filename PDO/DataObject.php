@@ -596,7 +596,7 @@ class PDO_DataObject
      * somevar = PDO_DataObject::config()['schema_location'];  
      *
      * SET multiple values (returns 'old' configuration)
-     * somevar = PDO_DataObject::config()['schema_location'];  
+     * $old_array = PDO_DataObject::config( array( 'schema_location' => '' ));
      * 
      * 
      * @param   array  key/value - see self::$config
