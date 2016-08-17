@@ -1474,14 +1474,14 @@ class PDO_DataObject
         if ($this->_query === false) {
             $this->raiseError(
                 "You cannot do two queries on the same object (copy it before finding)", 
-                DB_DATAOBJECT_ERROR_INVALIDARGS);
+                self::ERROR_INVALIDARGS);
             return false;
         }
         
-        if ($a === null) {
+        if (!func_num_args()) {
            $this->_query['limit_start'] = '';
            $this->_query['limit_count'] = '';
-           return;
+           return $this;
         }
         // check input...= 0 or '    ' == error!
         if ((!is_int($a) && ((string)((int)$a) !== (string)$a)) 
