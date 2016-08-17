@@ -117,6 +117,12 @@ class PDO_DummyStatement {
                    
                     {"Tables_in_somedb":"Groups"}
                 ]',
+             'DESCRIBE Groups' => '[
+                {"Field":"id","Type":"int(11)","Null":"NO","Key":"PRI","Default":null,"Extra":"auto_increment"},
+                {"Field":"name","Type":"varchar(64)","Null":"NO","Key":"","Default":"","Extra":""},
+                {"Field":"type","Type":"int(11)","Null":"YES","Key":"","Default":"0","Extra":""},
+                {"Field":"leader","Type":"int(11)","Null":"NO","Key":"","Default":"0","Extra":""}
+            ]',
         ),
         
         // another DB...
