@@ -73,8 +73,9 @@ Target:END OF WEEK 3 (est. 4 days)
 -------------------------
 c) Query  / fetch methods of PDO_DataObject
   -- needed for generator?
-   modifyLimitQuery
-   escapeSimple  DONE...
+   modifyLimitQuery (used by find() , delete() and 
+   escapeSimple  DONE... (PDO::quote
+   limit() - so we can test modifylimitQuery
 Tests:
   -- make sure simple fake tests work... 
   
@@ -95,6 +96,9 @@ Target:END OF WEEK 6 (est. 4 days)
 e) PDO_DataObject class
   * factory / loading
   * condition building
+- whereAdd  + cWhereAdd() -- chained version?
+
+
   * query and modify methods.
 Tests:
   needs fake DB and PDO objects
@@ -343,7 +347,6 @@ getLinks - renamed - applyLinks()
 
 Private methods removed/renamed..
 _connect() -> public PDO()
-
 
 $do->_database_dsn - removed - this was a security hole wating to fail... (Accidental print_r's etc...)
 $do->_DB_resultid removed
