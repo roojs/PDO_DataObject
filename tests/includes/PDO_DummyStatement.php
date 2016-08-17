@@ -110,6 +110,16 @@ class PDO_DummyStatement {
  
             ]'
         )
+          'mysql:dbname=somedb;host=localhost;port=3344' => array(
+            
+            // QUeries
+            'SHOW TABLES' =>  '[
+                    {"Tables_in_somedb":"Companies"},
+                    {"Tables_in_somedb":"Events"},
+                    {"Tables_in_somedb":"Groups"}
+                ]',
+       
+        
         // another DB...
     );
     var $result = false;
