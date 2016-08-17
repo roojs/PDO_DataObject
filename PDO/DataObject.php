@@ -711,7 +711,11 @@ class PDO_DataObject
         
         switch($this->PDO()->getAttribute(PDO::ATTR_DRIVER_NAME)) {
             case 'mysql':
-                $start = empty($start) || $manip ? '': ($start .',');
+                if ($manip && $start) {
+                    $this->raiseError("Mysql may not support offset in modification queries",
+                            self::ERROR_INVALIDARGS, self::ERROR_DIE); // from PEAR DB?
+                }
+                $start = empty($start) ? '': ($start .',');
                 return "$sql LIMIT $start $end";
             
         }
