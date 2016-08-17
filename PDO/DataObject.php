@@ -1490,7 +1490,8 @@ class PDO_DataObject
         // used to connect here?? why?
         
         $this->_query['limit_start'] = func_num_args() < 2 ? 0 : (int)$a;
-        $this->_query['limit_count'] = func_num_args() <2  ? (int)$a : (int)$b;
+        $this->_query['limit_count'] = func_num_args() < 2  ? (int)$a : (int)$b;
+        return $this;
         
     }
 
