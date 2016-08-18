@@ -91,7 +91,6 @@ class PDO_DataObject_Introspection
         return $ret;
     }
     
-    // we could put a generic tableInfo here... - using ColumnMeta ??
     abstract function getSpecialQuery($type);
     abstract function tableInfo($table);
     abstract function foreignKeys($table);
