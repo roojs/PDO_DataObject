@@ -356,7 +356,7 @@ class PDO_DataObject_Generator extends PDO_DataObject
             return;
         }
 
-        $options = &PEAR::getStaticProperty('DB_DataObject','options');
+        $options = PDO_DataObject::config();
 
 
         //$this->_newConfig = new Config('IniFile');
