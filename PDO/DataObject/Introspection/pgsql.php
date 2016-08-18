@@ -212,7 +212,22 @@ class PDO_DataObject_Introspection_pgsql extends PDO_DataObject_Introspection
         
         return $res;
     }
-    
+    /**
+     * Returns information about a foriegn keys of a table.
+     * Used to generate the links / join .. 
+     * 
+     * @param  string  $table   string containing the name of a table.
+     *                           MUST BE QUOTED if required....
+     *                          
+     
+     * @return array  an associative array with the information requested.
+     *                 A DB_Error object on failure.
+     *
+     *
+     *  multiple_key
+        
+     *
+     */
     function foreignKeys($table)
     {
            
@@ -228,6 +243,7 @@ class PDO_DataObject_Introspection_pgsql extends PDO_DataObject_Introspection
          
         $treffer = array();
         // this only picks up one of these.. see this for why: http://pear.php.net/bugs/bug.php?id=17049
+        // could probably be fixed.
         preg_match(
             "/FOREIGN KEY \((\w*)\) REFERENCES (\w*)\((\w*)\)/i",
             $r['condef'],
