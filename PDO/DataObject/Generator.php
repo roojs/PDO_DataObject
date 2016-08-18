@@ -374,7 +374,9 @@ class PDO_DataObject_Generator extends PDO_DataObject
         if (!empty($options['generator_no_ini'])) { // built in ini files..
             return;
         }
-        $base =  @$options['schema_location'];
+        // where to generate the schema...
+        
+        $base =  $options['schema_location'];
         if (isset($options["ini_{$this->_database}"])) {
             $file = $options["ini_{$this->_database}"];
         } else {
