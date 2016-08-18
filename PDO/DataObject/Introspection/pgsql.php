@@ -110,6 +110,8 @@ class PDO_DataObject_Introspection_pgsql extends PDO_DataObject_Introspection
      */
     function tableInfo($table)
     {
+        
+        
         // currently only queries 'public'???
         $schema  ='public';
         if (strpos($table,'.') !== false) {
@@ -156,8 +158,8 @@ class PDO_DataObject_Introspection_pgsql extends PDO_DataObject_Introspection
                         LEFT JOIN pg_constraint p ON p.conrelid = c.oid AND f.attnum = ANY (p.conkey)  
                         LEFT JOIN pg_class AS g ON p.confrelid = g.oid  
                     WHERE c.relkind = 'r'::char  
-                        AND n.nspname = '{$schema}'  
-                        AND c.relname = '{$table}'
+                        AND n.nspname = '{$this->do->escape($schema)}'  
+                        AND c.relname = '{$this->do->escape($table)}'
                         AND f.attnum > 0 ORDER BY number
             ")
             ->fetchAll(false,false,'toArray');
