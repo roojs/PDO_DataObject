@@ -8,7 +8,9 @@ class PDO_DummyStatement {
         'mysql:dbname=somedb;host=localhost' => array(), 
         'sybase:dbname=somedb;host=localhost' => array(),
         'pgsql:dbname=somedb;host=localhost' => array(),
-        
+        'oci:dbname=mydb' => array(),
+        'oci:dbname=//localhost:1521/mydb' => array(),
+        'oci:dbname=192.168.10.145/orcl;charset=CL8MSWIN1251'
         //02 dsn tests
         'pgsql:dbname=example;host=localhost;port=3434' => array(),
         'pgsql:dbname=example;host=localhost;port=3434;user=nobody;password=change_me' => array(),
