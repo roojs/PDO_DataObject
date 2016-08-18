@@ -364,7 +364,7 @@ class PDO_DataObject_Generator extends PDO_DataObject
         foreach($this->tables as $this->table) {
             $this->_generateDefinitionsTable();
         }
-        $this->_connect();
+        $this->PDO();
         // dont generate a schema if location is not set
         // it's created on the fly!
         if (empty($options['schema_location']) && empty($options["ini_{$this->_database}"]) ) {
