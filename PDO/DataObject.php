@@ -362,7 +362,7 @@ class PDO_DataObject
      * @access private
      * @return PDO Object the connection
      */
-    public function PDO()
+    function PDO()
     {
         
         $config = self::config();
@@ -2279,7 +2279,7 @@ class PDO_DataObject
      */
     function escape($string, $likeEscape=false)
     {
-        $ret = trim($this->PDO()->quote(),"'");
+        $ret = trim($this->PDO()->quote($string),"'");
         if ($likeEscape) {
             $ret = str_replace(array('_','%'), array('\_','\%'), $ret);
         }
