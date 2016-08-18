@@ -228,7 +228,7 @@ class PDO_DataObject_Generator extends PDO_DataObject
         $class = 'PDO_DataObject_Introspection_'. $type;
         class_exists($class)  ? '' : require_once 'PDO/DataObject/Introspection/'. $type. '.php';
         $this->debug("Creating Introspection for $class", "_introspection");
-        return new $class($this);
+        return new $class( clone($this) ); /// clone so we can run multipel queries?
        
     }
 
