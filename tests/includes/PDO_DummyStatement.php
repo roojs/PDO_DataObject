@@ -10,7 +10,7 @@ class PDO_DummyStatement {
         'pgsql:dbname=somedb;host=localhost' => array(),
         'oci:dbname=mydb' => array(),
         'oci:dbname=//localhost:1521/mydb' => array(),
-        'oci:dbname=192.168.10.145/orcl;charset=CL8MSWIN1251'
+        'oci:dbname=192.168.10.145/orcl;charset=CL8MSWIN1251' => array(),
         //02 dsn tests
         'pgsql:dbname=example;host=localhost;port=3434' => array(),
         'pgsql:dbname=example;host=localhost;port=3434;user=nobody;password=change_me' => array(),
