@@ -252,19 +252,10 @@ class PDO_DataObject_Generator extends PDO_DataObject
      */
     function _createTableList()
     {
-        $this->_connect();
+        $pdo = $this->PDO();
         
-        $options = &PEAR::getStaticProperty('DB_DataObject','options');
-
-       
-
-        $__DB= &$GLOBALS['_DB_DATAOBJECT']['CONNECTIONS'][$this->_database_dsn_md5];
-
-        $db_driver = empty($options['db_driver']) ? 'DB' : $options['db_driver'];
-        $is_MDB2 = ($db_driver != 'DB') ? true : false;
-
-        if (is_object($__DB) && is_a($__DB , 'PEAR_Error')) {
-            return PEAR::raiseError($__DB->toString(), null, PEAR_ERROR_DIE);
+        try {
+            $this->tables = $this->introspection()->getListOf('schema.tables');
         }
         
         if (!$is_MDB2) {
