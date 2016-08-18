@@ -140,10 +140,10 @@ class PDO_DataObject_Introspection_mysql extends PDO_DataObject_Introspection
                 PREG_SET_ORDER);
 
             if (!count($treffer)) {
-                continue;
+                return array();
             }
             foreach($treffer as $i=> $tref) {
-                $fk[$this->table][$tref[1]] = $tref[2] . ":" . $tref[3];
+                $fk[$tref[1]] = $tref[2] . ":" . $tref[3];
             }
     }
      
