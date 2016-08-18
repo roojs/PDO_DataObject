@@ -83,12 +83,56 @@ class PDO_DataObject_Introspection_oci extends PDO_DataObject_Introspection
     function tableInfo($table)
     {
         
+ 
+            /*
+             * Probably received a table name.
+             * Create a result resource identifier.
+             */
+            $result = strtoupper($result);
+            $records  = $this->do
+                ->query("SELECT
+                            column_name, data_type,
+                            data_length,   nullable 
+                        FROM
+                            user_tab_columns 
+                        WHERE
+                            table_name='{$this->do->escape($result)}'
+                        ORDER BY
+                            column_id")
+                ->fetchAll(false,false,'toArray');
+            
+            $case_func = 'strval';
+            if (PDO_DataObject::config()['portability'] & PDO_DataObject::PORTABILITY_LOWERCASE) {
+                $case_func = 'strtolower';
+            }
+            
+            
+            $i = 0;
+            forech($records as $r) {
+                $res[] = array(
+                    'table' => $case_func($result),
+                    'name'  => $case_func(@OCIResult($stmt, 1)),
+                    'type'  => @OCIResult($stmt, 2),
+                    'len'   => @OCIResult($stmt, 3),
+                    'flags' => (@OCIResult($stmt, 4) == 'N') ? 'not_null' : '',
+                );
+                if ($mode & DB_TABLEINFO_ORDER) {
+                    $res['order'][$res[$i]['name']] = $i;
+                }
+                if ($mode & DB_TABLEINFO_ORDERTABLE) {
+                    $res['ordertable'][$res[$i]['table']][$res[$i]['name']] = $i;
+                }
+                $i++;
+            }
 
-        $records  = $this->do
-            ->query("PRAGMA table_info('{$this->do->escape($table)}');")
-            ->fetchAll(false,false,'toArray');
-        
-        
+            if ($mode) {
+                $res['num_fields'] = $i;
+            }
+            @OCIFreeStatement($stmt);
+
+        } 
+        return $res;
+    }  
         $case_func = 'strval';
         if (PDO_DataObject::config()['portability'] & PDO_DataObject::PORTABILITY_LOWERCASE) {
             $case_func = 'strtolower';
