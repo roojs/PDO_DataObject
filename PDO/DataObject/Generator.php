@@ -283,13 +283,13 @@ class PDO_DataObject_Generator extends PDO_DataObject
 
 
         foreach($this->tables as $table) {
-            if (isset($options['generator_include_regex']) &&
+            if (!empty($options['generator_include_regex']) &&
                     !preg_match($options['generator_include_regex'],$table)) {
                 $this->debug("SKIPPING (generator_include_regex) : $table", __FUNCTION__,1);
                 continue;
             } 
             
-            if (isset($options['generator_exclude_regex']) &&
+            if (!empty($options['generator_exclude_regex']) &&
                     preg_match($options['generator_exclude_regex'],$table)) {
                 $this->debug("SKIPPING (generator_exclude_regex) : $table", __FUNCTION__,1);
                 continue;
