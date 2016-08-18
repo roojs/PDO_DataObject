@@ -111,7 +111,7 @@ getAttribute==[16] => mysql
 PDO_DataObject   : _introspection       : Creating Introspection for PDO_DataObject_Introspection_mysql
 PDO_DataObject   : PDO       : Using Cached connection
 getAttribute==[16] => mysql
-PDO_DataObject   : QUERY       : dcae9cad4d5f111b6b2ac65d922aa38f : DESCRIBE Groups
+PDO_DataObject   : QUERY       : 5947e446493bc33cb3af439aaf8231b1 : DESCRIBE `Groups`
 getAttribute==[16] => mysql
 QUERY: DESCRIBE Groups  
 PDO_DataObject   : query       : NO# of results: 4
