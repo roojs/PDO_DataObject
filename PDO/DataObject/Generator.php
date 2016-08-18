@@ -118,7 +118,7 @@ class PDO_DataObject_Generator extends PDO_DataObject
         if (!empty($options['databases'])) {
             $databases  = $options['databases'];
         }
-    
+        
         if (isset($options['database'])) {
             $dsn_ar = parse_url($options['database']);
             
