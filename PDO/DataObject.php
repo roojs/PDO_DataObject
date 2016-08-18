@@ -181,7 +181,7 @@ class PDO_DataObject
             'generator_build_views' => false,
                 // for postgres, you can build dataobjects for views as well
                 // you can set this to 'schema.views' to extract views with schema information
-                // I believe it postgres also supports updating on views (nice feature)
+                // I believe  postgres also supports updating on views (nice feature)
                 // *** NOTE *** You will have to manually define keys() / sequenceKeys()
                 // As the generator can not recognize these automatically
                 
