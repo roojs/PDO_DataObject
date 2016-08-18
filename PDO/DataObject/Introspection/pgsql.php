@@ -157,7 +157,7 @@ class PDO_DataObject_Introspection_pgsql extends PDO_DataObject_Introspection
                         LEFT JOIN pg_class AS g ON p.confrelid = g.oid  
                     WHERE c.relkind = 'r'::char  
                         AND n.nspname = '{$schema}'  
-                        AND c.relname = {$table}
+                        AND c.relname = '{$table}'
                         AND f.attnum > 0 ORDER BY number
             ")
             ->fetchAll(false,false,'toArray');
