@@ -185,12 +185,11 @@ class PDO_DataObject
                 // *** NOTE *** You will have to manually define keys() / sequenceKeys()
                 // As the generator can not recognize these automatically
             'generator_strip_schema' => true,
-            
-		; postgres has a wierd concept of schema's which end up prefixed to
-		; the list of tables. - this makes a mess of class/schema generation
-		; setting this to 1, makes the generator strip the schema from the table name.
-        ; now supports regex (if you set it to a regex it will strip schema of matched names)
-        ;   for example '/^public\./'
+                //	postgres has a wierd concept of schema's which end up prefixed to
+                //	the list of tables. - this makes a mess of class/schema generation
+                //	setting this to 1, makes the generator strip the schema from the table name.
+                //  now supports regex (if you set it to a regex it will strip schema of matched names)
+                //  for example '/^public\./'
 
     );
     
