@@ -43,6 +43,18 @@ var_dump((new PDO_DataObject('pgsql_somedb/account_code'))
 );
 
 
+var_dump((new PDO_DataObject('oracle_somedb/account_code'))
+    ->limit(40)
+    ->modifyLimitQuery("SELECT * FROM TEST")
+);
+
+var_dump((new PDO_DataObject('oracle_somedb/account_code'))
+    ->limit(10,4)
+    ->modifyLimitQuery("SELECT * FROM TEST")
+);
+
+//--- the tests below can use the real driver...
+
 
 PDO_DataObject::config('PDO','PDO');
 var_dump((new PDO_DataObject('sqlite_somedb/account_code'))
@@ -58,16 +70,6 @@ var_dump((new PDO_DataObject('sqlite_somedb/account_code'))
 
 
 
-PDO_DataObject::config('PDO','PDO');
-var_dump((new PDO_DataObject('oracle_somedb/account_code'))
-    ->limit(40)
-    ->modifyLimitQuery("SELECT * FROM TEST")
-);
-
-var_dump((new PDO_DataObject('oracle_somedb/account_code'))
-    ->limit(10,4)
-    ->modifyLimitQuery("SELECT * FROM TEST")
-);
 
 
 
