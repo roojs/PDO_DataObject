@@ -85,6 +85,11 @@ Target:END OF WEEK 4 (est. 2 days)
 d) Generator
  - creating .ini files / generating code etc...
 
+  * start - DONE
+  * databaseStructureProxy -- from previous work.
+  * _createTableList - DONE
+
+
 Tests:
    == do a test of all the methods... - based on dummy $pdo ? 
   -- tests can be run against old + new...
