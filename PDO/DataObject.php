@@ -500,11 +500,11 @@ class PDO_DataObject
                         $pdo_dsn .= 'dbname=' . $dsn_ar['host'] . $dsn_ar['path'];
                         break;
                     
-                    // default..
+                    default:
                         $pdo_dsn .= 'dbname=' . $database 
-                    
-                        
-                
+                        break;
+                }
+                break;
               
             // others go here...
         
