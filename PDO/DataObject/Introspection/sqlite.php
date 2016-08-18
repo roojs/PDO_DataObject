@@ -92,7 +92,7 @@ class PDO_DataObject_Introspection_sqlite extends PDO_DataObject_Introspection
         
 
         $records  = $this->do
-            ->query("PRAGMA table_info('$table');")
+            ->query("PRAGMA table_info('{$this->do->escape($table)}');")
             ->fetchAll(false,false,'toArray');
         
         
