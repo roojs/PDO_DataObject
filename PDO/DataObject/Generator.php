@@ -254,34 +254,26 @@ class PDO_DataObject_Generator extends PDO_DataObject
     {
         $options = PDO::config();
         $pdo = $this->PDO();
+        $io  = $this->introspection();
         
         // try schema first...
         try {
-            $this->tables = $this->introspection()->getListOf('schema.tables');
+            $this->tables = $io->getListOf('schema.tables');
         } catch (Exception $e) {     
         }
         
         if (empty($this->tables)) {
-            $this->tables = $this->introspection()->getListOf('tables');
+            $this->tables = $io->getListOf('tables');
         }
         
  
         // build views as well if asked to.
         if (!empty($options['generator_build_views'])) {
-            if (!$is_MDB2) {
-                $views = $__DB->getListOf(is_string($options['build_views']) ?
-                                    $options['build_views'] : 'views');
-            } else {
-                $views = $__DB->manager->listViews();
-            }
-            if (is_object($views) && is_a($views,'PEAR_Error')) {
-                return PEAR::raiseError(
-                'Error getting Views (check the PEAR bug database for the fix to DB), ' .
-                $views->toString(),
-                null,
-                PEAR_ERROR_DIE
-                );
-            }
+            $views =$io->getListOf(
+                    is_string($options['generator_build_views']) ?
+                                $options['generator_build_views'] : 'views'
+            );
+            
             $this->tables = array_merge ($this->tables, $views);
         }
 
