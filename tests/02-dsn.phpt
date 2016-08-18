@@ -59,7 +59,18 @@ PDO_DataObject::config('database', 'sqlite2:/opt/databases/mydb.sq2#ATTR_PERSIST
 (new PDO_DataObject())->PDO();
 PDO_DataObject::config('database', 'sqlite2::memory:');
 (new PDO_DataObject())->PDO();
+
+
+PDO_DataObject::config('database', 'oci://@/mydb'); // oci:dbname=mydb
+(new PDO_DataObject())->PDO();
  
+
+PDO_DataObject::config('database', 'oci://localhost:1521/mydb'); // oci:dbname=//localhost:1521/mydb
+(new PDO_DataObject())->PDO();
+
+PDO_DataObject::config('database', 'oci://192.168.10.145/orcl?charset=CL8MSWIN1251'); 'oci:dbname=192.168.10.145/orcl;charset=CL8MSWIN1251
+(new PDO_DataObject())->PDO();
+
 
 
 ?>
