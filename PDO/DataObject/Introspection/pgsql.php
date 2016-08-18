@@ -213,4 +213,9 @@ class PDO_DataObject_Introspection_pgsql extends PDO_DataObject_Introspection
         return $res;
     }
     
+    function foreignKeys($table)
+    {
+        
+    }
+    
 }
