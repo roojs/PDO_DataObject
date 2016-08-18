@@ -295,8 +295,7 @@ class PDO_DataObject_Generator extends PDO_DataObject
                 continue;
             }
             
-            $strip = empty($options['generator_strip_schema']) ? false : $options['generator_strip_schema'];
-            $strip = is_numeric($strip) ? (bool) $strip : $strip;
+            $strip = $options['generator_strip_schema'];
             $strip = (is_string($strip) && strtolower($strip) == 'true') ? true : $strip;
         
             // postgres strip the schema bit from the
@@ -312,14 +311,13 @@ class PDO_DataObject_Generator extends PDO_DataObject
             }
             $this->debug("EXTRACTING : $table");
             
-            $quotedTable = !empty($options['quote_identifiers_tableinfo']) ? 
-                $__DB->quoteIdentifier($table) : $table;
+            // we do not quote table - as these are now internal methods - and it is done by the introspection classes 
           
             if (!$is_MDB2) {
                 
-                $defs =  $__DB->tableInfo($quotedTable);
+                $defs =  $__DB->tableInfo($table);
             } else {
-                $defs =  $__DB->reverse->tableInfo($quotedTable);
+                $defs =  $__DB->reverse->tableInfo($table);
                 // rename the length value, so it matches db's return.
                 
             }
@@ -458,7 +456,9 @@ class PDO_DataObject_Generator extends PDO_DataObject
 
             case 'pgsql':
                 foreach($this->tables as $this->table) {
-                    $quotedTable = !empty($options['quote_identifiers_tableinfo']) ?  $DB->quoteIdentifier($table)  : $this->table;
+                    
+                    
+                    $quotedTable = $this->quoteIdentifier($table);
                     $res =& $DB->query("SELECT
                                 pg_catalog.pg_get_constraintdef(r.oid, true) AS condef
                             FROM pg_catalog.pg_constraint r,
@@ -1371,9 +1371,9 @@ class PDO_DataObject_Generator extends PDO_DataObject
         //       
        // }
         
-        $quotedTable = $options['quote_identifiers_tableinfo'] ?  $this->quoteIdentifier($table) : $table;
+        // quote table not needed as the intropection classes handle it..
         
-        $defs = $this->_introspection()->tableInfo($quotedTable);
+        $defs = $this->_introspection()->tableInfo($table);
          
         if (is_a($defs,'PEAR_Error')) {
             return $defs;
