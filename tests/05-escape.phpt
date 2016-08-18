@@ -22,33 +22,16 @@ PDO_DataObject::config(array(
 ));
 
 var_dump((new PDO_DataObject('mysql_somedb/account_code'))
-    ->limit(40)
-    ->modifyLimitQuery("SELECT * FROM TEST")
+    ->escape("Mc'Donalds")
 );
-var_dump((new PDO_DataObject('mysql_somedb/account_code'))
-    ->limit(10,4)
-    ->modifyLimitQuery("SELECT * FROM TEST")
-);
-
 var_dump((new PDO_DataObject('pgsql_somedb/account_code'))
-    ->limit(40)
-    ->modifyLimitQuery("SELECT * FROM TEST")
+    ->escape("Mc'Donalds")
 );
-
-var_dump((new PDO_DataObject('pgsql_somedb/account_code'))
-    ->limit(10,4)
-    ->modifyLimitQuery("SELECT * FROM TEST")
-);
-
 
 
 PDO_DataObject::config('PDO','PDO');
 var_dump((new PDO_DataObject('sqlite_somedb/account_code'))
-    ->limit(40)
-    ->modifyLimitQuery("SELECT * FROM TEST")
+    ->escape("Mc'Donalds")
 );
 
-var_dump((new PDO_DataObject('sqlite_somedb/account_code'))
-    ->limit(10,4)
-    ->modifyLimitQuery("SELECT * FROM TEST")
-);
+ 
