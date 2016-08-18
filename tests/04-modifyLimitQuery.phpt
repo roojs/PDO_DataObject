@@ -13,11 +13,13 @@ PDO_DataObject::config(array(
         'mysql_somedb' =>  'mysql://username:test@localhost:3344/somedb#',
         'pgsql_somedb' => 'pgsql://nobody:change_me@localhost:3434/example',
         'sqlite_somedb'=> 'sqlite:'.__DIR__.'/includes/EssentialSQL.db',
+        'oracle_somedb' => 'oci://somedb',
     ),
     'schema_location' => array(
         'mysql_somedb' =>  __DIR__ .'/includes/mysql_somedb.ini',
         'pgsql_somedb' =>  __DIR__ .'/includes/mysql_somedb.ini',
         'sqlite_somedb'=>  __DIR__ .'/includes/mysql_somedb.ini',
+        'oracle_somedb'=>  __DIR__ .'/includes/mysql_somedb.ini',
     ),
 ));
 
