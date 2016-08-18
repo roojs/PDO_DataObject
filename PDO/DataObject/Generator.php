@@ -367,9 +367,10 @@ class PDO_DataObject_Generator extends PDO_DataObject
         $this->PDO();
         // dont generate a schema if location is not set
         // it's created on the fly!
-        if (empty($options['schema_location']) && empty($options["ini_{$this->_database}"]) ) {
+        if (empty($options['schema_location']) ) {
             return;
         }
+        
         if (!empty($options['generator_no_ini'])) { // built in ini files..
             return;
         }
