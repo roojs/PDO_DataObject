@@ -174,10 +174,7 @@ class PDO_DataObject
                 // you can catch the error anyway
         
         // ---- Generator
-            'quote_identifiers_tableinfo' => false,
-                // should we use quote identifiers on table info?? - not sure if this is a good idea - should it not be generic
-                // for dataobjects?
-            
+              
             'generator_build_views' => false,
                 // for postgres, you can build dataobjects for views as well
                 // you can set this to 'schema.views' to extract views with schema information
