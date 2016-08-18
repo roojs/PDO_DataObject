@@ -72,5 +72,11 @@ class PDO_Dummy {
         
         
     }
+    function quote($str)
+    {
+        // not  a very good test...
+        return "'" . str_replace("'", "\'", $str) . "'";
+    }
+    
     
 }
