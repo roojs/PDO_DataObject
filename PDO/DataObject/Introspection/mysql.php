@@ -126,25 +126,27 @@ class PDO_DataObject_Introspection_mysql extends PDO_DataObject_Introspection
     function foreignKeys($table)
     {
            
-          $quotedTable = $this->quoteIdentifier($table);
+        $quotedTable = $this->quoteIdentifier($table);
             
-            $res = array_values($this->do->query('SHOW CREATE TABLE ' . $quotedTable )
-                ->fetchAll(false,false,'toArray'));
-            
-            $treffer = array();
-            // Extract FOREIGN KEYS
-            preg_match_all(
-                "/FOREIGN KEY \(`(\w*)`\) REFERENCES `(\w*)` \(`(\w*)`\)/i", 
-                $res[0], 
-                $treffer, 
-                PREG_SET_ORDER);
+        $res = array_values($this->do->query('SHOW CREATE TABLE ' . $quotedTable )
+            ->fetchAll(false,false,'toArray'));
+        
+        $treffer = array();
+        // Extract FOREIGN KEYS
+        preg_match_all(
+            "/FOREIGN KEY \(`(\w*)`\) REFERENCES `(\w*)` \(`(\w*)`\)/i", 
+            $res[0], 
+            $treffer, 
+            PREG_SET_ORDER);
 
-            if (!count($treffer)) {
-                return array();
-            }
-            foreach($treffer as $i=> $tref) {
-                $fk[$tref[1]] = $tref[2] . ":" . $tref[3];
-            }
+        if (!count($treffer)) {
+            return array();
+        }
+        $fk = array();
+        foreach($treffer as $i=> $tref) {
+            $fk[$tref[1]] = $tref[2] . ":" . $tref[3];
+        }
+        return $fk;
     }
      
     
