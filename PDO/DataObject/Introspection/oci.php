@@ -84,100 +84,45 @@ class PDO_DataObject_Introspection_oci extends PDO_DataObject_Introspection
     {
         
  
-            /*
-             * Probably received a table name.
-             * Create a result resource identifier.
-             */
-            $result = strtoupper($result);
-            $records  = $this->do
-                ->query("SELECT
-                            column_name, data_type,
-                            data_length,   nullable 
-                        FROM
-                            user_tab_columns 
-                        WHERE
-                            table_name='{$this->do->escape($result)}'
-                        ORDER BY
-                            column_id")
-                ->fetchAll(false,false,'toArray');
-            
-            $case_func = 'strval';
-            if (PDO_DataObject::config()['portability'] & PDO_DataObject::PORTABILITY_LOWERCASE) {
-                $case_func = 'strtolower';
-            }
-            
-            
-            $i = 0;
-            forech($records as $r) {
-                $res[] = array(
-                    'table' => $case_func($result),
-                    'name'  => $case_func($r['column_name']),
-                    'type'  => @OCIResult($stmt, 2),
-                    'len'   => @OCIResult($stmt, 3),
-                    'flags' => (@OCIResult($stmt, 4) == 'N') ? 'not_null' : '',
-                );
-                if ($mode & DB_TABLEINFO_ORDER) {
-                    $res['order'][$res[$i]['name']] = $i;
-                }
-                if ($mode & DB_TABLEINFO_ORDERTABLE) {
-                    $res['ordertable'][$res[$i]['table']][$res[$i]['name']] = $i;
-                }
-                $i++;
-            }
-
-            if ($mode) {
-                $res['num_fields'] = $i;
-            }
-            @OCIFreeStatement($stmt);
-
-        } 
-        return $res;
-    }  
+        /*
+         * Probably received a table name.
+         * Create a result resource identifier.
+         */
+        $result = strtoupper($result);
+        $records  = $this->do
+            ->query("SELECT
+                        column_name, data_type,
+                        data_length,   nullable 
+                    FROM
+                        user_tab_columns 
+                    WHERE
+                        table_name='{$this->do->escape($result)}'
+                    ORDER BY
+                        column_id")
+            ->fetchAll(false,false,'toArray');
+        
         $case_func = 'strval';
         if (PDO_DataObject::config()['portability'] & PDO_DataObject::PORTABILITY_LOWERCASE) {
             $case_func = 'strtolower';
         }
         
-        $res = array();
+        
+        $i = 0;
         foreach($records as $r) {
- 
-            if (strpos($r['type'], '(') !== false) {
-                $bits = explode('(', $r['type']);
-                $type = $bits[0];
-                $len  = rtrim($bits[1],')');
-            } else {
-                $type = $r['type'];
-                $len  = 0;
-            }
-
-            $flags = '';
-            if ($r['pk']) {
-                $flags .= 'primary_key ';
-                if (strtoupper($type) == 'INTEGER') {
-                    $flags .= 'auto_increment ';
-                }
-            }
-            if ($r['notnull']) {
-                $flags .= 'not_null ';
-            }
-            if ($r['dflt_value'] !== null) {
-                $flags .= 'default_' . rawurlencode($r['dflt_value']);
-            }
-            $flags = trim($flags);
-
             $res[] = array(
-                'table' => $case_func($table),
-                'name'  => $case_func($r['name']),
-                'type'  => $type,
-                'len'   => $len,
-                'flags' => $flags,
+                'table' => $case_func($result),
+                'name'  => $case_func($r['column_name']),
+                'type'  => $r['data_type'],
+                'len'   => $r['data_length'],
+                'flags' => ($r['nullable'] == 'N') ? 'not_null' : '',
             );
-
             
         }
 
-        return $res;
-    }
-    
+ 
+           return $res;
+     
+    }  
+        
     
 }
