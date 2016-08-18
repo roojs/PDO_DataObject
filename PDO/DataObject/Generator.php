@@ -141,8 +141,8 @@ class PDO_DataObject_Generator extends PDO_DataObject
             $t->_database_dsn = $database;
             $t->_database = $databasename;
             
-            $t->_createTableList();
-            $t->_createForeignKeys();
+            $t->_readTableList();
+            $t->_readForeignKeys();
 
             foreach(get_class_methods($class) as $method) {
                 if (substr($method,0,8 ) != 'generate') {
@@ -250,7 +250,7 @@ class PDO_DataObject_Generator extends PDO_DataObject
      * @access  private
      * @return  none
      */
-    function _createTableList()
+    function _readTableList()
     {
         $options = PDO::config();
         $pdo = $this->PDO();
@@ -425,7 +425,7 @@ class PDO_DataObject_Generator extends PDO_DataObject
      * @author Pascal Sch�ni 
      */
     
-    function _createForeignKeys()
+    function _readForeignKeys()
     {
         $options = PDO_DataObject::config();
         
