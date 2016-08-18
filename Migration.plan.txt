@@ -87,8 +87,8 @@ d) Generator
 
   * start - DONE
   * databaseStructureProxy -- from previous work.
-  * _createTableList - DONE - need test
-  * _createForeignKeys - DONE - need test
+  * _readTableList - DONE - need test
+  * _readForeignKeys - DONE - need test
   * generateDefinitions - DONE - need test
   *
 
