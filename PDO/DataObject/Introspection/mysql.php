@@ -126,7 +126,7 @@ class PDO_DataObject_Introspection_mysql extends PDO_DataObject_Introspection
     function foreignKeys($table)
     {
            
-        $quotedTable = $this->quoteIdentifier($table);
+        $quotedTable = $this->do->quoteIdentifier($table);
             
         $res = array_values($this->do->query('SHOW CREATE TABLE ' . $quotedTable )
             ->fetchAll(false,false,'toArray'));
