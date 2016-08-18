@@ -90,6 +90,7 @@ class PDO_DataObject_Introspection_sqlite extends PDO_DataObject_Introspection
     function tableInfo($table)
     {
         
+
         $records  = $this->do
             ->query("PRAGMA table_info('$table');")
             ->fetchAll(false,false,'toArray');
