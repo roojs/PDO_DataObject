@@ -70,7 +70,7 @@ class PDO_DataObject_Introspection_mysql extends PDO_DataObject_Introspection
     {
         
         // always quote. 
-        $string - $this->do->quoteIdentifer($string);
+        $string = $this->do->quoteIdentifer($string);
         
         $records =  $this->do
             ->query("DESCRIBE $string")
