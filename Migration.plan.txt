@@ -96,8 +96,8 @@ Target:END OF WEEK 6 (est. 4 days)
 e) PDO_DataObject class
   * factory / loading
   * condition building
-- whereAdd  + where() -- chained version?
-
+    - whereAdd  + where() -- chained version?
+  * named arguments  / prepare???
 
   * query and modify methods.
 Tests:
