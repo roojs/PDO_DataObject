@@ -759,6 +759,18 @@ class PDO_DataObject
             case 'sqlite2':
             case 'pgsql':
                 return "$sql LIMIT $count OFFSET $start";
+            case 'oci':
+                return "SELECT * FROM (
+                            SELECT
+                                rownum rnum, pdo_do.* 
+                            FROM (
+                                $query
+                            ) _pdo_do
+                            WHERE rownum <= {$start}+{$count}
+                        )
+                        WHERE rnum >= {$start}
+                ";
+                
                 
             default:
                 $this->raiseError("The Database $drv, does not support limit queries - if you know how this can be added, please send a patch.",
