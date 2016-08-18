@@ -2163,21 +2163,7 @@ class PDO_DataObject
             $sql .= $this->_query['condition']. $extra_cond;
             
             // add limit..
-            
-            if (isset($this->_query['limit_start']) && strlen($this->_query['limit_start'] . $this->_query['limit_count'])) {
-                
-                if (!isset($_DB_DATAOBJECT['CONFIG']['db_driver']) ||  
-                    ($_DB_DATAOBJECT['CONFIG']['db_driver'] == 'DB')) {
-                    // pear DB 
-                    $sql = $DB->modifyLimitQuery($sql,$this->_query['limit_start'], $this->_query['limit_count']);
-                    
-                } else {
-                    // MDB2
-                    $DB->setLimit( $this->_query['limit_count'],$this->_query['limit_start']);
-                }
-                    
-            }
-            
+            $sql = $this->modifyLimitQuery($sql, true);
             
             $r = $this->_query($sql);
             
