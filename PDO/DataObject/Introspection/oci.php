@@ -111,7 +111,7 @@ class PDO_DataObject_Introspection_oci extends PDO_DataObject_Introspection
             forech($records as $r) {
                 $res[] = array(
                     'table' => $case_func($result),
-                    'name'  => $case_func(@OCIResult($stmt, 1)),
+                    'name'  => $case_func($r['column_name']),
                     'type'  => @OCIResult($stmt, 2),
                     'len'   => @OCIResult($stmt, 3),
                     'flags' => (@OCIResult($stmt, 4) == 'N') ? 'not_null' : '',
