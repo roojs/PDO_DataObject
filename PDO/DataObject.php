@@ -470,7 +470,7 @@ class PDO_DataObject
         switch($dsn_ar['scheme'] ) {
             case 'sqlite':
             case 'sqlite2':
-                $pdo_dsn =      $dsn_ar['scheme'] . ':' .$dsn_ar['path']; // urldecode perhaps?
+                $pdo_dsn =      $dsn_ar['scheme'] . ':' .$dsn_ar['path']; // urldec917ode perhaps?
                 $database = basename($dsn_ar['path']);
                 break;
             
@@ -511,7 +511,7 @@ class PDO_DataObject
             default:
                 // by default we need to validate a little bit..
                 if (empty($dsn_ar['host']) || empty($dsn_ar['path'])  || strlen($dsn_ar['path']) < 2) {
-                    return $this->raiseError("Invalid syntax of DSN : ". $dsn, 0, self::ERROR_DIE);
+                    return $this->raiseError("Invalid syntax of DSN : ". print_r($dsn_ar,true), 0, self::ERROR_DIE);
                 }
                 $pdo_dsn =
                     $dsn_ar['scheme'] . ':' .
