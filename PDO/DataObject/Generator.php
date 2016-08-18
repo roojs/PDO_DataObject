@@ -378,7 +378,11 @@ class PDO_DataObject_Generator extends PDO_DataObject
         
         $base =  $options['schema_location'];
         if (is_array($base)) {
-            $file = $options["ini_{$this->_database}"];
+            if (!isset($base[$this->_database])) {
+                $this->raiseError("Could not find schema location from config[schema_location] - array but no matching database",,
+                    PDO_DataObject::ERROR_INVALIDCONFIG, PDO_DataObject::ERROR_DIE);
+            }
+            $file = $base[$this->_database];
         } else {
             $file = "{$base}/{$this->_database}.ini";
         }
