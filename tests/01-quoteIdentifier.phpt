@@ -14,7 +14,7 @@ var_dump((new PDO_DataObject())->quoteIdentifier('fred'));
 PDO_DataObject::config('database','sybase://test@localhost/somedb');
 var_dump((new PDO_DataObject())->quoteIdentifier('fred'));
 
-PDO_DataObject::config('database','oci:///mydb');
+PDO_DataObject::config('database','oci://mydb');
 var_dump((new PDO_DataObject())->quoteIdentifier('fred'));
 
 
