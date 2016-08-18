@@ -115,7 +115,7 @@ class PDO_DataObject_Introspection_pgsql extends PDO_DataObject_Introspection
         if (strpos($table,'.') !== false) {
             list($schema, $table) =explode('.', $table);
         }
-        $string = $this->do->quoteIdentifer($string);
+        $table = $this->do->quoteIdentifer($table);
 
         
         $database = $this->do->database();
