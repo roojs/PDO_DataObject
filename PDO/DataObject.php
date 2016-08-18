@@ -175,8 +175,10 @@ class PDO_DataObject
         
             // ---- Generator
             'quote_identifiers_tableinfo' => false,
+                    // should we use quote identifiers on table info?? - not sure if this is a good idea - should it not be generic
+                    // for dataobjects?
             
-        
+            'generator_build_views'
     );
     
     static $debug = 0;
