@@ -64,6 +64,10 @@ try {
 
 
 
+
+
+
+
 ?>
 --EXPECT--
 PDO_DataObject   : __construct       : ["mysql_somedb\/do_not_exist"]
@@ -111,9 +115,11 @@ getAttribute==[16] => mysql
 PDO_DataObject   : _introspection       : Creating Introspection for PDO_DataObject_Introspection_mysql
 PDO_DataObject   : PDO       : Using Cached connection
 getAttribute==[16] => mysql
+PDO_DataObject   : PDO       : Using Cached connection
+getAttribute==[16] => mysql
 PDO_DataObject   : QUERY       : 5947e446493bc33cb3af439aaf8231b1 : DESCRIBE `Groups`
 getAttribute==[16] => mysql
-QUERY: DESCRIBE `Groups` 
+QUERY: DESCRIBE `Groups`  
 PDO_DataObject   : query       : NO# of results: 4
 Fetch Row 0 / 4
 PDO_DataObject   : FETCH       : {"Field":"id","Type":"int(11)","Null":"NO","Key":"PRI","Default":null,"Extra":"auto_increment"}
