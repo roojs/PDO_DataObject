@@ -760,6 +760,10 @@ class PDO_DataObject
             case 'pgsql':
                 return "$sql LIMIT $count OFFSET $start";
             case 'oci':
+                if ($manip) {
+                    $this->raiseError("Oracle may not support offset in modification queries",
+                            self::ERROR_INVALIDARGS, self::ERROR_DIE); // from PEAR DB?
+                }
                 return "SELECT * FROM (
                             SELECT
                                 rownum _pdo_rnum, pdo_do.* 
