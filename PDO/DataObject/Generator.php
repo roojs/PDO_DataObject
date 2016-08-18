@@ -244,7 +244,7 @@ class PDO_DataObject_Generator extends PDO_DataObject
     var $_newConfig;
 
     /**
-     * Build a list of tables;
+     * Build a list of tables and definitions.;
      * and store it in $this->tables and $this->_definitions[tablename];
      *
      * @access  private
@@ -312,25 +312,10 @@ class PDO_DataObject_Generator extends PDO_DataObject
             $this->debug("EXTRACTING : $table");
             
             // we do not quote table - as these are now internal methods - and it is done by the introspection classes 
-          
-            if (!$is_MDB2) {
-                
-                $defs =  $__DB->tableInfo($table);
-            } else {
-                $defs =  $__DB->reverse->tableInfo($table);
-                // rename the length value, so it matches db's return.
-                
-            }
-
-            if (is_object($defs) && is_a($defs,'PEAR_Error')) {
-                // running in debug mode should pick this up as a big warning..
-                $this->debug("Error reading tableInfo: $table");
-                $this->raiseError('Error reading tableInfo, '. $defs->toString());
-                continue;
-            }
+            
+            $defs = $io->tableInfo($table);
+            
             // cast all definitions to objects - as we deal with that better.
-
-
 
             foreach($defs as $def) {
                 if (!is_array($def)) {
