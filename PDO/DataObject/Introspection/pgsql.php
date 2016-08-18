@@ -233,10 +233,10 @@ class PDO_DataObject_Introspection_pgsql extends PDO_DataObject_Introspection
             $r['condef'],
             $treffer);
         if (!count($treffer)) {
-            return array();
+            return $fk;
         }
         $fk[  $treffer[1]  ]  = $treffer[2] . ":" . $treffer[3];
-        
+        return $fk;
     }
     
 }
