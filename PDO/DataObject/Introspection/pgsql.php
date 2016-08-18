@@ -220,8 +220,8 @@ class PDO_DataObject_Introspection_pgsql extends PDO_DataObject_Introspection
      *                           MUST BE QUOTED if required....
      *                          
      
-     * @return array  an associative array with the information requested.
-     *                 A DB_Error object on failure.
+     * @return array  an associative array (local column) ->  {related_table}:{related_column}
+     * 
      *
      *
      *  multiple_key
