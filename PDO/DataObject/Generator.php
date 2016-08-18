@@ -350,7 +350,7 @@ class PDO_DataObject_Generator extends PDO_DataObject
      */
     function generateDefinitions()
     {
-        $this->debug("Generating Definitions file:        ");
+        $this->debug("Generating Definitions INI file:        ");
         if (!$this->tables) {
             $this->debug("-- NO TABLES -- \n");
             return;
