@@ -983,19 +983,8 @@ class PDO_DataObject
         
         
         /* We are checking for method modifyLimitQuery as it is PEAR DB specific */
-        if ((!isset($_DB_DATAOBJECT['CONFIG']['db_driver'])) || 
-            ($_DB_DATAOBJECT['CONFIG']['db_driver'] == 'DB')) {
-            /* PEAR DB specific */
         
-            if (isset($this->_query['limit_start']) && strlen($this->_query['limit_start'] . $this->_query['limit_count'])) {
-                $sql = $DB->modifyLimitQuery($sql,$this->_query['limit_start'], $this->_query['limit_count']);
-            }
-        } else {
-            /* theoretically MDB2! */
-            if (isset($this->_query['limit_start']) && strlen($this->_query['limit_start'] . $this->_query['limit_count'])) {
-	            $DB->setLimit($this->_query['limit_count'],$this->_query['limit_start']);
-	        }
-        }
+        $sql = $this->modifyLimitQuery($sql);
         
         
         $err = $this->_query($sql);
