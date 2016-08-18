@@ -172,8 +172,8 @@ $obj = new PDO_DataObject('accnt');
 print_r($obj->databaseStructure());
 
 
-// postgresql
-echo "\n\nDATABASE INSTROSPECT - postgres dummyu\n";
+// oracle
+echo "\n\nDATABASE INSTROSPECT - oracle dummyu\n";
 (new PDO_DataObject())->reset();
 
 PDO_DataObject::config(
@@ -194,6 +194,9 @@ PDO_DataObject::config(
 $obj = new PDO_DataObject('accnt');
 print_r($obj->databaseStructure());
 
+ 
+ 
+ 
  
 // sqlite
 PDO_DataObject::config('PDO', 'PDO'); // we can do this for real...
