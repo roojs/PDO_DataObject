@@ -115,12 +115,10 @@ class PDO_DataObject_Generator extends PDO_DataObject
         $options = PDO::config();
         
         $databases = array();
-        foreach($options as $k=>$v) {
-            if (substr($k,0,9) == 'database_') {
-                $databases[substr($k,9)] = $v;
-            }
+        if (!empty($options['databases'])) {
+            $databases  = $options['databases'];
         }
-
+    
         if (isset($options['database'])) {
             $dsn_ar = parse_url($options['database']);
             
