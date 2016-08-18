@@ -222,9 +222,7 @@ class PDO_DataObject_Introspection_pgsql extends PDO_DataObject_Introspection
      
      * @return array  an associative array (local column) ->  {related_table}:{related_column}
      * 
-     *
-     *
-     *  multiple_key
+     * 
         
      *
      */
@@ -242,8 +240,9 @@ class PDO_DataObject_Introspection_pgsql extends PDO_DataObject_Introspection
                 ->fetchAll(false,false,'toArray');
          
         $treffer = array();
-        // this only picks up one of these.. see this for why: http://pear.php.net/bugs/bug.php?id=17049
-        // could probably be fixed.
+        // this may not work correctly -   see this: http://pear.php.net/bugs/bug.php?id=17049
+        
+        
         preg_match_all(
             "/FOREIGN KEY \((\w*)\) REFERENCES (\w*)\((\w*)\)/i",
             $r['condef'],
