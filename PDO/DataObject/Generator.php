@@ -252,6 +252,7 @@ class PDO_DataObject_Generator extends PDO_DataObject
      */
     function _createTableList()
     {
+        $options = PDO::config();
         $pdo = $this->PDO();
         
         // try schema first...
@@ -263,30 +264,10 @@ class PDO_DataObject_Generator extends PDO_DataObject
         if (empty($this->tables)) {
             $this->tables = $this->introspection()->getListOf('tables');
         }
-       
-
-        if ((empty($this->tables) || (is_object($this->tables) && is_a($this->tables , 'PEAR_Error')))) {
-            //if that fails fall back to clasic tables list.
-            if (!$is_MDB2) {
-                // try getting a list of schema tables first. (postgres)
-                $__DB->expectError(DB_ERROR_UNSUPPORTED);
-                $this->tables = $__DB->getListOf('tables');
-                $__DB->popExpect();
-            } else  {
-                $this->tables = $__DB->manager->listTables();
-                $sequences = $__DB->manager->listSequences();
-                foreach ($sequences as $k => $v) {
-                    $this->tables[] = $__DB->getSequenceName($v);
-                }
-            }
-        }
-
-        if (is_object($this->tables) && is_a($this->tables , 'PEAR_Error')) {
-            return PEAR::raiseError($this->tables->toString(), null, PEAR_ERROR_DIE);
-        }
-
+        
+ 
         // build views as well if asked to.
-        if (!empty($options['build_views'])) {
+        if (!empty($options['generator_build_views'])) {
             if (!$is_MDB2) {
                 $views = $__DB->getListOf(is_string($options['build_views']) ?
                                     $options['build_views'] : 'views');
