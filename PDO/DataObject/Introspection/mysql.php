@@ -131,9 +131,6 @@ class PDO_DataObject_Introspection_mysql extends PDO_DataObject_Introspection
             $res = array_values($this->do->query('SHOW CREATE TABLE ' . $quotedTable )
                 ->fetchAll(false,false,'toArray'));
             
-            
-
-            $text = $res->fetchRow(DB_FETCHMODE_DEFAULT, 0);
             $treffer = array();
             // Extract FOREIGN KEYS
             preg_match_all(
