@@ -92,6 +92,9 @@ class PDO_DataObject_Introspection
     }
     
     // we could put a generic tableInfo here... - using ColumnMeta ??
+    abstract function tableInfo($table);
+    abstract function foreignKeys($table);
+    
     
     
 }
