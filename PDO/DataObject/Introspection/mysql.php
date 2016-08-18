@@ -68,9 +68,12 @@ class PDO_DataObject_Introspection_mysql extends PDO_DataObject_Introspection
      */
     function tableInfo($string)
     {
+        // FIXME = use META data....
+        // 
+        
         
         // always quote. 
-        $string = $this->do->quoteIdentifer($string);
+        $string = $this->do->quoteIdentifier($string);
         
         $records =  $this->do
             ->query("DESCRIBE $string")
