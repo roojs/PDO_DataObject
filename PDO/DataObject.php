@@ -178,13 +178,13 @@ class PDO_DataObject
                 // should we use quote identifiers on table info?? - not sure if this is a good idea - should it not be generic
                 // for dataobjects?
             
-            'generator_build_views' => false,
+            'generator_build_views' => '',
                 // for postgres, you can build dataobjects for views as well
                 // you can set this to 'schema.views' to extract views with schema information
                 // I believe  postgres also supports updating on views (nice feature)
                 // *** NOTE *** You will have to manually define keys() / sequenceKeys()
                 // As the generator can not recognize these automatically
-            'generator_strip_schema' => true,
+            'generator_strip_schema' => '',
                 //	postgres has a wierd concept of schema's which end up prefixed to
                 //	the list of tables. - this makes a mess of class/schema generation
                 //	setting this to true, makes the generator strip the schema from the table name.
