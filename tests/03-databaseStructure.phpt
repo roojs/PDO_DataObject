@@ -185,7 +185,7 @@ PDO_DataObject::config(
             'accnt' => 'dummy_xtuple'
         ),
         'databases' => array(
-            'dummy_xtuple' => 'oci://localhost'
+            'dummy_xtuple' => 'oci:///somedb'
         )
     )
 );
