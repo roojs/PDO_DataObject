@@ -762,9 +762,9 @@ class PDO_DataObject
             case 'oci':
                 return "SELECT * FROM (
                             SELECT
-                                rownum rnum, pdo_do.* 
+                                rownum _pdo_rnum, pdo_do.* 
                             FROM (
-                                $query
+                                {$query}
                             ) _pdo_do
                             WHERE rownum <= {$start}+{$count}
                         )
