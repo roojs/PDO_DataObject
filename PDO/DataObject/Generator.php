@@ -348,7 +348,7 @@ class PDO_DataObject_Generator extends PDO_DataObject
      * @access  private
      * @return  none
      */
-    function generateDefinitions()
+    function generateINI()
     {
         $this->debug("Generating Definitions INI file:        ");
         if (!$this->tables) {
