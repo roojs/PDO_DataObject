@@ -247,11 +247,14 @@ class PDO_DataObject_Introspection_pgsql extends PDO_DataObject_Introspection
         preg_match_all(
             "/FOREIGN KEY \((\w*)\) REFERENCES (\w*)\((\w*)\)/i",
             $r['condef'],
-            $treffer);
+            $treffer,
+            PREG_SET_ORDER);
         if (!count($treffer)) {
             return $fk;
         }
-        $fk[  $treffer[1]  ]  = $treffer[2] . ":" . $treffer[3];
+        foreach($treffer as $m) {
+            $fk[  $m[1]  ]  = $m[2] . ":" . $m[3];
+        }
         return $fk;
     }
     
