@@ -138,7 +138,7 @@ class PDO_DataObject_Introspection_mysql extends PDO_DataObject_Introspection
             // Extract FOREIGN KEYS
             preg_match_all(
                 "/FOREIGN KEY \(`(\w*)`\) REFERENCES `(\w*)` \(`(\w*)`\)/i", 
-                $text[1], 
+                $res[0], 
                 $treffer, 
                 PREG_SET_ORDER);
 
