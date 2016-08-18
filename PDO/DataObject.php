@@ -143,7 +143,7 @@ class PDO_DataObject
                 // currently it only lowercases the tablename when you call tableName(), and
                 // flatten's ini files ..
         
-             //  NEW ------------   peformance 
+        //  NEW ------------   peformance 
              
             'fetch_into' => false,
                 // use PDO's fetch_INTO for performance... - not sure what other effects this may have..
@@ -159,7 +159,7 @@ class PDO_DataObject
                 // debuging - only relivant on initialization - modifying it after, may be ignored.
         
         
-            // -------- Error handling --------
+        // -------- Error handling --------
             
             'exceptions' => true,
                 // new behaviour is to throw exceptions - everywhere!!!
@@ -173,12 +173,18 @@ class PDO_DataObject
                 // this flag -- I'm not sure how usefull it is, as if you use a global pear error handler
                 // you can catch the error anyway
         
-            // ---- Generator
+        // ---- Generator
             'quote_identifiers_tableinfo' => false,
-                    // should we use quote identifiers on table info?? - not sure if this is a good idea - should it not be generic
-                    // for dataobjects?
+                // should we use quote identifiers on table info?? - not sure if this is a good idea - should it not be generic
+                // for dataobjects?
             
-            'generator_build_views'
+            'generator_build_views' => false,
+                // for postgres, you can build dataobjects for views as well
+                // you can set this to 'schema.views' to extract views with schema information
+                // I believe it postgres also supports updating on views (nice feature)
+                // *** NOTE *** You will have to manually define keys() / sequenceKeys()
+                // As the generator can not recognize these automatically
+                
     );
     
     static $debug = 0;
