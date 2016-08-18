@@ -142,7 +142,7 @@ class PDO_DataObject_Generator extends PDO_DataObject
             $t->_database = $databasename;
             
             $t->_createTableList();
-            $t->_createForiegnKeys();
+            $t->_createForeignKeys();
 
             foreach(get_class_methods($class) as $method) {
                 if (substr($method,0,8 ) != 'generate') {
@@ -434,7 +434,7 @@ class PDO_DataObject_Generator extends PDO_DataObject
      * @author Pascal Sch�ni 
      */
     
-    function _createForiegnKeys()
+    function _createForeignKeys()
     {
         $options = PEAR::getStaticProperty('DB_DataObject','options');
         if (empty($options['generate_links'])) {
