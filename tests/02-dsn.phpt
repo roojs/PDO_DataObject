@@ -61,7 +61,7 @@ PDO_DataObject::config('database', 'sqlite2::memory:');
 (new PDO_DataObject())->PDO();
 
 
-PDO_DataObject::config('database', 'oci://@/mydb'); // oci:dbname=mydb
+PDO_DataObject::config('database', 'oci:///mydb'); // oci:dbname=mydb
 (new PDO_DataObject())->PDO();
  
 
