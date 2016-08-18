@@ -172,6 +172,28 @@ $obj = new PDO_DataObject('accnt');
 print_r($obj->databaseStructure());
 
 
+// postgresql
+echo "\n\nDATABASE INSTROSPECT - postgres dummyu\n";
+(new PDO_DataObject())->reset();
+
+PDO_DataObject::config(
+    array(
+        'schema_location' => false,
+        'PDO' => 'PDO_Dummy',
+        'proxy' => true,
+        'tables' => array(
+            'accnt' => 'dummy_xtuple'
+        ),
+        'databases' => array(
+            'dummy_xtuple' => 'oci://localhost'
+        )
+    )
+);
+
+
+$obj = new PDO_DataObject('accnt');
+print_r($obj->databaseStructure());
+
  
 // sqlite
 PDO_DataObject::config('PDO', 'PDO'); // we can do this for real...
