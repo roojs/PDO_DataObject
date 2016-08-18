@@ -96,7 +96,7 @@ class PDO_DataObject_Introspection_sqlite extends PDO_DataObject_Introspection
         
         
         $case_func = 'strval';
-        if (PDO_DataObject::$config['portability'] & PDO_DataObject::PORTABILITY_LOWERCASE) {
+        if (PDO_DataObject::config()['portability'] & PDO_DataObject::PORTABILITY_LOWERCASE) {
             $case_func = 'strtolower';
         }
         

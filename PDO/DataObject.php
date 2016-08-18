@@ -723,7 +723,7 @@ class PDO_DataObject
             case 'sqlite':
             case 'sqlite2':
             case 'pgsql':
-                return "$sql LIMIT $start OFFSET $count";
+                return "$sql LIMIT $count OFFSET $start";
                 
             default:
                 $this->raiseError("The Database $drv, does not support limit queries - if you know how this can be added, please send a patch.",
