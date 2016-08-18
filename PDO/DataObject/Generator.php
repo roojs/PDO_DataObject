@@ -130,18 +130,17 @@ class PDO_DataObject_Generator extends PDO_DataObject
             }
         }
 
+        
         foreach($databases as $databasename => $database) {
             if (!$database) {
                 continue;
             }
-            $this->debug("CREATING FOR $databasename\n");
+            $this->debug("CREATING FOR $databasename\n",__FUNCTION__,1);
             $class = get_class($this);
-            $t = new $class;
+            $t = new $class();
             $t->_database_dsn = $database;
- 
             $t->_database = $databasename;
             
- 
             $t->_createTableList();
             $t->_createForiegnKeys();
 
