@@ -215,7 +215,28 @@ class PDO_DataObject_Introspection_pgsql extends PDO_DataObject_Introspection
     
     function foreignKeys($table)
     {
-        
+           
+        $fk = array();
+        $res = $this->do->query("SELECT
+                    pg_catalog.pg_get_constraintdef(r.oid, true) AS condef
+                FROM pg_catalog.pg_constraint r,
+                     pg_catalog.pg_class c
+                WHERE c.oid=r.conrelid
+                      AND r.contype = 'f'
+                      AND c.relname = '{$this->do->escape($table)}'")
+                ->fetchAll(false,false,'toArray');
+         
+            $treffer = array();
+            // this only picks up one of these.. see this for why: http://pear.php.net/bugs/bug.php?id=17049
+            preg_match(
+                "/FOREIGN KEY \((\w*)\) REFERENCES (\w*)\((\w*)\)/i",
+                $r['condef'],
+                $treffer);
+            if (!count($treffer)) {
+                continue;
+            }
+            $fk[$this->table][$treffer[1]] = $treffer[2] . ":" . $treffer[3];
+        }
     }
     
 }
