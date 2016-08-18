@@ -187,7 +187,7 @@ class PDO_DataObject
             'generator_strip_schema' => '',
                 //	postgres has a wierd concept of schema's which end up prefixed to
                 //	the list of tables. - this makes a mess of class/schema generation
-                //	setting this to true, makes the generator strip the schema from the table name.
+                //	setting this to '', makes the generator strip the schema from the table name.
                 //  now supports regex (if you set it to a regex it will strip schema of matched names)
                 //  for example '/^public\./'
 
