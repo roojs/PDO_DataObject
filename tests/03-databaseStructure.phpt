@@ -185,13 +185,13 @@ PDO_DataObject::config(
             'accnt' => 'dummy_xtuple'
         ),
         'databases' => array(
-            'dummy_xtuple' => 'oci:///somedb'
+            'dummy_xtuple' => 'oci://somedb'
         )
     )
 );
 
 
-$obj = new PDO_DataObject('accnt');
+$obj = new PDO_DataObject('Groups');
 print_r($obj->databaseStructure());
 
  
