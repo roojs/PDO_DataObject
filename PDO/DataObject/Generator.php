@@ -119,25 +119,12 @@ class PDO_DataObject_Generator extends PDO_DataObject
             $databases  = $options['databases'];
         }
         
+        
         if (isset($options['database'])) {
-            $dsn_ar = parse_url($options['database']);
+            // ctor without table...
+            $do = new PDO_DataObject();
+            $dname = $do->PDO()->database_nickname;
             
-            switch($dsn_ar['scheme'] ) {
-                case 'sqlite':
-                case 'sqlite2':
-                    $dname = basename($dsn_ar['path']);
-                    break;
-                case 'sqlsrv':
-                    $dname = substr($dsn_ar['path'],1);
-                    break;
-                
-                // others go here...
-            
-                default:
-                    $dname= substr($dsn_ar['path'],1);
-                   break;
-            }    
-           
             if (!isset($database[$dname])){
                 $databases[$dname] = $options['database'];
             }
