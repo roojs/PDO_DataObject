@@ -501,7 +501,7 @@ class PDO_DataObject
                         break;
                     
                     default:
-                        $pdo_dsn .= 'dbname=' . $database 
+                        $pdo_dsn .= 'dbname=' . $database;
                         break;
                 }
                 break;
