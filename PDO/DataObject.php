@@ -486,7 +486,7 @@ class PDO_DataObject
             case 'oci':
                 
                 $pdo_dsn = $dsn_ar['scheme'] . ':';
-                $database = substr($dsn_ar['path'],1);
+                $database = empty($dsn_ar['path']) ? $dsn_ar['host'] : substr($dsn_ar['path'],1);
                 
                 switch(true) {
                     
@@ -496,7 +496,7 @@ class PDO_DataObject
                         break;
                     
                     // this is from the comments on pdo page...?
-                    case (!empty($dsn_ar['host']) && empty($dsn_ar['port'])):
+                    case (!empty($dsn_ar['host']) && !empty($dsn_ar['path'])):
                         $pdo_dsn .= 'dbname=' . $dsn_ar['host'] . $dsn_ar['path'];
                         break;
                     
@@ -511,7 +511,7 @@ class PDO_DataObject
             default:
                 // by default we need to validate a little bit..
                 if (empty($dsn_ar['host']) || empty($dsn_ar['path'])  || strlen($dsn_ar['path']) < 2) {
-                    return $this->raiseError("Invalid syntax of DSN : ". print_r($dsn_ar,true), 0, self::ERROR_DIE);
+                    return $this->raiseError("Invalid syntax of DSN : {$dsn}\n". print_r($dsn_ar,true), 0, self::ERROR_DIE);
                 }
                 $pdo_dsn =
                     $dsn_ar['scheme'] . ':' .
@@ -764,11 +764,12 @@ class PDO_DataObject
                     $this->raiseError("Oracle may not support offset in modification queries",
                             self::ERROR_INVALIDARGS, self::ERROR_DIE); // from PEAR DB?
                 }
+                // from http://stackoverflow.com/questions/2912144/alternatives-to-limit-and-offset-for-paging-in-oracle
                 return "SELECT * FROM (
                             SELECT
                                 rownum _pdo_rnum, pdo_do.* 
                             FROM (
-                                {$query}
+                                {$sql}
                             ) _pdo_do
                             WHERE rownum <= {$start}+{$count}
                         )
@@ -2518,26 +2519,6 @@ class PDO_DataObject
     
     
     
-    /**
-     * create an instance of introspection. 
-     * - manual set
-     * - proxy
-     * - ini_****
-     */
-    protected function _introspection()
-    {
-        
-        $type  = $this->PDO()->getAttribute(PDO::ATTR_DRIVER_NAME);
-        if (empty($type)) {
-            throw new Exception("could not work out database type");
-        }
-        $class = 'PDO_DataObject_Introspection_'. $type;
-        class_exists($class)  ? '' : require_once 'PDO/DataObject/Introspection/'. $type. '.php';
-        $this->debug("Creating Introspection for $class", "_introspection");
-        return new $class($this);
-       
-    }
-
     /**
      * Return or assign the name of the current table
      *
