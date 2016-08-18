@@ -244,7 +244,7 @@ class PDO_DataObject_Introspection_pgsql extends PDO_DataObject_Introspection
         $treffer = array();
         // this only picks up one of these.. see this for why: http://pear.php.net/bugs/bug.php?id=17049
         // could probably be fixed.
-        preg_match(
+        preg_match_all(
             "/FOREIGN KEY \((\w*)\) REFERENCES (\w*)\((\w*)\)/i",
             $r['condef'],
             $treffer);
