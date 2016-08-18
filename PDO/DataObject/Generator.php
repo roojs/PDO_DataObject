@@ -379,7 +379,7 @@ class PDO_DataObject_Generator extends PDO_DataObject
         $base =  $options['schema_location'];
         if (is_array($base)) {
             if (!isset($base[$this->_database])) {
-                $this->raiseError("Could not find schema location from config[schema_location] - array but no matching database",,
+                $this->raiseError("Could not find schema location from config[schema_location] - array but no matching database",
                     PDO_DataObject::ERROR_INVALIDCONFIG, PDO_DataObject::ERROR_DIE);
             }
             $file = $base[$this->_database];
@@ -388,8 +388,7 @@ class PDO_DataObject_Generator extends PDO_DataObject
         }
         
         if (!file_exists(dirname($file))) {
-            require_once 'System.php';
-            System::mkdir(array('-p','-m',0755,dirname($file)));
+            mkdir(dirname($file), 0755, true);
         }
         $this->debug("Writing ini as {$file}\n");
         //touch($file);
@@ -397,10 +396,10 @@ class PDO_DataObject_Generator extends PDO_DataObject
         //print_r($this->_newConfig);
         $fh = fopen($tmpname,'w');
         if (!$fh) {
-            return PEAR::raiseError(
+            return $this->raiseError(
                 "Failed to create temporary file: $tmpname\n".
                 "make sure session.save_path is set and is writable\n"
-                ,null, PEAR_ERROR_DIE);
+                ,null, PDO_DataObject::ERROR_DIE);
         }
         fwrite($fh,$this->_newConfig);
         fclose($fh);
