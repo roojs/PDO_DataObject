@@ -226,17 +226,17 @@ class PDO_DataObject_Introspection_pgsql extends PDO_DataObject_Introspection
                       AND c.relname = '{$this->do->escape($table)}'")
                 ->fetchAll(false,false,'toArray');
          
-            $treffer = array();
-            // this only picks up one of these.. see this for why: http://pear.php.net/bugs/bug.php?id=17049
-            preg_match(
-                "/FOREIGN KEY \((\w*)\) REFERENCES (\w*)\((\w*)\)/i",
-                $r['condef'],
-                $treffer);
-            if (!count($treffer)) {
-                continue;
-            }
-            $fk[$this->table][$treffer[1]] = $treffer[2] . ":" . $treffer[3];
+        $treffer = array();
+        // this only picks up one of these.. see this for why: http://pear.php.net/bugs/bug.php?id=17049
+        preg_match(
+            "/FOREIGN KEY \((\w*)\) REFERENCES (\w*)\((\w*)\)/i",
+            $r['condef'],
+            $treffer);
+        if (!count($treffer)) {
+            return array();
         }
+        $fk[  $treffer[1]  ]  = $treffer[2] . ":" . $treffer[3];
+        
     }
     
 }
