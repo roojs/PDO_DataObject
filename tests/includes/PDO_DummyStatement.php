@@ -32,7 +32,7 @@ class PDO_DummyStatement {
                     {"Tables_in_somedb":"Groups"}
                 ]',
                 
-            'DESCRIBE Companies' => '[
+            'DESCRIBE `Companies`' => '[
                     {"Field":"id","Type":"int(11)","Null":"NO","Key":"PRI","Default":null,"Extra":"auto_increment"},
                     {"Field":"code","Type":"varchar(32)","Null":"NO","Key":"","Default":"","Extra":""},
                     {"Field":"name","Type":"varchar(128)","Null":"YES","Key":"MUL","Default":null,"Extra":""},
@@ -58,7 +58,7 @@ class PDO_DummyStatement {
                     {"Field":"country","Type":"varchar(4)","Null":"NO","Key":"","Default":"","Extra":""}
                     ]',
             
-            'DESCRIBE Events' => '[
+            'DESCRIBE `Events`' => '[
                     {"Field":"id","Type":"int(11)","Null":"NO","Key":"PRI","Default":null,"Extra":"auto_increment"},
                     {"Field":"person_name","Type":"varchar(128)","Null":"YES","Key":"","Default":null,"Extra":""},
                     {"Field":"event_when","Type":"datetime","Null":"YES","Key":"MUL","Default":null,"Extra":""},
@@ -70,7 +70,7 @@ class PDO_DummyStatement {
                     {"Field":"person_table","Type":"varchar(64)","Null":"YES","Key":"MUL","Default":null,"Extra":""},
                     {"Field":"remarks","Type":"text","Null":"YES","Key":"","Default":null,"Extra":""}
                     ]',
-            'DESCRIBE Groups' => '[
+            'DESCRIBE `Groups`' => '[
                 {"Field":"id","Type":"int(11)","Null":"NO","Key":"PRI","Default":null,"Extra":"auto_increment"},
                 {"Field":"name","Type":"varchar(64)","Null":"NO","Key":"","Default":"","Extra":""},
                 {"Field":"type","Type":"int(11)","Null":"YES","Key":"","Default":"0","Extra":""},
@@ -84,7 +84,7 @@ class PDO_DummyStatement {
                 {"table_name":"addr"}
             ]',
             // table def for acalitem
-            '08e4aa9f52824fa6d6c01dfea04d5efd' => '[
+            'da97475cdd81cd8f4376cb61d8b226c6' => '[
             
                 {"number":1,"name":"acalitem_id","attnum":1,"notnull":true,"type":"integer","primarykey":"t","uniquekey":"f","foreignkey":null,"foreignkey_fieldnum":null,"foreignkey_connnum":null,"default":"nextval((\'\"xcalitem_xcalitem_id_seq\"\'::text)::regclass)"},
                 {"number":2,"name":"acalitem_calhead_id","attnum":2,"notnull":false,"type":"integer","primarykey":"f","uniquekey":"f","foreignkey":null,"foreignkey_fieldnum":null,"foreignkey_connnum":null,"default":null},
@@ -93,7 +93,7 @@ class PDO_DummyStatement {
                 {"number":5,"name":"acalitem_name","attnum":5,"notnull":false,"type":"text","primarykey":"f","uniquekey":"f","foreignkey":null,"foreignkey_fieldnum":null,"foreignkey_connnum":null,"default":null}
             ]',
             // def for accnt
-            '910efae3bc8352cab9a73df70006a9bc' => '[
+            'e0a54ca5ca34c1f8a41128f81ffcd95d' => '[
                 {"number":1,"name":"accnt_id","attnum":1,"notnull":true,"type":"integer","primarykey":"t","uniquekey":"f","foreignkey":null,"foreignkey_fieldnum":null,"foreignkey_connnum":null,"default":"nextval((\'accnt_accnt_id_seq\'::text)::regclass)"},
                 {"number":2,"name":"accnt_number","attnum":2,"notnull":false,"type":"text","primarykey":"f","uniquekey":"f","foreignkey":null,"foreignkey_fieldnum":null,"foreignkey_connnum":null,"default":null},
                 {"number":3,"name":"accnt_descrip","attnum":3,"notnull":false,"type":"text","primarykey":"f","uniquekey":"f","foreignkey":null,"foreignkey_fieldnum":null,"foreignkey_connnum":null,"default":null},
@@ -113,7 +113,7 @@ class PDO_DummyStatement {
                 {"number":17,"name":"accnt_descrip_alt","attnum":17,"notnull":false,"type":"text","primarykey":"f","uniquekey":"f","foreignkey":null,"foreignkey_fieldnum":null,"foreignkey_connnum":null,"default":"\'\'::text"}
             ]',
             // for addr
-            '0464cd1439d5cf9ac030e8cbe858bbfd' => '[
+            '7de46b3d3e81498c15bedd6eaeef687e' => '[
                 {"number":1,"name":"addr_id","attnum":1,"notnull":true,"type":"integer","primarykey":"t","uniquekey":"f","foreignkey":null,"foreignkey_fieldnum":null,"foreignkey_connnum":null,"default":"nextval(\'addr_addr_id_seq\'::regclass)"},
                 {"number":2,"name":"addr_active","attnum":2,"notnull":false,"type":"boolean","primarykey":"f","uniquekey":"f","foreignkey":null,"foreignkey_fieldnum":null,"foreignkey_connnum":null,"default":"true"},
                 {"number":3,"name":"addr_line1","attnum":3,"notnull":false,"type":"text","primarykey":"f","uniquekey":"f","foreignkey":null,"foreignkey_fieldnum":null,"foreignkey_connnum":null,"default":"\'\'::text"},
@@ -135,13 +135,30 @@ class PDO_DummyStatement {
                    
                     {"Tables_in_somedb":"Groups"}
                 ]',
-             'DESCRIBE Groups' => '[
+             'DESCRIBE `Groups`' => '[
                 {"Field":"id","Type":"int(11)","Null":"NO","Key":"PRI","Default":null,"Extra":"auto_increment"},
                 {"Field":"name","Type":"varchar(64)","Null":"NO","Key":"","Default":"","Extra":""},
                 {"Field":"type","Type":"int(11)","Null":"YES","Key":"","Default":"0","Extra":""},
                 {"Field":"leader","Type":"int(11)","Null":"NO","Key":"","Default":"0","Extra":""}
             ]',
         ),
+          
+        'oci:dbname=somedb' => array(
+            'SELECT table_name FROM user_tables' =>  '[
+                   
+                    {"table_name":"Groups"}
+            ]',
+            // select columname,data_type,data_lenght, nullable
+            'abe3c68f78a185617486040faeb03966' => '[
+                {"column_name":"id","data_type":"int","data_length":11,"nullable":"N"},
+                {"column_name":"name","data_type":"varchar","data_length":64,"nullable":""},
+                {"column_name":"type","data_type":"int","data_length":11,"nullable":""}
+                
+            ]'
+            
+            
+        ),
+          
         
         // another DB...
     );

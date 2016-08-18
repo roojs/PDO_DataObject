@@ -1373,7 +1373,7 @@ class PDO_DataObject_Generator extends PDO_DataObject
         
         // quote table not needed as the intropection classes handle it..
         
-        $defs = $this->_introspection()->tableInfo($table);
+        $defs = $this->introspection()->tableInfo($table);
          
         if (is_a($defs,'PEAR_Error')) {
             return $defs;

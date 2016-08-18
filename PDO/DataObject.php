@@ -765,6 +765,7 @@ class PDO_DataObject
                             self::ERROR_INVALIDARGS, self::ERROR_DIE); // from PEAR DB?
                 }
                 // from http://stackoverflow.com/questions/2912144/alternatives-to-limit-and-offset-for-paging-in-oracle
+                // note, it adds an extra column _pdo_rnum.... but we should be able to ingore it.
                 return "SELECT * FROM (
                             SELECT
                                 rownum _pdo_rnum, pdo_do.* 

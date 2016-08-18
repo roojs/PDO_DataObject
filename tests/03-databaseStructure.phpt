@@ -182,16 +182,16 @@ PDO_DataObject::config(
         'PDO' => 'PDO_Dummy',
         'proxy' => true,
         'tables' => array(
-            'accnt' => 'dummy_xtuple'
+            'accnt' => 'dummy_oci'
         ),
         'databases' => array(
-            'dummy_xtuple' => 'oci://somedb'
+            'dummy_oci' => 'oci://somedb'
         )
     )
 );
 
 
-$obj = new PDO_DataObject('Groups');
+$obj = new PDO_DataObject('dummy_oci/Groups');
 print_r($obj->databaseStructure());
 
  
@@ -218,6 +218,15 @@ print_r($obj->databaseStructure('EssentialSQL'));
  
 // test error conditions?!? 
 // not sure about this one...
+
+
+
+
+
+
+
+
+
 
 
 
@@ -354,9 +363,11 @@ getAttribute==[16] => mysql
 PDO_DataObject   : _introspection       : Creating Introspection for PDO_DataObject_Introspection_mysql
 PDO_DataObject   : PDO       : Using Cached connection
 getAttribute==[16] => mysql
-PDO_DataObject   : QUERY       : 16df8b2c9d4c9a5e5d29184cedc0f90d : DESCRIBE Companies
+PDO_DataObject   : PDO       : Using Cached connection
 getAttribute==[16] => mysql
-QUERY: DESCRIBE Companies  
+PDO_DataObject   : QUERY       : a8b3521093b26137ad0adeede2decaf0 : DESCRIBE `Companies`
+getAttribute==[16] => mysql
+QUERY: DESCRIBE `Companies`  
 PDO_DataObject   : query       : NO# of results: 23
 Fetch Row 0 / 23
 PDO_DataObject   : FETCH       : {"Field":"id","Type":"int(11)","Null":"NO","Key":"PRI","Default":null,"Extra":"auto_increment"}
@@ -417,9 +428,11 @@ getAttribute==[16] => mysql
 PDO_DataObject   : _introspection       : Creating Introspection for PDO_DataObject_Introspection_mysql
 PDO_DataObject   : PDO       : Using Cached connection
 getAttribute==[16] => mysql
-PDO_DataObject   : QUERY       : 5b30c8fedc52d8f73f669f2348ecf576 : DESCRIBE Events
+PDO_DataObject   : PDO       : Using Cached connection
 getAttribute==[16] => mysql
-QUERY: DESCRIBE Events  
+PDO_DataObject   : QUERY       : 14b95d03ef55df2cccb99cf6d1d5163b : DESCRIBE `Events`
+getAttribute==[16] => mysql
+QUERY: DESCRIBE `Events`  
 PDO_DataObject   : query       : NO# of results: 10
 Fetch Row 0 / 10
 PDO_DataObject   : FETCH       : {"Field":"id","Type":"int(11)","Null":"NO","Key":"PRI","Default":null,"Extra":"auto_increment"}
@@ -454,9 +467,11 @@ getAttribute==[16] => mysql
 PDO_DataObject   : _introspection       : Creating Introspection for PDO_DataObject_Introspection_mysql
 PDO_DataObject   : PDO       : Using Cached connection
 getAttribute==[16] => mysql
-PDO_DataObject   : QUERY       : dcae9cad4d5f111b6b2ac65d922aa38f : DESCRIBE Groups
+PDO_DataObject   : PDO       : Using Cached connection
 getAttribute==[16] => mysql
-QUERY: DESCRIBE Groups  
+PDO_DataObject   : QUERY       : 5947e446493bc33cb3af439aaf8231b1 : DESCRIBE `Groups`
+getAttribute==[16] => mysql
+QUERY: DESCRIBE `Groups`  
 PDO_DataObject   : query       : NO# of results: 4
 Fetch Row 0 / 4
 PDO_DataObject   : FETCH       : {"Field":"id","Type":"int(11)","Null":"NO","Key":"PRI","Default":null,"Extra":"auto_increment"}
@@ -580,8 +595,10 @@ getAttribute==[16] => pgsql
 PDO_DataObject   : _introspection       : Creating Introspection for PDO_DataObject_Introspection_pgsql
 PDO_DataObject   : PDO       : Using Cached connection
 PDO_DataObject   : PDO       : Using Cached connection
+PDO_DataObject   : PDO       : Using Cached connection
+PDO_DataObject   : PDO       : Using Cached connection
 getAttribute==[16] => pgsql
-PDO_DataObject   : QUERY       : 08e4aa9f52824fa6d6c01dfea04d5efd : SELECT  
+PDO_DataObject   : QUERY       : da97475cdd81cd8f4376cb61d8b226c6 : SELECT  
                         f.attnum AS number,  
                         f.attname AS name,  
                         f.attnum,  
@@ -619,7 +636,7 @@ PDO_DataObject   : QUERY       : 08e4aa9f52824fa6d6c01dfea04d5efd : SELECT
                         LEFT JOIN pg_class AS g ON p.confrelid = g.oid  
                     WHERE c.relkind = 'r'::char  
                         AND n.nspname = 'public'  
-                        AND c.relname = 'acalitem'  
+                        AND c.relname = 'acalitem'
                         AND f.attnum > 0 ORDER BY number
             
 getAttribute==[16] => pgsql
@@ -661,7 +678,7 @@ QUERY: SELECT
                         LEFT JOIN pg_class AS g ON p.confrelid = g.oid  
                     WHERE c.relkind = 'r'::char  
                         AND n.nspname = 'public'  
-                        AND c.relname = 'acalitem'  
+                        AND c.relname = 'acalitem'
                         AND f.attnum > 0 ORDER BY number
               
 PDO_DataObject   : query       : NO# of results: 5
@@ -688,8 +705,10 @@ getAttribute==[16] => pgsql
 PDO_DataObject   : _introspection       : Creating Introspection for PDO_DataObject_Introspection_pgsql
 PDO_DataObject   : PDO       : Using Cached connection
 PDO_DataObject   : PDO       : Using Cached connection
+PDO_DataObject   : PDO       : Using Cached connection
+PDO_DataObject   : PDO       : Using Cached connection
 getAttribute==[16] => pgsql
-PDO_DataObject   : QUERY       : 910efae3bc8352cab9a73df70006a9bc : SELECT  
+PDO_DataObject   : QUERY       : e0a54ca5ca34c1f8a41128f81ffcd95d : SELECT  
                         f.attnum AS number,  
                         f.attname AS name,  
                         f.attnum,  
@@ -727,7 +746,7 @@ PDO_DataObject   : QUERY       : 910efae3bc8352cab9a73df70006a9bc : SELECT
                         LEFT JOIN pg_class AS g ON p.confrelid = g.oid  
                     WHERE c.relkind = 'r'::char  
                         AND n.nspname = 'public'  
-                        AND c.relname = 'accnt'  
+                        AND c.relname = 'accnt'
                         AND f.attnum > 0 ORDER BY number
             
 getAttribute==[16] => pgsql
@@ -769,7 +788,7 @@ QUERY: SELECT
                         LEFT JOIN pg_class AS g ON p.confrelid = g.oid  
                     WHERE c.relkind = 'r'::char  
                         AND n.nspname = 'public'  
-                        AND c.relname = 'accnt'  
+                        AND c.relname = 'accnt'
                         AND f.attnum > 0 ORDER BY number
               
 PDO_DataObject   : query       : NO# of results: 17
@@ -820,8 +839,10 @@ getAttribute==[16] => pgsql
 PDO_DataObject   : _introspection       : Creating Introspection for PDO_DataObject_Introspection_pgsql
 PDO_DataObject   : PDO       : Using Cached connection
 PDO_DataObject   : PDO       : Using Cached connection
+PDO_DataObject   : PDO       : Using Cached connection
+PDO_DataObject   : PDO       : Using Cached connection
 getAttribute==[16] => pgsql
-PDO_DataObject   : QUERY       : 0464cd1439d5cf9ac030e8cbe858bbfd : SELECT  
+PDO_DataObject   : QUERY       : 7de46b3d3e81498c15bedd6eaeef687e : SELECT  
                         f.attnum AS number,  
                         f.attname AS name,  
                         f.attnum,  
@@ -859,7 +880,7 @@ PDO_DataObject   : QUERY       : 0464cd1439d5cf9ac030e8cbe858bbfd : SELECT
                         LEFT JOIN pg_class AS g ON p.confrelid = g.oid  
                     WHERE c.relkind = 'r'::char  
                         AND n.nspname = 'public'  
-                        AND c.relname = 'addr'  
+                        AND c.relname = 'addr'
                         AND f.attnum > 0 ORDER BY number
             
 getAttribute==[16] => pgsql
@@ -901,7 +922,7 @@ QUERY: SELECT
                         LEFT JOIN pg_class AS g ON p.confrelid = g.oid  
                     WHERE c.relkind = 'r'::char  
                         AND n.nspname = 'public'  
-                        AND c.relname = 'addr'  
+                        AND c.relname = 'addr'
                         AND f.attnum > 0 ORDER BY number
               
 PDO_DataObject   : query       : NO# of results: 11
@@ -1000,6 +1021,92 @@ Array
         )
 
 )
+
+
+DATABASE INSTROSPECT - oracle dummyu
+PDO_DataObject   : __construct       : ["dummy_oci\/Groups"]
+PDO_DataObject   : databaseStructure       : CALL:[]
+PDO_DataObject   : PDO       : Checking for database specific ini ('dummy_oci') : config[databases][dummy_oci] in options
+__construct==["oci:dbname=somedb","","",[]]
+setAttribute==[3,2]
+PDO_DataObject   : PDO       : Checking for database specific ini ('dummy_oci') : config[databases][dummy_oci] in options
+PDO_DataObject   : databaseStructureProxy       : calling Get list of tablesdatabaseStructure called with args for database = dummy_oci
+PDO_DataObject   : PDO       : Using Cached connection
+getAttribute==[16] => oci
+PDO_DataObject   : _introspection       : Creating Introspection for PDO_DataObject_Introspection_oci
+PDO_DataObject   : getListOf       : tables
+PDO_DataObject   : getListOf       : SELECT table_name FROM user_tables
+PDO_DataObject   : PDO       : Using Cached connection
+getAttribute==[16] => oci
+PDO_DataObject   : QUERY       : 7e4bbcd04982917de4c1fb94ff94e608 : SELECT table_name FROM user_tables
+getAttribute==[16] => oci
+QUERY: SELECT table_name FROM user_tables  
+PDO_DataObject   : query       : NO# of results: 1
+Fetch Row 0 / 1
+PDO_DataObject   : FETCH       : {"table_name":"Groups"}
+Fetch Row 1 / 1
+PDO_DataObject   : FETCH       : false
+Close Cursor
+PDO_DataObject   : PDO       : Using Cached connection
+PDO_DataObject   : PDO       : Using Cached connection
+PDO_DataObject   : PDO       : Using Cached connection
+getAttribute==[16] => oci
+PDO_DataObject   : _introspection       : Creating Introspection for PDO_DataObject_Introspection_oci
+
+Notice: Undefined variable: result in /home/alan/gitlive/PDO_DataObject/PDO/DataObject/Introspection/oci.php on line 91
+PDO_DataObject   : PDO       : Using Cached connection
+PDO_DataObject   : PDO       : Using Cached connection
+getAttribute==[16] => oci
+PDO_DataObject   : QUERY       : abe3c68f78a185617486040faeb03966 : SELECT
+                        column_name, data_type,
+                        data_length,   nullable 
+                    FROM
+                        user_tab_columns 
+                    WHERE
+                        table_name=''
+                    ORDER BY
+                        column_id
+getAttribute==[16] => oci
+QUERY: SELECT
+                        column_name, data_type,
+                        data_length,   nullable 
+                    FROM
+                        user_tab_columns 
+                    WHERE
+                        table_name=''
+                    ORDER BY
+                        column_id  
+PDO_DataObject   : query       : NO# of results: 3
+Fetch Row 0 / 3
+PDO_DataObject   : FETCH       : {"column_name":"id","data_type":"int","data_length":11,"nullable":"N"}
+Fetch Row 1 / 3
+PDO_DataObject   : FETCH       : {"column_name":"name","data_type":"varchar","data_length":64,"nullable":""}
+Fetch Row 2 / 3
+PDO_DataObject   : FETCH       : {"column_name":"type","data_type":"int","data_length":11,"nullable":""}
+Fetch Row 3 / 3
+PDO_DataObject   : FETCH       : false
+Close Cursor
+PDO_DataObject   : PDO       : Using Cached connection
+getAttribute==[16] => oci
+PDO_DataObject   : databaseStructure       : CALL:["dummy_oci",{"Groups":{"id":129,"name":2,"type":1},"Groups__keys":[]}]
+PDO_DataObject   : databaseStructure       : CALL:[]
+PDO_DataObject   : PDO       : Using Cached connection
+PDO_DataObject   : databaseStructure       : CALL:[]
+PDO_DataObject   : PDO       : Using Cached connection
+Array
+(
+    [Groups] => Array
+        (
+            [id] => 129
+            [name] => 2
+            [type] => 1
+        )
+
+    [Groups__keys] => Array
+        (
+        )
+
+)
 PDO_DataObject   : PDO       : Checking for database specific ini ('EssentialSQL') : config[databases][EssentialSQL] in options
 PDO_DataObject   : databaseStructure       : CALL:["EssentialSQL"]
 PDO_DataObject   : PDO       : Using Cached connection
@@ -1023,6 +1130,7 @@ PDO_DataObject   : PDO       : Using Cached connection
 PDO_DataObject   : PDO       : Using Cached connection
 PDO_DataObject   : _introspection       : Creating Introspection for PDO_DataObject_Introspection_sqlite
 PDO_DataObject   : PDO       : Using Cached connection
+PDO_DataObject   : PDO       : Using Cached connection
 PDO_DataObject   : QUERY       : e459bf5d26556fa01d255e9f4f45900f : PRAGMA table_info('Customers');
 PDO_DataObject   : query       : NO# of results: 0
 PDO_DataObject   : FETCH       : {"cid":"0","name":"CustomerID","type":"INTEGER","notnull":"0","dflt_value":null,"pk":"1"}
@@ -1040,6 +1148,7 @@ PDO_DataObject   : PDO       : Using Cached connection
 PDO_DataObject   : PDO       : Using Cached connection
 PDO_DataObject   : _introspection       : Creating Introspection for PDO_DataObject_Introspection_sqlite
 PDO_DataObject   : PDO       : Using Cached connection
+PDO_DataObject   : PDO       : Using Cached connection
 PDO_DataObject   : QUERY       : f4f6e6dea2ce91edc63339a63a63557d : PRAGMA table_info('Employees');
 PDO_DataObject   : query       : NO# of results: 0
 PDO_DataObject   : FETCH       : {"cid":"0","name":"EmployeeID","type":"INTEGER","notnull":"0","dflt_value":null,"pk":"1"}
@@ -1056,6 +1165,7 @@ PDO_DataObject   : PDO       : Using Cached connection
 PDO_DataObject   : PDO       : Using Cached connection
 PDO_DataObject   : _introspection       : Creating Introspection for PDO_DataObject_Introspection_sqlite
 PDO_DataObject   : PDO       : Using Cached connection
+PDO_DataObject   : PDO       : Using Cached connection
 PDO_DataObject   : QUERY       : 4be38faf7194500e1894f7d5150da013 : PRAGMA table_info('OrderDetails');
 PDO_DataObject   : query       : NO# of results: 0
 PDO_DataObject   : FETCH       : {"cid":"0","name":"OrderDetailID","type":"INTEGER","notnull":"0","dflt_value":null,"pk":"1"}
@@ -1070,6 +1180,7 @@ PDO_DataObject   : PDO       : Using Cached connection
 PDO_DataObject   : PDO       : Using Cached connection
 PDO_DataObject   : PDO       : Using Cached connection
 PDO_DataObject   : _introspection       : Creating Introspection for PDO_DataObject_Introspection_sqlite
+PDO_DataObject   : PDO       : Using Cached connection
 PDO_DataObject   : PDO       : Using Cached connection
 PDO_DataObject   : QUERY       : d274cc9a18844d15cb63cad939785fba : PRAGMA table_info('Orders');
 PDO_DataObject   : query       : NO# of results: 0
@@ -1088,6 +1199,7 @@ PDO_DataObject   : PDO       : Using Cached connection
 PDO_DataObject   : PDO       : Using Cached connection
 PDO_DataObject   : PDO       : Using Cached connection
 PDO_DataObject   : _introspection       : Creating Introspection for PDO_DataObject_Introspection_sqlite
+PDO_DataObject   : PDO       : Using Cached connection
 PDO_DataObject   : PDO       : Using Cached connection
 PDO_DataObject   : QUERY       : 02f4528d77058145e7f11034d44c4289 : PRAGMA table_info('Shippers');
 PDO_DataObject   : query       : NO# of results: 0
