@@ -68,7 +68,7 @@ PDO_DataObject::config('database', 'oci://@/mydb'); // oci:dbname=mydb
 PDO_DataObject::config('database', 'oci://localhost:1521/mydb'); // oci:dbname=//localhost:1521/mydb
 (new PDO_DataObject())->PDO();
 
-PDO_DataObject::config('database', 'oci://192.168.10.145/orcl?charset=CL8MSWIN1251'); 'oci:dbname=192.168.10.145/orcl;charset=CL8MSWIN1251
+PDO_DataObject::config('database', 'oci://user@pass/192.168.10.145/orcl?charset=CL8MSWIN1251'); 'oci:dbname=192.168.10.145/orcl;charset=CL8MSWIN1251
 (new PDO_DataObject())->PDO();
 
 
