@@ -74,7 +74,7 @@ Target:END OF WEEK 3 (est. 4 days)
 c) Query  / fetch methods of PDO_DataObject
   -- needed for generator?
    modifyLimitQuery (used by find() , delete() and 
-   escapeSimple  DONE... (PDO::quote
+   escape() // uses DB->escapeSimple  DONE... (PDO::quote
    limit() - so we can test modifylimitQuery
 Tests:
   -- make sure simple fake tests work... 
