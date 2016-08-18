@@ -46,7 +46,7 @@ class PDO_DataObject_Introspection_oci extends PDO_DataObject_Introspection
      *
      * @access protected
       */
-      */
+      
     function getSpecialQuery($type)
     {
         switch ($type) {
