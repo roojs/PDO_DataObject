@@ -222,8 +222,6 @@ class PDO_DataObject_Introspection_pgsql extends PDO_DataObject_Introspection
      
      * @return array  an associative array (local column) ->  {related_table}:{related_column}
      * 
-     * 
-        
      *
      */
     function foreignKeys($table)
@@ -238,14 +236,15 @@ class PDO_DataObject_Introspection_pgsql extends PDO_DataObject_Introspection
                       AND r.contype = 'f'
                       AND c.relname = '{$this->do->escape($table)}'")
                 ->fetchAll(false,false,'toArray');
-         
+        
+        
         $treffer = array();
         // this may not work correctly -   see this: http://pear.php.net/bugs/bug.php?id=17049
         
         
         preg_match_all(
             "/FOREIGN KEY \((\w*)\) REFERENCES (\w*)\((\w*)\)/i",
-            $r['condef'],
+            $r[0]['condef'],
             $treffer,
             PREG_SET_ORDER);
         if (!count($treffer)) {
