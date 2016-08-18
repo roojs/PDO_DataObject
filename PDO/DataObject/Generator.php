@@ -186,7 +186,7 @@ class PDO_DataObject_Generator extends PDO_DataObject
             // get all 
             $this->debug("calling Get list of tablesdatabaseStructure called with args for database = {$database}", __FUNCTION__,1);
             
-            $tables = $this->_introspection()->getListOf('tables');
+            $tables = $this->introspection()->getListOf('tables');
            
             if (empty($tables)) {
                 $this->raiseError("Could not introspect database, no table returned from getListOf(tables)");
@@ -218,7 +218,7 @@ class PDO_DataObject_Generator extends PDO_DataObject
      * - proxy
      * - ini_****
      */
-    protected function _introspection()
+    protected function introspection()
     {
         
         $type  = $this->PDO()->getAttribute(PDO::ATTR_DRIVER_NAME);
@@ -254,27 +254,16 @@ class PDO_DataObject_Generator extends PDO_DataObject
     {
         $pdo = $this->PDO();
         
+        // try schema first...
         try {
             $this->tables = $this->introspection()->getListOf('schema.tables');
+        } catch (Exception $e) {     
         }
         
-        if (!$is_MDB2) {
-            // try getting a list of schema tables first. (postgres)
-            $__DB->expectError(DB_ERROR_UNSUPPORTED);
-            $this->tables = $__DB->getListOf('schema.tables');
-            $__DB->popExpect();
-        } else {
-            /**
-             * set portability and some modules to fetch the informations
-             */
-            $db_options = PEAR::getStaticProperty('MDB2','options');
-            if (empty($db_options)) {
-                $__DB->setOption('portability', MDB2_PORTABILITY_ALL ^ MDB2_PORTABILITY_FIX_CASE);
-            }
-            
-            $__DB->loadModule('Manager');
-            $__DB->loadModule('Reverse');
+        if (empty($this->tables)) {
+            $this->tables = $this->introspection()->getListOf('tables');
         }
+       
 
         if ((empty($this->tables) || (is_object($this->tables) && is_a($this->tables , 'PEAR_Error')))) {
             //if that fails fall back to clasic tables list.
