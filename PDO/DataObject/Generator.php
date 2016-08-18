@@ -491,7 +491,7 @@ class PDO_DataObject_Generator extends PDO_DataObject
             default: 
 
                 foreach($this->tables as $this->table) {
-                    $quotedTable = !empty($options['quote_identifiers_tableinfo']) ?  $DB->quoteIdentifier($table)  : $this->table;
+                    $quotedTable = $this->quoteIdentifier($table);
                     
                     $res =& $DB->query('SHOW CREATE TABLE ' . $quotedTable );
 
