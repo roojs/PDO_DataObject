@@ -483,6 +483,29 @@ class PDO_DataObject
                 $database = substr($dsn_ar['path'],1);
                 break;
             
+            case 'oci':
+                
+                $pdo_dsn = $dsn_ar['scheme'] . ':';
+                $database = substr($dsn_ar['path'],1);
+                
+                switch(true) {
+                    
+                    // oracle instant client..
+                    case (!empty($dsn_ar['host']) && !empty($dsn_ar['port'])):
+                        $pdo_dsn .= 'dbname=//' . $dsn_ar['host']. ':'. $dsn_ar['port'] . $dsn_ar['path'];
+                        break;
+                    
+                    // this is from the comments on pdo page...?
+                    case (!empty($dsn_ar['host']) && empty($dsn_ar['port'])):
+                        $pdo_dsn .= 'dbname=' . $dsn_ar['host'] . $dsn_ar['path'];
+                        break;
+                    
+                    // default..
+                        $pdo_dsn .= 'dbname=' . $database 
+                    
+                        
+                
+              
             // others go here...
         
             default:
