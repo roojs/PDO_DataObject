@@ -182,9 +182,7 @@ class PDO_DataObject_Generator_Table {
                     . "    }\n"   
                     . "    function sequenceKey()\n" 
                     . "    {\n" 
-                    . "         return array(\n"
-                    . "             ". $sdef
-                    . "         );" 
+                    . "         return ". $sdef . ";\n"
                     . "    }\n";
             $defaults = "\n" 
                     . "    function defaults() // column default values \n" 
@@ -275,7 +273,7 @@ class PDO_DataObject_Generator_Table {
     
     function toIniSequence()
     {
-        
+        // 
     }
     
     
