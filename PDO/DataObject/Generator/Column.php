@@ -80,7 +80,7 @@ class PDO_DataObject_Generator_Column {
         // this makes no sense - mysql multiple key (MUL) - is just for indexed columns?
        // $getters .= (stristr($t->flags, 'multiple_key')) ? "    * @return   object\n"
        //                                                  : "    * @return   {$t->type}\n";
-        $getters .= "    * @return   {$$this->type}\n";
+        $getters .= "    * @return   {$this->type}\n";
         $getters .= "    * @access   public\n";
         $getters .= "    */\n";
         // why add public it's pointless...
