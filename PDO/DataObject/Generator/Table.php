@@ -76,6 +76,8 @@ class PDO_DataObject_Generator_Table {
     
     function toPhp($original)
     {
+        $config = $this->gen->config();
+         
          // title = expand me!
         $foot = "";
         $head = "<?php\n/**\n * Table Definition for {$this->table}\n";
@@ -86,27 +88,23 @@ class PDO_DataObject_Generator_Table {
         
         // requires - if you set extends_location = (blank) then no require line will be set
         // this can be used if you have an autoloader
-        $extends_class = $this->gen->config('extends_class');
-        $extends_class_location = $this->gen->config('extends_class_location');
-        if (!empty($extends_class_location)) {
-            $head .= "class_exists('{$extends_class}') ? '' : require_once '{$extends_class_location}';\n\n";
+        
+        if (!empty($config['extends_class_location'])) {
+            $head .= "class_exists('{$config['extends_class']}') ? '' : require_once '{$config['extends_class_location']}';\n\n";
         }
         // add dummy class header in...
         // class 
         $head .= $this->hook->classDocBlock();
-        $head .= "class {$this->classname} extends {$extends_class} \n{";
+        $head .= "class {$this->classname} extends {$config['extends_class']} \n{";
 
         $body =  "\n    ###START_AUTOCODE\n";
         $body .= "    /* the code below is auto generated do not remove the above tag if you want to regenerate it */\n\n";
         // table
 
         $p = str_repeat(' ',max(2, (18 - strlen($this->table)))) ;
-        
-        $options = &PEAR::getStaticProperty('DB_DataObject','options');
-        
-        
-        $var = (substr(phpversion(),0,1) > 4) ? 'public' : 'var';
-        $var = self::$config['generator_var_keyword']; 
+    
+         
+        $var = $config['generator_var_keyword']; 
         
         
         $body .= "    {$var} \$__table = '{$this->table}';  {$p}// table name\n";
