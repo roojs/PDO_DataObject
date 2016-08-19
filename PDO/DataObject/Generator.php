@@ -165,9 +165,6 @@ class PDO_DataObject_Generator extends PDO_DataObject
             }
             self::$config[$k] = $v;
         }
-        if (isset($cfg['debug'])) {
-            self::$debug = $cfg['debug'];
-        }
         
         
         return is_array($cfg_in) ? $old : $old[$cfg_in];
