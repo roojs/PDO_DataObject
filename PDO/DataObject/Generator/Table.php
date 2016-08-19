@@ -124,11 +124,10 @@ class PDO_DataObject_Generator_Table {
         }
         
         foreach($this->columns as $col) {
-            $body .= $col->toPhp();
+            $body .= $col->toPhpVar();
         }
         
-      
-        }
+       
          
         $body .= $this->hook->postVar($defs);
 
