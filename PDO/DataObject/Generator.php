@@ -105,6 +105,7 @@ class PDO_DataObject_Generator extends PDO_DataObject
             'hook' => 'PDO_DataObject_Generator_Hooks',
                 // class for hooks code (used to be derivedHook****)
                 // allows custom generation of PHP code.
+            'table_class' => 'PDO_DataObject_Generator_Table',
             
             'extends_class' => 'PDO_DataObject',
                 // what class do the generated classes extend?
@@ -354,6 +355,9 @@ class PDO_DataObject_Generator extends PDO_DataObject
             
             $tables = array_merge ($tables, $views);
         }
+        
+        
+        'PDO_DataObject_Generator_Table'
         
 
         // declare a temporary table to be filled with matching tables names
