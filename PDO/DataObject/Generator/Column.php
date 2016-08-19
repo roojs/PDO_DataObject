@@ -139,7 +139,6 @@ class PDO_DataObject_Generator_Column {
         $setters .= "   function $methodName(\$value) {\n";
         $setters .= "        \$this->{$t->name} = \$value;\n";
         $setters .= "    }\n\n";
-    }
     
 
         return $setters;
