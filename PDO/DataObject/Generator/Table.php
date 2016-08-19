@@ -151,11 +151,14 @@ class PDO_DataObject_Generator_Table {
         if (($config['no_ini'])) {
             $tdef = array();
             $kdef = array();
-            
+            $sdef = array(); // should only be one fo thieses
             foreach($this->columns as $col) {
                 $tdef[] = $col->toPhpTableFunc();
                 if ($col->is_key) {
-                    $kdef[] = $col->toPhpkeyFunc();
+                    $kdef[] = $col->toPhpKeyFunc();
+                }
+                if ($sol->is_sequence_key) {
+                    $sdef = $col->toPhpSequenceFunc();
                 }
             }
             
