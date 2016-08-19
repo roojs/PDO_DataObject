@@ -22,6 +22,20 @@ class PDO_DataObject_Generator_Table {
         
         
     }
+     /**
+    * Convert a table name into a class name -> override this if you want a different mapping
+    *
+    * @access  public
+    * @return  string class name;
+    */
+    
+    
+    function getClassNameFromTableName($table)
+    {
+        
+        $class_prefix  = PDO_DataObject::config('class_prefix');
+        return  $class_prefix.preg_replace('/[^A-Z0-9]/i','_',ucfirst(trim($this->table)));
+    }
     
     function readFromDB() // and set's databaseStructure!?
     {
