@@ -365,11 +365,11 @@ class PDO_DataObject_Generator extends PDO_DataObject
         $tcls = self::config('table_class');
         
         if ($tcls== 'PDO_DataObject_Generator_Table') {
-            class_exists($hook) ? '' :
-                require_once 'PDO/DataObject/Generator/Hooks.php';
+            class_exists($tcls) ? '' :
+                require_once 'PDO/DataObject/Generator/Table.php';
         }
         if (!class_exists($hook)) {
-            $this->raiseError("Hook class '{$hook}' does not exist - please include it or use an autoloader");
+            $this->raiseError("Table class '{$tcls}' does not exist - please include it or use an autoloader");
         }
         $this->hook = new $hook();
         
