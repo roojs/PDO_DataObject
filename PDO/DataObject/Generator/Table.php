@@ -107,7 +107,7 @@ class PDO_DataObject_Generator_Table {
         $var = $config['var_keyword']; 
         
         
-        $body .= "    {$var} \$__table = '{$this->table}';  {$p}// table name\n";
+        $body .= "    {$config['var_keyword']} \$__table = '{$this->table}';  {$p}// table name\n";
     
         // if we are using the option database_{databasename} = dsn
         // then we should add var $_database = here
