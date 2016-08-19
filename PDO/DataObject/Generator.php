@@ -126,7 +126,7 @@ class PDO_DataObject_Generator extends PDO_DataObject
      * @param   mixed value 
      * @static
      * @access  public
-     * @return - the current config (or previous value) 
+     * @return - the current config (or previous value/config) 
      */
      
     static function config($cfg_in = array(), $value=false) 
