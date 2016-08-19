@@ -118,8 +118,9 @@ class PDO_DataObject_Generator extends PDO_DataObject
                 // allows for more custom generaton.
                 // if you use a custom class - you must include it before loading..
             'var_keyword' => 'public',
-            
-                
+                // var|public  - (or private if you want to break things)
+                // The variable prefix that is used when class properties are created
+                //  the default is public 
 
     );
       /**
