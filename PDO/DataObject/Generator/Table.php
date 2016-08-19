@@ -137,9 +137,9 @@ class PDO_DataObject_Generator_Table {
         $body .= $this->hook->postVar($defs);
 
         foreach($this->columns as $col) {
-            $body .= $col->toPhpGetter($user_code);
-            $body .= $col->toPhpSetter($user_code);
-            $body .= $col->toPhpLinkMethod($user_code);
+            $body .= $col->toPhpGetter($user_code)
+                  .  $col->toPhpSetter($user_code)
+                  .  $col->toPhpLinkMethod($user_code);
         }
            
         // set methods
@@ -148,9 +148,16 @@ class PDO_DataObject_Generator_Table {
         //    $body .="    function getSets{$k}() { return {$v}; }\n";
         //}
         
-        if (!empty($options['generator_no_ini'])) {
-            $def = $this->_generateDefinitionsTable();  // simplify this!?
-            $body .= $this->_generateTableFunction($def['table']);
+        if (($config['no_ini'])) {
+            $body .=  $ret = "\n" .
+                    "    function table()\n" .
+                    "    {\n" .
+                    "         return array(\n";
+       
+            
+            
+            
+            $this->_generateTableFunction($def['table']);
             $body .= $this->_generateKeysFunction($def['keys']);
             $body .= $this->_generateSequenceKeyFunction($def);
             $body .= $this->_generateDefaultsFunction($this->table, $def['table']);
