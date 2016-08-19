@@ -170,38 +170,12 @@ class PDO_DataObject_Generator extends PDO_DataObject
         return is_array($cfg_in) ? $old : $old[$cfg_in];
     }
     /**
-     * Array of table names
+     * Associate Array of table names => Table Objects
      *
      * @var array
      * @access private
      */
     var $tables;
-
-    /**
-     * associative array table -> array of table row objects
-     *
-     * @var array
-     * @access private
-     */
-    var $_definitions;
-
-    /**
-     * active table being output
-     *
-     * @var string
-     * @access private
-     */
-    var $table; // active tablename
-
-    /**
-     * links (generated)
-     *
-     * @var array
-     * @access private
-     */
-    var $_fkeys; // active tablename
-
-    
     
     
     
