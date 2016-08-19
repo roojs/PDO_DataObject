@@ -4916,8 +4916,7 @@ class PDO_DataObject
         
     	$options = $_DB_DATAOBJECT['CONFIG'];
     	
-        $null_strings = !isset($options['disable_null_strings'])
-                    || $options['disable_null_strings'] === false;
+        $null_strings =  $options['disable_null_strings'] === false;
                     
         $crazy_null = isset($options['disable_null_strings'])
                 && is_string($options['disable_null_strings'])
