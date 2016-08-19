@@ -13,6 +13,8 @@ class PDO_DataObject_Generator_Column {
    var $len = 0;
    var $flats = '';
    var $do_type = 0; // eg . PDO_DataObject::INT
+   var $foreign_key = ''; /// XXX:YYY  XXX=table, YYY=column that it points to.
+   
    
     function __construct($table,$def_ar)
     {
