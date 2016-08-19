@@ -38,9 +38,9 @@ class PDO_DataObject_Generator_Column {
             return;
         }
         
-        $pad = str_repeat(' ',max(2,  (30 - strlen($t->name))));
+        $pad = str_repeat(' ',max(2,  (30 - strlen($this->name))));
 
-        $length = empty($t->len) ? '' : '('.$t->len.')';
+        $length = empty($t->len) ? '' : '('.$this->len.')';
         $flags = strlen($t->flags) ? (' '. trim($t->flags)) : '';
         $body .="    {$var} \${$t->name}; {$pad}// {$t->type}{$length}{$flags}\n";
         
