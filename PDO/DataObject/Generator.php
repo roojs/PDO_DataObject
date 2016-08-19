@@ -113,13 +113,13 @@ class PDO_DataObject_Generator extends PDO_DataObject
      * $cfg = PDO_DataObject_Generator::config(); 
      *
      * SET a configuration value. (returns old value.)
-     * $old = PDO_DataObject::config('schema_location', '');  
+     * $old = PDO_DataObject_Generator::config('schema_location', '');  
      *
      * GET a specific value ** does not do this directly to stop errors...
-     * somevar = PDO_DataObject::config()['schema_location'];  
+     * somevar = PDO_DataObject_Generator::config()['schema_location'];  
      *
      * SET multiple values (returns 'old' configuration)
-     * $old_array = PDO_DataObject::config( array( 'schema_location' => '' ));
+     * $old_array = PDO_DataObject_Generator::config( array( 'schema_location' => '' ));
      * 
      * 
      * @param   array  key/value 
