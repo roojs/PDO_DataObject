@@ -28,8 +28,6 @@ class PDO_DataObject_Generator_Table {
     * @access  public
     * @return  string class name;
     */
-    
-    
     function getClassNameFromTableName()
     {
         $class_prefix_ar  = explode(PATH_SEPERATOR, PDO_DataObject::config('class_prefix'));
