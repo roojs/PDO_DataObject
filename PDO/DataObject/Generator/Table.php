@@ -75,14 +75,15 @@ class PDO_DataObject_Generator_Table {
         
         // requires - if you set extends_location = (blank) then no require line will be set
         // this can be used if you have an autoloader
-        
-        if (!empty($this->_extendsFile)) {
-            $head .= "require_once '{$this->_extendsFile}';\n\n";
+        $extends_class = $this->gen->config('extends_class');
+        $extends_class_location = $this->gen->config('extends_class_location');
+        if (!empty($extends_class_location)) {
+            $head .= "class_exists('{$extends_class}') ? '' : require_once '{$extends_class_location}';\n\n";
         }
         // add dummy class header in...
         // class 
         $head .= $this->hook->classDocBlock();
-        $head .= "class {$this->classname} extends {$this->_extends} \n{";
+        $head .= "class {$this->classname} extends {$extends_class} \n{";
 
         $body =  "\n    ###START_AUTOCODE\n";
         $body .= "    /* the code below is auto generated do not remove the above tag */\n\n";
