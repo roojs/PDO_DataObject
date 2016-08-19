@@ -179,7 +179,7 @@ class PDO_DataObject_Generator_Table {
                     . "    function sequenceKey()\n" 
                     . "    {\n" 
                     . "         return array(\n"
-                    . "             ". implode(",\n             ", $kdef)
+                    . "             ". $sdef
                     . "         );" 
                     . "    }\n" 
             $body .= $this->_generateSequenceKeyFunction($def);
