@@ -113,7 +113,7 @@ class PDO_DataObject_Generator extends PDO_DataObject
                 // class for hooks code (used to be derivedHook****)
                 // allows custom generation of PHP code.
                 // can be class name or object
-            'table_class' => 'PDO_DataObject_Generator_Table',
+            'table_gen_class' => 'PDO_DataObject_Generator_Table',
                 // class for table parsing/ generator
                 // allows for more custom generaton.
                 // can be class name or object
@@ -203,7 +203,7 @@ class PDO_DataObject_Generator extends PDO_DataObject
             $this->hook = $hook;
             return;
         }
-        if ($hook == ';PDO_DataObject_Generator_Hooks') {
+        if ($hook == 'PDO_DataObject_Generator_Hooks') {
             class_exists($hook) ? '' :
                 require_once 'PDO/DataObject/Generator/Hooks.php';
         }
@@ -362,7 +362,16 @@ class PDO_DataObject_Generator extends PDO_DataObject
             
             $tables = array_merge ($tables, $views);
         }
+        $tcls = self::config('table_class');
         
+        if ($tcls== 'PDO_DataObject_Generator_Table') {
+            class_exists($hook) ? '' :
+                require_once 'PDO/DataObject/Generator/Hooks.php';
+        }
+        if (!class_exists($hook)) {
+            $this->raiseError("Hook class '{$hook}' does not exist - please include it or use an autoloader");
+        }
+        $this->hook = new $hook();
         
         'PDO_DataObject_Generator_Table'
         
