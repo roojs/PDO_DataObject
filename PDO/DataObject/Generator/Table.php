@@ -129,22 +129,7 @@ class PDO_DataObject_Generator_Table {
             $body .= $col->toPhpSetter($user_code);
             $body .= $col->toPhpLinkMethod($user_code);
         }
-        foreach($this->columns as $col) {
-            
-        }
-        foreach($this->columns as $col) {
-            
-        }
-        
-        // generate getter and setter methods
-        $body .= $this->_generateGetters($input);
-        $body .= $this->_generateSetters($input);
-        $body .= $this->_generateLinkMethods($input);
-        /*
-        theoretically there is scope here to introduce 'list' methods
-        based up 'xxxx_up' column!!! for heiracitcal trees..
-        */
-
+           
         // set methods
         //foreach ($sets as $k=>$v) {
         //    $kk = strtoupper($k);
