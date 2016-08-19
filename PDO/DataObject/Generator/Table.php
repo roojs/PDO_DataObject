@@ -162,7 +162,7 @@ class PDO_DataObject_Generator_Table {
                     $sdef = $col->toPhpSequenceFunc();
                 }
                 if ($col->toPhpDefault() != '') {
-                    $vdef
+                    $vdef[] = $col->toPhpDefault() ;
                 }
             }
             
