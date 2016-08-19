@@ -66,7 +66,7 @@ class PDO_DataObject_Generator_Column {
         $options = $this->gen->config();
         
         // only generate if option is set to true
-        if  (empty($options['getters'])) {
+        if  ($options['getters']) {
             return '';
         }
         $getters = '';
@@ -99,6 +99,63 @@ class PDO_DataObject_Generator_Column {
         
         return $getters;
     }
+    
+     /**
+    * Generate setter methods for class definition
+    *
+    * @param    string  Existing class contents
+    * @return   string
+    * @access   public
+    */
+    function toPhpSetter($user_code) 
+    {
+
+        $options = $this->gen->config();
+        
+        // only generate if option is set to true
+        if  ($options['setters']) {
+            return '';
+        }
+        $setters = '';
+
+        // only generate if option is set to true
+        if  (empty($options['generate_setters'])) {
+            return '';
+        }
+
+        // remove auto-generated code from input to be able to check if the method exists outside of the auto-code
+        $input = preg_replace('/(\n|\r\n)\s*###START_AUTOCODE(\n|\r\n).*(\n|\r\n)\s*###END_AUTOCODE(\n|\r\n)/s', '', $input);
+
+        $setters .= "\n";
+        $defs     = $this->_definitions[$this->table];
+
+        // loop through properties and create setter methods
+        foreach ($defs = $defs as $t) {
+
+            // build mehtod name
+            $methodName = 'set' . $this->getMethodNameFromColumnName($t->name);
+
+            if (!strlen(trim($t->name)) || preg_match("/function[\s]+[&]?$methodName\(/i", $input)) {
+                continue;
+            }
+
+            $setters .= "   /**\n";
+            $setters .= "    * Setter for \${$t->name}\n";
+            $setters .= "    *\n";
+            $setters .= "    * @param    mixed   input value\n";
+            $setters .= "    * @access   public\n";
+            $setters .= "    */\n";
+            $setters .= (substr(phpversion(),0,1) > 4) ? '    public '
+                                                       : '    ';
+            $setters .= "function $methodName(\$value) {\n";
+            $setters .= "        \$this->{$t->name} = \$value;\n";
+            $setters .= "    }\n\n";
+        }
+        
+
+        return $setters;
+    }
+    
     function toPhpSetter($original)
     {
         
