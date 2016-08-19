@@ -123,7 +123,7 @@ class PDO_DataObject_Generator extends PDO_DataObject
                 //  the default is public 
             'add_database_var' => false,
                 // add the line public $_database = .... (disabled by default)
-            'no_vars' => false,
+            'no_column_vars' => false,
                 // (True) prevents writing of private/var's so you can overload get/set 
                 // note: this has the downside of making code less clear... (alot of magic!!)
 
