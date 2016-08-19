@@ -68,7 +68,7 @@ class PDO_DataObject_Generator_Column {
         $getters .= "\n\n";
         
             // build mehtod name
-        $methodName = 'get' . $this->getMethodNameFromColumnName($t->name);
+        $methodName = 'get' . $this->table->getMethodNameFromColumnName($this->name);
 
         if (!strlen(trim($this->name)) || preg_match("/function[\s]+[&]?$methodName\(/i", $user_code)) {
             return '';
