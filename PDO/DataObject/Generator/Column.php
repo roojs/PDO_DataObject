@@ -17,6 +17,9 @@ class PDO_DataObject_Generator_Column {
    var $is_key;
    var $default_value;
    
+   var $is_sequence;
+   var $sequence_name;
+   var $is_sequence_native;
    
     function __construct($table,$def_ar)
     {
