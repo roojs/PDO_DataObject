@@ -206,23 +206,7 @@ class PDO_DataObject_Generator_Table {
 
         $body .= "\n    /* the code above is auto generated do not remove the tag below */";
         $body .= "\n    ###END_AUTOCODE\n";
-
-
-        // stubs..
-        
-        if (!empty($options['generator_add_validate_stubs'])) {
-            foreach($defs as $t) {
-                if (!strlen(trim($t->name))) {
-                    continue;
-                }
-                $validate_fname = 'validate' . $this->getMethodNameFromColumnName($t->name);
-                // dont re-add it..
-                if (preg_match('/\s+function\s+' . $validate_fname . '\s*\(/i', $input)) {
-                    continue;
-                }
-                $body .= "\n    function {$validate_fname}()\n    {\n        return false;\n    }\n";
-            }
-        }
+         
 
 
 
@@ -240,7 +224,7 @@ class PDO_DataObject_Generator_Table {
             return $full;
         }
 
-
+        
         /* this will only replace extends DB_DataObject by default,
             unless use set generator_class_rewrite to ANY or a name*/
 
@@ -263,7 +247,7 @@ class PDO_DataObject_Generator_Table {
             $body,$input);
         
         if (!strlen($ret)) {
-            return PEAR::raiseError(
+            return $this->gen->raiseError(
                 "PREG_REPLACE failed to replace body, - you probably need to set these in your php.ini\n".
                 "pcre.backtrack_limit=1000000\n".
                 "pcre.recursion_limit=1000000\n"
