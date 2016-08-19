@@ -148,7 +148,7 @@ class PDO_DataObject_Generator_Table {
         //    $body .="    function getSets{$k}() { return {$v}; }\n";
         //}
         
-        if (($config['no_ini'])) {
+        if (($config['no_ini'] || $config['add_defaults'])) {
             $tdef = array();
             $kdef = array();
             $sdef = ''; // should only be one fo thieses
@@ -186,9 +186,14 @@ class PDO_DataObject_Generator_Table {
                     . "             ". $sdef
                     . "         );" 
                     . "    }\n" 
-            
-            $body .= $this->_generateDefaultsFunction($this->table, $def['table']);
-        }  else if (!empty($options['generator_add_defaults'])) {   
+                    . "    function defaults() // column default values \n" 
+                    . "    {\n"
+                    . "         return array(\n"
+                    . "             ". implode(",\n             ", $vdef)
+                    . "         );" 
+                    . "    }\n";
+                    
+        }  else if (!empty($options['add_defaults'])) {   
             // I dont really like doing it this way (adding another option)
             // but it helps on older projects.
             $def = $this->_generateDefinitionsTable();  // simplify this!?
