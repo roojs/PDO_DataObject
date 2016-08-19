@@ -89,8 +89,18 @@ d) Generator
   * databaseStructureProxy -- from previous work.
   * _readTableList - DONE - need test
   * _readForeignKeys - DONE - need test
-  * generateDefinitions - DONE - need test
-  *
+  * generateINI - DONE - need test  (was generateDefinitions)
+
+  * _generateClassTable($oldcontents) -- PHP ?
+     _generateGetters($oldcontents);
+     _generateSetters($oldcontents);
+     _generateLinkMethods($oldcontents);
+     _generateDefinitionsTable();     << converts the 'table def' into a 'standard'?
+     _generateTableFunction($def['table']);
+     _generateKeysFunction($def['keys']);
+     _generateSequenceKeyFunction($def);
+     _generateDefaultsFunction($this->table, $def['table']);
+    derivedHookFunctions
 
 * introspectoin::foriegnKeys - needs tests (eg. on cohead)
 
