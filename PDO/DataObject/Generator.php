@@ -179,6 +179,13 @@ class PDO_DataObject_Generator extends PDO_DataObject
     
     
     
+    function __construct()
+    {
+        self::config('hook')
+        
+    }
+    
+    
     /**
      * The 'starter' = call this to start the process
      *
