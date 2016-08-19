@@ -64,7 +64,7 @@ class PDO_DataObject_Generator_Table {
         
         // cast all definitions to objects - as we deal with that better.
         
-        class_exists('PDO_DataObject_Generator_Col') ? '' :
+        class_exists('PDO_DataObject_Generator_Column') ? '' :
             require_once 'PDO/DataObject/Generator/Column.php';
             
         foreach($defs as $def) {
