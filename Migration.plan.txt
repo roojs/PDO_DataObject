@@ -100,7 +100,26 @@ d) Generator
      _generateKeysFunction($def['keys']);
      _generateSequenceKeyFunction($def);
      _generateDefaultsFunction($this->table, $def['table']);
+    // empty functions - to add comments etc.. above code.
     derivedHookFunctions
+    derivedHookClassDocBlock
+    derivedHookVar
+    derivedHookPostVar
+    derivedHookPageLevelDocBlock
+    derivedHookExtendsDocBlock
+
+
+** what does it do?
+  - converts schema from database into
+    table
+       with columns
+       with indexes (foriegn keys etc)
+  - uses that information to generate
+       INI files
+       LINK files
+       PHP code
+
+
 
 * introspectoin::foriegnKeys - needs tests (eg. on cohead)
 
