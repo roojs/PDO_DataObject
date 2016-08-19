@@ -69,7 +69,7 @@ class PDO_DataObject_Generator_Table {
  
     function toPhp($original)
     {
-        $not_generated = preg_replace('/(\n|\r\n)\s*###START_AUTOCODE(\n|\r\n).*(\n|\r\n)\s*###END_AUTOCODE(\n|\r\n)/s', '', $original);
+        $user_code = preg_replace('/(\n|\r\n)\s*###START_AUTOCODE(\n|\r\n).*(\n|\r\n)\s*###END_AUTOCODE(\n|\r\n)/s', '', $original);
         
         $config = $this->gen->config();
          
@@ -124,7 +124,16 @@ class PDO_DataObject_Generator_Table {
          
         $body .= $this->hook->postVar($defs);
 
-         
+        foreach($this->columns as $col) {
+            $body .= $col->toGetter($user_code);
+        }
+        foreach($this->columns as $col) {
+            $body .= $col->toSetter($user_code);
+        }
+        foreach($this->columns as $col) {
+            $body .= $col->toLinkMethod($user_code);
+        }
+        
         // generate getter and setter methods
         $body .= $this->_generateGetters($input);
         $body .= $this->_generateSetters($input);
