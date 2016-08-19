@@ -181,7 +181,11 @@ class PDO_DataObject_Generator extends PDO_DataObject
     
     function __construct()
     {
-        self::config('hook')
+        $hook = self::config('hook');
+        if (is_object($hook)) {
+            $this->hook = $hook;
+            return;
+        }
         
     }
     
