@@ -6,7 +6,8 @@
 
 class PDO_DataObject_Generator_Column {
    
-   var $table; // generator.
+   var $table; //
+   var $gen; //
    var $name = '';
    var $type = '';
    var $len = 0;
