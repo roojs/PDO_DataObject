@@ -117,7 +117,7 @@ class PDO_DataObject_Generator_Table {
         }
         
         foreach($this->columns as $col) {
-            $body .= $col->toPhpVar();
+            $body .= $col->toPhpVar($var);
         }
         
        
