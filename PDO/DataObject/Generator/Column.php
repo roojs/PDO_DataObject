@@ -246,13 +246,7 @@ class PDO_DataObject_Generator_Column {
                     $value =   $this->default_value;
                     break;
                 }
-                
-                if (!strlen($this->default_value)) {
-                    return '';
-                }
-                
                 return '';
-                break;
                     
         }
         return "'".addslashes($k)."' => {$v}";
