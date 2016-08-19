@@ -97,7 +97,7 @@ class PDO_DataObject_Generator_Table {
         $head .= "class {$this->classname} extends {$extends_class} \n{";
 
         $body =  "\n    ###START_AUTOCODE\n";
-        $body .= "    /* the code below is auto generated do not remove the above tag */\n\n";
+        $body .= "    /* the code below is auto generated do not remove the above tag if you want to regenerate it */\n\n";
         // table
 
         $p = str_repeat(' ',max(2, (18 - strlen($this->table)))) ;
