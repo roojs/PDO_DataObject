@@ -96,6 +96,7 @@ class PDO_DataObject
      */
     private static $config = array(
             
+        // connection related    
             'database' => false,
                 //  the default database dsn (not PDO standard = see @$_database for details)
                 // it's similar format to PEAR::DB..
@@ -103,11 +104,10 @@ class PDO_DataObject
             'databases' => array(),
                 // map of database nick-names to connection dsn's
             
-            'PDO' => 'PDO',  
-                // what class to use as PDO - we use PDO_Dummy for the unittests
-
+            'tables' => array(),
+                // map of tables names to database 'nick-names'
                 
-           
+        // schema (INI files)   
             'schema_location' => false,
                 // unless you are using 'proxy' then schema_location is required.
                 
@@ -123,11 +123,16 @@ class PDO_DataObject
                 //         mydb => /var/www/mysite/Myproejct/DataObject/mydb.ini
                 //              value can be an array of absolute paths, or PATH_SEPERATED
                 
-                
+        // class - factory + load derived classes
+            'class_prefix' => 'DataObjects_'
+                // Prefix Mapping of table name to PHP Class
+                //    to use multiple prefixes seperate them with PATH_SEPERATOR
+                //    for 'loading' it will try them all in sequence.. - first found wins.
+                //    for the generator it will only use the first..
+
             
-            'tables' => array(),
-                // map of tables names to database 'nick-names'
-                
+            
+            
             'proxy' => false,
                 // normally we use pre-created 'ini' files, but if you use proxy, it will generate the
                 // the database schema on the fly..
@@ -156,6 +161,10 @@ class PDO_DataObject
                 
             'debug' => 0,
                 // debuging - only relivant on initialization - modifying it after, may be ignored.
+                
+            'PDO' => 'PDO',  
+                // what class to use as PDO - we use PDO_Dummy for the unittests
+
         
         
         // -------- Error handling --------
