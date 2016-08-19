@@ -19,7 +19,7 @@ class PDO_DataObject_Generator_Table {
         $this->hook = $gen->hook;
         $this->table= $table;
         $this->readFromDB();
-        
+        $this->classname = $this->getClassNameFromTableName();
         
     }
      /**
@@ -30,7 +30,7 @@ class PDO_DataObject_Generator_Table {
     */
     
     
-    function getClassNameFromTableName($table)
+    function getClassNameFromTableName()
     {
         
         $class_prefix_ar  = explode(PATH_SEPERATOR, PDO_DataObject::config('class_prefix'));
