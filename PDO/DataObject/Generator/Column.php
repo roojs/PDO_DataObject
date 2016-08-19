@@ -218,7 +218,7 @@ class PDO_DataObject_Generator_Column {
     }
     function toPhpSequenceFunc()
     {
-        $ar =  array($usekey,true,$seqname);
+        $ar =  array(true,$this->is_sequence_native,$this->sequence_name);
         
         return var_export($ar);
     }
