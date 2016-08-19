@@ -106,7 +106,7 @@ class PDO_DataObject_Generator_Table {
         
         
         $var = (substr(phpversion(),0,1) > 4) ? 'public' : 'var';
-        $var = !empty($options['generator_var_keyword']) ? $options['generator_var_keyword'] : $var;
+        $var = self::$config['generator_var_keyword']; 
         
         
         $body .= "    {$var} \$__table = '{$this->table}';  {$p}// table name\n";
