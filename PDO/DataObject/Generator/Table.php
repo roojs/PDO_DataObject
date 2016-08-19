@@ -232,7 +232,7 @@ class PDO_DataObject_Generator_Table {
 
         $input = preg_replace(
             '/(\n|\r\n)class\s*[a-z0-9_]+\s*extends\s*[a-z0-9_]+\s*(\n|\r\n)\{(\n|\r\n)/si',
-            "\nclass {$this->classname} extends {$this->_extends} \n{\n",
+            "\nclass {$this->classname} extends {$config['extends_class']}\n{\n",
             $input);
         
         $ret =  preg_replace(
