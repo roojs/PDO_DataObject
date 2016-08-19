@@ -130,8 +130,8 @@ class PDO_DataObject_Generator extends PDO_DataObject
             	// (true) will generate setXXXX() methods for you.
             'getters' => false,
             	// (true) will generate getXXXX() methods for you.
-            'link_methods'    
-                // (true) will create the wrappers around link()
+            'link_methods'  =>false,
+                // (true|callable) will create the wrappers around link()
                 // => function($k) { return $k; } // to munge the column name into a method name.
                 // Only likely to work with with mysql / mysqli / postgres  at present. ?? maybe sqlite?
 
