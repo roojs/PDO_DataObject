@@ -15,6 +15,8 @@ class PDO_DataObject_Generator_Column {
    var $do_type = 0; // eg . PDO_DataObject::INT
    var $foreign_key = ''; /// XXX:YYY  XXX=table, YYY=column that it points to.
    var $is_key;
+   var $default_value;
+   
    
     function __construct($table,$def_ar)
     {
@@ -216,7 +218,37 @@ class PDO_DataObject_Generator_Column {
     }
     function toPhpDefault()
     {
-        
+        switch (true) {
+               
+               case (is_null( $ar['Default'])):
+                   $defaults[$ar['Field']]  = 'null';
+                   break;
+               
+               case ($type & PDO_DataObject::DATE): 
+               case ($type & PDO_DataObject::TIME): 
+               case ($type & PDO_DataObject::MYSQLTIMESTAMP): // not supported yet..
+                   break;
+                   
+               case ($type & PDO_DataObject::BOOL): 
+                   $defaults[$ar['Field']] = (int)(boolean) $ar['Default'];
+                   break;
+                   
+               
+               case ($type & PDO_DataObject::STR): 
+                   $defaults[$ar['Field']] =  "'" . addslashes($ar['Default']) . "'";
+                   break;
+               
+                
+               default:    // hopefully eveything else...  - numbers etc.
+                   if (!strlen($ar['Default'])) {
+                       continue;
+                   }
+                   if (is_numeric($ar['Default'])) {
+                       $defaults[$ar['Field']] =   $ar['Default'];
+                   }
+                   break;
+           
+           }
                     
     }
     
