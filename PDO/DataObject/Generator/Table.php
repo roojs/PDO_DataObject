@@ -32,7 +32,6 @@ class PDO_DataObject_Generator_Table {
     
     function getClassNameFromTableName()
     {
-        
         $class_prefix_ar  = explode(PATH_SEPERATOR, PDO_DataObject::config('class_prefix'));
         return  $class_prefix_ar[0].preg_replace('/[^A-Z0-9]/i','_',ucfirst(trim($this->table)));
     }
