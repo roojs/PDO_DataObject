@@ -7,14 +7,16 @@
 class PDO_DataObject_Generator_Table {
    
     var $gen; // generator.
+    var $hook;
     var $table= ''; // name of table..
     var $cols = array();
     var $links = array();
-   
+    
    
     function __construct($gen, $table)
     {
         $this->gen = $gen;
+        $this->hook = $gen->hook;
         $this->table= $table;
         $this->readFromDB();
         
@@ -66,9 +68,9 @@ class PDO_DataObject_Generator_Table {
          // title = expand me!
         $foot = "";
         $head = "<?php\n/**\n * Table Definition for {$this->table}\n";
-        $head .= $this->derivedHookPageLevelDocBlock();
+        $head .= $this->hook->pageLevelDocBlock();
         $head .= " */\n";
-        $head .= $this->derivedHookExtendsDocBlock();
+        $head .= $this->hook->extendsDocBlock();
 
         
         // requires - if you set extends_location = (blank) then no require line will be set
@@ -79,7 +81,7 @@ class PDO_DataObject_Generator_Table {
         }
         // add dummy class header in...
         // class 
-        $head .= $this->derivedHookClassDocBlock();
+        $head .= $this->hook->classDocBlock();
         $head .= "class {$this->classname} extends {$this->_extends} \n{";
 
         $body =  "\n    ###START_AUTOCODE\n";
@@ -147,10 +149,10 @@ class PDO_DataObject_Generator_Table {
             // can not do set as PEAR::DB table info doesnt support it.
             //if (substr($t->Type,0,3) == "set")
             //    $sets[$t->Field] = "array".substr($t->Type,3);
-            $body .= $this->derivedHookVar($t,strlen($p));
+            $body .= $this->hook->varDef($t,strlen($p));
         }
          
-        $body .= $this->derivedHookPostVar($defs);
+        $body .= $this->hook->postVar($defs);
 
         // THIS IS TOTALLY BORKED old FC creation
         // IT WILL BE REMOVED!!!!! in DataObjects 1.6
@@ -202,7 +204,7 @@ class PDO_DataObject_Generator_Table {
             $body .= $this->_generateDefaultsFunction($this->table,$def['table']);
              
         }
-        $body .= $this->derivedHookFunctions($input);
+        $body .= $this->hook->functions($input);
 
         $body .= "\n    /* the code above is auto generated do not remove the tag below */";
         $body .= "\n    ###END_AUTOCODE\n";
