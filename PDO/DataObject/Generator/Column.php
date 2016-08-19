@@ -27,7 +27,7 @@ class PDO_DataObject_Generator_Column {
     {
           
      
-        if (!strlen(trim($t->name))) {
+        if (!strlen(trim($this->name))) {
             return '';
         }
         if (!preg_match('/^[a-zA-Z_\x7f-\xff][a-zA-Z0-9_\x7f-\xff]*$/', $this->name)) {
@@ -54,7 +54,48 @@ class PDO_DataObject_Generator_Column {
     }
     function toPhpGetter($original)
     {
-        
+          $options = &PEAR::getStaticProperty('DB_DataObject','options');
+        $getters = '';
+
+        // only generate if option is set to true
+        if  (empty($options['generate_getters'])) {
+            return '';
+        }
+
+        // remove auto-generated code from input to be able to check if the method exists outside of the auto-code
+        $input = preg_replace('/(\n|\r\n)\s*###START_AUTOCODE(\n|\r\n).*(\n|\r\n)\s*###END_AUTOCODE(\n|\r\n)/s', '', $input);
+
+        $getters .= "\n\n";
+        $defs     = $this->_definitions[$this->table];
+
+        // loop through properties and create getter methods
+        foreach ($defs = $defs as $t) {
+
+            // build mehtod name
+            $methodName = 'get' . $this->getMethodNameFromColumnName($t->name);
+
+            if (!strlen(trim($t->name)) || preg_match("/function[\s]+[&]?$methodName\(/i", $input)) {
+                continue;
+            }
+
+            $getters .= "   /**\n";
+            $getters .= "    * Getter for \${$t->name}\n";
+            $getters .= "    *\n";
+            // this makes no sense - mysql multiple key (MUL) - is just for indexed columns?
+           // $getters .= (stristr($t->flags, 'multiple_key')) ? "    * @return   object\n"
+           //                                                  : "    * @return   {$t->type}\n";
+            $getters .= "    * @return   {$t->type}\n";
+            $getters .= "    * @access   public\n";
+            $getters .= "    */\n";
+            $getters .= (substr(phpversion(),0,1) > 4) ? '    public '
+                                                       : '    ';
+            $getters .= "function $methodName() {\n";
+            $getters .= "        return \$this->{$t->name};\n";
+            $getters .= "    }\n\n";
+        }
+   
+
+        return $getters;
     }
     function toPhpSetter($original)
     {
