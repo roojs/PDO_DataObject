@@ -126,12 +126,14 @@ class PDO_DataObject_Generator_Table {
 
         foreach($this->columns as $col) {
             $body .= $col->toPhpGetter($user_code);
-        }
-        foreach($this->columns as $col) {
             $body .= $col->toPhpSetter($user_code);
+            $body .= $col->toPhpLinkMethod($user_code);
         }
         foreach($this->columns as $col) {
-            $body .= $col->toPhpLinkMethod($user_code);
+            
+        }
+        foreach($this->columns as $col) {
+            
         }
         
         // generate getter and setter methods
