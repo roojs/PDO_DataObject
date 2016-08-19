@@ -165,7 +165,7 @@ class PDO_DataObject_Generator_Column {
         // generate_link_methods true::
         
         
-        if  (empty($options['link_method'])) {
+        if  (empty($options['link_methods'])) {
             //echo "skip lm? - not set";
             return '';
         }
@@ -179,8 +179,8 @@ class PDO_DataObject_Generator_Column {
         $setters .= "\n";
         // build mehtod name
         
-        $methodName =  is_callable($options['link_method']) ?
-                    call_user_func($options['link_method']($k) : $k;
+        $methodName =  is_callable($options['link_methods']) ?
+                    call_user_func($options['link_methods'], $k) : $k;
 
             if (!strlen(trim($k)) || preg_match("/function[\s]+[&]?$methodName\(/i", $input)) {
                 continue;
