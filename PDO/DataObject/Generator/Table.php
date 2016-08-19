@@ -182,7 +182,7 @@ class PDO_DataObject_Generator_Table {
                     . "             ". $sdef
                     . "         );" 
                     . "    }\n" 
-            $body .= $this->_generateSequenceKeyFunction($def);
+            
             $body .= $this->_generateDefaultsFunction($this->table, $def['table']);
         }  else if (!empty($options['generator_add_defaults'])) {   
             // I dont really like doing it this way (adding another option)
