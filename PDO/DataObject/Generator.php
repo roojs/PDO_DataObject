@@ -107,7 +107,8 @@ class PDO_DataObject_Generator extends PDO_DataObject
                 // what class do the generated classes extend?
             'extends_class_location' => 'PDO/DataObject.php',
                 // what file is the extended class in.                
-                
+        
+        // advanced customization..
             'hook' => 'PDO_DataObject_Generator_Hooks',
                 // class for hooks code (used to be derivedHook****)
                 // allows custom generation of PHP code.
