@@ -4918,7 +4918,7 @@ class PDO_DataObject
     	
         $null_strings =  $options['disable_null_strings'] === false;
                     
-        $crazy_null =   $options['disable_null_strings'] === 'full';
+        $crazy_null =   $options['disable_null_strings'] === 'full'; // why case insensitive?
         
         if ( $null_strings && $isset  && is_string($value)  && (strtolower($value) === 'null') ) {
             return true;
