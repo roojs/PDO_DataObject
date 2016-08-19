@@ -85,33 +85,32 @@ class PDO_DataObject_Generator extends PDO_DataObject
         
         // ---- Generator
               
-            'generator_build_views' => false,
+            'build_views' => false,
                 // for postgres, you can build dataobjects for views as well
                 // you can set this to 'schema.views' to extract views with schema information
                 // I believe  postgres also supports updating on views (nice feature)
                 // *** NOTE *** You will have to manually define keys() / sequenceKeys()
                 // As the generator can not recognize these automatically
                 
-            'generator_strip_schema' => true,
+            'strip_schema' => true,
                 //	postgres has a wierd concept of schema's which end up prefixed to
                 //	the list of tables. - this makes a mess of class/schema generation
                 //	setting this to '', makes the generator strip the schema from the table name.
                 //  now supports regex (if you set it to a regex it will strip schema of matched names)
                 //  for example '/^public\./'
-            'generator_no_ini' => false,
+            'no_ini' => false,
                 // (True) will generate the methods table() ,keys(), sequenceKeys() and defaults()
                 // methods in the generated classes 
                 // and not generate any ini file to describe the table.
 
     );
       /**
-     * Set/get the global configuration...
-     * Used to be via PEAR::getStaticProperty() - now depricated..
-     *
+     * Set/get the generator configuration...
+ 
      * Usage:
      *
      * Fetch the current config.
-     * $cfg = PDO_DataObject::config(); 
+     * $cfg = PDO_DataObject_Generator::config(); 
      *
      * SET a configuration value. (returns old value.)
      * $old = PDO_DataObject::config('schema_location', '');  
