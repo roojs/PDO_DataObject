@@ -56,7 +56,7 @@ class PDO_DataObject_Generator_Column {
     }
     function toPhpGetter($original)
     {
-          $options = &PEAR::getStaticProperty('DB_DataObject','options');
+        $options = $this->gen->config();
         $getters = '';
 
         // only generate if option is set to true
