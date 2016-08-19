@@ -202,7 +202,24 @@ class PDO_DataObject_Generator_Column {
          
         return $setters;
     }
- 
+    function toPhpTableFunc()
+    {
+        
+    }
+    function toPhpKeyFunc()
+    {
+        
+    }
+    function toPhpSequenceFunc()
+    {
+        
+    }
+    function toPhpDefault()
+    {
+        
+                    
+    }
+    
     
     function toIni()
     {
