@@ -74,23 +74,22 @@ class PDO_DataObject_Generator_Column {
             continue;
         }
 
-            $getters .= "   /**\n";
-            $getters .= "    * Getter for \${$t->name}\n";
-            $getters .= "    *\n";
-            // this makes no sense - mysql multiple key (MUL) - is just for indexed columns?
-           // $getters .= (stristr($t->flags, 'multiple_key')) ? "    * @return   object\n"
-           //                                                  : "    * @return   {$t->type}\n";
-            $getters .= "    * @return   {$t->type}\n";
-            $getters .= "    * @access   public\n";
-            $getters .= "    */\n";
-            $getters .= (substr(phpversion(),0,1) > 4) ? '    public '
-                                                       : '    ';
-            $getters .= "function $methodName() {\n";
-            $getters .= "        return \$this->{$t->name};\n";
-            $getters .= "    }\n\n";
-        }
-   
-
+        $getters .= "   /**\n";
+        $getters .= "    * Getter for \${$this->name}\n";
+        $getters .= "    *\n";
+        // this makes no sense - mysql multiple key (MUL) - is just for indexed columns?
+       // $getters .= (stristr($t->flags, 'multiple_key')) ? "    * @return   object\n"
+       //                                                  : "    * @return   {$t->type}\n";
+        $getters .= "    * @return   {$$this->type}\n";
+        $getters .= "    * @access   public\n";
+        $getters .= "    */\n";
+        // why add public it's pointless...
+        //$getters .= (substr(phpversion(),0,1) > 4) ? '    public '
+                                                   : '    ';
+        $getters .= "function $methodName() {\n";
+        $getters .= "        return \$this->{$this->name};\n";
+        $getters .= "    }\n\n";
+        
         return $getters;
     }
     function toPhpSetter($original)
