@@ -17,7 +17,7 @@ class PDO_DataObject_Generator_Table {
         $this->gen = $gen;
         $this->table= $table;
         $this->readFromDB();
-        $this->hook = 
+        
         
     }
     
