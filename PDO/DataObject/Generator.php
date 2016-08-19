@@ -104,7 +104,75 @@ class PDO_DataObject_Generator extends PDO_DataObject
                 // and not generate any ini file to describe the table.
 
     );
+      /**
+     * Set/get the global configuration...
+     * Used to be via PEAR::getStaticProperty() - now depricated..
+     *
+     * Usage:
+     *
+     * Fetch the current config.
+     * $cfg = PDO_DataObject::config(); 
+     *
+     * SET a configuration value. (returns old value.)
+     * $old = PDO_DataObject::config('schema_location', '');  
+     *
+     * GET a specific value ** does not do this directly to stop errors...
+     * somevar = PDO_DataObject::config()['schema_location'];  
+     *
+     * SET multiple values (returns 'old' configuration)
+     * $old_array = PDO_DataObject::config( array( 'schema_location' => '' ));
+     * 
+     * 
+     * @param   array  key/value 
+     * @param   mixed value 
+     * @static
+     * @access  public
+     * @return - the current config..
+     */
      
+    static function config($cfg_in = array(), $value=false) 
+    {
+         
+        if (!func_num_args()) {
+            return self::$config;
+        }
+        
+        if (!is_array($cfg_in) && func_num_args() < 2) {
+            // one arg = not an array..
+            (new PDO_DataObject())->raiseError("Invalid Call to config should be string+anther value or array",
+                              self::ERROR_INVALIDARGS, self::ERROR_DIE);
+        }
+        
+        $old = self::$config;
+        
+        $cfg = $cfg_in;
+        
+        if (func_num_args() > 1) {
+            // two args..
+            if (!is_string($cfg_in)) {
+                (new PDO_DataObject())->raiseError("Invalid Call to config should be string+anther value or array",
+                              self::ERROR_INVALIDARGS, self::ERROR_DIE);    
+            }
+            
+            $k = $cfg_in;
+            $cfg = array();
+            $cfg[$k] = $value;
+        } 
+          
+        foreach ($cfg as $k=>$v) {
+            if (!isset(self::$config[$k])) {
+                (new PDO_DataObject())->raiseError("Invalid Configuration setting : $k",
+                        self::ERROR_INVALIDCONFIG, self::ERROR_DIE);
+            }
+            self::$config[$k] = $v;
+        }
+        if (isset($cfg['debug'])) {
+            self::$debug = $cfg['debug'];
+        }
+        
+        
+        return is_array($cfg_in) ? $old : $old[$cfg_in];
+    }
     /**
      * Array of table names
      *
