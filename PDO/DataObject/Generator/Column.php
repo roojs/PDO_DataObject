@@ -26,7 +26,7 @@ class PDO_DataObject_Generator_Column {
         $this->name = $def_ar['name'];
         // and set other stuff?
         // put all the type parsing here!?
-        $this->default_value = $def_ar['Default']
+        $this->default_value = $def_ar['Default'];
     }
     
      
