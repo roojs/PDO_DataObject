@@ -182,7 +182,7 @@ class PDO_DataObject_Generator_Column {
         $methodName =  is_callable($options['link_methods']) ?
                     call_user_func($options['link_methods'], $this->name) : $this->name;
 
-            if (!strlen(trim($k)) || preg_match("/function[\s]+[&]?$methodName\(/i", $input)) {
+            if (!strlen(trim($k)) || preg_match("/function[\s]+[&]?$methodName\(/i", $user_code)) {
                 continue;
             }
 
