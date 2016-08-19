@@ -102,16 +102,20 @@ class PDO_DataObject_Generator extends PDO_DataObject
                 // (True) will generate the methods table() ,keys(), sequenceKeys() and defaults()
                 // methods in the generated classes 
                 // and not generate any ini file to describe the table.
+                
+            'extends_class' => 'PDO_DataObject',
+                // what class do the generated classes extend?
+            'extends_class_location' => 'PDO/DataObject.php',
+                // what file is the extended class in.                
+                
             'hook' => 'PDO_DataObject_Generator_Hooks',
                 // class for hooks code (used to be derivedHook****)
                 // allows custom generation of PHP code.
             'table_class' => 'PDO_DataObject_Generator_Table',
                 // class for table parsing/ generator
                 // allows for more custom generaton.
-            'extends_class' => 'PDO_DataObject',
-                // what class do the generated classes extend?
-            'extends_class_location' => 'PDO/DataObject.php',
-                // what file is the extended class in.
+                
+            
                 
 
     );
