@@ -290,16 +290,7 @@ class PDO_DataObject_Generator extends PDO_DataObject
     }
 
     
-    
-    /**
-     * Output File was config object, now just string
-     * Used to generate the Tables
-     *
-     * @var    string outputbuffer for table definitions
-     * @access private
-     */
-    var $_newConfig;
-
+   
     /**
      * Build a list of tables and definitions.;
      * and store it in $this->tables and $this->_definitions[tablename];
@@ -313,9 +304,11 @@ class PDO_DataObject_Generator extends PDO_DataObject
         $pdo = $this->PDO();
         $io  = $this->introspection();
         
+        $tables = array();
+        
         // try schema first...
         try {
-            $this->tables = $io->getListOf('schema.tables');
+            $tables = $io->getListOf('schema.tables');
         } catch (Exception $e) {     
         }
         
