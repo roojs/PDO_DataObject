@@ -242,12 +242,15 @@ class PDO_DataObject_Generator_Column {
             
          
             default:    // hopefully eveything else...  - numbers etc.
+                if (is_numeric($this->default_value)) {
+                    $value =   $this->default_value;
+                    break;
+                }
+                
                 if (!strlen($this->default_value)) {
                     return '';
                 }
-                if (is_numeric($this->default_value)) {
-                    $value =   $this->default_value;
-                }
+                
                 return '';
                 break;
                     
