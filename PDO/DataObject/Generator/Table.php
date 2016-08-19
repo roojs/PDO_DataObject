@@ -224,29 +224,20 @@ class PDO_DataObject_Generator_Table {
             return $full;
         }
 
-        $ret =  preg_replace(
-            '/(\n|\r\n)\s*###START_AUTOCODE(\n|\r\n).*(\n|\r\n)\s*###END_AUTOCODE(\n|\r\n)/s',
-            $body,$input);
         
         
         
-        /* this will only replace extends DB_DataObject by default,
-            unless use set generator_class_rewrite to ANY or a name*/
-
-        $class_rewrite = 'DB_DataObject';
-        $options = &PEAR::getStaticProperty('DB_DataObject','options');
-        if (empty($options['generator_class_rewrite']) || !($class_rewrite = $options['generator_class_rewrite'])) {
-            $class_rewrite = 'DB_DataObject';
-        }
-        if ($class_rewrite == 'ANY') {
-            $class_rewrite = '[a-z_]+';
-        }
+        
+        /* this used to be configurable - */
 
         $input = preg_replace(
             '/(\n|\r\n)class\s*[a-z0-9_]+\s*extends\s*[a-z0-9_]+\s*(\n|\r\n)\{(\n|\r\n)/si',
             "\nclass {$this->classname} extends {$this->_extends} \n{\n",
             $input);
-
+        
+        $ret =  preg_replace(
+            '/(\n|\r\n)\s*###START_AUTOCODE(\n|\r\n).*(\n|\r\n)\s*###END_AUTOCODE(\n|\r\n)/s',
+            $body,$input);
         
         if (!strlen($ret)) {
             return $this->gen->raiseError(
