@@ -226,8 +226,6 @@ class PDO_DataObject_Generator_Table {
 
         
         
-        
-        
         /* this used to be configurable - */
 
         $input = preg_replace(
@@ -245,15 +243,12 @@ class PDO_DataObject_Generator_Table {
                 "pcre.backtrack_limit=1000000\n".
                 "pcre.recursion_limit=1000000\n"
                 ,null, PEAR_ERROR_DIE);
-       }
+        }
         
         return $ret;
     }
         
-        
          
-        
-    }
     
     function toIni()
     {
