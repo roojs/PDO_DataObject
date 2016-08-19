@@ -153,7 +153,7 @@ class PDO_DataObject_Generator_Column {
     * @return   string
     * @access   public
     */
-    function toPhpLinkMethod($input) 
+    function toPhpLinkMethod($user_code) 
     {
 
         $options = $this->gen->config();
