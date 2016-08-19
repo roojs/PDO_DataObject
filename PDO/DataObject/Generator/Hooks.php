@@ -25,17 +25,19 @@ class PDO_DataObject_Generator_Hooks {
      * @access   public
      * @return  string added to class eg. functions.
      */
-    function derivedHookFunctions($input = "")
-    {
-        // This is so derived generator classes can generate functions
-        // It MUST NOT be changed here!!!
-        return "";
-    }
-
+    
     function functions($original)
     {
         return '';
     }
+    /**
+     * hook to add extra class level DocBlock (in terms of phpDocumentor)
+     *
+     * called once for each class, use it add extra comments to class
+     * string (require_once...)
+     * @access public
+     * @return string added to class eg. functions.
+     */
     function classDocBlock($original)
     {
         return '';
@@ -54,16 +56,39 @@ class PDO_DataObject_Generator_Hooks {
     {
         return '';
     }
+       /**
+     * hook for after var lines (
+     * called at the end of the output of var line have generated, override to add extra var
+     * lines
+     *
+     * @param array cols containing array of objects with type,len,flags etc. from tableInfo call
+     * @access   public
+     * @return  string added to class eg. functions.
+     */
+ 
     function postVar($original)
     {
         return '';
     }
-    
+     /**
+     * hook to add extra page-level (in terms of phpDocumentor) DocBlock
+     *
+     * called once for each class, use it add extra page-level docs
+     * @access public
+     * @return string added to class eg. functions.
+     */
     function pageLevelDocBlock($original)
     {
         return '';
     }
-    
+      /**
+     * hook to add extra doc block (in terms of phpDocumentor) to extend string
+     *
+     * called once for each class, use it add extra comments to extends
+     * string (require_once...)
+     * @access public
+     * @return string added to class eg. functions.
+     */
     function ExtendsLevelDocBlock($original)
     {
         return '';   
