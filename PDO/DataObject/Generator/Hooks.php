@@ -50,7 +50,7 @@ class PDO_DataObject_Generator_Hooks {
      * @access   public
      * @return  string added to class eg. functions.
      */
-    function var($original)
+    function varDef($original)
     {
         return '';
     }
