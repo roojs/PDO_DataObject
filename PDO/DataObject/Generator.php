@@ -68,10 +68,43 @@ class_exists('PDO_DataObject') ? '' : require_once 'PDO/DataObject.php';
  */
 class PDO_DataObject_Generator extends PDO_DataObject
 {
-    /* =========================================================== */
-    /*  Utility functions - for building db config files           */
-    /* =========================================================== */
+    
+    
+    
+     /* ---------------- ---------------- static  -------------------------------- */
+    /**
+     * Configuration - use config() to access this.
+     *
+     * @access  private
+     * @static
+     * @var     array
+     */
+    private static $config = array(
+            
+         
+        
+        // ---- Generator
+              
+            'generator_build_views' => false,
+                // for postgres, you can build dataobjects for views as well
+                // you can set this to 'schema.views' to extract views with schema information
+                // I believe  postgres also supports updating on views (nice feature)
+                // *** NOTE *** You will have to manually define keys() / sequenceKeys()
+                // As the generator can not recognize these automatically
+                
+            'generator_strip_schema' => true,
+                //	postgres has a wierd concept of schema's which end up prefixed to
+                //	the list of tables. - this makes a mess of class/schema generation
+                //	setting this to '', makes the generator strip the schema from the table name.
+                //  now supports regex (if you set it to a regex it will strip schema of matched names)
+                //  for example '/^public\./'
+            'generator_no_ini' => false,
+                // (True) will generate the methods table() ,keys(), sequenceKeys() and defaults()
+                // methods in the generated classes 
+                // and not generate any ini file to describe the table.
 
+    );
+     
     /**
      * Array of table names
      *
@@ -104,6 +137,10 @@ class PDO_DataObject_Generator extends PDO_DataObject
      */
     var $_fkeys; // active tablename
 
+    
+    
+    
+    
     /**
      * The 'starter' = call this to start the process
      *
