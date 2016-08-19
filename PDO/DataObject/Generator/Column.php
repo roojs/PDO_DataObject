@@ -45,7 +45,7 @@ class PDO_DataObject_Generator_Column {
 
         $length = empty($this->len) ? '' : '('.$this->len.')';
         $flags = strlen($this->flags) ? (' '. trim($this->flags)) : '';
-        $body .="    {$var} \${$t->name}; {$pad}// {$t->type}{$length}{$flags}\n";
+        $body .="    {$var} \${$this->name}; {$pad}// {$this->type}{$length}{$flags}\n";
         
         // can not do set as PEAR::DB table info doesnt support it.
         //if (substr($t->Type,0,3) == "set")
