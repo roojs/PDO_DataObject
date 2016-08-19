@@ -364,33 +364,11 @@ class PDO_DataObject_Generator extends PDO_DataObject
             
             // we do not quote table - as these are now internal methods - and it is done by the introspection classes 
             $this->tables[$table] = new PDO_DataObject_Generator_Table($this, $table);
-            
-            
-            $defs = $io->tableInfo($table);
-            
-            // cast all definitions to objects - as we deal with that better.
-
-            foreach($defs as $def) {
-                if (!is_array($def)) {
-                    continue;
-                }
-                // rename the length value, so it matches db's return.
-                if (isset($def['length']) && !isset($def['len'])) {
-                    $def['len'] = $def['length'];
-                }
-                $this->_definitions[$table][] = (object) $def;
-
-            }
-            // we find a matching table, just  store it into a temporary array
-            $tmp_table[] = $table;
+             
 
 
         }
-        // the temporary table array is now the right one (tables names matching
-        // with regex expressions have been removed)
-        $this->tables = $tmp_table;
-         
-        //print_r($this->_definitions);
+      
     }
     
     /**
