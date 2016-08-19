@@ -224,6 +224,11 @@ class PDO_DataObject_Generator_Table {
             return $full;
         }
 
+        $ret =  preg_replace(
+            '/(\n|\r\n)\s*###START_AUTOCODE(\n|\r\n).*(\n|\r\n)\s*###END_AUTOCODE(\n|\r\n)/s',
+            $body,$input);
+        
+        
         
         /* this will only replace extends DB_DataObject by default,
             unless use set generator_class_rewrite to ANY or a name*/
@@ -242,9 +247,6 @@ class PDO_DataObject_Generator_Table {
             "\nclass {$this->classname} extends {$this->_extends} \n{\n",
             $input);
 
-        $ret =  preg_replace(
-            '/(\n|\r\n)\s*###START_AUTOCODE(\n|\r\n).*(\n|\r\n)\s*###END_AUTOCODE(\n|\r\n)/s',
-            $body,$input);
         
         if (!strlen($ret)) {
             return $this->gen->raiseError(
