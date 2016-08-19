@@ -112,10 +112,11 @@ class PDO_DataObject_Generator extends PDO_DataObject
             'hook' => 'PDO_DataObject_Generator_Hooks',
                 // class for hooks code (used to be derivedHook****)
                 // allows custom generation of PHP code.
+                // can be class name or object
             'table_class' => 'PDO_DataObject_Generator_Table',
                 // class for table parsing/ generator
                 // allows for more custom generaton.
-                
+                // can be class name or object
             
                 
 
