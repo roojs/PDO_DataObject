@@ -104,7 +104,7 @@ class PDO_DataObject_Generator_Table {
         $p = str_repeat(' ',max(2, (18 - strlen($this->table)))) ;
     
          
-        $var = $config['generator_var_keyword']; 
+        $var = $config['var_keyword']; 
         
         
         $body .= "    {$var} \$__table = '{$this->table}';  {$p}// table name\n";
