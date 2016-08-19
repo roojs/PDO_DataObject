@@ -109,13 +109,7 @@ class PDO_DataObject_Generator_Table {
         
         $body .= "    {$config['var_keyword']} \$__table = '{$this->table}';  {$p}// table name\n";
     
-        // if we are using the option database_{databasename} = dsn
-        // then we should add var $_database = here
-        // as database names may not always match.. 
-        
-        if (empty($GLOBALS['_DB_DATAOBJECT']['CONFIG'])) {
-            DB_DataObject::_loadConfig();
-        }
+       
 
          // Only include the $_database property if the omit_database_var is unset or false
         
