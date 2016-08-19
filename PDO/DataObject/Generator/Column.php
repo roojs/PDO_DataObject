@@ -54,7 +54,7 @@ class PDO_DataObject_Generator_Column {
         //    $sets[$t->Field] = "array".substr($t->Type,3);
         $body .= $this->hook->varDef($t,strlen($p));
     }
-    function toPhpGetter($original)
+    function toPhpGetter($user_code)
     {
         $options = $this->gen->config();
         
@@ -64,21 +64,15 @@ class PDO_DataObject_Generator_Column {
         }
         $getters = '';
 
-        // remove auto-generated code from input to be able to check if the method exists outside of the auto-code
-        $input = preg_replace('/(\n|\r\n)\s*###START_AUTOCODE(\n|\r\n).*(\n|\r\n)\s*###END_AUTOCODE(\n|\r\n)/s', '', $input);
-
+        
         $getters .= "\n\n";
-        $defs     = $this->_definitions[$this->table];
-
-        // loop through properties and create getter methods
-        foreach ($defs = $defs as $t) {
-
+        
             // build mehtod name
-            $methodName = 'get' . $this->getMethodNameFromColumnName($t->name);
+        $methodName = 'get' . $this->getMethodNameFromColumnName($t->name);
 
-            if (!strlen(trim($t->name)) || preg_match("/function[\s]+[&]?$methodName\(/i", $input)) {
-                continue;
-            }
+        if (!strlen(trim($this->name)) || preg_match("/function[\s]+[&]?$methodName\(/i", $user_code)) {
+            continue;
+        }
 
             $getters .= "   /**\n";
             $getters .= "    * Getter for \${$t->name}\n";
