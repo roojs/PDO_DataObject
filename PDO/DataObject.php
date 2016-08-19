@@ -602,7 +602,7 @@ class PDO_DataObject
         }
         self::$config_loaded = true;
         
-        if (!class_exists('PEAR')) {
+        if (!class_exists('PEAR', false)) {
             return;
         }
         
