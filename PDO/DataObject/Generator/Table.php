@@ -167,7 +167,7 @@ class PDO_DataObject_Generator_Table {
             }
             
             
-            $body .=  "\n" 
+            $schema =  "\n" 
                     . "    function table()\n" 
                     . "    {\n" 
                     . "         return array(\n"
@@ -185,7 +185,8 @@ class PDO_DataObject_Generator_Table {
                     . "         return array(\n"
                     . "             ". $sdef
                     . "         );" 
-                    . "    }\n" 
+                    . "    }\n";
+            $defaults = "\n" 
                     . "    function defaults() // column default values \n" 
                     . "    {\n"
                     . "         return array(\n"
@@ -193,13 +194,14 @@ class PDO_DataObject_Generator_Table {
                     . "         );" 
                     . "    }\n";
                     
-        }  else if (!empty($options['add_defaults'])) {   
-            // I dont really like doing it this way (adding another option)
-            // but it helps on older projects.
-            $def = $this->_generateDefinitionsTable();  // simplify this!?
-            $body .= $this->_generateDefaultsFunction($this->table,$def['table']);
-             
+            if ($config['no_ini']) {
+                $body .= $schema;
+            }
+            $body .=  $defaults;
+            
         }
+        
+        
         $body .= $this->hook->functions($input);
 
         $body .= "\n    /* the code above is auto generated do not remove the tag below */";
