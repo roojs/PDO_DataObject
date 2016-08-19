@@ -126,7 +126,12 @@ class PDO_DataObject_Generator extends PDO_DataObject
             'no_column_vars' => false,
                 // (True) prevents writing of private/var's so you can overload get/set 
                 // note: this has the downside of making code less clear... (alot of magic!!)
-
+            'setters' => false,
+            	// (true) will generate setXXXX() methods for you.
+            'getters' => false,
+            	// (true) will generate getXXXX() methods for you.
+                
+                
     );
       /**
      * Set/get the generator configuration...
