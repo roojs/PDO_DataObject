@@ -69,6 +69,8 @@ class PDO_DataObject_Generator_Table {
  
     function toPhp($original)
     {
+        $not_generated = preg_replace('/(\n|\r\n)\s*###START_AUTOCODE(\n|\r\n).*(\n|\r\n)\s*###END_AUTOCODE(\n|\r\n)/s', '', $original);
+        
         $config = $this->gen->config();
          
          // title = expand me!
