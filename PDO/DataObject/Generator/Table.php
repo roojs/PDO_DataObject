@@ -152,6 +152,7 @@ class PDO_DataObject_Generator_Table {
             $tdef = array();
             $kdef = array();
             $sdef = array(); // should only be one fo thieses
+            $vdef = array();
             foreach($this->columns as $col) {
                 $tdef[] = $col->toPhpTableFunc();
                 if ($col->is_key) {
