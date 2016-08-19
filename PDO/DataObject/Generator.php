@@ -102,6 +102,10 @@ class PDO_DataObject_Generator extends PDO_DataObject
                 // (True) will generate the methods table() ,keys(), sequenceKeys() and defaults()
                 // methods in the generated classes 
                 // and not generate any ini file to describe the table.
+            'hook' => 'PDO_DataObject_Generator_Hooks',
+                // class for hooks code (used to be derivedHook****)
+                // allows custom generation of PHP code.
+                // 
 
     );
       /**
@@ -186,7 +190,14 @@ class PDO_DataObject_Generator extends PDO_DataObject
             $this->hook = $hook;
             return;
         }
-        
+        if ($hook == ';PDO_DataObject_Generator_Hooks') {
+            class_exists($hook) ? '' :
+                require_once 'PDO/DataObject/Generator/Hooks.php';
+        }
+        if (!class_exists($hook)) {
+            $this->raiseError("Hook class '{$hook}' does not exist - please include it or use an autoloader");
+        }
+        $this->hook = new $hook();
     }
     
     
