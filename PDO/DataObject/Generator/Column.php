@@ -57,12 +57,12 @@ class PDO_DataObject_Generator_Column {
     function toPhpGetter($original)
     {
         $options = $this->gen->config();
-        $getters = '';
-
+        
         // only generate if option is set to true
-        if  (empty($options['generate_getters'])) {
+        if  (empty($options['getters'])) {
             return '';
         }
+        $getters = '';
 
         // remove auto-generated code from input to be able to check if the method exists outside of the auto-code
         $input = preg_replace('/(\n|\r\n)\s*###START_AUTOCODE(\n|\r\n).*(\n|\r\n)\s*###END_AUTOCODE(\n|\r\n)/s', '', $input);
