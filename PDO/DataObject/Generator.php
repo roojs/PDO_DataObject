@@ -116,7 +116,7 @@ class PDO_DataObject_Generator extends PDO_DataObject
             'table_gen_class' => 'PDO_DataObject_Generator_Table',
                 // class for table parsing/ generator
                 // allows for more custom generaton.
-                // can be class name or object
+                // if you use a custom class - you must include it before loading..
             
                 
 
