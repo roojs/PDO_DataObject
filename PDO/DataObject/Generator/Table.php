@@ -176,7 +176,12 @@ class PDO_DataObject_Generator_Table {
                     . "             ". implode(",\n             ", $kdef)
                     . "         );" 
                     . "    }\n"   
-            
+                    . "    function sequenceKey()\n" 
+                    . "    {\n" 
+                    . "         return array(\n"
+                    . "             ". implode(",\n             ", $kdef)
+                    . "         );" 
+                    . "    }\n" 
             $body .= $this->_generateSequenceKeyFunction($def);
             $body .= $this->_generateDefaultsFunction($this->table, $def['table']);
         }  else if (!empty($options['generator_add_defaults'])) {   
