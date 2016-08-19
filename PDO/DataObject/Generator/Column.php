@@ -22,7 +22,7 @@ class PDO_DataObject_Generator_Column {
     }
     
      
-    function toPhpVar($original)
+    function toPhpVar($var)
     {
           
      
