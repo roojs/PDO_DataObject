@@ -1967,9 +1967,7 @@ class PDO_DataObject
         $options = $_DB_DATAOBJECT['CONFIG'];
         
         
-        $ignore_null = !isset($options['disable_null_strings'])
-                    || !is_string($options['disable_null_strings'])
-                    || strtolower($options['disable_null_strings']) !== 'full' ;
+        $ignore_null = $options['disable_null_strings'] === false
                     
       
         foreach($items as $k => $v) {
