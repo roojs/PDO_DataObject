@@ -1714,9 +1714,7 @@ class PDO_DataObject
         }
         
         // if we haven't set disable_null_strings to "full"
-        $ignore_null = !isset($options['disable_null_strings'])
-                    || !is_string($options['disable_null_strings'])
-                    || strtolower($options['disable_null_strings']) !== 'full' ;
+        $ignore_null = $options['disable_null_strings'] === false; // default...
                     
              
         foreach($items as $k => $v) {
