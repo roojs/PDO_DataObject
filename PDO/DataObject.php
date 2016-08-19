@@ -172,25 +172,7 @@ class PDO_DataObject
                 // this flag -- I'm not sure how usefull it is, as if you use a global pear error handler
                 // you can catch the error anyway
         
-        // ---- Generator
-              
-            'generator_build_views' => false,
-                // for postgres, you can build dataobjects for views as well
-                // you can set this to 'schema.views' to extract views with schema information
-                // I believe  postgres also supports updating on views (nice feature)
-                // *** NOTE *** You will have to manually define keys() / sequenceKeys()
-                // As the generator can not recognize these automatically
-                
-            'generator_strip_schema' => true,
-                //	postgres has a wierd concept of schema's which end up prefixed to
-                //	the list of tables. - this makes a mess of class/schema generation
-                //	setting this to '', makes the generator strip the schema from the table name.
-                //  now supports regex (if you set it to a regex it will strip schema of matched names)
-                //  for example '/^public\./'
-            'generator_no_ini' => false,
-                // (True) will generate the methods table() ,keys(), sequenceKeys() and defaults()
-                // methods in the generated classes 
-                // and not generate any ini file to describe the table.
+         
 
     );
     
