@@ -127,38 +127,7 @@ class PDO_DataObject_Generator_Table {
             $body .= $col->toPhp();
         }
         
-        
-        $defs = $this->_definitions[$this->table];
-
-        // show nice information!
-        $connections = array();
-        $sets = array();
-
-        foreach($defs as $t) {
-            if (!strlen(trim($t->name))) {
-                continue;
-            }
-            if (!preg_match('/^[a-zA-Z_\x7f-\xff][a-zA-Z0-9_\x7f-\xff]*$/', $t->name)) {
-                echo "*****************************************************************\n".
-                     "**               WARNING COLUMN NAME UNUSABLE                  **\n".
-                     "** Found column '{$t->name}', of type  '{$t->type}'            **\n".
-                     "** Since this column name can't be converted to a php variable **\n".
-                     "** name, and the whole idea of mapping would result in a mess  **\n".
-                     "** This column has been ignored...                             **\n".
-                     "*****************************************************************\n";
-                continue;
-            }
-            
-            $pad = str_repeat(' ',max(2,  (30 - strlen($t->name))));
-
-            $length = empty($t->len) ? '' : '('.$t->len.')';
-            $flags = strlen($t->flags) ? (' '. trim($t->flags)) : '';
-            $body .="    {$var} \${$t->name}; {$pad}// {$t->type}{$length}{$flags}\n";
-            
-            // can not do set as PEAR::DB table info doesnt support it.
-            //if (substr($t->Type,0,3) == "set")
-            //    $sets[$t->Field] = "array".substr($t->Type,3);
-            $body .= $this->hook->varDef($t,strlen($p));
+      
         }
          
         $body .= $this->hook->postVar($defs);
