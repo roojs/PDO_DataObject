@@ -628,7 +628,7 @@ class PDO_DataObject
      * @return - the current config..
      */
      
-    public static function config($cfg_in = array(), $value=false) 
+    static function config($cfg_in = array(), $value=false) 
     {
         self::_loadPEARConfig();
         
