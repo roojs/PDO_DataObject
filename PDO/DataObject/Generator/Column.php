@@ -54,6 +54,13 @@ class PDO_DataObject_Generator_Column {
         //    $sets[$t->Field] = "array".substr($t->Type,3);
         $body .= $this->hook->varDef($t,strlen($p));
     }
+    /**
+    * Generate getter methods for class definition
+    *
+    * @param    string  $input  Existing class contents
+    * @return   string
+    * @access   public
+    */
     function toPhpGetter($user_code)
     {
         $options = $this->gen->config();
