@@ -9,7 +9,7 @@ class PDO_DataObject_Generator_Table {
     var $gen; // generator.
     var $hook;
     var $table= ''; // name of table..
-    var $cols = array();
+    var $columns = array();
     var $links = array();
     
    
@@ -57,7 +57,7 @@ class PDO_DataObject_Generator_Table {
             
         foreach($defs as $def) {
             if (is_array($def)) {
-                $this->cols[] = new PDO_DataObject_Generator_Column($this,$def);
+                $this->columns[] = new PDO_DataObject_Generator_Column($this,$def);
                 
             }
         }
@@ -66,14 +66,7 @@ class PDO_DataObject_Generator_Table {
         
          
     }
-    
-    function iterateCols($method, $original) {
-        $ret = '';
-        foreach($this->cols as $c) {
-            $ret .= $c->{$method}($original);
-        }
-    }
-    
+ 
     function toPhp($original)
     {
         $config = $this->gen->config();
@@ -253,9 +246,7 @@ class PDO_DataObject_Generator_Table {
     }
         
         
-        
-        // head..
-        $ret .= $this->iterateCols('var', $original);
+         
         
     }
     
@@ -269,7 +260,7 @@ class PDO_DataObject_Generator_Table {
     
     function toIniArray() {
         $kv = array();
-        foreach($this->cols as $c) {
+        foreach($this->columns as $c) {
             $kv[$c->name] = $c->do_type;
           
         }
