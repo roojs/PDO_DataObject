@@ -215,19 +215,8 @@ class PDO_DataObject_Generator_Column {
     }
     function toPhpSequenceFunc()
     {
+        $ar =  array($usekey,true,$seqname);
         
-        if (in_array($dbtype , array( 'mysql', 'mysqli', 'mssql', 'ifx')) && 
-            ($table[$usekey] & PDO_DataObject::INT) && 
-            isset($realkeys[$usekey]) && ($realkeys[$usekey] == 'N')
-            ) {
-            // use native sequence keys.
-            $ar =  array($usekey,true,$seqname);
-        } else {
-            // use generated sequence keys..
-            if ($table[$usekey] & PDO_DataObject::INT) {
-                $ar = array($usekey,false,$seqname);
-            }
-        }
         return var_export($ar);
     }
     function toPhpDefault()
