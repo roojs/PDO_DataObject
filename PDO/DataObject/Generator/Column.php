@@ -187,7 +187,7 @@ class PDO_DataObject_Generator_Column {
             }
 
             $setters .= "   /**\n";
-            $setters .= "    * Getter / Setter for \${$k}\n";
+            $setters .= "    * Getter / Setter for \${$this->name}\n";
             $setters .= "    *\n";
             $setters .= "    * @param    mixed   (optional) value to assign\n";
             $setters .= "    * @access   public\n";
@@ -196,7 +196,7 @@ class PDO_DataObject_Generator_Column {
             $setters .= (substr(phpversion(),0,1) > 4) ? '    public '
                                                        : '    ';
             $setters .= "function $methodName() {\n";
-            $setters .= "        return \$this->link('$k', func_get_args());\n";
+            $setters .= "        return \$this->link('$this->name', func_get_args());\n";
             $setters .= "    }\n\n";
         }
          
