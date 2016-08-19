@@ -149,15 +149,30 @@ class PDO_DataObject_Generator_Table {
         //}
         
         if (($config['no_ini'])) {
-            $body .=  $ret = "\n" .
-                    "    function table()\n" .
-                    "    {\n" .
-                    "         return array(\n";
-       
+            $tdef = array();
+            $kdef = array();
+            
+            foreach($this->columns as $col) {
+                $tdef[] = $col->toPhpTableFunc();
+                if ($col->is_key) {
+                    $kdef[] = $col->toPhpkeyFunc();
+                }
+            }
             
             
-            
-            $this->_generateTableFunction($def['table']);
+            $body .=  "\n" 
+                    . "    function table()\n" 
+                    . "    {\n" 
+                    . "         return array(\n"
+                    . "             ". implode(",\n             ", $tdef)
+                    . "         );" 
+                    . "    }\n"
+                    . "    function keys()\n" 
+                    . "    {\n" 
+                    . "         return array(\n"
+                    . "             ". implode(",\n             ", $kdef)
+                    . "         );" 
+                    . "    }\n"                    
             $body .= $this->_generateKeysFunction($def['keys']);
             $body .= $this->_generateSequenceKeyFunction($def);
             $body .= $this->_generateDefaultsFunction($this->table, $def['table']);
