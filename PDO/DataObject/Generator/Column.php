@@ -170,29 +170,16 @@ class PDO_DataObject_Generator_Column {
             return '';
         }
         
-        if (empty($this->_fkeys)) {
+        if (empty($this->foreign_key)) {
             // echo "skip lm? - fkyes empty";
             return '';
         }
-        if (empty($this->_fkeys[$this->table])) {
-            //echo "skip lm? - no fkeys for {$this->table}";
-            return '';
-        }
             
-        // remove auto-generated code from input to be able to check if the method exists outside of the auto-code
-        $input = preg_replace('/(\n|\r\n)\s*###START_AUTOCODE(\n|\r\n).*(\n|\r\n)\s*###END_AUTOCODE(\n|\r\n)/s', '', $input);
-
-        $setters .= "\n";
-        $defs     = $this->_fkeys[$this->table];
-         
         
-        // $fk[$this->table][$tref[1]] = $tref[2] . ":" . $tref[3];
-
-        // loop through properties and create setter methods
-        foreach ($defs as $k => $info) {
-
-            // build mehtod name
-            $methodName =  is_callable($options['generate_link_methods']) ?
+        $setters .= "\n";
+        // build mehtod name
+        // we do not support complicated versions of this..
+        $methodName =  is_callable($options['generate_link_methods']) ?
                     $options['generate_link_methods']($k) : $k;
 
             if (!strlen(trim($k)) || preg_match("/function[\s]+[&]?$methodName\(/i", $input)) {
