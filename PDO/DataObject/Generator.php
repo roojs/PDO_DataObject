@@ -117,6 +117,7 @@ class PDO_DataObject_Generator extends PDO_DataObject
                 // class for table parsing/ generator
                 // allows for more custom generaton.
                 // if you use a custom class - you must include it before loading..
+            'var_keyword' => 'public',
             
                 
 
