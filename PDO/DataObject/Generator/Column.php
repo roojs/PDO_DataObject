@@ -125,7 +125,7 @@ class PDO_DataObject_Generator_Column {
         $methodName = 'set' . $this->table->getMethodNameFromColumnName($this->name);
 
         if (!strlen(trim($this->name)) || preg_match("/function[\s]+[&]?$methodName\(/i", $user_code)) {
-            continue;
+            return '';
         }
 
         $setters .= "   /**\n";
