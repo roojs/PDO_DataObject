@@ -34,6 +34,18 @@ class PDO_DataObject_Generator_Table {
         return  $class_prefix_ar[0].preg_replace('/[^A-Z0-9]/i','_',ucfirst(trim($this->table)));
     }
     
+    /**
+    * Convert a column name into a method name (usually prefixed by get/set/validateXXXXX)
+    * Designed to be overidden if you really think it's a good idea?
+    *
+    * @access  public
+    * @return  string method name;
+    */
+    function getMethodNameFromColumnName($col)
+    {
+        return ucfirst($col);
+    }
+    
     function readFromDB() // and set's databaseStructure!?
     {
          
