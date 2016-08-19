@@ -4901,8 +4901,7 @@ class PDO_DataObject
     */
     function _is_null($obj_or_ar , $prop) 
     {
-    	global $_DB_DATAOBJECT;
-    	
+     	
         
         $isset = $prop === false ? isset($obj_or_ar) : 
             (is_array($obj_or_ar) ? isset($obj_or_ar[$prop]) : isset($obj_or_ar->$prop));
@@ -4914,7 +4913,7 @@ class PDO_DataObject
         
         
         
-    	$options = $_DB_DATAOBJECT['CONFIG'];
+    	$options = self::$config;
     	
         $null_strings =  $options['disable_null_strings'] === false;
                     
