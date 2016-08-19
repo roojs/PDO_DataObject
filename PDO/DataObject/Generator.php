@@ -133,7 +133,7 @@ class PDO_DataObject_Generator extends PDO_DataObject
             'link_methods'    
                 // (true) will create the wrappers around link()
                 // => function($k) { return $k; } // to munge the column name into a method name.
-                // Only available with mysql / mysqli / postgres  at present.
+                // Only likely to work with with mysql / mysqli / postgres  at present. ?? maybe sqlite?
 
     );
       /**
