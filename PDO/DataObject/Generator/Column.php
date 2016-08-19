@@ -218,11 +218,11 @@ class PDO_DataObject_Generator_Column {
     }
     function toPhpDefault()
     {
-        
+        $type = $this->do_type;
         $value = '';
         switch(true) {
              
-            case (is_null( $ar['Default'])):
+            case (is_null( $this->default_value)):
                 $value  = 'null';
                 break;
             
@@ -232,12 +232,12 @@ class PDO_DataObject_Generator_Column {
                 return '';
                 
             case ($type & PDO_DataObject::BOOL): 
-                $value =  (int)(boolean) $ar['Default']; // postgres... 
+                $value =  (int)(boolean) $this->default_value; // postgres... 
                 break;
                 
             
             case ($type & PDO_DataObject::STR): 
-                $value =  "'" . addslashes($ar['Default']) . "'";
+                $value =  "'" . addslashes($this->default_value) . "'";
                 break;
             
          
