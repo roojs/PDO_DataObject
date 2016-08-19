@@ -119,7 +119,7 @@ class PDO_DataObject_Generator_Table {
         }
         
         
-        if ($config['no_vars']) {
+        if ($config['no_column_vars']) {
             $var = '//'.$var;
         }
         
