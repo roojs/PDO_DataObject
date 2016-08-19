@@ -407,7 +407,7 @@ class PDO_DataObject_Generator extends PDO_DataObject
             $this->debug("EXTRACTING : $table");
             
             // we do not quote table - as these are now internal methods - and it is done by the introspection classes 
-            $this->tables[$table] = new PDO_DataObject_Generator_Table($this, $table);
+            $this->tables[$table] = new $tcls($this, $table);
             
              
 
