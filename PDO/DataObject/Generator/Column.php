@@ -218,38 +218,40 @@ class PDO_DataObject_Generator_Column {
     }
     function toPhpDefault()
     {
-        switch (true) {
-               
-               case (is_null( $ar['Default'])):
-                   $defaults[$ar['Field']]  = 'null';
-                   break;
-               
-               case ($type & PDO_DataObject::DATE): 
-               case ($type & PDO_DataObject::TIME): 
-               case ($type & PDO_DataObject::MYSQLTIMESTAMP): // not supported yet..
-                   break;
-                   
-               case ($type & PDO_DataObject::BOOL): 
-                   $defaults[$ar['Field']] = (int)(boolean) $ar['Default'];
-                   break;
-                   
-               
-               case ($type & PDO_DataObject::STR): 
-                   $defaults[$ar['Field']] =  "'" . addslashes($ar['Default']) . "'";
-                   break;
-               
+        
+        $value = '';
+        switch(true) {
+             
+            case (is_null( $ar['Default'])):
+                $value  = 'null';
+                break;
+            
+            case ($type & PDO_DataObject::DATE): 
+            case ($type & PDO_DataObject::TIME): 
+            case ($type & PDO_DataObject::MYSQLTIMESTAMP): // not supported yet..
+                return '';
                 
-               default:    // hopefully eveything else...  - numbers etc.
-                   if (!strlen($ar['Default'])) {
-                       continue;
-                   }
-                   if (is_numeric($ar['Default'])) {
-                       $defaults[$ar['Field']] =   $ar['Default'];
-                   }
-                   break;
-           
-           }
+            case ($type & PDO_DataObject::BOOL): 
+                $value =  (int)(boolean) $ar['Default']; // postgres... 
+                break;
+                
+            
+            case ($type & PDO_DataObject::STR): 
+                $value =  "'" . addslashes($ar['Default']) . "'";
+                break;
+            
+         
+            default:    // hopefully eveything else...  - numbers etc.
+                if (!strlen($ar['Default'])) {
+                    return '';;
+                }
+                if (is_numeric($ar['Default'])) {
+                    $value =   $ar['Default'];
+                }
+                break;
                     
+        }
+        return "'".addslashes($k)."' => {$v}";
     }
     
     
