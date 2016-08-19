@@ -71,7 +71,7 @@ class PDO_DataObject_Generator_Column {
         $methodName = 'get' . $this->getMethodNameFromColumnName($t->name);
 
         if (!strlen(trim($this->name)) || preg_match("/function[\s]+[&]?$methodName\(/i", $user_code)) {
-            continue;
+            return '';
         }
 
         $getters .= "   /**\n";
@@ -85,8 +85,8 @@ class PDO_DataObject_Generator_Column {
         $getters .= "    */\n";
         // why add public it's pointless...
         //$getters .= (substr(phpversion(),0,1) > 4) ? '    public '
-                                                   : '    ';
-        $getters .= "function $methodName() {\n";
+                                                   
+        $getters .= "    function $methodName() {\n";
         $getters .= "        return \$this->{$this->name};\n";
         $getters .= "    }\n\n";
         
