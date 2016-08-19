@@ -111,11 +111,11 @@ class PDO_DataObject_Generator_Table {
     
        
 
-         // Only include the $_database property if the omit_database_var is unset or false
+        // Only include the $_database property if the omit_database_var is unset or false
         
-        if (isset($options["database_{$this->_database}"]) && empty($GLOBALS['_DB_DATAOBJECT']['CONFIG']['generator_omit_database_var'])) {
+        if ($config['add_database_var']) {
             $p = str_repeat(' ',   max(2, (16 - strlen($this->_database))));
-            $body .= "    {$var} \$_database = '{$this->_database}';  {$p}// database name (used with database_{*} config)\n";
+            $body .= "    {$config['var_keyword']} \$_database = '{$this->_database}';  {$p}// database name (used with databases[{*}] config)\n";
         }
         
         
