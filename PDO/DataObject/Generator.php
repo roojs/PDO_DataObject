@@ -123,7 +123,8 @@ class PDO_DataObject_Generator extends PDO_DataObject
                 //  the default is public 
             'add_database_var' => false,
                 // add the line public $_database = .... (disabled by default)
-                
+            'no_ini' => false,
+            
     );
       /**
      * Set/get the generator configuration...
