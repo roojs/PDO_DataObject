@@ -300,7 +300,8 @@ class PDO_DataObject_Generator extends PDO_DataObject
      */
     function _readTableList()
     {
-        $options = PDO::config();
+        $options = sef::config();
+        
         $pdo = $this->PDO();
         $io  = $this->introspection();
         
@@ -313,18 +314,18 @@ class PDO_DataObject_Generator extends PDO_DataObject
         }
         
         if (empty($this->tables)) {
-            $this->tables = $io->getListOf('tables');
+            $tables = $io->getListOf('tables');
         }
         
  
         // build views as well if asked to.
-        if (!empty($options['generator_build_views'])) {
+        if (!empty($options['build_views'])) {
             $views =$io->getListOf(
-                    is_string($options['generator_build_views']) ?
-                                $options['generator_build_views'] : 'views'
+                    is_string($options['build_views']) ?
+                                $options['build_views'] : 'views'
             );
             
-            $this->tables = array_merge ($this->tables, $views);
+            $tables = array_merge ($tables, $views);
         }
         
 
@@ -332,20 +333,20 @@ class PDO_DataObject_Generator extends PDO_DataObject
         $tmp_table = array();
 
 
-        foreach($this->tables as $table) {
-            if ($options['generator_include_regex'] &&
-                    !preg_match($options['generator_include_regex'],$table)) {
-                $this->debug("SKIPPING (generator_include_regex) : $table", __FUNCTION__,1);
+        foreach($tables as $table) {
+            if ($options['include_regex'] &&
+                    !preg_match($options['include_regex'],$table)) {
+                $this->debug("SKIPPING (include_regex) : $table", __FUNCTION__,1);
                 continue;
             } 
             
-            if ($options['generator_exclude_regex'] &&
-                    preg_match($options['generator_exclude_regex'],$table)) {
-                $this->debug("SKIPPING (generator_exclude_regex) : $table", __FUNCTION__,1);
+            if ($options['exclude_regex'] &&
+                    preg_match($options['exclude_regex'],$table)) {
+                $this->debug("SKIPPING (exclude_regex) : $table", __FUNCTION__,1);
                 continue;
             }
             
-            $strip = $options['generator_strip_schema'];
+            $strip = $options['strip_schema'];
             $strip = (is_string($strip) && strtolower($strip) == 'true') ? true : $strip;
         
             // postgres strip the schema bit from the
@@ -362,6 +363,8 @@ class PDO_DataObject_Generator extends PDO_DataObject
             $this->debug("EXTRACTING : $table");
             
             // we do not quote table - as these are now internal methods - and it is done by the introspection classes 
+            $this->tables[$table] = new PDO_DataObject_Generator_Table($this, $table);
+            
             
             $defs = $io->tableInfo($table);
             
