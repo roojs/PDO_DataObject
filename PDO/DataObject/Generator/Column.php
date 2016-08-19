@@ -42,8 +42,8 @@ class PDO_DataObject_Generator_Column {
         
         $pad = str_repeat(' ',max(2,  (30 - strlen($this->name))));
 
-        $length = empty($t->len) ? '' : '('.$this->len.')';
-        $flags = strlen($t->flags) ? (' '. trim($t->flags)) : '';
+        $length = empty($this->len) ? '' : '('.$this->len.')';
+        $flags = strlen($this->flags) ? (' '. trim($this->flags)) : '';
         $body .="    {$var} \${$t->name}; {$pad}// {$t->type}{$length}{$flags}\n";
         
         // can not do set as PEAR::DB table info doesnt support it.
