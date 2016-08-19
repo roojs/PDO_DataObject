@@ -10,6 +10,7 @@ class PDO_DataObject_Generator_Column {
    var $name = '';
    var $type = '';
    var $len = 0;
+   var $flats = '';
    var $do_type = 0; // eg . PDO_DataObject::INT
    
     function __construct($table,$def_ar)
