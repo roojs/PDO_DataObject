@@ -256,26 +256,8 @@ class PDO_DataObject_Generator extends PDO_DataObject
         
         $this->database( $database );
         $this->PDO();
-    
-         if ($table === false) {
-            // get all 
-            $this->debug("calling Get list of tablesdatabaseStructure called with args for database = {$database}", __FUNCTION__,1);
-            
-            $tables = $this->introspection()->getListOf('tables');
-           
-            if (empty($tables)) {
-                $this->raiseError("Could not introspect database, no table returned from getListOf(tables)");
-            }
-        } else {
-            $tables = array($tables);
-            
-        }
-        
-        foreach($tables as $table) {
-            
-            $this->fillTableSchema($this->database(), $table);
-            
-        }
+        $this->_readTableList();
+         
             // prevent recursion...
             
         $old = PDO_DataObject::config('proxy', false);
