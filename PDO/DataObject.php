@@ -88,10 +88,9 @@ class PDO_DataObject
     
     /* ---------------- ---------------- static  -------------------------------- */
     /**
-     * Configuration - you can access this directly to set up the behavior
-     * Generally not a good idea to modify this after you have initially set it. (as behavour will get confusing)
+     * Configuration - use PDO_DataObject::config() to access this.
      *
-     * @access  public
+     * @access  private
      * @static
      * @var     array
      */
