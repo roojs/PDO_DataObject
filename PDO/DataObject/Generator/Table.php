@@ -123,6 +123,11 @@ class PDO_DataObject_Generator_Table {
             $var = '//'.$var;
         }
         
+        foreach($this->columns as $col) {
+            $body .= $col->toPhp();
+        }
+        
+        
         $defs = $this->_definitions[$this->table];
 
         // show nice information!
