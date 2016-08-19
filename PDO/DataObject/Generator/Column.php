@@ -17,6 +17,7 @@ class PDO_DataObject_Generator_Column {
     function __construct($table,$def_ar)
     {
         $this->table = $table;
+        $this->gen = $table->gen;
         $this->hook = $table->hook;
         $this->name = $def_ar['name'];
         // and set other stuff?
