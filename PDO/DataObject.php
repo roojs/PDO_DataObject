@@ -146,7 +146,16 @@ class PDO_DataObject
                 // similar to DB's portability setting,
                 // currently it only lowercases the tablename when you call tableName(), and
                 // flatten's ini files ..
-        
+                
+            'disable_null_strings' => false,
+                // DataObjects will convert the text value 'null' to NULL when building queries
+                // this may cause problems! Setting to true will turn off this feature.
+                // you can use DB_DataObject_Cast::SQL('NULL'); in where you have to turn this off.
+		 
+                // can also be set to 'full' however - this may delete data quietly if properties are 
+                // not fetched and are set *** Highly recommended not to use this..
+                
+                
         //  NEW ------------   peformance 
              
             'fetch_into' => false,
