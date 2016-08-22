@@ -156,13 +156,16 @@ class PDO_DataObject_Generator_Table {
         }
         
         foreach($this->columns as $col) {
+            if ($col->is_name_invalid) {
+                continue;
+            }
             $body .= $col->toPhpVar($var);
         }
          
         $body .= $this->hook->postVar($defs);
 
         foreach($this->columns as $col) {
-            if ($c->is_name_invalid) {
+            if ($col->is_name_invalid) {
                 continue;
             }
             $body .= $col->toPhpGetter($user_code)
@@ -182,6 +185,9 @@ class PDO_DataObject_Generator_Table {
             $sdef = var_export(array(false,false,false)); // should only be one fo thieses
             $vdef = array();
             foreach($this->columns as $col) {
+                if ($col->is_name_invalid) {
+                    continue;
+                }
                 $tdef[] = $col->toPhpTableFunc();
                 if ($col->is_key) {
                     $kdef[] = $col->toPhpKeyFunc();
