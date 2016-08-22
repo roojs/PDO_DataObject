@@ -89,11 +89,8 @@ class PDO_DataObject_Generator_Table {
             $fn = "{$base}/".preg_replace('/[^A-Z0-9]/i','_',ucfirst($this->table)).".php";
         }
         
-        if (!file_exists(dirname($fn))) {
-            mkdir(dirname($fn), 0644, true); //??? permissions???
-        }
         
-        return $outfilename;
+        return $fn;
         
     }
     
