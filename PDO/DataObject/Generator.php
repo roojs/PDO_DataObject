@@ -642,24 +642,22 @@ class PDO_DataObject_Generator extends PDO_DataObject
     {
         //echo "Generating Class files:        \n";
         $options = &PEAR::getStaticProperty('DB_DataObject','options');
-       
-        $this->_extends = empty($options['extends']) ? $this->_extends : $options['extends'];
-        $this->_extendsFile = !isset($options['extends_location']) ? $this->_extendsFile : $options['extends_location'];
-     
+        
 
-        foreach($this->tables as $this->table) {
-            $this->table        = trim($this->table);
-            $this->classname    = $this->getClassNameFromTableName($this->table);
-            $i = '';
-            $outfilename        = $this->getFileNameFromTableName($this->table);
+        foreach($this->tables as $table) {
+            
+            
+            $cn = $table->toPhpClassName();
+            $fn = $table->toPhpFileName();
             
             $oldcontents = '';
-            if (file_exists($outfilename)) {
+            if (file_exists($fn)) {
                 // file_get_contents???
-                $oldcontents = implode('',file($outfilename));
+                $oldcontents = implode('',file($fn));
             }
             
-            $out = $this->_generateClassTable($oldcontents);
+            $out = $table->toPhp($oldcontents);
+            
             $this->debug( "writing $this->classname\n");
             $tmpname = tempnam(session_save_path(),'DataObject_');
        
