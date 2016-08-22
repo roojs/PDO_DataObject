@@ -374,7 +374,7 @@ class PDO_DataObject_Generator_Column
         $options = $this->gen->config();
         
         // only generate if option is set to true
-        if  ($options['getters']) {
+        if  (!$options['getters'] || $this->is_name_invalid) {
             return '';
         }
         $getters = '';
