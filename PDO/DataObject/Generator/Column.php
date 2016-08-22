@@ -107,7 +107,7 @@ class PDO_DataObject_Generator_Column
         $this->table = $table;
         $this->gen = $table->gen;
         $this->hook = $table->hook;
-        $this->name = $def_ar['name'];
+        $this->name = trim($def_ar['name']);
         $this->type = strtoupper($def_ar['type']);
         $this->flags = $def_ar['flags'];
         // and set other stuff?
@@ -337,7 +337,7 @@ class PDO_DataObject_Generator_Column
     {
           
      
-        if (!strlen(trim($this->name))) {
+        if (!strlen($this->name)) {
             return '';
         }
         if (!preg_match('/^[a-zA-Z_\x7f-\xff][a-zA-Z0-9_\x7f-\xff]*$/', $this->name)) {
