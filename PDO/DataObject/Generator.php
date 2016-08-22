@@ -59,8 +59,7 @@
  * FIXME!
  */
 class_exists('PDO_DataObject') ? '' : require_once 'PDO/DataObject.php';
-//require_once('Config.php');
-
+ 
 /**
  * Generator class
  *
