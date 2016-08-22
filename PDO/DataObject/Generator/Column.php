@@ -99,6 +99,7 @@ class PDO_DataObject_Generator_Column
      * @param Array  definition array --inludes
      *    name
      *    default_value
+     *    default_value_raw (not used at present, but contains methods in pgsql etc..
      *    type
      *    len
      *    fk_table,
