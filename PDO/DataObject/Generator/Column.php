@@ -28,6 +28,7 @@ class PDO_DataObject_Generator_Column {
      *    name
      *    default
      *    type
+     *    len
      * 
      */  
     function __construct($table,$def_ar)
@@ -62,7 +63,7 @@ class PDO_DataObject_Generator_Column {
             case 'MEDIUMINT':
             case 'BIGINT':
                 $type = PDO_DataObject::INT;
-                if ($t->len == 1) {
+                if ($this->len == 1) {
                     $type +=  PDO_DataObject::BOOL;
                 }
                 break;
