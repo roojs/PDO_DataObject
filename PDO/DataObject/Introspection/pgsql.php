@@ -209,7 +209,7 @@ class PDO_DataObject_Introspection_pgsql extends PDO_DataObject_Introspection
                 $r['default_value'] *= 1.0; // hopefully...
             }
             // character '0'::bpchar .... - 
-            
+            // could add more..... 
             
             
             $res[] = $r;
