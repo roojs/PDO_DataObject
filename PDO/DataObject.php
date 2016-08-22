@@ -130,8 +130,13 @@ class PDO_DataObject
                 //    for 'loading' it will try them all in sequence.. - first found wins.
                 //    for the generator it will only use the first..
 
-            
-            
+            'class_location' => '',
+                // directory where the Table classes are..
+                // you can also use the format
+                // /home/me/Projects/myapplication/DataObjects_%s.php
+                // and %s gets replaced with the tablename.
+                // to use multiple search paths use the PATH_SEPERATOR
+
             
             'proxy' => false,
                 // normally we use pre-created 'ini' files, but if you use proxy, it will generate the
