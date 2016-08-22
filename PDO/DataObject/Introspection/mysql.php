@@ -85,7 +85,7 @@ class PDO_DataObject_Introspection_mysql extends PDO_DataObject_Introspection
                         NUMERIC_PRECISION as len,
                         CONCAT(
                             EXTRA,
-                            IF (IS_NULLABLE, '', ' not_null),
+                            IF (IS_NULLABLE, '', ' not_null'),
                             IF (COLUMN_KEY = 'PRI', ' primary', ''),
                             IF (COLUMN_KEY = 'UNI', ' unique', ''),
                             IF (COLUMN_KEY = 'MUL', ' multiple_key', '')
