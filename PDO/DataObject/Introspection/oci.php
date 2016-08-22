@@ -123,9 +123,5 @@ class PDO_DataObject_Introspection_oci extends PDO_DataObject_Introspection
            return $res;
      
     }  
-        
-    function foreignKeys($table)
-    {
-        $this->do->raiseError("Foriegn keys on Oracle is Not supported");
-    }
+    
 }
