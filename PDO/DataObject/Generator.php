@@ -581,20 +581,7 @@ class PDO_DataObject_Generator extends PDO_DataObject
             $file = "{$base}/{$this->_database}.links.ini";
         }
 
-      
-        // dont generate a schema if location is not set
-        // it's created on the fly!
-        $options = PEAR::getStaticProperty('DB_DataObject','options');
-
-        if (!empty($options['schema_location'])) {
-             $file = "{$options['schema_location']}/{$this->_database}.links.ini";
-        } elseif (isset($options["ini_{$this->_database}"])) {
-            $file = preg_replace('/\.ini/','.links.ini',$options["ini_{$this->_database}"]);
-        } else {
-            $this->debug("generateForeignKeys: SKIP - schema_location or ini_{database} was not set");
-            return;
-        }
-         
+       
 
         if (!file_exists(dirname($file))) {
             mkdir(dirname($file),0755, true);
@@ -603,7 +590,7 @@ class PDO_DataObject_Generator extends PDO_DataObject
         $this->debug("Writing ini as {$file}\n");
         
         //touch($file); // not sure why this is needed?
-        $tmpname = tempnam(session_save_path(),'DataObject_');
+        $tmpname = tempnam(session_save_path(),'PDO_DataObject_');
        
         $fh = fopen($tmpname,'w');
         if (!$fh) {
