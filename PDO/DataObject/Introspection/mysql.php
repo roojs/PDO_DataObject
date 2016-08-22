@@ -100,7 +100,7 @@ class PDO_DataObject_Introspection_mysql extends PDO_DataObject_Introspection
                     ON
                         KEY_COLUMN_USAGE.TABLE_SCHEMA = COLUMNS.TABLE_SCHEMA
                         AND
-                        KEY_COLUMN_USAGE.TABLE_NAME = COLUMNS.TABLE_NAME
+                        KEY_COLUMN_USAGE.COLUMN_NAME = COLUMNS.REFERENCED_COLUMN_NAME
                     WHERE
                         COLUMNS.TABLE_NAME = '$string'
                         and
