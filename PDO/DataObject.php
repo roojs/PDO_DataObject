@@ -124,7 +124,7 @@ class PDO_DataObject
                 //              value can be an array of absolute paths, or PATH_SEPERATED
                 
         // class - factory + load derived classes
-            'class_prefix' => 'DataObjects_'
+            'class_prefix' => 'DataObjects_',
                 // Prefix Mapping of table name to PHP Class
                 //    to use multiple prefixes seperate them with PATH_SEPERATOR
                 //    for 'loading' it will try them all in sequence.. - first found wins.
