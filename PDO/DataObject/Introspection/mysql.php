@@ -134,24 +134,6 @@ class PDO_DataObject_Introspection_mysql extends PDO_DataObject_Introspection
         return $res;
     }
         
-     /**
-     * Returns information about a foriegn keys of a table.
-     * Used to generate the links / join .. 
-     * 
-     * @param  string  $table   string containing the name of a table.
-     *                           MUST BE QUOTED if required....
-     *                          
-     
-     * @return array  an associative array (local column) ->  {related_table}:{related_column}
-     * 
-     *
-     */
-    function foreignKeys($table)
-    {
-           
-        
-    }
-     
-    
+ 
     
 }
