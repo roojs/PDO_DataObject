@@ -295,25 +295,11 @@ class PDO_DataObject_Generator_Table {
         return $kv;
     }
     
-    function toIniArray()
-    {
-        $kv = array();
-        foreach($this->columns as $c) {
-            if ($c->is_name_invalid) {
-                continue;
-            }
-            $kv[$c->name] = $c->do_type;
-        }
-        
-        
-        $ret = array();
-        $ret[$this->table] = $kv;
-        $add = $this->toIniKeysArray();
-        if ($add) {
-            $ret[$this->table] = $add;
-        }
-        return $ret;    
-    }
+    /**
+     * this is the ini array that relates to sequence keys
+     *   in the ini file, we just 
+     *
+     */ 
     
     function toIniSequence()
     {
@@ -330,7 +316,7 @@ class PDO_DataObject_Generator_Table {
             }
             
         }
-        return $kv;
+        return empty($native) ? $other : $native;
     }
     
     
