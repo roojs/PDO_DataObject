@@ -162,6 +162,9 @@ class PDO_DataObject_Generator_Table {
         $body .= $this->hook->postVar($defs);
 
         foreach($this->columns as $col) {
+            if ($c->is_name_invalid) {
+                continue;
+            }
             $body .= $col->toPhpGetter($user_code)
                   .  $col->toPhpSetter($user_code)
                   .  $col->toPhpLinkMethod($user_code);
@@ -275,7 +278,14 @@ class PDO_DataObject_Generator_Table {
     
     function toIni()
     {
-        
+        $ret = "[{This->table}]\n";
+        foreach($this->columns as $c) {
+            if ($c->is_name_invalid) {
+                continue;
+            }
+            echo "$c->name "
+            
+        }
        
     }
     /**
