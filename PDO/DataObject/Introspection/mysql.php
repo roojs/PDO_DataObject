@@ -71,7 +71,7 @@ class PDO_DataObject_Introspection_mysql extends PDO_DataObject_Introspection
         // FIXME = use META data....
         // 
         
-        
+        $tn = $this->do->escape($string);
         // FK first...
         
          $records =  $this->do
@@ -105,7 +105,7 @@ class PDO_DataObject_Introspection_mysql extends PDO_DataObject_Introspection
                         AND
                         KEY_COLUMN_USAGE.TABLE_SCHEMA = COLUMNS.TABLE_SCHEMA 
                     WHERE
-                        COLUMNS.TABLE_NAME = '{$this-do->escape($string)}'
+                        COLUMNS.TABLE_NAME = '$tn'
                         and
                         COLUMNS.TABLE_SCHEMA = DATABASE()
 
