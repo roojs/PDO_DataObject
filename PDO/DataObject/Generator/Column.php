@@ -48,17 +48,42 @@ class PDO_DataObject_Generator_Column
      */
     var $type = '';  // upper case Type
     /**
-     * @var int |string length of the argument  (might be 4,2 in case of decimal)
+     * @var int|string length of the argument  (might be 4,2 in case of decimal)
      */
-    var $len = 0;
-    var $flats = '';
-    var $do_type = 0; // eg . PDO_DataObject::INT
-    var $foreign_key = ''; /// XXX:YYY  XXX=table, YYY=column that it points to.
+    var $length = 0;
+    /**
+     * @var int  the PDO_DataObject type ,eg . PDO_DataObject::INT
+     */
+    var $do_type = 0; 
+    
+    var $flats = ''; //?/
+    
+    /**
+     * @var string   colon seperated reference to foriegn table/column that it points to.
+     *              eg. XXX:YYY  XXX=table, YYY=column 
+     */
+    var $foreign_key = '';
+    /**
+     * @var bool  is it a primary key ()
+     */
     var $is_key;
+    /**
+     * @var mixed the default as defined  in the database (used to build the defaults() method )
+     */
     var $default_value;
     
+    /**
+     * @var bool  is the column a sequence (eg auto_increment or nextval())
+     */
     var $is_sequence;
+    /**
+     * @var string the name of the sequence (relivant for nextval etc..)
+     */
     var $sequence_name;
+    /**
+     * @var bool is the sequence native? - Need to check on this - basically postgres nextval and mysql auto increment are regarded
+     *         as native - not sure if this was supposed to be the old 'emuluated sequences' that used to be used?
+     */
     var $is_sequence_native;
 
     /**
