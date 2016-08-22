@@ -186,6 +186,7 @@ class PDO_DataObject_Introspection_pgsql extends PDO_DataObject_Introspection
             
             $r['name'] =  $case_func($r['name']);
             $r['table'] =  $case_func($table);
+            
             $r['default_value']  = null;
             switch($r['default_value_raw']) {
                 case '':
@@ -203,6 +204,7 @@ class PDO_DataObject_Introspection_pgsql extends PDO_DataObject_Introspection
                     // we send 'default_value_raw' to the server...
                     break;
             }
+            
             if (is_numeric($r['default_raw_value'])) {
                 $r['default_value'] *= 1.0; // hopefully...
             }
