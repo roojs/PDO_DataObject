@@ -545,13 +545,15 @@ class PDO_DataObject_Generator extends PDO_DataObject
     function generateForeignKeys() 
     {
         
-        if (!self::$config['generate_links'])) {
+        if (!self::$config['generate_links']) {
             return false;
         }
-        $__DB = &$GLOBALS['_DB_DATAOBJECT']['CONNECTIONS'][$this->_database_dsn_md5];
-        if (!in_array($__DB->phptype, array('mysql', 'mysqli', 'pgsql'))) {
-            echo "WARNING: cant handle non-mysql and pgsql introspection for defaults.";
-            return; // cant handle non-mysql introspection for defaults.
+        $type  = $this->PDO()->getAttribute(PDO::ATTR_DRIVER_NAME);
+
+        
+        if (!in_array($type  , array('mysql', 'mysqli', 'pgsql'))) {
+            return $this->raiseError("config[generate_links] only works currently with pgsql and mysql");
+            
         }
         $this->debug("generateForeignKeys: Start");
         
