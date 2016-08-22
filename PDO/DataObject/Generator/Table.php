@@ -81,6 +81,7 @@ class PDO_DataObject_Generator_Table {
                 PDO_DataObject::ERROR_INVALIDCONFIG, PDO_DataObject::ERROR_DIE
             );
         }
+        $base = $base_ar[0];
         
         if (strpos($base,'%s') !== false) {
             $base = dirname($base);
