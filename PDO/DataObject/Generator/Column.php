@@ -117,6 +117,7 @@ class PDO_DataObject_Generator_Column
         // and set other stuff?
         // put all the type parsing here!?
         $this->default_value = $def_ar['default_value'];
+        $this->default_raw_value = $def_ar['default_value_raw'];
         $this->length = $def_ar['len'];
         if (!empty($def_ar['fk_table'])) {
             $this->foreign_key = $def_ar['fk_table'] .':' . $def_ar['fk_column'];
@@ -529,7 +530,7 @@ class PDO_DataObject_Generator_Column
             case ($type & PDO_DataObject::MYSQLTIMESTAMP): // not supported yet..
                 return '';
                 
-            case ($type & PDO_DataObject::BOOL): 
+            case ($type & PDO_DataObject::BOOL &&  is_bool($this->default_value)): 
                 $value =  (int)(boolean) $this->default_value; // postgres... 
                 break;
                 
