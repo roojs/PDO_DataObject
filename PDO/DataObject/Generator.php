@@ -437,7 +437,7 @@ class PDO_DataObject_Generator extends PDO_DataObject
     {
         $tcls = self::$config['table_gen_class'];
         
-        if ($tcls== 'PDO_DataObject_Generator_Table') {
+        if ($tcls == 'PDO_DataObject_Generator_Table') {
             class_exists($tcls) ? '' :
                 require_once 'PDO/DataObject/Generator/Table.php';
         }
