@@ -118,8 +118,8 @@ class PDO_DataObject_Generator_Column
         // put all the type parsing here!?
         $this->default_value = $def_ar['default_value'];
         $this->length = $def_ar['len'];
-        if (!empty($def_ar['fk_table')) {
-            $this->foreign_key = $def_ar['fk_table') .':' . $def_ar['fk_column')
+        if (!empty($def_ar['fk_table'])) {
+            $this->foreign_key = $def_ar['fk_table'] .':' . $def_ar['fk_column'];
         }
         
         
