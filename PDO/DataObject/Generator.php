@@ -492,7 +492,7 @@ class PDO_DataObject_Generator extends PDO_DataObject
         }
         $this->debug("Writing ini as {$file}\n");
         //touch($file);
-        $tmpname = tempnam(session_save_path(),'DataObject_');
+        $tmpname = tempnam(session_save_path(),'PDO_DataObject_');
         //print_r($this->_newConfig);
         $fh = fopen($tmpname,'w');
         if (!$fh) {
