@@ -277,7 +277,7 @@ class PDO_DataObject_Generator_Column
                  "** This line will not be writen to the file - you will have    **\n".
                  "** define the keys()/method manually.                          **\n".
                  "*****************************************************************\n";
-            $write_ini = false;
+            $this->is_name_invalid = true
         } else {
             $this->_newConfig .= "{$t->name} = $type\n";
         }
