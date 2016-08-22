@@ -128,8 +128,8 @@ class PDO_DataObject_Generator_Table {
         $defs = $this->gen->introspection()->tableInfo($this->table);
          
         
-        $this->debug("getting def for {$pdo->database_nickname}/{$this->table}", __FUNCTION__,3);
-        $this->debug(print_r($defs,true),'defs',3);
+        $this->gen->debug("getting def for {$pdo->database_nickname}/{$this->table}", __FUNCTION__,3);
+        $this->gen->debug(print_r($defs,true),'defs',3);
         
         // cast all definitions to objects - as we deal with that better.
         
