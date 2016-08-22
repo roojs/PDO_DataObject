@@ -314,6 +314,7 @@ class PDO_DataObject_Generator_Column
             $this->is_sequence_native = false;
             $this->key_type = 'K';
             
+            // since unique keys 'might' be unique in combo with others??
             if (!preg_match("/(primary)/i",$this->flags)) {
                 $this->key_type = 'U';
             }
