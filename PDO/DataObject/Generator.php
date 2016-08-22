@@ -472,7 +472,7 @@ class PDO_DataObject_Generator extends PDO_DataObject
 
         // where to generate the schema...
         
-        $base =  $options['schema_location'];
+        $base =  explode(PATH_SEPARATOR, $options['schema_location'])[0]; // get the first path...
         if (is_array($base)) {
             if (!isset($base[$this->_database])) {
                 $this->raiseError("Could not find schema location from config[schema_location] - array but no matching database",
