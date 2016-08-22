@@ -108,6 +108,13 @@ class PDO_DataObject_Generator_Table {
         return ucfirst($col);
     }
     
+    /**
+     *
+     * read the database schema from the database
+     *
+     *
+     */
+    
     function readFromDB() // and set's databaseStructure!?
     {
          
