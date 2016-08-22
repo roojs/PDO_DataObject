@@ -37,6 +37,7 @@ class PDO_DataObject_Generator_Column {
         $this->gen = $table->gen;
         $this->hook = $table->hook;
         $this->name = $def_ar['name'];
+        $this->type = strtoupper($def_ar['type']);
         // and set other stuff?
         // put all the type parsing here!?
         $this->default_value = $def_ar['default'];
@@ -49,7 +50,7 @@ class PDO_DataObject_Generator_Column {
         
            
             
-        switch (strtoupper($def_ar['type'])) {
+        switch (strtoupper(tthis-)) {
 
             case 'INT':
             case 'INT2':    // postgres
