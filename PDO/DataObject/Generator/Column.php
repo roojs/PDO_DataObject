@@ -76,6 +76,11 @@ class PDO_DataObject_Generator_Column
     var $default_value;
     
     /**
+     * @var mixed the default as defined  in the database (used to build the defaults() method )
+     */
+    var $default_value_raw;
+    
+    /**
      * @var bool  is the column a sequence (eg auto_increment or nextval())
      */
     var $is_sequence = false;
