@@ -685,31 +685,7 @@ class PDO_DataObject_Generator extends PDO_DataObject
         }
         //echo $out;
     }
-
-    /**
-     * class being extended (can be overridden by [DB_DataObject] extends=xxxx
-     *
-     * @var    string
-     * @access private
-     */
-    var $_extends = 'DB_DataObject';
-
-    /**
-     * line to use for require('DB/DataObject.php');
-     *
-     * @var    string
-     * @access private
-     */
-    var $_extendsFile = "DB/DataObject.php";
-
-    /**
-     * class being generated
-     *
-     * @var    string
-     * @access private
-     */
-    var $_className;
-
+  
     /**
      * The table class geneation part - single file.
      *
