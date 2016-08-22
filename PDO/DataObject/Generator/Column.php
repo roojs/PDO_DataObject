@@ -245,7 +245,7 @@ class PDO_DataObject_Generator_Column
                 break;
         }
         
-        if (!preg_match('/^[a-zA-Z_\x7f-\xff][a-zA-Z0-9_\x7f-\xff]*$/', $t->name)) {
+        if (!preg_match('/^[a-zA-Z_\x7f-\xff][a-zA-Z0-9_\x7f-\xff]*$/', $this->name)) {
             echo "*****************************************************************\n".
                  "**               WARNING COLUMN NAME UNUSABLE                  **\n".
                  "** Found column '{$this->name}', of type  '{$this->type}'            **\n".
