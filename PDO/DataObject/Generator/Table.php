@@ -405,9 +405,18 @@ class PDO_DataObject_Generator_Table {
     }
     
     
-    function toLinks()
+    function toLinksIni()
     {
-        
+        $ret = array():
+        foreach($this->cols as $c) {
+            if (strlen($c->foreign_key)) {
+                $ret[] = $c->name . ' = ' . $c->foreign_key;
+            }
+        }
+        if (!strlen($ret)) {
+            return '';
+        }
+        return "[{$this->tablename]\n" . implode("\n", $ret)."\n";
     }
     
     
