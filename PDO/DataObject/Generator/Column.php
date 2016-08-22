@@ -129,7 +129,7 @@ class PDO_DataObject_Generator_Column
             case 'MEDIUMINT':
             case 'BIGINT':
                 $type = PDO_DataObject::INT;
-                if ($this->len == 1) {
+                if ($this->length == 1) {
                     $type +=  PDO_DataObject::BOOL;
                 }
                 break;
