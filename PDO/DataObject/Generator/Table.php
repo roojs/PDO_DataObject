@@ -293,7 +293,7 @@ class PDO_DataObject_Generator_Table {
             
             
         }
-        $ar = $this->toIniSequence();
+        $ar = $this->toIniSequenceArray();
         if (!$ar) {
             return $ret;
         }
@@ -327,7 +327,9 @@ class PDO_DataObject_Generator_Table {
      */
     function toDatabaseStructureArray()
     {
-        
+        $ret = array();
+        $ret[$table] = $this->toIniKeysArray();
+        $seq = $this->toIniSequenceArray();
     }
     
     /**
@@ -336,7 +338,7 @@ class PDO_DataObject_Generator_Table {
      *   it can also have 'U' = unquie and 'K' = just a key...
      */ 
     
-    function toIniSequence()
+    function toIniSequenceArray()
     {
         $native = array();
         $other = array();
