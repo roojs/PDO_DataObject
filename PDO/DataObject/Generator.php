@@ -638,7 +638,7 @@ class PDO_DataObject_Generator extends PDO_DataObject
      * building the class files
      * for each of the tables output a file!
      */
-    function generateClasses()
+    function generatePhp()
     {
         //echo "Generating Class files:        \n";
         $options = &PEAR::getStaticProperty('DB_DataObject','options');
