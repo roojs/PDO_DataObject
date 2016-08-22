@@ -264,7 +264,7 @@ class PDO_DataObject_Generator_Column
             return;
         }
         
-        if (preg_match('/not[ _]null/i',$def['flags')) {
+        if (preg_match('/not[ _]null/i',$this->flags)) {
             $type += PDO_DataObject::NOTNULL;
         }
        
