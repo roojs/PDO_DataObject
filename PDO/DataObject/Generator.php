@@ -503,9 +503,7 @@ class PDO_DataObject_Generator extends PDO_DataObject
             $file = "{$base}/{$this->_database}.ini";
         }
         
-        if (!file_exists(dirname($file))) {
-            mkdir(dirname($file), 0755, true);
-        }
+       
         $this->debug("Writing ini as {$file}\n");
         //touch($file);
         $tmpname = tempnam(session_save_path(),'PDO_DataObject_');
@@ -521,7 +519,9 @@ class PDO_DataObject_Generator extends PDO_DataObject
         fclose($fh);
         $perms = file_exists($file) ? fileperms($file) : 0755;
         // windows can fail doing this. - not a perfect solution but otherwise it's getting really kludgy..
-        
+         if (!file_exists(dirname($file))) {
+            mkdir(dirname($file), $perms, true);
+        }
         if (!@rename($tmpname, $file)) { 
             unlink($file); 
             rename($tmpname, $file);
