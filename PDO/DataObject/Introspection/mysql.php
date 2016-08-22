@@ -72,12 +72,6 @@ class PDO_DataObject_Introspection_mysql extends PDO_DataObject_Introspection
         // 
         
         
-        // always quote. 
-        $string = $this->do->escape($string);
-        
-        
-        
-        
         // FK first...
         
          $records =  $this->do
@@ -119,22 +113,7 @@ class PDO_DataObject_Introspection_mysql extends PDO_DataObject_Introspection
                     
                     ")
             ->fetchAll(false,false,'toArray');
-        
-        
-        if (PDO_DataObject::config()['portability'] & PDO_DataObject::PORTABILITY_LOWERCASE) {
-            $case_func = 'strtolower';
-        } else {
-            $case_func = 'strval';
-        }
-        
-        
-        
-        
-        
-        $records =  $this->do
-            ->query("DESCRIBE $string")
-            ->fetchAll(false,false,'toArray');
-        
+   
         
         if (PDO_DataObject::config()['portability'] & PDO_DataObject::PORTABILITY_LOWERCASE) {
             $case_func = 'strtolower';
