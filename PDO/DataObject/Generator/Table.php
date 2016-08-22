@@ -125,7 +125,7 @@ class PDO_DataObject_Generator_Table {
      
         // quote table not needed as the intropection classes handle it..
         
-        $defs = $this->introspection()->tableInfo($this->table);
+        $defs = $this->gen->introspection()->tableInfo($this->table);
          
         
         $this->debug("getting def for {$pdo->database_nickname}/{$this->table}", __FUNCTION__,3);
