@@ -72,7 +72,7 @@ class PDO_DataObject_Generator_Column
     /**
      * @var bool  is it a primary key ()
      */
-    var $is_key;
+    var $is_key = false;
     /**
      * @var mixed the default as defined  in the database (used to build the defaults() method )
      */
