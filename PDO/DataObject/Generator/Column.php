@@ -115,7 +115,7 @@ class PDO_DataObject_Generator_Column
         
            
             
-        switch (strtoupper(tthis-)) {
+        switch ($this->type) {
 
             case 'INT':
             case 'INT2':    // postgres
