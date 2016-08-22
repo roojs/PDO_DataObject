@@ -581,11 +581,7 @@ class PDO_DataObject_Generator extends PDO_DataObject
             $file = "{$base}/{$this->_database}.links.ini";
         }
 
-        $perms = file_exists($file) ? fileperms($file) : 0755;
-
-        if (!file_exists(dirname($file))) {
-            mkdir(dirname($file),$perms, true);
-        }
+      
 
         $this->debug("Writing ini as {$file}\n");
         
@@ -601,6 +597,12 @@ class PDO_DataObject_Generator extends PDO_DataObject
         }
         fwrite($fh,$links_ini);
         fclose($fh);
+        
+        $perms = file_exists($file) ? fileperms($file) : 0755;
+
+        if (!file_exists(dirname($file))) {
+            mkdir(dirname($file),$perms, true);
+        }
         
         // windows can fail doing this. - not a perfect solution but otherwise it's getting really kludgy..
         if (!@rename($tmpname, $file)) { 
