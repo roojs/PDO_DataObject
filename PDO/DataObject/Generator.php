@@ -671,7 +671,7 @@ class PDO_DataObject_Generator extends PDO_DataObject
             fputs($fh,$out);
             fclose($fh);
             $perms = file_exists($fn) ? fileperms($fn) : 0755;
-            if (!file_exists(dirname($fn)) {
+            if (!file_exists(dirname($fn))) {
                 mkdir(dirname($fn),$perms, true);
             }
             
