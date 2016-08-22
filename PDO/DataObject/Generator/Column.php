@@ -6,21 +6,30 @@
 
 class PDO_DataObject_Generator_Column {
    
-   var $table; //
-   var $gen; //
-   var $name = '';
-   var $type = '';
-   var $len = 0;
-   var $flats = '';
-   var $do_type = 0; // eg . PDO_DataObject::INT
-   var $foreign_key = ''; /// XXX:YYY  XXX=table, YYY=column that it points to.
-   var $is_key;
-   var $default_value;
-   
-   var $is_sequence;
-   var $sequence_name;
-   var $is_sequence_native;
-   
+    var $table; //
+    var $gen; //
+    var $name = '';
+    var $type = '';
+    var $len = 0;
+    var $flats = '';
+    var $do_type = 0; // eg . PDO_DataObject::INT
+    var $foreign_key = ''; /// XXX:YYY  XXX=table, YYY=column that it points to.
+    var $is_key;
+    var $default_value;
+    
+    var $is_sequence;
+    var $sequence_name;
+    var $is_sequence_native;
+
+    /**
+     * 
+     * @param PDO_DataObject_Generator_Table $table - table that this column belongs to..
+     * @param Array  definition array --inludes
+     *    name
+     *    default
+     *    type
+     * 
+     */  
     function __construct($table,$def_ar)
     {
         $this->table = $table;
@@ -29,7 +38,7 @@ class PDO_DataObject_Generator_Column {
         $this->name = $def_ar['name'];
         // and set other stuff?
         // put all the type parsing here!?
-        $this->default_value = $def_ar['Default'];
+        $this->default_value = $def_ar['default'];
         
         
         
@@ -39,7 +48,7 @@ class PDO_DataObject_Generator_Column {
         
            
             
-        switch (strtoupper($$def_ar]'type'])) {
+        switch (strtoupper($def_ar['type'])) {
 
             case 'INT':
             case 'INT2':    // postgres
