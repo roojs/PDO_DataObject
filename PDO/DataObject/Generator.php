@@ -455,7 +455,8 @@ class PDO_DataObject_Generator extends PDO_DataObject
         
         $out = '';
         foreach($this->tables as $table) {
-            $out .= $table->to
+            $out .= $table->toIniString();
+        }
 
         //$this->_newConfig = new Config('IniFile');
         $this->_newConfig = '';
