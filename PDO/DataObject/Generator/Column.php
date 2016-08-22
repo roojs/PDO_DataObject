@@ -234,14 +234,14 @@ class PDO_DataObject_Generator_Column
                 break;
                 
             default:     
-                echo "*****************************************************************\n".
+                $this->gen->raiseError(
+                    "*****************************************************************\n".
                      "**               WARNING UNKNOWN TYPE                          **\n".
                      "** Found column '{$this->name}', of type  '{$this->type}'            **\n".
                      "** Please submit a bug, describe what type you expect this     **\n".
                      "** column  to be                                               **\n".
-                   
-                     "*****************************************************************\n";
-                $write_ini = false;
+                     "*****************************************************************\n"
+                ,PDO_DataObject::ERROR_INVALIDCONFIG, PDO_DataObject::ERROR_DIE);
                 break;
         }
         
