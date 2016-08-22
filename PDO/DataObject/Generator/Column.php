@@ -81,16 +81,16 @@ class PDO_DataObject_Generator_Column
     /**
      * @var bool  is the column a sequence (eg auto_increment or nextval())
      */
-    var $is_sequence;
+    var $is_sequence = false;
     /**
      * @var string the name of the sequence (relivant for nextval etc..)
      */
-    var $sequence_name;
+    var $sequence_name = '';
     /**
      * @var bool is the sequence native? - Need to check on this - basically postgres nextval and mysql auto increment are regarded
      *         as native - not sure if this was supposed to be the old 'emuluated sequences' that used to be used?
      */
-    var $is_sequence_native;
+    var $is_sequence_native = false;
 
     /**
      * 
@@ -278,11 +278,8 @@ class PDO_DataObject_Generator_Column
                  "** define the keys()/method manually.                          **\n".
                  "*****************************************************************\n";
             $this->is_name_invalid = true;
-        } else {
-            $this->_newConfig .= "{$t->name} = $type\n";
-        }
+        }  
         
-        $ret['table'][$t->name] = $type;
         // i've no idea if this will work well on other databases?
         // only use primary key or nextval(), cause the setFrom blocks you setting all key items...
         // if no keys exist fall back to using unique
