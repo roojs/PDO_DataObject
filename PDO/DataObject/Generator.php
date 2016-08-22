@@ -719,75 +719,7 @@ class PDO_DataObject_Generator extends PDO_DataObject
      
     
      
-    /**
-    * Generate link setter/getter methods for class definition
-    *
-    * @param    string  Existing class contents
-    * @return   string
-    * @access   public
-    */
-    function _generateLinkMethods($input) 
-    {
-
-        $options = &PEAR::getStaticProperty('DB_DataObject','options');
-        $setters = '';
-
-        // only generate if option is set to true
-        
-        // generate_link_methods true::
-        
-        
-        if  (empty($options['generate_link_methods'])) {
-            //echo "skip lm? - not set";
-            return '';
-        }
-        
-        if (empty($this->_fkeys)) {
-            // echo "skip lm? - fkyes empty";
-            return '';
-        }
-        if (empty($this->_fkeys[$this->table])) {
-            //echo "skip lm? - no fkeys for {$this->table}";
-            return '';
-        }
-            
-        // remove auto-generated code from input to be able to check if the method exists outside of the auto-code
-        $input = preg_replace('/(\n|\r\n)\s*###START_AUTOCODE(\n|\r\n).*(\n|\r\n)\s*###END_AUTOCODE(\n|\r\n)/s', '', $input);
-
-        $setters .= "\n";
-        $defs     = $this->_fkeys[$this->table];
-         
-        
-        // $fk[$this->table][$tref[1]] = $tref[2] . ":" . $tref[3];
-
-        // loop through properties and create setter methods
-        foreach ($defs as $k => $info) {
-
-            // build mehtod name
-            $methodName =  is_callable($options['generate_link_methods']) ?
-                    $options['generate_link_methods']($k) : $k;
-
-            if (!strlen(trim($k)) || preg_match("/function[\s]+[&]?$methodName\(/i", $input)) {
-                continue;
-            }
-
-            $setters .= "   /**\n";
-            $setters .= "    * Getter / Setter for \${$k}\n";
-            $setters .= "    *\n";
-            $setters .= "    * @param    mixed   (optional) value to assign\n";
-            $setters .= "    * @access   public\n";
-            
-            $setters .= "    */\n";
-            $setters .= (substr(phpversion(),0,1) > 4) ? '    public '
-                                                       : '    ';
-            $setters .= "function $methodName() {\n";
-            $setters .= "        return \$this->link('$k', func_get_args());\n";
-            $setters .= "    }\n\n";
-        }
-         
-        return $setters;
-    }
- 
+   
     /**
     * Generate table Function - used when generator_no_ini is set.
     *
