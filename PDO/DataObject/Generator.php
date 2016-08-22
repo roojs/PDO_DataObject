@@ -134,7 +134,9 @@ class PDO_DataObject_Generator extends PDO_DataObject
                 // (true|callable) will create the wrappers around link()
                 // => function($k) { return $k; } // to munge the column name into a method name.
                 // Only likely to work with with mysql / mysqli / postgres  at present. ?? maybe sqlite?
-
+            'secondary_key_match' => 'primary|unique',
+                // if a column is auto-increment or nextval() - then it's determined to be a sequence key
+                // if it's only primary or unique - then it's assumed to be an index, but using emulated sequences keys.
     );
       /**
      * Set/get the generator configuration...
