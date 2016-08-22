@@ -297,7 +297,7 @@ class PDO_DataObject_Generator_Table {
     
     /**
      * this is the ini array that relates to sequence keys
-     *   in the ini file, we just 
+     *   in the ini file, we output the key column, and the type of sequence (N|nextval_sequence_name)
      *
      */ 
     
