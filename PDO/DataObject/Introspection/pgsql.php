@@ -138,7 +138,7 @@ class PDO_DataObject_Introspection_pgsql extends PDO_DataObject_Introspection
                             CASE WHEN
                                 key_column_usage.position_in_unique_constraint is null AND column_default LIKE '%nextval%'
                             THEN
-                                ' primary' ELSE '' END,
+                                ' primary ' || columns.column_default ELSE '' END,
                             CASE WHEN
                                 key_column_usage.position_in_unique_constraint is null AND column_default NOT LIKE '%nextval%'
                             THEN
