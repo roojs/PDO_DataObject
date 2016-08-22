@@ -428,14 +428,14 @@ class PDO_DataObject_Generator extends PDO_DataObject
     
     
     /**
-     * Create an instance of the table class (which can be specified in config[table_class])
+     * Create an instance of the table class (which can be specified in config[table_gen_class])
      *
      * 
      *
      */
     function newTable($name)
     {
-        $tcls = self::$config['table_class'];
+        $tcls = self::$config['table_gen_class'];
         
         if ($tcls== 'PDO_DataObject_Generator_Table') {
             class_exists($tcls) ? '' :
