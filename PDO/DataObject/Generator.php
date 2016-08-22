@@ -557,6 +557,13 @@ class PDO_DataObject_Generator extends PDO_DataObject
         }
         $this->debug("generateForeignKeys: Start");
         
+        $out = '';
+        foreach($this->tables as $tn=>$table) {
+            $out .= $table->toLinksIni();
+            
+            
+        }
+        
         $fk = $this->_fkeys;
         $links_ini = "";
 
