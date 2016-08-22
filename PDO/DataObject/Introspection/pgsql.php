@@ -233,48 +233,6 @@ class PDO_DataObject_Introspection_pgsql extends PDO_DataObject_Introspection
         
         return $res;
     }
-    /**
-     * Returns information about a foriegn keys of a table.
-     * Used to generate the links / join .. 
-     * 
-     * @param  string  $table   string containing the name of a table.
-     *                           MUST BE QUOTED if required....
-     *                          
-     
-     * @return array  an associative array (local column) ->  {related_table}:{related_column}
-     * 
-     *
-     */
-    function foreignKeys($table)
-    {
-           
-        $fk = array();
-        $res = $this->do->query("SELECT
-                    pg_catalog.pg_get_constraintdef(r.oid, true) AS condef
-                FROM pg_catalog.pg_constraint r,
-                     pg_catalog.pg_class c
-                WHERE c.oid=r.conrelid
-                      AND r.contype = 'f'
-                      AND c.relname = '{$this->do->escape($table)}'")
-                ->fetchAll(false,false,'toArray');
-        
-        
-        $treffer = array();
-        // this may not work correctly -   see this: http://pear.php.net/bugs/bug.php?id=17049
-        
-        
-        preg_match_all(
-            "/FOREIGN KEY \((\w*)\) REFERENCES (\w*)\((\w*)\)/i",
-            $r[0]['condef'],
-            $treffer,
-            PREG_SET_ORDER);
-        if (!count($treffer)) {
-            return $fk;
-        }
-        foreach($treffer as $m) {
-            $fk[  $m[1]  ]  = $m[2] . ":" . $m[3];
-        }
-        return $fk;
-    }
+  
     
 }
