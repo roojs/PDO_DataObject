@@ -673,12 +673,12 @@ class PDO_DataObject_Generator extends PDO_DataObject
             $perms = file_exists($fn) ? fileperms($fn) : 0755;
             
             // windows can fail doing this. - not a perfect solution but otherwise it's getting really kludgy..
-            if (!@rename($tmpname, $outfilename)) {
-                unlink($outfilename); 
-                rename($tmpname, $outfilename);
+            if (!@rename($tmpname, $fn)) {
+                unlink($fn); 
+                rename($tmpname, $fn);
             }
             
-            chmod($outfilename, $perms);
+            chmod($fn, $perms);
         }
         //echo $out;
     }
