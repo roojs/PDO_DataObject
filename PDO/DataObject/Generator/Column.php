@@ -98,9 +98,9 @@ class PDO_DataObject_Generator_Column
      * @param PDO_DataObject_Generator_Table $table - table that this column belongs to..
      * @param Array  definition array --inludes
      *    name
-     *    default
+     *    default_value
      *    type
-     *    len
+     *    length
      *    autoincrement ???<< where from??
      * 
      */  
@@ -114,7 +114,7 @@ class PDO_DataObject_Generator_Column
         $this->flags = $def_ar['flags'];
         // and set other stuff?
         // put all the type parsing here!?
-        $this->default_value = $def_ar['default'];
+        $this->default_value = $def_ar['default_value'];
         $this->length = $def_ar['len'];
         
         
