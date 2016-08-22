@@ -90,7 +90,7 @@ class PDO_DataObject_Introspection_mysql extends PDO_DataObject_Introspection
                         DATA_TYPE as type,
                         NUMERIC_PRECISION as len,
                         EXTRA as flags,
-                        COALESCE(REFERENCED_TABLE_SCHEMA,'') as fk_table,
+                        COALESCE(REFERENCED_TABLE_NAME,'') as fk_table,
                         COALESCE(REFERENCED_COLUMN_NAME,'') as fk_column
                         
                     FROM
@@ -100,7 +100,7 @@ class PDO_DataObject_Introspection_mysql extends PDO_DataObject_Introspection
                     ON
                         KEY_COLUMN_USAGE.TABLE_SCHEMA = COLUMNS.TABLE_SCHEMA
                         AND
-                        KEY_COLUMN_USAGE.TABLE_TABLE = COLUMNS.TABLE_TABLE
+                        KEY_COLUMN_USAGE.TABLE_NAME = COLUMNS.TABLE_NAME
                     WHERE
                         COLUMNS.TABLE_NAME = '$string'
                         and
