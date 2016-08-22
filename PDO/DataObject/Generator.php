@@ -720,19 +720,13 @@ class PDO_DataObject_Generator extends PDO_DataObject
         
         $this->_database = $database;
         // might produce error??
-        $this->tables[$table] = $this->newTable($table);
+        if (!isset($this->tables[$table])) {
+            $this->tables[$table] = $this->newTable($table);
+        }
+        $tbl  = $this->newTable($table);
+        
        
-        
-        
-        $options = &PEAR::getStaticProperty('DB_DataObject','options');
-        $class_prefix  = empty($options['class_prefix']) ? '' : $options['class_prefix'];
-        
-        $this->_extends = empty($options['extends']) ? $this->_extends : $options['extends'];
-        $this->_extendsFile = !isset($options['extends_location']) ? $this->_extendsFile : $options['extends_location'];
- 
-        $classname = $this->classname = $this->getClassNameFromTableName($this->table);
-        
-        $out = $this->_generateClassTable();
+        $out = $tbl->toPhp();
         //echo $out;
         eval('?>'.$out);
         return new $classname;
