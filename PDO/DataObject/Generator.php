@@ -597,7 +597,7 @@ class PDO_DataObject_Generator extends PDO_DataObject
             return $this->raiseError(
                 "Failed to create temporary file: $tmpname\n".
                 "make sure session.save_path is set and is writable\n"
-                ,null, PEAR_ERROR_DIE);
+                ,PDO_DataObject::ERROR_INVALIDCONFIG, PDO_DataObject::ERROR_DIE);
         }
         fwrite($fh,$links_ini);
         fclose($fh);
