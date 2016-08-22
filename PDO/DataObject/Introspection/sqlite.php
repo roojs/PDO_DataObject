@@ -129,7 +129,7 @@ class PDO_DataObject_Introspection_sqlite extends PDO_DataObject_Introspection
             $flags = trim($flags);
 
             $res[] = array(
-                'table' => $case_func($table),
+                'tablename' => $case_func($table),
                 'name'  => $case_func($r['name']),
                 'type'  => $type,
                 'len'   => $len,
