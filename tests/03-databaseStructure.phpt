@@ -66,7 +66,7 @@ print_r($obj->databaseStructure('mysql_anotherdb'));
 
 
 // -- normally disabled - used to geenrate the test data...
-/*
+ 
 echo "\n\nREAL DATABASE CONNECT - NOT IN FINAL TEST\n";
 
 (new PDO_DataObject())->reset();
@@ -90,7 +90,7 @@ $obj->PDO();
 print_r($obj->databaseStructure('hebe'));
 
 exit;
-*/
+ 
 
 /*
 echo "\n\nREAL DATABASE CONNECT - NOT IN FINAL TEST (postgres)\n";
