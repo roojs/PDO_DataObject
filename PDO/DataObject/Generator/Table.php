@@ -59,6 +59,40 @@ class PDO_DataObject_Generator_Table {
         return  $class_prefix_ar[0].preg_replace('/[^A-Z0-9]/i','_',ucfirst(trim($this->table)));
     }
     
+    
+    
+    /**
+    * Convert a table name into a file name -> override this if you want a different mapping
+    *
+    * @access  public
+    * @return  string file name;
+    */
+    
+    
+    function getFileNameFromTableName($table)
+    {
+        $options = PDO_DataObject::config();
+        
+        $base = explode(PATH_SEPARATOR,$options['class_location']);
+        if (strpos($base,'%s') !== false) {
+            $base = dirname($base);
+        } 
+        if (!file_exists($base)) {
+            require_once 'System.php';
+            System::mkdir(array('-p',$base));
+        }
+        if (strpos($options['class_location'],'%s') !== false) {
+            $outfilename   = sprintf($options['class_location'], 
+                    preg_replace('/[^A-Z0-9]/i','_',ucfirst($this->table)));
+        } else { 
+            $outfilename = "{$base}/".preg_replace('/[^A-Z0-9]/i','_',ucfirst($this->table)).".php";
+        }
+        return $outfilename;
+        
+    }
+    
+    
+    
     /**
     * Convert a column name into a method name (usually prefixed by get/set/validateXXXXX)
     * Designed to be overidden if you really think it's a good idea?
