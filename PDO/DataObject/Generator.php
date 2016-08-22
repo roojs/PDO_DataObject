@@ -631,6 +631,19 @@ class PDO_DataObject_Generator extends PDO_DataObject
 
    
     
+    /**
+    * Convert a column name into a method name (usually prefixed by get/set/validateXXXXX)
+    *
+    * @access  public
+    * @return  string method name;
+    */
+    
+    
+    function getMethodNameFromColumnName($col)
+    {
+        return ucfirst($col);
+    }
+    
     
     
     
