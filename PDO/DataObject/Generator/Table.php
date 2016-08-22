@@ -69,7 +69,7 @@ class PDO_DataObject_Generator_Table {
     */
     
     
-    function getFileNameFromTableName($table)
+    function getFileNameFromTableName()
     {
         $options = PDO_DataObject::config();
         
@@ -82,20 +82,18 @@ class PDO_DataObject_Generator_Table {
             );
         }
         $base = $base_ar[0];
-        
         if (strpos($base,'%s') !== false) {
-            $base = dirname($base);
-        } 
-        if (!file_exists($base)) {
-            require_once 'System.php';
-            System::mkdir(array('-p',$base));
-        }
-        if (strpos($options['class_location'],'%s') !== false) {
-            $outfilename   = sprintf($options['class_location'], 
+            $outfilename   = sprintf($base, 
                     preg_replace('/[^A-Z0-9]/i','_',ucfirst($this->table)));
         } else { 
             $outfilename = "{$base}/".preg_replace('/[^A-Z0-9]/i','_',ucfirst($this->table)).".php";
         }
+        
+        if (!file_exists(dirname($outfilename))) {
+            mkdir($base, require_once 'System.php';
+            System::mkdir(array('-p',$base));
+        }
+        
         return $outfilename;
         
     }
