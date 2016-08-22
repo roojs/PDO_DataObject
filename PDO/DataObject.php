@@ -133,7 +133,7 @@ class PDO_DataObject
             'class_location' => '',
                 // directory where the Table classes are..
                 // you can also use the format
-                // /home/me/Projects/myapplication/DataObjects_%s.php
+                // /home/me/Projects/myapplication/DataObjects_%s.php  (%s==table)
                 // and %s gets replaced with the tablename.
                 // to use multiple search paths use the PATH_SEPERATOR
 
