@@ -184,23 +184,14 @@ class PDO_DataObject_Introspection_pgsql extends PDO_DataObject_Introspection
         
         foreach($records as $r) {
             
-            $bits = explode('(',$r['type']);
-            switch($bits[0]){
-                case 'character':
-                    $bits[0]  = 'char';
-                    break;
-                case 'character varying':
-                    $bits[0]  = 'varchar';
-                    break;
-                case 'timestamp without time zone':
-                    $bits[0]  = 'datetime';
-                    break;
-                case 'timestamp with time zone':
-                    $bits[0]  = 'timestamptz';
-            }
-           
+            $r['name'] =  $case_func($r['name']);
+            $r['table'] =  $case_func($table);
             
-            $res[] = array(
+            
+            $res[] = $r;
+            
+            
+            array(
                 'table' => $case_func($table),
                 'name'  => $case_func($r['name']),
                 'type'  => $bits[0],
