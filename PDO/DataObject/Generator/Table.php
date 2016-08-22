@@ -282,16 +282,23 @@ class PDO_DataObject_Generator_Table {
         
          
     
-    function toIni()
+    function toIniString()
     {
         $ret = "[{This->table}]\n";
         foreach($this->columns as $c) {
             if ($c->is_name_invalid) {
                 continue;
             }
-            echo "$c->name "
+            $ret .= "{$c->name} = {$c->do_type}\n";
+            
             
         }
+        $ar = $this->toIniSequence();
+        if (!$ar) {
+            return $ret;
+        }
+        $ret = "\n[{This->table}__keys]\n";
+        
        
     }
     /**
