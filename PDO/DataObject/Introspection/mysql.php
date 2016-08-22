@@ -108,10 +108,7 @@ class PDO_DataObject_Introspection_mysql extends PDO_DataObject_Introspection
                         COLUMNS.TABLE_NAME = '$tn'
                         and
                         COLUMNS.TABLE_SCHEMA = DATABASE()
-
-                    
-                    
-                    ")
+            ")
             ->fetchAll(false,false,'toArray');
    
         
@@ -127,9 +124,9 @@ class PDO_DataObject_Introspection_mysql extends PDO_DataObject_Introspection
         
         foreach($records as $r) {
             
-            $r['table'] => $case_func($string);
+            $r['table'] =  $case_func($string);
             $r['name'] =  $case_func($r['Field']);
-            $res[] = $add;
+            $res[] = $r;
            
         }
         
