@@ -341,7 +341,6 @@ class PDO_DataObject_Generator_Column
             return '';
         }
         
-        
         $pad = str_repeat(' ',max(2,  (30 - strlen($this->name))));
 
         $length = empty($this->len) ? '' : '('.$this->len.')';
