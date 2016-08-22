@@ -284,7 +284,7 @@ class PDO_DataObject_Generator_Column
         // only use primary key or nextval(), cause the setFrom blocks you setting all key items...
         // if no keys exist fall back to using unique
         //echo "\n{$t->name} => {$t->flags}\n";
-        $secondary_key_match = isset($options['generator_secondary_key_match']) ? $options['generator_secondary_key_match'] : 'primary|unique';
+        $secondary_key_match =  $options['secondary_key_match'];
         
         $m = array();
         if (preg_match('/(auto_increment|nextval\(([^)]*))/i',rawurldecode($t->flags),$m) 
