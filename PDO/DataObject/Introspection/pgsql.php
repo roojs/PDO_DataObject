@@ -163,85 +163,10 @@ class PDO_DataObject_Introspection_pgsql extends PDO_DataObject_Introspection
                         key_column_usage.constraint_name = constraint_column_usage.constraint_name
                         
                     WHERE
-                        COLUMNS.TABLE_NAME = 'accnt'
+                        COLUMNS.TABLE_NAME = '{$this->do->escape($table)}'
                         and
-                        COLUMNS.TABLE_SCHEMA = 'public'
-       
-                    
-                      SELECT
-                        COLUMNS.TABLE_NAME as tablename,
-                        COLUMNS.COLUMN_NAME as name,
-                        COLUMN_DEFAULT as default_value,
-                        DATA_TYPE as type,
-                        NUMERIC_PRECISION as len,
-                        CONCAT(
-                            EXTRA,
-                            IF (IS_NULLABLE, '', ' not_null'),
-                            IF (COLUMN_KEY = 'PRI', ' primary', ''),
-                            IF (COLUMN_KEY = 'UNI', ' unique', ''),
-                            IF (COLUMN_KEY = 'MUL', ' multiple_key', '')
-                            
-                        )    as flags,
-                        COALESCE(REFERENCED_TABLE_NAME,'') as fk_table,
-                        COALESCE(REFERENCED_COLUMN_NAME,'') as fk_column
-                        
-                    FROM
-                        INFORMATION_SCHEMA.COLUMNS
-                    LEFT JOIN
-                        INFORMATION_SCHEMA.KEY_COLUMN_USAGE
-                    ON
-                        KEY_COLUMN_USAGE.TABLE_NAME = COLUMNS.TABLE_NAME 
-                        AND
-                        KEY_COLUMN_USAGE.COLUMN_NAME = COLUMNS.COLUMN_NAME
-                        AND
-                        KEY_COLUMN_USAGE.TABLE_SCHEMA = COLUMNS.TABLE_SCHEMA 
-                    WHERE
-                        COLUMNS.TABLE_NAME = '$tn'
-                        and
-                        COLUMNS.TABLE_SCHEMA = DATABASE()
-                    
-                    
-                    
-                    SELECT  
-                        f.attnum AS number,  
-                        f.attname AS name,  
-                        f.attnum,  
-                        f.attnotnull AS notnull,  
-                        pg_catalog.format_type(f.atttypid,f.atttypmod) AS type,  
-                        CASE  
-                            WHEN p.contype = 'p' THEN 't'  
-                            ELSE 'f'  
-                        END AS primarykey,  
-                        CASE  
-                            WHEN p.contype = 'u' THEN 't'  
-                            ELSE 'f'
-                        END AS uniquekey,
-                        CASE
-                            WHEN p.contype = 'f' THEN g.relname
-                        END AS foreignkey,
-                        CASE
-                            WHEN p.contype = 'f' THEN p.confkey
-                        END AS foreignkey_fieldnum,
-                        CASE
-                            WHEN p.contype = 'f' THEN g.relname
-                        END AS foreignkey,
-                        CASE
-                            WHEN p.contype = 'f' THEN p.conkey
-                        END AS foreignkey_connnum,
-                        CASE
-                            WHEN f.atthasdef = 't' THEN d.adsrc
-                        END AS default
-                    FROM pg_attribute f  
-                        JOIN pg_class c ON c.oid = f.attrelid  
-                        JOIN pg_type t ON t.oid = f.atttypid  
-                        LEFT JOIN pg_attrdef d ON d.adrelid = c.oid AND d.adnum = f.attnum  
-                        LEFT JOIN pg_namespace n ON n.oid = c.relnamespace  
-                        LEFT JOIN pg_constraint p ON p.conrelid = c.oid AND f.attnum = ANY (p.conkey)  
-                        LEFT JOIN pg_class AS g ON p.confrelid = g.oid  
-                    WHERE c.relkind = 'r'::char  
-                        AND n.nspname = '{$this->do->escape($schema)}'  
-                        AND c.relname = '{$this->do->escape($table)}'
-                        AND f.attnum > 0 ORDER BY number
+                        COLUMNS.TABLE_SCHEMA = '{$this->do->escape($schema)}' 
+        
             ")
             ->fetchAll(false,false,'toArray');
         
