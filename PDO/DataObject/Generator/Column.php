@@ -287,8 +287,8 @@ class PDO_DataObject_Generator_Column
         $secondary_key_match =  $options['secondary_key_match'];
         
         $m = array();
-        if (preg_match('/(auto_increment|nextval\(([^)]*))/i',rawurldecode($t->flags),$m) 
-            || (isset($t->autoincrement) && ($t->autoincrement === true))) {
+        if (preg_match('/(auto_increment|nextval\(([^)]*))/i',rawurldecode($this->flags),$m) 
+            || (isset($def_ar['autoincrement']) && ($def_ar['autoincrement'] === true))) {
             
             $sn = 'N';
             if ($dbtype == 'pgsql' && !empty($m[2])) { 
