@@ -276,14 +276,19 @@ class PDO_DataObject_Generator_Table {
     function toIni()
     {
         
+       
     }
-    function toIniKeysArray() {
-    
+    function toIniKeysArray()
+    {
+        
     }
     
     function toIniArray() {
         $kv = array();
         foreach($this->columns as $c) {
+            if ($c->is_name_invalid) {
+                continue;
+            }
             $kv[$c->name] = $c->do_type;
           
         }
