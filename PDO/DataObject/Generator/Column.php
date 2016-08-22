@@ -100,6 +100,7 @@ class PDO_DataObject_Generator_Column
      *    default
      *    type
      *    len
+     *    autoincrement ???<< where from??
      * 
      */  
     function __construct($table,$def_ar)
