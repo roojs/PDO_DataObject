@@ -350,7 +350,7 @@ class PDO_DataObject_Generator extends PDO_DataObject
      */
     function _readTableList()
     {
-        $options = sef::config();
+        $options = self::config();
         
         $pdo = $this->PDO();
         $io  = $this->introspection();
