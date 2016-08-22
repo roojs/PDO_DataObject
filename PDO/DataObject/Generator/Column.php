@@ -84,7 +84,7 @@ class PDO_DataObject_Generator_Column
      */
     var $sequence_name = '';
     /**
-     * @var string the type of Sequence, N=Native, P=Primary, U=Unique..
+     * @var string the type of Sequence, N=Native, K=(Primary or indexed?), U=Unique..
      */
     var $key_type= ''; 
     /**
@@ -309,9 +309,8 @@ class PDO_DataObject_Generator_Column
             // keys.. = 1
             $this->is_sequence = true;
             $this->is_sequence_native = false;
-            $this->key_type = 'N';
+            $this->key_type = 'K';
             
-            $key_type = 'K';
             if (!preg_match("/(primary)/i",$this->flags)) {
                 $this->key_type = 'U';
             }
