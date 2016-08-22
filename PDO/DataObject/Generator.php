@@ -560,20 +560,27 @@ class PDO_DataObject_Generator extends PDO_DataObject
         $out = '';
         foreach($this->tables as $tn=>$table) {
             $out .= $table->toLinksIni();
-            
-            
         }
-        
-        $fk = $this->_fkeys;
-        $links_ini = "";
 
-        foreach($fk as $table => $details) {
-            $links_ini .= "[$table]\n";
-            foreach ($details as $col => $ref) {
-                $links_ini .= "$col = $ref\n";
+        $option = PDO_DataObject::config();
+
+ // where to generate the schema...
+        $base = $options['schema_location'];
+        
+        if (is_array($base)) {
+            if (!isset($base[$this->_database])) {
+                $this->raiseError("Could not find schema location from config[schema_location] - array but no matching database",
+                    PDO_DataObject::ERROR_INVALIDCONFIG, PDO_DataObject::ERROR_DIE);
             }
-            $links_ini .= "\n";
+            $base =  explode(PATH_SEPARATOR, $base[$this->_database])[0]; // get the first path...
+
+            $file = $base[$this->_database];
+        } else {
+            $base =  explode(PATH_SEPARATOR, $options['schema_location'])[0]; // get the first path...
+
+            $file = "{$base}/{$this->_database}.ini";
         }
+
       
         // dont generate a schema if location is not set
         // it's created on the fly!
