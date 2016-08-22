@@ -140,7 +140,7 @@ class PDO_DataObject_Generator extends PDO_DataObject
                 // if a column is auto-increment or nextval() - then it's determined to be a sequence key
                 // if it's only primary or unique - then it's assumed to be an index, but using emulated sequences keys.
             'include_regex' => false,
-                // regex to match table names = if set, then only these will be generated
+                // regex to match table names = if set, then only table names matching will be generated
             'exclude_regex' => false,
                 // regex to match table names = if set, then matching tables will not be generated
                 
