@@ -89,7 +89,14 @@ class PDO_DataObject_Introspection_mysql extends PDO_DataObject_Introspection
                         COLUMN_DEFAULT as default_value,
                         DATA_TYPE as type,
                         NUMERIC_PRECISION as len,
-                        EXTRA as flags,
+                        CONCAT(
+                            EXTRA,
+                            IF (IS_NULLABLE, '', ' not_null),
+                            IF (COLUMN_KEY = 'PRI', ' primary', ''),
+                            IF (COLUMN_KEY = 'UNI', ' unique', ''),
+                            IF (COLUMN_KEY = 'MUL', ' multiple_key', '')
+                            
+                        )    as flags,
                         COALESCE(REFERENCED_TABLE_NAME,'') as fk_table,
                         COALESCE(REFERENCED_COLUMN_NAME,'') as fk_column
                         
