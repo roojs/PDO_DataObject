@@ -253,7 +253,7 @@ class PDO_DataObject_Generator_Column
                  "** name, and the whole idea of mapping would result in a mess  **\n".
                  "** This column has been ignored...                             **\n".
                  "*****************************************************************\n";
-            continue;
+            $this->is_name_invalid = true;
         }
         
         if (!strlen(trim($t->name))) {
