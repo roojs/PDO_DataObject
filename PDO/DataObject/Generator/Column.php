@@ -76,7 +76,7 @@ class PDO_DataObject_Generator_Column
     var $default_value;
     
     /**
-     * @var mixed the default as defined  in the database (used to build the defaults() method )
+     * @var string the raw default as defined  in the database used to find nextval)
      */
     var $default_value_raw;
     
@@ -274,7 +274,7 @@ class PDO_DataObject_Generator_Column
             return;
         }
         
-        if (!strlen(trim($t->name))) {
+        if (!strlen($this->name)) {
             $this->is_name_invalid = true;
             return;
         }
