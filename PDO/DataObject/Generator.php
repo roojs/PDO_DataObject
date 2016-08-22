@@ -108,6 +108,9 @@ class PDO_DataObject_Generator extends PDO_DataObject
             'extends_class_location' => 'PDO/DataObject.php',
                 // what file is the extended class in.                
         
+            'generate_links' => false,
+                // generate .link.ini files based on introspecting the database.
+        
         // advanced customization..
             'hook' => 'PDO_DataObject_Generator_Hooks',
                 // class for hooks code (used to be derivedHook****)
@@ -530,29 +533,7 @@ class PDO_DataObject_Generator extends PDO_DataObject
         //    return PEAR::raiseError($ret->message,null,PEAR_ERROR_DIE);
         // }
     }
-     /**
-     * create the data for Foreign Keys (for links.ini) 
-     * Currenly only works with mysql / mysqli / posgtreas
-     * to use, you must set option: generate_links=true
-     * 
-     * @author Pascal Sch�ni 
-     */
-    
-    function _readForeignKeys()
-    {
-        $options = PDO_DataObject::config();
-        
-        if (empty($options['generate_links'])) {
-            return false;
-        }
-        $io = $this->introspection();
-        foreach($this->tables as $table) {
-            $fk[$table] = $io->foreignKeys($table);
-            
-        }
-        $this->_fkeys = $fk;
-    }
-    
+ 
      
     /**
      * generate Foreign Keys (for links.ini) 
@@ -563,8 +544,8 @@ class PDO_DataObject_Generator extends PDO_DataObject
      */
     function generateForeignKeys() 
     {
-        $options = PEAR::getStaticProperty('DB_DataObject','options');
-        if (empty($options['generate_links'])) {
+        
+        if (!self::$config['generate_links'])) {
             return false;
         }
         $__DB = &$GLOBALS['_DB_DATAOBJECT']['CONNECTIONS'][$this->_database_dsn_md5];
