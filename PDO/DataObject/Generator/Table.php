@@ -83,15 +83,14 @@ class PDO_DataObject_Generator_Table {
         }
         $base = $base_ar[0];
         if (strpos($base,'%s') !== false) {
-            $outfilename   = sprintf($base, 
+            $fn   = sprintf($base, 
                     preg_replace('/[^A-Z0-9]/i','_',ucfirst($this->table)));
         } else { 
-            $outfilename = "{$base}/".preg_replace('/[^A-Z0-9]/i','_',ucfirst($this->table)).".php";
+            $fn = "{$base}/".preg_replace('/[^A-Z0-9]/i','_',ucfirst($this->table)).".php";
         }
         
-        if (!file_exists(dirname($outfilename))) {
-            mkdir($base, require_once 'System.php';
-            System::mkdir(array('-p',$base));
+        if (!file_exists(dirname($fn))) {
+            mkdir(dirname($fn), 0644, true); //??? permissions???
         }
         
         return $outfilename;
