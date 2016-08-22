@@ -239,9 +239,7 @@ class PDO_DataObject_Generator_Column
                      "** Found column '{$this->name}', of type  '{$this->type}'            **\n".
                      "** Please submit a bug, describe what type you expect this     **\n".
                      "** column  to be                                               **\n".
-                     "** ---------POSSIBLE FIX / WORKAROUND -------------------------**\n".
-                     "** Try using MDB2 as the backend - eg set the config option    **\n".
-                     "** db_driver = MDB2                                            **\n".
+                   
                      "*****************************************************************\n";
                 $write_ini = false;
                 break;
