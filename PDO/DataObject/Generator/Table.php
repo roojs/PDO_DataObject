@@ -320,6 +320,15 @@ class PDO_DataObject_Generator_Table {
         }
         return $kv;
     }
+    /**
+     * return in a format suitable for databaseStructure
+     * [table] => array ( col => type, col, type)
+     * [table_keys] => array ( col => sequencetype|name )
+     */
+    function toDatabaseStructureArray()
+    {
+        
+    }
     
     /**
      * this is the ini array that relates to sequence keys
