@@ -84,9 +84,9 @@ class PDO_DataObject_Generator_Column
      */
     var $sequence_name = '';
     /**
-     * @var string the name of the sequence (relivant for nextval etc..)
+     * @var string the type of Sequence, N=Native, P=Primary, U=Unique..
      */
-    var $key_type= '';
+    var $key_type= ''; 
     /**
      * @var bool is the sequence native? - Need to check on this - basically postgres nextval and mysql auto increment are regarded
      *         as native - not sure if this was supposed to be the old 'emuluated sequences' that used to be used?
