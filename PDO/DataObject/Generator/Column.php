@@ -44,6 +44,10 @@ class PDO_DataObject_Generator_Column
      */
     var $name = '';
     /**
+     * @var bool is the name invalid (and should be ignored?)
+     */
+    var $is_name_invalid = false;
+    /**
      * @var string Uppercase raw type from database
      */
     var $type = '';  // upper case Type
@@ -246,7 +250,7 @@ class PDO_DataObject_Generator_Column
         if (!preg_match('/^[a-zA-Z_\x7f-\xff][a-zA-Z0-9_\x7f-\xff]*$/', $t->name)) {
             echo "*****************************************************************\n".
                  "**               WARNING COLUMN NAME UNUSABLE                  **\n".
-                 "** Found column '{$t->name}', of type  '{$t->type}'            **\n".
+                 "** Found column '{$this->name}', of type  '{$this->type}'            **\n".
                  "** Since this column name can't be converted to a php variable **\n".
                  "** name, and the whole idea of mapping would result in a mess  **\n".
                  "** This column has been ignored...                             **\n".
