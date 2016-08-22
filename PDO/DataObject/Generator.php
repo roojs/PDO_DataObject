@@ -478,6 +478,8 @@ class PDO_DataObject_Generator extends PDO_DataObject
                 $this->raiseError("Could not find schema location from config[schema_location] - array but no matching database",
                     PDO_DataObject::ERROR_INVALIDCONFIG, PDO_DataObject::ERROR_DIE);
             }
+            $base =  explode(PATH_SEPARATOR, $base[$this->_database])[0]; // get the first path...
+
             $file = $base[$this->_database];
         } else {
             $base =  explode(PATH_SEPARATOR, $options['schema_location'])[0]; // get the first path...
