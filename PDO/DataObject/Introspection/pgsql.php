@@ -121,7 +121,88 @@ class PDO_DataObject_Introspection_pgsql extends PDO_DataObject_Introspection
         $database = $this->do->database();
         
         $records =  $this->do
-            ->query("SELECT  
+            ->query("
+                    SELECT
+                        columns.table_name as tablename,
+                        columns.column_name as name,
+                        constraint_column_usage.table_name as fk_table,
+                        constraint_column_usage.column_name as fk_column
+                        columns.column_default as default_value_raw,
+                        data_type as type,
+                        numeric_precision as len,
+              			CONCAT(
+                            CASE WHEN
+                                IS_NULLABLE = 'YES'
+                            THEN
+                                '' ELSE 'not_null' END,
+                            CASE WHEN
+                                key_column_usage.position_in_unique_constraint is null AND column_default LIKE '%nextval%'
+                            THEN
+                                ' primary' ELSE '' END,
+                            CASE WHEN
+                                key_column_usage.position_in_unique_constraint is null AND column_default NOT LIKE '%nextval%'
+                            THEN
+                                ' unique' ELSE '' END
+                        ) as flags
+                    
+                    FROM
+                        INFORMATION_SCHEMA.columns
+                    LEFT JOIN
+                        INFORMATION_SCHEMA.key_column_usage
+                    ON
+                        key_column_usage.TABLE_SCHEMA = COLUMNS.TABLE_SCHEMA -- public
+                        AND
+                        key_column_usage.TABLE_CATALOG = COLUMNS.TABLE_CATALOG -- database
+                        AND
+                        key_column_usage.TABLE_NAME = COLUMNS.TABLE_NAME -- table
+                        AND
+                        key_column_usage.COLUMN_NAME = COLUMNS.COLUMN_NAME
+                    LEFT JOIN 
+                        information_schema.constraint_column_usage 
+                        ON
+                        key_column_usage.constraint_name = constraint_column_usage.constraint_name
+                        
+                    WHERE
+                        COLUMNS.TABLE_NAME = 'accnt'
+                        and
+                        COLUMNS.TABLE_SCHEMA = 'public'
+       
+                    
+                      SELECT
+                        COLUMNS.TABLE_NAME as tablename,
+                        COLUMNS.COLUMN_NAME as name,
+                        COLUMN_DEFAULT as default_value,
+                        DATA_TYPE as type,
+                        NUMERIC_PRECISION as len,
+                        CONCAT(
+                            EXTRA,
+                            IF (IS_NULLABLE, '', ' not_null'),
+                            IF (COLUMN_KEY = 'PRI', ' primary', ''),
+                            IF (COLUMN_KEY = 'UNI', ' unique', ''),
+                            IF (COLUMN_KEY = 'MUL', ' multiple_key', '')
+                            
+                        )    as flags,
+                        COALESCE(REFERENCED_TABLE_NAME,'') as fk_table,
+                        COALESCE(REFERENCED_COLUMN_NAME,'') as fk_column
+                        
+                    FROM
+                        INFORMATION_SCHEMA.COLUMNS
+                    LEFT JOIN
+                        INFORMATION_SCHEMA.KEY_COLUMN_USAGE
+                    ON
+                        KEY_COLUMN_USAGE.TABLE_NAME = COLUMNS.TABLE_NAME 
+                        AND
+                        KEY_COLUMN_USAGE.COLUMN_NAME = COLUMNS.COLUMN_NAME
+                        AND
+                        KEY_COLUMN_USAGE.TABLE_SCHEMA = COLUMNS.TABLE_SCHEMA 
+                    WHERE
+                        COLUMNS.TABLE_NAME = '$tn'
+                        and
+                        COLUMNS.TABLE_SCHEMA = DATABASE()
+                    
+                    
+                    
+                    SELECT  
                         f.attnum AS number,  
                         f.attname AS name,  
                         f.attnum,  
