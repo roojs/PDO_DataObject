@@ -379,15 +379,7 @@ class PDO_DataObject_Generator extends PDO_DataObject
             
             $tables = array_merge ($tables, $views);
         }
-        $tcls = self::$config['table_class'];
-        
-        if ($tcls== 'PDO_DataObject_Generator_Table') {
-            class_exists($tcls) ? '' :
-                require_once 'PDO/DataObject/Generator/Table.php';
-        }
-        if (!class_exists($tcls)) {
-            $this->raiseError("Table class '{$tcls}' does not exist - please include it or use an autoloader");
-        }
+       
         
 
         // declare a temporary table to be filled with matching tables names
@@ -432,6 +424,27 @@ class PDO_DataObject_Generator extends PDO_DataObject
         }
          
         //print_r($this->_definitions);
+    }
+    
+    
+    /**
+     * Create an instance of the table class (which can be specified in config[table_class])
+     *
+     * 
+     *
+     */
+    function newTable($name)
+    {
+        $tcls = self::$config['table_class'];
+        
+        if ($tcls== 'PDO_DataObject_Generator_Table') {
+            class_exists($tcls) ? '' :
+                require_once 'PDO/DataObject/Generator/Table.php';
+        }
+        if (!class_exists($tcls)) {
+            $this->raiseError("Table class '{$tcls}' does not exist - please include it or use an autoloader");
+        }
+        return new $tcls($this,$name);
     }
     
     /**
