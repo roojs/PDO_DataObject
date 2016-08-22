@@ -73,7 +73,7 @@ class PDO_DataObject_Introspection_mysql extends PDO_DataObject_Introspection
         
         
         // always quote. 
-        $string = $this->do->quoteIdentifier($string);
+        $string = $this->do->escape($string);
         
         
         
@@ -102,7 +102,7 @@ class PDO_DataObject_Introspection_mysql extends PDO_DataObject_Introspection
                         AND
                         KEY_COLUMN_USAGE.TABLE_TABLE = COLUMNS.TABLE_TABLE
                     WHERE
-                        COLUMNS.TABLE_NAME = $string
+                        COLUMNS.TABLE_NAME = '$string'
                         and
                         COLUMNS.TABLE_SCHEMA = DATABASE()
 
