@@ -110,11 +110,14 @@ class PDO_DataObject_Introspection_oci extends PDO_DataObject_Introspection
         $i = 0;
         foreach($records as $r) {
             $res[] = array(
-                'table' => $case_func($result),
+                'tablename' => $case_func($result),
                 'name'  => $case_func($r['column_name']),
                 'type'  => $r['data_type'],
                 'len'   => $r['data_length'],
                 'flags' => ($r['nullable'] == 'N') ? 'not_null' : '',
+                'default_value' => null, /// no info...
+                'fk_column' => '',
+                'fk_table' => '',
             );
             
         }
