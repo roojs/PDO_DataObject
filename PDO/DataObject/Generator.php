@@ -718,69 +718,7 @@ class PDO_DataObject_Generator extends PDO_DataObject
     }
      
     
-     
-   
-    /**
-    * Generate table Function - used when generator_no_ini is set.
-    *
-    * @param    array  table array.
-    * @return   string
-    * @access   public
-    */
-    function _generateTableFunction($def) 
-    {
-        $defines = explode(',','INT,STR,DATE,TIME,BOOL,TXT,BLOB,NOTNULL,MYSQLTIMESTAMP');
-    
-        $ret = "\n" .
-               "    function table()\n" .
-               "    {\n" .
-               "         return array(\n";
-        
-        foreach($def as $k=>$v) {
-            $str = '0';
-            foreach($defines as $dn) {
-                if ($v & constant('DB_DATAOBJECT_' . $dn)) {
-                    $str .= ' + DB_DATAOBJECT_' . $dn;
-                }
-            }
-            if (strlen($str) > 1) {
-                $str = substr($str,3); // strip the 0 +
-            }
-            // hopefully addslashes is good enough here!!!
-            $ret .= '             \''.addslashes($k).'\' => ' . $str . ",\n";
-        }
-        return $ret . "         );\n" .
-                      "    }\n";
-            
-    
-    
-    }
-    /**
-    * Generate keys Function - used generator_no_ini is set.
-    *
-    * @param    array  keys array.
-    * @return   string
-    * @access   public
-    */
-    function _generateKeysFunction($def) 
-    {
-         
-        $ret = "\n" .
-               "    function keys()\n" .
-               "    {\n" .
-               "         return array(";
-            
-        foreach($def as $k=>$type) {
-            // hopefully addslashes is good enough here!!!
-            $ret .= '\''.addslashes($k).'\', ';
-        }
-        $ret = preg_replace('#, $#', '', $ret);
-        return $ret . ");\n" .
-                      "    }\n";
-            
-    
-    
-    }
+      
   
      
     
