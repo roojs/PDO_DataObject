@@ -80,7 +80,7 @@ class PDO_DataObject_Introspection_mysql extends PDO_DataObject_Introspection
                     SELECT
                         COLUMNS.TABLE_NAME as tablename,
                         COLUMNS.COLUMN_NAME as name,
-                        COLUMN_DEFAULT as default_value,
+                        COLUMN_DEFAULT as default_value_raw,
                         DATA_TYPE as type,
                         NUMERIC_PRECISION as len,
                         CONCAT(
@@ -125,7 +125,7 @@ class PDO_DataObject_Introspection_mysql extends PDO_DataObject_Introspection
         foreach($records as $r) {
             
             $r['table'] =  $case_func($string);
-            $r['name'] =  $case_func($r['Field']);
+            $r['name'] =  $case_func($r['name']);
             $res[] = $r;
            
         }
