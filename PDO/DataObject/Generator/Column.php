@@ -298,7 +298,7 @@ class PDO_DataObject_Generator_Column
             if ($dbtype == 'pgsql' && !empty($m[2])) { 
                 $sn = preg_replace('/[("]+/','', $m[2]);
                 $sn = preg_replace('/::.*$/', '', $sn); // new query for postgresql returns nextval('XXXX'::type)
-                $this->sequnce_name = trim($sn, "'");
+                $this->sequence_name = trim($sn, "'");
                 //echo urldecode($t->flags) . "\n" ;
             }
             // native sequences = 2
