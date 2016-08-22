@@ -254,10 +254,12 @@ class PDO_DataObject_Generator_Column
                  "** This column has been ignored...                             **\n".
                  "*****************************************************************\n";
             $this->is_name_invalid = true;
+            return;
         }
         
         if (!strlen(trim($t->name))) {
-            continue; // is this a bug?
+            $this->is_name_invalid = true;
+            return;
         }
         
         if (preg_match('/not[ _]null/i',$t->flags)) {
