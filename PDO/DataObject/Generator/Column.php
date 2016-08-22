@@ -337,19 +337,10 @@ class PDO_DataObject_Generator_Column
     {
           
      
-        if (!strlen($this->name)) {
+        if (!strlen($this->name) || $this->is_name_invalid) {
             return '';
         }
-        if (!preg_match('/^[a-zA-Z_\x7f-\xff][a-zA-Z0-9_\x7f-\xff]*$/', $this->name)) {
-            echo "*****************************************************************\n".
-                 "**               WARNING COLUMN NAME UNUSABLE                  **\n".
-                 "** Found column '{$t->name}', of type  '{$t->type}'            **\n".
-                 "** Since this column name can't be converted to a php variable **\n".
-                 "** name, and the whole idea of mapping would result in a mess  **\n".
-                 "** This column has been ignored...                             **\n".
-                 "*****************************************************************\n";
-            return;
-        }
+        
         
         $pad = str_repeat(' ',max(2,  (30 - strlen($this->name))));
 
