@@ -291,7 +291,10 @@ class PDO_DataObject_Generator_Column
         if (preg_match('/(auto_increment|nextval\(([^)]*))/i',rawurldecode($this->flags),$m) 
             || (isset($def_ar['autoincrement']) && ($def_ar['autoincrement'] === true))) {
             
-            $sn = 'N';
+            
+            $this->is_sequence = true;
+            $this->is_sequence_native = true;
+            $this->key_type = 'N';
             if ($dbtype == 'pgsql' && !empty($m[2])) { 
                 $sn = preg_replace('/[("]+/','', $m[2]);
                 $sn = preg_replace('/::.*$/', '', $sn); // new query for postgresql returns nextval('XXXX'::type)
@@ -299,16 +302,17 @@ class PDO_DataObject_Generator_Column
                 //echo urldecode($t->flags) . "\n" ;
             }
             // native sequences = 2
-            if ($write_ini) {
-                $keys_out_primary .= "{$t->name} = $sn\n";
-            }
-            $ret_keys_primary[$t->name] = $sn;
+            ;
         
         } else if ($secondary_key_match && preg_match('/('.$secondary_key_match.')/i',$t->flags)) {
             // keys.. = 1
+            $this->is_sequence = true;
+            $this->is_sequence_native = false;
+            $this->key_type = 'N';
+            
             $key_type = 'K';
-            if (!preg_match("/(primary)/i",$t->flags)) {
-                $key_type = 'U';
+            if (!preg_match("/(primary)/i",$this->flags)) {
+                $this->key_type = 'U';
             }
             
             if ($write_ini) {
