@@ -84,8 +84,8 @@ class PDO_DataObject_Introspection_mysql extends PDO_DataObject_Introspection
             ->query("
                     
                     SELECT
-                        TABLE_NAME as tablename,
-                        COLUMN_NAME as name,
+                        COLUMNS.TABLE_NAME as tablename,
+                        COLUMNS.COLUMN_NAME as name,
                         COLUMN_DEFAULT as default_value,
                         DATA_TYPE as type,
                         NUMERIC_PRECISION as len,
@@ -98,9 +98,9 @@ class PDO_DataObject_Introspection_mysql extends PDO_DataObject_Introspection
                     LEFT JOIN
                         INFORMATION_SCHEMA.KEY_COLUMN_USAGE
                     ON
-                        INFORMATION_SCHEMA.KEY_COLUMN_USAGE.TABLE_SCHEMA = INFORMATION_SCHEMA.COLUMNS.TABLE_SCHEMA
+                        KEY_COLUMN_USAGE.TABLE_SCHEMA = COLUMNS.TABLE_SCHEMA
                         AND
-                        INFORMATION_SCHEMA.KEY_COLUMN_USAGE.TABLE_TABLE = INFORMATION_SCHEMA.COLUMNS.TABLE_TABLE
+                        KEY_COLUMN_USAGE.TABLE_TABLE = COLUMNS.TABLE_TABLE
                     WHERE
                         TABLE_NAME = $string
                         and
