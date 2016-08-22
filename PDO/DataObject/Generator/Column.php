@@ -109,6 +109,7 @@ class PDO_DataObject_Generator_Column
         $this->hook = $table->hook;
         $this->name = $def_ar['name'];
         $this->type = strtoupper($def_ar['type']);
+        $this->flags = $def_ar['flags'];
         // and set other stuff?
         // put all the type parsing here!?
         $this->default_value = $def_ar['default'];
