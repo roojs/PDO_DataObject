@@ -278,9 +278,14 @@ class PDO_DataObject_Generator_Table {
         
        
     }
+    /**
+     * return the 'table definition' associative array
+     *  (refered to as 'keys')
+     *
+     */
     function toIniKeysArray()
     {
-         $kv = array();
+        $kv = array();
         foreach($this->columns as $c) {
             if ($c->is_name_invalid) {
                 continue;
@@ -290,7 +295,8 @@ class PDO_DataObject_Generator_Table {
         return $kv;
     }
     
-    function toIniArray() {
+    function toIniArray()
+    {
         $kv = array();
         foreach($this->columns as $c) {
             if ($c->is_name_invalid) {
@@ -311,7 +317,20 @@ class PDO_DataObject_Generator_Table {
     
     function toIniSequence()
     {
-        // 
+        $native = array();
+        $other = array();
+        foreach($this->columns as $c) {
+            if ($c->is_name_invalid) {
+                continue;
+            }
+            if ($c->is_sequence_native) {
+                $native[$c->name] = $c->sequence_name == '' ? 'N' : $c->sequence_name;
+            } else {
+                $other[$c->name] = $c->key_type;
+            }
+            
+        }
+        return $kv;
     }
     
     
