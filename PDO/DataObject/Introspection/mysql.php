@@ -90,8 +90,8 @@ class PDO_DataObject_Introspection_mysql extends PDO_DataObject_Introspection
                         DATA_TYPE as type,
                         NUMERIC_PRECISION as len,
                         EXTRA as flags,
-                        COALESCE(REFERENCED_TABLE.TABLE_SCHEMA,'') as fk_table,
-                        COALESCE(REFERENCED_TABLE.COLUMN_NAME,'') as fk_column
+                        COALESCE(REFERENCED_TABLE_SCHEMA,'') as fk_table,
+                        COALESCE(REFERENCED_COLUMN_NAME,'') as fk_column
                         
                     FROM
                         INFORMATION_SCHEMA.COLUMNS
