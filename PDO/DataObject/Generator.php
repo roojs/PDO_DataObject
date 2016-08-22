@@ -719,7 +719,8 @@ class PDO_DataObject_Generator extends PDO_DataObject
     {
         
         $this->_database = $database;
-        $this->fillTableSchema();
+        // might produce error??
+        $this->tables[$table] = $this->newTable($table);
        
         
         
