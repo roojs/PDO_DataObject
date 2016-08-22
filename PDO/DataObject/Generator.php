@@ -379,7 +379,7 @@ class PDO_DataObject_Generator extends PDO_DataObject
             
             $tables = array_merge ($tables, $views);
         }
-        $tcls = self::config('table_class');
+        $tcls = self::$config['table_class'];
         
         if ($tcls== 'PDO_DataObject_Generator_Table') {
             class_exists($tcls) ? '' :
@@ -705,9 +705,9 @@ class PDO_DataObject_Generator extends PDO_DataObject
     function getProxyFull($database,$table) 
     {
         
-        if ($err = $this->fillTableSchema($database,$table)) {
-            return $err;
-        }
+        $this->_database = $database;
+        $this->fillTableSchema();
+       
         
         
         $options = &PEAR::getStaticProperty('DB_DataObject','options');
