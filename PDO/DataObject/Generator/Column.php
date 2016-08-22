@@ -109,7 +109,7 @@ class PDO_DataObject_Generator_Column
         $this->length = $def_ar['len'];
         
         
-        
+        $dbtype = $this->gen->PDO()->getAttribute(PDO::ATTR_DRIVER_NAME);
         
         
         
