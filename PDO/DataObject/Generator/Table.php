@@ -297,8 +297,11 @@ class PDO_DataObject_Generator_Table {
         if (!$ar) {
             return $ret;
         }
-        $ret = "\n[{This->table}__keys]\n";
-        
+        $ret .= "\n[{This->table}__keys]\n";
+        foreach($ar as $k=>$v) {
+            $ret .= "$k = $v\n";
+        }
+        return $ret;
        
     }
     /**
