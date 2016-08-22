@@ -59,8 +59,10 @@ class PDO_DataObject_Generator_Column
      * @var int  the PDO_DataObject type ,eg . PDO_DataObject::INT
      */
     var $do_type = 0; 
-    
-    var $flats = ''; //?/
+    /**
+     * @var string from original database table meta table - flags - contains not_nul autoincrement nextval() etc...
+     */
+    var $flags = ''; //?/
     
     /**
      * @var string   colon seperated reference to foriegn table/column that it points to.
