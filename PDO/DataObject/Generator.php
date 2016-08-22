@@ -658,8 +658,8 @@ class PDO_DataObject_Generator extends PDO_DataObject
             
             $out = $table->toPhp($oldcontents);
             
-            $this->debug( "writing $this->classname\n");
-            $tmpname = tempnam(session_save_path(),'DataObject_');
+            $this->debug( "writing $cn\n");
+            $tmpname = tempnam(session_save_path(),'PDO_DataObject_');
        
             $fh = fopen($tmpname, "w");
             if (!$fh) {
@@ -670,7 +670,7 @@ class PDO_DataObject_Generator extends PDO_DataObject
             }
             fputs($fh,$out);
             fclose($fh);
-            $perms = file_exists($outfilename) ? fileperms($outfilename) : 0755;
+            $perms = file_exists($fn) ? fileperms($fn) : 0755;
             
             // windows can fail doing this. - not a perfect solution but otherwise it's getting really kludgy..
             if (!@rename($tmpname, $outfilename)) {
