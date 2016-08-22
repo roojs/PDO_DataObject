@@ -186,6 +186,27 @@ class PDO_DataObject_Introspection_pgsql extends PDO_DataObject_Introspection
             
             $r['name'] =  $case_func($r['name']);
             $r['table'] =  $case_func($table);
+            $r['default_value']  = null;
+            switch($r['default_value_raw']) {
+                case '':
+                    break;
+                case "''::text":
+                    $r['default_value'] = '';
+                    break;
+                case 'true';
+                    $r['default_value']  = true;
+                    break;
+                case 'false';
+                    $r['default_value']  = false;
+                    break;
+                default:
+                    $r['default_value'] = $r['default_raw_value'];
+                    break;
+            }
+            if (is_numeric($r['default_raw_value']) {
+                $r['default_value'] *= 1.0; // hopefully...
+            }
+            
             
             
             $res[] = $r;
