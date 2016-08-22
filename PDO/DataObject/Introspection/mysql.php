@@ -75,6 +75,53 @@ class PDO_DataObject_Introspection_mysql extends PDO_DataObject_Introspection
         // always quote. 
         $string = $this->do->quoteIdentifier($string);
         
+        
+        
+        
+        // FK first...
+        
+         $records =  $this->do
+            ->query("
+                    
+                    SELECT
+                        TABLE_NAME as tablename,
+                        COLUMN_NAME as name,
+                        COLUMN_DEFAULT as default_value,
+                        DATA_TYPE as type,
+                        NUMERIC_PRECISION as len,
+                        EXTRA as flags,
+                        COALESCE(REFERENCED_TABLE_SCHEMA,'') as fk_table,
+                        COALESCE(REFERENCED_TABLECOLUMN_NAME,'') as fk_column
+                        
+                    FROM
+                        INFORMATION_SCHEMA.COLUMNS
+                    LEFT JOIN
+                        INFORMATION_SCHEMA.KEY_COLUMN_USAGE
+                    ON
+                        INFORMATION_SCHEMA.KEY_COLUMN_USAGE.TABLE_SCHEMA = INFORMATION_SCHEMA.COLUMNS.TABLE_SCHEMA
+                        AND
+                        INFORMATION_SCHEMA.KEY_COLUMN_USAGE.TABLE_TABLE = INFORMATION_SCHEMA.COLUMNS.TABLE_TABLE
+                    WHERE
+                        TABLE_NAME = $string
+                        and
+                        TABLE_SCHEMA = DATABASE()
+
+                    
+                    
+                    ")
+            ->fetchAll(false,false,'toArray');
+        
+        
+        if (PDO_DataObject::config()['portability'] & PDO_DataObject::PORTABILITY_LOWERCASE) {
+            $case_func = 'strtolower';
+        } else {
+            $case_func = 'strval';
+        }
+        
+        
+        
+        
+        
         $records =  $this->do
             ->query("DESCRIBE $string")
             ->fetchAll(false,false,'toArray');
@@ -94,7 +141,7 @@ class PDO_DataObject_Introspection_mysql extends PDO_DataObject_Introspection
             
             $bits = explode('(',$r['Type']);
                
-            $res[] = array(
+            $add = array(
                 'table' => $case_func($string),
                 'name'  => $case_func($r['Field']),
                 'type'  => $bits[0],
@@ -106,8 +153,13 @@ class PDO_DataObject_Introspection_mysql extends PDO_DataObject_Introspection
                         ($r['Key'] == 'MUL' ? ' multiple_key' : '')
                         
             );
+            
+            
+            $res[] = $add;
            
         }
+        
+        
         return $res;
     }
         
@@ -126,33 +178,7 @@ class PDO_DataObject_Introspection_mysql extends PDO_DataObject_Introspection
     function foreignKeys($table)
     {
            
-        $quotedTable = $this->do->quoteIdentifier($table);
-            
-        $res = array_values($this->do->query(
-                "SELECT REFERENCED_TABLE_NAME,COLUMN_NAME FROM
-                        INFORMATION_SCHEMA.KEY_COLUMN_USAGE
-                    WHERE
-                        TABLE_SCHEMA=DATABASE()
-                        AND
-                        TABLE_NAME = $quotedTable "
-            )->fetchAll(false,false,'toArray'));
         
-        $treffer = array();
-        // Extract FOREIGN KEYS
-        preg_match_all(
-            "/FOREIGN KEY \(`(\w*)`\) REFERENCES `(\w*)` \(`(\w*)`\)/i", 
-            $res[0], 
-            $treffer, 
-            PREG_SET_ORDER);
-
-        if (!count($treffer)) {
-            return array();
-        }
-        $fk = array();
-        foreach($treffer as $i=> $tref) {
-            $fk[$tref[1]] = $tref[2] . ":" . $tref[3];
-        }
-        return $fk;
     }
      
     
