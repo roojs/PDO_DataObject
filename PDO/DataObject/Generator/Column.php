@@ -315,10 +315,7 @@ class PDO_DataObject_Generator_Column
                 $this->key_type = 'U';
             }
             
-            if ($write_ini) {
-                $keys_out_secondary .= "{$t->name} = {$key_type}\n";
-            }
-            $ret_keys_secondary[$t->name] = $key_type;
+            
         }
         
     
