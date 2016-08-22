@@ -100,7 +100,7 @@ class PDO_DataObject_Generator_Column
      *    name
      *    default_value
      *    type
-     *    length
+     *    len
      *    autoincrement ???<< where from??
      * 
      */  
