@@ -128,8 +128,14 @@ class PDO_DataObject_Introspection_mysql extends PDO_DataObject_Introspection
            
         $quotedTable = $this->do->quoteIdentifier($table);
             
-        $res = array_values($this->do->query('SHOW CREATE TABLE ' . $quotedTable )
-            ->fetchAll(false,false,'toArray'));
+        $res = array_values($this->do->query(
+                "SELECT REFERENCED_TABLE_NAME,COLUMN_NAME FROM
+                        INFORMATION_SCHEMA.KEY_COLUMN_USAGE
+                    WHERE
+                        TABLE_SCHEMA=DATABASE()
+                        AND
+                        TABLE_NAME = $quotedTable "
+            )->fetchAll(false,false,'toArray'));
         
         $treffer = array();
         // Extract FOREIGN KEYS
