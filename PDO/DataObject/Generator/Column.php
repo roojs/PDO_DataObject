@@ -47,6 +47,9 @@ class PDO_DataObject_Generator_Column
      * @var string Uppercase raw type from database
      */
     var $type = '';  // upper case Type
+    /**
+     * @var int |string length of the argument  (might be 4,2 in case of decimal)
+     */
     var $len = 0;
     var $flats = '';
     var $do_type = 0; // eg . PDO_DataObject::INT
