@@ -200,12 +200,13 @@ class PDO_DataObject_Introspection_pgsql extends PDO_DataObject_Introspection
                     $r['default_value']  = false;
                     break;
                 default:
-                    $r['default_value'] = $r['default_raw_value'];
+                    // we send 'default_value_raw' to the server...
                     break;
             }
             if (is_numeric($r['default_raw_value'])) {
                 $r['default_value'] *= 1.0; // hopefully...
             }
+            // character '0'::bpchar .... - 
             
             
             
