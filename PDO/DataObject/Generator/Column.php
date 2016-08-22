@@ -232,7 +232,7 @@ class PDO_DataObject_Generator_Column
             default:     
                 echo "*****************************************************************\n".
                      "**               WARNING UNKNOWN TYPE                          **\n".
-                     "** Found column '{$t->name}', of type  '{$t->type}'            **\n".
+                     "** Found column '{$this->name}', of type  '{$this->type}'            **\n".
                      "** Please submit a bug, describe what type you expect this     **\n".
                      "** column  to be                                               **\n".
                      "** ---------POSSIBLE FIX / WORKAROUND -------------------------**\n".
