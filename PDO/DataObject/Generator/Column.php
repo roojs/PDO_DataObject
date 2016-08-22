@@ -39,7 +39,7 @@ class PDO_DataObject_Generator_Column {
         // and set other stuff?
         // put all the type parsing here!?
         $this->default_value = $def_ar['default'];
-        
+        $this->length = $def_ar['len'];
         
         
         
