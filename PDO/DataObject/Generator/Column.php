@@ -271,6 +271,9 @@ class PDO_DataObject_Generator_Column
             $type += PDO_DataObject::NOTNULL;
         }
        
+        $this->do_type = $type;
+       
+       
        
         if (in_array($t->name,array('null','yes','no','true','false'))) {
             echo "*****************************************************************\n".
