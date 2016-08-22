@@ -723,7 +723,7 @@ class PDO_DataObject_Generator extends PDO_DataObject
         if (!isset($this->tables[$table])) {
             $this->tables[$table] = $this->newTable($table);
         }
-        $tbl  = $this->newTable($table);
+        $tbl  = $this->tables[$table] ;
         
         $classname = $tbl->toPhpClassName();
         $out = $tbl->toPhp();
