@@ -702,13 +702,6 @@ class PDO_DataObject_Generator extends PDO_DataObject
         
     }
      
-    
-      
-  
      
-    
-    
-     
-    
     
 }
