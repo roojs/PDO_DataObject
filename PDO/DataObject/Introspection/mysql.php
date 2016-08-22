@@ -148,22 +148,8 @@ class PDO_DataObject_Introspection_mysql extends PDO_DataObject_Introspection
         
         foreach($records as $r) {
             
-            $bits = explode('(',$r['Type']);
-               
-            $add = array(
-                'table' => $case_func($string),
-                'name'  => $case_func($r['Field']),
-                'type'  => $bits[0],
-                'len'   => isset($bits[1]) ? str_replace(')','', $bits[1])  : '',
-                'flags' => $r['Extra'] . 
-                        ($r['Null'] == 'NO' ? ' not_null' : '').
-                        ($r['Key'] == 'PRI' ? ' primary' : '').
-                        ($r['Key'] == 'UNI' ? ' unique' : '').
-                        ($r['Key'] == 'MUL' ? ' multiple_key' : '')
-                        
-            );
-            
-            
+            $r['table'] => $case_func($string);
+            $r['name'] =  $case_func($r['Field']);
             $res[] = $add;
            
         }
