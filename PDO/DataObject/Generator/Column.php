@@ -69,10 +69,7 @@ class PDO_DataObject_Generator_Column
      *              eg. XXX:YYY  XXX=table, YYY=column 
      */
     var $foreign_key = '';
-    /**
-     * @var bool  is it a primary key ()
-     */
-    var $is_key = false;
+    
     /**
      * @var mixed the default as defined  in the database (used to build the defaults() method )
      */
@@ -86,6 +83,10 @@ class PDO_DataObject_Generator_Column
      * @var string the name of the sequence (relivant for nextval etc..)
      */
     var $sequence_name = '';
+    /**
+     * @var string the name of the sequence (relivant for nextval etc..)
+     */
+    var $key_type= '';
     /**
      * @var bool is the sequence native? - Need to check on this - basically postgres nextval and mysql auto increment are regarded
      *         as native - not sure if this was supposed to be the old 'emuluated sequences' that used to be used?
