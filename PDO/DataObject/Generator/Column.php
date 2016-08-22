@@ -310,7 +310,7 @@ class PDO_DataObject_Generator_Column
         
         } else if ($secondary_key_match && preg_match('/('.$secondary_key_match.')/i',$t->flags)) {
             // keys.. = 1
-            $this->is_sequence = true;
+            $this->is_sequence = false;
             $this->is_sequence_native = false;
             $this->key_type = 'K';
             
@@ -320,12 +320,7 @@ class PDO_DataObject_Generator_Column
             
             
         }
-        
-    
-        
-        
-        
-        
+         
         
         
         
