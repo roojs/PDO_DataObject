@@ -453,19 +453,6 @@ class PDO_DataObject_Generator extends PDO_DataObject
         $options = PDO_DataObject::config();
 
         
-        $out = '';
-        foreach($this->tables as $table) {
-            $out .= $table->toIniString();
-        }
-
-        //$this->_newConfig = new Config('IniFile');
-        $this->_newConfig = '';
-        foreach($this->tables as $this->table) {
-            $this->_generateDefinitionsTable();
-        }
-        $this->PDO();
-        // dont generate a schema if location is not set
-        // it's created on the fly!
         if (empty($options['schema_location']) ) {
             return;
         }
@@ -473,6 +460,16 @@ class PDO_DataObject_Generator extends PDO_DataObject
         if (!empty($options['generator_no_ini'])) { // built in ini files..
             return;
         }
+        
+        $out = '';
+        foreach($this->tables as $table) {
+            $out .= $table->toIniString();
+        }
+
+        $this->PDO();
+        // dont generate a schema if location is not set
+        // it's created on the fly!
+
         // where to generate the schema...
         
         $base =  $options['schema_location'];
