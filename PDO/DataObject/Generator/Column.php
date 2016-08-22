@@ -277,7 +277,7 @@ class PDO_DataObject_Generator_Column
                  "** This line will not be writen to the file - you will have    **\n".
                  "** define the keys()/method manually.                          **\n".
                  "*****************************************************************\n";
-            $this->is_name_invalid = true
+            $this->is_name_invalid = true;
         } else {
             $this->_newConfig .= "{$t->name} = $type\n";
         }
@@ -421,7 +421,7 @@ class PDO_DataObject_Generator_Column
         $options = $this->gen->config();
         
         // only generate if option is set to true
-        if  ($options['setters']) {
+        if  (!$options['setters'] ||  $this->is_name_invalid) {
             return '';
         }
         $setters = '';
