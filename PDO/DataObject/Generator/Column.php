@@ -4,12 +4,25 @@
  *
  */
 
-class PDO_DataObject_Generator_Column {
+class PDO_DataObject_Generator_Column
+{
    
+   /**
+     * @var PDO_DataObject_Generator the generator
+     */
     var $table; //
+    /**
+     * @var PDO_DataObject_Generator the generator
+     */
     var $gen; //
+    /**
+     * @var string raw name from database
+     */
     var $name = '';
-    var $type = '';
+    /**
+     * @var string Uppercase raw type from database
+     */
+    var $type = '';  // upper case Type
     var $len = 0;
     var $flats = '';
     var $do_type = 0; // eg . PDO_DataObject::INT
