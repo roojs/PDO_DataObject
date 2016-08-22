@@ -139,6 +139,11 @@ class PDO_DataObject_Generator extends PDO_DataObject
             'secondary_key_match' => 'primary|unique',
                 // if a column is auto-increment or nextval() - then it's determined to be a sequence key
                 // if it's only primary or unique - then it's assumed to be an index, but using emulated sequences keys.
+            'include_regex' => false,
+                // regex to match table names = if set, then only these will be generated
+            'exclude_regex' => false,
+                // regex to match table names = if set, then matching tables will not be generated
+                
     );
       /**
      * Set/get the generator configuration...
@@ -229,7 +234,7 @@ class PDO_DataObject_Generator extends PDO_DataObject
         if (!class_exists($hook)) {
             $this->raiseError("Hook class '{$hook}' does not exist - please include it or use an autoloader");
         }
-        $this->hook = new $hook();
+        $this->hook = new $hook($this);
     }
     
     
@@ -329,7 +334,7 @@ class PDO_DataObject_Generator extends PDO_DataObject
      * - proxy
      * - ini_****
      */
-    protected function introspection()
+    function introspection()
     {
         
         $type  = $this->PDO()->getAttribute(PDO::ATTR_DRIVER_NAME);
