@@ -631,19 +631,6 @@ class PDO_DataObject_Generator extends PDO_DataObject
 
    
     
-     /**
-    * Convert a column name into a method name (usually prefixed by get/set/validateXXXXX)
-    *
-    * @access  public
-    * @return  string method name;
-    */
-    
-    
-    function getMethodNameFromColumnName($col)
-    {
-        return ucfirst($col);
-    }
-    
     
     
     
@@ -732,79 +719,7 @@ class PDO_DataObject_Generator extends PDO_DataObject
         return new $classname;
         
     }
-    
-     /**
-    * fillTableSchema - set the database schema on the fly
-    *
-    * 
-    * 
-    * @param   string database name
-    * @param   string  table   name of table to create schema info for
-    *
-    * @return   none | PEAR::error()
-    * @access   public
-    */
-    function fillTableSchema($database,$table) 
-    {
-         
-         // a little bit of sanity testing.
-        if ((false !== strpos($database,"'")) || (false !== strpos($database,";"))) {   
-            return $this->raiseError("Error: Database name contains a quote or semi-colon", null, PDO_DataObject::ERROR_DIE);
-        }
-        
-        $this->_database  = $database; 
-        $options = PDO_DataObject::config();;
-        $pdo = $this->PDO();
-      
-        $table = trim($table);
-        
-        // a little bit of sanity testing.
-        if ((false !== strpos($table,"'")) || (false !== strpos($table,";"))) {   
-            return $this->raiseError("Error: Table contains a quote or semi-colon", null, PDO_DataObject::ERROR_DIE);
-        }
-        
-        
-        //WHY HERE????
-        //try {
-        //    $this->tables = $this->_introspection()->getListOf('schema.tables');
-        //}  catch(Exception $e) {
-        //       
-       // }
-        
-        // quote table not needed as the intropection classes handle it..
-        
-        $defs = $this->introspection()->tableInfo($table);
-         
-        if (is_a($defs,'PEAR_Error')) {
-            return $defs;
-        }
-        
-        $this->debug("getting def for $database/$table",'fillTable',3);
-        $this->debug(print_r($defs,true),'defs',3);
-        
-        // cast all definitions to objects - as we deal with that better.
-        
-            
-        foreach($defs as $def) {
-            if (is_array($def)) {
-                $this->_definitions[$table][] = (object) $def;
-            }
-        }
-
-        $this->table = $table;
-        
-        $ret = $this->_generateDefinitionsTable();
-        
-        $add = array();
-        $add[$table] = $ret['table'];
-        $add[$table.'__keys'] = $ret['keys'];
-        
-       
-        $this->databaseStructure($database, $add);
-        
-        return false;
-        
-    }
+     
     
      
     /**
