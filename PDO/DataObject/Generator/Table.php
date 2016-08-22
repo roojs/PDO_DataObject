@@ -328,8 +328,12 @@ class PDO_DataObject_Generator_Table {
     function toDatabaseStructureArray()
     {
         $ret = array();
-        $ret[$table] = $this->toIniKeysArray();
+        $ret[$this->table] = $this->toIniKeysArray();
         $seq = $this->toIniSequenceArray();
+        if (!empty($seq)) {
+            $ret["{$this->table}__keys"] = $seq;
+        }
+        return $ret;
     }
     
     /**
