@@ -134,6 +134,8 @@ class PDO_DataObject_Introspection_sqlite extends PDO_DataObject_Introspection
                 'type'  => $type,
                 'len'   => $len,
                 'flags' => $flags,
+                'fk_column' => '',
+                'fk_table' => '',
             );
 
             
