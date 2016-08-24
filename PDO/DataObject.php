@@ -409,7 +409,7 @@ class PDO_DataObject
             }
 
             if (empty($this->_database_nickname)) {
-                $this->_database = $con->dsn['database_nickname'];
+                $this->_database = $con->dsn['nickname'];
                 
                 // note
                 // sqlite -- database == basename of database...
@@ -433,10 +433,10 @@ class PDO_DataObject
             $this->_database_nickname = isset(self::$config['tables'][$tn]) ? self::$config['tables'][$tn] : false;
         }
         if (self::$debug && $this->_database_nickname) {
-            $this->debug("Checking for database specific ini ('{$this->_database}') : config[databases][$this->_database] in options",__FUNCTION__);
+            $this->debug("Checking for database specific ini ('{$this->_database_nickname}') : config[databases][$this->_database_nickname] in options",__FUNCTION__);
         }
         
-        if ($this->_database && !empty(self::$config['databases'][$this->_database_nickname]))  {
+        if ($this->_database_nickname && !empty(self::$config['databases'][$this->_database_nickname]))  {
             $dsn = self::$config['databases'][$this->_database_nickname];
         } else if (false !== self::$config['database']) {
             $dsn = self::$config['database'];
