@@ -467,7 +467,7 @@ class PDO_DataObject
             
             
             if (!$this->_database_nickname) {
-                $this->_database_nickname = self::$connections[$md5]->database_nickname;
+                $this->_database_nickname = self::$connections[$md5]->dsn['nickname'];
                 
             }
             return self::$connections[$md5];
