@@ -1279,22 +1279,35 @@ class PDO_DataObject
          
     }
      /**
-     * fetches all results as an array Without creating Child DataObjects
+     * fetches all results as an array without creating Child DataObjects
      *
      * return format is dependant on args.
-     * if selectAdd() has not been called on the object, then it will add the correct columns to the query.
+     * if find or query have not been called,
+     *      and selectAdd() has not been called on the object, then it will add the correct columns to the query.
+     
+     * A) array of associative arrays (NO ARGUMENTS)
+     * $x = DB_DataObject::factory('mytable');
+     * $x->whereAdd('something = 1');
+     * $ar = $x->fetchAll();*
      *
      *
-     * A) Fetch the first column
+     * B) Fetch the first column (1st argument = true)
      *
      * $x = DB_DataObject::factory('mytable');
      * $x->selectAdd('id')
      * $x->whereAdd('something = 1')
-     * $ar = $x->fetchAll(true');
+     * $ar = $x->fetchAll(true);
      * -- returns array(1,2,3,4,5)
      
-     * 
-     * A) Array of values (eg. a list of 'id')
+     * B) Fetch a specific column as an arrray (1st argument = true)
+     *
+     * $x = DB_DataObject::factory('mytable');
+     * $x->selectAdd('id')
+     * $x->whereAdd('something = 1')
+     * $ar = $x->fetchAll('id');
+     * -- returns array(1,2,3,4,5)
+          * 
+     * C) Array of values (eg. a list of 'id')
      *
      * $x = DB_DataObject::factory('mytable');
      * $x->whereAdd('something = 1')
