@@ -1299,51 +1299,25 @@ class PDO_DataObject
      * $ar = $x->fetchAll(true);
      * -- returns array(1,2,3,4,5)
      
-     * B) Fetch a specific column as an arrray (1st argument = true)
+     * B) Fetch a specific column as an arrray (1st argument = string)
      *
      * $x = DB_DataObject::factory('mytable');
-     * $x->selectAdd('id')
-     * $x->whereAdd('something = 1')
-     * $ar = $x->fetchAll('id');
-     * -- returns array(1,2,3,4,5)
-          * 
-     * C) Array of values (eg. a list of 'id')
-     *
-     * $x = DB_DataObject::factory('mytable');
+     * $x->selectAdd('somehting, id')
      * $x->whereAdd('something = 1')
      * $ar = $x->fetchAll('id');
      * -- returns array(1,2,3,4,5)
      *
-     * B) Array of values (not from table)
-     *
-     * $x = DB_DataObject::factory('mytable');
-     * $x->whereAdd('something = 1');
-     * $x->selectAdd();
-     * $x->selectAdd('distinct(group_id) as group_id');
-     * $ar = $x->fetchAll('group_id');
-     * -- returns array(1,2,3,4,5)
-     *     *
-     * C) A key=>value associative array
+     * C) A key=>value associative array (2 arguments as a string)
      *
      * $x = DB_DataObject::factory('mytable');
      * $x->whereAdd('something = 1')
      * $ar = $x->fetchAll('id','name');
      * -- returns array(1=>'fred',2=>'blogs',3=> .......
      *
-     * D) array of objects
-     * $x = DB_DataObject::factory('mytable');
-     * $x->whereAdd('something = 1');
-     * $ar = $x->fetchAll();
-     *
-     * E) array of arrays (for example)
-     * $x = DB_DataObject::factory('mytable');
-     * $x->whereAdd('something = 1');
-     * $ar = $x->fetchAll(false,false,'toArray');
      *
      *
      * @param    string|false  $k key
      * @param    string|false  $v value
-     * @param    string|false  $method method to call on each result to get array value (eg. 'toArray')
      * @access  public
      * @return  array  format dependant on arguments, may be empty
      */
