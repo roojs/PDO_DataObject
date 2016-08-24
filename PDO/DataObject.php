@@ -242,7 +242,7 @@ class PDO_DataObject
      * @access  private (ish) - extended classes can overide this
      * @var  string
      */
-    public $_database = false;
+    public $_database_nickname = false;
  
    
     /* ---------------- ---------------- connecting to the database  -------------------------------- */
@@ -2901,9 +2901,9 @@ class PDO_DataObject
                 
                 
             } catch (PDOException $e) {
-                $this->debug((string)$result, "Query Error",1 );
+                $this->debug((string)$e, "Query Error",1 );
                 $result = $e;
-                switch($e->errorCode()) {
+                switch($e->getCode()) {
                     // see http://www.csee.umbc.edu/portal/help/oracle8/server.815/a58231/appd.htm
                     // may need fine tuning...
                     case 1002:
@@ -3842,7 +3842,7 @@ class PDO_DataObject
                 return false;
             }
             
-            $ignore_null = $options['disable_null_strings'] === false
+            $ignore_null = $options['disable_null_strings'] === false;
             
 
             foreach($items as $k => $v) {
