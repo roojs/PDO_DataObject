@@ -1297,15 +1297,16 @@ class PDO_DataObject
                 $cols[1] == $i;
             }
         }
-        
-        if ($args  === 1) {
-            if (!isset($cols[0])) {
+        if (!isset($cols[0])) {
                 $this->raiseError("can not find column '{$key_col}' in results", self::ERROR_INVALIDARGS);
             }
+        if ($args  === 1) {
+            
             return $this->_result->fetchAll(PDO::FETCH_FUNC, function() {
                 return func_get_arg($cols[0]);
             });
         }
+        // 2 args..
         
     }
     
