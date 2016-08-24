@@ -313,7 +313,7 @@ class PDO_DataObject_Generator extends PDO_DataObject
     function databaseStructureProxy($database, $table = false)
     {
         
-        $this->database( $database );
+        $this->databaseNickname( $database );
         $this->PDO();
         $this->_readTableList();
          
@@ -424,6 +424,7 @@ class PDO_DataObject_Generator extends PDO_DataObject
             
             // we do not quote table - as these are now internal methods - and it is done by the introspection classes 
             $this->tables[$table] = $this->newTable($table);
+            
             
              
 
