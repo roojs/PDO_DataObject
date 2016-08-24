@@ -429,10 +429,10 @@ class PDO_DataObject
         
         
         $tn = $this->tableName();
-        if (!$this->_database && strlen($tn)) {
-            $this->_database = isset(self::$config['tables'][$tn]) ? self::$config['tables'][$tn] : false;
+        if (!$this->_database_nickname && strlen($tn)) {
+            $this->_database_nickname = isset(self::$config['tables'][$tn]) ? self::$config['tables'][$tn] : false;
         }
-        if (self::$debug && $this->_database) {
+        if (self::$debug && $this->_database_nickname) {
             $this->debug("Checking for database specific ini ('{$this->_database}') : config[databases][$this->_database] in options",__FUNCTION__);
         }
         
