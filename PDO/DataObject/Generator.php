@@ -273,7 +273,7 @@ class PDO_DataObject_Generator extends PDO_DataObject
             $class = get_class($this);
             $t = new $class();
             $t->_database_dsn = $database;
-            $t->_database = $databasename;
+            $t->databaseNickname( $databasename);
             
             $t->_readTableList();
             $t->_readForeignKeys();
