@@ -1248,19 +1248,20 @@ class PDO_DataObject
     function fetchAll($k= false, $v = false, $method = false)  
     {
         // should it even do this!!!?!?
-        if ($k !== false && 
+        if (!$this->_result) {
+            if ($k !== false && 
                 (   // only do this is we have not been explicit..
                     empty($this->_query['data_select']) || 
                     ($this->_query['data_select'] == '*')
                 )
             ) {
-            $this->selectAdd();
-            $this->selectAdd($k);
-            if ($v !== false) {
-                $this->selectAdd($v);
+                $this->selectAdd();
+                $this->selectAdd($k);
+                if ($v !== false) {
+                    $this->selectAdd($v);
+                }
             }
-        }
-        if (!$this->_result) {
+            
             $this->find();
         }
         $ret = array();
@@ -1277,9 +1278,71 @@ class PDO_DataObject
         return $ret;
          
     }
-    
+     /**
+     * fetches all results as an array Without creating Child DataObjects
+     *
+     * return format is dependant on args.
+     * if selectAdd() has not been called on the object, then it will add the correct columns to the query.
+     * 
+     * A) Array of values (eg. a list of 'id')
+     *
+     * $x = DB_DataObject::factory('mytable');
+     * $x->whereAdd('something = 1')
+     * $ar = $x->fetchAll('id');
+     * -- returns array(1,2,3,4,5)
+     *
+     * B) Array of values (not from table)
+     *
+     * $x = DB_DataObject::factory('mytable');
+     * $x->whereAdd('something = 1');
+     * $x->selectAdd();
+     * $x->selectAdd('distinct(group_id) as group_id');
+     * $ar = $x->fetchAll('group_id');
+     * -- returns array(1,2,3,4,5)
+     *     *
+     * C) A key=>value associative array
+     *
+     * $x = DB_DataObject::factory('mytable');
+     * $x->whereAdd('something = 1')
+     * $ar = $x->fetchAll('id','name');
+     * -- returns array(1=>'fred',2=>'blogs',3=> .......
+     *
+     * D) array of objects
+     * $x = DB_DataObject::factory('mytable');
+     * $x->whereAdd('something = 1');
+     * $ar = $x->fetchAll();
+     *
+     * E) array of arrays (for example)
+     * $x = DB_DataObject::factory('mytable');
+     * $x->whereAdd('something = 1');
+     * $ar = $x->fetchAll(false,false,'toArray');
+     *
+     *
+     * @param    string|false  $k key
+     * @param    string|false  $v value
+     * @param    string|false  $method method to call on each result to get array value (eg. 'toArray')
+     * @access  public
+     * @return  array  format dependant on arguments, may be empty
+     */
     function fetchAllFast($key_col=false, $value_col=false)
     {
+         if (!$this->_result) {
+            if ($k !== false && 
+                (   // only do this is we have not been explicit..
+                    empty($this->_query['data_select']) || 
+                    ($this->_query['data_select'] == '*')
+                )
+            ) {
+                $this->selectAdd();
+                $this->selectAdd($k);
+                if ($v !== false) {
+                    $this->selectAdd($v);
+                }
+            }
+            
+            $this->find();
+        }
+        
         $args = func_num_args();
         if (!$args) {
             return $this->_result->fetchAll(PDO::FETCH_ASSOC);
