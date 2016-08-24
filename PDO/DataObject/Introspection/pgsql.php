@@ -284,6 +284,15 @@ class PDO_DataObject_Introspection_pgsql extends PDO_DataObject_Introspection
             ")
             ->fetchAllFast();
         
+        if (PDO_DataObject::$debug > 2)  {
+            // this is for the test_suite...
+            $rr = array();
+            foreach($records as $r) {
+                $rr[] = json_encode($r);
+            }
+            $this->debug("\n{    " . implode( ",\n   ", $rr) ."\n}\n", __FUNCTION__,  3);
+            
+        }
         
         if (PDO_DataObject::config()['portability'] & PDO_DataObject::PORTABILITY_LOWERCASE) {
             $case_func = 'strtolower';
