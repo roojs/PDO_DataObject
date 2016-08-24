@@ -583,7 +583,7 @@ class PDO_DataObject_Generator extends PDO_DataObject
         } else {
             $base =  explode(PATH_SEPARATOR, $options['schema_location'])[0]; // get the first path...
 
-            $file = "{$base}/{$this->_database}.links.ini";
+            $file = "{$base}/{$this->_database_nickname}.links.ini";
         }
 
       
