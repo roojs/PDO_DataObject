@@ -123,8 +123,8 @@ class PDO_DataObject_Generator extends PDO_DataObject
                 // var|public  - (or private if you want to break things)
                 // The variable prefix that is used when class properties are created
                 //  the default is public 
-            'add_database_var' => false,
-                // add the line public $_database = .... (disabled by default)
+            'add_database_nickname' => false,
+                // add the line public $_database_nickname = .... (disabled by default)
             'no_column_vars' => false,
                 // (True) prevents writing of private/var's so you can overload get/set 
                 // note: this has the downside of making code less clear... (alot of magic!!)
