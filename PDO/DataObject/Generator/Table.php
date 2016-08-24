@@ -31,20 +31,42 @@
    
 class PDO_DataObject_Generator_Table {
    
+    /**
+     * @var PDO_DataObject_Generator the Generator calling this.
+     */
     var $gen; // generator.
+    /**
+     * @var PDO_DataObject_Generator_Hook - or a extended version.. - implement your own
+     */
     var $hook;
-    var $table= ''; // name of table..
+    /**
+     * @var string the name of the table that this instance describes
+     */
+    var $table = ''; // name of table..
+    /**
+     * @var array  array of PDO_DataObject_Generator_Column -
+     */
     var $columns = array();
-    var $links = array();
+    /**
+     * @var string the classname that this table will be generated to.
+     */
+    var $classname = '';
     
-   
+    /**
+     * Constructor
+     * Calls database introspection to fill information in.
+     * 
+     * @param PDO_DataObject_Generator - The calling geneator
+     * @param string tablename to introspect and build.
+     */
     function __construct($gen, $table)
     {
         $this->gen = $gen;
         $this->hook = $gen->hook;
         $this->table= $table;
         $this->readFromDB();
-        $this->classname = $this->getClassNameFromTableName();
+        $this->classname = $this->toPhpClassName();
+       
         
     }
      /**
@@ -53,9 +75,9 @@ class PDO_DataObject_Generator_Table {
     * @access  public
     * @return  string class name;
     */
-    function toPhpClassName()
+    private function toPhpClassName()
     {
-        $class_prefix_ar  = explode(PATH_SEPERATOR, PDO_DataObject::config('class_prefix'));
+        $class_prefix_ar  = explode(PATH_SEPARATOR, PDO_DataObject::config()['class_prefix']);
         return  $class_prefix_ar[0].preg_replace('/[^A-Z0-9]/i','_',ucfirst(trim($this->table)));
     }
     
@@ -69,7 +91,7 @@ class PDO_DataObject_Generator_Table {
     */
     
     
-    function toPhpFileName()
+    private function toPhpFileName()
     {
         $options = PDO_DataObject::config();
         
@@ -143,7 +165,7 @@ class PDO_DataObject_Generator_Table {
             }
         }
         
-        $this->gen->databaseStructure($pdo->database_nickname,   $this->toIniArray()  ); 
+        $this->gen->databaseStructure($pdo->database_nickname,   $this->toDatabaseStructureArray()  ); 
         
          
     }
@@ -189,9 +211,9 @@ class PDO_DataObject_Generator_Table {
 
         // Only include the $_database property if the omit_database_var is unset or false
         
-        if ($config['add_database_var']) {
-            $p = str_repeat(' ',   max(2, (16 - strlen($this->_database))));
-            $body .= "    {$config['var_keyword']} \$_database = '{$this->_database}';  {$p}// database name (used with databases[{*}] config)\n";
+        if ($config['add_database_nickname']) {
+            $p = str_repeat(' ',   max(2, (16 - strlen($this->_database_nickname))));
+            $body .= "    {$config['var_keyword']} \$_database_nickname = '{$this->_database_nickname}';  {$p}// database name (used with databases[{*}] config)\n";
         }
         
         
@@ -377,6 +399,8 @@ class PDO_DataObject_Generator_Table {
         if (!empty($seq)) {
             $ret["{$this->table}__keys"] = $seq;
         }
+        $this->gen->debug(print_r($ret,true),__FUNCTION__, 2);
+        
         return $ret;
     }
     
@@ -394,6 +418,10 @@ class PDO_DataObject_Generator_Table {
             if ($c->is_name_invalid) {
                 continue;
             }
+            if ($c->key_type == '') {
+                continue;
+            }
+            
             if ($c->is_sequence_native) {
                 $native[$c->name] = $c->sequence_name == '' ? 'N' : $c->sequence_name;
             } else {
