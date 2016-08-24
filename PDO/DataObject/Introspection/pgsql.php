@@ -282,7 +282,7 @@ class PDO_DataObject_Introspection_pgsql extends PDO_DataObject_Introspection
                         pg_attribute.attnum ASC 
         
             ")
-            ->fetchAll(false,false,'toArray');
+            ->fetchAllFast();
         
         
         if (PDO_DataObject::config()['portability'] & PDO_DataObject::PORTABILITY_LOWERCASE) {
