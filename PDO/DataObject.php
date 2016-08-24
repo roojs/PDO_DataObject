@@ -1298,7 +1298,7 @@ class PDO_DataObject
             }
         }
         if (!isset($cols[0])) {
-            $this->raiseError("can not find column '{$key_col}' in results", self::ERROR_INVALIDARGS);
+            return $this->raiseError("can not find column '{$key_col}' in results", self::ERROR_INVALIDARGS);
         }
         // in theory this is not 
         if ($args  === 1) {
@@ -1307,14 +1307,15 @@ class PDO_DataObject
         
         // 2 args..
         if (!isset($cols[1])) {
-            $this->raiseError("can not find column '{$key_col}' in results", self::ERROR_INVALIDARGS);
+            return $this->raiseError("can not find column '{$key_col}' in results", self::ERROR_INVALIDARGS);
         }
         // this is only a bit faster than standard.. - no better way to do this using the PDO API?
         
         $ret = array();
-        $this->_result->fetchAll(PDO::FETCH_FUNC, function() {
-            $ret[func_get_arg($cols[0])] = func_get_arg($cols[1]);
-        });
+        while($row = $this->_result->fetch(PDO::FETCH_ASSOC)) {
+            $ret[$row[$key_col]] =  $row[$value_col];
+        }
+        return $ret;
         
     }
     
