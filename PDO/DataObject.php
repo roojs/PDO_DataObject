@@ -578,7 +578,7 @@ class PDO_DataObject
         
         self::$connections[$md5]->dsn = $dsn_ar;
         
-        if (empty($this->_database)) {
+        if (empty($this->_database_nickname)) {
             $this->_database_nickname =  $dsn_ar['nickname'] ;
         }
          
