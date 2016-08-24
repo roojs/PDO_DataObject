@@ -290,7 +290,7 @@ class PDO_DataObject_Introspection_pgsql extends PDO_DataObject_Introspection
             foreach($records as $r) {
                 $rr[] = json_encode($r);
             }
-            $this->do->debug("\n{    " . implode( ",\n   ", $rr) ."\n}\n", __FUNCTION__,  3);
+            $this->do->debug("\n{\n   " . implode( ",\n   ", $rr) ."\n}\n", __FUNCTION__,  3);
             
         }
         
