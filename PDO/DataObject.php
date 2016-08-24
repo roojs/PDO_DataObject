@@ -512,7 +512,7 @@ class PDO_DataObject
                         break;
                     
                     default:
-                        $pdo_dsn .= 'dbname=' . $database;
+                        $pdo_dsn .= 'dbname=' .  $dsn_ar['database_name'] ;
                         break;
                 }
                 break;
@@ -548,7 +548,7 @@ class PDO_DataObject
         }
         
         if (self::$debug) {
-            $this->debug("NEW CONNECTION TO DATABASE :" .$database , __FUNCTION__,3);
+            $this->debug("NEW CONNECTION TO DATABASE :" .$dsn_ar['database_name'], __FUNCTION__,3);
             /* actualy make a connection */
             $this->debug(print_r($dsn,true) . ' ' . $pdo_dsn . ' ' . $this->_database_dsn_md5, __FUNCTION__,3);
         }    
@@ -1276,6 +1276,15 @@ class PDO_DataObject
  
         return $ret;
          
+    }
+    
+    function fetchAllFast($key_col=false, $value_col=false)
+    {
+        $args = func_num_args();
+        if ()
+        $array = $this->_result->fetch(PDO::FETCH_ASSOC))) {
+            $ret[] = $arr
+        
     }
     
     
@@ -2555,6 +2564,7 @@ class PDO_DataObject
     
     /**
      * Return or assign the nickname of the current database
+     * If you need the real database - use PDO()->dsn['database_name']
      *
      * @param   string optional database name to set
      * @access public
