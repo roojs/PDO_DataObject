@@ -436,8 +436,8 @@ class PDO_DataObject
             $this->debug("Checking for database specific ini ('{$this->_database}') : config[databases][$this->_database] in options",__FUNCTION__);
         }
         
-        if ($this->_database && !empty(self::$config['databases'][$this->_database]))  {
-            $dsn = self::$config['databases'][$this->_database];
+        if ($this->_database && !empty(self::$config['databases'][$this->_database_nickname]))  {
+            $dsn = self::$config['databases'][$this->_database_nickname];
         } else if (false !== self::$config['database']) {
             $dsn = self::$config['database'];
         }
@@ -466,8 +466,8 @@ class PDO_DataObject
             
             
             
-            if (!$this->_database) {
-                $this->_database = self::$connections[$md5]->database;
+            if (!$this->_database_nickname) {
+                $this->_database_nickname = self::$connections[$md5]->database_nickname;
                 
             }
             return self::$connections[$md5];
