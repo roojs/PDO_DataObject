@@ -409,7 +409,7 @@ class PDO_DataObject
             }
 
             if (empty($this->_database_nickname)) {
-                $this->_database = $con->database_nickname;
+                $this->_database = $con->dsn['database_name'];
                 
                 // note
                 // sqlite -- database == basename of database...
