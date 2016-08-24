@@ -356,7 +356,7 @@ class PDO_DataObject
             $this->_database_nickname = $cfg[0];
         } else if (isset(self::$config['tables'][$this->__table])) {
             
-            $this->_database = self::$config['tables'][$this->__table];
+            $this->_database_nickname = self::$config['tables'][$this->__table];
             
         } 
         // should error out if database is not set.. or know..
