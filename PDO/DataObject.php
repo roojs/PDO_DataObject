@@ -1284,7 +1284,7 @@ class PDO_DataObject
         if (!$args) {
             return $this->_result->fetchAll(PDO::FETCH_ASSOC);
         }
-        if ($args  === 1 && $key_col === true) {
+        if ($args  === 1 && $key_col === true) { // first column...
             return $this->_result->fetchAll(PDO::FETCH_COLUMN, 0);
         }
         
