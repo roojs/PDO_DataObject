@@ -31,7 +31,7 @@
  */
   
   
-class PDO_DataObject_Introspection
+abstract class PDO_DataObject_Introspection
 {
     /**
      * @var PDO_DataObject $do - the dataobject.
@@ -81,11 +81,8 @@ class PDO_DataObject_Introspection
             return $sql;
         }
         $this->do->query($sql);
-        $ret = array();
-        while ($this->do->fetch()) {
-            // pretty slow way to do this, but if we are doing this stuff it's slow anyway.
-            $ret[] = array_values($this->do->toArray())[0];
-        }
+        return $this->do->fetchAllFast(true);
+        
         //var_export($ret);
         
         return $ret;
@@ -93,8 +90,7 @@ class PDO_DataObject_Introspection
     
     abstract function getSpecialQuery($type);
     abstract function tableInfo($table);
-    abstract function foreignKeys($table);
-    
+     
     
     
 }
