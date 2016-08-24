@@ -482,7 +482,7 @@ class PDO_DataObject
             case 'sqlite':
             case 'sqlite2':
                 $pdo_dsn =      $dsn_ar['scheme'] . ':' .$dsn_ar['path']; // urldec917ode perhaps?
-                $database = basename($dsn_ar['path']);
+                $dsn_ar['database_name'] = basename($dsn_ar['path']);
                 break;
             
             case 'sqlsrv':
@@ -491,13 +491,13 @@ class PDO_DataObject
                     'Database=' . substr($dsn_ar['path'],1) .
                     (empty($dsn_ar['host']) ? '': ';Server=' . $dsn_ar['host']) .
                     (empty($dsn_ar['port']) ? '' : ',' . $dsn_ar['port']);
-                $database = substr($dsn_ar['path'],1);
+                $dsn_ar['database_name'] = substr($dsn_ar['path'],1);
                 break;
             
             case 'oci':
                 
                 $pdo_dsn = $dsn_ar['scheme'] . ':';
-                $database = empty($dsn_ar['path']) ? $dsn_ar['host'] : substr($dsn_ar['path'],1);
+                $dsn_ar['database_name'] = empty($dsn_ar['path']) ? $dsn_ar['host'] : substr($dsn_ar['path'],1);
                 
                 switch(true) {
                     
@@ -529,7 +529,7 @@ class PDO_DataObject
                     'dbname=' . substr($dsn_ar['path'],1) .
                     (empty($dsn_ar['host']) ? '': ';host=' . $dsn_ar['host']) .
                     (empty($dsn_ar['port']) ? '' : ';port=' . $dsn_ar['port']);
-                $database = substr($dsn_ar['path'],1);
+                $dsn_ar['database_name'] = substr($dsn_ar['path'],1);
                break;
             
         }
@@ -571,13 +571,15 @@ class PDO_DataObject
             $this->debug(print_r(self::$connections,true), __FUNCTION__,5);
         } 
         
-
+        $dsn_ar['nickname'] = empty($this->_database_nickname) ?
+                    $dsn_ar['database_name']  : $this->_database_nickname;
+                    
       
         
-        self::$connections[$md5]->database_realname = $database;
-        self::$connections[$md5]->database_nickname = $this->_database;
+        self::$connections[$md5]->dsn = $dsn_ar;
+        
         if (empty($this->_database)) {
-            $this->_database = $database;
+            $this->_database_nickname =  $dsn_ar['nickname'] ;
         }
          
         // Oracle need to optimize for portibility - not sure exactly what this does though :)
