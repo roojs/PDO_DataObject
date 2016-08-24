@@ -84,7 +84,7 @@ class PDO_DataObject_Introspection_mysql extends PDO_DataObject_Introspection
                         DATA_TYPE as type,
                         NUMERIC_PRECISION as len,
                         CONCAT(
-                            EXTRA,
+                            EXTRA,  -- autoincrement...
                             IF (IS_NULLABLE, '', ' not_null'),
                             IF (COLUMN_KEY = 'PRI', ' primary', ''),
                             IF (COLUMN_KEY = 'UNI', ' unique', ''),
@@ -109,7 +109,7 @@ class PDO_DataObject_Introspection_mysql extends PDO_DataObject_Introspection
                         and
                         COLUMNS.TABLE_SCHEMA = DATABASE()
             ")
-            ->fetchAll(false,false,'toArray');
+            ->fetchAllFast();
    
         
         if (PDO_DataObject::config()['portability'] & PDO_DataObject::PORTABILITY_LOWERCASE) {
@@ -126,6 +126,7 @@ class PDO_DataObject_Introspection_mysql extends PDO_DataObject_Introspection
             
             $r['table'] =  $case_func($string);
             $r['name'] =  $case_func($r['name']);
+            $r['default_value'] = $r['default_value_raw']; /// probably...
             $res[] = $r;
            
         }
