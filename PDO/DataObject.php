@@ -2474,7 +2474,7 @@ class PDO_DataObject
         }
         
         if (empty($ini_out)) {
-            $this->raiseError("Failed to load any schema for database={$this->_database} from these files/locations" . json_encode($tried),
+            $this->raiseError("Failed to load any schema for database={$this->_database_nickname} from these files/locations" . json_encode($tried),
                          self::ERROR_INVALIDCONFIG, self::ERROR_DIE
             );
         }
@@ -2554,7 +2554,7 @@ class PDO_DataObject
     }
     
     /**
-     * Return or assign the name of the current database
+     * Return or assign the nickname of the current database
      *
      * @param   string optional database name to set
      * @access public
@@ -2564,12 +2564,12 @@ class PDO_DataObject
     {
         $args = func_get_args();
         if (count($args)) {
-            $this->_database = $args[0];
+            $this->_database_nickname = $args[0];
         } else {
             $this->PDO();
         }
         
-        return $this->_database;
+        return $this->_database_nickname;
     }
   
     /**
