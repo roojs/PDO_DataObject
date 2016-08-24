@@ -353,7 +353,7 @@ class PDO_DataObject
         }
         $this->__table = count($cfg) > 1 ? $cfg[1] : $cfg[0];
         if (count($cfg) > 1) {
-            $this->_database = $cfg[0];
+            $this->_database_nickname = $cfg[0];
         } else if (isset(self::$config['tables'][$this->__table])) {
             
             $this->_database = self::$config['tables'][$this->__table];
