@@ -2560,7 +2560,7 @@ class PDO_DataObject
      * @access public
      * @return string The name of the current database
      */
-    function databaseNickName()
+    function databaseNickname()
     {
         $args = func_get_args();
         if (count($args)) {
