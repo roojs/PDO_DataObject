@@ -1287,7 +1287,25 @@ class PDO_DataObject
         if ($args  === 1 && $key_col === true) { // first column...
             return $this->_result->fetchAll(PDO::FETCH_COLUMN, 0);
         }
+        $cols = array();
+        for($i =0;$i< $this->_result->columnCount(); $i++) {
+            $meta = $this->_result->getColumnMeta($i);
+            if ($meta['name'] == $key_col) {
+                $cols[0] == $i;
+            }
+            if ($meta['name'] == $value_col) {
+                $cols[1] == $i;
+            }
+        }
         
+        if ($args  === 1) {
+            if (!isset($cols[0])) {
+                $this->raiseError("can not find column '{$key_col}' in results", self::ERROR_INVALIDARGS);
+            }
+            return $this->_result->fetchAll(PDO::FETCH_FUNC, function() {
+                return func_get_arg($cols[0]);
+            });
+        }
         
     }
     
