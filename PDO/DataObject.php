@@ -2366,7 +2366,7 @@ class PDO_DataObject
      * @return Array(databse Structure)|PEAR_Error|false     if no file exists
      *              or the array(tablename => array(column_name=>type)) if called with 1 argument.. (databasename)
      */
-    function databaseStructure($database = false, $inidata = false, $linksdata=false, $overwrite = false)
+    function databaseStructure($database_nickname = false, $inidata = false, $linksdata=false, $overwrite = false)
     {
 
         
@@ -2383,23 +2383,23 @@ class PDO_DataObject
             
             // databaseStructure('mydb',   a$tabledatarray(.... schema....), array( ... links')
             if ($inidata !== false) {
-                self::$ini[$database] = isset( self::$ini[$database]) && !$overwrite ?
-                    self::$ini[$database] + $inidata :
+                self::$ini[$database_nickname] = isset( self::$ini[$database_nickname]) && !$overwrite ?
+                    self::$ini[$database_nickname] + $inidata :
                     $inidata;
             }
             if ($linksdata !== false)  {
-                self::$links[$database] = isset(self::$links[$database]) && !$overwrite ?  
-                    self::$links[$database] + $linksdata :
+                self::$links[$database_nickname] = isset(self::$links[$database_nickname]) && !$overwrite ?  
+                    self::$links[$database_nickname] + $linksdata :
                     $linksdata;
             }
             
-            return isset(self::$ini[$database]) ? self::$ini[$database] : false;
+            return isset(self::$ini[$database_nickname]) ? self::$ini[$database_nickname] : false;
             
             // will not get here....
         }
         
-        if (false === $database) {
-            $database = $this->_database;
+        if (false === $database_nickname) {
+            $database_nickname = $this->_database_nickname;
         }
         
         // not sure why we need to connect here...
@@ -2409,13 +2409,13 @@ class PDO_DataObject
         
          
         // if this table is already loaded this table..
-        if (!empty(self::$ini[$database])) {
-            return self::$ini[$database];
+        if (!empty(self::$ini[$database_nickname])) {
+            return self::$ini[$database_nickname];
         }
         
         // initialize the ini data.. if empt..
-        if (empty(self::$ini[$database])) {
-            self::$ini[$database] = array();
+        if (empty(self::$ini[$database_nickname])) {
+            self::$ini[$database_nickname] = array();
         }
          
          
@@ -2424,7 +2424,7 @@ class PDO_DataObject
         // if we are configured to use the proxy..
         
         if ( self::$config['proxy'])   {
-            return $this->_generator()->databaseStructureProxy($database);
+            return $this->_generator()->databaseStructureProxy($database_nickname);
         }
             
         // basic idea here..
@@ -2435,18 +2435,18 @@ class PDO_DataObject
         $suffix = '';
         
         if (is_array(self::$config['schema_location'])) {
-            if (!isset(PDO_DataObject::$config['schema_location'][$database])) {
-                $this->raiseError("Could not find configuration for database $database in schema_location",
+            if (!isset(PDO_DataObject::$config['schema_location'][$database_nickname])) {
+                $this->raiseError("Could not find configuration for database $database_nickname in schema_location",
                         self::ERROR_INVALIDCONFIG, self::ERROR_DIE
                 );
             }
             
-            $schemas = is_array(PDO_DataObject::$config['schema_location'][$database]) ?
-                PDO_DataObject::$config['schema_location'][$database]:
-                explode(PATH_SEPARATOR, PDO_DataObject::$config['schema_location'][$database]);
+            $schemas = is_array(PDO_DataObject::$config['schema_location'][$database_nickname]) ?
+                PDO_DataObject::$config['schema_location'][$database_nickname]:
+                explode(PATH_SEPARATOR, PDO_DataObject::$config['schema_location'][$database_nickname]);
         } else if (is_string(self::$config['schema_location']) && !empty(self::$config['schema_location'])) {
             $schemas  = explode(PATH_SEPARATOR,PDO_DataObject::$config['schema_location']);
-            $suffix = '/'. $database .'.ini';
+            $suffix = '/'. $database_nickname .'.ini';
         } else {
             $this->raiseError("Invalid format or empty value for config[schema_location]",
                             self::ERROR_INVALIDCONFIG, self::ERROR_DIE
@@ -2490,12 +2490,12 @@ class PDO_DataObject
             }
         }
         
-        self::$ini[$database] =  $ini_out;
+        self::$ini[$database_nickname] =  $ini_out;
         
         // now have we loaded the structure.. 
         
-        if (!empty(self::$ini[$database])) {
-            return self::$ini[$database];
+        if (!empty(self::$ini[$database_nickname])) {
+            return self::$ini[$database_nickname];
         }
        
         $this->debug("Cant find database schema: {$this->_database}\n".
