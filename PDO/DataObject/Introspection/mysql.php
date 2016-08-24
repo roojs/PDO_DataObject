@@ -117,7 +117,7 @@ class PDO_DataObject_Introspection_mysql extends PDO_DataObject_Introspection
             foreach($records as $r) {
                 $rr[] = json_encode($r);
             }
-            $this->do->debug("\n{    " . implode( ",\n   ", $rr) ."\n}\n", __FUNCTION__,  3);
+            $this->do->debug(var_export("\n[\n    " . implode( ",\n   ", $rr) ."\n]\n"), __FUNCTION__,  3);
             
         }
         if (PDO_DataObject::config()['portability'] & PDO_DataObject::PORTABILITY_LOWERCASE) {
