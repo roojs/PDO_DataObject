@@ -84,13 +84,12 @@ class PDO_DummyStatement {
                 {"table_name":"addr"}
             ]',
             // table def for acalitem
-            'da97475cdd81cd8f4376cb61d8b226c6' => '[
-            
-                {"number":1,"name":"acalitem_id","attnum":1,"notnull":true,"type":"integer","primarykey":"t","uniquekey":"f","foreignkey":null,"foreignkey_fieldnum":null,"foreignkey_connnum":null,"default":"nextval((\'\"xcalitem_xcalitem_id_seq\"\'::text)::regclass)"},
-                {"number":2,"name":"acalitem_calhead_id","attnum":2,"notnull":false,"type":"integer","primarykey":"f","uniquekey":"f","foreignkey":null,"foreignkey_fieldnum":null,"foreignkey_connnum":null,"default":null},
-                {"number":3,"name":"acalitem_periodstart","attnum":3,"notnull":false,"type":"date","primarykey":"f","uniquekey":"f","foreignkey":null,"foreignkey_fieldnum":null,"foreignkey_connnum":null,"default":null},
-                {"number":4,"name":"acalitem_periodlength","attnum":4,"notnull":false,"type":"integer","primarykey":"f","uniquekey":"f","foreignkey":null,"foreignkey_fieldnum":null,"foreignkey_connnum":null,"default":null},
-                {"number":5,"name":"acalitem_name","attnum":5,"notnull":false,"type":"text","primarykey":"f","uniquekey":"f","foreignkey":null,"foreignkey_fieldnum":null,"foreignkey_connnum":null,"default":null}
+            'da97475cdd81cd8f4376cb61d8b226c6' => '[ 
+               {"tablename":"acalitem","name":"acalitem_id","default_value_raw":"nextval((\'\\"xcalitem_xcalitem_id_seq\\"\'::text)::regclass)","type":"integer","len":"32","flags":" not_null primary","fk_table":null,"fk_column":null},
+               {"tablename":"acalitem","name":"acalitem_calhead_id","default_value_raw":null,"type":"integer","len":"32","flags":"","fk_table":null,"fk_column":null},
+               {"tablename":"acalitem","name":"acalitem_periodstart","default_value_raw":null,"type":"date","len":null,"flags":"","fk_table":null,"fk_column":null},
+               {"tablename":"acalitem","name":"acalitem_periodlength","default_value_raw":null,"type":"integer","len":"32","flags":"","fk_table":null,"fk_column":null},
+               {"tablename":"acalitem","name":"acalitem_name","default_value_raw":null,"type":"text","len":null,"flags":"","fk_table":null,"fk_column":null}
             ]',
             // def for accnt
             'e0a54ca5ca34c1f8a41128f81ffcd95d' => '[
