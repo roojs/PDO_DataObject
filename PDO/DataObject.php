@@ -239,7 +239,7 @@ class PDO_DataObject
      * The Database nick-name (usually matches the real database name, but may not..)
      * created in __connection
      * Note - this used to be called _database - however it's not guarenteed to be the real database name,
-     * for that use PDO()->dsn[databasename]
+     * for that use PDO()->dsn[database_name]
      *
      * @access  private (ish) - extended classes can overide this
      * @var  string
