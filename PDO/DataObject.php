@@ -1283,6 +1283,15 @@ class PDO_DataObject
      *
      * return format is dependant on args.
      * if selectAdd() has not been called on the object, then it will add the correct columns to the query.
+     *
+     *
+     * A) Fetch the first column
+     *
+     * $x = DB_DataObject::factory('mytable');
+     * $x->whereAdd('something = 1')
+     * $ar = $x->fetchAll('id');
+     * -- returns array(1,2,3,4,5)
+     
      * 
      * A) Array of values (eg. a list of 'id')
      *
