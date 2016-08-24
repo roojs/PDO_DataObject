@@ -99,7 +99,7 @@ class PDO_DataObject_Introspection_oci extends PDO_DataObject_Introspection
                         table_name='{$this->do->escape($result)}'
                     ORDER BY
                         column_id")
-            ->fetchAll(false,false,'toArray');
+            ->fetchAllFast();
         
         $case_func = 'strval';
         if (PDO_DataObject::config()['portability'] & PDO_DataObject::PORTABILITY_LOWERCASE) {
@@ -116,6 +116,7 @@ class PDO_DataObject_Introspection_oci extends PDO_DataObject_Introspection
                 'len'   => $r['data_length'],
                 'flags' => ($r['nullable'] == 'N') ? 'not_null' : '',
                 'default_value' => null, /// no info...
+                'default_value_raw' => null,
                 'fk_column' => '',
                 'fk_table' => '',
             );
