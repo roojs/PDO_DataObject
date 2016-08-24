@@ -111,7 +111,7 @@ class PDO_DataObject_Introspection_mysql extends PDO_DataObject_Introspection
             ")
             ->fetchAllFast();
    
-        if (PDO_DataObject::$debug > 3)  {
+        if (PDO_DataObject::$debug > 2)  {
             // this is for the test_suite...
             $rr = array();
             foreach($records as $r) {
