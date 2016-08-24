@@ -118,15 +118,17 @@ class PDO_DataObject_Introspection_pgsql extends PDO_DataObject_Introspection
             list($schema, $table) =explode('.', $table);
         }
          
-        $database = $this->do->database();
+        $database = $this->do->PDO()->dsn['database_name'];
         
+        // This really nice query is pretty pointless - as pgsql performance is insanely bad for it..
+        /*
         $records =  $this->do
             ->query("
                     SELECT
                         columns.table_name as tablename,
                         columns.column_name as name,
                         constraint_column_usage.table_name as fk_table,
-                        constraint_column_usage.column_name as fk_column
+                        constraint_column_usage.column_name as fk_column,
                         columns.column_default as default_value_raw,
                         data_type as type,
                         numeric_precision as len,
@@ -170,6 +172,118 @@ class PDO_DataObject_Introspection_pgsql extends PDO_DataObject_Introspection
             ")
             ->fetchAll(false,false,'toArray');
         
+        */
+        
+         $records =  $this->do
+            ->query("
+                    SELECT
+                        pg_tables.tablename as tablename, 
+                        pg_attribute.attname AS name, 
+                        
+                        (SELECT pg_attrdef.adsrc FROM pg_attrdef 
+                            WHERE pg_attrdef.adrelid = pg_class.oid 
+                            AND pg_attrdef.adnum = pg_attribute.attnum)
+                        AS default_value_raw,
+                        
+                        format_type(pg_attribute.atttypid, NULL) AS type,  
+                        
+                        CASE pg_attribute.atttypid
+                            WHEN 1042 THEN (pg_attribute.atttypmod - 4) -- character?
+                            WHEN 21 /*int2*/ THEN 16
+                            WHEN 23 /*int4*/ THEN 32
+                            WHEN 20 /*int8*/ THEN 64
+                            WHEN 1700 /*numeric*/ THEN
+                                 CASE WHEN pg_attribute.atttypmod = -1
+                                      THEN null
+                                      ELSE ((pg_attribute.atttypmod - 4) >> 16) & 65535     -- calculate the precision
+                                      END
+                            WHEN 700 /*float4*/ THEN 24 /*FLT_MANT_DIG*/
+                            WHEN 701 /*float8*/ THEN 53 /*DBL_MANT_DIG*/
+                            ELSE null
+                        END  ::text || 
+                        CASE 
+                            WHEN pg_attribute.atttypid IN (21, 23, 20) THEN ''
+                            WHEN pg_attribute.atttypid IN (1700) THEN            
+                                CASE 
+                                    WHEN pg_attribute.atttypmod = -1 THEN ''
+                                    ELSE ',' || ((pg_attribute.atttypmod - 4) & 65535)::text            -- calculate the scale  
+                            END
+                           ELSE ''
+                        END AS len,
+
+                        CONCAT(
+                                        
+                            CASE pg_attribute.attnotnull 
+                                WHEN true THEN ' not_null'  ELSE ''
+                            END, 
+                            CASE WHEN pg_constraint.conname is NULL THEN '' 
+                                ELSE ' primary' END            
+                        )    as flags,
+                        
+                        --  (SELECT col_description(pg_attribute.attrelid, 
+                        --          pg_attribute.attnum)) AS comment, 
+                                
+                         
+                        fk_table_class.relname as fk_table,
+                        fk_table_cols.attname as fk_column 
+                      
+ 
+                    FROM
+                        pg_tables, pg_class 
+                    JOIN
+                        pg_attribute
+                        ON
+                            pg_class.oid = pg_attribute.attrelid 
+                            AND
+                            pg_attribute.attnum > 0 
+                    LEFT JOIN
+                        pg_constraint
+                        ON
+                            pg_constraint.contype = 'p'::char
+                            AND
+                            pg_constraint.conrelid = pg_class.oid
+                            AND
+                            (pg_attribute.attnum = ANY (pg_constraint.conkey)) 
+		    
+                    LEFT JOIN
+                            -- foreign_key
+                        pg_constraint AS pc2
+                        ON
+                            pc2.contype = 'f'::char
+                            AND
+                            pc2.conrelid = pg_class.oid 
+                            AND
+                            (pg_attribute.attnum = ANY (pc2.conkey)) 
+                    LEFT JOIN
+                        pg_class as fk_table_class
+                    ON
+                        fk_table_class.oid = pc2.confrelid
+                    LEFT JOIN
+                        pg_attribute as fk_table_cols
+                    ON
+                       fk_table_cols.attrelid = pc2.confrelid
+                       AND
+                       fk_table_cols.attnum = ANY (pc2.confkey)
+                    LEFT JOIN
+                        pg_namespace
+                    ON
+                        pg_namespace.oid = pg_class.relnamespace  
+                    WHERE
+                        pg_class.relname = pg_tables.tablename  
+                        AND
+                        pg_attribute.atttypid <> 0::oid  
+                        AND
+                        tablename='{$this->do->escape($table)}'
+                        AND 
+                        pg_namespace.nspname = '{$this->do->escape($schema)}'
+
+
+                    ORDER BY
+                        pg_attribute.attnum ASC 
+        
+            ")
+            ->fetchAll(false,false,'toArray');
+        
         
         if (PDO_DataObject::config()['portability'] & PDO_DataObject::PORTABILITY_LOWERCASE) {
             $case_func = 'strtolower';
@@ -205,7 +319,7 @@ class PDO_DataObject_Introspection_pgsql extends PDO_DataObject_Introspection
                     break;
             }
             
-            if (is_numeric($r['default_raw_value'])) {
+            if (is_numeric($r['default_value_raw'])) {
                 $r['default_value'] *= 1.0; // hopefully...
             }
             // character '0'::bpchar .... - 
@@ -214,19 +328,7 @@ class PDO_DataObject_Introspection_pgsql extends PDO_DataObject_Introspection
             
             $res[] = $r;
             
-            
-            array(
-                'table' => $case_func($table),
-                'name'  => $case_func($r['name']),
-                'type'  => $bits[0],
-                'len'   => isset($bits[1]) ? str_replace(')','', $bits[1])  : '',
-                'flags' =>   ($r['notnull'] != '' ? ' not_null' : '').
-                        ($r['primarykey'] == 't' ? ' primary' : '').
-                        ($r['uniquekey'] == 't' ? ' unique' : '') .
-                        ' '. $r['default']
-                       
-                        
-            );
+             
            
         }
 
