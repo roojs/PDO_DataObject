@@ -1281,9 +1281,13 @@ class PDO_DataObject
     function fetchAllFast($key_col=false, $value_col=false)
     {
         $args = func_num_args();
-        if ()
-        $array = $this->_result->fetch(PDO::FETCH_ASSOC))) {
-            $ret[] = $arr
+        if (!$args) {
+            return $this->_result->fetchAll(PDO::FETCH_ASSOC);
+        }
+        if ($args  === 1 && $key_col === true) {
+            return $this->_result->fetchAll(PDO::FETCH_COLUMN, 0);
+        }
+        
         
     }
     
