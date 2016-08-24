@@ -117,7 +117,7 @@ class PDO_DataObject_Introspection_pgsql extends PDO_DataObject_Introspection
         if (strpos($table,'.') !== false) {
             list($schema, $table) =explode('.', $table);
         }
-         
+        // not used?
         $database = $this->do->PDO()->dsn['database_name'];
         
         // This really nice query is pretty pointless - as pgsql performance is insanely bad for it..
