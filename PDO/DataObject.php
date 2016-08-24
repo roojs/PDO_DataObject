@@ -1288,8 +1288,9 @@ class PDO_DataObject
      * A) Fetch the first column
      *
      * $x = DB_DataObject::factory('mytable');
+     * $x->selectAdd('id')
      * $x->whereAdd('something = 1')
-     * $ar = $x->fetchAll('id');
+     * $ar = $x->fetchAll(true');
      * -- returns array(1,2,3,4,5)
      
      * 
