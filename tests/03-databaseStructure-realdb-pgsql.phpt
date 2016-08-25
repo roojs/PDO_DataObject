@@ -3,6 +3,7 @@ databaseStructure - postgresql - real databases (not for final test pass)
 --FILE--
 <?php
 require_once 'includes/init.php';
+
 $base_config = PDO_DataObject::config();
  
 echo "\n\nREAL DATABASE CONNECT - NOT IN FINAL TEST (postgres)\n";
