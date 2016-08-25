@@ -31,51 +31,51 @@ class PDO_DummyStatement {
                     {"Tables_in_somedb":"Events"},
                     {"Tables_in_somedb":"Groups"}
                 ]',
-                
-            'DESCRIBE `Companies`' => '[
-                    {"Field":"id","Type":"int(11)","Null":"NO","Key":"PRI","Default":null,"Extra":"auto_increment"},
-                    {"Field":"code","Type":"varchar(32)","Null":"NO","Key":"","Default":"","Extra":""},
-                    {"Field":"name","Type":"varchar(128)","Null":"YES","Key":"MUL","Default":null,"Extra":""},
-                    {"Field":"remarks","Type":"text","Null":"YES","Key":"","Default":null,"Extra":""},
-                    {"Field":"owner_id","Type":"int(11)","Null":"NO","Key":"","Default":"0","Extra":""},
-                    {"Field":"address","Type":"text","Null":"YES","Key":"","Default":null,"Extra":""},
-                    {"Field":"tel","Type":"varchar(32)","Null":"YES","Key":"","Default":null,"Extra":""},
-                    {"Field":"fax","Type":"varchar(32)","Null":"YES","Key":"","Default":null,"Extra":""},
-                    {"Field":"email","Type":"varchar(128)","Null":"YES","Key":"","Default":null,"Extra":""},
-                    {"Field":"isOwner","Type":"int(11)","Null":"YES","Key":"","Default":null,"Extra":""},
-                    {"Field":"logo_id","Type":"int(11)","Null":"NO","Key":"","Default":"0","Extra":""},
-                    {"Field":"background_color","Type":"varchar(8)","Null":"NO","Key":"","Default":null,"Extra":""},
-                    {"Field":"comptype","Type":"varchar(32)","Null":"YES","Key":"","Default":"","Extra":""},
-                    {"Field":"url","Type":"varchar(254)","Null":"NO","Key":"","Default":"","Extra":""},
-                    {"Field":"main_office_id","Type":"int(11)","Null":"NO","Key":"","Default":"0","Extra":""},
-                    {"Field":"created_by","Type":"int(11)","Null":"NO","Key":"","Default":"0","Extra":""},
-                    {"Field":"created_dt","Type":"datetime","Null":"NO","Key":"","Default":null,"Extra":""},
-                    {"Field":"updated_by","Type":"int(11)","Null":"NO","Key":"","Default":"0","Extra":""},
-                    {"Field":"updated_dt","Type":"datetime","Null":"NO","Key":"","Default":null,"Extra":""},
-                    {"Field":"passwd","Type":"varchar(64)","Null":"NO","Key":"","Default":"","Extra":""},
-                    {"Field":"dispatch_port","Type":"varchar(255)","Null":"NO","Key":"","Default":"","Extra":""},
-                    {"Field":"province","Type":"varchar(255)","Null":"NO","Key":"","Default":"","Extra":""},
-                    {"Field":"country","Type":"varchar(4)","Null":"NO","Key":"","Default":"","Extra":""}
-                    ]',
-            
-            'DESCRIBE `Events`' => '[
-                    {"Field":"id","Type":"int(11)","Null":"NO","Key":"PRI","Default":null,"Extra":"auto_increment"},
-                    {"Field":"person_name","Type":"varchar(128)","Null":"YES","Key":"","Default":null,"Extra":""},
-                    {"Field":"event_when","Type":"datetime","Null":"YES","Key":"MUL","Default":null,"Extra":""},
-                    {"Field":"action","Type":"varchar(32)","Null":"YES","Key":"MUL","Default":null,"Extra":""},
-                    {"Field":"ipaddr","Type":"varchar(16)","Null":"YES","Key":"","Default":null,"Extra":""},
-                    {"Field":"on_id","Type":"int(11)","Null":"YES","Key":"MUL","Default":null,"Extra":""},
-                    {"Field":"on_table","Type":"varchar(64)","Null":"YES","Key":"MUL","Default":null,"Extra":""},
-                    {"Field":"person_id","Type":"int(11)","Null":"YES","Key":"","Default":null,"Extra":""},
-                    {"Field":"person_table","Type":"varchar(64)","Null":"YES","Key":"MUL","Default":null,"Extra":""},
-                    {"Field":"remarks","Type":"text","Null":"YES","Key":"","Default":null,"Extra":""}
-                    ]',
-            'DESCRIBE `Groups`' => '[
-                {"Field":"id","Type":"int(11)","Null":"NO","Key":"PRI","Default":null,"Extra":"auto_increment"},
-                {"Field":"name","Type":"varchar(64)","Null":"NO","Key":"","Default":"","Extra":""},
-                {"Field":"type","Type":"int(11)","Null":"YES","Key":"","Default":"0","Extra":""},
-                {"Field":"leader","Type":"int(11)","Null":"NO","Key":"","Default":"0","Extra":""}
-            ]',
+            // describe companies... 
+            '6996acc544ef440ec8756b9a474a8261' => '[ 
+                    {"tablename":"Companies","name":"id","default_value_raw":null,"type":"int","len":"10","flags":"auto_increment not_null primary","fk_table":"","fk_column":""},
+                    {"tablename":"Companies","name":"code","default_value_raw":"","type":"varchar","len":null,"flags":" not_null","fk_table":"","fk_column":""},
+                    {"tablename":"Companies","name":"name","default_value_raw":null,"type":"varchar","len":null,"flags":" not_null multiple_key","fk_table":"","fk_column":""},
+                    {"tablename":"Companies","name":"remarks","default_value_raw":null,"type":"text","len":null,"flags":" not_null","fk_table":"","fk_column":""},
+                    {"tablename":"Companies","name":"owner_id","default_value_raw":"0","type":"int","len":"10","flags":" not_null","fk_table":"","fk_column":""},
+                    {"tablename":"Companies","name":"address","default_value_raw":null,"type":"text","len":null,"flags":" not_null","fk_table":"","fk_column":""},
+                    {"tablename":"Companies","name":"tel","default_value_raw":null,"type":"varchar","len":null,"flags":" not_null","fk_table":"","fk_column":""},
+                    {"tablename":"Companies","name":"fax","default_value_raw":null,"type":"varchar","len":null,"flags":" not_null","fk_table":"","fk_column":""},
+                    {"tablename":"Companies","name":"email","default_value_raw":null,"type":"varchar","len":null,"flags":" not_null","fk_table":"","fk_column":""},
+                    {"tablename":"Companies","name":"isOwner","default_value_raw":null,"type":"int","len":"10","flags":" not_null","fk_table":"","fk_column":""},
+                    {"tablename":"Companies","name":"logo_id","default_value_raw":"0","type":"int","len":"10","flags":" not_null","fk_table":"","fk_column":""},
+                    {"tablename":"Companies","name":"background_color","default_value_raw":null,"type":"varchar","len":null,"flags":" not_null","fk_table":"","fk_column":""},
+                    {"tablename":"Companies","name":"comptype","default_value_raw":"","type":"varchar","len":null,"flags":" not_null","fk_table":"","fk_column":""},
+                    {"tablename":"Companies","name":"url","default_value_raw":"","type":"varchar","len":null,"flags":" not_null","fk_table":"","fk_column":""},
+                    {"tablename":"Companies","name":"main_office_id","default_value_raw":"0","type":"int","len":"10","flags":" not_null","fk_table":"","fk_column":""},
+                    {"tablename":"Companies","name":"created_by","default_value_raw":"0","type":"int","len":"10","flags":" not_null","fk_table":"","fk_column":""},
+                    {"tablename":"Companies","name":"created_dt","default_value_raw":null,"type":"datetime","len":null,"flags":" not_null","fk_table":"","fk_column":""},
+                    {"tablename":"Companies","name":"updated_by","default_value_raw":"0","type":"int","len":"10","flags":" not_null","fk_table":"","fk_column":""},
+                    {"tablename":"Companies","name":"updated_dt","default_value_raw":null,"type":"datetime","len":null,"flags":" not_null","fk_table":"","fk_column":""},
+                    {"tablename":"Companies","name":"passwd","default_value_raw":"","type":"varchar","len":null,"flags":" not_null","fk_table":"","fk_column":""},
+                    {"tablename":"Companies","name":"dispatch_port","default_value_raw":"","type":"varchar","len":null,"flags":" not_null","fk_table":"","fk_column":""},
+                    {"tablename":"Companies","name":"province","default_value_raw":"","type":"varchar","len":null,"flags":" not_null","fk_table":"","fk_column":""},
+                    {"tablename":"Companies","name":"country","default_value_raw":"","type":"varchar","len":null,"flags":" not_null","fk_table":"","fk_column":""}
+                ]',
+            // describe events... 
+            'fbfdf155a2b80c37a9da0b57c7ec0c8a' => '[
+                    {"tablename":"Events","name":"id","default_value_raw":null,"type":"int","len":"10","flags":"auto_increment not_null primary","fk_table":"","fk_column":""},
+                    {"tablename":"Events","name":"person_name","default_value_raw":null,"type":"varchar","len":null,"flags":" not_null","fk_table":"","fk_column":""},
+                    {"tablename":"Events","name":"event_when","default_value_raw":null,"type":"datetime","len":null,"flags":" not_null multiple_key","fk_table":"","fk_column":""},
+                    {"tablename":"Events","name":"action","default_value_raw":null,"type":"varchar","len":null,"flags":" not_null multiple_key","fk_table":"","fk_column":""},
+                    {"tablename":"Events","name":"ipaddr","default_value_raw":null,"type":"varchar","len":null,"flags":" not_null","fk_table":"","fk_column":""},
+                    {"tablename":"Events","name":"on_id","default_value_raw":null,"type":"int","len":"10","flags":" not_null multiple_key","fk_table":"","fk_column":""},
+                    {"tablename":"Events","name":"on_table","default_value_raw":null,"type":"varchar","len":null,"flags":" not_null multiple_key","fk_table":"","fk_column":""},
+                    {"tablename":"Events","name":"person_id","default_value_raw":null,"type":"int","len":"10","flags":" not_null","fk_table":"","fk_column":""},
+                    {"tablename":"Events","name":"person_table","default_value_raw":null,"type":"varchar","len":null,"flags":" not_null multiple_key","fk_table":"","fk_column":""},
+                    {"tablename":"Events","name":"remarks","default_value_raw":null,"type":"text","len":null,"flags":" not_null","fk_table":"","fk_column":""}
+                ]',
+            'f77e1669034239c845220bf51ee0a9f2' => '[
+                    {"tablename":"Groups","name":"id","default_value_raw":null,"type":"int","len":"10","flags":"auto_increment not_null primary","fk_table":"","fk_column":""},
+                    {"tablename":"Groups","name":"name","default_value_raw":"","type":"varchar","len":null,"flags":" not_null","fk_table":"","fk_column":""},
+                    {"tablename":"Groups","name":"type","default_value_raw":"0","type":"int","len":"10","flags":" not_null","fk_table":"","fk_column":""},
+                    {"tablename":"Groups","name":"leader","default_value_raw":"0","type":"int","len":"10","flags":" not_null","fk_table":"","fk_column":""}
+                ]',
         ),
         'pgsql:dbname=xtuple;host=localhost' => array(
             "SELECT table_name FROM information_schema.tables WHERE table_type = 'BASE TABLE' AND table_schema = 'public' order by table_name ASC" => '[
@@ -84,7 +84,7 @@ class PDO_DummyStatement {
                 {"table_name":"addr"}
             ]',
             // table def for acalitem
-            'da97475cdd81cd8f4376cb61d8b226c6' => '[ 
+            '748606c49f9f63877800fd354d49bd21' => '[ 
                {"tablename":"acalitem","name":"acalitem_id","default_value_raw":"nextval((\'\\"xcalitem_xcalitem_id_seq\\"\'::text)::regclass)","type":"integer","len":"32","flags":" not_null primary","fk_table":null,"fk_column":null},
                {"tablename":"acalitem","name":"acalitem_calhead_id","default_value_raw":null,"type":"integer","len":"32","flags":"","fk_table":null,"fk_column":null},
                {"tablename":"acalitem","name":"acalitem_periodstart","default_value_raw":null,"type":"date","len":null,"flags":"","fk_table":null,"fk_column":null},
@@ -92,41 +92,42 @@ class PDO_DummyStatement {
                {"tablename":"acalitem","name":"acalitem_name","default_value_raw":null,"type":"text","len":null,"flags":"","fk_table":null,"fk_column":null}
             ]',
             // def for accnt
-            'e0a54ca5ca34c1f8a41128f81ffcd95d' => '[
-                {"number":1,"name":"accnt_id","attnum":1,"notnull":true,"type":"integer","primarykey":"t","uniquekey":"f","foreignkey":null,"foreignkey_fieldnum":null,"foreignkey_connnum":null,"default":"nextval((\'accnt_accnt_id_seq\'::text)::regclass)"},
-                {"number":2,"name":"accnt_number","attnum":2,"notnull":false,"type":"text","primarykey":"f","uniquekey":"f","foreignkey":null,"foreignkey_fieldnum":null,"foreignkey_connnum":null,"default":null},
-                {"number":3,"name":"accnt_descrip","attnum":3,"notnull":false,"type":"text","primarykey":"f","uniquekey":"f","foreignkey":null,"foreignkey_fieldnum":null,"foreignkey_connnum":null,"default":null},
-                {"number":4,"name":"accnt_comments","attnum":4,"notnull":false,"type":"text","primarykey":"f","uniquekey":"f","foreignkey":null,"foreignkey_fieldnum":null,"foreignkey_connnum":null,"default":null},
-                {"number":5,"name":"accnt_profit","attnum":5,"notnull":false,"type":"text","primarykey":"f","uniquekey":"f","foreignkey":null,"foreignkey_fieldnum":null,"foreignkey_connnum":null,"default":null},
-                {"number":6,"name":"accnt_sub","attnum":6,"notnull":false,"type":"text","primarykey":"f","uniquekey":"f","foreignkey":null,"foreignkey_fieldnum":null,"foreignkey_connnum":null,"default":null},
-                {"number":7,"name":"accnt_type","attnum":7,"notnull":true,"type":"character(1)","primarykey":"f","uniquekey":"f","foreignkey":null,"foreignkey_fieldnum":null,"foreignkey_connnum":null,"default":null},
-                {"number":8,"name":"accnt_extref","attnum":8,"notnull":false,"type":"text","primarykey":"f","uniquekey":"f","foreignkey":null,"foreignkey_fieldnum":null,"foreignkey_connnum":null,"default":null},
-                {"number":9,"name":"accnt_company","attnum":9,"notnull":false,"type":"text","primarykey":"f","uniquekey":"f","foreignkey":"company","foreignkey_fieldnum":"{2}","foreignkey_connnum":"{9}","default":null},
-                {"number":10,"name":"accnt_closedpost","attnum":10,"notnull":false,"type":"boolean","primarykey":"f","uniquekey":"f","foreignkey":null,"foreignkey_fieldnum":null,"foreignkey_connnum":null,"default":null},
-                {"number":11,"name":"accnt_forwardupdate","attnum":11,"notnull":false,"type":"boolean","primarykey":"f","uniquekey":"f","foreignkey":null,"foreignkey_fieldnum":null,"foreignkey_connnum":null,"default":null},
-                {"number":12,"name":"accnt_subaccnttype_code","attnum":12,"notnull":false,"type":"text","primarykey":"f","uniquekey":"f","foreignkey":null,"foreignkey_fieldnum":null,"foreignkey_connnum":null,"default":null},
-                {"number":13,"name":"accnt_curr_id","attnum":13,"notnull":false,"type":"integer","primarykey":"f","uniquekey":"f","foreignkey":"curr_symbol","foreignkey_fieldnum":"{1}","foreignkey_connnum":"{13}","default":"basecurrid()"},
-                {"number":14,"name":"accnt_active","attnum":14,"notnull":true,"type":"boolean","primarykey":"f","uniquekey":"f","foreignkey":null,"foreignkey_fieldnum":null,"foreignkey_connnum":null,"default":"true"},
-                {"number":15,"name":"accnt_name","attnum":15,"notnull":false,"type":"text","primarykey":"f","uniquekey":"f","foreignkey":null,"foreignkey_fieldnum":null,"foreignkey_connnum":null,"default":null},
-                {"number":16,"name":"accnt_code_alt","attnum":16,"notnull":false,"type":"text","primarykey":"f","uniquekey":"f","foreignkey":null,"foreignkey_fieldnum":null,"foreignkey_connnum":null,"default":"\'\'::text"},
-                {"number":17,"name":"accnt_descrip_alt","attnum":17,"notnull":false,"type":"text","primarykey":"f","uniquekey":"f","foreignkey":null,"foreignkey_fieldnum":null,"foreignkey_connnum":null,"default":"\'\'::text"}
-            ]',
+            '148f9f339e10933ed1275b9086ba3a95' => '[
+                        {"tablename":"accnt","name":"accnt_id","default_value_raw":"nextval((\'accnt_accnt_id_seq\'::text)::regclass)","type":"integer","len":"32","flags":" not_null primary","fk_table":null,"fk_column":null},
+                       {"tablename":"accnt","name":"accnt_number","default_value_raw":null,"type":"text","len":null,"flags":"","fk_table":null,"fk_column":null},
+                       {"tablename":"accnt","name":"accnt_descrip","default_value_raw":null,"type":"text","len":null,"flags":"","fk_table":null,"fk_column":null},
+                       {"tablename":"accnt","name":"accnt_comments","default_value_raw":null,"type":"text","len":null,"flags":"","fk_table":null,"fk_column":null},
+                       {"tablename":"accnt","name":"accnt_profit","default_value_raw":null,"type":"text","len":null,"flags":"","fk_table":null,"fk_column":null},
+                       {"tablename":"accnt","name":"accnt_sub","default_value_raw":null,"type":"text","len":null,"flags":"","fk_table":null,"fk_column":null},
+                       {"tablename":"accnt","name":"accnt_type","default_value_raw":null,"type":"character","len":"1","flags":" not_null","fk_table":null,"fk_column":null},
+                       {"tablename":"accnt","name":"accnt_extref","default_value_raw":null,"type":"text","len":null,"flags":"","fk_table":null,"fk_column":null},
+                       {"tablename":"accnt","name":"accnt_company","default_value_raw":null,"type":"text","len":null,"flags":"","fk_table":"company","fk_column":"company_number"},
+                       {"tablename":"accnt","name":"accnt_closedpost","default_value_raw":null,"type":"boolean","len":null,"flags":"","fk_table":null,"fk_column":null},
+                       {"tablename":"accnt","name":"accnt_forwardupdate","default_value_raw":null,"type":"boolean","len":null,"flags":"","fk_table":null,"fk_column":null},
+                       {"tablename":"accnt","name":"accnt_subaccnttype_code","default_value_raw":null,"type":"text","len":null,"flags":"","fk_table":null,"fk_column":null},
+                       {"tablename":"accnt","name":"accnt_curr_id","default_value_raw":"basecurrid()","type":"integer","len":"32","flags":"","fk_table":"curr_symbol","fk_column":"curr_id"},
+                       {"tablename":"accnt","name":"accnt_active","default_value_raw":"true","type":"boolean","len":null,"flags":" not_null","fk_table":null,"fk_column":null},
+                       {"tablename":"accnt","name":"accnt_name","default_value_raw":null,"type":"text","len":null,"flags":"","fk_table":null,"fk_column":null},
+                       {"tablename":"accnt","name":"accnt_code_alt","default_value_raw":"\'\'::text","type":"text","len":null,"flags":"","fk_table":null,"fk_column":null},
+                       {"tablename":"accnt","name":"accnt_descrip_alt","default_value_raw":"\'\'::text","type":"text","len":null,"flags":"","fk_table":null,"fk_column":null}
+                    ]',
             // for addr
-            '7de46b3d3e81498c15bedd6eaeef687e' => '[
-                {"number":1,"name":"addr_id","attnum":1,"notnull":true,"type":"integer","primarykey":"t","uniquekey":"f","foreignkey":null,"foreignkey_fieldnum":null,"foreignkey_connnum":null,"default":"nextval(\'addr_addr_id_seq\'::regclass)"},
-                {"number":2,"name":"addr_active","attnum":2,"notnull":false,"type":"boolean","primarykey":"f","uniquekey":"f","foreignkey":null,"foreignkey_fieldnum":null,"foreignkey_connnum":null,"default":"true"},
-                {"number":3,"name":"addr_line1","attnum":3,"notnull":false,"type":"text","primarykey":"f","uniquekey":"f","foreignkey":null,"foreignkey_fieldnum":null,"foreignkey_connnum":null,"default":"\'\'::text"},
-                {"number":4,"name":"addr_line2","attnum":4,"notnull":false,"type":"text","primarykey":"f","uniquekey":"f","foreignkey":null,"foreignkey_fieldnum":null,"foreignkey_connnum":null,"default":"\'\'::text"},
-                {"number":5,"name":"addr_line3","attnum":5,"notnull":false,"type":"text","primarykey":"f","uniquekey":"f","foreignkey":null,"foreignkey_fieldnum":null,"foreignkey_connnum":null,"default":"\'\'::text"},
-                {"number":6,"name":"addr_city","attnum":6,"notnull":false,"type":"text","primarykey":"f","uniquekey":"f","foreignkey":null,"foreignkey_fieldnum":null,"foreignkey_connnum":null,"default":"\'\'::text"},
-                {"number":7,"name":"addr_state","attnum":7,"notnull":false,"type":"text","primarykey":"f","uniquekey":"f","foreignkey":null,"foreignkey_fieldnum":null,"foreignkey_connnum":null,"default":"\'\'::text"},
-                {"number":8,"name":"addr_postalcode","attnum":8,"notnull":false,"type":"text","primarykey":"f","uniquekey":"f","foreignkey":null,"foreignkey_fieldnum":null,"foreignkey_connnum":null,"default":"\'\'::text"},
-                {"number":9,"name":"addr_country","attnum":9,"notnull":false,"type":"text","primarykey":"f","uniquekey":"f","foreignkey":null,"foreignkey_fieldnum":null,"foreignkey_connnum":null,"default":"\'\'::text"},
-                {"number":10,"name":"addr_notes","attnum":10,"notnull":false,"type":"text","primarykey":"f","uniquekey":"f","foreignkey":null,"foreignkey_fieldnum":null,"foreignkey_connnum":null,"default":"\'\'::text"},
-                {"number":11,"name":"addr_number","attnum":11,"notnull":true,"type":"text","primarykey":"f","uniquekey":"t","foreignkey":null,"foreignkey_fieldnum":null,"foreignkey_connnum":null,"default":null}
- 
-            ]'
+            'f9ca333dff2cc765ef21f0c1913135fc' => '[
+                    {"tablename":"addr","name":"addr_id","default_value_raw":"nextval(\'addr_addr_id_seq\'::regclass)","type":"integer","len":"32","flags":" not_null primary","fk_table":null,"fk_column":null},
+                   {"tablename":"addr","name":"addr_active","default_value_raw":"true","type":"boolean","len":null,"flags":"","fk_table":null,"fk_column":null},
+                   {"tablename":"addr","name":"addr_line1","default_value_raw":"\'\'::text","type":"text","len":null,"flags":"","fk_table":null,"fk_column":null},
+                   {"tablename":"addr","name":"addr_line2","default_value_raw":"\'\'::text","type":"text","len":null,"flags":"","fk_table":null,"fk_column":null},
+                   {"tablename":"addr","name":"addr_line3","default_value_raw":"\'\'::text","type":"text","len":null,"flags":"","fk_table":null,"fk_column":null},
+                   {"tablename":"addr","name":"addr_city","default_value_raw":"\'\'::text","type":"text","len":null,"flags":"","fk_table":null,"fk_column":null},
+                   {"tablename":"addr","name":"addr_state","default_value_raw":"\'\'::text","type":"text","len":null,"flags":"","fk_table":null,"fk_column":null},
+                   {"tablename":"addr","name":"addr_postalcode","default_value_raw":"\'\'::text","type":"text","len":null,"flags":"","fk_table":null,"fk_column":null},
+                   {"tablename":"addr","name":"addr_country","default_value_raw":"\'\'::text","type":"text","len":null,"flags":"","fk_table":null,"fk_column":null},
+                   {"tablename":"addr","name":"addr_notes","default_value_raw":"\'\'::text","type":"text","len":null,"flags":"","fk_table":null,"fk_column":null},
+                   {"tablename":"addr","name":"addr_number","default_value_raw":null,"type":"text","len":null,"flags":" not_null","fk_table":null,"fk_column":null}
+                ]'
         ),
+        
+        // 03 - error tests..
           'mysql:dbname=somedb;host=localhost;port=3344' => array(
             
             // QUeries
@@ -134,11 +135,11 @@ class PDO_DummyStatement {
                    
                     {"Tables_in_somedb":"Groups"}
                 ]',
-             'DESCRIBE `Groups`' => '[
-                {"Field":"id","Type":"int(11)","Null":"NO","Key":"PRI","Default":null,"Extra":"auto_increment"},
-                {"Field":"name","Type":"varchar(64)","Null":"NO","Key":"","Default":"","Extra":""},
-                {"Field":"type","Type":"int(11)","Null":"YES","Key":"","Default":"0","Extra":""},
-                {"Field":"leader","Type":"int(11)","Null":"NO","Key":"","Default":"0","Extra":""}
+             'f77e1669034239c845220bf51ee0a9f2' => '[
+                  {"tablename":"Groups","name":"id","default_value_raw":null,"type":"int","len":"10","flags":"auto_increment not_null primary","fk_table":"","fk_column":""},
+                    {"tablename":"Groups","name":"name","default_value_raw":"","type":"varchar","len":null,"flags":" not_null","fk_table":"","fk_column":""},
+                    {"tablename":"Groups","name":"type","default_value_raw":"0","type":"int","len":"10","flags":" not_null","fk_table":"","fk_column":""},
+                    {"tablename":"Groups","name":"leader","default_value_raw":"0","type":"int","len":"10","flags":" not_null","fk_table":"","fk_column":""}
             ]',
         ),
           
@@ -148,7 +149,7 @@ class PDO_DummyStatement {
                     {"table_name":"Groups"}
             ]',
             // select columname,data_type,data_lenght, nullable
-            'abe3c68f78a185617486040faeb03966' => '[
+            'd632f626d40c91f7f96d697e86122c38' => '[
                 {"column_name":"id","data_type":"int","data_length":11,"nullable":"N"},
                 {"column_name":"name","data_type":"varchar","data_length":64,"nullable":""},
                 {"column_name":"type","data_type":"int","data_length":11,"nullable":""}
@@ -171,11 +172,12 @@ class PDO_DummyStatement {
     function __construct($db, $query)
     {
         if (isset(self::$results[$db][$query])) {
-            $this->result = json_decode(self::$results[$db][$query]);
+            $this->result = json_decode(self::$results[$db][$query], true);
             return;
         }
         if (isset(self::$results[$db][md5($query)])) {
-            $this->result = json_decode(self::$results[$db][md5($query)]);
+            $this->result = json_decode(self::$results[$db][md5($query)], true);
+            
             return;
         }
         throw new Exception(__CLASS__  . " missing query: DB: $db  QUERY=$query ");
@@ -210,6 +212,27 @@ class PDO_DummyStatement {
         
     }
     
+    function fetchAll($method, $col=0)
+    {
+        $ret = array();
+        switch($method) {
+            case PDO::FETCH_ASSOC:
+                return $this->result;
+                
+            case PDO::FETCH_COLUMN:
+                $cols = array_keys($this->result[0]);
+                
+                $ret = array();
+                for ($i =0; $i <  count($this->result) ; $i++) {
+                    $ret[] = $this->result[$i][$cols[$col]];
+                }
+                return $ret;
+            
+            default:
+                throw new Exception("invalid argument for FetchAll in dummy PDOStatement");
+        }
+    }
+    
       
     function rowCount()
     {
@@ -217,6 +240,7 @@ class PDO_DummyStatement {
     }
     function columnCount()
     {
+        
         return count(array_keys((array)$this->result[0]));
     }
     function getColumnMeta()

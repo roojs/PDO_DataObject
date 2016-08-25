@@ -362,7 +362,7 @@ class PDO_DataObject
         // should error out if database is not set.. or know..
         $ds = $this->databaseStructure();
         if (!isset($ds[$this->__table])) {
-            $this->raiseError("Could not find INI values for database={$this->_database} and table={$this->__table}", self::ERROR_INVALIDARGS, self::ERROR_DIE );
+            $this->raiseError("Could not find INI values for database={$this->_database_nickname} and table={$this->__table}", self::ERROR_INVALIDARGS, self::ERROR_DIE );
         }
         
         
@@ -2525,7 +2525,7 @@ class PDO_DataObject
         // if we are configured to use the proxy..
         
         if ( self::$config['proxy'])   {
-            return $this->_generator()->databaseStructureProxy($database_nickname);
+            return $this->generator()->databaseStructureProxy($database_nickname);
         }
             
         // basic idea here..
@@ -2615,7 +2615,7 @@ class PDO_DataObject
      * 
      */
     
-    private function _generator()
+    function generator()
     {
         $dcls = 'PDO_DataObject_Generator';
         $cls = (is_string(self::$config['proxy']) && strpos(self::$config['proxy'], '::') !== false) ?

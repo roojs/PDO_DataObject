@@ -88,7 +88,7 @@ class PDO_DataObject_Introspection_oci extends PDO_DataObject_Introspection
          * Probably received a table name.
          * Create a result resource identifier.
          */
-        $result = strtoupper($result);
+        $table = strtoupper($table);
         $records  = $this->do
             ->query("SELECT
                         column_name, data_type,
@@ -96,7 +96,7 @@ class PDO_DataObject_Introspection_oci extends PDO_DataObject_Introspection
                     FROM
                         user_tab_columns 
                     WHERE
-                        table_name='{$this->do->escape($result)}'
+                        table_name='{$this->do->escape($table)}'
                     ORDER BY
                         column_id")
             ->fetchAllFast();
@@ -110,7 +110,7 @@ class PDO_DataObject_Introspection_oci extends PDO_DataObject_Introspection
         $i = 0;
         foreach($records as $r) {
             $res[] = array(
-                'tablename' => $case_func($result),
+                'tablename' => $case_func($table),
                 'name'  => $case_func($r['column_name']),
                 'type'  => $r['data_type'],
                 'len'   => $r['data_length'],
@@ -124,7 +124,7 @@ class PDO_DataObject_Introspection_oci extends PDO_DataObject_Introspection
         }
 
  
-           return $res;
+        return $res;
      
     }  
     

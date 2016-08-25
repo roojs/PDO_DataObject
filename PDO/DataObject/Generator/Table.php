@@ -150,7 +150,7 @@ class PDO_DataObject_Generator_Table {
         $defs = $this->gen->introspection()->tableInfo($this->table);
          
         
-        $this->gen->debug("getting def for {$pdo->database_nickname}/{$this->table}", __FUNCTION__,3);
+        $this->gen->debug("getting def for {$pdo->dsn['database_name']}/{$this->table}", __FUNCTION__,3);
         $this->gen->debug(print_r($defs,true),'defs',3);
         
         // cast all definitions to objects - as we deal with that better.
@@ -165,7 +165,7 @@ class PDO_DataObject_Generator_Table {
             }
         }
         
-        $this->gen->databaseStructure($pdo->database_nickname,   $this->toDatabaseStructureArray()  ); 
+        $this->gen->databaseStructure($this->gen->databaseNickName(),   $this->toDatabaseStructureArray()  ); 
         
          
     }

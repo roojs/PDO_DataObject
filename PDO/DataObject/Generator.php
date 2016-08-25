@@ -275,8 +275,8 @@ class PDO_DataObject_Generator extends PDO_DataObject
             $t->_database_dsn = $database;
             $t->databaseNickname( $databasename);
             
-            $t->_readTableList();
-            $t->_readForeignKeys();
+            $t->readTableList();
+ 
 
             foreach(get_class_methods($class) as $method) {
                 if (substr($method,0,8 ) != 'generate') {
@@ -315,7 +315,7 @@ class PDO_DataObject_Generator extends PDO_DataObject
         
         $this->databaseNickname( $database );
         $this->PDO();
-        $this->_readTableList();
+        $this->readTableList();
          
             // prevent recursion...
             
@@ -354,10 +354,10 @@ class PDO_DataObject_Generator extends PDO_DataObject
      * Build a list of tables and definitions.;
      * and store it in $this->tables and $this->_definitions[tablename];
      *
-     * @access  private
+     * @access  public
      * @return  none
      */
-    function _readTableList()
+    function readTableList()
     {
         $options = self::config();
         
@@ -454,13 +454,26 @@ class PDO_DataObject_Generator extends PDO_DataObject
         }
         return new $tcls($this,$name);
     }
-    
     /**
-     * Auto generation of table data.
+     * fetch the content of '.ini' files with database schema in them.
      *
-     * it will output to db_oo_{database} the table definitions
+     * @access  public
+     * @return  none
+     */    
+
+    function toIni()
+    {
+        $out = '';
+        foreach($this->tables as $table) {
+            $out .= $table->toIniString();
+        }
+        return $out;
+    }
+
+    /**
+     * Create '.ini' files with database schema in them.
      *
-     * @access  private
+     * @access  public
      * @return  none
      */
     function generateINI()
@@ -482,10 +495,7 @@ class PDO_DataObject_Generator extends PDO_DataObject
             return;
         }
         
-        $out = '';
-        foreach($this->tables as $table) {
-            $out .= $table->toIniString();
-        }
+        $out = $this->toIni();
 
         $this->PDO();
         // dont generate a schema if location is not set

@@ -60,7 +60,8 @@ class PDO_DataObject_Generator_Column
      */
     var $do_type = 0; 
     /**
-     * @var string from original database table meta table - flags - contains not_nul autoincrement nextval() etc...
+     * @var string from original database table meta table - flags - contains not_nul autoincrement but
+     *         not nextval() - that's in default value...
      */
     var $flags = ''; //?/
     
@@ -123,7 +124,7 @@ class PDO_DataObject_Generator_Column
         // and set other stuff?
         // put all the type parsing here!?
         $this->default_value = $def_ar['default_value'];
-        $this->default_raw_value = $def_ar['default_value_raw'];
+        $this->default_value_raw = $def_ar['default_value_raw'];
         $this->length = $def_ar['len'];
         if (!empty($def_ar['fk_table'])) {
             $this->foreign_key = $def_ar['fk_table'] .':' . $def_ar['fk_column'];
@@ -185,6 +186,8 @@ class PDO_DataObject_Generator_Column
                 
             case 'STRING':
             case 'CHAR':
+            case 'CHARACTER': // pgsql
+            case 'CHARACTER VARYING': //postgres
             case 'VARCHAR':
             case 'VARCHAR2':
             case 'TINYTEXT':
@@ -202,8 +205,12 @@ class PDO_DataObject_Generator_Column
             case 'INET':        // postgres IP
             case 'MACADDR':     // postgress network Mac address.
             
+            // these are all array types..
             case 'INTEGER[]':   // postgres type
             case 'BOOLEAN[]':   // postgres type
+            case 'TEXT[]':   // postgres type
+            
+            case 'TIMESTAMP WITH TIME ZONE': // pgsql -- might need another 'type' to handle this correctly..
             
                 $type = PDO_DataObject::STR;
                 break;
@@ -227,7 +234,7 @@ class PDO_DataObject_Generator_Column
                 
             
             case 'DATETIME': 
-                 
+            case 'TIMESTAMP WITHOUT TIME ZONE': // postgresql..
                 $type = PDO_DataObject::STR + PDO_DataObject::DATE + PDO_DataObject::TIME;
                 break;    
                 
@@ -287,16 +294,17 @@ class PDO_DataObject_Generator_Column
        
        
        
-        if (in_array($t->name,array('null','yes','no','true','false'))) {
+        if (in_array($this->name,array('null','yes','no','true','false'))) {
             echo "*****************************************************************\n".
                  "**                             WARNING                         **\n".
-                 "** Found column '{$t->name}', which is invalid in an .ini file **\n".
+                 "** Found column '{$this->name}', which is invalid in an .ini file **\n".
                  "** This line will not be writen to the file - you will have    **\n".
                  "** define the keys()/method manually.                          **\n".
                  "*****************************************************************\n";
             $this->is_name_invalid = true;
         }  
         
+        $options = PDO_DataObject_Generator::config();
         // i've no idea if this will work well on other databases?
         // only use primary key or nextval(), cause the setFrom blocks you setting all key items...
         // if no keys exist fall back to using unique
@@ -304,7 +312,10 @@ class PDO_DataObject_Generator_Column
         $secondary_key_match =  $options['secondary_key_match']; // normally unique|primary
         
         $m = array();
-        if (preg_match('/(auto_increment|nextval\(([^)]*))/i',rawurldecode($this->flags),$m) 
+       
+        if (preg_match('/(nextval\(([^)]*))/i',$this->default_value_raw,$m)
+            ||
+            preg_match('/auto_increment/i',rawurldecode($this->flags)) 
             || (isset($def_ar['autoincrement']) && ($def_ar['autoincrement'] === true))) {
             
             
@@ -320,7 +331,7 @@ class PDO_DataObject_Generator_Column
             // native sequences = 2
             ;
         
-        } else if ($secondary_key_match && preg_match('/('.$secondary_key_match.')/i',$t->flags)) {
+        } else if ($secondary_key_match && preg_match('/('.$secondary_key_match.')/i',$this->flags)) {
             // keys.. = 1
             $this->is_sequence = false;
             $this->is_sequence_native = false;
@@ -360,7 +371,7 @@ class PDO_DataObject_Generator_Column
         // can not do set as PEAR::DB table info doesnt support it.
         //if (substr($t->Type,0,3) == "set")
         //    $sets[$t->Field] = "array".substr($t->Type,3);
-        $body .= $this->hook->varDef($t,strlen($p));
+        $body .= $this->hook->varDef(strlen($p));
     }
     /**
     * Generate getter methods for class definition
@@ -445,7 +456,7 @@ class PDO_DataObject_Generator_Column
         //$setters .= (substr(phpversion(),0,1) > 4) ? '    public '
         //                                           : '    ';
         $setters .= "   function $methodName(\$value) {\n";
-        $setters .= "        \$this->{$t->name} = \$value;\n";
+        $setters .= "        \$this->{$this->name} = \$value;\n";
         $setters .= "    }\n\n";
     
 
