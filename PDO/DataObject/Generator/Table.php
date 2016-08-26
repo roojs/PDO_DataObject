@@ -288,7 +288,7 @@ class PDO_DataObject_Generator_Table {
                     . "    function defaults() // column default values \n" 
                     . "    {\n"
                     . "         return array(\n"
-                    . "             ". implode(",\n             ", $vdef)
+                    . "             ". implode(",\n             ", $vdef) . "\n"
                     . "         );\n" 
                     . "    }\n";
                     
