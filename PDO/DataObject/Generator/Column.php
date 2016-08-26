@@ -568,12 +568,12 @@ class PDO_DataObject_Generator_Column
                 return '';
                 
             case ($type & PDO_DataObject::BOOL &&  is_bool($this->default_value)): 
-                $value =  (int)(boolean) $this->default_value; // postgres... 
+                $value =  (int)(boolean) $this->default_value; // postgres... ??
                 break;
                 
             
             case ($type & PDO_DataObject::STR): 
-                $value =  $this->default_value;
+                $value =  var_export($this->default_value,true);
                 break;
             
          
@@ -585,7 +585,7 @@ class PDO_DataObject_Generator_Column
                 return '';
                     
         }
-        return var_export($this->name,true) . ' => ' . var_export($value,true);
+        return var_export($this->name,true) . ' => ' . $value;
     }
     
     
