@@ -292,7 +292,7 @@ class PDO_DataObject_Generator_Table {
                     . "         );\n" 
                     . "    }\n";
                     
-            if ($config['no_ini']) {
+            if ($config['embed_schema']) {
                 $body .= $schema;
             }
             $body .=  $defaults;
