@@ -63,32 +63,7 @@ $gen->readTableList();
 echo $gen->toINI(); 
 echo $gen->toPhp('Companies');
  
-
-
-// postgres test...
-PDO_DataObject_Generator::config(array(
-         
-            'build_views' => true,
-            'var_keyword' => 'private',
-                
-            'add_database_nickname' => true,
-                
-            // 'no_column_vars' => false,
-                
-                
-            'setters' => true,
-            'getters' => true,
-            'add_defaults' => true,
-            'link_methods'  =>true,
-                
-            'include_regex' =>  '/^Companies$/'
-            //'exclude_regex' => false,
-              
-            
-
-
-));
-
+ 
 
 
 
