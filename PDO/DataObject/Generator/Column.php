@@ -357,7 +357,7 @@ class PDO_DataObject_Generator_Column
     function toPhpVar($var)
     {
           
-     
+        $body = '';
         if (!strlen($this->name) || $this->is_name_invalid) {
             return '';
         }
@@ -371,7 +371,9 @@ class PDO_DataObject_Generator_Column
         // can not do set as PEAR::DB table info doesnt support it.
         //if (substr($t->Type,0,3) == "set")
         //    $sets[$t->Field] = "array".substr($t->Type,3);
-        $body .= $this->hook->varDef(strlen($p));
+        $body .= $this->hook->varDef($this,$pad);
+        
+        return $body;
     }
     /**
     * Generate getter methods for class definition

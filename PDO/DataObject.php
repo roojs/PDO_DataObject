@@ -2625,7 +2625,7 @@ class PDO_DataObject
             class_exists('PDO_DataObject_Generator') ? '' : 
                 require_once 'PDO/DataObject/Generator.php';
         }
-        return new $cls();
+        return new $cls($this->_database_nickname);
     }
     
     

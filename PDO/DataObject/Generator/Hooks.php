@@ -4,7 +4,8 @@
  * -- replacement of old Hook methods
  * -- just implement this and set
  * -- generator_hook = {classname}|{object}* For PHP versions  5 and 7
- * 
+ *
+ *  NOTE - NONE OF THIS IS TESTED..... - please report issues if you use it..
  * 
  * Copyright (c) 2015 Alan Knowles
  * 
@@ -75,7 +76,7 @@ class PDO_DataObject_Generator_Hooks {
      * @access   public
      * @return  string added to class eg. functions.
      */
-    function varDef($original)
+    function varDef($column, $padding)
     {
         return '';
     }
@@ -89,7 +90,7 @@ class PDO_DataObject_Generator_Hooks {
      * @return  string added to class eg. functions.
      */
  
-    function postVar($original)
+    function postVar($columns_array)
     {
         return '';
     }
@@ -112,7 +113,7 @@ class PDO_DataObject_Generator_Hooks {
      * @access public
      * @return string added to class eg. functions.
      */
-    function ExtendsLevelDocBlock($original)
+    function extendsDocBlock($original)
     {
         return '';   
     }

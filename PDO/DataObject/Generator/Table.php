@@ -179,9 +179,9 @@ class PDO_DataObject_Generator_Table {
          // title = expand me!
         $foot = "";
         $head = "<?php\n/**\n * Table Definition for {$this->table}\n";
-        $head .= $this->hook->pageLevelDocBlock();
+        $head .= $this->hook->pageLevelDocBlock($user_code);
         $head .= " */\n";
-        $head .= $this->hook->extendsDocBlock();
+        $head .= $this->hook->extendsDocBlock($user_code);
 
         
         // requires - if you set extends_location = (blank) then no require line will be set
@@ -192,7 +192,7 @@ class PDO_DataObject_Generator_Table {
         }
         // add dummy class header in...
         // class 
-        $head .= $this->hook->classDocBlock();
+        $head .= $this->hook->classDocBlock($user_code);
         $head .= "class {$this->classname} extends {$config['extends_class']} \n{";
 
         $body =  "\n    ###START_AUTOCODE\n";
@@ -228,7 +228,7 @@ class PDO_DataObject_Generator_Table {
             $body .= $col->toPhpVar($var);
         }
          
-        $body .= $this->hook->postVar($defs);
+        $body .= $this->hook->postVar($this->columns);
 
         foreach($this->columns as $col) {
             if ($col->is_name_invalid) {
@@ -300,7 +300,7 @@ class PDO_DataObject_Generator_Table {
         }
         
         
-        $body .= $this->hook->functions($input);
+        $body .= $this->hook->functions($user_code);
 
         $body .= "\n    /* the code above is auto generated do not remove the tag below */";
         $body .= "\n    ###END_AUTOCODE\n";
@@ -312,28 +312,27 @@ class PDO_DataObject_Generator_Table {
         $foot .= "}\n";
         $full = $head . $body . $foot;
 
-        if (!$input) {
+        if (!$original) {
             return $full;
         }
-        if (!preg_match('/(\n|\r\n)\s*###START_AUTOCODE(\n|\r\n)/s',$input))  {
+        if (!preg_match('/(\n|\r\n)\s*###START_AUTOCODE(\n|\r\n)/s',$original))  {
             return $full;
         }
-        if (!preg_match('/(\n|\r\n)\s*###END_AUTOCODE(\n|\r\n)/s',$input)) {
+        if (!preg_match('/(\n|\r\n)\s*###END_AUTOCODE(\n|\r\n)/s',$original)) {
             return $full;
         }
-
-        
-        
+ 
         /* this used to be configurable - */
 
         $input = preg_replace(
             '/(\n|\r\n)class\s*[a-z0-9_]+\s*extends\s*[a-z0-9_]+\s*(\n|\r\n)\{(\n|\r\n)/si',
             "\nclass {$this->classname} extends {$config['extends_class']}\n{\n",
-            $input);
+            $original);
+        
         
         $ret =  preg_replace(
             '/(\n|\r\n)\s*###START_AUTOCODE(\n|\r\n).*(\n|\r\n)\s*###END_AUTOCODE(\n|\r\n)/s',
-            $body,$input);
+            $body,$original);
         
         if (!strlen($ret)) {
             return $this->gen->raiseError(
@@ -350,7 +349,7 @@ class PDO_DataObject_Generator_Table {
     
     function toIniString()
     {
-        $ret = "[{This->table}]\n";
+        $ret = "[{$this->table}]\n";
         foreach($this->columns as $c) {
             if ($c->is_name_invalid) {
                 continue;
@@ -363,10 +362,11 @@ class PDO_DataObject_Generator_Table {
         if (!$ar) {
             return $ret;
         }
-        $ret .= "\n[{This->table}__keys]\n";
+        $ret .= "\n[{$this->table}__keys]\n";
         foreach($ar as $k=>$v) {
             $ret .= "$k = $v\n";
         }
+        $ret.="\n"; 
         return $ret;
        
     }

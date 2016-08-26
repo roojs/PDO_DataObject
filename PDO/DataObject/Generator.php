@@ -132,6 +132,8 @@ class PDO_DataObject_Generator extends PDO_DataObject
             	// (true) will generate setXXXX() methods for you.
             'getters' => false,
             	// (true) will generate getXXXX() methods for you.
+            'add_defaults' => false,
+                // add a method defaults() - that returns the default value for each column.
             'link_methods'  =>false,
                 // (true|callable) will create the wrappers around link()
                 // => function($k) { return $k; } // to munge the column name into a method name.
@@ -220,8 +222,10 @@ class PDO_DataObject_Generator extends PDO_DataObject
     
     
     
-    function __construct()
+    function __construct($database_nickhame= false)
     {
+        $this->databaseNickname($database_nickhame);
+        
         $hook = self::$config['hook'];
         if (is_object($hook)) {
             $this->hook = $hook;
@@ -476,7 +480,7 @@ class PDO_DataObject_Generator extends PDO_DataObject
      * @access  public
      * @return  none
      */
-    function generateINI()
+    function generateIni()
     {
         $this->debug("Generating Definitions INI file:        ");
         if (!$this->tables) {
@@ -628,7 +632,12 @@ class PDO_DataObject_Generator extends PDO_DataObject
     }
 
       
-     
+    function toPhp($tablename)
+    {
+        return  $this->tables[$tablename]->toPhp('');
+    
+        
+    }
     
     
     
@@ -639,7 +648,7 @@ class PDO_DataObject_Generator extends PDO_DataObject
     function generatePhp()
     {
         //echo "Generating Class files:        \n";
-        $options = &PEAR::getStaticProperty('DB_DataObject','options');
+        $options = self::config();
         
 
         foreach($this->tables as $table) {
