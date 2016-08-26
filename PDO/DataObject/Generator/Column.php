@@ -558,7 +558,7 @@ class PDO_DataObject_Generator_Column
         $value = '';
         switch(true) {
              
-            case (is_null( $this->default_value) && !($this->do_type & PDO_DataObject::NOTNULL)):
+            case (is_null( $this->default_value) && !($type & PDO_DataObject::NOTNULL)):
                 $value  = 'null';
                 break;
             
