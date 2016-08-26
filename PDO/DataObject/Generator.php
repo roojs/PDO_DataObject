@@ -556,7 +556,12 @@ class PDO_DataObject_Generator extends PDO_DataObject
     
     function toLinksIni()
     {
-        
+        $out = '';
+        foreach($this->tables as $tn=>$table) {
+            $out .= $table->toLinksIni();
+        }
+        retiurn $out;
+
         
     }
     
