@@ -255,15 +255,16 @@ class PDO_DataObject_Generator_Table {
                     continue;
                 }
                 $tdef[] = $col->toPhpTableFunc();
-                if ($col->key_type!='') {
-                    $kdef[] = $col->toPhpKeyFunc();
-                }
+                
                 if ($col->is_sequence) {
                     $sdef = $col->toPhpSequenceFunc();
                 }
                 if ($col->toPhpDefault() != '') {
                     $vdef[] = $col->toPhpDefault() ;
                 }
+            }
+            foreach($this->toIniKeysArray() as $k=$v) {
+                $kdef[] = var_export($k,true) .' => ' . var_export($v);
             }
             
             
