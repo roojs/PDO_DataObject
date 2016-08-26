@@ -489,7 +489,7 @@ class PDO_DataObject_Generator_Column
             return '';
         }
         
-        if (empty($this->foreign_key)) {
+        if (empty($this->foreign_key) || $this->is_name_invalid) {
             // echo "skip lm? - fkyes empty";
             return '';
         }
