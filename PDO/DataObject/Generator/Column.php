@@ -514,7 +514,7 @@ class PDO_DataObject_Generator_Column
         $setters .= "    */\n";
       
                                                    
-        $setters .= "function $methodName() {\n";
+        $setters .= "    function $methodName() {\n";
         $setters .= "        return \$this->link('$this->name', func_get_args());\n";
         $setters .= "    }\n\n";
     
