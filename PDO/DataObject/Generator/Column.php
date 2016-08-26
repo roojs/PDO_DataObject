@@ -577,7 +577,7 @@ class PDO_DataObject_Generator_Column
                 
             
             case ($type & PDO_DataObject::STR): 
-                $value =  var_export($this->default_value,true);
+                $value =  var_export((string)$this->default_value,true);
                 break;
             
          
