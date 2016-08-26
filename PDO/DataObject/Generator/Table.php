@@ -361,7 +361,7 @@ class PDO_DataObject_Generator_Table {
         }
         $ar = $this->toIniSequenceArray();
         if (!$ar) {
-            return $ret;
+            return $ret . "\n";
         }
         $ret .= "\n[{$this->table}__keys]\n";
         foreach($ar as $k=>$v) {
