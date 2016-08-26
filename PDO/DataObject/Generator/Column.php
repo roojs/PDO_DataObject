@@ -549,7 +549,7 @@ class PDO_DataObject_Generator_Column
         
         return 'array('.
             var_export(true,true) .','.
-            var_export($this->is_sequence_native) .','.
+            var_export($this->is_sequence_native,true) .','.
             var_export($this->sequence_name, true) . ')';
     }
     function toPhpDefault()
@@ -573,7 +573,7 @@ class PDO_DataObject_Generator_Column
                 
             
             case ($type & PDO_DataObject::STR): 
-                $value =  "'" . addslashes($this->default_value) . "'";
+                $value =  $this->default_value;
                 break;
             
          
