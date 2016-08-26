@@ -60,7 +60,9 @@ PDO_DataObject_Generator::config(array(
 ));
 
 $gen->readTableList();
-echo $gen->toINI(); 
+echo $gen->toIni();
+echo $gen->toLinksIni(); 
+
 echo $gen->toPhp('Companies');
  
  
