@@ -418,7 +418,7 @@ class PDO_DataObject
             }
             
             if (self::$debug) {
-                $this->debug("Using Cached connection",__FUNCTION__);
+                $this->debug("Using Cached connection",__FUNCTION__,4); // occurs quite a lot...
             }
             // theoretically we have a md5, it's listed in connections and it's not an error.
             // so everything is ok!
