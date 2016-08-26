@@ -212,7 +212,7 @@ class PDO_DataObject_Generator_Table {
         // Only include the $_database property if the omit_database_var is unset or false
         
         if ($config['add_database_nickname']) {
-            $p = str_repeat(' ',   max(2, (16 - strlen($this->_database_nickname))));
+            $p = str_repeat(' ',   max(2, (16 - strlen($this->gen->_database_nickname))));
             $body .= "    {$config['var_keyword']} \$_database_nickname = '{$this->gen->_database_nickname}';  {$p}// database name (used with databases[{*}] config)\n";
         }
         
