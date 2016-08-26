@@ -23,7 +23,7 @@ PDO_DataObject::config(
         ),
     )
 );
-PDO_DataObject_Generator
+ 
 
 $gen = (new PDO_DataObject('mysql_anotherdb/Events'))->generator();
 
