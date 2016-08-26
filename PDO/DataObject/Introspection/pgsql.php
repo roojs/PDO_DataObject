@@ -76,8 +76,8 @@ class PDO_DataObject_Introspection_pgsql extends PDO_DataObject_Introspection
                         . " NOT IN ('information_schema', 'pg_catalog')";
             case 'views':
                 // Table cols: viewname | viewowner | definition
-                return 'SELECT viewname from pg_views WHERE schemaname'
-                        . " NOT IN ('information_schema', 'pg_catalog')";
+                return "SELECT viewname from pg_views WHERE schemaname = 'public'"; // default is to only get public.* views..
+                        
             case 'users':
                 // cols: usename |usesysid|usecreatedb|usetrace|usesuper|usecatupd|passwd  |valuntil
                 return 'SELECT usename FROM pg_user';
@@ -220,7 +220,7 @@ class PDO_DataObject_Introspection_pgsql extends PDO_DataObject_Introspection
                         
                         pg_attribute.atttypid <> 0::oid  
                         AND
-                        tablename='{$this->do->escape($table)}'
+                        pg_class.relname='{$this->do->escape($table)}'
                         AND 
                         pg_namespace.nspname = '{$this->do->escape($schema)}'
 
