@@ -457,7 +457,7 @@ class PDO_DataObject_Generator_Column
         $setters .= "    */\n";
         //$setters .= (substr(phpversion(),0,1) > 4) ? '    public '
         //                                           : '    ';
-        $setters .= "   function $methodName(\$value) {\n";
+        $setters .= "    function $methodName(\$value) {\n";
         $setters .= "        \$this->{$this->name} = \$value;\n";
         $setters .= "    }\n\n";
     
@@ -532,7 +532,7 @@ class PDO_DataObject_Generator_Column
     function toPhpSequenceFunc()
     {
         
-        return var_export(array(true,$this->is_sequence_native,$this->sequence_name));
+        return var_export(array(true,$this->is_sequence_native,$this->sequence_name), true);
     }
     function toPhpDefault()
     {
