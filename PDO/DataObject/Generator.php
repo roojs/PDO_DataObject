@@ -553,7 +553,13 @@ class PDO_DataObject_Generator extends PDO_DataObject
         // }
     }
  
-     
+    
+    function toLinksIni()
+    {
+        
+        
+    }
+    
     /**
      * generate Foreign Keys (for links.ini) 
      * Currenly only works with mysql / mysqli
