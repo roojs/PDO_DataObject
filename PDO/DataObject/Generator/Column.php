@@ -567,7 +567,7 @@ class PDO_DataObject_Generator_Column
                 return '';
                     
         }
-        return "'".addslashes($this->name)."' => {$value}";
+        return var_export($this->name) . ' => ' . var_export($value);
     }
     
     
