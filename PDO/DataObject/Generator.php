@@ -218,7 +218,7 @@ class PDO_DataObject_Generator extends PDO_DataObject
      * @var array
      * @access private
      */
-    var $tables;
+    var $tables = array();
     
     
     
