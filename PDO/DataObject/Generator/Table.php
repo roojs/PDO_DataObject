@@ -213,7 +213,7 @@ class PDO_DataObject_Generator_Table {
         
         if ($config['add_database_nickname']) {
             $p = str_repeat(' ',   max(2, (16 - strlen($this->_database_nickname))));
-            $body .= "    {$config['var_keyword']} \$_database_nickname = '{$this->_database_nickname}';  {$p}// database name (used with databases[{*}] config)\n";
+            $body .= "    {$config['var_keyword']} \$_database_nickname = '{$this->gen->_database_nickname}';  {$p}// database name (used with databases[{*}] config)\n";
         }
         
         
