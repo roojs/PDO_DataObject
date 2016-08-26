@@ -567,7 +567,7 @@ class PDO_DataObject_Generator_Column
                 return '';
                     
         }
-        return "'".addslashes($k)."' => {$v}";
+        return "'".addslashes($this->name)."' => {$value}";
     }
     
     
