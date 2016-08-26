@@ -263,8 +263,8 @@ class PDO_DataObject_Generator_Table {
                     $vdef[] = $col->toPhpDefault() ;
                 }
             }
-            foreach($this->toIniKeysArray() as $k=$v) {
-                $kdef[] = var_export($k,true) .' => ' . var_export($v);
+            foreach($this->toIniSequenceArray() as $k => $v) {
+                $kdef[] = var_export($k,true) .' => ' . var_export($v,true);
             }
             
             
