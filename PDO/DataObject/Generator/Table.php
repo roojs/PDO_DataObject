@@ -442,7 +442,7 @@ class PDO_DataObject_Generator_Table {
                 $ret[] = $c->name . ' = ' . $c->foreign_key;
             }
         }
-        if (!strlen($ret)) {
+        if (!count($ret)) {
             return '';
         }
         return "[{$this->tablename}]\n" . implode("\n", $ret)."\n";
