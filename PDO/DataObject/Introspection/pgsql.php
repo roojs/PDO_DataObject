@@ -120,64 +120,12 @@ class PDO_DataObject_Introspection_pgsql extends PDO_DataObject_Introspection
         // not used?
         $database = $this->do->PDO()->dsn['database_name'];
         
-        // This really nice query is pretty pointless - as pgsql performance is insanely bad for it..
-        /*
-        $records =  $this->do
-            ->query("
-                    SELECT
-                        columns.table_name as tablename,
-                        columns.column_name as name,
-                        constraint_column_usage.table_name as fk_table,
-                        constraint_column_usage.column_name as fk_column,
-                        columns.column_default as default_value_raw,
-                        data_type as type,
-                        numeric_precision as len,
-              			CONCAT(
-                            CASE WHEN
-                                IS_NULLABLE = 'YES'
-                            THEN
-                                '' ELSE 'not_null' END,
-                            CASE WHEN
-                                key_column_usage.position_in_unique_constraint is null AND column_default LIKE '%nextval%'
-                            THEN
-                                ' primary ' || columns.column_default ELSE '' END,
-                            CASE WHEN
-                                key_column_usage.position_in_unique_constraint is null AND column_default NOT LIKE '%nextval%'
-                            THEN
-                                ' unique' ELSE '' END
-                        ) as flags
-                    
-                    FROM
-                        INFORMATION_SCHEMA.columns
-                    LEFT JOIN
-                        INFORMATION_SCHEMA.key_column_usage
-                    ON
-                        key_column_usage.TABLE_SCHEMA = COLUMNS.TABLE_SCHEMA -- public
-                        AND
-                        key_column_usage.TABLE_CATALOG = COLUMNS.TABLE_CATALOG -- database
-                        AND
-                        key_column_usage.TABLE_NAME = COLUMNS.TABLE_NAME -- table
-                        AND
-                        key_column_usage.COLUMN_NAME = COLUMNS.COLUMN_NAME
-                    LEFT JOIN 
-                        information_schema.constraint_column_usage 
-                        ON
-                        key_column_usage.constraint_name = constraint_column_usage.constraint_name
-                        
-                    WHERE
-                        COLUMNS.TABLE_NAME = '{$this->do->escape($table)}'
-                        and
-                        COLUMNS.TABLE_SCHEMA = '{$this->do->escape($schema)}' 
         
-            ")
-            ->fetchAll(false,false,'toArray');
-        
-        */
         
          $records =  $this->do
             ->query("
                     SELECT
-                        pg_tables.tablename as tablename, 
+                        pg_class.relname AS tablename, 
                         pg_attribute.attname AS name, 
                         
                         (SELECT pg_attrdef.adsrc FROM pg_attrdef 
@@ -229,7 +177,7 @@ class PDO_DataObject_Introspection_pgsql extends PDO_DataObject_Introspection
                       
  
                     FROM
-                        pg_tables, pg_class 
+                        pg_class 
                     JOIN
                         pg_attribute
                         ON
@@ -269,8 +217,7 @@ class PDO_DataObject_Introspection_pgsql extends PDO_DataObject_Introspection
                     ON
                         pg_namespace.oid = pg_class.relnamespace  
                     WHERE
-                        pg_class.relname = pg_tables.tablename  
-                        AND
+                        
                         pg_attribute.atttypid <> 0::oid  
                         AND
                         tablename='{$this->do->escape($table)}'
