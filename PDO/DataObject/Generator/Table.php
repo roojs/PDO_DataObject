@@ -289,7 +289,7 @@ class PDO_DataObject_Generator_Table {
                     . "    {\n"
                     . "         return array(\n"
                     . "             ". implode(",\n             ", $vdef)
-                    . "         );" 
+                    . "         );\n" 
                     . "    }\n";
                     
             if ($config['no_ini']) {
