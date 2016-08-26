@@ -3,9 +3,7 @@ Generator - INI file
 --FILE--
 <?php
 require_once 'includes/init.php';
-PDO_DataObject::debugLevel(0);
-$base_config = PDO_DataObject::config();
-
+ 
  
 
 // test structure from introspection
@@ -19,9 +17,7 @@ PDO_DataObject::config(
         'databases' => array(
             'xtuple_db' => 'pgsql://admin:pass4xtuple@localhost/xtuplehk'
         ),
-        'tables' => array(
-            'accnt' => 'xtuple_db'
-        ),
+        
         'proxy' => true,
         'debug' => 0,
         
@@ -37,7 +33,7 @@ PDO_DataObject_Generator::config(array(
             'embed_schema' => true,
               
         
-            'generate_links' => true
+            'generate_links' => true,
         
             'var_keyword' => 'private',
                 
@@ -66,3 +62,5 @@ echo $gen->toLinksIni();
 echo $gen->toPhp('accnt');
  
  
+?>
+--EXPECT--
