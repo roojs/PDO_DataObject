@@ -245,7 +245,7 @@ class PDO_DataObject_Generator_Table {
         //    $body .="    function getSets{$k}() { return {$v}; }\n";
         //}
         
-        if (($config['no_ini'] || $config['add_defaults'])) {
+        if (($config['embed_schema'] || $config['add_defaults'])) {
             $tdef = array();
             $kdef = array();
             $sdef = var_export(array(false,false,false)); // should only be one fo thieses
