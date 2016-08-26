@@ -248,7 +248,7 @@ class PDO_DataObject_Generator_Table {
         if (($config['embed_schema'] || $config['add_defaults'])) {
             $tdef = array();
             $kdef = array();
-            $sdef = var_export(array(false,false,false)); // should only be one fo thieses
+            $sdef = 'array(false,false,false)'; // should only be one fo thieses
             $vdef = array();
             foreach($this->columns as $col) {
                 if ($col->is_name_invalid) {
