@@ -271,13 +271,13 @@ class PDO_DataObject_Generator_Table {
                     . "    function table()\n" 
                     . "    {\n" 
                     . "         return array(\n"
-                    . "             ". implode(",\n             ", $tdef)
+                    . "             ". implode(",\n             ", $tdef) . "\n"
                     . "         );" 
                     . "    }\n"
                     . "    function keys()\n" 
                     . "    {\n" 
                     . "         return array(\n"
-                    . "             ". implode(",\n             ", $kdef)
+                    . "             ". implode(",\n             ", $kdef) . "\n"
                     . "         );" 
                     . "    }\n"   
                     . "    function sequenceKey()\n" 
