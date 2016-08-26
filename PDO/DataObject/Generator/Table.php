@@ -437,7 +437,7 @@ class PDO_DataObject_Generator_Table {
     function toLinksIni()
     {
         $ret = array();
-        foreach($this->cols as $c) {
+        foreach($this->columns as $c) {
             if (strlen($c->foreign_key)) {
                 $ret[] = $c->name . ' = ' . $c->foreign_key;
             }
