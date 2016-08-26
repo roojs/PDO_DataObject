@@ -165,7 +165,9 @@ class PDO_DataObject_Introspection_pgsql extends PDO_DataObject_Introspection
                                 WHEN true THEN ' not_null'  ELSE ''
                             END, 
                             CASE WHEN pg_constraint.conname is NULL THEN '' 
-                                ELSE ' primary' END            
+                                ELSE ' primary' END,
+                             CASE WHEN pg_class.relkind = 'v' THEN ' is_view ' 
+                                ELSE '' END   
                         )    as flags,
                         
                         --  (SELECT col_description(pg_attribute.attrelid, 
