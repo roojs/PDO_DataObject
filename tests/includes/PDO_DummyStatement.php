@@ -180,7 +180,7 @@ class PDO_DummyStatement {
             
             return;
         }
-        throw new Exception(__CLASS__  . " missing query: DB: $db  QUERY=$query ");
+        throw new Exception(__CLASS__  . " missing query: DB: $db  QUERY=  " . md5($query) ."\n" . $query);
         
         
         
