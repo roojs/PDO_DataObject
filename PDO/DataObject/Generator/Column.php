@@ -523,7 +523,7 @@ class PDO_DataObject_Generator_Column
     }
     function toPhpTableFunc()
     {
-        
+        return var_export($this->name,true) . ' => ' . $this->do_type;
     }
     function toPhpKeyFunc()
     {
