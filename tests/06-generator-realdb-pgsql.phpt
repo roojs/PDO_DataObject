@@ -32,15 +32,12 @@ $gen = (new PDO_DataObject('xtuple_db/accnt'))->generator();
 
 PDO_DataObject_Generator::config(array(
          
-            'views' => true,
+            'build_views' => true,
             //'strip_schema' => true,
             'embed_schema' => true,
-            'extends_class' => 'PDO_DataObject_Test1',
-            'extends_class_location' => 'PDO/DataObject_Test1.php',
-                
+              
         
-            //'generate_links' => false,
-                // generate .link.ini files based on introspecting the database.
+            'generate_links' => true
         
             'var_keyword' => 'private',
                 
