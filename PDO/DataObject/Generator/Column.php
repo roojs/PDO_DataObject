@@ -521,9 +521,24 @@ class PDO_DataObject_Generator_Column
          
         return $setters;
     }
+    /**
+     * map of types to id's 
+     */
+    static $types = array(
+            'INT','STR', 'DATE', 'TIME', 'BOOL', 'TXT', 'BLOB', 'NOTNULL', 'MYSQLTIMESTAMP'
+    );
+    
     function toPhpTableFunc()
     {
-        return var_export($this->name,true) . ' => ' . $this->do_type;
+        $type = array();
+        foreach(self::$types as $i=>$v) {
+            if (pow(2,$i) & $this->do_type) {
+                $type[] = 'PDO_DataObject::'.$v;
+            }
+        }
+        
+        
+        return var_export($this->name,true) . ' => ' . ($type ? implode(' + ', $type) : '0');
     }
     function toPhpKeyFunc()
     {
@@ -532,7 +547,10 @@ class PDO_DataObject_Generator_Column
     function toPhpSequenceFunc()
     {
         
-        return var_export(array(true,$this->is_sequence_native,$this->sequence_name), true);
+        return 'array('.
+            var_export(true,true) .','.
+            var_export($this->is_sequence_native) .','.
+            var_export($this->sequence_name, true) . ')';
     }
     function toPhpDefault()
     {
