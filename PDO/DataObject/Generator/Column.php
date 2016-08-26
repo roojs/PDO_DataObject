@@ -557,15 +557,19 @@ class PDO_DataObject_Generator_Column
         $type = $this->do_type;
         $value = '';
         switch(true) {
-             
-            case (is_null( $this->default_value) && !($type & PDO_DataObject::NOTNULL)):
-                $value  = 'null';
-                break;
-            
+            case (is_null( $this->default_value) && ($type & PDO_DataObject::NOTNULL)):
+                return '';
+                
             case ($type & PDO_DataObject::DATE): 
             case ($type & PDO_DataObject::TIME): 
             case ($type & PDO_DataObject::MYSQLTIMESTAMP): // not supported yet..
                 return '';
+            
+            case (is_null( $this->default_value)):
+                $value  = 'null';
+                break;
+            
+            
                 
             case ($type & PDO_DataObject::BOOL &&  is_bool($this->default_value)): 
                 $value =  (int)(boolean) $this->default_value; // postgres... ??
