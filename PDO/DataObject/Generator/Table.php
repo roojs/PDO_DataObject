@@ -445,7 +445,7 @@ class PDO_DataObject_Generator_Table {
         if (!count($ret)) {
             return '';
         }
-        return "[{$this->tablename}]\n" . implode("\n", $ret)."\n";
+        return "[{$this->tablen}]\n" . implode("\n", $ret)."\n\n";
     }
     
     
