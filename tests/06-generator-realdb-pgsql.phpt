@@ -19,7 +19,7 @@ PDO_DataObject::config(
         ),
         
         'proxy' => true,
-        'debug' => 0,
+        'debug' => 1,
         
     )
 );
@@ -47,7 +47,7 @@ PDO_DataObject_Generator::config(array(
             'add_defaults' => true,
             'link_methods'  =>true,
                 
-            'include_regex' =>  '/^Companies$/'
+           // 'include_regex' =>  '/^Companies$/'
             //'exclude_regex' => false,
               
             
