@@ -255,10 +255,10 @@ class PDO_DataObject_Generator_Table {
                     continue;
                 }
                 $tdef[] = $col->toPhpTableFunc();
-                if ($col->is_key) {
+                if ($col->key_type!='') {
                     $kdef[] = $col->toPhpKeyFunc();
                 }
-                if ($col->is_sequence_key) {
+                if ($col->is_sequence) {
                     $sdef = $col->toPhpSequenceFunc();
                 }
                 if ($col->toPhpDefault() != '') {
