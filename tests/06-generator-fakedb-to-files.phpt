@@ -68,6 +68,9 @@ try {
 }
 echo "\nSetting class location\n";
 
+copy(__DIR__.'/includes/test_ini/Companies.php', $fn.'/Companies.php');
+
+
 PDO_DataObject::config('class_location', $fn);
 $gen->start();
 echo `cd  $fn; md5sum *`
