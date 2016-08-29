@@ -3,7 +3,8 @@ Generator - compare to DB_DataObject - Postgres (real database) - will not normm
 --FILE--
 <?php
   
-
+ini_set('include_path', __DIR__ .'/../' . PATH_SEPARATOR .  ini_get('include_path'));
+require_once 'PDO/DataObject.php';
 // hard coded to my path....
 ini_set('include_path', ini_get('include_path') . PATH_SEPARATOR .'/home/alan/gitlive/pear');
  
