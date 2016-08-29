@@ -4,10 +4,13 @@ Generator - compare to DB_DataObject - Postgres (real database) - will not normm
 <?php
 require_once 'includes/init.php';
  
- 
+
+// hard coded to my path....
 ini_set('require_path', ini_get('require_path') . PATH_SEPARATOR .'/home/alan/gitlive/pear');
  
 require_once 'DB/DataObject.php';
+require_once 'DB/DataObject/Generator.php';
+
 
 
 
