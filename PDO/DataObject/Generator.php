@@ -224,7 +224,9 @@ class PDO_DataObject_Generator extends PDO_DataObject
     
     function __construct($database_nickhame= false)
     {
-        $this->databaseNickname($database_nickhame);
+        if ($database_nickhame !== false) {
+            $this->databaseNickname($database_nickhame);
+        }
         
         $hook = self::$config['hook'];
         if (is_object($hook)) {
@@ -250,7 +252,7 @@ class PDO_DataObject_Generator extends PDO_DataObject
      */
     function start()
     {
-        $options = PDO::config();
+        $options = PDO_DataObject::config();
         
         $databases = array();
         if (!empty($options['databases'])) {
