@@ -20,6 +20,8 @@ $opts = array(
     'schema_location' => $dofn,
     'class_location' => $dofn,
     'generator_strip_schema' => true,
+    'generator_include_regex' => '/^public\.*/',
+
     
 );
 
