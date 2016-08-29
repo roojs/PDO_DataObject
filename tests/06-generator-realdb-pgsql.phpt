@@ -1,5 +1,5 @@
 --TEST--
-Generator - INI file
+Generator - Postgres (real database) - will not normmally pass...
 --FILE--
 <?php
 require_once 'includes/init.php';
