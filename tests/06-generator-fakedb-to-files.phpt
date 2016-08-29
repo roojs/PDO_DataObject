@@ -73,9 +73,10 @@ copy(__DIR__.'/includes/test_ini/Companies.php', $fn.'/Companies.php');
 
 PDO_DataObject::config('class_location', $fn);
 $gen->start();
-echo $fn;
+
 echo `cd  $fn; md5sum *`
 
+echo file_get_contents($fn.'/Companies.php');
 
 ?>
 --EXPECT--
