@@ -331,6 +331,15 @@ class PDO_DataObject_Generator_Table {
             $original);
         
         
+        
+        $input = preg_replace(
+            '/(\n|\r\n)class_exists\(\'[a-z0-9_]+\'\)\s*\?\s*\'\'\s*\:\s*require_once\s*\'[a-z0-9_]+\'\s*;(\n|\r\n)\{(\n|\r\n)class/si',
+            "\nclass_exists('{$this->classname}') ? '' : require_once '{$config['extends_class_location']}';\nclass\n",
+            $original);
+        
+        
+        
+        
         $ret =  preg_replace(
             '/(\n|\r\n)\s*###START_AUTOCODE(\n|\r\n).*(\n|\r\n)\s*###END_AUTOCODE(\n|\r\n)/s',
             $body,$input);
