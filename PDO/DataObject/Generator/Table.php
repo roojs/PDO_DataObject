@@ -75,7 +75,7 @@ class PDO_DataObject_Generator_Table {
     * @access  public
     * @return  string class name;
     */
-    private function toPhpClassName()
+    function toPhpClassName()
     {
         $class_prefix_ar  = explode(PATH_SEPARATOR, PDO_DataObject::config()['class_prefix']);
         return  $class_prefix_ar[0].preg_replace('/[^A-Z0-9]/i','_',ucfirst(trim($this->table)));
@@ -91,7 +91,7 @@ class PDO_DataObject_Generator_Table {
     */
     
     
-    private function toPhpFileName()
+    function toPhpFileName()
     {
         $options = PDO_DataObject::config();
         
@@ -333,7 +333,7 @@ class PDO_DataObject_Generator_Table {
         
         $ret =  preg_replace(
             '/(\n|\r\n)\s*###START_AUTOCODE(\n|\r\n).*(\n|\r\n)\s*###END_AUTOCODE(\n|\r\n)/s',
-            $body,$original);
+            $body,$input);
         
         if (!strlen($ret)) {
             return $this->gen->raiseError(
