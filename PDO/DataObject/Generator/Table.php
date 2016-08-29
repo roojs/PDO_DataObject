@@ -369,8 +369,7 @@ class PDO_DataObject_Generator_Table {
             
         }
         $ar = $this->toIniSequenceArray();
-        
-        if (!count(array_keys($ar))) {
+        if (!$ar) {
             return $ret . "\n";
         }
         $ret .= "\n[{$this->table}__keys]\n";
