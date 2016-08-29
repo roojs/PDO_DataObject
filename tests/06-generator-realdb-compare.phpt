@@ -56,11 +56,6 @@ PDO_DataObject_Generator::config(array(
 $fn = tempnam (sys_get_temp_dir(), 'pdo-do-tests-') . '-dir';
 mkdir($fn);
 
-
-copy(__DIR__.'/includes/test_ini/Companies.php', $fn.'/Companies.php');
-
-
-PDO_DataObject::config('class_location', $fn);
 $gen->start();
 
 echo `cd  $fn; md5sum *`;
