@@ -4,8 +4,7 @@ databaseStructure - sqlite - real database (file is in includes)
 <?php
 require_once 'includes/init.php';
 PDO_DataObject::debugLevel(0);
-$base_config = PDO_DataObject::config();
-
+ 
  
  
  
@@ -15,7 +14,7 @@ PDO_DataObject::config(array(
         'PDO' => 'PDO', // we can do this for real...
         'tables' => array(
             'Customers' => 'EssentialSQL'
-        )
+        ),
         'databases' => array(
             'EssentialSQL' => 'sqlite:'.__DIR__.'/includes/EssentialSQL.db'
         ),
