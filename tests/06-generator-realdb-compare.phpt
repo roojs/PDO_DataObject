@@ -10,7 +10,7 @@ ini_set('require_path', ini_get('require_path') . PATH_SEPARATOR .'/home/alan/gi
  
 require_once 'DB/DataObject.php';
 require_once 'DB/DataObject/Generator.php';
-
+PEAR::getStaticProperty('DB_DataObject)
 
 
 
@@ -62,13 +62,29 @@ PDO_DataObject_Generator::config(array(
 
 
 ));
+ 
+$fn = tempnam (sys_get_temp_dir(), 'pdo-do-tests-') . '-dir';
+mkdir($fn);
 
-$gen->readTableList();
-echo $gen->toIni();
-echo $gen->toLinksIni(); 
+try { 
+    $gen->start();
+} catch(Exception $e) {
+    echo "Expected Exception (no class location) - " . (string)$e;
+}
+echo "\nSetting class location\n";
 
-echo $gen->toPhp('accnt');
- echo $gen->toPhp('address'); // a view..
+copy(__DIR__.'/includes/test_ini/Companies.php', $fn.'/Companies.php');
+
+
+PDO_DataObject::config('class_location', $fn);
+$gen->start();
+
+echo `cd  $fn; md5sum *`;
+
+echo file_get_contents($fn.'/Companies.php');
+
+`rm -rf $fn`;
+ 
  
 ?>
 --EXPECT--
