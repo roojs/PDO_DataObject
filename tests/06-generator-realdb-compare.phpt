@@ -6,7 +6,7 @@ require_once 'includes/init.php';
  
 
 // hard coded to my path....
-ini_set('require_path', ini_get('require_path') . PATH_SEPARATOR .'/home/alan/gitlive/pear');
+ini_set('include_path', ini_get('include_path') . PATH_SEPARATOR .'/home/alan/gitlive/pear');
  
 require_once 'DB/DataObject.php';
 require_once 'DB/DataObject/Generator.php';
@@ -14,7 +14,7 @@ require_once 'DB/DataObject/Generator.php';
  
 $dofn = tempnam (sys_get_temp_dir(), 'pdo-do-tests-') . '-dir';
 mkdir($dofn);
-$opts = &PEAR::getStaticProperty('DB_DataObject');
+$opts = &PEAR::getStaticProperty('DB_DataObject','options');
 $opts = array(
     'database' =>   'pgsql://admin:pass4xtuple@localhost/xtuplehk',
     'schema_location' => $dofn,
@@ -44,6 +44,9 @@ PDO_DataObject::config(
         
         'proxy' => true,
         'debug' => 0,
+        
+        'database' => '',
+    
         
     )
 );
