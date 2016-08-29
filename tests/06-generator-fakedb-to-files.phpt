@@ -12,7 +12,7 @@ mkdir($fn);
 
 PDO_DataObject::config(
     array(
-        'schema_location' => false,
+        'schema_location' => $fn,
         'PDO' => 'PDO_Dummy',
         'proxy' => true,
         'database' => '',
