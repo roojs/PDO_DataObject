@@ -359,7 +359,7 @@ class PDO_DataObject_Generator extends PDO_DataObject
      * and store it in $this->tables and $this->_definitions[tablename];
      *
      * @access  public
-     * @return  none
+     * @return  Array of tables
      */
     function readTableList()
     {
@@ -434,6 +434,7 @@ class PDO_DataObject_Generator extends PDO_DataObject
 
 
         }
+        return array_keys($this->tables);
          
         //print_r($this->_definitions);
     }
