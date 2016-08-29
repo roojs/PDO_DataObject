@@ -65,3 +65,6 @@ $gen->start();
  
  
 echo $fn;
+
+?>
+--EXPECT--
