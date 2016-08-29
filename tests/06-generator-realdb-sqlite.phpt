@@ -1,5 +1,5 @@
 --TEST--
-Generator - real databse output from sqlite file in include directory
+Generator - INI file
 --FILE--
 <?php
 require_once 'includes/init.php';
