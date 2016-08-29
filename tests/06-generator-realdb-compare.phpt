@@ -17,7 +17,7 @@ mkdir($dofn);
 $opts = &PEAR::getStaticProperty('DB_DataObject');
 $opts = array(
     'database' =>   'pgsql://admin:pass4xtuple@localhost/xtuplehk',
-    'schema_location' = $dofn,
+    'schema_location' => $dofn,
     'class_location' => $dofn,
     
 );
