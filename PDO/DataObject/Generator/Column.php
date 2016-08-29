@@ -509,7 +509,7 @@ class PDO_DataObject_Generator_Column
         $setters .= "    * Getter / Setter for Related Object - {$this->name}\n";
         $setters .= "    *\n";
         $setters .= "    * @param    mixed   (optional) value to assign\n";
-        $setters .= "    * @return   PDO_DataObject\n";        
+        $setters .= "    * @return   PDO_DataObject\n";
         $setters .= "    * @access   public\n";
         
         $setters .= "    */\n";
