@@ -12,7 +12,7 @@ require_once 'DB/DataObject.php';
 require_once 'DB/DataObject/Generator.php';
 
  
-$dofn = tempnam (sys_get_temp_dir(), 'pdo-do-tests-') . '-dir';
+$dofn = tempnam (sys_get_temp_dir(), 'pdo-dbdo-tests-') . '-dir';
 mkdir($dofn);
 $opts = &PEAR::getStaticProperty('DB_DataObject','options');
 $opts = array(
@@ -29,15 +29,11 @@ $generator = new DB_DataObject_Generator;
 $generator->start();
 
 
-var_dump(array(
-    'dbdo' => $dofn,
-    'pdodo' => $fn
-));
-exit;
+ 
 
 // test structure from introspection
  
-$fn = tempnam (sys_get_temp_dir(), 'pdo-do-tests-') . '-dir';
+$fn = tempnam (sys_get_temp_dir(), 'pdo-pdodo-tests-') . '-dir';
 mkdir($fn);
 
 
