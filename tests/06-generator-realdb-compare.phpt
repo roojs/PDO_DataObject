@@ -10,12 +10,20 @@ ini_set('require_path', ini_get('require_path') . PATH_SEPARATOR .'/home/alan/gi
  
 require_once 'DB/DataObject.php';
 require_once 'DB/DataObject/Generator.php';
+
+ 
+$dofn = tempnam (sys_get_temp_dir(), 'pdo-do-tests-') . '-dir';
+mkdir($dofn);
 $opts = &PEAR::getStaticProperty('DB_DataObject');
 $opts = array(
+    'database' =>   'pgsql://admin:pass4xtuple@localhost/xtuplehk',
+    'schema_location' = $dofn,
+    'class_location' => $dofn,
     
-
-
 );
+
+$generator = new DB_DataObject_Generator;
+$generator->start();
 
 
 
