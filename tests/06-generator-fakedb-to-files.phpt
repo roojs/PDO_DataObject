@@ -6,7 +6,9 @@ $base_config = PDO_DataObject::config();
 
 // test structure from introspection
  
-$fn = tempnam (sys_get_temp_dir(), 'pdo-do-tests-');
+$fn = tempnam (sys_get_temp_dir(), 'pdo-do-tests-') . '-dir';
+mkdir($fn);
+
 
 PDO_DataObject::config(
     array(
