@@ -2,9 +2,9 @@
 /**
  * Table Definition for Companies
  */
-class_exists('PDO_DataObject_Test1') ? '' : require_once 'PDO/DataObject_Test1.php';
+class_exists('PDO_DataObject') ? '' : require_once 'PDO/DataObject.php';
 
-class DataObjects_Companies extends PDO_DataObject_Test1 
+class DataObjects_Companies extends PDO_DataObject 
 {
     ###START_AUTOCODE
     /* the code below is auto generated do not remove the above tag if you want to regenerate it */

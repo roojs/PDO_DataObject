@@ -334,7 +334,7 @@ class PDO_DataObject_Generator_Table {
         
         $input = preg_replace(
             '/(\n|\r\n)class_exists\(\'[a-z0-9_]+\'\)\s*\?\s*\'\'\s*:\s*require_once\s*\'[^\']+\'\s*;(\n|\r\n)+class\s+/si',
-            "\nclass_exists('{$this->classname}') ? '' : require_once '{$config['extends_class_location']}';\nclass ",
+            "\nclass_exists('{$this->classname}') ? '' : require_once '{$config['extends_class_location']}';\n\nclass ",
             $input);
         
         
