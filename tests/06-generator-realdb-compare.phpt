@@ -2,9 +2,9 @@
 Generator - compare to DB_DataObject - Postgres (real database) - will not normmally pass...
 --FILE--
 <?php
-  
-ini_set('include_path', __DIR__ .'/../' . PATH_SEPARATOR .  ini_get('include_path'));
-require_once 'PDO/DataObject.php';
+require_once 'includes/init.php';
+ 
+
 // hard coded to my path....
 ini_set('include_path', ini_get('include_path') . PATH_SEPARATOR .'/home/alan/gitlive/pear');
  
@@ -19,6 +19,7 @@ $opts = array(
     'database' =>   'pgsql://admin:pass4xtuple@localhost/xtuplehk',
     'schema_location' => $dofn,
     'class_location' => $dofn,
+    'generator_strip_schema' => true,
     
 );
 
@@ -26,6 +27,11 @@ $generator = new DB_DataObject_Generator;
 $generator->start();
 
 
+var_dump(array(
+    'dbdo' => $dofn,
+    'pdodo' => $fn
+));
+exit;
 
 // test structure from introspection
  
@@ -38,13 +44,13 @@ PDO_DataObject::config(
         'schema_location' => $fn,
         'class_location' => $fn,
         'PDO' => 'PDO',
-        'database' => 'pgsql://admin:pass4xtuple@localhost/xtuplehk'
-        
+        'databases' => array(
+            'xtuple_db' => 'pgsql://admin:pass4xtuple@localhost/xtuplehk'
+        ),
         
         'proxy' => true,
         'debug' => 0,
-         
-    
+        'database' => '',
         
     )
 );
