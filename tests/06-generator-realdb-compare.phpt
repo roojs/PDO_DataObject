@@ -26,6 +26,7 @@ $opts = array(
 PDO_DataObject::config(
     array(
         'schema_location' => $fn,
+        'class_location' => $fn,
         'PDO' => 'PDO',
         'databases' => array(
             'xtuple_db' => 'pgsql://admin:pass4xtuple@localhost/xtuplehk'
@@ -42,8 +43,7 @@ $gen = (new PDO_DataObject('xtuple_db/accnt'))->generator();
 PDO_DataObject_Generator::config(array(
          
             //'build_views' => true,
-                
-        
+              
             'generate_links' => true,
             
             'link_methods'  =>true,
@@ -56,12 +56,6 @@ PDO_DataObject_Generator::config(array(
 $fn = tempnam (sys_get_temp_dir(), 'pdo-do-tests-') . '-dir';
 mkdir($fn);
 
-try { 
-    $gen->start();
-} catch(Exception $e) {
-    echo "Expected Exception (no class location) - " . (string)$e;
-}
-echo "\nSetting class location\n";
 
 copy(__DIR__.'/includes/test_ini/Companies.php', $fn.'/Companies.php');
 
