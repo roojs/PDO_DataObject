@@ -15,7 +15,7 @@ PDO_DataObject::config(array(
         'PDO' => 'PDO', // we can do this for real...
         'tables' => array(
             'Customers' => 'EssentialSQL'
-        )
+        ),
         'databases' => array(
             'EssentialSQL' => 'sqlite:'.__DIR__.'/includes/EssentialSQL.db'
         ),
@@ -58,13 +58,14 @@ PDO_DataObject_Generator::config(array(
 
 
 ));
-
-$gen->readTableList();
+$tables = $gen->readTableList() ;
 echo $gen->toIni();
 echo $gen->toLinksIni(); 
 
-echo $gen->toPhp('Companies');
- echo $gen->toPhp('address'); // a view..
+foreach($tables as $table)
+
+    echo $gen->toPhp($table);
+}
  
 ?>
 --EXPECT--
