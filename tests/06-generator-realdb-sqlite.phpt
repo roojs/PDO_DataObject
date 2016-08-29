@@ -63,7 +63,7 @@ $gen->readTableList();
 echo $gen->toIni();
 echo $gen->toLinksIni(); 
 
-echo $gen->toPhp('accnt');
+echo $gen->toPhp('Companies');
  echo $gen->toPhp('address'); // a view..
  
 ?>
