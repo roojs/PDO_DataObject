@@ -1,4 +1,7 @@
-require_once 'includes/init.php';
+--TEST--
+Generator - write files
+--FILE--
+<?phprequire_once 'includes/init.php';
 PDO_DataObject::debugLevel(0);
 $base_config = PDO_DataObject::config();
 
