@@ -53,7 +53,7 @@ PDO_DataObject_Generator::config(array(
             'add_defaults' => true,
             'link_methods'  =>true,
                 
-            'include_regex' =>  '/^Companies$/'
+            //'include_regex' =>  '/^Companies$/'
             //'exclude_regex' => false,
               
             
@@ -69,9 +69,9 @@ try {
 echo "\nSetting class location\n";
 
 PDO_DataObject::config('class_location', $fn);
- 
- 
-echo $fn;
+$gen->start();
+echo `cd  $fn; md5sum *`
+
 
 ?>
 --EXPECT--
