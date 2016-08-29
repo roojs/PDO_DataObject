@@ -38,14 +38,12 @@ PDO_DataObject::config(
         'schema_location' => $fn,
         'class_location' => $fn,
         'PDO' => 'PDO',
-        'databases' => array(
-            'xtuple_db' => 'pgsql://admin:pass4xtuple@localhost/xtuplehk'
-        ),
+        'database' => 'pgsql://admin:pass4xtuple@localhost/xtuplehk'
+        
         
         'proxy' => true,
         'debug' => 0,
-        
-        'database' => '',
+         
     
         
     )
