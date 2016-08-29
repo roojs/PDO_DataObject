@@ -2,8 +2,7 @@
 Generator - compare to DB_DataObject - Postgres (real database) - will not normmally pass...
 --FILE--
 <?php
-require_once 'includes/init.php';
- 
+  
 
 // hard coded to my path....
 ini_set('include_path', ini_get('include_path') . PATH_SEPARATOR .'/home/alan/gitlive/pear');
