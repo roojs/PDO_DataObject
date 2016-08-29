@@ -66,7 +66,7 @@ try {
 } catch(Exception $e) {
     echo "Expected Exception (no class location) - " . (string)$e;
 }
-echo "Setting class location");
+echo "\nSetting class location\n";
 
 PDO_DataObject::config('class_location', $fn);
  
