@@ -1,7 +1,8 @@
 --TEST--
 Generator - write files
 --FILE--
-<?phprequire_once 'includes/init.php';
+<?php
+require_once 'includes/init.php';
 PDO_DataObject::debugLevel(0);
 $base_config = PDO_DataObject::config();
 
@@ -60,8 +61,14 @@ PDO_DataObject_Generator::config(array(
 
 ));
 
-$gen->start();
- 
+try { 
+    $gen->start();
+} catch(Exception $e) {
+    echo "Expected Exception (no class location) - " . (string)$e;
+}
+echo "Setting class location");
+
+PDO_DataObject::config('class_location', $fn);
  
  
 echo $fn;
