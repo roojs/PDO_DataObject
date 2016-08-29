@@ -21,6 +21,8 @@ $opts = array(
 
 // test structure from introspection
  
+$fn = tempnam (sys_get_temp_dir(), 'pdo-do-tests-') . '-dir';
+mkdir($fn);
 
 
 PDO_DataObject::config(
@@ -53,8 +55,6 @@ PDO_DataObject_Generator::config(array(
 
 ));
  
-$fn = tempnam (sys_get_temp_dir(), 'pdo-do-tests-') . '-dir';
-mkdir($fn);
 
 $gen->start();
 
