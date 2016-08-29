@@ -78,6 +78,8 @@ echo `cd  $fn; md5sum *`;
 
 echo file_get_contents($fn.'/Companies.php');
 
+`rm -rf $fn`;
+
 ?>
 --EXPECT--
 __construct==["mysql:dbname=anotherdb;host=localhost;port=3344","root","",[]]
