@@ -66,6 +66,13 @@ PDO_DataObject_Generator::config(array(
 
 $gen->start();
 
+
+var_dump(array(
+    'dbdo' => $dofn,
+    'pdodo' => $fn
+));
+exit;
+
 echo `cd  $fn; md5sum *`;
 
 echo file_get_contents($fn.'/Companies.php');
