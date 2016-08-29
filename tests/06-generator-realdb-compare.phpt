@@ -41,25 +41,12 @@ $gen = (new PDO_DataObject('xtuple_db/accnt'))->generator();
 
 PDO_DataObject_Generator::config(array(
          
-            'build_views' => true,
+            //'build_views' => true,
                 
         
             'generate_links' => true,
-        
-            'var_keyword' => 'public',
-                
-            'add_database_nickname' => true,
-                
-            // 'no_column_vars' => false,
-                
-                
-            'setters' => true,
-            'getters' => true,
-            'add_defaults' => true,
+            
             'link_methods'  =>true,
-                
-           // 'include_regex' =>  '/^Companies$/'
-            //'exclude_regex' => false,
               
             
 
