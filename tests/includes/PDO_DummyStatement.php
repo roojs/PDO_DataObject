@@ -92,7 +92,7 @@ class PDO_DummyStatement {
                {"tablename":"acalitem","name":"acalitem_name","default_value_raw":null,"type":"text","len":null,"flags":"","fk_table":null,"fk_column":null}
             ]',
             // def for accnt
-            '148f9f339e10933ed1275b9086ba3a95' => '[
+            '0f410170ee4d03ce014e7477cc428a0e' => '[
                         {"tablename":"accnt","name":"accnt_id","default_value_raw":"nextval((\'accnt_accnt_id_seq\'::text)::regclass)","type":"integer","len":"32","flags":" not_null primary","fk_table":null,"fk_column":null},
                        {"tablename":"accnt","name":"accnt_number","default_value_raw":null,"type":"text","len":null,"flags":"","fk_table":null,"fk_column":null},
                        {"tablename":"accnt","name":"accnt_descrip","default_value_raw":null,"type":"text","len":null,"flags":"","fk_table":null,"fk_column":null},
@@ -112,7 +112,7 @@ class PDO_DummyStatement {
                        {"tablename":"accnt","name":"accnt_descrip_alt","default_value_raw":"\'\'::text","type":"text","len":null,"flags":"","fk_table":null,"fk_column":null}
                     ]',
             // for addr
-            'f9ca333dff2cc765ef21f0c1913135fc' => '[
+            'c73d565312c5e21fea2c594e20d2a902' => '[
                     {"tablename":"addr","name":"addr_id","default_value_raw":"nextval(\'addr_addr_id_seq\'::regclass)","type":"integer","len":"32","flags":" not_null primary","fk_table":null,"fk_column":null},
                    {"tablename":"addr","name":"addr_active","default_value_raw":"true","type":"boolean","len":null,"flags":"","fk_table":null,"fk_column":null},
                    {"tablename":"addr","name":"addr_line1","default_value_raw":"\'\'::text","type":"text","len":null,"flags":"","fk_table":null,"fk_column":null},
