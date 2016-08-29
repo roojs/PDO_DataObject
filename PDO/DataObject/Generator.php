@@ -260,7 +260,7 @@ class PDO_DataObject_Generator extends PDO_DataObject
         }
         
         
-        if (isset($options['database'])) {
+        if (!empty($options['database'])) {
             // ctor without table...
             $do = new PDO_DataObject();
             $dname = $do->PDO()->database_nickname;
@@ -537,7 +537,7 @@ class PDO_DataObject_Generator extends PDO_DataObject
                 "make sure session.save_path is set and is writable\n"
                 ,null, PDO_DataObject::ERROR_DIE);
         }
-        fwrite($fh,$this->_newConfig);
+        fwrite($fh,$out);
         fclose($fh);
         $perms = file_exists($file) ? fileperms($file) : 0755;
         // windows can fail doing this. - not a perfect solution but otherwise it's getting really kludgy..
@@ -670,8 +670,7 @@ class PDO_DataObject_Generator extends PDO_DataObject
             
             $oldcontents = '';
             if (file_exists($fn)) {
-                // file_get_contents???
-                $oldcontents = implode('',file($fn));
+                $oldcontents = file_get_contents($fn);
             }
             
             $out = $table->toPhp($oldcontents);
