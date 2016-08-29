@@ -25,7 +25,7 @@ $opts = array(
 
 PDO_DataObject::config(
     array(
-        'schema_location' => false,
+        'schema_location' => $fn,
         'PDO' => 'PDO',
         'databases' => array(
             'xtuple_db' => 'pgsql://admin:pass4xtuple@localhost/xtuplehk'
@@ -42,13 +42,11 @@ $gen = (new PDO_DataObject('xtuple_db/accnt'))->generator();
 PDO_DataObject_Generator::config(array(
          
             'build_views' => true,
-            //'strip_schema' => true,
-            'embed_schema' => true,
-              
+                
         
             'generate_links' => true,
         
-            'var_keyword' => 'private',
+            'var_keyword' => 'public',
                 
             'add_database_nickname' => true,
                 
