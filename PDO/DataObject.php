@@ -200,7 +200,7 @@ class PDO_DataObject
 
     );
     
-    static $debug = 0;
+    private static $debug = 0;
     
     private static $config_loaded = false; // flag to indicate if we have attempted to load config from PEAR::getStaticProperty
     
