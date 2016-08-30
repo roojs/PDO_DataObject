@@ -220,7 +220,6 @@ class PDO_DataObject_Generator_Column
             case '_TEXT':   //postgres (?? view ??)
             case 'TEXT[]':   // postgres type
                 
-                
                 $type = PDO_DataObject::STR + PDO_DataObject::TXT;
                 break;
             
