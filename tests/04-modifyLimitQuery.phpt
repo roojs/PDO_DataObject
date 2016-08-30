@@ -81,31 +81,26 @@ PDO_DataObject   : databaseStructure       : CALL:[]
 PDO_DataObject   : PDO       : Checking for database specific ini ('mysql_somedb') : config[databases][mysql_somedb] in options
 __construct==["mysql:dbname=somedb;host=localhost;port=3344","username","test",[]]
 setAttribute==[3,2]
-getAttribute==[16] => mysql
 string(28) "SELECT * FROM TEST LIMIT  40"
 PDO_DataObject   : __construct       : ["mysql_somedb\/account_code"]
 PDO_DataObject   : databaseStructure       : CALL:[]
 PDO_DataObject   : PDO       : Checking for database specific ini ('mysql_somedb') : config[databases][mysql_somedb] in options
-getAttribute==[16] => mysql
 string(30) "SELECT * FROM TEST LIMIT 10, 4"
 PDO_DataObject   : __construct       : ["pgsql_somedb\/account_code"]
 PDO_DataObject   : databaseStructure       : CALL:[]
 PDO_DataObject   : PDO       : Checking for database specific ini ('pgsql_somedb') : config[databases][pgsql_somedb] in options
 __construct==["pgsql:dbname=example;host=localhost;port=3434","nobody","change_me",[]]
 setAttribute==[3,2]
-getAttribute==[16] => pgsql
 string(36) "SELECT * FROM TEST LIMIT 40 OFFSET 0"
 PDO_DataObject   : __construct       : ["pgsql_somedb\/account_code"]
 PDO_DataObject   : databaseStructure       : CALL:[]
 PDO_DataObject   : PDO       : Checking for database specific ini ('pgsql_somedb') : config[databases][pgsql_somedb] in options
-getAttribute==[16] => pgsql
 string(36) "SELECT * FROM TEST LIMIT 4 OFFSET 10"
 PDO_DataObject   : __construct       : ["oracle_somedb\/account_code"]
 PDO_DataObject   : databaseStructure       : CALL:[]
 PDO_DataObject   : PDO       : Checking for database specific ini ('oracle_somedb') : config[databases][oracle_somedb] in options
 __construct==["oci:dbname=somedb","","",[]]
 setAttribute==[3,2]
-getAttribute==[16] => oci
 string(366) "SELECT * FROM (
                             SELECT
                                 rownum _pdo_rnum, pdo_do.* 
@@ -119,7 +114,6 @@ string(366) "SELECT * FROM (
 PDO_DataObject   : __construct       : ["oracle_somedb\/account_code"]
 PDO_DataObject   : databaseStructure       : CALL:[]
 PDO_DataObject   : PDO       : Checking for database specific ini ('oracle_somedb') : config[databases][oracle_somedb] in options
-getAttribute==[16] => oci
 string(367) "SELECT * FROM (
                             SELECT
                                 rownum _pdo_rnum, pdo_do.* 
