@@ -86,7 +86,7 @@ echo `diff -w -u $dofn/xtuplehk.ini $fn/xtuple_db.ini`
 // as they have different file names...
 `rm $dofn/xtuplehk.ini $fn/xtuple_db.ini`;
 
-
+echo `diff -u -r $dofn $fn`;
 
  
 ?>
