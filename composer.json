@@ -1,5 +1,5 @@
 {
-    "name": "roojs/PDO_DataObject",
+    "name": "roojs/pdo-data-object",
     "type": "library",
     "description": "ORM based on PEAR::DB_DataObject ported for PHP5/7 and PDO",
     "keywords": ["orm"],
