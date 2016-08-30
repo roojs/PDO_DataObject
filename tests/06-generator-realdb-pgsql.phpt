@@ -26,6 +26,14 @@ PDO_DataObject::config(
 
 $gen = (new PDO_DataObject('xtuple_db/accnt'))->generator();
 
+/* known bugs:
+  shiptoinfo - duplicate columns..
+  costupdate,invfifo,invfifopos,mrgundo - missing unique keys
+  recurtype - recurtype_copyargs (DBDO = 162 - we are doing 130) (its a TEXT array)
+*/
+PDO_DataObject::debugLevel(1);
+$gen->introspection()->tableInfo('shiptoinfo');
+
 PDO_DataObject_Generator::config(array(
          
             'build_views' => true,
@@ -55,7 +63,12 @@ PDO_DataObject_Generator::config(array(
 
 ));
 
+
+
+
 $gen->readTableList();
+
+
 echo $gen->toIni();
 echo $gen->toLinksIni(); 
 
