@@ -221,11 +221,15 @@ class PDO_DataObject_Generator extends PDO_DataObject
     var $tables = array();
     
     
-    
-    function __construct($database_nickhame= false)
+    /**
+     *
+     * 
+     *
+     */
+    function __construct($cfg = false)
     {
-        if ($database_nickhame !== false) {
-            $this->databaseNickname($database_nickhame);
+        if ($cfg !== false) {
+            $this->databaseNickname($cfg);
         }
         
         $hook = self::$config['hook'];
