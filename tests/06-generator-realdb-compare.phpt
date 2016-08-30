@@ -49,6 +49,7 @@ PDO_DataObject::config(
         'proxy' => true,
         'debug' => 0,
         'database' => '',
+        'class_prefix' => '',
         
     )
 );
