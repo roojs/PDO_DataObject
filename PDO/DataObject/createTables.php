@@ -1,59 +1,69 @@
 #!/usr/bin/php -q
 <?php
-// +----------------------------------------------------------------------+
-// | PHP Version 4                                                        |
-// +----------------------------------------------------------------------+
-// | Copyright (c) 1997-2003 The PHP Group                                |
-// +----------------------------------------------------------------------+
-// | This source file is subject to version 2.02 of the PHP license,      |
-// | that is bundled with this package in the file LICENSE, and is        |
-// | available at through the world-wide-web at                           |
-// | http://www.php.net/license/2_02.txt.                                 |
-// | If you did not receive a copy of the PHP license and are unable to   |
-// | obtain it through the world-wide-web, please send a note to          |
-// | license@php.net so we can mail you a copy immediately.               |
-// +----------------------------------------------------------------------+
-// | Author:  Alan Knowles <alan@akbkhome.com>
-// +----------------------------------------------------------------------+
-//
-// $Id: createTables.php 339237 2016-05-26 03:59:27Z alan_k $
-//
+/**
+ * Generation tools for PDO_DataObject
+ *
+ * For PHP versions  5 and 7
+ * 
+ * 
+ * Copyright (c) 2015 Alan Knowles
+ * 
+ * This program is free software: you can redistribute it and/or modify  
+ * it under the terms of the GNU Lesser General Public License as   
+ * published by the Free Software Foundation, version 3.
+ *
+ * This program is distributed in the hope that it will be useful, but 
+ * WITHOUT ANY WARRANTY; without even the implied warranty of 
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU 
+ * Lesser General Lesser Public License for more details.
+ *
+ * You should have received a copy of the GNU Lesser General Public License
+ * along with this program. If not, see <http://www.gnu.org/licenses/>.
+ *  
+ * @category   Database
+ * @package    PDO_DataObject
+ * @author     Alan Knowles <alan@roojs.com>
+ * @copyright  2016 Alan Knowles
+ * @license    https://www.gnu.org/licenses/lgpl-3.0.en.html  LGPL 3
+ * @version    1.0
+ * @link       https://github.com/roojs/PDO_DataObject
+ */
 
-// since this version doesnt use overload, 
-// and I assume anyone using custom generators should add this..
+// include path needs to be set up correctly..?
 
-define('DB_DATAOBJECT_NO_OVERLOAD',1);
-
-//require_once 'DB/DataObject/Generator.php';
-require_once 'DB/DataObject/Generator.php';
+require_once 'PDO/DataObject/Generator.php';
+$do = new PDO_DataObject();
 
 if (!ini_get('register_argc_argv')) {
-    PEAR::raiseError("\nERROR: You must turn register_argc_argv On in you php.ini file for this to work\neg.\n\nregister_argc_argv = On\n\n", null, PEAR_ERROR_DIE);
-    exit;
+    $do_>raiseError(
+        "\nERROR: You must turn register_argc_argv On in you php.ini file for this to work\neg.\n\nregister_argc_argv = On\n\n");
 }
 
 if (!@$_SERVER['argv'][1]) {
-    PEAR::raiseError("\nERROR: createTable.php usage:\n\nC:\php\pear\DB\DataObjects\createTable.php example.ini\n\n", null, PEAR_ERROR_DIE);
+    $do_>raiseError("\nERROR: createTable.php usage:\n\nC:\php\pear\PDO\DataObjects\createTable.php example.ini\n\n");
     exit;
 }
 
 $config = parse_ini_file($_SERVER['argv'][1], true);
 foreach($config as $class=>$values) {
-    $options = &PEAR::getStaticProperty($class,'options');
-    $options = $values;
+    switch($class) {
+        case 'PDO_DataObject':
+            PDO_DataObject::config($values);
+            break;
+        
+        case 'PDO_DataObject_Generator':
+            PDO_DataObject_Generator::config($values);
+            break;
+                
+        default:
+            // skip... just ingore stuff..
 }
 
 
-$options = &PEAR::getStaticProperty('DB_DataObject','options');
-if (empty($options)) {
-    PEAR::raiseError("\nERROR: could not read ini file\n\n", null, PEAR_ERROR_DIE);
-    exit;
-}
+
 set_time_limit(0);
 
-// use debug level from file if set..
-DB_DataObject::debugLevel(isset($options['debug']) ? $options['debug'] : 1);
 
-$generator = new DB_DataObject_Generator;
+$generator = new PDO_DataObject_Generator();
 $generator->start();
  
