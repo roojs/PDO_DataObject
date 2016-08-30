@@ -595,7 +595,7 @@ class PDO_DataObject_Generator extends PDO_DataObject
         $option = PDO_DataObject::config();
 
  // where to generate the schema...
-        $base = $options['schema_location'];
+        $base = $option['schema_location'];
         
         if (is_array($base)) {
             if (!isset($base[$this->_database_nickname])) {
