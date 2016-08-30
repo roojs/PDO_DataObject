@@ -38,7 +38,7 @@ Tests:
     connect  method ::PDO() 
     quoteIdentifer
     
-Target:END OF WEEK 1 (est. 2 days)
+Target:END OF WEEK 1 (est. 2 days) - COMPLETED
 -------------------------
 b) PDO_DataObjects_Introspection 
 
@@ -69,7 +69,7 @@ Tests:
 
 
 
-Target:END OF WEEK 3 (est. 4 days)
+Target:END OF WEEK 3 (est. 4 days) - COMPLETED
 -------------------------
 c) Query  / fetch methods of PDO_DataObject
   -- needed for generator?
@@ -122,9 +122,15 @@ d) Generator
        LINK files
        PHP code
 
+Table Introspecton
+ - now outputs Foreign key information (pgsql - tested)
+ 
+ 
+New code format
+  readTableList
+  toIni / toPHP / toLinksIni etc...
+  generate(Ini|ForeignKeys|Php
 
-
-* introspectoin::foriegnKeys - needs tests (eg. on cohead)
 
 
 Tests:
