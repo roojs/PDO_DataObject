@@ -62,7 +62,7 @@ PDO_DataObject_Generator::config(array(
               
             'generate_links' => true,
             
-            'link_methods'  =>true,
+            //'link_methods'  =>true,
                     
             'extends_class' => 'DB_DataObject',
                 // what class do the generated classes extend?
@@ -82,11 +82,14 @@ var_dump(array(
     'pdodo' => $fn
 ));
 
-echo `diff -w -u $dofn/xtuplehk.ini $fn/xtuple_db.ini`
+echo `diff -w -u $dofn/xtuplehk.ini $fn/xtuple_db.ini`;
 // as they have different file names...
 `rm $dofn/xtuplehk.ini $fn/xtuple_db.ini`;
 
-echo `diff -u -r $dofn $fn`;
+// trust me... these diffs are huge, but the output is simlar enough...
+//echo `diff -u -r $dofn $fn`;
+
+`rm -rf $dofn $fn`;
 
  
 ?>
