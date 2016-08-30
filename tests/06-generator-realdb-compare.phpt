@@ -76,6 +76,8 @@ var_dump(array(
     'dbdo' => $dofn,
     'pdodo' => $fn
 ));
+
+echo "\nmeld $dofn/xtuplehk.ini $fn/    xtuplehk.ini\n";
 exit;
 
 echo `cd  $fn; md5sum *`;
