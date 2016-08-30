@@ -84,7 +84,7 @@ class PDO_DummyStatement {
                 {"table_name":"addr"}
             ]',
             // table def for acalitem
-            'ec4a0f1d041fb9e2264b6ec422314ddd' => '[ 
+            'eb30dc0b1b7c48a6974d9399257e82ff' => '[ 
                {"tablename":"acalitem","name":"acalitem_id","default_value_raw":"nextval((\'\\"xcalitem_xcalitem_id_seq\\"\'::text)::regclass)","type":"integer","len":"32","flags":" not_null primary","fk_table":null,"fk_column":null},
                {"tablename":"acalitem","name":"acalitem_calhead_id","default_value_raw":null,"type":"integer","len":"32","flags":"","fk_table":null,"fk_column":null},
                {"tablename":"acalitem","name":"acalitem_periodstart","default_value_raw":null,"type":"date","len":null,"flags":"","fk_table":null,"fk_column":null},
