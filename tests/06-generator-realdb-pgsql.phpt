@@ -32,7 +32,9 @@ $gen = (new PDO_DataObject('xtuple_db/accnt'))->generator();
   recurtype - recurtype_copyargs (DBDO = 162 - we are doing 130) (its a TEXT array)
 */
 PDO_DataObject::debugLevel(1);
-$gen->introspection()->tableInfo('shiptoinfo');
+//$gen->introspection()->tableInfo('shiptoinfo');
+$gen->introspection()->tableInfo('costupdate');
+exit;
 
 PDO_DataObject_Generator::config(array(
          
