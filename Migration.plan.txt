@@ -158,6 +158,11 @@ Tests:
   test of fetch all/fetch 
   test of update
   test return values of sequencekey 
+Existing tests
+  bug6953 = last row fetch of joined query (have column data)
+  simple.phpt - split into small tests (use fakedb)
+
+
 
   ?? consider using meta data for mysql schema info..
 
