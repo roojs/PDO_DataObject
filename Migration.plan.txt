@@ -162,9 +162,7 @@ Existing tests
   bug6953 = last row fetch of joined query (have column data)
   simple.phpt - split into small tests (use fakedb)
 
-
-
-  ?? consider using meta data for mysql schema info..
+  
 
 Target:END OF WEEK 8 (est. 4 days)
 
