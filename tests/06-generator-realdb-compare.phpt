@@ -85,11 +85,13 @@ echo `diff -w -u $dofn/xtuplehk.links.ini $fn/xtuple_db.links.ini | grep -v /tmp
 // as they have different file names...
 `rm $dofn/xtuplehk.ini $fn/xtuple_db.ini`;
 
-// trust me... these diffs are huge, but the output is simlar enough...
 //echo `diff -u -r $dofn $fn`;
 
 `rm -rf $dofn $fn`;
 
+
+// trust me... these diffs are huge, but the output is simlar enough...
+// pdo_dataobject - actually fixes stuff.....
  
 ?>
 --EXPECT--
