@@ -439,8 +439,7 @@ class PDO_DataObject_Generator_Table {
             }
             
         }
-        ksort($native);
-        ksort($other);
+       
         return empty($native) ? $other : $native;
     }
     
@@ -456,6 +455,7 @@ class PDO_DataObject_Generator_Table {
         if (!count($ret)) {
             return '';
         }
+        sort($ret);
         return "[{$this->table}]\n" . implode("\n", $ret)."\n\n";
     }
     

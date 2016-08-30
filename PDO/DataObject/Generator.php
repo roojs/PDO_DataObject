@@ -625,7 +625,7 @@ class PDO_DataObject_Generator extends PDO_DataObject
                 "make sure session.save_path is set and is writable\n"
                 ,PDO_DataObject::ERROR_INVALIDCONFIG, PDO_DataObject::ERROR_DIE);
         }
-        fwrite($fh,$links_ini);
+        fwrite($fh,$out);
         fclose($fh);
         
         $perms = file_exists($file) ? fileperms($file) : 0755;

@@ -35,7 +35,8 @@ class PDO_Dummy {
         
         switch($key) {
             case PDO::ATTR_DRIVER_NAME:
-                echo __FUNCTION__ . '==' .  json_encode(func_get_args()) . " => " . $this->_dbtype  . "\n";
+                // it does this alot!!!?
+                //echo __FUNCTION__ . '==' .  json_encode(func_get_args()) . " => " . $this->_dbtype  . "\n";
                 return $this->_dbtype;
                 break;
             default:
@@ -63,7 +64,7 @@ class PDO_Dummy {
         
         // hopefully database is set!!!
         
-        echo "QUERY: $str  \n";
+        echo "QUERY: ". md5($str) ."\n";
         
         require_once __DIR__ .'/PDO_DummyStatement.php';
         

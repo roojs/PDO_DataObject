@@ -2224,6 +2224,11 @@ Array
             [costupdate_item_type] => 2
         )
 
+    [costupdate__keys] => Array
+        (
+            [costupdate_item_id] => U
+        )
+
     [country] => Array
         (
             [country_id] => 129
@@ -3506,11 +3511,21 @@ Array
             [invfifo_void] => 129
         )
 
+    [invfifo__keys] => Array
+        (
+            [invfifo_invdetail_id] => U
+        )
+
     [invfifopos] => Array
         (
             [invfifopos_itemsite_id] => 129
             [invfifopos_lastadjustment] => 129
             [invfifopos_last_invdetail_id] => 1
+        )
+
+    [invfifopos__keys] => Array
+        (
+            [invfifopos_itemsite_id] => U
         )
 
     [invhist] => Array
@@ -4242,6 +4257,15 @@ Array
             [mrgundo_col] => 34
             [mrgundo_value] => 34
             [mrgundo_type] => 34
+        )
+
+    [mrgundo__keys] => Array
+        (
+            [mrgundo_schema] => U
+            [mrgundo_table] => U
+            [mrgundo_pkey_col] => U
+            [mrgundo_pkey_id] => U
+            [mrgundo_col] => U
         )
 
     [msg] => Array
@@ -5123,7 +5147,7 @@ Array
             [recurtype_schedcol] => 162
             [recurtype_limit] => 34
             [recurtype_copyfunc] => 162
-            [recurtype_copyargs] => 130
+            [recurtype_copyargs] => 162
             [recurtype_delfunc] => 34
         )
 
