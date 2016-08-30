@@ -208,7 +208,6 @@ class PDO_DataObject_Generator_Column
             // these are all array types..
             case 'INTEGER[]':   // postgres type
             case 'BOOLEAN[]':   // postgres type
-            case 'TEXT[]':   // postgres type
             
             case 'TIMESTAMP WITH TIME ZONE': // pgsql -- might need another 'type' to handle this correctly..
             
@@ -219,6 +218,8 @@ class PDO_DataObject_Generator_Column
             case 'MEDIUMTEXT':
             case 'LONGTEXT':
             case '_TEXT':   //postgres (?? view ??)
+            case 'TEXT[]':   // postgres type
+                
                 
                 $type = PDO_DataObject::STR + PDO_DataObject::TXT;
                 break;
