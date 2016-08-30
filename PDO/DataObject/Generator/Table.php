@@ -439,6 +439,8 @@ class PDO_DataObject_Generator_Table {
             }
             
         }
+        ksort($native);
+        ksort($other);
         return empty($native) ? $other : $native;
     }
     
