@@ -26,7 +26,7 @@ PDO_DataObject::config(
 
 $gen = (new PDO_DataObject('xtuple_db/accnt'))->generator();
 
-/* known bugs:
+/* bugs fixed...
   shiptoinfo - duplicate columns..
   costupdate,invfifo,invfifopos,mrgundo - missing unique keys
   recurtype - recurtype_copyargs (DBDO = 162 notnull+TXT+STR,  - we are doing 130 notnull+string) (its a TEXT array)
@@ -1876,6 +1876,9 @@ costupdate_item_id = 1
 costupdate_lowlevel_code = 129
 costupdate_item_type = 2
 
+[costupdate__keys]
+costupdate_item_id = U
+
 [country]
 country_id = 129
 country_abbr = 2
@@ -2910,10 +2913,16 @@ invfifo_cust_id = 1
 invfifo_cohead_id = 129
 invfifo_void = 129
 
+[invfifo__keys]
+invfifo_invdetail_id = U
+
 [invfifopos]
 invfifopos_itemsite_id = 129
 invfifopos_lastadjustment = 129
 invfifopos_last_invdetail_id = 1
+
+[invfifopos__keys]
+invfifopos_itemsite_id = U
 
 [invhist]
 invhist_id = 129
@@ -3100,7 +3109,6 @@ itemcost_stdcost = 129
 itemcost_posted = 6
 itemcost_actcost = 129
 itemcost_updated = 6
-itemcost_curr_id = 129
 itemcost_curr_id = 129
 
 [itemcost__keys]
@@ -3492,6 +3500,13 @@ mrgundo_pkey_id = 1
 mrgundo_col = 34
 mrgundo_value = 34
 mrgundo_type = 34
+
+[mrgundo__keys]
+mrgundo_schema = U
+mrgundo_table = U
+mrgundo_pkey_col = U
+mrgundo_pkey_id = U
+mrgundo_col = U
 
 [msg]
 msg_id = 129
@@ -4213,7 +4228,7 @@ recurtype_donecheck = 162
 recurtype_schedcol = 162
 recurtype_limit = 34
 recurtype_copyfunc = 162
-recurtype_copyargs = 130
+recurtype_copyargs = 162
 recurtype_delfunc = 34
 
 [recurtype__keys]
@@ -4506,13 +4521,11 @@ shipto_id = 129
 shipto_cust_id = 129
 shipto_name = 34
 shipto_salesrep_id = 1
-shipto_salesrep_id = 1
 shipto_comments = 34
 shipto_shipcomments = 34
 shipto_shipzone_id = 1
 shipto_shipvia = 34
 shipto_commission = 129
-shipto_shipform_id = 1
 shipto_shipform_id = 1
 shipto_shipchrg_id = 1
 shipto_active = 146
@@ -6561,7 +6574,6 @@ itemalias_item_id = item:item_id
 itemcost_item_id = item:item_id
 itemcost_costelem_id = costelem:costelem_id
 itemcost_curr_id = curr_symbol:curr_id
-itemcost_curr_id = curr_symbol:curr_id
 
 [itemsite]
 itemsite_item_id = item:item_id
@@ -6745,9 +6757,7 @@ shipitem_invhist_id = invhist:invhist_id
 [shiptoinfo]
 shipto_cust_id = custinfo:cust_id
 shipto_salesrep_id = salesrep:salesrep_id
-shipto_salesrep_id = salesrep:salesrep_id
 shipto_shipzone_id = shipzone:shipzone_id
-shipto_shipform_id = shipform:shipform_id
 shipto_shipform_id = shipform:shipform_id
 shipto_cntct_id = cntct:cntct_id
 shipto_addr_id = addr:addr_id
