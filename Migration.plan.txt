@@ -80,11 +80,12 @@ Tests:
   -- make sure simple fake tests work... 
   
 
-Target:END OF WEEK 4 (est. 2 days)
+Target:END OF WEEK 4 (est. 2 days) - COMPLETED
 -------------------------
 d) Generator
  - creating .ini files / generating code etc...
 
+---
   * start - DONE
   * databaseStructureProxy -- from previous work.
   * _readTableList - DONE - need test
@@ -132,7 +133,7 @@ Tests:
   -- these tests should generate compatible code.
 
 
-Target:END OF WEEK 6 (est. 4 days)
+Target:END OF WEEK 6 (est. 4 days) - COMPLETED
 -------------------------
 e) PDO_DataObject class
   * factory / loading
