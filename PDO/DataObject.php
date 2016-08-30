@@ -38,7 +38,7 @@ class PDO_DataObject
     * @access   private
     * @var      string
     */
-    public $_PDO_DataObject_version = "1.0";
+    public $_PDO_DataObject_version = "@version@";
  
     /* ---------------- ---------------- Constants  -------------------------------- */
 
