@@ -222,9 +222,10 @@ class PDO_DataObject_Generator extends PDO_DataObject
     
     
     /**
-     *
+     * Constructor
+     *  - although it extends PDO_DataObject, the ctor behavior is slightly different
+     *    it expects a database nickname (optiontally)
      * 
-     *
      */
     function __construct($cfg = false)
     {
