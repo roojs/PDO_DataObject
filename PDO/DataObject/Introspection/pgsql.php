@@ -125,8 +125,9 @@ class PDO_DataObject_Introspection_pgsql extends PDO_DataObject_Introspection
          $records =  $this->do
             ->query("
                     SELECT
+                        DISTINCT(pg_attribute.attname) AS name, 
                         pg_class.relname AS tablename, 
-                        pg_attribute.attname AS name, 
+                        
                         
                         (SELECT pg_attrdef.adsrc FROM pg_attrdef 
                             WHERE pg_attrdef.adrelid = pg_class.oid 
@@ -159,51 +160,51 @@ class PDO_DataObject_Introspection_pgsql extends PDO_DataObject_Introspection
                            ELSE ''
                         END AS len,
 
-                        CONCAT(
+                       CONCAT(
                                         
                             CASE pg_attribute.attnotnull 
                                 WHEN true THEN ' not_null'  ELSE ''
                             END, 
                             CASE WHEN pg_constraint.conname is NULL THEN '' 
                                 ELSE ' primary' END,
+                                CASE WHEN pc3.conname is NULL THEN '' 
+                                ELSE ' unique' END,
                              CASE WHEN pg_class.relkind = 'v' THEN ' is_view ' 
                                 ELSE '' END   
                         )    as flags,
-                        
-                        --  (SELECT col_description(pg_attribute.attrelid, 
-                        --          pg_attribute.attnum)) AS comment, 
+                     
+                     
                                 
                          
                         fk_table_class.relname as fk_table,
-                        fk_table_cols.attname as fk_column 
-                      
+                        fk_table_cols.attname as fk_column ,
+                        pg_attribute.attnum
  
                     FROM
                         pg_class 
                     JOIN
                         pg_attribute
-                        ON
-                            pg_class.oid = pg_attribute.attrelid 
-                            AND
-                            pg_attribute.attnum > 0 
+                    ON
+                        pg_class.oid = pg_attribute.attrelid 
+                        AND
+                        pg_attribute.attnum > 0 
                     LEFT JOIN
                         pg_constraint
-                        ON
-                            pg_constraint.contype = 'p'::char
-                            AND
-                            pg_constraint.conrelid = pg_class.oid
-                            AND
-                            (pg_attribute.attnum = ANY (pg_constraint.conkey)) 
-		    
-                    LEFT JOIN
-                            -- foreign_key
+                    ON
+                        pg_constraint.contype = 'p'::char
+                        AND
+                        pg_constraint.conrelid = pg_class.oid
+                        AND
+                        (pg_attribute.attnum = ANY (pg_constraint.conkey)) 
+        
+                    LEFT JOIN  -- foreign_key
                         pg_constraint AS pc2
-                        ON
-                            pc2.contype = 'f'::char
-                            AND
-                            pc2.conrelid = pg_class.oid 
-                            AND
-                            (pg_attribute.attnum = ANY (pc2.conkey)) 
+                    ON
+                        pc2.contype = 'f'::char
+                        AND
+                        pc2.conrelid = pg_class.oid 
+                        AND
+                        (pg_attribute.attnum = ANY (pc2.conkey)) 
                     LEFT JOIN
                         pg_class as fk_table_class
                     ON
@@ -214,6 +215,16 @@ class PDO_DataObject_Introspection_pgsql extends PDO_DataObject_Introspection
                        fk_table_cols.attrelid = pc2.confrelid
                        AND
                        fk_table_cols.attnum = ANY (pc2.confkey)
+                       
+                    LEFT JOIN -- unique
+                        pg_constraint AS pc3
+                    ON
+                        pc3.contype = 'u'::char
+                        AND
+                        pc3.conrelid = pg_class.oid 
+                        AND
+                        (pg_attribute.attnum = ANY (pc3.conkey)) 
+                       
                     LEFT JOIN
                         pg_namespace
                     ON
