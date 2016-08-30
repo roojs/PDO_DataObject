@@ -79,7 +79,7 @@ $gen->start();
 
 echo `diff -w -u $dofn/xtuplehk.ini $fn/xtuple_db.ini | grep -v /tmp/pdo`;
 echo `diff -w -u $dofn/xtuplehk.links.ini $fn/xtuple_db.links.ini | grep -v /tmp/pdo`;
-exot;
+exit;
 // as they have different file names...
 `rm $dofn/xtuplehk.ini $fn/xtuple_db.ini`;
 
