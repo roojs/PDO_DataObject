@@ -56,13 +56,17 @@ PDO_DataObject::config(
 $gen = (new PDO_DataObject('xtuple_db/accnt'))->generator();
 
 PDO_DataObject_Generator::config(array(
-         
+            
             //'build_views' => true,
               
             'generate_links' => true,
             
             'link_methods'  =>true,
-              
+                    
+            'extends_class' => 'DB_DataObject',
+                // what class do the generated classes extend?
+            'extends_class_location' => 'DB/DataObject.php',
+            
             
 
 
@@ -77,15 +81,12 @@ var_dump(array(
     'pdodo' => $fn
 ));
 
-echo "\nmeld $dofn/xtuplehk.ini $fn/    xtuplehk.ini\n";
-exit;
+echo `diff -w -u $dofn/xtuplehk.ini $fn/xtuple_db.ini`
+// as they have different file names...
+`rm $dofn/xtuplehk.ini $fn/xtuple_db.ini`;
 
-echo `cd  $fn; md5sum *`;
 
-echo file_get_contents($fn.'/Companies.php');
 
-`rm -rf $fn`;
- 
  
 ?>
 --EXPECT--
