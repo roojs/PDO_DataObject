@@ -126,11 +126,12 @@ Table Introspecton
  - now outputs Foreign key information (pgsql - tested)
  
  
-New code format
+New Generator methods
+  start()  - as before...
   readTableList
   toIni / toPHP / toLinksIni etc...
   generate(Ini|ForeignKeys|Php
-
+  
 
 
 Tests:
@@ -156,6 +157,7 @@ Tests:
   test of query conditions
   test of fetch all/fetch 
   test of update
+  test return values of sequencekey 
 
   ?? consider using meta data for mysql schema info..
 
