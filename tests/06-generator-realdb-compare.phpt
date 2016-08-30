@@ -77,12 +77,7 @@ PDO_DataObject_Generator::config(array(
 $gen->start();
 
 
-var_dump(array(
-    'dbdo' => $dofn,
-    'pdodo' => $fn
-));
-
-echo `diff -w -u $dofn/xtuplehk.ini $fn/xtuple_db.ini`;
+echo `diff -w -u $dofn/xtuplehk.ini $fn/xtuple_db.ini | grep -v /tmp/pdo`;
 // as they have different file names...
 `rm $dofn/xtuplehk.ini $fn/xtuple_db.ini`;
 
