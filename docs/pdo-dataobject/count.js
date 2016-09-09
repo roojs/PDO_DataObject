@@ -45,6 +45,7 @@ count = new Roo.XComponent({
       },
       {
        xtype : 'Param',
+       desc : 'use only the whereAdd conditions (by default, count will only use both the object settings and the whereAdd conditions)',
        is_optional : true,
        name : '$whereAddOnly',
        type : 'boolean',

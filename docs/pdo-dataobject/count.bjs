@@ -35,7 +35,8 @@
        "String type" : "boolean",
        "xtype" : "Param",
        "bool is_optional" : true,
-       "$ xns" : "Roo.doc"
+       "$ xns" : "Roo.doc",
+       "String desc" : "use only the whereAdd conditions (by default, count will only use both the object settings and the whereAdd conditions)"
       }
      ]
     },
