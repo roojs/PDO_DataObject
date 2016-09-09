@@ -26,6 +26,14 @@
        "String name" : "$countWhat|$whereAddOnly",
        "String type" : "string|boolean",
        "xtype" : "Param",
+       "bool is_optional" : true,
+       "$ xns" : "Roo.doc"
+      },
+      {
+       "String name" : "$whereAddOnly",
+       "String type" : "boolean",
+       "xtype" : "Param",
+       "bool is_optional" : true,
        "$ xns" : "Roo.doc"
       }
      ]
