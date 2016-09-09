@@ -9,7 +9,7 @@
   {
    "String name" : " count",
    "xtype" : "Entry",
-   "purpose" : "->count() - Perform a select count() request",
+   "purpose" : "Perform a select count() request",
    "$ xns" : "Roo.doc",
    "String stype" : "function",
    "items" : [

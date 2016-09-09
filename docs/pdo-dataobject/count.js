@@ -20,7 +20,7 @@ count = new Roo.XComponent({
    return {
    xtype : 'Entry',
    name : ' count',
-   purpose : '->count() - Perform a select count() request',
+   purpose : 'Perform a select count() request',
    stype : 'function',
    xns : Roo.doc,
    '|xns' : 'Roo.doc',
