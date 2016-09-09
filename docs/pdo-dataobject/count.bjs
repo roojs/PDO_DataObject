@@ -36,7 +36,7 @@
        "xtype" : "Param",
        "bool is_optional" : true,
        "$ xns" : "Roo.doc",
-       "String desc" : "use only the whereAdd conditions (by default, count will only use both the object settings and the whereAdd conditions),\nyou can use the constant PDO_DataObject::WHERE_ADD_ONLY to make the code clearer"
+       "String desc" : "use only the whereAdd conditions (by default, count will only use both the object settings and the whereAdd conditions),\nyou can use the constant <B>PDO_DataObject::WHERE_ADD_ONLY<B> to make the code clearer"
       }
      ]
     },
