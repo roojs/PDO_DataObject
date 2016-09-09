@@ -49,6 +49,10 @@
        "String html" : "It performs a select count() request on the tables key column and returns the number of resulting rows.\n The default condition applied to the count() is a combination of the object variables and whereAdd settings. \n If the constant DB_DATAOBJECT_WHEREADD_ONLY is passed in as the first parameter then only the whereAdd settings will be used.\n\n"
       }
      ]
+    },
+    {
+     "xtype" : "Section",
+     "$ xns" : "Roo.doc"
     }
    ]
   }
