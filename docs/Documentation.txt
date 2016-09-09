@@ -1,0 +1,25 @@
+Idea here is to create a 'easy to maintain' documentation.
+
+
+
+Each 'method' will have it's own 'bjs/js' file
+
+In addition we need a few other pages.
+
+ Introduction
+ Configuration
+ Auto Building and Database Schema
+ Query Building
+... all related methods
+ Advanced Query building - Joins and Table Links, Casting
+... all related methods
+
+ Working With Results
+... fetch/toArray/links
+ Create, Update and Delete
+... all related methods
+ Introspection
+  .. PDO/table/keys etc...
+ Debugging & Errors
+ 
+   
