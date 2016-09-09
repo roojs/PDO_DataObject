@@ -36,6 +36,7 @@ count = new Roo.XComponent({
      items  : [
       {
        xtype : 'Param',
+       desc : 'by default count will count on the primary key, if you need to count something else, if you just say DISTINCT, it will count the primiary key prefixed with distinct, or put your own value in (don\'t forget to escape it if necessary)\n\n',
        is_optional : true,
        name : '$countWhat|$whereAddOnly',
        type : 'string|boolean',

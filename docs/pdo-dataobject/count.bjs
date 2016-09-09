@@ -27,7 +27,8 @@
        "String type" : "string|boolean",
        "xtype" : "Param",
        "bool is_optional" : true,
-       "$ xns" : "Roo.doc"
+       "$ xns" : "Roo.doc",
+       "String desc" : "by default count will count on the primary key, if you need to count something else, if you just say DISTINCT, it will count the primiary key prefixed with distinct, or put your own value in (don't forget to escape it if necessary)\n\n"
       },
       {
        "String name" : "$whereAddOnly",
