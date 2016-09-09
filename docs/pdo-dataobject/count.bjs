@@ -69,7 +69,7 @@
      "items" : [
       {
        "String code" : "/* using property values */\n$person = new DataObjects_Person;\n$person->name  = \"test\"\n$total = $person->count();\necho \"There are {$total} people with a name like test\";",
-       "String lang" : "phpcode",
+       "String lang" : "php",
        "xtype" : "Example",
        "$ xns" : "Roo.doc"
       }
