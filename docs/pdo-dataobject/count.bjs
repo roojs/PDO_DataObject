@@ -1,0 +1,25 @@
+{
+ "name" : "count",
+ "parent" : "",
+ "title" : "",
+ "path" : "/home/alan/gitlive/PDO_DataObject/docs/pdo-dataobject/count.bjs",
+ "permname" : "",
+ "modOrder" : "001",
+ "items" : [
+  {
+   "String name" : " count",
+   "xtype" : "Entry",
+   "purpose" : "->count() - Perform a select count() request",
+   "$ xns" : "Roo.doc",
+   "String stype" : "function",
+   "items" : [
+    {
+     "String name" : "$do->count",
+     "xtype" : "Synopsis",
+     "$ xns" : "Roo.doc",
+     "String returntype" : "int"
+    }
+   ]
+  }
+ ]
+}
