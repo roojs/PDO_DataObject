@@ -4,7 +4,9 @@
 
 count = new Roo.XComponent({
 
-
+ _strings : {
+  'e800a2c90e0a56d7137e50f35d620cae' :"t performs a select count() request on the tables key column and returns the number of resulting rows. The default condition applied to the count() is a combination of the object variables and whereAdd settings. If the constant DB_DATAOBJECT_WHEREADD_ONLY is passed in as the first parameter then only the whereAdd settings will be used.\n\n"
+ },
 
   part     :  ["pdo-dataobject", "count" ],
   order    : '001-count',
@@ -40,6 +42,11 @@ count = new Roo.XComponent({
      items  : [
       {
        xtype : 'Para',
+       html : _this._strings['e800a2c90e0a56d7137e50f35d620cae'] /* 
+       t performs a select count() request on the tables key column and returns the number of resulting rows. The default condition applied to the count() is a combination of the object variables and whereAdd settings. If the constant DB_DATAOBJECT_WHEREADD_ONLY is passed in as the first parameter then only the whereAdd settings will be used.       
+       
+
+       */ ,
        xns : Roo.doc,
        '|xns' : 'Roo.doc'
       }
