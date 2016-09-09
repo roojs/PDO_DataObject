@@ -94,7 +94,7 @@ count = new Roo.XComponent({
      items  : [
       {
        xtype : 'Example',
-       code : 'some code',
+       code : '/* using property values */\n$person = new DataObjects_Person;\n$person->name  = \"test\"\n$total = $person->count();\necho \"There are {$total} people with a name like test\";',
        lang : 'phpcode',
        xns : Roo.doc,
        '|xns' : 'Roo.doc'
