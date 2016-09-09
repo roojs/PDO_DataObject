@@ -22,7 +22,13 @@
     {
      "xtype" : "Section",
      "$ xns" : "Roo.doc",
-     "String stype" : "desc"
+     "String stype" : "desc",
+     "items" : [
+      {
+       "xtype" : "Para",
+       "$ xns" : "Roo.doc"
+      }
+     ]
     }
    ]
   }
