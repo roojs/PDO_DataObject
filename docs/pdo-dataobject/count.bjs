@@ -56,6 +56,10 @@
      "xtype" : "Section",
      "$ xns" : "Roo.doc",
      "String stype" : "parameter"
+    },
+    {
+     "xtype" : "Section",
+     "$ xns" : "Roo.doc"
     }
    ]
   }
