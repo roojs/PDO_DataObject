@@ -20,7 +20,13 @@
      "String name" : "$do->count",
      "xtype" : "Synopsis",
      "$ xns" : "Roo.doc",
-     "String returntype" : "int"
+     "String returntype" : "int",
+     "items" : [
+      {
+       "xtype" : "Param",
+       "$ xns" : "Roo.doc"
+      }
+     ]
     },
     {
      "xtype" : "Section",
