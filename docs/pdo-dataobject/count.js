@@ -30,7 +30,7 @@ count = new Roo.XComponent({
     {
      xtype : 'Synopsis',
      name : '$do->count',
-     returntype : 'int',
+     returntype : 'int|false',
      xns : Roo.doc,
      '|xns' : 'Roo.doc',
      items  : [

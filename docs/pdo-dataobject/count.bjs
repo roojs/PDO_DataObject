@@ -20,7 +20,7 @@
      "String name" : "$do->count",
      "xtype" : "Synopsis",
      "$ xns" : "Roo.doc",
-     "String returntype" : "int",
+     "String returntype" : "int|false",
      "items" : [
       {
        "String name" : "$countWhat|$whereAddOnly",
