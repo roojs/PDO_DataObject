@@ -5,7 +5,7 @@
 count = new Roo.XComponent({
 
  _strings : {
-  '87b0a94f3450dfc2e0459c7429c4bcad' :"It performs a select count() request on the tables key column and returns the number of resulting rows.\n The default condition applied to the count() is a combination of the object variables and whereAdd settings. \n If the constant <B>PDO_DataObject::WHEREADD_ONLY<B> is passed in as the first parameter then only the whereAdd settings will be used.\n\n"
+  '26104d42330ba2eb2f80ce7c5559da44' :"It performs a select count() request on the tables key column and returns the number of resulting rows.\n The default condition applied to the count() is a combination of the object variables and whereAdd settings. \n If the constant <B>PDO_DataObject::WHEREADD_ONLY</B> is passed in as the first parameter then only the whereAdd settings will be used.\n\n"
  },
 
   part     :  ["pdo-dataobject", "count" ],
@@ -60,10 +60,10 @@ count = new Roo.XComponent({
      items  : [
       {
        xtype : 'Para',
-       html : _this._strings['87b0a94f3450dfc2e0459c7429c4bcad'] /* 
+       html : _this._strings['26104d42330ba2eb2f80ce7c5559da44'] /* 
        It performs a select count() request on the tables key column and returns the number of resulting rows.       
  The default condition applied to the count() is a combination of the object variables and whereAdd settings.        
- If the constant <B>PDO_DataObject::WHEREADD_ONLY<B> is passed in as the first parameter then only the whereAdd settings will be used.       
+ If the constant <B>PDO_DataObject::WHEREADD_ONLY</B> is passed in as the first parameter then only the whereAdd settings will be used.       
        
 
        */ ,
