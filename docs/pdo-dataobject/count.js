@@ -31,6 +31,11 @@ count = new Roo.XComponent({
      returntype : 'int',
      xns : Roo.doc,
      '|xns' : 'Roo.doc'
+    },
+    {
+     xtype : 'Section',
+     xns : Roo.doc,
+     '|xns' : 'Roo.doc'
     }
    ]
   };  }

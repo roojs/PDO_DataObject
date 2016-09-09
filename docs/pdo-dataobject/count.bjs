@@ -18,6 +18,10 @@
      "xtype" : "Synopsis",
      "$ xns" : "Roo.doc",
      "String returntype" : "int"
+    },
+    {
+     "xtype" : "Section",
+     "$ xns" : "Roo.doc"
     }
    ]
   }
