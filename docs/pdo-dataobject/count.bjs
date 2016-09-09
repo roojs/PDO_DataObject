@@ -24,6 +24,7 @@
      "items" : [
       {
        "String name" : "$countWhat|$whereAddOnly",
+       "String type" : "string|boolean",
        "xtype" : "Param",
        "$ xns" : "Roo.doc"
       }
