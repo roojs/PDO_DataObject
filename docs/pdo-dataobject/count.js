@@ -45,7 +45,7 @@ count = new Roo.XComponent({
       },
       {
        xtype : 'Param',
-       desc : 'use only the whereAdd conditions (by default, count will only use both the object settings and the whereAdd conditions)',
+       desc : 'use only the whereAdd conditions (by default, count will only use both the object settings and the whereAdd conditions),\nyou can use the constant PDO_DataObject::WHERE_ADD_ONLY to make the code clearer',
        is_optional : true,
        name : '$whereAddOnly',
        type : 'boolean',
