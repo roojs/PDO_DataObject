@@ -23,6 +23,7 @@
      "String returntype" : "int",
      "items" : [
       {
+       "String name" : "$countWhat|$whereAddOnly",
        "xtype" : "Param",
        "$ xns" : "Roo.doc"
       }

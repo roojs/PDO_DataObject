@@ -36,6 +36,7 @@ count = new Roo.XComponent({
      items  : [
       {
        xtype : 'Param',
+       name : '$countWhat|$whereAddOnly',
        xns : Roo.doc,
        '|xns' : 'Roo.doc'
       }
