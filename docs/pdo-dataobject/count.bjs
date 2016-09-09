@@ -59,7 +59,13 @@
     },
     {
      "xtype" : "Section",
-     "$ xns" : "Roo.doc"
+     "$ xns" : "Roo.doc",
+     "String stype" : "note"
+    },
+    {
+     "xtype" : "Section",
+     "$ xns" : "Roo.doc",
+     "String stype" : "example"
     }
    ]
   }
