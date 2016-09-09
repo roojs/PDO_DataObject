@@ -90,7 +90,14 @@ count = new Roo.XComponent({
      xtype : 'Section',
      stype : 'example',
      xns : Roo.doc,
-     '|xns' : 'Roo.doc'
+     '|xns' : 'Roo.doc',
+     items  : [
+      {
+       xtype : 'Example',
+       xns : Roo.doc,
+       '|xns' : 'Roo.doc'
+      }
+     ]
     }
    ]
   };  }
