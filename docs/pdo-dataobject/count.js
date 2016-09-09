@@ -74,6 +74,7 @@ count = new Roo.XComponent({
     },
     {
      xtype : 'Section',
+     stype : 'parameter',
      xns : Roo.doc,
      '|xns' : 'Roo.doc'
     }
