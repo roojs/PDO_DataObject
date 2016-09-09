@@ -94,6 +94,8 @@ count = new Roo.XComponent({
      items  : [
       {
        xtype : 'Example',
+       code : 'some code',
+       lang : 'phpcode',
        xns : Roo.doc,
        '|xns' : 'Roo.doc'
       }

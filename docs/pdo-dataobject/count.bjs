@@ -68,6 +68,8 @@
      "String stype" : "example",
      "items" : [
       {
+       "String code" : "some code",
+       "String lang" : "phpcode",
        "xtype" : "Example",
        "$ xns" : "Roo.doc"
       }
