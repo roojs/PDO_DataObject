@@ -1316,7 +1316,7 @@ class PDO_DataObject
      * $object->whereAdd("ID > 20");
      * $object->whereAdd("age > 20","OR");
      *
-     * @param    string  $cond  condition
+     * @param    string  $cond condition or false to reset.
      * @param    string  $logic optional logic "OR" (defaults to "AND")
      * @throws   PDO_DataObject_Exception running on object with results., or invalid arguments
      * @access   public
