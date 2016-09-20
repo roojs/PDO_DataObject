@@ -1444,7 +1444,7 @@ class PDO_DataObject
      *
      * @param  string $order  Order
      * @access public
-     * @return none|PEAR::Error - invalid args only
+     * @return PDO_DataObject self
      */
     function orderBy($order = false)
     {
