@@ -1266,10 +1266,12 @@ class PDO_DataObject
             return $ret;
         }
         
-        
-        if ($args  === 1 && $key_col === true) { // first column...
+        if ($key_col === true) { // first column...
             return $this->_result->fetchAll(PDO::FETCH_COLUMN, 0);
         }
+        
+        
+        
         
         
          
