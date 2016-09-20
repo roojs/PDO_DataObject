@@ -1649,10 +1649,9 @@ class PDO_DataObject
     function selectAdd($k = null)
     {
         if ($this->_query === false) {
-            $this->raiseError(
+            return $this->raiseError(
                 "You cannot do two queries on the same object (copy it before finding)", 
                 self::ERROR_INVALIDARGS);
-            return false;
         }
         if ($k === null) {
             $old = $this->_query['data_select'];
@@ -1670,6 +1669,14 @@ class PDO_DataObject
         }
         $this->_query['data_select'] .= " $k ";
     }
+    
+    
+    
+    function select($k = null)
+    {
+        $this->selectAdd($k)
+    }
+    
     /**
      * Adds multiple Columns or objects to select with formating.
      *
