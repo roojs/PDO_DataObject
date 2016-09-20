@@ -3236,56 +3236,64 @@ class PDO_DataObject
         // class_location = mydir/myfile_%s.php => maps to mydir/myfile_Tablename
         // with directory sepr
         // class_location = mydir/:mydir2/: => tries all of thes locations.
-        $cl = $_DB_DATAOBJECT['CONFIG']['class_location'];
+        $cl = self::$config['class_location'];
         
-        
+         $file = array();
         switch (true) {
             case (strpos($cl ,'%s') !== false):
-                $file = sprintf($cl , preg_replace('/[^A-Z0-9]/i','_',ucfirst($table)));
+                $file[] = sprintf($cl , preg_replace('/[^A-Z0-9]/i','_',ucfirst($table)));
                 break;
                 
             case (strpos($cl , PATH_SEPARATOR) !== false):
-                $file = array();
+               
                 foreach(explode(PATH_SEPARATOR, $cl ) as $p) {
                     $file[] =  $p .'/'.preg_replace('/[^A-Z0-9]/i','_',ucfirst($table)).".php";
                 }
                 break;
             default:
-                $file = $cl .'/'.preg_replace('/[^A-Z0-9]/i','_',ucfirst($table)).".php";
+                $file[] = $cl .'/'.preg_replace('/[^A-Z0-9]/i','_',ucfirst($table)).".php";
                 break;
         }
         
         $cls = is_array($class) ? $class : array($class);
         
-        if (is_array($file) || !file_exists($file)) {
-            $found = false;
-            
-            $file = is_array($file) ? $file : array($file);
-            $search = implode(PATH_SEPARATOR, $file);
-            foreach($file as $f) {
-                foreach(explode(PATH_SEPARATOR, '' . PATH_SEPARATOR . ini_get('include_path')) as $p) {
-                    $ff = empty($p) ? $f : "$p/$f";
-
-                    if (file_exists($ff)) {
-                        $file = $ff;
-                        $found = true;
-                        break;
-                    }
+        
+        $found = false;
+        
+        foreach($file as $f) {
+            // if absolute path...
+            if ($f[0] == '/') {
+                if (file_exists($f)) {
+                    $file = $f;
+                    $found = true;
+                    break;
                 }
-                if ($found) {
+                continue;
+            }
+            foreach(explode(PATH_SEPARATOR, '' . PATH_SEPARATOR . ini_get('include_path')) as $p) {
+                $ff = empty($p) ? $f : "$p/$f";
+
+                if (file_exists($ff)) {
+                    $file = $ff;
+                    $found = true;
                     break;
                 }
             }
-            if (!$found) {
-                $dor = new DB_DataObject();
-                $dor->raiseError(
-                    "autoload:Could not find class " . implode(',', $cls) .
-                    " using class_location value :" . $search .
-                    " using include_path value :" . ini_get('include_path'), 
-                    DB_DATAOBJECT_ERROR_INVALIDCONFIG);
-                return false;
+            if ($found) {
+                break;
             }
         }
+        if (!$found) {
+            $search = implode(PATH_SEPARATOR, $file); // used for errors..
+            $dor = new DB_DataObject();
+            $dor->raiseError(
+                "autoload:Could not find class " . implode(',', $cls) .
+                " using class_location value :" . $search .
+                " using include_path value :" . ini_get('include_path'), 
+                DB_DATAOBJECT_ERROR_INVALIDCONFIG);
+            return false;
+        }
+        
         
         include_once $file;
         
