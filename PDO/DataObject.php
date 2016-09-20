@@ -1514,19 +1514,18 @@ class PDO_DataObject
      *
      * @param  string  $having  condition
      * @access public
-     * @return none|PEAR::Error - invalid args only
+     * @return PDO_DataObject self
      */
     function having($having = false)
     {
         if ($this->_query === false) {
-            $this->raiseError(
+            return $this->raiseError(
                 "You cannot do two queries on the same object (copy it before finding)", 
                 self::ERROR_INVALIDARGS);
-            return false;
         }
         if ($having === false) {
             $this->_query['having'] = '';
-            return;
+            return $this;
         }
         // check input...= 0 or '    ' == error!
         if (!trim($having)) {
@@ -1536,9 +1535,10 @@ class PDO_DataObject
         
         if (!$this->_query['having']) {
             $this->_query['having'] = " HAVING {$having} ";
-            return;
+            return $this;
         }
         $this->_query['having'] .= " AND {$having}";
+        return $this;
     }
 
     /**
