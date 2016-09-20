@@ -1550,7 +1550,8 @@ class PDO_DataObject
     }
 
     /**
-     * Adds a using Index
+     * Adds a using Index (Chainable)
+     * NOTE : ALWAYS ENSURE ARGUMENTS ARE ESCAPED
      *
      * $object->useIndex(); //reset the use Index 
      * $object->useIndex("some_index");
@@ -1587,7 +1588,7 @@ class PDO_DataObject
         return $this;
     }
     /**
-     * Sets the Limit
+     * Sets the Limit (Chainable)
      *
      * $boject->limit(); // clear limit - returns 'previous settings.
      * $object->limit(12);
