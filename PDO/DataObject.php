@@ -1238,6 +1238,10 @@ class PDO_DataObject
             return $this->_result->fetchAll(PDO::FETCH_ASSOC);
         }
         
+        if ($args  === 1 && $key_col === true) { // first column...
+            return $this->_result->fetchAll(PDO::FETCH_COLUMN, 0);
+        }
+        
         if ($k != false || $v != false || $method === true) {
             return $this->fetchAllFast($k,$v);
         }
@@ -1319,9 +1323,7 @@ class PDO_DataObject
         }
         
        
-        if ($method == true) {
-            return $this->_result->fetchAll(PDO::FETCH_ASSOC);
-        }
+        
         if ($args  === 1 && $key_col === true) { // first column...
             return $this->_result->fetchAll(PDO::FETCH_COLUMN, 0);
         }
