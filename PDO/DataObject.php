@@ -1318,6 +1318,7 @@ class PDO_DataObject
      *
      * @param    string  $cond  condition
      * @param    string  $logic optional logic "OR" (defaults to "AND")
+     * @throws   PDO_DataObject_Exception running on object with results., or invalid arguments
      * @access   public
      * @return   string|PEAR::Error - previous condition or Error when invalid args found
      */
@@ -1351,6 +1352,24 @@ class PDO_DataObject
         $_query['condition'] = " WHERE ( {$cond} ) ";
         $this->_query = $_query;
         return $r;
+    }
+    
+     /**
+     * Adds a condition to the WHERE statement, defaults to AND
+     *
+     * $object->whereAdd(); //reset or cleaer ewhwer
+     * $object->whereAdd("ID > 20");
+     * $object->whereAdd("age > 20","OR");
+     *
+     * @param    string  $cond  condition
+     * @param    string  $logic optional logic "OR" (defaults to "AND")
+     * @access   public
+     * @return   string|PEAR::Error - previous condition or Error when invalid args found
+     */
+    
+    function where()
+    {
+        
     }
 
     /**
