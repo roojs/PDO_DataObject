@@ -969,14 +969,16 @@ class PDO_DataObject
             $this->debug("CHECK autofetched " . var_export($n, true), "find", 1);
         }
         
-        // find(true)
+        
         
         $ret = $this->N;
         if (!$ret && !empty( $this->_result)) {     
             // clear up memory if nothing found!?
-            // unset($this->_result); // not sure if we should do this...
+            unset($this->_result); // not sure if we should do this...
+            return $ret;
         }
         
+        // find(true)
         if ($n && $this->N > 0 ) {
             if (self::$debug) {
                 $this->debug("ABOUT TO AUTOFETCH", "find", 1);
