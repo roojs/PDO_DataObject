@@ -1232,6 +1232,12 @@ class PDO_DataObject
             
             $this->find();
         }
+        
+        if ($method == true) {
+            // ignore's key/value.
+            return $this->_result->fetchAll(PDO::FETCH_ASSOC);
+        }
+        
         if ($k != false || $v != false || $method === true) {
             return $this->fetchAllFast($k,$v);
         }
