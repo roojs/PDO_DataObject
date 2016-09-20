@@ -4917,7 +4917,7 @@ class PDO_DataObject
      */
     static function reset()
     {
-         self::$connections = array(); 
+        self::$connections = array(); 
         self::$ini = array();
         self::$links = array();
         self::$sequence = array();
