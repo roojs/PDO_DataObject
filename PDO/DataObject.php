@@ -3165,7 +3165,7 @@ class PDO_DataObject
         if (is_array($cp)) {
             $class = array();
             foreach($cp as $cpr) {
-                $ce = substr(phpversion(),0,1) > 4 ? class_exists($cpr . $tbl,false) : class_exists($cpr . $tbl);
+                $ce =  class_exists($cpr . $tbl,false); //class exists without autoloader..
                 if ($ce) {
                     $class = $cpr . $tbl;
                     break;
