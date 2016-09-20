@@ -910,16 +910,16 @@ class PDO_DataObject
      * if an error occurs $object->N will be set to false and return value will also be false;
      * if numRows is not supported it will 
      * 
-     *
+     * @throws PDO_DataObject_Exception - if run twice on the same object, or tablename missing in class.
      * @param   boolean $n Fetch first result
      * @access  public
      * @return  mixed (number of rows returned, or true if numRows fetching is not supported)
      */
     function find($n = false)
     {
-        global $_DB_DATAOBJECT;
+        
         if ($this->_query === false) {
-            $this->raiseError(
+            return $this->raiseError(
                 "You cannot do two queries on the same object (copy it before finding)", 
                 self::ERROR_INVALIDARGS);
             return false;
@@ -934,6 +934,9 @@ class PDO_DataObject
         }
         if (!strlen($this->tableName())) {
             // xdebug can backtrace this!
+            return $this->raiseError(
+                "You cannot do two queries on the same object (copy it before finding)", 
+                self::ERROR_INVALIDARGS);
             trigger_error("NO \$__table SPECIFIED in class definition",E_USER_ERROR);
         }
         $this->N = 0;
@@ -945,10 +948,10 @@ class PDO_DataObject
         $DB = $_DB_DATAOBJECT['CONNECTIONS'][$this->_database_dsn_md5];
        
         
-        $sql = $this->_build_select();
+        $sql = $this->toSelectSQL();
         
         foreach ($this->_query['unions'] as $union_ar) {  
-            $sql .=   $union_ar[1] .   $union_ar[0]->_build_select() . " \n";
+            $sql .=   $union_ar[1] .   $union_ar[0]->toSelectSQL() . " \n";
         }
         
         $sql .=  $this->_query['order_by']  . " \n";
