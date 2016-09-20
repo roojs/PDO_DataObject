@@ -3178,7 +3178,7 @@ class PDO_DataObject
         }
         
         
-        $rclass = $ce ? $class  : DB_DataObject::_autoloadClass($class, $table);
+        $rclass = $ce ? $class  : self::_autoloadClass($class, $table);
         // proxy = full|light
         if (!$rclass && isset($_DB_DATAOBJECT['CONFIG']['proxy'])) { 
         
