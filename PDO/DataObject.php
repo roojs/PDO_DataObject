@@ -1301,45 +1301,9 @@ class PDO_DataObject
      /**
      * fetches all results as an array without creating Child DataObjects
      *
-     * return format is dependant on args.
-     * if find or query have not been called,
-     *      and selectAdd() has not been called on the object, then it will add the correct columns to the query.
-     
-     * A) array of associative arrays (NO ARGUMENTS)
-     * $x = DB_DataObject::factory('mytable');
-     * $x->whereAdd('something = 1');
-     * $ar = $x->fetchAll();*
-     *
-     *
-     * B) Fetch the first column (1st argument = true)
-     *
-     * $x = DB_DataObject::factory('mytable');
-     * $x->selectAdd('id')
-     * $x->whereAdd('something = 1')
-     * $ar = $x->fetchAll(true);
-     * -- returns array(1,2,3,4,5)
-     
-     * B) Fetch a specific column as an arrray (1st argument = string)
-     *
-     * $x = DB_DataObject::factory('mytable');
-     * $x->selectAdd('somehting, id')
-     * $x->whereAdd('something = 1')
-     * $ar = $x->fetchAll('id');
-     * -- returns array(1,2,3,4,5)
-     *
-     * C) A key=>value associative array (2 arguments as a string)
-     *
-     * $x = DB_DataObject::factory('mytable');
-     * $x->whereAdd('something = 1')
-     * $ar = $x->fetchAll('id','name');
-     * -- returns array(1=>'fred',2=>'blogs',3=> .......
-     *
-     *
-     *
-     * @param    string|false  $k key
-     * @param    string|false  $v value
+     * It's an alisa for fetchAll(false,false, true)
      * @access  public
-     * @return  array  format dependant on arguments, may be empty
+     * @return  array  array of associative arrays.
      */
     private function fetchAllArray()
     {
