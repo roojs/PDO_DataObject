@@ -3272,7 +3272,7 @@ class PDO_DataObject
             }
             // not absolute path 'starting with '/'
             
-            foreach(explode(PATH_SEPARATOR, '' . PATH_SEPARATOR . ini_get('include_path')) as $p) {
+            foreach(explode(PATH_SEPARATOR,  ini_get('include_path')) as $p) {
                 $ff = empty($p) ? $f : "$p/$f";
 
                 if (file_exists($ff)) {
