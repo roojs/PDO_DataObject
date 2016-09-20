@@ -3185,9 +3185,8 @@ class PDO_DataObject
             self::debug("FAILED TO Autoload  $database.$table - using proxy.","FACTORY",1);
             
             $proxyMethod  = (is_string(self::$config['proxy']) && strpos(self::$config['proxy'], '::') !== false) ?
-                explode('::', self::$config['proxy'])[1] : self::$config['proxy'];
+                explode('::', self::$config['proxy'])[1] : ('getProxy' . self::$config['proxy']);
         
-            $proxyMethod = 'getProxy' . self::$config['proxy'];
             // if you have loaded (some other way) - dont try and load it again..
             (new PDO_DataObject($database.'/'.$table))
                 ->generator()
