@@ -3309,11 +3309,11 @@ class PDO_DataObject
             }
         }
         if (!$ce) {
-            $dor = new DB_DataObject();
-            $dor->raiseError(
-                "autoload:Could not autoload " . implode(',', $cls) , 
-                DB_DATAOBJECT_ERROR_INVALIDCONFIG);
-            return false;
+            $dor = new PDO_DataObject();
+            return $dor->raiseError(
+                "autoload: Included $file however could not find the class :" . implode(',', $cls) , 
+                 self::ERROR_INVALIDARGS);
+            
         }
         return $class;
     }
