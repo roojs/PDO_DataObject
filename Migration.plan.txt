@@ -210,18 +210,6 @@ Develop a test plan
 Run throught of DataObject.php
 
 
-
-
-
-
-_build_select
--> quoteIdentifiers
-
-
-find -
--> modifyLImitQuery
--> cleaning of RESULTS object?
-
 fetch
 -> use of result->fetchRow() (query and statement object in pdo)
 -> catching of end of results.
