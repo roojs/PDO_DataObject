@@ -1363,12 +1363,12 @@ class PDO_DataObject
      *    ->whereAdd("age > 20","OR");
      *
      * @param    string  $cond condition or false to reset.
-     * @param    string  $log$cond = false, $logic = 'AND')ic optional logic "OR" (defaults to "AND")
+     * @param    string  $logic optional logic "OR" (defaults to "AND")
      * @access   public
      * @return   string - previous condition or Error when invalid args found
      */
     
-    function where($cond,$logic)
+    function where($cond = false, $logic = 'AND')
     {
         $this->whereAdd($cond, $logic);
         return $this;
