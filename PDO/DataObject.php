@@ -3177,8 +3177,6 @@ class PDO_DataObject
 
     static function factory($table = '')
     {
-        global $_DB_DATAOBJECT;
-        
         
         // multi-database support.. - experimental.
         $database = '';
@@ -3188,9 +3186,9 @@ class PDO_DataObject
           
         }
          
-        if (empty($_DB_DATAOBJECT['CONFIG'])) {
-            PDO_DataObject::config();
-        }
+        
+        PDO_DataObject::config();
+        
         // no configuration available for database
         if (!empty($database) && empty($_DB_DATAOBJECT['CONFIG']['database_'.$database])) {
                 $do = new DB_DataObject();
