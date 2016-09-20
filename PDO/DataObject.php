@@ -789,17 +789,14 @@ class PDO_DataObject
      */
     function get($k = null, $v = null)
     {
-        global $_DB_DATAOBJECT;
-        if (empty($_DB_DATAOBJECT['CONFIG'])) {
-            PDO_DataObject::config();
-        }
+       
         $keys = array();
         
         if ($v === null) {
             $v = $k;
             $keys = $this->keys();
             if (!$keys) {
-                $this->raiseError("No Keys available for {$this->tableName()}", DB_DATAOBJECT_ERROR_INVALIDCONFIG);
+                $this->raiseError("No Keys available for {$this->tableName()}", self::ERROR_INVALIDCONFIG);
                 return false;
             }
             $k = $keys[0];
@@ -809,7 +806,7 @@ class PDO_DataObject
         }
         
         if ($v === null) {
-            $this->raiseError("No Value specified for get", DB_DATAOBJECT_ERROR_INVALIDARGS);
+            $this->raiseError("No Value specified for get", self::ERROR_INVALIDARGS);
             return false;
         }
         $this->$k = $v;
@@ -833,7 +830,7 @@ class PDO_DataObject
         $keys = $this->keys();
         if (!$keys) {
             $this->raiseError("No Keys available for {$this->tableName()}",
-                            DB_DATAOBJECT_ERROR_INVALIDCONFIG);
+                            self::ERROR_INVALIDCONFIG);
             return false;
         }
         $k = $keys[0];
@@ -924,7 +921,7 @@ class PDO_DataObject
         if ($this->_query === false) {
             $this->raiseError(
                 "You cannot do two queries on the same object (copy it before finding)", 
-                DB_DATAOBJECT_ERROR_INVALIDARGS);
+                self::ERROR_INVALIDARGS);
             return false;
         }
         
@@ -1357,7 +1354,7 @@ class PDO_DataObject
         if (!isset($this->_query) || ($_query === false)) {
             return $this->raiseError(
                 "You cannot do two queries on the same object (clone it before finding)", 
-                DB_DATAOBJECT_ERROR_INVALIDARGS);
+                self::ERROR_INVALIDARGS);
         }
         
         if ($cond === false) {
@@ -1368,7 +1365,7 @@ class PDO_DataObject
         }
         // check input...= 0 or '   ' == error!
         if (!trim($cond)) {
-            return $this->raiseError("WhereAdd: No Valid Arguments", DB_DATAOBJECT_ERROR_INVALIDARGS);
+            return $this->raiseError("WhereAdd: No Valid Arguments", self::ERROR_INVALIDARGS);
         }
         $r = $_query['condition'];
         if ($_query['condition']) {
@@ -1439,7 +1436,7 @@ class PDO_DataObject
         if ($this->_query === false) {
             $this->raiseError(
                 "You cannot do two queries on the same object (copy it before finding)", 
-                DB_DATAOBJECT_ERROR_INVALIDARGS);
+                self::ERROR_INVALIDARGS);
             return false;
         }
         if ($order === false) {
@@ -1448,7 +1445,7 @@ class PDO_DataObject
         }
         // check input...= 0 or '    ' == error!
         if (!trim($order)) {
-            return $this->raiseError("orderBy: No Valid Arguments", DB_DATAOBJECT_ERROR_INVALIDARGS);
+            return $this->raiseError("orderBy: No Valid Arguments", self::ERROR_INVALIDARGS);
         }
         
         if (!$this->_query['order_by']) {
@@ -1474,7 +1471,7 @@ class PDO_DataObject
         if ($this->_query === false) {
             $this->raiseError(
                 "You cannot do two queries on the same object (copy it before finding)", 
-                DB_DATAOBJECT_ERROR_INVALIDARGS);
+                self::ERROR_INVALIDARGS);
             return false;
         }
         if ($group === false) {
@@ -1483,7 +1480,7 @@ class PDO_DataObject
         }
         // check input...= 0 or '    ' == error!
         if (!trim($group)) {
-            return $this->raiseError("groupBy: No Valid Arguments", DB_DATAOBJECT_ERROR_INVALIDARGS);
+            return $this->raiseError("groupBy: No Valid Arguments", self::ERROR_INVALIDARGS);
         }
         
         
@@ -1509,7 +1506,7 @@ class PDO_DataObject
         if ($this->_query === false) {
             $this->raiseError(
                 "You cannot do two queries on the same object (copy it before finding)", 
-                DB_DATAOBJECT_ERROR_INVALIDARGS);
+                self::ERROR_INVALIDARGS);
             return false;
         }
         if ($having === false) {
@@ -1518,7 +1515,7 @@ class PDO_DataObject
         }
         // check input...= 0 or '    ' == error!
         if (!trim($having)) {
-            return $this->raiseError("Having: No Valid Arguments", DB_DATAOBJECT_ERROR_INVALIDARGS);
+            return $this->raiseError("Having: No Valid Arguments", self::ERROR_INVALIDARGS);
         }
         
         
@@ -1547,7 +1544,7 @@ class PDO_DataObject
         if ($this->_query === false) {
             $this->raiseError(
                 "You cannot do two queries on the same object (copy it before finding)", 
-                DB_DATAOBJECT_ERROR_INVALIDARGS);
+                self::ERROR_INVALIDARGS);
             return false;
         }
         if ($index=== false) {
@@ -1556,7 +1553,7 @@ class PDO_DataObject
         }
         // check input...= 0 or '    ' == error!
         if ((is_string($index) && !trim($index)) || (is_array($index) && !count($index)) ) {
-            return $this->raiseError("Having: No Valid Arguments", DB_DATAOBJECT_ERROR_INVALIDARGS);
+            return $this->raiseError("Having: No Valid Arguments", self::ERROR_INVALIDARGS);
         }
         $index = is_array($index) ? implode(', ', $index) : $index;
         
@@ -1630,7 +1627,7 @@ class PDO_DataObject
         if ($this->_query === false) {
             $this->raiseError(
                 "You cannot do two queries on the same object (copy it before finding)", 
-                DB_DATAOBJECT_ERROR_INVALIDARGS);
+                self::ERROR_INVALIDARGS);
             return false;
         }
         if ($k === null) {
@@ -1641,7 +1638,7 @@ class PDO_DataObject
         
         // check input...= 0 or '    ' == error!
         if (!trim($k)) {
-            return $this->raiseError("selectAdd: No Valid Arguments", DB_DATAOBJECT_ERROR_INVALIDARGS);
+            return $this->raiseError("selectAdd: No Valid Arguments", self::ERROR_INVALIDARGS);
         }
         
         if ($this->_query['data_select']) {
@@ -1672,7 +1669,7 @@ class PDO_DataObject
         if ($this->_query === false) {
             $this->raiseError(
                 "You cannot do two queries on the same object (copy it before finding)", 
-                DB_DATAOBJECT_ERROR_INVALIDARGS);
+                self::ERROR_INVALIDARGS);
             return false;
         }
         
@@ -1739,7 +1736,7 @@ class PDO_DataObject
             
         if (!$items) {
             $this->raiseError("insert:No table definition for {$this->tableName()}",
-                DB_DATAOBJECT_ERROR_INVALIDCONFIG);
+                self::ERROR_INVALIDCONFIG);
             return false;
         }
         $options = $_DB_DATAOBJECT['CONFIG'];
@@ -1775,7 +1772,7 @@ class PDO_DataObject
                 $DB->setOption('seqname_format',$f);
             }
             if (PEAR::isError($keyvalue)) {
-                $this->raiseError($keyvalue->toString(), DB_DATAOBJECT_ERROR_INVALIDCONFIG);
+                $this->raiseError($keyvalue->toString(), self::ERROR_INVALIDCONFIG);
                 return false;
             }
             $this->$key = $keyvalue;
@@ -1815,7 +1812,7 @@ class PDO_DataObject
             if (is_object($this->$k) && is_a($this->$k,'DB_DataObject_Cast')) {
                 $value = $this->$k->toString($v,$DB);
                 if (PEAR::isError($value)) {
-                    $this->raiseError($value->toString() ,DB_DATAOBJECT_ERROR_INVALIDARGS);
+                    $this->raiseError($value->toString() ,self::ERROR_INVALIDARGS);
                     return false;
                 }
                 $rightq .=  $value;
@@ -2013,7 +2010,7 @@ class PDO_DataObject
                 $this->raiseError("update: trying to perform an update without 
                         the key set, and argument to update is not 
                         DB_DATAOBJECT_WHEREADD_ONLY
-                    ". print_r(array('seq' => $seq , 'keys'=>$keys), true), DB_DATAOBJECT_ERROR_INVALIDARGS);
+                    ". print_r(array('seq' => $seq , 'keys'=>$keys), true), self::ERROR_INVALIDARGS);
                 return false;  
             }
         } else {
@@ -2022,7 +2019,7 @@ class PDO_DataObject
         
          
         if (!$items) {
-            $this->raiseError("update:No table definition for {$this->tableName()}", DB_DATAOBJECT_ERROR_INVALIDCONFIG);
+            $this->raiseError("update:No table definition for {$this->tableName()}", self::ERROR_INVALIDCONFIG);
             return false;
         }
         $datasaved = 1;
@@ -2127,7 +2124,7 @@ class PDO_DataObject
             if (empty($this->_query['condition'])) {
                  $this->raiseError("update: global table update not available
                         do \$do->whereAdd('1=1'); if you really want to do that.
-                    ", DB_DATAOBJECT_ERROR_INVALIDARGS);
+                    ", self::ERROR_INVALIDARGS);
                 return false;
             }
         }
@@ -2297,7 +2294,7 @@ class PDO_DataObject
         if (!isset($t->_query)) {
             $this->raiseError(
                 "You cannot do run count after you have run fetch()", 
-                DB_DATAOBJECT_ERROR_INVALIDARGS);
+                self::ERROR_INVALIDARGS);
             return false;
         }
         $this->_connect();
@@ -2312,7 +2309,7 @@ class PDO_DataObject
         if (empty($keys[0]) && (!is_string($countWhat) || (strtoupper($countWhat) == 'DISTINCT'))) {
             $this->raiseError(
                 "You cannot do run count without keys - use \$do->count('id'), or use \$do->count('distinct id')';", 
-                DB_DATAOBJECT_ERROR_INVALIDARGS,PEAR_ERROR_DIE);
+                self::ERROR_INVALIDARGS,PEAR_ERROR_DIE);
             return false;
             
         }
@@ -3883,7 +3880,7 @@ class PDO_DataObject
             if (!$items) {
                 $this->raiseError(
                     "joinAdd: No table definition for {$obj->tableName()}", 
-                    DB_DATAOBJECT_ERROR_INVALIDCONFIG);
+                    self::ERROR_INVALIDCONFIG);
                 return false;
             }
             
@@ -3935,7 +3932,7 @@ class PDO_DataObject
                 $this->raiseError(
                     "joinAdd can not be run from a object that has had a query run on it,
                     clone the object or create a new one and use setFrom()", 
-                    DB_DATAOBJECT_ERROR_INVALIDARGS);
+                    self::ERROR_INVALIDARGS);
                 return false;
             }
         }
@@ -4152,7 +4149,7 @@ class PDO_DataObject
             if (strpos($info, ':') === false) {
                 $this->raiseError(
                     "format of links.ini is not correct for table {$this->tableName()} - missing 'colon:' in value - " . print_R($map,true), 
-                    DB_DATAOBJECT_ERROR_INVALIDCONFIG);
+                    self::ERROR_INVALIDCONFIG);
                 continue;
             }
             list($tab,$col) = explode(':', $info);
@@ -4315,7 +4312,7 @@ class PDO_DataObject
         if (!$items) {
             $this->raiseError(
                 "setFrom:Could not find table definition for {$this->tableName()}", 
-                DB_DATAOBJECT_ERROR_INVALIDCONFIG);
+                self::ERROR_INVALIDCONFIG);
             return;
         }
         $overload_return = array();
