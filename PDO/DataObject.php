@@ -3143,15 +3143,13 @@ class PDO_DataObject
           
         }
          
-        
-        PDO_DataObject::config();
-        
+         
         // no configuration available for database
-        if (!empty($database) && empty($_DB_DATAOBJECT['CONFIG']['database_'.$database])) {
-                $do = new DB_DataObject();
+        if (!empty($database) && empty(self::config['databases'][$database])) {
+                $do = new PDO_DataObject();
                 $do->raiseError(
-                    "unable to find database_{$database} in Configuration, It is required for factory with database"
-                    , 0, PEAR_ERROR_DIE );   
+                    "unable to find databases[{$database}] in Configuration, It is required for factory with database"
+                    , self::ERROR_INVALIDARGS, self::ERROR_DIE);   
        }
         
        
