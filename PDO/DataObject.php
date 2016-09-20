@@ -1188,20 +1188,22 @@ class PDO_DataObject
      * $ar = $x->fetchAll('id','name');
      * -- returns array(1=>'fred',2=>'blogs',3=> .......
      *
+     * 
+     *
      * D) array of objects
      * $x = DB_DataObject::factory('mytable');
      * $x->whereAdd('something = 1');
      * $ar = $x->fetchAll();
      
      
-     * A) array of associative arrays - No child dataobjects created...
+     * E) array of associative arrays - No child dataobjects created...
      * $x = DB_DataObject::factory('mytable');
      * $x->whereAdd('something = 1');
      * $ar = $x->fetchAll(false,false, true);
      *  returns [ { a=>1 }, {a=>2}, .... ]
      
      *
-     * E) array of arrays (for example)
+     * F) array of associative arrays call by method...
      * $x = DB_DataObject::factory('mytable');
      * $x->whereAdd('something = 1');
      * $ar = $x->fetchAll(false,false,'toArray');
