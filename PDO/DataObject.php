@@ -1203,7 +1203,7 @@ class PDO_DataObject
      * $ar = $x->fetchAll();
      
      
-     * E) array of associative arrays - No child dataobjects created...
+     * E) array of associative arrays - No child dataobjects created... fetchAllArray()
      * $x = DB_DataObject::factory('mytable');
      * $x->whereAdd('something = 1');
      * $ar = $x->fetchAll(false,false, true);
