@@ -1221,6 +1221,10 @@ class PDO_DataObject
             
             $this->find();
         }
+        if ($k != false || $v != false) {
+            return $this->fetchAllFast($k,$v);
+        }
+        
         $ret = array();
         while ($this->fetch()) {
             if ($v !== false) {
@@ -1280,7 +1284,7 @@ class PDO_DataObject
      */
     function fetchAllFast($key_col=false, $value_col=false)
     {
-         if (!$this->_result) {
+        if (!$this->_result) {
             if ($k !== false && 
                 (   // only do this is we have not been explicit..
                     empty($this->_query['data_select']) || 
