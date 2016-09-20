@@ -4877,11 +4877,12 @@ class PDO_DataObject
      */
     function raiseError($message, $type = 0, $behaviour = self::ERROR_DIE, $previous_exception = null)
     {
+        
         PDO_DataObject::debug($message,'ERROR',1);
         
-        // default behaviour now...
         
-        class_exists('PDO_DataObject_Exception') ? '' : require_once 'PDO/DataObject/Exception.php';
+        class_exists('PDO_DataObject_Exception') ? '' :
+            require_once 'PDO/DataObject/Exception.php';
          
         throw  new PDO_DataObject_Exception($message, $type, $previous_exception);
              
