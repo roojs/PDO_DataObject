@@ -927,7 +927,7 @@ class PDO_DataObject
         
        
         if (self::$debug) {
-            $this->debug(var_export($n), "find",1);
+            $this->debug(var_export($n,true), "find",1);
         }
         
         if (!strlen($this->tableName())) {
@@ -942,8 +942,8 @@ class PDO_DataObject
         $this->_build_condition($this->table()) ;
         
        
-        $this->_connect();
-        $DB = $_DB_DATAOBJECT['CONNECTIONS'][$this->_database_dsn_md5];
+        $DB = $this->PDO();
+        
        
         
         $sql = $this->toSelectSQL();
@@ -961,12 +961,9 @@ class PDO_DataObject
         
         
         $err = $this->_query($sql);
-        if (is_a($err,'PEAR_Error')) {
-            return false;
-        }
-        
-        if (!empty($_DB_DATAOBJECT['CONFIG']['debug'])) {
-            $this->debug("CHECK autofetchd $n", "find", 1);
+       
+        if (self::$debug) {
+            $this->debug("CHECK autofetched " . var_export($n, true), "find", 1);
         }
         
         // find(true)
