@@ -3206,7 +3206,7 @@ class PDO_DataObject
         $ret = new $rclass();
  
         if (!empty($database)) {
-            DB_DataObject::debug("Setting database to $database","FACTORY",1);
+            self::debug("Setting database to $database","FACTORY",1);
             $ret->database($database);
         }
         return $ret;
