@@ -3228,7 +3228,7 @@ class PDO_DataObject
         $table   = $table ? $table : substr($class,strlen($class_prefix));
 
         // only include the file if it exists - and barf badly if it has parse errors :)
-        if (!empty($_DB_DATAOBJECT['CONFIG']['proxy']) || empty($_DB_DATAOBJECT['CONFIG']['class_location'])) {
+        if (self::$config['proxy']|| empty(self::$config['class_location'])) {
             return false;
         }
         // support for:
