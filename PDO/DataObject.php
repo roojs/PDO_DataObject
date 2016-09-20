@@ -1376,6 +1376,7 @@ class PDO_DataObject
 
     /**
     * Adds a 'IN' condition to the WHERE statement
+    * NOTE : ALWAYS ENSURE KEY IS ESCAPED
     *
     * $object->whereAddIn('id', $array, 'int'); //minimal usage
     * $object->whereAddIn('price', $array, 'float', 'OR');  // cast to float, and call whereAdd with 'OR'
@@ -1417,7 +1418,8 @@ class PDO_DataObject
     /**
     * Adds a 'IN' condition to the WHERE statement
     * Chained verions of whereAddIn()
-    * 
+     * NOTE : ALWAYS ENSURE KEY IS ESCAPED
+
     * $object->whereAddIn('id', $array, 'int'); //minimal usage
     * $object->whereAddIn('price', $array, 'float', 'OR');  // cast to float, and call whereAdd with 'OR'
     * $object->whereAddIn('name', $array, 'string');  // quote strings
@@ -1437,6 +1439,7 @@ class PDO_DataObject
     
     /**
      * Adds a order by condition (Chainable)
+     * NOTE : ALWAYS ENSURE ARGUMENTS ARE ESCAPED
      *
      * $object->orderBy(); //clears order by
      * $object->orderBy("ID");
@@ -1472,7 +1475,8 @@ class PDO_DataObject
 
     /**
      * Adds a group by condition (Chainable)
-     *
+     * NOTE : ALWAYS ENSURE ARGUMENTS ARE ESCAPED
+     * 
      * $object->groupBy(); //reset the grouping
      * $object->groupBy("ID DESC");
      * $object->groupBy("ID,age");
@@ -1508,6 +1512,7 @@ class PDO_DataObject
 
     /**
      * Adds a having clause (Chainable)
+     * NOTE : ALWAYS ENSURE ARGUMENTS ARE ESCAPED
      *
      * $object->having(); //reset the grouping
      * $object->having("sum(value) > 0 ");
