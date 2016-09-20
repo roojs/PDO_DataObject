@@ -846,9 +846,10 @@ class PDO_DataObject
 
 
     /**
-     * build the basic select query.
+     * build the basic select query. (was _build_select)
      * 
-     * @access private
+     * @return string the SQL select query built from the properties.
+     * @access public
      */
     
     function toSelectSQL()
