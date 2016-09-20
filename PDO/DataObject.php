@@ -1341,16 +1341,9 @@ class PDO_DataObject
      * @access  public
      * @return  array  format dependant on arguments, may be empty
      */
-    private function fetchAllFast($key_col=false, $value_col=false,$method = false)
+    private function fetchAllArray()
     {
-  
-        
-        
-       
-        
-        
-        
-        /
+        return $this->fetchAll(false,false,true);
         
     }
     
