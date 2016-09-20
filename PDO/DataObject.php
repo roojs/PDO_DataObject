@@ -272,9 +272,12 @@ class PDO_DataObject
 
     /**
      * The Number of rows returned from a query
+     * false = nothing fetched yet.
+     * 0...9999.....  number of rows returned by find/query etc.
+     * true = sqlite - not able to find number of results.
      *
      * @access  public
-     * @var     int
+     * @var     int|boolean
      */
     public $N = false;  // Number of rows returned from a query
     
