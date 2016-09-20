@@ -3156,8 +3156,7 @@ class PDO_DataObject
        
         
         // does this need multi db support??
-        $cp = isset(self::$config['class_prefix']) ?
-            explode(PATH_SEPARATOR, self::$config['class_prefix']) : '';
+        $cp =  explode(PATH_SEPARATOR, self::$config['class_prefix']);
         
         //print_r($cp);
         
