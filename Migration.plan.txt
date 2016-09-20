@@ -155,8 +155,14 @@ e) PDO_DataObject class
   * fetchAll() DONE - tested by earlier code ?? 
   * fetchAllArray() - alias to fetchAll(false,false,true);
   
-  * where()  = new 'chained version'
-  * whereAdd()
+  * where()  = new 'chained version'  DONE / NEED TESTING
+  * whereAdd()  DONE / NEED TESTING
+  * whereIn() = new 'chained version'  DONE / NEED TESTING
+  * whereAddIn()  DONE / NEED TESTING
+  * orderBy()  DONE / NEED TESTING
+  * groupBy()  DONE / NEED TESTING
+  * having()  DONE / NEED TESTING
+
 
   * condition building
     - whereAdd  + where() -- chained version?
