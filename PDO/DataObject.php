@@ -925,12 +925,9 @@ class PDO_DataObject
             return false;
         }
         
-        if (empty($_DB_DATAOBJECT['CONFIG'])) {
-            PDO_DataObject::config();
-        }
-
-        if (!empty($_DB_DATAOBJECT['CONFIG']['debug'])) {
-            $this->debug($n, "find",1);
+       
+        if (self::$debug) {
+            $this->debug(var_export($n), "find",1);
         }
         if (!strlen($this->tableName())) {
             // xdebug can backtrace this!
