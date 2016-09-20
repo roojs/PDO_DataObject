@@ -3220,7 +3220,7 @@ class PDO_DataObject
      * @return string classname on Success
      * @static
      */
-    static function _autoloadClass($class, $table=false)
+    private static function _autoloadClass($class, $table=false)
     {
          
         $class_prefix = self::$config['class_prefix'];
