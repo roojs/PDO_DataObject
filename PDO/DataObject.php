@@ -1163,11 +1163,6 @@ class PDO_DataObject
      * if selectAdd() has not been called on the object, then it will add the correct columns to the query.
      *
      *
-     * A) array of associative arrays (NO ARGUMENTS)
-     * $x = DB_DataObject::factory('mytable');
-     * $x->whereAdd('something = 1');
-     * $ar = $x->fetchAll(true,true);
-     *  returns [ { a=>1 }, {a=>2}, .... ]
      *
      * 
      * A) Array of values (eg. a list of 'id')
@@ -1197,6 +1192,14 @@ class PDO_DataObject
      * $x = DB_DataObject::factory('mytable');
      * $x->whereAdd('something = 1');
      * $ar = $x->fetchAll();
+     
+     
+     * A) array of associative arrays - No child dataobjects created...
+     * $x = DB_DataObject::factory('mytable');
+     * $x->whereAdd('something = 1');
+     * $ar = $x->fetchAll(false,false, true);
+     *  returns [ { a=>1 }, {a=>2}, .... ]
+     
      *
      * E) array of arrays (for example)
      * $x = DB_DataObject::factory('mytable');
