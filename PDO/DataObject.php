@@ -784,6 +784,7 @@ class PDO_DataObject
      *
      * @param   string  $k column
      * @param   string  $v value
+     * @throws PDO_DataObject_Exception
      * @access  public
      * @return  int     No. of rows
      */
@@ -796,8 +797,7 @@ class PDO_DataObject
             $v = $k;
             $keys = $this->keys();
             if (!$keys) {
-                $this->raiseError("No Keys available for {$this->tableName()}", self::ERROR_INVALIDCONFIG);
-                return false;
+                return $this->raiseError("No Keys available for {$this->tableName()}", self::ERROR_INVALIDCONFIG);
             }
             $k = $keys[0];
         }
@@ -806,8 +806,8 @@ class PDO_DataObject
         }
         
         if ($v === null) {
-            $this->raiseError("No Value specified for get", self::ERROR_INVALIDARGS);
-            return false;
+            return $this->raiseError("No Value specified for get", self::ERROR_INVALIDARGS);
+            
         }
         $this->$k = $v;
         return $this->find(1);
