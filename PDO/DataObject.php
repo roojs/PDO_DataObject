@@ -201,9 +201,7 @@ class PDO_DataObject
     );
     
     private static $debug = 0; // set by config() and debugLevel()
-    
-    private static $config_loaded = false; // flag to indicate if we have attempted to load config from PEAR::getStaticProperty
-    
+      
     
     /**
      * Connections [md5] => PDO
@@ -1027,10 +1025,7 @@ class PDO_DataObject
     function fetch()
     {
 
-        
-        if (!self::$config_loaded) {
-            PDO_DataObject::config();
-        }
+         
         if ($this->N === false) {
             $this->raiseError("Fetch Called without Query being run");
         }
@@ -4951,8 +4946,7 @@ class PDO_DataObject
      */
     static function reset()
     {
-        self::$config_loaded = false;
-        self::$connections = array(); 
+         self::$connections = array(); 
         self::$ini = array();
         self::$links = array();
         self::$sequence = array();
