@@ -884,7 +884,7 @@ class PDO_DataObject
         
        
         
-        $sql = 'SELECT ' .
+        return 'SELECT ' .
             $this->_query['data_select'] . " \n" .
             " FROM   $tn  " . $this->_query['useindex'] . " \n" .
             $this->_join . " \n" .
