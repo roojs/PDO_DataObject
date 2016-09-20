@@ -1027,7 +1027,7 @@ class PDO_DataObject
 
          
         if ($this->N === false) {
-            $this->raiseError("Fetch Called without Query being run");
+            return $this->raiseError("Fetch Called without Query being run");
         }
         /*
         Some drivers may return '0' ?? SQLITE???
