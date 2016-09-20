@@ -151,6 +151,13 @@ e) PDO_DataObject class
   * _build_select ->   toSelectSQL()   DONE / NEED TESTING
   * find() DONE / NEED TESTING
 
+  * fetch() DONE - tested by earlier code
+  * fetchAll() DONE - tested by earlier code ?? 
+  * fetchAllArray() - alias to fetchAll(false,false,true);
+  
+  * where()  = new 'chained version'
+  * whereAdd()
+
   * condition building
     - whereAdd  + where() -- chained version?
   * named arguments  / prepare???
