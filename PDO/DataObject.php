@@ -868,15 +868,15 @@ class PDO_DataObject
             // not much support in the api yet..
             
             return 'SELECT ' .
-               $this->_query['derive_select']
-               .' FROM ( SELECT'.
-                    $this->_query['data_select'] . " \n" .
-                    " FROM   $tn  " . $this->_query['useindex'] . " \n" .
-                    $this->_join . " \n" .
-                    $this->_query['condition'] . " \n" .
-                    $this->_query['group_by'] . " \n" .
-                    $this->_query['having'] . " \n" .
-                ') ' . $this->_query['derive_table'];
+               $this->_query['derive_select'] . " \n" .
+                   "FROM ( SELECT  \n" .
+                        $this->_query['data_select'] . " \n" .
+                        "FROM   $tn  " . $this->_query['useindex'] . " \n" .
+                        $this->_join . " \n" .
+                        $this->_query['condition'] . " \n" .
+                        $this->_query['group_by'] . " \n" .
+                        $this->_query['having'] . " \n" .
+                    ') ' . $this->_query['derive_table'];
                      
             
         }
@@ -885,7 +885,7 @@ class PDO_DataObject
         
         return 'SELECT ' .
             $this->_query['data_select'] . " \n" .
-            " FROM   $tn  " . $this->_query['useindex'] . " \n" .
+            "FROM   $tn  " . $this->_query['useindex'] . " \n" .
             $this->_join . " \n" .
             $this->_query['condition'] . " \n" .
             $this->_query['group_by'] . " \n" .
