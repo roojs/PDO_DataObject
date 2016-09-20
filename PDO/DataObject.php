@@ -1464,7 +1464,7 @@ class PDO_DataObject
         
         if (!$this->_query['order_by']) {
             $this->_query['order_by'] = " ORDER BY {$order} ";
-            return;
+            return $this;
         }
         $this->_query['order_by'] .= " , {$order}";
     }
