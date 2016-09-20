@@ -1232,7 +1232,7 @@ class PDO_DataObject
             
             $this->find();
         }
-        if ($k != false || $v != false) {
+        if ($k != false || $v != false || $method === true) {
             return $this->fetchAllFast($k,$v);
         }
         
