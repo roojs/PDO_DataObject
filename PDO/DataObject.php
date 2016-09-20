@@ -1551,7 +1551,7 @@ class PDO_DataObject
      * 
      * @param  string|array  $index  index or indexes to use.
      * @access public
-     * @return none|PEAR::Error - invalid args only
+     * @return PDO_DataObject self
      */
     function useIndex($index = false)
     {
@@ -1678,7 +1678,7 @@ class PDO_DataObject
      *
      * @param  string  $k
      * @access public
-     * @return mixed null or old string if you reset it.
+     * @return PDO_DataObject self
      */
     function select($k = null)
     {
