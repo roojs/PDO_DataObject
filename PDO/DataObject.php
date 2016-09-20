@@ -1249,9 +1249,7 @@ class PDO_DataObject
             return $this->_result->fetchAll(PDO::FETCH_ASSOC);
         }
         if ($k === false && $v === false ) {
-            
-            
-            
+             
             $ret = array();
             while ($this->fetch()) {
                 if ($v !== false) {
@@ -1269,8 +1267,23 @@ class PDO_DataObject
         if ($key_col === true) { // first column...
             return $this->_result->fetchAll(PDO::FETCH_COLUMN, 0);
         }
-        
-        
+         $cols = array();
+        for($i =0;$i< $this->_result->columnCount(); $i++) {
+            $meta = $this->_result->getColumnMeta($i);
+            if ($meta['name'] == $k) {
+                $cols[0] == $i;
+            }
+            if ($meta['name'] == $v) {
+                $cols[1] == $i;
+            }
+        }
+        if (!isset($cols[0])) {
+            return $this->raiseError("can not find column '{$key_col}' in results", self::ERROR_INVALIDARGS);
+        }
+        // in theory this is not 
+        if ($v === false) {
+            return $this->_result->fetchAll(PDO::FETCH_FUNC, $cols[0]);
+        }
         
         
         
@@ -1321,43 +1334,11 @@ class PDO_DataObject
      */
     private function fetchAllFast($key_col=false, $value_col=false,$method = false)
     {
-        if (!$this->_result) {
-            if ($k !== false && 
-                (   // only do this is we have not been explicit..
-                    empty($this->_query['data_select']) || 
-                    ($this->_query['data_select'] == '*')
-                )
-            ) {
-                $this->selectAdd();
-                $this->selectAdd($k);
-                if ($v !== false) {
-                    $this->selectAdd($v);
-                }
-            }
-            
-            $this->find();
-        }
+  
+        
         
        
-        
-        
-        $cols = array();
-        for($i =0;$i< $this->_result->columnCount(); $i++) {
-            $meta = $this->_result->getColumnMeta($i);
-            if ($meta['name'] == $key_col) {
-                $cols[0] == $i;
-            }
-            if ($meta['name'] == $value_col) {
-                $cols[1] == $i;
-            }
-        }
-        if (!isset($cols[0])) {
-            return $this->raiseError("can not find column '{$key_col}' in results", self::ERROR_INVALIDARGS);
-        }
-        // in theory this is not 
-        if ($args  === 1) {
-            return $this->_result->fetchAll(PDO::FETCH_FUNC, $cols[0]);
-        }
+        /
         
         // 2 args..
         if (!isset($cols[1])) {
