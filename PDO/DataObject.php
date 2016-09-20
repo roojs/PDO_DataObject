@@ -810,7 +810,7 @@ class PDO_DataObject
             
         }
         $this->$k = $v;
-        return $this->find(1);
+        return $this->find(true);
     }
     
     /**
