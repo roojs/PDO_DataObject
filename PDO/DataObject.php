@@ -855,10 +855,12 @@ class PDO_DataObject
     {
         $quoteIdentifiers = self::$config['quote_identifiers'];
         if ($quoteIdentifiers) {
-            $this->PDO();
-            $DB = $_DB_DATAOBJECT['CONNECTIONS'][$this->_database_dsn_md5];
+            $DB = $this->PDO();
+            
         }
-        $tn = ($quoteIdentifiers ? $DB->quoteIdentifier($this->tableName()) : $this->tableName()) ;
+        $tn = ($quoteIdentifiers ? $this->quoteIdentifier($this->tableName()) : $this->tableName()) ;
+        
+        // derive table.. not sure how well this is really supported...
         if (!empty($this->_query['derive_table']) && !empty($this->_query['derive_select']) ) {
             
             // this is a derived select..
