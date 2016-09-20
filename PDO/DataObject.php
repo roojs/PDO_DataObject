@@ -3174,7 +3174,7 @@ class PDO_DataObject
             }
         } else {
             $class = $tbl;
-            $ce = substr(phpversion(),0,1) > 4 ? class_exists($class,false) : class_exists($class);
+            $ce = class_exists($class,false);
         }
         
         
