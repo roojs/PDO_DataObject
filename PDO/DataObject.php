@@ -1189,17 +1189,15 @@ class PDO_DataObject
      *
      *
      * 
-     * C) ASSOCIATIVE ARRAY - A key=>value associative array
+     * D) ASSOCIATIVE ARRAY - A key=>value associative array
      *
      * $x = DB_DataObject::factory('mytable');
      * $x->whereAdd('something = 1')
      * $ar = $x->fetchAll('id','name');
      * -- returns array(1=>'fred',2=>'blogs',3=> .......
      *
-     *
-     *
-     *
-     * D) array of objects
+     * 
+     * E) array of objects -- NO ARGUMENTS
      * $x = DB_DataObject::factory('mytable');
      * $x->whereAdd('something = 1');
      * $ar = $x->fetchAll();
@@ -1210,7 +1208,6 @@ class PDO_DataObject
      * $x->whereAdd('something = 1');
      * $ar = $x->fetchAll(false,false, true);
      *  returns [ { a=>1 }, {a=>2}, .... ]
-     
      *
      * F) array of associative arrays call by method...
      * $x = DB_DataObject::factory('mytable');
@@ -1220,7 +1217,7 @@ class PDO_DataObject
      *
      * @param    string|false  $k key
      * @param    string|false  $v value
-     * @param    string|false  $method method to call on each result to get array value (eg. 'toArray')
+     * @param    string|false  true|$method method to call on each result to get array value (eg. 'toArray')
      * @access  public
      * @return  array  format dependant on arguments, may be empty
      */
