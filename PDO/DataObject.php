@@ -1471,7 +1471,7 @@ class PDO_DataObject
     }
 
     /**
-     * Adds a group by condition
+     * Adds a group by condition (Chainable)
      *
      * $object->groupBy(); //reset the grouping
      * $object->groupBy("ID DESC");
@@ -1479,7 +1479,7 @@ class PDO_DataObject
      *
      * @param  string  $group  Grouping
      * @access public
-     * @return none|PEAR::Error - invalid args only
+     * @return PDO_DataObject self
      */
     function groupBy($group = false)
     {
