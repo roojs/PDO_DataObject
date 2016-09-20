@@ -1436,7 +1436,7 @@ class PDO_DataObject
     }
     
     /**
-     * Adds a order by condition
+     * Adds a order by condition (Chainable)
      *
      * $object->orderBy(); //clears order by
      * $object->orderBy("ID");
