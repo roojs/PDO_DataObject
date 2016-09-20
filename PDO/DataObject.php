@@ -1163,16 +1163,22 @@ class PDO_DataObject
      * if selectAdd() has not been called on the object, then it will add the correct columns to the query.
      *
      *
-     *
-     * 
-     * A) Array of values (eg. a list of 'id')
+     * A) ONE COLUMN ARRAY - Array of values (eg. a list of 'id')
      *
      * $x = DB_DataObject::factory('mytable');
      * $x->whereAdd('something = 1')
      * $ar = $x->fetchAll('id');
      * -- returns array(1,2,3,4,5)
      *
-     * B) Array of values (not from table)
+     * B) ONE COLUMN ARRAY - Fetch the first column (1st argument = true)
+     *
+     * $x = DB_DataObject::factory('mytable');
+     * $x->selectAdd('id')
+     * $x->whereAdd('something = 1')
+     * $ar = $x->fetchAll(true);
+     * -- returns array(1,2,3,4,5)
+    
+     * C) ONE COLUMN ARRAY - Array of values (using selectAdd)
      *
      * $x = DB_DataObject::factory('mytable');
      * $x->whereAdd('something = 1');
@@ -1180,15 +1186,18 @@ class PDO_DataObject
      * $x->selectAdd('distinct(group_id) as group_id');
      * $ar = $x->fetchAll('group_id');
      * -- returns array(1,2,3,4,5)
-     *     *
-     * C) A key=>value associative array
+     *
+     *
+     * 
+     * C) ASSOCIATIVE ARRAY - A key=>value associative array
      *
      * $x = DB_DataObject::factory('mytable');
      * $x->whereAdd('something = 1')
      * $ar = $x->fetchAll('id','name');
      * -- returns array(1=>'fred',2=>'blogs',3=> .......
      *
-     * 
+     *
+     *
      *
      * D) array of objects
      * $x = DB_DataObject::factory('mytable');
@@ -1239,27 +1248,30 @@ class PDO_DataObject
             // ignore's key/value.
             return $this->_result->fetchAll(PDO::FETCH_ASSOC);
         }
+        if ($k === false && $v === false ) {
+            
+            
+            
+            $ret = array();
+            while ($this->fetch()) {
+                if ($v !== false) {
+                    $ret[$this->$k] = $this->$v;
+                    continue;
+                }
+                $ret[] = $k === false ? 
+                    ($method == false ? clone($this)  : $this->$method())
+                    : $this->$k;
+            }
+     
+            return $ret;
+        }
+        
         
         if ($args  === 1 && $key_col === true) { // first column...
             return $this->_result->fetchAll(PDO::FETCH_COLUMN, 0);
         }
         
-        if ($k != false || $v != false || $method === true) {
-            return $this->fetchAllFast($k,$v);
-        }
         
-        $ret = array();
-        while ($this->fetch()) {
-            if ($v !== false) {
-                $ret[$this->$k] = $this->$v;
-                continue;
-            }
-            $ret[] = $k === false ? 
-                ($method == false ? clone($this)  : $this->$method())
-                : $this->$k;
-        }
- 
-        return $ret;
          
     }
      /**
@@ -1326,9 +1338,7 @@ class PDO_DataObject
         
        
         
-        if ($args  === 1 && $key_col === true) { // first column...
-            return $this->_result->fetchAll(PDO::FETCH_COLUMN, 0);
-        }
+        
         $cols = array();
         for($i =0;$i< $this->_result->columnCount(); $i++) {
             $meta = $this->_result->getColumnMeta($i);
