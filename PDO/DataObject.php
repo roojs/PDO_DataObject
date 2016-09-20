@@ -1756,18 +1756,15 @@ class PDO_DataObject
      */
     function insert()
     {
-        global $_DB_DATAOBJECT;
-        
+          
         // we need to write to the connection (For nextid) - so us the real
         // one not, a copyied on (as ret-by-ref fails with overload!)
         
-        if (!isset($_DB_DATAOBJECT['CONNECTIONS'][$this->_database_dsn_md5])) {
-            $this->_connect();
-        }
+         
         
-        $quoteIdentifiers  = !empty($_DB_DATAOBJECT['CONFIG']['quote_identifiers']);
+        $quoteIdentifiers  = self::$config['quote_identifiers']);
         
-        $DB = $_DB_DATAOBJECT['CONNECTIONS'][$this->_database_dsn_md5];
+        $DB = $this->PDO();;
          
         $items = $this->table();
             
