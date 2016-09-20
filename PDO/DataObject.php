@@ -590,45 +590,7 @@ class PDO_DataObject
      
     
     
-    /**
-     * Configuration can be loaded from 
-     * PEAR::getStaticProperty('PDO_DataObject','options');
-     * (part of PEAR5.php)
-     * This is available for backward Compatibility - new versions should just include this file
-     * and set the options via config({array})
-     *  Just including this file does not load anything else -- like pear.. etc..
-     *  So it's a relatively low overhead..
-     *
-     *
-     * @access   private
-     * @return   Void
-     */
-    private static function _loadPEARConfig()
-    {
-        
-        if (self::$config_loaded) {
-            return;
-        }
-        self::$config_loaded = true;
-        
-        if (!class_exists('PEAR', false)) {
-            return;
-        }
-        
-        $cfg = PEAR::getStaticProperty('PDO_DataObject','options');
-        foreach ($cfg as $k=>$v) {
-            if (!isset(self::$config[$k])) {
-                $this->raiseError("Invalid PEAR PDO_DataObject Configuration setting : $k",
-                                  self::ERROR_INVALIDCONFIG, self::ERROR_DIE);
-            }
-            self::$config[$k] = $v;
-        }
-        if (isset($cfg['debug'])) {
-            self::$debug = $cfg['debug'];
-        }
-        
-
-    }
+    
     
     /**
      * Set/get the global configuration...
@@ -658,7 +620,7 @@ class PDO_DataObject
      
     static function config($cfg_in = array(), $value=false) 
     {
-        self::_loadPEARConfig();
+       
         
         if (!func_num_args()) {
             return self::$config;
