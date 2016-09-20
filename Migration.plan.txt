@@ -143,7 +143,8 @@ Tests:
 Target:END OF WEEK 6 (est. 4 days) - COMPLETED
 -------------------------
 e) PDO_DataObject class
-  * factory / loading
+  * factory  DONE / NEED TESTING
+  * _autoloadClass  DONE / NEED TESTING
   * condition building
     - whereAdd  + where() -- chained version?
   * named arguments  / prepare???
