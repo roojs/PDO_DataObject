@@ -1665,6 +1665,7 @@ class PDO_DataObject
     function select($k = null)
     {
         $this->selectAdd($k);
+        return $this;
     }
     
     /**
