@@ -1582,9 +1582,10 @@ class PDO_DataObject
         
         if (!$this->_query['useindex']) {
             $this->_query['useindex'] = " USE INDEX ({$index}) ";
-            return;
+            return $this;
         }
         $this->_query['useindex'] =  substr($this->_query['useindex'],0, -2) . ", {$index}) ";
+        return $this;
     }
     /**
      * Sets the Limit
