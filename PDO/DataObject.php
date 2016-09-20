@@ -851,7 +851,7 @@ class PDO_DataObject
      * @access private
      */
     
-    private function _build_select()
+    private function selectToSQL()
     {
         $quoteIdentifiers = self::$config['quote_identifiers'];
         if ($quoteIdentifiers) {
@@ -860,7 +860,7 @@ class PDO_DataObject
         }
         $tn = ($quoteIdentifiers ? $this->quoteIdentifier($this->tableName()) : $this->tableName()) ;
         
-        // derive table.. not sure how well this is really supported...
+        // derive table.. not sure how well this is really supported...??
         if (!empty($this->_query['derive_table']) && !empty($this->_query['derive_select']) ) {
             
             // this is a derived select..
