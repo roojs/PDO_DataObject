@@ -1623,6 +1623,7 @@ class PDO_DataObject
 
     /**
      * Adds a select columns
+     * NOTE : ALWAYS ENSURE ARGUMENTS ARE ESCAPED
      *
      * $object->selectAdd(); // resets select to nothing!
      * $object->selectAdd("*"); // default select
@@ -1662,6 +1663,23 @@ class PDO_DataObject
     
     
     
+    /**
+     * Adds a select columns
+     * Chainable Version
+     * NOTE : ALWAYS ENSURE ARGUMENTS ARE ESCAPED 
+     *
+     * $object->selectAdd(); // resets select to nothing!
+     * $object->selectAdd("*"); // default select
+     * $object->selectAdd("unixtime(DATE) as udate");
+     * $object->selectAdd("DATE");
+     *
+     * to prepend distict:
+     * $object->selectAdd('distinct ' . $object->selectAdd());
+     *
+     * @param  string  $k
+     * @access public
+     * @return mixed null or old string if you reset it.
+     */
     function select($k = null)
     {
         $this->selectAdd($k);
