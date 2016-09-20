@@ -4875,7 +4875,7 @@ class PDO_DataObject
      * @access public
      * @return error object
      */
-    function raiseError($message, $type = 0, $behaviour = null, $previous_exception = null)
+    function raiseError($message, $type = 0, $behaviour = self::ERROR_DIE, $previous_exception = null)
     {
         PDO_DataObject::debug($message,'ERROR',1);
         
