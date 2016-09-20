@@ -1507,7 +1507,7 @@ class PDO_DataObject
     }
 
     /**
-     * Adds a having clause
+     * Adds a having clause (Chainable)
      *
      * $object->having(); //reset the grouping
      * $object->having("sum(value) > 0 ");
