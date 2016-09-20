@@ -1565,14 +1565,13 @@ class PDO_DataObject
     function useIndex($index = false)
     {
         if ($this->_query === false) {
-            $this->raiseError(
+            return $this->raiseError(
                 "You cannot do two queries on the same object (copy it before finding)", 
                 self::ERROR_INVALIDARGS);
-            return false;
         }
         if ($index=== false) {
             $this->_query['useindex'] = '';
-            return;
+            return $this;
         }
         // check input...= 0 or '    ' == error!
         if ((is_string($index) && !trim($index)) || (is_array($index) && !count($index)) ) {
