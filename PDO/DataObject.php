@@ -1312,8 +1312,8 @@ class PDO_DataObject
             $this->find();
         }
         
-        $args = func_num_args();
-        if (!$args) {
+       
+        if ($method == true) {
             return $this->_result->fetchAll(PDO::FETCH_ASSOC);
         }
         if ($args  === 1 && $key_col === true) { // first column...
