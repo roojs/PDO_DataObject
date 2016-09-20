@@ -959,8 +959,8 @@ class PDO_DataObject
         
         $sql = $this->modifyLimitQuery($sql);
         
-        
-        $err = $this->_query($sql);
+        // this should throw an error if there is a problem..
+        $this->_query($sql);
        
         if (self::$debug) {
             $this->debug("CHECK autofetched " . var_export($n, true), "find", 1);
