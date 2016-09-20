@@ -4884,34 +4884,7 @@ class PDO_DataObject
         class_exists('PDO_DataObject_Exception') ? '' : require_once 'PDO/DataObject/Exception.php';
          
         throw  new PDO_DataObject_Exception($message, $type, $previous_exception);
-            
-         
-        if ($behaviour == self::ERROR_DIE && self::$config['dont_die']) {
-            $behaviour = null;
-        }
-        
-        
-        class_exists('PEAR') ? '' : require_once 'PEAR.php';
-        
-        
-        $error = &PEAR::getStaticProperty('DB_DataObject','lastError');
-          
-        if (PEAR::isError($message)) {
-            $error = $message;
-            return $error;
-        }
-        
-        class_exists('PDO_DataObject_Error') ? '' : require_once 'PDO/DataObject/Error.php';
-        $dor = new PEAR();
-        $error = $dor->raiseError($message, $type, $behaviour,
-                $opts=null, $userinfo=null, 'PDO_DataObject_Error'
-        );
-        
-        // this will never work totally with PHP's object model.
-        // as this is passed on static calls (like staticGet in our case)
- 
-        
-        return $error;
+             
     }
 
     
