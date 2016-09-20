@@ -3155,7 +3155,7 @@ class PDO_DataObject
     
      /**
      * classic factory method for loading a table class
-     * usage: $do = DB_DataObject::factory('person')
+     * usage: $do = PDO_DataObject::factory('person')
      * WARNING - this may emit a include error if the file does not exist..
      * use @ to silence it (if you are sure it is acceptable)
      * eg. $do = @DB_DataObject::factory('person')
@@ -3169,7 +3169,8 @@ class PDO_DataObject
      * 
      * @param  string  $table  tablename (use blank to create a new instance of the same class.)
      * @access private
-     * @return DataObject|PEAR_Error 
+     * @throws PDO_DataObject_Exception
+     * @return PDO_DataObject
      */
     
     
