@@ -1355,11 +1355,12 @@ class PDO_DataObject
     }
     
      /**
-     * Adds a condition to the WHERE statement, defaults to AND
+     * Adds a condition to the WHERE statement, defaults to AND,
+     * Chained verions of whereAdd()
      *
-     * $object->whereAdd(); //reset or cleaer ewhwer
-     * $object->whereAdd("ID > 20");
-     * $object->whereAdd("age > 20","OR");
+     * $object->whereAdd()
+     *     ->whereAdd("ID > 20");
+     *    ->whereAdd("age > 20","OR");
      *
      * @param    string  $cond condition or false to reset.
      * @param    string  $logic optional logic "OR" (defaults to "AND")
@@ -1367,9 +1368,10 @@ class PDO_DataObject
      * @return   string - previous condition or Error when invalid args found
      */
     
-    function where()
+    function where($cond,$logic)
     {
-        
+        $this->whereAdd($cond, $logic);
+        return $this;
     }
 
     /**
