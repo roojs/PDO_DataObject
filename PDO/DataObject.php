@@ -1500,9 +1500,10 @@ class PDO_DataObject
         
         if (!$this->_query['group_by']) {
             $this->_query['group_by'] = " GROUP BY {$group} ";
-            return;
+            return $this;
         }
         $this->_query['group_by'] .= " , {$group}";
+        return $this;
     }
 
     /**
