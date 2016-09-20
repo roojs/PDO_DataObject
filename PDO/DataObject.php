@@ -975,7 +975,7 @@ class PDO_DataObject
         }
         
         if ($n && $this->N > 0 ) {
-            if (!empty($_DB_DATAOBJECT['CONFIG']['debug'])) {
+            if (self::$debug) {
                 $this->debug("ABOUT TO AUTOFETCH", "find", 1);
             }
             $fs = $this->fetch();
