@@ -3273,7 +3273,7 @@ class PDO_DataObject
             // not absolute path 'starting with '/'
             
             foreach(explode(PATH_SEPARATOR,  ini_get('include_path')) as $p) {
-                $ff = empty($p) ? $f : "$p/$f";
+                $ff = "$p/$f";
 
                 if (file_exists($ff)) {
                     $file = $ff;
@@ -3287,13 +3287,13 @@ class PDO_DataObject
         }
         if (!$found) {
             $search = implode(PATH_SEPARATOR, $file); // used for errors..
-            $dor = new DB_DataObject();
-            $dor->raiseError(
+            $dor = new PDO_DataObject();
+            return $dor->raiseError(
                 "autoload:Could not find class " . implode(',', $cls) .
                 " using class_location value :" . $search .
                 " using include_path value :" . ini_get('include_path'), 
-                DB_DATAOBJECT_ERROR_INVALIDCONFIG);
-            return false;
+                self::ERROR_INVALIDARGS);
+            
         }
         
         
