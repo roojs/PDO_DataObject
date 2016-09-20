@@ -3238,7 +3238,7 @@ class PDO_DataObject
         // class_location = mydir/:mydir2/: => tries all of thes locations.
         $cl = self::$config['class_location'];
         
-         $file = array();
+        $file = array();
         switch (true) {
             case (strpos($cl ,'%s') !== false):
                 $file[] = sprintf($cl , preg_replace('/[^A-Z0-9]/i','_',ucfirst($table)));
@@ -3302,7 +3302,7 @@ class PDO_DataObject
        
         $ce = false;
         foreach($cls as $c) {
-            $ce = substr(phpversion(),0,1) > 4 ? class_exists($c,false) : class_exists($c);
+            $ce =  class_exists($c,false);
             if ($ce) {
                 $class = $c;
                 break;
