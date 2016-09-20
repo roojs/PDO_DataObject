@@ -1365,7 +1365,7 @@ class PDO_DataObject
      * @param    string  $cond condition or false to reset.
      * @param    string  $logic optional logic "OR" (defaults to "AND")
      * @access   public
-     * @return   string - previous condition or Error when invalid args found
+     * @return   PDO_DataObject - self
      */
     
     function where($cond = false, $logic = 'AND')
@@ -1427,7 +1427,7 @@ class PDO_DataObject
     * @param    string  $type  string|int|integer|float|bool  cast to type. 
     * @param    string  $logic optional logic to call whereAdd with eg. "OR" (defaults to "AND")
     * @access   public
-    * @return   string|PEAR::Error - previous condition or Error when invalid args found
+    * @return   PDO_DataObject - self
     */
     function whereIn($key, $list, $type, $logic = 'AND') 
     {
