@@ -1467,6 +1467,7 @@ class PDO_DataObject
             return $this;
         }
         $this->_query['order_by'] .= " , {$order}";
+        return $this;
     }
 
     /**
