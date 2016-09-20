@@ -3268,8 +3268,10 @@ class PDO_DataObject
                     $found = true;
                     break;
                 }
-                continue;
+                continue; //?? should we do this?
             }
+            // not absolute path 'starting with '/'
+            
             foreach(explode(PATH_SEPARATOR, '' . PATH_SEPARATOR . ini_get('include_path')) as $p) {
                 $ff = empty($p) ? $f : "$p/$f";
 
