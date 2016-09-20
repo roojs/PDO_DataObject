@@ -184,17 +184,7 @@ class PDO_DataObject
         
         // -------- Error handling --------
             
-            'exceptions' => true,
-                // new behaviour is to throw exceptions - everywhere!!!
-                // to turn on 'old' behaviour - use 'exceptions' => false
-                
-            
-            'dont_die' => false,
-                // normally errors are triggered
-                // if non-exception behaviour is on then we trigger PEAR error's with
-                // if a fatal erorr occurs - we normally die.. but this can be prevented by
-                // this flag -- I'm not sure how usefull it is, as if you use a global pear error handler
-                // you can catch the error anyway
+          
         
          
 
