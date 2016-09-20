@@ -1762,17 +1762,18 @@ class PDO_DataObject
         
          
         
-        $quoteIdentifiers  = self::$config['quote_identifiers']);
+        $quoteIdentifiers  = self::$config['quote_identifiers'];
         
         $DB = $this->PDO();;
          
         $items = $this->table();
             
         if (!$items) {
-            $this->raiseError("insert:No table definition for {$this->tableName()}",
+            return $this->raiseError("insert:No table definition for {$this->tableName()}",
                 self::ERROR_INVALIDCONFIG);
             return false;
         }
+        
         $options = $_DB_DATAOBJECT['CONFIG'];
 
 
@@ -1813,7 +1814,7 @@ class PDO_DataObject
         }
         
         // if we haven't set disable_null_strings to "full"
-        $ignore_null = $options['disable_null_strings'] === false; // default...
+        $ignore_null = self::$config['disable_null_strings'] === false; // default...
                     
              
         foreach($items as $k => $v) {
@@ -1938,13 +1939,9 @@ class PDO_DataObject
                         // $db->query('BEGIN');
                         // $db->insert();
                         // $db->query('COMMIT');
-                        $db_driver = empty($options['db_driver']) ? 'DB' : $options['db_driver'];
-                        $method = ($db_driver  == 'DB') ? 'getOne' : 'queryOne';
-                        $mssql_key = $DB->$method("SELECT @@IDENTITY");
-                        if (PEAR::isError($mssql_key)) {
-                            $this->raiseError($mssql_key);
-                            return false;
-                        }
+                        $res = $PDO->query("SELECT @@IDENTITY");
+                        $res->fetchAll(PDO::FETCH_COLUMN, 0)[0]; // could throw error...
+                        
                         $this->$key = $mssql_key;
                         break; 
                         
