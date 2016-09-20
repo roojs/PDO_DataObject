@@ -3150,24 +3150,13 @@ class PDO_DataObject
                 $do->raiseError(
                     "unable to find databases[{$database}] in Configuration, It is required for factory with database"
                     , self::ERROR_INVALIDARGS, self::ERROR_DIE);   
-       }
-        
-       
-        /*
-        if ($table === '') {
-            if (is_a($this,'DB_DataObject') && strlen($this->tableName())) {
-                $table = $this->tableName();
-            } else {
-                return DB_DataObject::raiseError(
-                    "factory did not recieve a table name",
-                    DB_DATAOBJECT_ERROR_INVALIDARGS);
-            }
         }
         
-        */
+       
+        
         // does this need multi db support??
-        $cp = isset($_DB_DATAOBJECT['CONFIG']['class_prefix']) ?
-            explode(PATH_SEPARATOR, $_DB_DATAOBJECT['CONFIG']['class_prefix']) : '';
+        $cp = isset(self::$config'class_prefix']) ?
+            explode(PATH_SEPARATOR, self::$config'class_prefix']) : '';
         
         //print_r($cp);
         
