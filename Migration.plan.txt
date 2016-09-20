@@ -143,8 +143,17 @@ Tests:
 Target:END OF WEEK 6 (est. 4 days) - COMPLETED
 -------------------------
 e) PDO_DataObject class
+
   * factory  DONE / NEED TESTING
-  * _autoloadClass  DONE / NEED TESTING
+  -> can call generator...
+
+  * _autoloadClass   DONE / NEED TESTING
+
+  * get()  DONE / NEED TESTING
+  * pid()  DONE / NEED TESTING
+  * _build_select ->   toSelectSQL()   DONE / NEED TESTING
+  * find() DONE / NEED TESTING
+
   * condition building
     - whereAdd  + where() -- chained version?
   * named arguments  / prepare???
@@ -202,6 +211,12 @@ Develop a test plan
 
 -------------------------
 Run throught of DataObject.php
+
+
+
+
+
+
 _build_select
 -> quoteIdentifiers
 
@@ -258,11 +273,6 @@ _query
 _build_condition
 -> quoteIdentifier
 
-
-factory ?? move code to 'PDO_DataObject_Factory' ? 
--> can call generator...
-
-_autoloadClass ?? move to 'PDO_DataObject_Factory' ? 
 
 joinAdd / autoJoin -- move code to PDO_DataObject_Join()
 
