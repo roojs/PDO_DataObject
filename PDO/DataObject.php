@@ -3125,6 +3125,7 @@ class PDO_DataObject
      * 
      * 
      * @param  string  $table  tablename (use blank to create a new instance of the same class.)
+     *    or database_nickname/tablename  
      * @access private
      * @throws PDO_DataObject_Exception
      * @return PDO_DataObject
