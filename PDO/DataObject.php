@@ -1449,14 +1449,13 @@ class PDO_DataObject
     function orderBy($order = false)
     {
         if ($this->_query === false) {
-            $this->raiseError(
+            return $this->raiseError(
                 "You cannot do two queries on the same object (copy it before finding)", 
                 self::ERROR_INVALIDARGS);
-            return false;
         }
         if ($order === false) {
             $this->_query['order_by'] = '';
-            return;
+            return $this;
         }
         // check input...= 0 or '    ' == error!
         if (!trim($order)) {
