@@ -848,10 +848,7 @@ class PDO_DataObject
     function toSelectSQL()
     {
         $quoteIdentifiers = self::$config['quote_identifiers'];
-        if ($quoteIdentifiers) {
-            $DB = $this->PDO();
-            
-        }
+        
         $tn = ($quoteIdentifiers ? $this->quoteIdentifier($this->tableName()) : $this->tableName()) ;
         
         // derive table.. not sure how well this is really supported...??
@@ -1730,11 +1727,10 @@ class PDO_DataObject
             $table = $tableName;
         }
         $s = '%s';
-        if (!empty($_DB_DATAOBJECT['CONFIG']['quote_identifiers'])) {
-            $this->_connect();
-            $DB = $_DB_DATAOBJECT['CONNECTIONS'][$this->_database_dsn_md5];
-            $s      = $DB->quoteIdentifier($s);
-            $format = $DB->quoteIdentifier($format); 
+        if (self::$config['quote_identifiers']) {
+            
+            $s      = $this->quoteIdentifier($s);
+            $format = $this->quoteIdentifier($format); 
         }
         foreach ($from as $k) {
             $this->selectAdd(sprintf("{$s}.{$s} as {$format}",$table,$k,$k));
