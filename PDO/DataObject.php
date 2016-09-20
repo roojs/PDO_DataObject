@@ -4789,6 +4789,9 @@ class PDO_DataObject
      *
      * Uses DB_DataObject::DebugLevel(x) to turn it on
      *
+     *eg. logging into apache error.log 
+     *
+     *
      * @param    string $message - message to output
      * @param    string $logtype - bold at start
      * @param    string $level   - output level
@@ -4837,16 +4840,9 @@ class PDO_DataObject
      * @return  none
      */
     static function debugLevel($v = null)
-    {
-        // can be slow....
-        PDO_DataObject::config();
-        
+    {   
         if ($v !== null) {
-            
-            $r = self::$debug;
-            self::$debug = $v;
-            self::$config['debug'] = $v;// for reference only
-            return $r;
+            return PDO_DataObject::config('debug', $v);
         }
         return self::$debug;
     }
