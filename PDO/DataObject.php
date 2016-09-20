@@ -4880,13 +4880,11 @@ class PDO_DataObject
         PDO_DataObject::debug($message,'ERROR',1);
         
         // default behaviour now...
-        if (self::$config['exceptions']) {
-            //?? is this it???
-            
-            throw  new Exception($message, $type, $previous_exception);
-            
-        }
         
+        class_exists('PDO_DataObject_Exception') ? '' : require_once 'PDO/DataObject/Exception.php';
+         
+        throw  new PDO_DataObject_Exception($message, $type, $previous_exception);
+            
          
         if ($behaviour == self::ERROR_DIE && self::$config['dont_die']) {
             $behaviour = null;
