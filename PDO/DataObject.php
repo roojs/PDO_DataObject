@@ -3195,12 +3195,12 @@ class PDO_DataObject
         }
         
         if (!$rclass || !class_exists($rclass)) {
-            $dor = new DB_DataObject();
+            $dor = new PDO_DataObject();
             return $dor->raiseError(
                 "factory could not find class " . 
                 (is_array($class) ? implode(PATH_SEPARATOR, $class)  : $class  ). 
                 "from $table",
-                DB_DATAOBJECT_ERROR_INVALIDCONFIG);
+                self::ERROR_INVALIDARGS);
         }
  
         $ret = new $rclass();
