@@ -3223,13 +3223,8 @@ class PDO_DataObject
      */
     static function _autoloadClass($class, $table=false)
     {
-        global $_DB_DATAOBJECT;
-        
-        if (empty($_DB_DATAOBJECT['CONFIG'])) {
-            PDO_DataObject::config();
-        }
-        $class_prefix = empty($_DB_DATAOBJECT['CONFIG']['class_prefix']) ? 
-                '' : $_DB_DATAOBJECT['CONFIG']['class_prefix'];
+         
+        $class_prefix = self::$config['class_prefix'];
                 
         $table   = $table ? $table : substr($class,strlen($class_prefix));
 
