@@ -929,12 +929,13 @@ class PDO_DataObject
         if (self::$debug) {
             $this->debug(var_export($n), "find",1);
         }
+        
         if (!strlen($this->tableName())) {
             // xdebug can backtrace this!
             return $this->raiseError(
-                "You cannot do two queries on the same object (copy it before finding)", 
+                "NO \$__table SPECIFIED in class definition", 
                 self::ERROR_INVALIDARGS);
-            trigger_error("NO \$__table SPECIFIED in class definition",E_USER_ERROR);
+             
         }
         $this->N = 0;
         $query_before = $this->_query;
