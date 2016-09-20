@@ -1282,7 +1282,7 @@ class PDO_DataObject
      * @access  public
      * @return  array  format dependant on arguments, may be empty
      */
-    function fetchAllFast($key_col=false, $value_col=false)
+    private function fetchAllFast($key_col=false, $value_col=false)
     {
         if (!$this->_result) {
             if ($k !== false && 
