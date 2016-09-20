@@ -911,7 +911,7 @@ class PDO_DataObject
      * will return $object->N
      *
      * if an error occurs $object->N will be set to false and return value will also be false;
-     * if numRows is not supported it will 
+     * if numRows is not supported it will return true.
      * 
      * @throws PDO_DataObject_Exception - if run twice on the same object, or tablename missing in class.
      * @param   boolean $n Fetch first result
@@ -974,7 +974,7 @@ class PDO_DataObject
         $ret = $this->N;
         if (!$ret && !empty( $this->_result)) {     
             // clear up memory if nothing found!?
-            unset($this->_result); // not sure if we should do this...
+            $this->_result = false;
             return $ret;
         }
         
