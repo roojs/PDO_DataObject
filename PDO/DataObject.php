@@ -851,7 +851,7 @@ class PDO_DataObject
      * @access private
      */
     
-    private function selectToSQL()
+    function selectToSQL()
     {
         $quoteIdentifiers = self::$config['quote_identifiers'];
         if ($quoteIdentifiers) {
