@@ -866,7 +866,7 @@ class PDO_DataObject
             // this is a derived select..
             // not much support in the api yet..
             
-             $sql = 'SELECT ' .
+            return 'SELECT ' .
                $this->_query['derive_select']
                .' FROM ( SELECT'.
                     $this->_query['data_select'] . " \n" .
@@ -877,8 +877,6 @@ class PDO_DataObject
                     $this->_query['having'] . " \n" .
                 ') ' . $this->_query['derive_table'];
                      
-            return $sql;
-            
             
         }
         
@@ -891,8 +889,7 @@ class PDO_DataObject
             $this->_query['condition'] . " \n" .
             $this->_query['group_by'] . " \n" .
             $this->_query['having'] . " \n";
-                 
-        return $sql;
+        
     }
 
      
