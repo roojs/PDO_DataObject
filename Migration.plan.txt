@@ -386,6 +386,8 @@ reset() - not for general usage.. - clears all 'cached' db connections?? - does 
 -----------
 Backward Compatibility Breaks. / removed features..
 
+
+configuration - no longer uses PEAR::getStaticProperty  use PDO_DataObject::config(array(....));
 getDatabaseConnection() removed -- use PDO() - however API is different... (IMPORTANT)
 getDatabaseResult() - renamed - result() - returns a different object....
 database() - renamed databaseNickname -
