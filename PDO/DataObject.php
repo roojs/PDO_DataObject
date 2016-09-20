@@ -853,10 +853,9 @@ class PDO_DataObject
     
     private function _build_select()
     {
-        global $_DB_DATAOBJECT;
-        $quoteIdentifiers = !empty($_DB_DATAOBJECT['CONFIG']['quote_identifiers']);
+        $quoteIdentifiers = self::$config['quote_identifiers'];
         if ($quoteIdentifiers) {
-            $this->_connect();
+            $this->PDO();
             $DB = $_DB_DATAOBJECT['CONNECTIONS'][$this->_database_dsn_md5];
         }
         $tn = ($quoteIdentifiers ? $DB->quoteIdentifier($this->tableName()) : $this->tableName()) ;
