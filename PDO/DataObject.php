@@ -1429,7 +1429,7 @@ class PDO_DataObject
     * @access   public
     * @return   string|PEAR::Error - previous condition or Error when invalid args found
     */
-    function whereAddIn($key, $list, $type, $logic = 'AND') 
+    function whereIn($key, $list, $type, $logic = 'AND') 
     {
         $not = '';
         if ($key[0] == '!') {
