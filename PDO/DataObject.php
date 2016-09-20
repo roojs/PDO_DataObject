@@ -979,7 +979,7 @@ class PDO_DataObject
         }
         
         // find(true)
-        if ($n && $this->N > 0 ) {
+        if ($n && $this->N > 0 ) { // technically in sqlite N=true therefore N>0..
             if (self::$debug) {
                 $this->debug("ABOUT TO AUTOFETCH", "find", 1);
             }
