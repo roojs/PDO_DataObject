@@ -3180,27 +3180,17 @@ class PDO_DataObject
         
         $rclass = $ce ? $class  : self::_autoloadClass($class, $table);
         // proxy = full|light
-        if (!$rclass && isset($_DB_DATAOBJECT['CONFIG']['proxy'])) { 
+        if (!$rclass && self::$config['proxy']) { 
         
-            DB_DataObject::debug("FAILED TO Autoload  $database.$table - using proxy.","FACTORY",1);
+            self::debug("FAILED TO Autoload  $database.$table - using proxy.","FACTORY",1);
         
         
-            $proxyMethod = 'getProxy'.$_DB_DATAOBJECT['CONFIG']['proxy'];
+            $proxyMethod = 'getProxy' . self::$config['proxy'];
             // if you have loaded (some other way) - dont try and load it again..
-            class_exists('DB_DataObject_Generator') ? '' : 
-                    require_once 'DB/DataObject/Generator.php';
+            (new PDO_DataObject($database.'/'.$table))
+                ->generator()
+                ->{$proxyMethod}( $d->_database, $table);
             
-            $d = new DB_DataObject;
-           
-            $d->__table = $table;
-            
-            $ret = $d->_connect();
-            if (is_object($ret) && is_a($ret, 'PEAR_Error')) {
-                return $ret;
-            }
-            
-            $x = new DB_DataObject_Generator;
-            return $x->$proxyMethod( $d->_database, $table);
         }
         
         if (!$rclass || !class_exists($rclass)) {
