@@ -1303,7 +1303,7 @@ class PDO_DataObject
      *
      * It's an alisa for fetchAll(false,false, true)
      * @access  public
-     * @return  array  array of associative arrays.
+     * @return  array  array of associative arrays (note does note create child dataobjects.
      */
     private function fetchAllArray()
     {
