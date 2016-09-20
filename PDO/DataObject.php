@@ -1431,28 +1431,8 @@ class PDO_DataObject
     */
     function whereIn($key, $list, $type, $logic = 'AND') 
     {
-        $not = '';
-        if ($key[0] == '!') {
-            $not = 'NOT ';
-            $key = substr($key, 1);
-        }
-        // fix type for short entry. 
-        $type = $type == 'int' ? 'integer' : $type; 
-
-        if ($type == 'string') {
-            $this->_connect();
-        }
-
-        $ar = array();
-        foreach($list as $k) {
-            settype($k, $type);
-            $ar[] = $type == 'string' ? $this->_quote($k) : $k;
-        }
-      
-        if (!$ar) {
-            return $not ? $this->_query['condition'] : $this->whereAdd("1=0");
-        }
-        return $this->whereAdd("$key $not IN (". implode(',', $ar). ')', $logic );    
+        $this->whereAddIn($key,$list,$type, $logic);
+        return $this;
     }
     
     /**
