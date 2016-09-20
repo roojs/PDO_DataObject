@@ -1357,6 +1357,7 @@ class PDO_DataObject
      /**
      * Adds a condition to the WHERE statement, defaults to AND,
      * Chained verions of whereAdd()
+     * NOTE : ALWAYS ENSURE ARGUMENTS ARE ESCAPED
      *
      * $object->where()
      *     ->where("ID > 20");
