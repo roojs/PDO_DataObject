@@ -1298,7 +1298,7 @@ class PDO_DataObject
      /**
      * fetches all results as an array without creating Child DataObjects
      *
-     * It's an alisa for fetchAll(false,false, true)
+     * It's an alias for fetchAll(false,false, true)
      * @access  public
      * @return  array  array of associative arrays (note does note create child dataobjects.
      */
