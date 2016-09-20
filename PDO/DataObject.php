@@ -1018,7 +1018,7 @@ class PDO_DataObject
      *    $this->date_formated = date('dmY',$this->date);
      *    return $ret;
      * }
-     *
+     * @throws PDO_DataObject_Exception called without query being run, 
      * @access  public
      * @return  boolean on success
      */
