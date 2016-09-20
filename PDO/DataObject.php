@@ -823,7 +823,7 @@ class PDO_DataObject
      *
      * $id = $do->pid();
      * 
-     * @throws PDO_DataObject_Exception (if the table does not have a pid)
+     * @throws PDO_DataObject_Exception (if the table does not have a pid or is called before insert.)
      * @return the value of the column that is the primary id
      */
     function pid()
@@ -838,7 +838,7 @@ class PDO_DataObject
         $k = $keys[0];
         if (empty($this->$k)) { // we do not 
             return $this->raiseError("pid() called on Object where primary key value not available",
-                            DB_DATAOBJECT_ERROR_NODATA);
+                            self::ERROR_NODATA);
         }
         return $this->$k;
     }
@@ -851,7 +851,7 @@ class PDO_DataObject
      * @access private
      */
     
-    function _build_select()
+    private function _build_select()
     {
         global $_DB_DATAOBJECT;
         $quoteIdentifiers = !empty($_DB_DATAOBJECT['CONFIG']['quote_identifiers']);
