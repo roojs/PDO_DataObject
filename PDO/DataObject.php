@@ -969,9 +969,9 @@ class PDO_DataObject
         // find(true)
         
         $ret = $this->N;
-        if (!$ret && !empty($_DB_DATAOBJECT['RESULTS'][$this->_DB_resultid])) {     
+        if (!$ret && !empty( $this->_result)) {     
             // clear up memory if nothing found!?
-            unset($_DB_DATAOBJECT['RESULTS'][$this->_DB_resultid]);
+            // unset($this->_result); // not sure if we should do this...
         }
         
         if ($n && $this->N > 0 ) {
