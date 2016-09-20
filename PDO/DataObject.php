@@ -1358,9 +1358,9 @@ class PDO_DataObject
      * Adds a condition to the WHERE statement, defaults to AND,
      * Chained verions of whereAdd()
      *
-     * $object->whereAdd()
-     *     ->whereAdd("ID > 20");
-     *    ->whereAdd("age > 20","OR");
+     * $object->where()
+     *     ->where("ID > 20");
+     *     ->where("age > 20","OR");
      *
      * @param    string  $cond condition or false to reset.
      * @param    string  $logic optional logic "OR" (defaults to "AND")
@@ -1414,7 +1414,46 @@ class PDO_DataObject
         return $this->whereAdd("$key $not IN (". implode(',', $ar). ')', $logic );    
     }
 
-    
+    /**
+    * Adds a 'IN' condition to the WHERE statement
+    * Chained verions of whereAddIn()
+    * 
+    * $object->whereAddIn('id', $array, 'int'); //minimal usage
+    * $object->whereAddIn('price', $array, 'float', 'OR');  // cast to float, and call whereAdd with 'OR'
+    * $object->whereAddIn('name', $array, 'string');  // quote strings
+    *
+    * @param    string  $key  key column to match
+    * @param    array  $list  list of values to match
+    * @param    string  $type  string|int|integer|float|bool  cast to type. 
+    * @param    string  $logic optional logic to call whereAdd with eg. "OR" (defaults to "AND")
+    * @access   public
+    * @return   string|PEAR::Error - previous condition or Error when invalid args found
+    */
+    function whereAddIn($key, $list, $type, $logic = 'AND') 
+    {
+        $not = '';
+        if ($key[0] == '!') {
+            $not = 'NOT ';
+            $key = substr($key, 1);
+        }
+        // fix type for short entry. 
+        $type = $type == 'int' ? 'integer' : $type; 
+
+        if ($type == 'string') {
+            $this->_connect();
+        }
+
+        $ar = array();
+        foreach($list as $k) {
+            settype($k, $type);
+            $ar[] = $type == 'string' ? $this->_quote($k) : $k;
+        }
+      
+        if (!$ar) {
+            return $not ? $this->_query['condition'] : $this->whereAdd("1=0");
+        }
+        return $this->whereAdd("$key $not IN (". implode(',', $ar). ')', $logic );    
+    }
     
     /**
      * Adds a order by condition
