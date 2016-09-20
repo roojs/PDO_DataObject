@@ -1700,7 +1700,7 @@ class PDO_DataObject
      * @param  string           format in sprintf format (use %s for the colname)
      * @param  string           table name eg. if you have joinAdd'd or send $from as an array.
      * @access public
-     * @return void
+     * @return PDO_DataObject self
      */
     function selectAs($from = null,$format = '%s',$tableName=false)
     {
@@ -1740,6 +1740,7 @@ class PDO_DataObject
             $this->selectAdd(sprintf("{$s}.{$s} as {$format}",$table,$k,$k));
         }
         $this->_query['data_select'] .= "\n";
+        return $this;
     }
     /**
      * Insert the current objects variables into the database
