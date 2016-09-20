@@ -983,7 +983,7 @@ class PDO_DataObject
             // - hence find() also returns false..
             $ret = ($ret === true) ? $fs : $ret;
         }
-        if (!empty($_DB_DATAOBJECT['CONFIG']['debug'])) {
+        if (self::$debug) {
             $this->debug("DONE", "find", 1);
         }
         $this->_query = $query_before;
