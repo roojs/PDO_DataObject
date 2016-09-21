@@ -1941,7 +1941,6 @@ class PDO_DataObject
                         // $db->query('COMMIT');
                         $res = $PDO->query("SELECT @@IDENTITY");
                         $res->fetchAll(PDO::FETCH_COLUMN, 0)[0]; // could throw error...
-                        
                         $this->$key = $mssql_key;
                         break; 
                         
