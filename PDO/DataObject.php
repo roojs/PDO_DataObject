@@ -2184,7 +2184,7 @@ class PDO_DataObject
         $quoteIdentifiers  = self::$config['quote_identifiers'];
         
         // why would we use order by?????
-        // I guess if we have dependant elements?!?!?
+        // I guess if we have dependant elements?!?!? eg. parent's pointing to children...
         $extra_cond = ' ' . (isset($this->_query['order_by']) ? $this->_query['order_by'] : ''); 
         
         $where = !empty($this->_query) && !empty($this->_query['condition']) ?
