@@ -2969,13 +2969,16 @@ class PDO_DataObject
 
             if ($v & DB_DATAOBJECT_STR) {
                 $ret .= strlen($ret) ? ' AND ' : '';
-                $this->whereAdd(" $kSql  = " . $PDO->quote((string) (
-                        ($v & DB_DATAOBJECT_BOOL) ? 
-                            // this is thanks to the braindead idea of postgres to 
-                            // use t/f for boolean.
-                            (($this->$k === 'f') ? 0 : (int)(bool) $this->$k) :  
-                            $this->$k
-                    )) );
+                $ret .= "($kSql  = " .
+                        $PDO->quote((string) (
+                            ($v & DB_DATAOBJECT_BOOL) ? 
+                                // this is thanks to the braindead idea of postgres to 
+                                // use t/f for boolean.
+                                (($this->$k === 'f') ? 0 : (int)(bool) $this->$k) :  
+                                $this->$k
+                        )) .
+                        ')';
+                
                 continue;
             }
             if (is_numeric($this->$k)) {
