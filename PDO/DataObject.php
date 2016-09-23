@@ -3252,44 +3252,50 @@ class PDO_DataObject
         if ($args = func_get_args()) {
             // an associative array was specified, that updates the current
             // schema... - be careful doing this
-            if (empty( $lcfg[$this->_database])) {
-                $lcfg[$this->_database] = array();
+            if (empty( self::$links[$dn])) {
+                self::$links[$dn] = array();
             }
-            $lcfg[$this->_database][$this->tableName()] = $args[0];
+            self::$links[$dn][$tn] = $args[0];
             
         }
         // loaded and available.
-        if (isset(self::$links[$this->_database][$this->tableName()])) {
-            return self::$links[$this->_database][$this->tableName()];
+        if (isset(self::$links[$dn][$tn])) {
+            return self::$links[$dn][$tn];
         }
 
         // loaded 
-        if (isset($lcfg[$this->_database])) {
+        if (isset(self::$links[$dn])) {
             // either no file, or empty..
-            return $lcfg[$this->_database] === false ? null : array();
+            return self::$links[$dn] === false ? null : array();
         }
         
-        // links are same place as schema by default.
-        $schemas = isset($cfg['schema_location']) ?
-            array("{$cfg['schema_location']}/{$this->_database}.ini") :
-            array() ;
-
-        // if ini_* is set look there instead.
-        // and support multiple locations.                 
-        if (isset($cfg["ini_{$this->_database}"])) {
-            $schemas = is_array($cfg["ini_{$this->_database}"]) ?
-                $cfg["ini_{$this->_database}"] :
-                explode(PATH_SEPARATOR,$cfg["ini_{$this->_database}"]);
+        
+          if (is_array(self::$config['schema_location'])) {
+            if (!isset(PDO_DataObject::$config['schema_location'][$database_nickname])) {
+                $this->raiseError("Could not find configuration for database $database_nickname in schema_location",
+                        self::ERROR_INVALIDCONFIG, self::ERROR_DIE
+                );
+            }
+            
+            $schemas = is_array(PDO_DataObject::$config['schema_location'][$database_nickname]) ?
+                PDO_DataObject::$config['schema_location'][$database_nickname]:
+                explode(PATH_SEPARATOR, PDO_DataObject::$config['schema_location'][$database_nickname]);
+        } else if (is_string(self::$config['schema_location']) && !empty(self::$config['schema_location'])) {
+            $schemas  = explode(PATH_SEPARATOR,PDO_DataObject::$config['schema_location']);
+            $suffix = '/'. $database_nickname .'.ini';
+        } else {
+            $this->raiseError("Invalid format or empty value for config[schema_location]",
+                            self::ERROR_INVALIDCONFIG, self::ERROR_DIE
+            );
         }
-                        
+        
+                  
         // default to not available.
-        $lcfg[$this->_database] = false;
+        self::$links[$dn] = false;
 
         foreach ($schemas as $ini) {
                 
-            $links = isset($cfg["links_{$this->_database}"]) ?
-                    $cfg["links_{$this->_database}"] :
-                    str_replace('.ini','.links.ini',$ini);
+            $links = str_replace('.ini','.links.ini',$ini);
             
             // file really exists..
             if (!file_exists($links) || !is_file($links)) {
@@ -3300,11 +3306,11 @@ class PDO_DataObject
             }
 
             // set to empty array - as we have at least one file now..
-            $lcfg[$this->_database] = empty($lcfg[$this->_database]) ? array() : $lcfg[$this->_database];
+            self::$links[$dn] = empty(self::$links[$dn]) ? array() : self::$links[$dn];
 
             // merge schema file into lcfg..
-            $lcfg[$this->_database] = array_merge(
-                $lcfg[$this->_database],
+            self::$links[$dn] = array_merge(
+                self::$links[$dn],
                 parse_ini_file($links, true)
             );
 
@@ -3316,33 +3322,33 @@ class PDO_DataObject
         }
         
         if (!empty($_DB_DATAOBJECT['CONFIG']['portability']) && $_DB_DATAOBJECT['CONFIG']['portability'] & 1) {
-            foreach($lcfg[$this->_database] as $k=>$v) {
+            foreach(self::$links[$dn] as $k=>$v) {
                 
                 $nk = strtolower($k);
                 // results in duplicate cols.. but not a big issue..
-                $lcfg[$this->_database][$nk] = isset($lcfg[$this->_database][$nk])
-                    ? $lcfg[$this->_database][$nk]  : array();
+                self::$links[$dn][$nk] = isset(self::$links[$dn][$nk])
+                    ? self::$links[$dn][$nk]  : array();
                 
                 foreach($v as $kk =>$vv) {
                     //var_Dump($vv);exit;
                     $vv =explode(':', $vv);
                     $vv[0] = strtolower($vv[0]);
-                    $lcfg[$this->_database][$nk][$kk] = implode(':', $vv);
+                    self::$links[$dn][$nk][$kk] = implode(':', $vv);
                 }
                 
                 
             }
         }
-        //echo '<PRE>';print_r($lcfg);exit;
+        //echo '<PRE>';print_r(self::$links);exit;
         
         // if there is no link data at all on the file!
         // we return null.
-        if ($lcfg[$this->_database] === false) {
+        if (self::$links[$dn] === false) {
             return null;
         }
         
-        if (isset($lcfg[$this->_database][$this->tableName()])) {
-            return $lcfg[$this->_database][$this->tableName()];
+        if (isset(self::$links[$dn][$tn])) {
+            return self::$links[$dn][$tn];
         }
         
         return array();
