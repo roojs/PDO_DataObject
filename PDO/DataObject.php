@@ -2859,14 +2859,10 @@ class PDO_DataObject
          
         $realkeys = self::$ini[$this->_database_nickname][$this->tableName()."__keys"];
         
-        // if you are using an old ini file - go back to old behaviour...
-        if (is_numeric($realkeys[$usekey])) {
-            $realkeys[$usekey] = 'N';
-        }
-        
+         
         // multiple unique primary keys without a native sequence...
         if (($realkeys[$usekey] == 'K') && (count($keys) > 1)) {
-            return $_DB_DATAOBJECT['SEQUENCE'][$this->_database][$this->tableName()] = array(false,false,$seqname);
+            return self::$sequence[$this->_database_nickname][$this->tableName()]  = array(false,false,$seqname);
         }
         // use native sequence keys...
         // technically postgres native here...
