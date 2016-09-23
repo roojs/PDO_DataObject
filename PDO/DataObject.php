@@ -2910,14 +2910,14 @@ class PDO_DataObject
      */
     final function whereToString($keys, $filter = array(),$negative_filter=array())
     {
-        global $_DB_DATAOBJECT;
-        $this->_connect();
-        $DB = $_DB_DATAOBJECT['CONNECTIONS'][$this->_database_dsn_md5];
-       
-        $quoteIdentifiers  = !empty($_DB_DATAOBJECT['CONFIG']['quote_identifiers']);
-        $options = $_DB_DATAOBJECT['CONFIG'];
+        
+        $quoteIdentifiers  = self::$config['quote_identifiers']);
+        
         
         // if we dont have query vars.. - reset them.
+        
+        $ret = $this->_query['condition'];
+        
         if ($this->_query === false) {
             $x = new DB_DataObject;
             $this->_query= $x->_query;
