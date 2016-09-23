@@ -1972,9 +1972,9 @@ class PDO_DataObject
      * $object = DB_DataObject::factory('mytable');
      * $object->status = "dead";
      * $object->whereAdd('age > 150');
-     * $object->update(DB_DATAOBJECT_WHEREADD_ONLY);
+     * $object->update(PDO_DataObject::WHEREADD_ONLY);
      *
-     * @param object dataobject (optional) | DB_DATAOBJECT_WHEREADD_ONLY - used to only update changed items.
+     * @param object dataobject (optional) | PDO_DataObject::WHEREADD_ONLY - used to only update changed items.
      * @access public
      * @return  int rows affected or false on failure
      */
@@ -2163,7 +2163,7 @@ class PDO_DataObject
      * $object->orderBy('age DESC');
      * $object->delete(true); // dont use object vars, use the conditions, limit and order.
      *
-     * @param bool $useWhere (optional) If DB_DATAOBJECT_WHEREADD_ONLY is passed in then
+     * @param bool $useWhere (optional) If PDO_DataObject::WHEREADD_ONLY is passed in then
      *             we will build the condition only using the whereAdd's.  Default is to
      *             build the condition only using the object parameters.
      *
