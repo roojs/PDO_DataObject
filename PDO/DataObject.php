@@ -2282,10 +2282,11 @@ class PDO_DataObject
         }
         
         $PDO = $this->PDO();
-       
+        
+        $where = $this->_query['condition'];
 
         if (!$whereAddOnly && $items)  {
-            $t->_build_condition($items);
+            $where = $t->_build_condition($items);
         }
         $keys = $this->keys();
 
