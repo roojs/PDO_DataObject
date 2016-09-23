@@ -3219,7 +3219,7 @@ class PDO_DataObject
     
     /**
     * Get the links associate array  as defined by the links.ini file.
-    * 
+    * mapping the foriegn key relationships (which may not be enforced by the database)
     *
     * Experimental... - 
     * Should look a bit like
