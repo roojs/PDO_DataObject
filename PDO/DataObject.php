@@ -3343,14 +3343,7 @@ class PDO_DataObject
                 
             }
         }
-        //echo '<PRE>';print_r(self::$links);exit;
-        
-        // if there is no link data at all on the file!
-        // we return null.
-        if (self::$links[$dn] === false) {
-            return null;
-        }
-        
+    
         if (isset(self::$links[$dn][$tn])) {
             return self::$links[$dn][$tn];
         }
