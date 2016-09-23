@@ -2172,11 +2172,9 @@ class PDO_DataObject
      */
     function delete($useWhere = false)
     {
-        global $_DB_DATAOBJECT;
-        // connect will load the config!
-        $this->_connect();
-        $DB = $_DB_DATAOBJECT['CONNECTIONS'][$this->_database_dsn_md5];
-        $quoteIdentifiers  = !empty($_DB_DATAOBJECT['CONFIG']['quote_identifiers']);
+          
+        $PDO = $this->PDO();
+        $quoteIdentifiers  = self::$config['quote_identifiers'];
         
         $extra_cond = ' ' . (isset($this->_query['order_by']) ? $this->_query['order_by'] : ''); 
         
