@@ -2099,16 +2099,19 @@ class PDO_DataObject
             $this->debug("got keys as ".serialize($keys),3);
         }
         if ($dataObject !== true) {
+            // add's the primary key to the where condition.
             $this->_build_condition($items,$keys);
-        } else {
-            // prevent wiping out of data!
-            if (empty($this->_query['condition'])) {
-                return  $this->raiseError("update: global table update not available
-                        do \$do->whereAdd('1=1'); if you really want to do that.
-                    ", self::ERROR_INVALIDARGS);
-                
-            }
         }
+        // at this point we have to have set a condition.. otherwise results could be disasterous...
+        
+        // prevent wiping out of data!
+        if (empty($this->_query['condition'])) {
+            return  $this->raiseError("update: global table update not available
+                    do \$do->whereAdd('1=1'); if you really want to do that.
+                ", self::ERROR_INVALIDARGS);
+            
+        }
+        
         
         
         
