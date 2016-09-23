@@ -3269,7 +3269,7 @@ class PDO_DataObject
             return self::$links[$dn] === false ? null : array();
         }
         
-        
+        $suffix = false;
         if (is_array(self::$config['schema_location'])) {
             if (!isset(PDO_DataObject::$config['schema_location'][$database_nickname])) {
                 $this->raiseError("Could not find configuration for database $database_nickname in schema_location",
@@ -3294,6 +3294,18 @@ class PDO_DataObject
         self::$links[$dn] = false;
 
         foreach ($schemas as $ini) {
+            
+            
+            if (empty($ini)) {
+                continue;
+            }
+            $fn = $suffix ? rtrim($ini ,'/') . $suffix : $ini;
+            $tried[] = $ini;
+            if (!file_exists($fn) || !is_file($fn) || !is_readable ($fn)) {
+                continue;
+            }
+            
+            
                 
             $links =  str_replace('.ini','.links.ini',$ini);
             
