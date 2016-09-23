@@ -1934,20 +1934,7 @@ class PDO_DataObject
                     $this->$key = $PDO->lastInsertId($seq); // hopefully...
                     
                     break;
-                /*
-                case 'ifx':
-                    $this->$key = array_shift (
-                        ifx_fetch_row (
-                            ifx_query(
-                                "select DBINFO('sqlca.sqlerrd1') FROM systables where tabid=1",
-                                $_DB_DATAOBJECT['CONNECTIONS'][$this->_database_dsn_md5]->connection,
-                                IFX_SCROLL
-                            ), 
-                            "FIRST"
-                        )
-                    ); 
-                    break;
-                */
+               
             }
                     
         }
