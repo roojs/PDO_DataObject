@@ -2954,7 +2954,6 @@ class PDO_DataObject
                 
                 
                 if ((strtolower($value) === 'null') && !($v & self::NOTNULL)) {
-                    
                     $ret .= "($kSql IS NULL)";
                     continue;
                 }
@@ -2964,14 +2963,12 @@ class PDO_DataObject
             }
             
             if (!($v & self::NOTNULL) && DB_DataObject::_is_null($this,$k)) {
-                $ret .= strlen($ret) ? ' AND ' : '';
                 $ret .= "($kSql  IS NULL)";
                 continue;
             }
             
 
             if ($v & DB_DATAOBJECT_STR) {
-                $ret .= strlen($ret) ? ' AND ' : '';
                 $ret .= "($kSql  = " .
                         $PDO->quote((string) (
                             ($v & DB_DATAOBJECT_BOOL) ? 
@@ -2985,13 +2982,13 @@ class PDO_DataObject
                 continue;
             }
             if (is_numeric($this->$k)) {
-                $ret .= strlen($ret) ? ' AND ' : '';
-                $ret. = "($kSql = {$this->$k})";
+                
+                $ret .= "($kSql = {$this->$k})";
                 continue;
             }
-            $ret .= strlen($ret) ? ' AND ' : '';            
+            
             /* this is probably an error condition! */
-            $this->whereAdd(" $kSql = ".intval($this->$k));
+            $ret .= "($kSql = ".intval($this->$k) .')';
         }
     }
 
