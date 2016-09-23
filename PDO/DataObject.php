@@ -1895,14 +1895,8 @@ class PDO_DataObject
                $r = $this->_query("INSERT INTO {$table} ($leftq) VALUES ($rightq) ");
             }
             
- 
-            
-            
-            if (PEAR::isError($r)) {
-                $this->raiseError($r);
-                return false;
-            }
-            
+            // query will return rowCount() for insert...
+            // mssql may have problems here....
             if ($r < 1) {
                 return 0;
             }
