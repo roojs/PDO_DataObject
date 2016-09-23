@@ -2948,12 +2948,10 @@ class PDO_DataObject
             if (is_object($this->$k) && is_a($this->$k,'PDO_DataObject_Cast')) {
                 $dbtype = $DB->dsn["phptype"];
                 $value = $this->$k->toString($v,$DB);
-                if (PEAR::isError($value)) {
-                    $this->raiseError($value->getMessage() ,DB_DATAOBJECT_ERROR_INVALIDARG);
-                    return false;
-                }
+                
                 if ((strtolower($value) === 'null') && !($v & DB_DATAOBJECT_NOTNULL)) {
-                    $this->whereAdd(" $kSql IS NULL");
+                    $ret .= strlen($ret) ? ' AND ' : '';
+                    $ret .= " $kSql IS NULL";
                     continue;
                 }
                 $this->whereAdd(" $kSql = $value");
