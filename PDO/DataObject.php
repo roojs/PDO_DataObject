@@ -950,7 +950,7 @@ class PDO_DataObject
         $sql = $this->modifyLimitQuery($sql);
         
         // this should throw an error if there is a problem..
-        $this->_query($sql);
+        $this->query($sql);
        
         if (self::$debug) {
             $this->debug("CHECK autofetched " . var_export($n, true), "find", 1);
@@ -1897,9 +1897,9 @@ class PDO_DataObject
         
         
         if (($dbtype == 'pgsql') && empty($leftq)) {
-            $r = $this->_query("INSERT INTO {$table} DEFAULT VALUES");
+            $r = $this->query("INSERT INTO {$table} DEFAULT VALUES");
         } else {
-           $r = $this->_query("INSERT INTO {$table} ($leftq) VALUES ($rightq) ");
+           $r = $this->query("INSERT INTO {$table} ($leftq) VALUES ($rightq) ");
         }
         
         // query will return rowCount() for insert...
@@ -1980,7 +1980,7 @@ class PDO_DataObject
      * @throws PDO_DataObject_Error
      * @return  int|true Number rows affected (may be 0), true (if no difference between old/new), false
      */
-    function update($dataObject = false)
+    final function update($dataObject = false)
     {
          
         // connect will load the config!
@@ -2132,7 +2132,7 @@ class PDO_DataObject
                     
         $table = ($quoteIdentifiers ? $this->quoteIdentifier($this->tableName()) : $this->tableName());
     
-        $r = $this->_query("UPDATE  {$table}  SET {$settings} {$this->_query['condition']} ");
+        $r = $this->query("UPDATE  {$table}  SET {$settings} {$this->_query['condition']} ");
         
         // restore original query conditions.
         $this->_query = $original_query;
@@ -2212,7 +2212,7 @@ class PDO_DataObject
         // add limit..
         $sql = $this->modifyLimitQuery($sql, true);
         
-        $r = $this->_query($sql);
+        $r = $this->query($sql);
         
          
         if ($r < 1) {
@@ -2316,7 +2316,123 @@ class PDO_DataObject
      */
     final function query($string)
     {
-        return $this->_query($string);
+        $pdo = $this->PDO();
+
+        $dbtype = $pdo->getAttribute(PDO::ATTR_DRIVER_NAME);
+
+        //$options = $_DB_DATAOBJECT['CONFIG'];
+        
+        
+        if (self::$debug) {
+            $t= explode(' ',microtime());
+            $time = $t[0]+$t[1];
+         
+            $this->debug( md5($string) . ' : ' . $string,"QUERY");
+            $this->debug( "Driver: " . $pdo->getAttribute(PDO::ATTR_DRIVER_NAME), 'QUERY', 3);
+        }
+        
+        if (
+            strtoupper($string) == 'BEGIN' ||
+            strtoupper($string) == 'START TRANSACTION'
+        ) {
+            if (self::$debug) {
+                $this->debug('BEGIN');
+            }
+            $pdo->beginTranaction();
+            
+            return $this;
+        }
+        
+        if (strtoupper($string) == 'COMMIT') {
+            if (self::$debug) {
+                $this->debug('COMMIT');
+            }
+            $pdo->commit();
+            $pdo->setAttribute(PDO::ATTR_AUTOCOMMIT, true); // not sure if needed...
+            return $this;
+        }
+        
+        
+        if (strtoupper($string) == 'ROLLBACK') {
+            if (self::$debug) {
+                $this->debug('ROLLBACK');
+            }
+            $pdo->rollBack();
+            $pdo->setAttribute(PDO::ATTR_AUTOCOMMIT, true); // not sure if needed...
+            
+            return true;
+        }
+        
+        
+        
+        // some sim
+      
+        
+        for ($tries = 0;$tries < 3;$tries++) {
+            
+            try {
+                // not sure if needed..
+                if ($dbtype  == 'sqlite') {
+                    $result = $pdo->prepare($string);
+                    $result->execute();
+                } else {
+                    $result = $pdo->query($string);
+                }
+                
+                
+            } catch (PDOException $e) {
+                $this->debug((string)$e, "Query Error",1 );
+                $result = $e;
+                switch($e->getCode()) {
+                    // see http://www.csee.umbc.edu/portal/help/oracle8/server.815/a58231/appd.htm
+                    // may need fine tuning...
+                    case 1002:
+                    case 8000:
+                    case 8003:
+                    case 8004:
+                    case 8006:
+                        sleep(1);
+                        self::$connections = array(); // reset the connections.
+                        $this->PDO();
+                        continue;
+                }
+        
+            }
+            break;
+        }
+        
+
+        if (is_a($result,'PDOException')) {
+            if (self::$debug) { 
+                $this->debug((string)$result, "Query Error",1 );
+            }
+            $this->N = false;
+            return $this->raiseError("Could not run Query", 0, self::ERROR_DIE, $result);
+        }
+        
+        
+        if (self::$debug) {
+            $t= explode(' ',microtime());
+            $result->time_query_end = $t[0]+$t[1];
+            $this->debug('QUERY DONE IN  '.number_format($t[0]+$t[1]-$time,3)." seconds", 'query',2);
+            $this->debug('NO# of results: '.$result->rowCount(), 'query',1);
+        }
+        
+        
+        switch (strtolower(substr(trim($string),0,6))) {
+            case 'insert':
+            case 'update':
+            case 'delete':
+                return $result->rowCount();
+        }
+        
+        // previously we used _DB_resultid as a pointer to a result array..
+        // hopefully this will result in better memory management???
+        $this->_result = $result;
+        $this->N = $dbtype  == 'sqlite' ? true : $result->rowCount();
+        
+        return $this; // for chaining...
+     
     }
 
 
@@ -2813,135 +2929,7 @@ class PDO_DataObject
    
      
 
-    /**
-     * sends query to database - this is the private one that must work 
-     *   - internal functions use this rather than $this->query()
-     *
-     * @param  string  $string
-     * @access private
-     * @return PDO_DataObject|number (self for chaining) - insert/update/delete - return a number.
-     */
-    private function _query($string)
-    {
-        $pdo = $this->PDO();
-
-        $dbtype = $pdo->getAttribute(PDO::ATTR_DRIVER_NAME);
-
-        //$options = $_DB_DATAOBJECT['CONFIG'];
-        
-        
-        if (self::$debug) {
-            $t= explode(' ',microtime());
-            $time = $t[0]+$t[1];
-         
-            $this->debug( md5($string) . ' : ' . $string,"QUERY");
-            $this->debug( "Driver: " . $pdo->getAttribute(PDO::ATTR_DRIVER_NAME), 'QUERY', 3);
-        }
-        
-        if (
-            strtoupper($string) == 'BEGIN' ||
-            strtoupper($string) == 'START TRANSACTION'
-        ) {
-            if (self::$debug) {
-                $this->debug('BEGIN');
-            }
-            $pdo->beginTranaction();
-            
-            return $this;
-        }
-        
-        if (strtoupper($string) == 'COMMIT') {
-            if (self::$debug) {
-                $this->debug('COMMIT');
-            }
-            $pdo->commit();
-            $pdo->setAttribute(PDO::ATTR_AUTOCOMMIT, true); // not sure if needed...
-            return $this;
-        }
-        
-        
-        if (strtoupper($string) == 'ROLLBACK') {
-            if (self::$debug) {
-                $this->debug('ROLLBACK');
-            }
-            $pdo->rollBack();
-            $pdo->setAttribute(PDO::ATTR_AUTOCOMMIT, true); // not sure if needed...
-            
-            return true;
-        }
-        
-        
-        
-        // some sim
-      
-        
-        for ($tries = 0;$tries < 3;$tries++) {
-            
-            try {
-                // not sure if needed..
-                if ($dbtype  == 'sqlite') {
-                    $result = $pdo->prepare($string);
-                    $result->execute();
-                } else {
-                    $result = $pdo->query($string);
-                }
-                
-                
-            } catch (PDOException $e) {
-                $this->debug((string)$e, "Query Error",1 );
-                $result = $e;
-                switch($e->getCode()) {
-                    // see http://www.csee.umbc.edu/portal/help/oracle8/server.815/a58231/appd.htm
-                    // may need fine tuning...
-                    case 1002:
-                    case 8000:
-                    case 8003:
-                    case 8004:
-                    case 8006:
-                        sleep(1);
-                        self::$connections = array(); // reset the connections.
-                        $this->PDO();
-                        continue;
-                }
-        
-            }
-            break;
-        }
-        
-
-        if (is_a($result,'PDOException')) {
-            if (self::$debug) { 
-                $this->debug((string)$result, "Query Error",1 );
-            }
-            $this->N = false;
-            return $this->raiseError("Could not run Query", 0, self::ERROR_DIE, $result);
-        }
-        
-        
-        if (self::$debug) {
-            $t= explode(' ',microtime());
-            $result->time_query_end = $t[0]+$t[1];
-            $this->debug('QUERY DONE IN  '.number_format($t[0]+$t[1]-$time,3)." seconds", 'query',2);
-            $this->debug('NO# of results: '.$result->rowCount(), 'query',1);
-        }
-        
-        
-        switch (strtolower(substr(trim($string),0,6))) {
-            case 'insert':
-            case 'update':
-            case 'delete':
-                return $result->rowCount();
-        }
-        
-        // previously we used _DB_resultid as a pointer to a result array..
-        // hopefully this will result in better memory management???
-        $this->_result = $result;
-        $this->N = $dbtype  == 'sqlite' ? true : $result->rowCount();
-        
-        return $this; // for chaining...
-     
-    }
-
+ 
     /**
      * Builds the WHERE based on the values of of this object
      *
