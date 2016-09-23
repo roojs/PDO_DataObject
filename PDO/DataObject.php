@@ -2748,12 +2748,12 @@ class PDO_DataObject
         $this->databaseStructure();
  
         
-        $ret = array();
-        if (isset($_DB_DATAOBJECT['INI'][$this->_database][$this->tableName()])) {
-            $ret =  $_DB_DATAOBJECT['INI'][$this->_database][$this->tableName()];
+        if (isset(self::$ini[$this->_database_nickname][$this->tableName()])) {
+            return self::$ini[$this->_database_nickname][$this->tableName()];
         }
         
-        return $ret;
+         // ???? why....
+        return array();
     }
 
     /**
