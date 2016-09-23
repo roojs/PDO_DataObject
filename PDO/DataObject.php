@@ -2103,14 +2103,16 @@ class PDO_DataObject
         if (self::$debug) {
             $this->debug("got keys as ".serialize($keys),3);
         }
+        $where = isset($this->_query)   && isset($this->_query['condition']) ? $this->_query['condition'] : '';
+        
         if ($dataObject !== true) {
             // add's the primary key to the where condition.
-            $this->_build_condition($items,$keys);
+            $where = $this->whereToString($items,$keys);
         }
         // at this point we have to have set a condition.. otherwise results could be disasterous...
         
         // prevent wiping out of data!
-        if (!isset($this->_query)  || empty($this->_query['condition'])) {
+        if (!strlen($where)) {
             return  $this->raiseError(
                 "update: global table update not available do \$do->whereAdd('1=1'); if you really want to do that.",
                 self::ERROR_INVALIDARGS);
