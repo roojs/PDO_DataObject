@@ -2183,6 +2183,7 @@ class PDO_DataObject
         $PDO = $this->PDO();
         $quoteIdentifiers  = self::$config['quote_identifiers'];
         
+        // why would we use order by?????
         $extra_cond = ' ' . (isset($this->_query['order_by']) ? $this->_query['order_by'] : ''); 
         
         $where = !empty($this->_query) && !empty($this->_query['condition']) ?
