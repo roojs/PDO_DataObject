@@ -173,7 +173,7 @@ e) PDO_DataObject class
   * sequenceKey() DONE / NEED TESTING
 
 
-  * _build_condition ???
+  * _build_condition ??? whereToString()
 
 
   * named arguments  / prepare???
