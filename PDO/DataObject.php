@@ -2105,18 +2105,24 @@ class PDO_DataObject
         // at this point we have to have set a condition.. otherwise results could be disasterous...
         
         // prevent wiping out of data!
-        if (empty($this->_query['condition'])) {
+        if (!isset($this->_query)  || empty($this->_query['condition'])) {
             return  $this->raiseError(
                 "update: global table update not available do \$do->whereAdd('1=1'); if you really want to do that.",
                 self::ERROR_INVALIDARGS);
+        }
+        
+        
+        if (!$settings && is_object($dataObject)) {
+            // this is a condition where update does not change anything
+            // but we do not raise an error as it's a common occurance on posting forms etc...
+            $this->_query = $original_query;
+            return true;
             
         }
         
         
-        
-        
         //  echo " $settings, $this->condition ";
-        if ($settings && isset($this->_query) && $this->_query['condition']) {
+        if ($settings ) {
             
             $table = ($quoteIdentifiers ? $DB->quoteIdentifier($this->tableName()) : $this->tableName());
         
@@ -2137,7 +2143,7 @@ class PDO_DataObject
             return $r;
         }
         // restore original query conditions.
-        $this->_query = $original_query;
+        
         
         // if you manually specified a dataobject, and there where no changes - then it's ok..
         if ($dataObject !== false) {
