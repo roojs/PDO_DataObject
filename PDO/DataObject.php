@@ -2295,10 +2295,9 @@ class PDO_DataObject
         
         $r = $t->_query(
             "SELECT count({$countWhat}) as $as
-                FROM $table {$t->_join} {$t->_query['condition']}");
-        if (PEAR::isError($r)) {
-            return false;
-        }
+                FROM $table {$t->_join} {$t->_query['condition']}"
+            );
+        $this->_result;
          
         $result  = $_DB_DATAOBJECT['RESULTS'][$t->_DB_resultid];
         $l = $result->fetchRow(DB_DATAOBJECT_FETCHMODE_ORDERED);
