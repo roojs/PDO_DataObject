@@ -2253,7 +2253,6 @@ class PDO_DataObject
      */
     function count($countWhat = false,$whereAddOnly = false)
     {
-        global $_DB_DATAOBJECT;
         
         if (is_bool($countWhat)) {
             $whereAddOnly = $countWhat;
@@ -2262,7 +2261,7 @@ class PDO_DataObject
         $t = clone($this);
         $items   = $t->table();
         
-        $quoteIdentifiers = !empty($_DB_DATAOBJECT['CONFIG']['quote_identifiers']);
+        $quoteIdentifiers = self::$config['quote_identifiers'];
         
         
         if (!isset($t->_query)) {
