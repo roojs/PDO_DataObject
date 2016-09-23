@@ -2944,12 +2944,15 @@ class PDO_DataObject
                 : "{$this->tableName()}.{$k}";
              
              
+            // everything after here results in a condition getting added.... 
+            $ret .= strlen($ret) ? ' AND ' : '';
+            
             
             if (is_object($this->$k) && is_a($this->$k,'PDO_DataObject_Cast')) {
                 $dbtype = $DB->dsn["phptype"];
                 $value = $this->$k->toString($v,$DB);
                 
-                $ret .= strlen($ret) ? ' AND ' : '';
+                
                 if ((strtolower($value) === 'null') && !($v & self::NOTNULL)) {
                     
                     $ret .= "($kSql IS NULL)";
@@ -2982,9 +2985,11 @@ class PDO_DataObject
                 continue;
             }
             if (is_numeric($this->$k)) {
-                $this->whereAdd(" $kSql = {$this->$k}");
+                $ret .= strlen($ret) ? ' AND ' : '';
+                $ret. = "($kSql = {$this->$k})";
                 continue;
             }
+            $ret .= strlen($ret) ? ' AND ' : '';            
             /* this is probably an error condition! */
             $this->whereAdd(" $kSql = ".intval($this->$k));
         }
