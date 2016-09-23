@@ -122,7 +122,8 @@ class PDO_DataObject
                 //         eg.
                 //         mydb => /var/www/mysite/Myproejct/DataObject/mydb.ini
                 //              value can be an array of absolute paths, or PATH_SEPERATED
-     
+    
+                
     
         // class - factory + load derived classes
             'class_prefix' => 'DataObjects_',
@@ -2849,35 +2850,14 @@ class PDO_DataObject
         
         $seqname = false;
         
-        if (!empty(self::$config['sequence_'.$this->tableName()])) {
-            $seqname = $_DB_DATAOBJECT['CONFIG']['sequence_'.$this->tableName()];
-            if (strpos($seqname,':') !== false) {
-                list($usekey,$seqname) = explode(':',$seqname);
-            }
-        }  
-        
+       
         
         // if the key is not an integer - then it's not a sequence or native
-        if (empty($table[$usekey]) || !($table[$usekey] & DB_DATAOBJECT_INT)) {
-                return $_DB_DATAOBJECT['SEQUENCE'][$this->_database][$this->tableName()] = array(false,false,false);
+        if (empty($table[$usekey]) || !($table[$usekey] & self::INT)) {
+                return self::$sequence[$this->_database_nickname][$this->tableName()] = array(false,false,false);
         }
-        
-        
-        if (!empty($_DB_DATAOBJECT['CONFIG']['ignore_sequence_keys'])) {
-            $ignore =  $_DB_DATAOBJECT['CONFIG']['ignore_sequence_keys'];
-            if (is_string($ignore) && (strtoupper($ignore) == 'ALL')) {
-                return $_DB_DATAOBJECT['SEQUENCE'][$this->_database][$this->tableName()] = array(false,false,$seqname);
-            }
-            if (is_string($ignore)) {
-                $ignore = $_DB_DATAOBJECT['CONFIG']['ignore_sequence_keys'] = explode(',',$ignore);
-            }
-            if (in_array($this->tableName(),$ignore)) {
-                return $_DB_DATAOBJECT['SEQUENCE'][$this->_database][$this->tableName()] = array(false,false,$seqname);
-            }
-        }
-        
-        
-        $realkeys = $_DB_DATAOBJECT['INI'][$this->_database][$this->tableName()."__keys"];
+         
+        $realkeys = self::$ini[$this->_database_nickname][$this->tableName()."__keys"];
         
         // if you are using an old ini file - go back to old behaviour...
         if (is_numeric($realkeys[$usekey])) {
