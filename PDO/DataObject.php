@@ -3305,7 +3305,7 @@ class PDO_DataObject
             if (!file_exists($fn) || !is_file($fn) || !is_readable ($fn)) {
                 continue;
             }
-            // got a match....
+            // got a match.... - if it's not set yet... then set it...
             self::$links[$dn] = empty(self::$links[$dn]) ? array() : self::$links[$dn];
 
                 
