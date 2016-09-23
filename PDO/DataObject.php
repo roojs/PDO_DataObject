@@ -2216,7 +2216,7 @@ class PDO_DataObject
                    "{$table} FROM {$table} {$this->_join} " : 
                    "FROM {$table}"
             ) .
-                $this->_query['condition']. $extra_cond;
+                $where . $extra_cond;
         
         // add limit..
         $sql = $this->modifyLimitQuery($sql, true);
