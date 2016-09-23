@@ -1762,7 +1762,7 @@ class PDO_DataObject
         
          
         
-        $quoteIdentifiers  = self::$config['quote_identifiers'];
+        
         
         $PDO = $this->PDO();;
          
@@ -1787,6 +1787,8 @@ class PDO_DataObject
         $seq       = isset($seqKeys[2]) ? $seqKeys[2] : false;
         
         $useEmulated = ($key !== false) && !$useNative; /// make it clear..
+        
+        $quoteIdentifiers  = self::$config['quote_identifiers'];
          
         // nativeSequences or Sequences..     
 
@@ -1991,11 +1993,10 @@ class PDO_DataObject
         if ($seq[0] !== false) {
             $keys = array($seq[0]);
             if (!isset($this->{$keys[0]}) && $dataObject !== true) {
-                $this->raiseError("update: trying to perform an update without 
+                return $this->raiseError("update: trying to perform an update without 
                         the key set, and argument to update is not 
-                        DB_DATAOBJECT_WHEREADD_ONLY
+                        PDO_DataObject::WHEREADD_ONLY
                     ". print_r(array('seq' => $seq , 'keys'=>$keys), true), self::ERROR_INVALIDARGS);
-                return false;  
             }
         } else {
             $keys = $this->keys();
@@ -2003,15 +2004,14 @@ class PDO_DataObject
         
          
         if (!$items) {
-            $this->raiseError("update:No table definition for {$this->tableName()}", self::ERROR_INVALIDCONFIG);
-            return false;
+            return $this->raiseError("update:No table definition for {$this->tableName()}", self::ERROR_INVALIDCONFIG);
         }
         $datasaved = 1;
         $settings  = '';
-        $this->_connect();
         
-        $DB            = $_DB_DATAOBJECT['CONNECTIONS'][$this->_database_dsn_md5];
-        $dbtype        = $DB->dsn["phptype"];
+        
+        
+        $dbtype    = $PDO->getAttribute(PDO::ATTR_DRIVER_NAME);
         $quoteIdentifiers = !empty($_DB_DATAOBJECT['CONFIG']['quote_identifiers']);
         $options = $_DB_DATAOBJECT['CONFIG'];
         
