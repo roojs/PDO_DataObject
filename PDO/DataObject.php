@@ -1974,7 +1974,7 @@ class PDO_DataObject
      * $object->whereAdd('age > 150');
      * $object->update(PDO_DataObject::WHEREADD_ONLY);
      *
-     * @param object dataobject (optional) | PDO_DataObject::WHEREADD_ONLY - used to only update changed items.
+     * @param  object |boolean dataobject (optional) | PDO_DataObject::WHEREADD_ONLY - used to only update changed items.
      * @access public
      * @return  int rows affected or false on failure
      */
