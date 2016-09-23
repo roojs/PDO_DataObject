@@ -414,7 +414,7 @@ database() - renamed databaseNickname -
      as it is not guarenteed to be the actually database name you can get the real database name using
       ( PDO()->dsn[database_name]
 
-
+table() - renamed to tableColumns() 
 
 staticGet -- removed? - create your own cache layer .. it's pretty trivial.
 fetchRow  -- removed (use PDO()->fetch(...))
