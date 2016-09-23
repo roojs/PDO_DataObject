@@ -2752,7 +2752,7 @@ class PDO_DataObject
             return self::$ini[$this->_database_nickname][$this->tableName()];
         }
         
-         // ???? why....
+         // ???? why not an error?
         return array();
     }
 
