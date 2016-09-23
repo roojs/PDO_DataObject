@@ -2710,6 +2710,12 @@ class PDO_DataObject
         
         return $this->_database_nickname;
     }
+    
+    final function table()
+    {
+        $this->raiseError("Table has been replaced with tableColumns()");
+    }
+    
   
     /**
      * get/set an associative array of table columns
