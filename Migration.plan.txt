@@ -168,7 +168,7 @@ e) PDO_DataObject class
   * delete() DONE / NEED TESTING
   * count() DONE / NEED TESTING
 
-  * table() - renamed to tableFields() 
+  * table() - renamed to tableColumns() 
 
   * sequenceKey()
   * _build_condition ???
