@@ -3300,12 +3300,14 @@ class PDO_DataObject
                 continue;
             }
             $fn = $suffix ? rtrim($ini ,'/') . $suffix : $ini;
+            $fn =  str_replace('.ini','.links.ini',$fn);
             $tried[] = $ini;
             if (!file_exists($fn) || !is_file($fn) || !is_readable ($fn)) {
                 continue;
             }
-            
-            
+            // got a match....
+            self::$links[$dn] = empty(self::$links[$dn]) ? array() : self::$links[$dn];
+
                 
             $links =  str_replace('.ini','.links.ini',$ini);
             
