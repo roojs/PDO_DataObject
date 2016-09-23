@@ -2917,7 +2917,7 @@ class PDO_DataObject
         // if we dont have query vars.. - reset them.
         
         $ret = empty($this->_query) || empty($this->_query['condition'])  ? '' :
-            $this->_query['condition'];
+            trim($this->_query['condition']);
         
                     
         foreach($keys as $k => $v) {
