@@ -2961,8 +2961,8 @@ class PDO_DataObject
             }
             
             if (!($v & self::NOTNULL) && DB_DataObject::_is_null($this,$k)) {
-                $ret .= strlen($ret) ? ' AND' : '';
-                $ret .= " ($kSql  IS NULL)";
+                $ret .= strlen($ret) ? ' AND ' : '';
+                $ret .= "($kSql  IS NULL)";
                 continue;
             }
             
