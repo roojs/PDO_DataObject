@@ -3316,8 +3316,9 @@ class PDO_DataObject
                 
              
         }
-           if (false === self::$links[$dn] ) {
-            $this->raiseError(
+        if (false === self::$links[$dn] ) {
+            // this used to return 'null' ???? 
+            return $this->raiseError(
                 "Failed to load any links schema for database={$this->_database_nickname} from these files/locations" . json_encode($tried),
                 self::ERROR_INVALIDCONFIG 
             );
