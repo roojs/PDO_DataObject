@@ -438,6 +438,9 @@ debug_ignore_updates << removed. use config[PDO] == {fake PDO}
 sequence_***** << no longer used - override sequenceKey() 
 ignore_sequence_keys  << no longer used - override sequenceKey() 
 dont_use_pear_sequences << not relivant.. 
+links_**** not used
+ini_**** not used  - use schema_location[database] = .....
+
 -- Debug Levels
 1 - basic QUERY and results.
 2 - Timers
