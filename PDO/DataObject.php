@@ -2195,7 +2195,8 @@ class PDO_DataObject
             $this->_query = array('condition' => ''); // as it's probably unset!
             
             $where = $this->whereToString($this->tableColumns(),$keys);
-            $this->_query = $array;
+            
+            $this->_query = $old;
             
             
             //$extra_cond = ''; // why????
