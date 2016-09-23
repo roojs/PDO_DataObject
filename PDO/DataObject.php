@@ -1828,7 +1828,7 @@ class PDO_DataObject
             
             $leftq .= ($quoteIdentifiers ? ($this->quoteIdentifier($k) . ' ')  : "$k ");
             
-            if (is_object($this->$k) && is_a($this->$k,'DB_DataObject_Cast')) {
+            if (is_object($this->$k) && is_a($this->$k,'PDO_DataObject_Cast')) {
                 $value = $this->$k->toString($v,$DB);
                 if (PEAR::isError($value)) {
                     $this->raiseError($value->toString() ,self::ERROR_INVALIDARGS);
