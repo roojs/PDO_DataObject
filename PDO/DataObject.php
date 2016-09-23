@@ -3307,31 +3307,13 @@ class PDO_DataObject
             }
             // got a match.... - if it's not set yet... then set it...
             self::$links[$dn] = empty(self::$links[$dn]) ? array() : self::$links[$dn];
-
-                
-            $links =  str_replace('.ini','.links.ini',$ini);
             
-            // file really exists..
-            if (!file_exists($links) || !is_file($links)) {
-                if (!empty($cfg['debug'])) {
-                    $this->debug("Missing links.ini file: $links","links",1);
-                }
-                continue;
-            }
-
-            // set to empty array - as we have at least one file now..
-            self::$links[$dn] = empty(self::$links[$dn]) ? array() : self::$links[$dn];
-
-            // merge schema file into lcfg..
             self::$links[$dn] = array_merge(
                 self::$links[$dn],
-                parse_ini_file($links, true)
+                parse_ini_file($fn, true)
             );
-
-                        
-            if (!empty($cfg['debug'])) {
-                $this->debug("Loaded links.ini file: $links","links",1);
-            }
+            
+                
              
         }
         
