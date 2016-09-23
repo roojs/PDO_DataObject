@@ -3221,6 +3221,9 @@ class PDO_DataObject
     * Get the links associate array  as defined by the links.ini file.
     * mapping the foriegn key relationships (which MAY NOT be enforced by the database)
     *
+    * Will attempt to load the file
+    *   This can be over-ridden rather than using links.ini files...
+    *
     * Experimental... - 
     * Should look a bit like
     *       [local_col_name] => "related_tablename:related_col_name"
@@ -3239,12 +3242,7 @@ class PDO_DataObject
     
     function links()
     {
-        global $_DB_DATAOBJECT;
-        if (empty($_DB_DATAOBJECT['CONFIG'])) {
-            $this->config();
-        }
-        // have to connect.. -> otherwise things break later.
-        $this->_connect();
+       
         
         // alias for shorter code..
         $lcfg  = &$_DB_DATAOBJECT['LINKS'];
