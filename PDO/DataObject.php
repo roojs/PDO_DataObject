@@ -1977,10 +1977,9 @@ class PDO_DataObject
      */
     function update($dataObject = false)
     {
-        global $_DB_DATAOBJECT;
+         
         // connect will load the config!
-        $this->_connect();
-        
+        $PDO = $this->PDO();
         
         $original_query =  $this->_query;
         
