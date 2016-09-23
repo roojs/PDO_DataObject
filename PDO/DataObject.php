@@ -1774,22 +1774,18 @@ class PDO_DataObject
             return false;
         }
         
-        $options = $_DB_DATAOBJECT['CONFIG'];
-
+ 
 
         $datasaved = 1;
         $leftq     = '';
         $rightq    = '';
      
-        $seqKeys   = isset($_DB_DATAOBJECT['SEQUENCE'][$this->_database][$this->tableName()]) ?
-                        $_DB_DATAOBJECT['SEQUENCE'][$this->_database][$this->tableName()] : 
-                        $this->sequenceKey();
+        $seqKeys   =  $this->sequenceKey();
         
         $key       = isset($seqKeys[0]) ? $seqKeys[0] : false;
         $useNative = isset($seqKeys[1]) ? $seqKeys[1] : false;
         $seq       = isset($seqKeys[2]) ? $seqKeys[2] : false;
         
-        $dbtype    = $_DB_DATAOBJECT['CONNECTIONS'][$this->_database_dsn_md5]->dsn["phptype"];
         
          
         // nativeSequences or Sequences..     
@@ -1894,6 +1890,11 @@ class PDO_DataObject
             $rightq .= ' ' . intval($this->$k) . ' ';
 
         }
+        
+        
+        
+        $dbtype    = $DB->getAttribute(PDO::ATTR_DRIVER_NAME);
+        
         
         // not sure why we let empty insert here.. - I guess to generate a blank row..
         
