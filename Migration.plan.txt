@@ -170,7 +170,7 @@ e) PDO_DataObject class
 
   * table() - renamed to tableColumns()   DONE / NEED TESTING
   * keys()   DONE / NEED TESTING
-  * sequenceKey()
+  * sequenceKey() DONE / NEED TESTING
 
 
   * _build_condition ???
