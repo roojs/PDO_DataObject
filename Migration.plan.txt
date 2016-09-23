@@ -162,7 +162,7 @@ e) PDO_DataObject class
   * orderBy()  DONE / NEED TESTING
   * groupBy()  DONE / NEED TESTING
   * having()  DONE / NEED TESTING
-  * insert() 
+  * insert() DONE / NEED TESTING
       -- emulated sequence are not supported at present!!
   * sequenceKey()
 
