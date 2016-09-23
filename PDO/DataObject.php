@@ -1754,7 +1754,7 @@ class PDO_DataObject
      *
      * @access public
      * @throws PDO_DataObject_Error
-     * @return int when auto increment or sequence used, otherwise true on success
+     * @return int|boolean  when auto increment or sequence used, otherwise true on success
      */
     function insert()
     {
