@@ -1910,8 +1910,6 @@ class PDO_DataObject
         if ($key && $useNative) {
             switch ($dbtype) {
                 case 'mysql':
-                case 'mysqli': //??
-                    $method = "{$dbtype}_insert_id";
                     $this->$key = $PDO->lastInsertId();
                     break;
                 
