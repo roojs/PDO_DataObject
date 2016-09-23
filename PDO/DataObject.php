@@ -2911,7 +2911,7 @@ class PDO_DataObject
     final function whereToString($keys, $filter = array(),$negative_filter=array())
     {
         
-        $quoteIdentifiers  = self::$config['quote_identifiers']);
+        $quoteIdentifiers  = self::$config['quote_identifiers'];
         
         
         // if we dont have query vars.. - reset them.
@@ -2919,11 +2919,6 @@ class PDO_DataObject
         $ret = empty($this->_query) || empty($this->_query['condition'])  ? '' :
             $this->_query['condition'];
         
-        if ($this->_query === false) {
-            $x = new DB_DataObject;
-            $this->_query= $x->_query;
-        }
-       
                     
         foreach($keys as $k => $v) {
             // index keys is an indexed array
