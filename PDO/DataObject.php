@@ -2265,13 +2265,12 @@ class PDO_DataObject
         
         
         if (!isset($t->_query)) {
-            $this->raiseError(
+            return $this->raiseError(
                 "You cannot do run count after you have run fetch()", 
                 self::ERROR_INVALIDARGS);
-            return false;
         }
-        $this->_connect();
-        $DB = $_DB_DATAOBJECT['CONNECTIONS'][$this->_database_dsn_md5];
+        
+        $PDO = $this->PDO();
        
 
         if (!$whereAddOnly && $items)  {
