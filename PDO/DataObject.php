@@ -2949,10 +2949,10 @@ class PDO_DataObject
                 $dbtype = $DB->dsn["phptype"];
                 $value = $this->$k->toString($v,$DB);
                 
-                $ret .= strlen($ret) ? ' AND ' : '';
+                $ret .= strlen($ret) ? ' AND' : '';
                 if ((strtolower($value) === 'null') && !($v & self::NOTNULL)) {
                     
-                    $ret .= " ($kSql IS NULL) ";
+                    $ret .= " ($kSql IS NULL)";
                     continue;
                 }
                 
@@ -2961,8 +2961,8 @@ class PDO_DataObject
             }
             
             if (!($v & self::NOTNULL) && DB_DataObject::_is_null($this,$k)) {
-                $ret .= strlen($ret) ? ' AND ' : '';
-                $ret .= " $kSql  IS NULL";
+                $ret .= strlen($ret) ? ' AND' : '';
+                $ret .= " ($kSql  IS NULL)";
                 continue;
             }
             
