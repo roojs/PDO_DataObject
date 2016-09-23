@@ -1885,90 +1885,91 @@ class PDO_DataObject
         // not sure why we let empty insert here.. - I guess to generate a blank row..
         
         
-        if ($leftq || $useNative) {
-            $table = ($quoteIdentifiers ? $this->quoteIdentifier($this->tableName())    : $this->tableName());
-            
-            
-            if (($dbtype == 'pgsql') && empty($leftq)) {
-                $r = $this->_query("INSERT INTO {$table} DEFAULT VALUES");
-            } else {
-               $r = $this->_query("INSERT INTO {$table} ($leftq) VALUES ($rightq) ");
-            }
-            
-            // query will return rowCount() for insert...
-            // mssql may have problems here....
-            if ($r < 1) {
-                return 0;
-            }
-            
-            
-            // now do we have an integer key!
-            
-            if ($key && $useNative) {
-                switch ($dbtype) {
-                    case 'mysql':
-                    case 'mysqli':
-                        $method = "{$dbtype}_insert_id";
-                        $this->$key = $method(
-                            $_DB_DATAOBJECT['CONNECTIONS'][$this->_database_dsn_md5]->connection
-                        );
-                        break;
-                    
-                    case 'mssql':
-                        // note this is not really thread safe - you should wrapp it with 
-                        // transactions = eg.
-                        // $db->query('BEGIN');
-                        // $db->insert();
-                        // $db->query('COMMIT');
-                        $res = $PDO->query("SELECT @@IDENTITY");
-                        $res->fetchAll(PDO::FETCH_COLUMN, 0)[0]; // could throw error...
-                        $this->$key = $mssql_key;
-                        break; 
-                        
-                    case 'pgsql':
-                        if (!$seq) {
-                            $seq = $DB->getSequenceName(strtolower($this->tableName()));
-                        }
-                        $db_driver = empty($options['db_driver']) ? 'DB' : $options['db_driver'];
-                        $method = ($db_driver  == 'DB') ? 'getOne' : 'queryOne';
-                        $pgsql_key = $DB->$method("SELECT currval('".$seq . "')"); 
-
-
-                        if (PEAR::isError($pgsql_key)) {
-                            $this->raiseError($pgsql_key);
-                            return false;
-                        }
-                        $this->$key = $pgsql_key;
-                        break;
-                    
-                    case 'ifx':
-                        $this->$key = array_shift (
-                            ifx_fetch_row (
-                                ifx_query(
-                                    "select DBINFO('sqlca.sqlerrd1') FROM systables where tabid=1",
-                                    $_DB_DATAOBJECT['CONNECTIONS'][$this->_database_dsn_md5]->connection,
-                                    IFX_SCROLL
-                                ), 
-                                "FIRST"
-                            )
-                        ); 
-                        break;
-                    
-                }
-                        
-            }
-
-            if (isset($_DB_DATAOBJECT['CACHE'][strtolower(get_class($this))])) {
-                $this->_clear_cache();
-            }
-            if ($key) {
-                return $this->$key;
-            }
-            return true;
+        if (!$leftq && !$useNative) {
+            $this->raiseError("insert: No Data specifed for query", self::ERROR_NODATA);
         }
-        $this->raiseError("insert: No Data specifed for query", DB_DATAOBJECT_ERROR_NODATA);
-        return false;
+        
+        $table = ($quoteIdentifiers ? $this->quoteIdentifier($this->tableName())    : $this->tableName());
+        
+        
+        if (($dbtype == 'pgsql') && empty($leftq)) {
+            $r = $this->_query("INSERT INTO {$table} DEFAULT VALUES");
+        } else {
+           $r = $this->_query("INSERT INTO {$table} ($leftq) VALUES ($rightq) ");
+        }
+        
+        // query will return rowCount() for insert...
+        // mssql may have problems here....
+        if ($r < 1) {
+            return 0;
+        }
+        
+        
+        // now do we have an integer key!
+        
+        if ($key && $useNative) {
+            switch ($dbtype) {
+                case 'mysql':
+                case 'mysqli':
+                    $method = "{$dbtype}_insert_id";
+                    $this->$key = $method(
+                        $_DB_DATAOBJECT['CONNECTIONS'][$this->_database_dsn_md5]->connection
+                    );
+                    break;
+                
+                case 'mssql':
+                    // note this is not really thread safe - you should wrapp it with 
+                    // transactions = eg.
+                    // $db->query('BEGIN');
+                    // $db->insert();
+                    // $db->query('COMMIT');
+                    $res = $PDO->query("SELECT @@IDENTITY");
+                    $res->fetchAll(PDO::FETCH_COLUMN, 0)[0]; // could throw error...
+                    $this->$key = $mssql_key;
+                    break; 
+                    
+                case 'pgsql':
+                    if (!$seq) {
+                        $seq = $DB->getSequenceName(strtolower($this->tableName()));
+                    }
+                    $db_driver = empty($options['db_driver']) ? 'DB' : $options['db_driver'];
+                    $method = ($db_driver  == 'DB') ? 'getOne' : 'queryOne';
+                    $pgsql_key = $DB->$method("SELECT currval('".$seq . "')"); 
+
+
+                    if (PEAR::isError($pgsql_key)) {
+                        $this->raiseError($pgsql_key);
+                        return false;
+                    }
+                    $this->$key = $pgsql_key;
+                    break;
+                
+                case 'ifx':
+                    $this->$key = array_shift (
+                        ifx_fetch_row (
+                            ifx_query(
+                                "select DBINFO('sqlca.sqlerrd1') FROM systables where tabid=1",
+                                $_DB_DATAOBJECT['CONNECTIONS'][$this->_database_dsn_md5]->connection,
+                                IFX_SCROLL
+                            ), 
+                            "FIRST"
+                        )
+                    ); 
+                    break;
+                
+            }
+                    
+        }
+
+        if (isset($_DB_DATAOBJECT['CACHE'][strtolower(get_class($this))])) {
+            $this->_clear_cache();
+        }
+        if ($key) {
+            return $this->$key;
+        }
+        return true;
     }
+      
 
     /**
      * Updates  current objects variables into the database
