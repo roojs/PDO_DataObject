@@ -1786,28 +1786,13 @@ class PDO_DataObject
         $useNative = isset($seqKeys[1]) ? $seqKeys[1] : false;
         $seq       = isset($seqKeys[2]) ? $seqKeys[2] : false;
         
-        $useEmulated = !$useNative; /// make it clear..
+        $useEmulated = ($key !== false) && !$useNative; /// make it clear..
          
         // nativeSequences or Sequences..     
 
         // big check for using sequences
         
-        if (($key !== false) && !$useNative) { 
         
-            if (!$seq) {
-                $keyvalue =  $DB->nextId($this->tableName());
-            } else {
-                $f = $DB->getOption('seqname_format');
-                $DB->setOption('seqname_format','%s');
-                $keyvalue =  $DB->nextId($seq);
-                $DB->setOption('seqname_format',$f);
-            }
-            if (PEAR::isError($keyvalue)) {
-                $this->raiseError($keyvalue->toString(), self::ERROR_INVALIDCONFIG);
-                return false;
-            }
-            $this->$key = $keyvalue;
-        }
         
         // if we haven't set disable_null_strings to "full"
         $ignore_null = self::$config['disable_null_strings'] === false; // default...
@@ -1816,8 +1801,14 @@ class PDO_DataObject
         foreach($items as $k => $v) {
             
             // if we are using autoincrement - skip the column...
-            if ($key && ($k == $key) && $useNative) {
-                continue;
+            if ($key && ($k == $key)) {
+                if ($useNative) {
+                    continue;
+                }
+                if ($useEmulated) { 
+                    $this->raiseError("Emulated Sequences are not supported at present");
+                }
+                // otherwise allow setting of the key!?
             }
         
              
