@@ -164,6 +164,9 @@ e) PDO_DataObject class
   * having()  DONE / NEED TESTING
   * insert() DONE / NEED TESTING
       -- emulated sequence are not supported at present!!
+  * update() DONE / NEED TESTING
+  * delete() DONE / NEED TESTING
+
 
   * sequenceKey()
   * _build_condition ???
