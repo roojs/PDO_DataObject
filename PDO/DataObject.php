@@ -2137,7 +2137,7 @@ class PDO_DataObject
                     
         $table = ($quoteIdentifiers ? $this->quoteIdentifier($this->tableName()) : $this->tableName());
     
-        $r = $this->query("UPDATE  {$table}  SET {$settings} {$this->_query['condition']} ");
+        $r = $this->query("UPDATE  {$table}  SET {$settings} {$where}} ");
         
         // restore original query conditions.
         $this->_query = $original_query;
