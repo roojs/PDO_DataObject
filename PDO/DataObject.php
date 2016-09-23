@@ -2314,7 +2314,7 @@ class PDO_DataObject
      * @access public
      * @return void or DB_Error
      */
-    function query($string)
+    final function query($string)
     {
         return $this->_query($string);
     }
@@ -2334,7 +2334,7 @@ class PDO_DataObject
      * @access public
      * @return string
      */
-    function escape($string, $likeEscape=false)
+    final function escape($string, $likeEscape=false)
     {
         $ret = trim($this->PDO()->quote($string),"'");
         if ($likeEscape) {
