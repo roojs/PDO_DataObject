@@ -1753,7 +1753,8 @@ class PDO_DataObject
      * echo $object->insert();
      *
      * @access public
-     * @return mixed false on failure, int when auto increment or sequence used, otherwise true on success
+     * @throws PDO_DataObject_Error
+     * @return int when auto increment or sequence used, otherwise true on success
      */
     function insert()
     {
@@ -1976,6 +1977,7 @@ class PDO_DataObject
      *
      * @param  object|boolean (optional)  dataobject | PDO_DataObject::WHEREADD_ONLY - used to only update changed items.
      * @access public
+     * @throws PDO_DataObject_Error
      * @return  int rows affected or false on failure
      */
     function update($dataObject = false)
