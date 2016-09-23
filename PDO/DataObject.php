@@ -1978,7 +1978,7 @@ class PDO_DataObject
      * @param  object|boolean (optional)  dataobject | PDO_DataObject::WHEREADD_ONLY - used to only update changed items.
      * @access public
      * @throws PDO_DataObject_Error
-     * @return  int rows affected or false on failure
+     * @return  int|true Number rows affected (may be 0), true (if no difference between old/new), false
      */
     function update($dataObject = false)
     {
