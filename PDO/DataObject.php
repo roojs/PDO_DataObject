@@ -2052,18 +2052,14 @@ class PDO_DataObject
             
             $kSql = ($quoteIdentifiers ? $this->quoteIdentifier($k) : $k);
             
-            if (is_object($this->$k) && is_a($this->$k,'DB_DataObject_Cast')) {
-                $value = $this->$k->toString($v,$DB);
-                if (PEAR::isError($value)) {
-                    $this->raiseError($value->getMessage() ,DB_DATAOBJECT_ERROR_INVALIDARG);
-                    return false;
-                }
+            if (is_object($this->$k) && is_a($this->$k,'PDO_DataObject_Cast')) {
+                $value = $this->$k->toString($v,$PDO);
                 $settings .= "$kSql = $value ";
                 continue;
             }
             
             // special values ... at least null is handled...
-            if (!($v & DB_DATAOBJECT_NOTNULL) && DB_DataObject::_is_null($this,$k)) {
+            if (!($v & DB_DATAOBJECT_NOTNULL) && self::_is_null($this,$k)) {
                 $settings .= "$kSql = NULL ";
                 continue;
             }
