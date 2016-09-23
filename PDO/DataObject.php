@@ -2134,7 +2134,7 @@ class PDO_DataObject
                 return 0;
             }
 
-            $this->_clear_cache();
+             
             return $r;
         }
         // restore original query conditions.
@@ -2226,7 +2226,7 @@ class PDO_DataObject
             if ($r < 1) {
                 return 0;
             }
-            $this->_clear_cache();
+             
             return $r;
         } else {
             $this->raiseError("delete: No condition specifed for query", DB_DATAOBJECT_ERROR_NODATA);
@@ -2830,27 +2830,7 @@ class PDO_DataObject
 
  
     
-    /**
-     * clear the cache values for this class  - normally done on insert/update etc.
-     *
-     * @access private
-     * @return void
-     */
-    function _clear_cache()
-    {
-        global $_DB_DATAOBJECT;
-        
-        $class = strtolower(get_class($this));
-        
-        if (!empty($_DB_DATAOBJECT['CONFIG']['debug'])) {
-            $this->debug("Clearing Cache for ".$class,1);
-        }
-        
-        if (!empty($_DB_DATAOBJECT['CACHE'][$class])) {
-            unset($_DB_DATAOBJECT['CACHE'][$class]);
-        }
-    }
-
+ 
     
     /**
      * backend wrapper for quoting, as MDB2 and DB do it differently...
