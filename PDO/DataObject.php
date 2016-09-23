@@ -2910,7 +2910,7 @@ class PDO_DataObject
     
  
     /**
-     * Builds the WHERE based on the values of of this object
+     * Builds the WHERE based on the values of of this object (used to be _build_condition)
      *
      * @param   mixed   $keys
      * @param   array   $filter (used by update to only uses keys in this filter list).
