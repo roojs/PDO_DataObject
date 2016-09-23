@@ -2127,41 +2127,21 @@ class PDO_DataObject
         }
         
         
+                    
+        $table = ($quoteIdentifiers ? $this->quoteIdentifier($this->tableName()) : $this->tableName());
+    
+        $r = $this->_query("UPDATE  {$table}  SET {$settings} {$this->_query['condition']} ");
         
-        
-        //  echo " $settings, $this->condition ";
-        if ($settings ) {
-            
-            $table = ($quoteIdentifiers ? $DB->quoteIdentifier($this->tableName()) : $this->tableName());
-        
-            $r = $this->_query("UPDATE  {$table}  SET {$settings} {$this->_query['condition']} ");
-            
-            // restore original query conditions.
-            $this->_query = $original_query;
-            
-            if (PEAR::isError($r)) {
-                $this->raiseError($r);
-                return false;
-            }
-            if ($r < 1) {
-                return 0;
-            }
-
-             
-            return $r;
-        }
         // restore original query conditions.
+        $this->_query = $original_query;
         
-        
-        // if you manually specified a dataobject, and there where no changes - then it's ok..
-        if ($dataObject !== false) {
-            return true;
+        if ($r < 1) {
+            return 0;
         }
-        
-        $this->raiseError(
-            "update: No Data specifed for query $settings , {$this->_query['condition']}", 
-            DB_DATAOBJECT_ERROR_NODATA);
-        return false;
+
+         
+        return $r;
+    
     }
 
     /**
