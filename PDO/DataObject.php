@@ -2846,8 +2846,8 @@ class PDO_DataObject
         
         $usekey = $keys[0];
         
-        
-        
+        $dn = $this->_database_nickname;
+        $tn = $this->tableName();
         $seqname = false;
         
        
@@ -2871,29 +2871,23 @@ class PDO_DataObject
         // support named sequence keys.. - currently postgres only..
         
         if (    in_array($dbtype , array('pgsql')) &&
-                ($table[$usekey] & DB_DATAOBJECT_INT) && 
+                ($table[$usekey] & self::INT) && 
                 isset($realkeys[$usekey]) && strlen($realkeys[$usekey]) > 1) {
-            return $_DB_DATAOBJECT['SEQUENCE'][$this->_database][$this->tableName()] = array($usekey,true, $realkeys[$usekey]);
+            return self::$sequence[$this->_database_nickname][$this->tableName()] = array($usekey,true, $realkeys[$usekey]);
         }
         
-        if (    in_array($dbtype , array('pgsql', 'mysql', 'mysqli', 'mssql', 'ifx')) && 
-                ($table[$usekey] & DB_DATAOBJECT_INT) && 
+        if (    in_array($dbtype , array('pgsql', 'mysql',  'mssql', 'ifx')) && 
+                ($table[$usekey] & self::INT) && 
                 isset($realkeys[$usekey]) && ($realkeys[$usekey] == 'N')
                 ) {
-            return $_DB_DATAOBJECT['SEQUENCE'][$this->_database][$this->tableName()] = array($usekey,true,$seqname);
-        }
-        
-        
-        // if not a native autoinc, and we have not assumed all primary keys are sequence
-        if (($realkeys[$usekey] != 'N') && 
-            !empty($_DB_DATAOBJECT['CONFIG']['dont_use_pear_sequences'])) {
-            return array(false,false,false);
+            return self::$sequence[$this->_database_nickname][$this->tableName()] = array($usekey,true,$seqname);
         }
         
         
         
+         
         // I assume it's going to try and be a nextval DB sequence.. (not native)
-        return $_DB_DATAOBJECT['SEQUENCE'][$this->_database][$this->tableName()] = array($usekey,false,$seqname);
+        return self::$sequence[$this->_database_nickname][$this->tableName()] = array($usekey,false,$seqname);
     }
     
     
