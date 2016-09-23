@@ -2809,15 +2809,10 @@ class PDO_DataObject
      */
     function sequenceKey()
     {
-        global $_DB_DATAOBJECT;
-          
-        // call setting
-        if (!$this->_database) {
-            $this->_connect();
-        }
         
-        if (!isset($_DB_DATAOBJECT['SEQUENCE'][$this->_database])) {
-            $_DB_DATAOBJECT['SEQUENCE'][$this->_database] = array();
+        
+        if (!isset(self::$sequence[$this->_database_nickname])) {
+            self::$sequence[$this->_database_nickname] = array();
         }
 
         
@@ -2825,10 +2820,10 @@ class PDO_DataObject
         if (count($args)) {
             $args[1] = isset($args[1]) ? $args[1] : false;
             $args[2] = isset($args[2]) ? $args[2] : false;
-            $_DB_DATAOBJECT['SEQUENCE'][$this->_database][$this->tableName()] = $args;
+            self::$sequence[$this->_database_nickname][$this->tableName()] = $args;
         }
-        if (isset($_DB_DATAOBJECT['SEQUENCE'][$this->_database][$this->tableName()])) {
-            return $_DB_DATAOBJECT['SEQUENCE'][$this->_database][$this->tableName()];
+        if (isset(self::$sequence[$this->_database_nickname][$this->tableName()])) {
+            return self::$sequence[$this->_database_nickname][$this->tableName()];
         }
         // end call setting (eg. $do->sequenceKeys(a,b,c); )
         
