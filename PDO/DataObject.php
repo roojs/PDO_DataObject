@@ -2635,7 +2635,7 @@ class PDO_DataObject
             return self::$ini[$database_nickname];
         }
        
-        $this->debug("Cant find database schema: {$this->_database}\n".
+        $this->debug("Cant find database schema: {$this->_database_nickname}\n".
                     "in links file data: " . print_r(self::$ini,true),"databaseStructure",5);
         // we have to die here!! - it causes chaos if we dont (including looping forever!)
         $this->raiseError( "Unable to load schema for database and table (turn debugging up to 5 for full error message)",
@@ -2741,8 +2741,8 @@ class PDO_DataObject
         
          
           
-        if (isset($_DB_DATAOBJECT['INI'][$this->_database][$this->tableName()])) {
-            return $_DB_DATAOBJECT['INI'][$this->_database][$this->tableName()];
+        if (isset(self::$ini[$this->_database_nickname][$this->tableName()])) {
+            return self::$ini[$this->_database_nickname][$this->tableName()];
         }
         
         $this->databaseStructure();
