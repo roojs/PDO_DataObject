@@ -2940,7 +2940,7 @@ class PDO_DataObject
             }
             
             $kSql = $quoteIdentifiers 
-                ? ( $DB->quoteIdentifier($this->tableName()) . '.' . $DB->quoteIdentifier($k) )  
+                ? ( $this->quoteIdentifier($this->tableName()) . '.' . $this->quoteIdentifier($k) )  
                 : "{$this->tableName()}.{$k}";
              
              
