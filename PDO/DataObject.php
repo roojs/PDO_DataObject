@@ -2242,7 +2242,7 @@ class PDO_DataObject
      *                      otherwise  => normally it counts primary keys - you can use 
      *                                    this to do things like $do->count('distinct mycol');
      *                  
-     * @param bool      $whereAddOnly (optional) If DB_DATAOBJECT_WHEREADD_ONLY is passed in then
+     * @param bool      $whereAddOnly (optional) If PDO_DataObject::WHEREADD_ONLY is passed in then
      *                  we will build the condition only using the whereAdd's.  Default is to
      *                  build the condition using the object parameters as well.
      *                  
