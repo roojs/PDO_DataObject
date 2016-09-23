@@ -2978,10 +2978,10 @@ class PDO_DataObject
             }
             
 
-            if ($v & DB_DATAOBJECT_STR) {
+            if ($v & self::STR) {
                 $ret .= "($kSql  = " .
                         $PDO->quote((string) (
-                            ($v & DB_DATAOBJECT_BOOL) ? 
+                            ($v & self::BOOL) ? 
                                 // this is thanks to the braindead idea of postgres to 
                                 // use t/f for boolean.
                                 (($this->$k === 'f') ? 0 : (int)(bool) $this->$k) :  
