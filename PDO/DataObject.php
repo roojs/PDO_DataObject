@@ -1971,8 +1971,7 @@ class PDO_DataObject
      * performing global updates:
      * $object = DB_DataObject::factory('mytable');
      * $object->status = "dead";
-     * $object->whereAdd('age > 150');
-     * $object->update(PDO_DataObject::WHEREADD_ONLY);
+     * $object->where('age > 150')->update(PDO_DataObject::WHEREADD_ONLY);
      *
      * @param  object|boolean (optional)  dataobject | PDO_DataObject::WHEREADD_ONLY - used to only update changed items.
      * @access public
