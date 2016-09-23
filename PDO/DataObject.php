@@ -2282,12 +2282,10 @@ class PDO_DataObject
             return $this->raiseError(
                 "You cannot do run count without keys - use \$do->count('id'), or use \$do->count('distinct id')';", 
                 self::ERROR_INVALIDARGS);
-
-            
         }
-        $table   = ($quoteIdentifiers ? $DB->quoteIdentifier($this->tableName()) : $this->tableName());
-        $key_col = empty($keys[0]) ? '' : (($quoteIdentifiers ? $DB->quoteIdentifier($keys[0]) : $keys[0]));
-        $as      = ($quoteIdentifiers ? $DB->quoteIdentifier('DATAOBJECT_NUM') : 'DATAOBJECT_NUM');
+        $table   = ($quoteIdentifiers ? $this->quoteIdentifier($this->tableName()) : $this->tableName());
+        $key_col = empty($keys[0]) ? '' : (($quoteIdentifiers ? $this->quoteIdentifier($keys[0]) : $keys[0]));
+        $as      = ($quoteIdentifiers ? $this->quoteIdentifier('DATAOBJECT_NUM') : 'DATAOBJECT_NUM');
         
         // support distinct on default keys.
         $countWhat = (strtoupper($countWhat) == 'DISTINCT') ? 
