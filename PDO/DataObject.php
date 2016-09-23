@@ -2897,9 +2897,7 @@ class PDO_DataObject
 
  
     
-   
-     
-
+    
  
     /**
      * Builds the WHERE based on the values of of this object
@@ -2910,7 +2908,7 @@ class PDO_DataObject
      * @access  private
      * @return  string
      */
-    function _build_condition($keys, $filter = array(),$negative_filter=array())
+    final function whereToString($keys, $filter = array(),$negative_filter=array())
     {
         global $_DB_DATAOBJECT;
         $this->_connect();
