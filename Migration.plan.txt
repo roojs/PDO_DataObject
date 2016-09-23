@@ -166,9 +166,9 @@ e) PDO_DataObject class
       -- emulated sequence are not supported at present!!
   * update() DONE / NEED TESTING
   * delete() DONE / NEED TESTING
+  * count() DONE / NEED TESTING
 
-  * count()
-
+  * table() - renamed to tableFields() 
 
   * sequenceKey()
   * _build_condition ???
