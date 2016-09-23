@@ -436,7 +436,8 @@ $do->_lastError - removed - ?? Not sure if this is every used anymore..
 config changes
 debug_ignore_updates << removed. use config[PDO] == {fake PDO}
 sequence_***** << no longer used - override sequenceKey() 
-
+ignore_sequence_keys  << no longer used - override sequenceKey() 
+dont_use_pear_sequences << not relivant.. 
 -- Debug Levels
 1 - basic QUERY and results.
 2 - Timers
