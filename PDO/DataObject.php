@@ -2648,8 +2648,9 @@ class PDO_DataObject
      * create an instance of the generator.
      * class can be set by using proxy = {classname}::
      * We do not really care if you have implemented it correctly....????
+     * you can modify the class by setting proxy to {YOUR CLASS}::{your method}
      *
-     * @return PDO_DataObject_Genertor
+     * @return PDO_DataObject_Generator
      */
     
     function generator()
