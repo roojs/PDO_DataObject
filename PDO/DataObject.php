@@ -1842,17 +1842,17 @@ class PDO_DataObject
             // DATE is empty... on a col. that can be null.. 
             // note: this may be usefull for time as well..
             if (!$this->$k && 
-                    (($v & DB_DATAOBJECT_DATE) || ($v & DB_DATAOBJECT_TIME)) && 
-                    !($v & DB_DATAOBJECT_NOTNULL)) {
+                    (($v & self::DATE) || ($v & self::TIME)) && 
+                    !($v & self::NOTNULL)) {
                     
                 $rightq .= " NULL ";
                 continue;
             }
               
             
-            if ($v & DB_DATAOBJECT_STR) {
+            if ($v & self::STR) {
                 $rightq .= $this->_quote((string) (
-                        ($v & DB_DATAOBJECT_BOOL) ? 
+                        ($v & self::BOOL) ? 
                             // this is thanks to the braindead idea of postgres to 
                             // use t/f for boolean.
                             (($this->$k === 'f') ? 0 : (int)(bool) $this->$k) :  
@@ -1867,6 +1867,7 @@ class PDO_DataObject
             /* flag up string values - only at debug level... !!!??? */
             if (is_object($this->$k) || is_array($this->$k)) {
                 $this->debug('ODD DATA: ' .$k . ' ' .  print_r($this->$k,true),'ERROR');
+                continue;
             }
             
             // at present we only cast to integers
