@@ -3301,7 +3301,7 @@ class PDO_DataObject
             }
             $fn = $suffix ? rtrim($ini ,'/') . $suffix : $ini;
             $fn =  str_replace('.ini','.links.ini',$fn);
-            $tried[] = $ini;
+            $tried[] = $fn;
             if (!file_exists($fn) || !is_file($fn) || !is_readable ($fn)) {
                 continue;
             }
@@ -3316,6 +3316,12 @@ class PDO_DataObject
                 
              
         }
+           if (false === self::$links[$dn] ) {
+            $this->raiseError("Failed to load any links schema for database={$this->_database_nickname} from these files/locations" . json_encode($tried),
+                         self::ERROR_INVALIDCONFIG, self::ERROR_DIE
+            );
+        }
+        
         
         if (!empty($_DB_DATAOBJECT['CONFIG']['portability']) && $_DB_DATAOBJECT['CONFIG']['portability'] & 1) {
             foreach(self::$links[$dn] as $k=>$v) {
