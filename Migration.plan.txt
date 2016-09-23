@@ -171,9 +171,7 @@ e) PDO_DataObject class
   * table() - renamed to tableColumns()   DONE / NEED TESTING
   * keys()   DONE / NEED TESTING
   * sequenceKey() DONE / NEED TESTING
-
-
-  * _build_condition ??? whereToString()
+  * _build_condition ??? whereToString() DONE / NEED TESTING
 
 
   * named arguments  / prepare???
