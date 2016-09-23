@@ -2186,12 +2186,8 @@ class PDO_DataObject
             $this->_build_condition($this->table(),$keys);
             
             $this->raiseError("Could not find primary key to build DELETE query",
-                              self::ERROR_INVALID_ARGS)
+                              self::ERROR_INVALID_ARGS);
             
-            // if primary keys are not set then use data from rest of object.
-            if (!$this->_query['condition']) {
-                $this->_build_condition($this->table(),array(),$keys);
-            }
             $extra_cond = '';
         } 
             
