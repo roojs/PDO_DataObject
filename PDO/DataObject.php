@@ -2095,7 +2095,7 @@ class PDO_DataObject
         }
          
         
-        if (!empty($_DB_DATAOBJECT['CONFIG']['debug'])) {
+        if (self::$debug) {
             $this->debug("got keys as ".serialize($keys),3);
         }
         if ($dataObject !== true) {
