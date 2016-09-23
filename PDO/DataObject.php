@@ -1817,7 +1817,7 @@ class PDO_DataObject
             }
             // dont insert data into mysql timestamps 
             // use query() if you really want to do this!!!!
-            if ($v & DB_DATAOBJECT_MYSQLTIMESTAMP) {
+            if ($v & self::MYSQLTIMESTAMP) {
                 continue;
             }
             
@@ -1826,7 +1826,7 @@ class PDO_DataObject
                 $rightq .= ', ';
             }
             
-            $leftq .= ($quoteIdentifiers ? ($DB->quoteIdentifier($k) . ' ')  : "$k ");
+            $leftq .= ($quoteIdentifiers ? ($this->quoteIdentifier($k) . ' ')  : "$k ");
             
             if (is_object($this->$k) && is_a($this->$k,'DB_DataObject_Cast')) {
                 $value = $this->$k->toString($v,$DB);
