@@ -2313,7 +2313,7 @@ class PDO_DataObject
      * @param  string  $string  SQL Query
      * @access public
      * @throws PDO_Dataobject_Exception
-     * @return PDO_DataObject|int  it'self, or the number of rows affected
+     * @return PDO_DataObject|int  it'self, or the number of rows affected (insert|update|delete)
      */
     final function query($string)
     {
