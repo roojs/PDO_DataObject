@@ -2188,7 +2188,7 @@ class PDO_DataObject
             $this->raiseError("Could not find primary key to build DELETE query",
                               self::ERROR_INVALID_ARGS);
             
-            $extra_cond = '';
+            //$extra_cond = ''; // why????
         } 
             
 
