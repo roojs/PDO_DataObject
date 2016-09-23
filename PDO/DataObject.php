@@ -1394,9 +1394,10 @@ class PDO_DataObject
         }
 
         $ar = array();
+        $PDO = $this->PDO();
         foreach($list as $k) {
             settype($k, $type);
-            $ar[] = $type == 'string' ? $this->_quote($k) : $k;
+            $ar[] = $type == 'string' ? $PDO->quote($k) : $k;
         }
       
         if (!$ar) {
@@ -1853,7 +1854,7 @@ class PDO_DataObject
               
             
             if ($v & self::STR) {
-                $rightq .= $this->_quote((string) (
+                $rightq .= $PDO->quote((string) (
                         ($v & self::BOOL) ? 
                             // this is thanks to the braindead idea of postgres to 
                             // use t/f for boolean.
@@ -2059,24 +2060,24 @@ class PDO_DataObject
             }
             
             // special values ... at least null is handled...
-            if (!($v & DB_DATAOBJECT_NOTNULL) && self::_is_null($this,$k)) {
+            if (!($v & self::NOTNULL) && self::_is_null($this,$k)) {
                 $settings .= "$kSql = NULL ";
                 continue;
             }
             // DATE is empty... on a col. that can be null.. 
             // note: this may be usefull for time as well..
             if (!$this->$k && 
-                    (($v & DB_DATAOBJECT_DATE) || ($v & DB_DATAOBJECT_TIME)) && 
-                    !($v & DB_DATAOBJECT_NOTNULL)) {
+                    (($v & self::DATE) || ($v & self::TIME)) && 
+                    !($v & self::NOTNULL)) {
                     
                 $settings .= "$kSql = NULL ";
                 continue;
             }
             
 
-            if ($v & DB_DATAOBJECT_STR) {
-                $settings .= "$kSql = ". $this->_quote((string) (
-                        ($v & DB_DATAOBJECT_BOOL) ? 
+            if ($v & self::STR) {
+                $settings .= "$kSql = ". $$PDO->quote((string) (
+                        ($v & self::BOOL) ? 
                             // this is thanks to the braindead idea of postgres to 
                             // use t/f for boolean.
                             (($this->$k === 'f') ? 0 : (int)(bool) $this->$k) :  
@@ -3047,7 +3048,7 @@ class PDO_DataObject
             
 
             if ($v & DB_DATAOBJECT_STR) {
-                $this->whereAdd(" $kSql  = " . $this->_quote((string) (
+                $this->whereAdd(" $kSql  = " . $PDO->quote((string) (
                         ($v & DB_DATAOBJECT_BOOL) ? 
                             // this is thanks to the braindead idea of postgres to 
                             // use t/f for boolean.
@@ -3860,7 +3861,7 @@ class PDO_DataObject
                 }
                 
                 if ($v & DB_DATAOBJECT_STR) {
-                    $obj->whereAdd("{$joinAs}.{$kSql} = " . $this->_quote((string) (
+                    $obj->whereAdd("{$joinAs}.{$kSql} = " . $PDO->quote((string) (
                             ($v & DB_DATAOBJECT_BOOL) ? 
                                 // this is thanks to the braindead idea of postgres to 
                                 // use t/f for boolean.
