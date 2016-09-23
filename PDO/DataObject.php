@@ -2050,7 +2050,7 @@ class PDO_DataObject
                 $settings .= ', ';
             }
             
-            $kSql = ($quoteIdentifiers ? $DB->quoteIdentifier($k) : $k);
+            $kSql = ($quoteIdentifiers ? $this->quoteIdentifier($k) : $k);
             
             if (is_object($this->$k) && is_a($this->$k,'DB_DataObject_Cast')) {
                 $value = $this->$k->toString($v,$DB);
