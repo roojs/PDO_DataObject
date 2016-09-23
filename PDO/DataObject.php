@@ -2817,8 +2817,7 @@ class PDO_DataObject
         if (!isset(self::$sequence[$dn])) {
             self::$sequence[$dn] = array();
         }
-
-        
+ 
         $args = func_get_args();
         if (count($args)) {
             $args[1] = isset($args[1]) ? $args[1] : false;
