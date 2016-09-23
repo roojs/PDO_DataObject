@@ -2737,11 +2737,9 @@ class PDO_DataObject
             return $this->_result->fields;
         }
         
+        $this->PDO();
         
-        global $_DB_DATAOBJECT;
-        if (!isset($_DB_DATAOBJECT['CONNECTIONS'][$this->_database_dsn_md5])) {
-            $this->_connect();
-        }
+         
           
         if (isset($_DB_DATAOBJECT['INI'][$this->_database][$this->tableName()])) {
             return $_DB_DATAOBJECT['INI'][$this->_database][$this->tableName()];
