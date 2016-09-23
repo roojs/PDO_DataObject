@@ -2116,9 +2116,17 @@ class PDO_DataObject
             // this is a condition where update does not change anything
             // but we do not raise an error as it's a common occurance on posting forms etc...
             $this->_query = $original_query;
-            return true;
-            
+            return true;    
         }
+        // now if you did an update with no values....
+        if (!$settings) {
+             $this->raiseError(
+                "update: No Data specifed for query $settings , {$this->_query['condition']}", 
+                self::ERROR_NODATA
+            );
+        }
+        
+        
         
         
         //  echo " $settings, $this->condition ";
