@@ -2306,13 +2306,14 @@ class PDO_DataObject
     }
 
     /**
-     * sends raw query to database
+     * sends raw query to database - returns 
      *
-     * Since _query has to be a private 'non overwriteable method', this is a relay
+     * set's $this->_result -available publically using $dataobject->result();
      *
      * @param  string  $string  SQL Query
      * @access public
-     * @return void or DB_Error
+     * @throws PDO_Dataobject_Exception
+     * @return PDO_DataObject|int  it'self, or the number of rows affected
      */
     final function query($string)
     {
