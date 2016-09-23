@@ -2190,39 +2190,35 @@ class PDO_DataObject
             
             //$extra_cond = ''; // why????
         } 
-            
-
-        // don't delete without a condition
-        if (($this->_query !== false) && $this->_query['condition']) {
         
-            $table = ($quoteIdentifiers ? $DB->quoteIdentifier($this->tableName()) : $this->tableName());
-            $sql = "DELETE ";
-            // using a joined delete. - with useWhere..
-            $sql .= (!empty($this->_join) && $useWhere) ? 
-                "{$table} FROM {$table} {$this->_join} " : 
-                "FROM {$table} ";
-                
-            $sql .= $this->_query['condition']. $extra_cond;
-            
-            // add limit..
-            $sql = $this->modifyLimitQuery($sql, true);
-            
-            $r = $this->_query($sql);
-            
-            
-            if (PEAR::isError($r)) {
-                $this->raiseError($r);
-                return false;
-            }
-            if ($r < 1) {
-                return 0;
-            }
-             
-            return $r;
-        } else {
-            $this->raiseError("delete: No condition specifed for query", DB_DATAOBJECT_ERROR_NODATA);
-            return false;
+        // don't delete without a condition
+        if (empty($this->_query) || empty($this->_query['condition'])) {
+            return $this->raiseError("delete: No condition specifed for query", self::ERROR_INVALIDARGS);
         }
+        
+        
+        
+        $table = ($quoteIdentifiers ? $this->quoteIdentifier($this->tableName()) : $this->tableName());
+        $sql = "DELETE " .
+            (
+                (!empty($this->_join) && $useWhere) ?  // using a joined delete. - with useWhere..
+                   "{$table} FROM {$table} {$this->_join} " : 
+                   "FROM {$table}"
+            ) .
+                $this->_query['condition']. $extra_cond;
+        
+        // add limit..
+        $sql = $this->modifyLimitQuery($sql, true);
+        
+        $r = $this->_query($sql);
+        
+         
+        if ($r < 1) {
+            return 0;
+        }
+         
+        return $r;
+        
     }
  
     /**
