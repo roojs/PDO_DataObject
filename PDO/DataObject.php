@@ -2172,7 +2172,7 @@ class PDO_DataObject
      * @access public
      * @return mixed Int (No. of rows affected) on success, false on failure, 0 on no data affected
      */
-    function delete($useWhere = false)
+    final function delete($useWhere = false)
     {
           
         $PDO = $this->PDO();
@@ -2251,7 +2251,7 @@ class PDO_DataObject
      * @access public
      * @return int
      */
-    function count($countWhat = false,$whereAddOnly = false)
+    final function count($countWhat = false,$whereAddOnly = false)
     {
         
         if (is_bool($countWhat)) {
