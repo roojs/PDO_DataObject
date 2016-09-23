@@ -376,7 +376,7 @@ class PDO_DataObject
      * @access private
      * @return PDO Object the connection
      */
-    function PDO()
+    final function PDO()
     {
         
         $config = self::config();
@@ -664,7 +664,7 @@ class PDO_DataObject
      * @result string wrapped string  
      *
      */
-    function quoteIdentifier($str)
+    final function quoteIdentifier($str)
     {
         $pdo = $this->PDO();
         if (!is_a($pdo, self::$config['PDO'])) {
@@ -702,7 +702,7 @@ class PDO_DataObject
      * @return string - the modified string
      * 
      */
-    function modifyLimitQuery($sql, $manip=false)
+    final function modifyLimitQuery($sql, $manip=false)
     {
         $start = $this->_query['limit_start'];
         $count = $this->_query['limit_count'];
@@ -781,7 +781,7 @@ class PDO_DataObject
      * @access  public
      * @return  int     No. of rows
      */
-    function get($k = null, $v = null)
+    final function get($k = null, $v = null)
     {
        
         $keys = array();
@@ -819,7 +819,7 @@ class PDO_DataObject
      * @throws PDO_DataObject_Exception (if the table does not have a pid or is called before insert.)
      * @return the value of the column that is the primary id
      */
-    function pid()
+    final function pid()
     {
         $keys = $this->keys();
         if (!$keys) {
@@ -845,7 +845,7 @@ class PDO_DataObject
      * @access public
      */
     
-    function toSelectSQL()
+    final function toSelectSQL()
     {
         $quoteIdentifiers = self::$config['quote_identifiers'];
         
@@ -905,7 +905,7 @@ class PDO_DataObject
      * @access  public
      * @return  mixed (number of rows returned, or true if numRows fetching is not supported)
      */
-    function find($n = false)
+    final function find($n = false)
     {
         
         if ($this->_query === false) {
@@ -1009,7 +1009,7 @@ class PDO_DataObject
      * @access  public
      * @return  boolean on success
      */
-    function fetch()
+    final function fetch()
     {
 
          
@@ -1208,7 +1208,7 @@ class PDO_DataObject
      * @access  public
      * @return  array  format dependant on arguments, may be empty
      */
-    function fetchAll($k= false, $v = false, $method = false)  
+    final function fetchAll($k= false, $v = false, $method = false)  
     {
         // should it even do this!!!?!?
         if (!$this->_result) {
@@ -1283,13 +1283,13 @@ class PDO_DataObject
          
     }
      /**
-     * fetches all results as an array without creating Child DataObjects
+     * fetches all results as an array of associative  arrays, without creating Child DataObjects
      *
      * It's an alias for fetchAll(false,false, true)
      * @access  public
      * @return  array  array of associative arrays (note does note create child dataobjects.
      */
-    private function fetchAllArray()
+    final private function fetchAllAssoc()
     {
         return $this->fetchAll(false,false,true);
         
@@ -1311,7 +1311,7 @@ class PDO_DataObject
      * @access   public
      * @return   string|PEAR::Error - previous condition or Error when invalid args found
      */
-    function whereAdd($cond = false, $logic = 'AND')
+    final function whereAdd($cond = false, $logic = 'AND')
     {
         // for PHP5.2.3 - there is a bug with setting array properties of an object.
         $_query = $this->_query;
@@ -1358,7 +1358,7 @@ class PDO_DataObject
      * @return   PDO_DataObject - self
      */
     
-    function where($cond = false, $logic = 'AND')
+    final function where($cond = false, $logic = 'AND')
     {
         $this->whereAdd($cond, $logic);
         return $this;
@@ -1379,7 +1379,7 @@ class PDO_DataObject
     * @access   public
     * @return   string|PEAR::Error - previous condition or Error when invalid args found
     */
-    function whereAddIn($key, $list, $type, $logic = 'AND') 
+    final function whereAddIn($key, $list, $type, $logic = 'AND') 
     {
         $not = '';
         if ($key[0] == '!') {
@@ -1422,7 +1422,7 @@ class PDO_DataObject
     * @access   public
     * @return   PDO_DataObject - self
     */
-    function whereIn($key, $list, $type, $logic = 'AND') 
+    final function whereIn($key, $list, $type, $logic = 'AND') 
     {
         $this->whereAddIn($key,$list,$type, $logic);
         return $this;
@@ -1440,7 +1440,7 @@ class PDO_DataObject
      * @access public
      * @return PDO_DataObject self
      */
-    function orderBy($order = false)
+    final function orderBy($order = false)
     {
         if ($this->_query === false) {
             return $this->raiseError(
@@ -1476,7 +1476,7 @@ class PDO_DataObject
      * @access public
      * @return PDO_DataObject self
      */
-    function groupBy($group = false)
+    final function groupBy($group = false)
     {
         if ($this->_query === false) {
             return $this->raiseError(
@@ -1512,7 +1512,7 @@ class PDO_DataObject
      * @access public
      * @return PDO_DataObject self
      */
-    function having($having = false)
+    final function having($having = false)
     {
         if ($this->_query === false) {
             return $this->raiseError(
@@ -1551,7 +1551,7 @@ class PDO_DataObject
      * @access public
      * @return PDO_DataObject self
      */
-    function useIndex($index = false)
+    final function useIndex($index = false)
     {
         if ($this->_query === false) {
             return $this->raiseError(
@@ -1591,7 +1591,7 @@ class PDO_DataObject
      * @access public
      * @return self  (for chaining) - except 'reset' call
      */
-    function limit($a = null, $b = null)
+    final function limit($a = null, $b = null)
     {
         
         if ($this->_query === false) {
@@ -1635,7 +1635,7 @@ class PDO_DataObject
      * @access public
      * @return mixed null or old string if you reset it.
      */
-    function selectAdd($k = null)
+    final function selectAdd($k = null)
     {
         if ($this->_query === false) {
             return $this->raiseError(
@@ -1678,7 +1678,7 @@ class PDO_DataObject
      * @access public
      * @return PDO_DataObject self
      */
-    function select($k = null)
+    final function select($k = null)
     {
         $this->selectAdd($k);
         return $this;
@@ -1700,7 +1700,7 @@ class PDO_DataObject
      * @access public
      * @return PDO_DataObject self
      */
-    function selectAs($from = null,$format = '%s',$tableName=false)
+    final function selectAs($from = null,$format = '%s',$tableName=false)
     {
         global $_DB_DATAOBJECT;
         
@@ -1756,7 +1756,7 @@ class PDO_DataObject
      * @throws PDO_DataObject_Error
      * @return int|boolean  when auto increment or sequence used, otherwise true on success
      */
-    function insert()
+    final function insert()
     {
           
         // we need to write to the connection (For nextid) - so us the real
