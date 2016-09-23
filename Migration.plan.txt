@@ -153,7 +153,7 @@ e) PDO_DataObject class
 
   * fetch() DONE - tested by earlier code
   * fetchAll() DONE - tested by earlier code ?? 
-  * fetchAllArray() - alias to fetchAll(false,false,true);
+  * fetchAllAssoc() - alias to fetchAll(false,false,true);
   
   * where()  = new 'chained version'  DONE / NEED TESTING
   * whereAdd()  DONE / NEED TESTING
