@@ -3295,7 +3295,7 @@ class PDO_DataObject
 
         foreach ($schemas as $ini) {
                 
-            $links = str_replace('.ini','.links.ini',$ini);
+            $links =  str_replace('.ini','.links.ini',$ini);
             
             // file really exists..
             if (!file_exists($links) || !is_file($links)) {
