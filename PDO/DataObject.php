@@ -2916,7 +2916,8 @@ class PDO_DataObject
         
         // if we dont have query vars.. - reset them.
         
-        $ret = $this->_query['condition'];
+        $ret = empty($this->_query) || empty($this->_query['condition'])  ? '' :
+            $this->_query['condition'];
         
         if ($this->_query === false) {
             $x = new DB_DataObject;
