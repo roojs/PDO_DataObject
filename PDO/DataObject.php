@@ -2952,7 +2952,7 @@ class PDO_DataObject
                 $ret .= strlen($ret) ? ' AND ' : '';
                 if ((strtolower($value) === 'null') && !($v & self::NOTNULL)) {
                     
-                    $ret .= " $kSql IS NULL";
+                    $ret .= " ($kSql IS NULL) ";
                     continue;
                 }
                 
@@ -2960,13 +2960,15 @@ class PDO_DataObject
                 continue;
             }
             
-            if (!($v & DB_DATAOBJECT_NOTNULL) && DB_DataObject::_is_null($this,$k)) {
-                $this->whereAdd(" $kSql  IS NULL");
+            if (!($v & self::NOTNULL) && DB_DataObject::_is_null($this,$k)) {
+                $ret .= strlen($ret) ? ' AND ' : '';
+                $ret .= " $kSql  IS NULL";
                 continue;
             }
             
 
             if ($v & DB_DATAOBJECT_STR) {
+                $ret .= strlen($ret) ? ' AND ' : '';
                 $this->whereAdd(" $kSql  = " . $PDO->quote((string) (
                         ($v & DB_DATAOBJECT_BOOL) ? 
                             // this is thanks to the braindead idea of postgres to 
