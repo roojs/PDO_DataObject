@@ -98,7 +98,7 @@ class PDO_DataObject_Generator extends PDO_DataObject
                 //  now supports regex (if you set it to a regex it will strip schema of matched names)
                 //  for example '/^public\./'
             'embed_schema' => false,
-                // (True) will generate the methods table() ,keys(), sequenceKeys() and defaults()
+                // (True) will generate the methods tableColumns() ,keys(), sequenceKeys() and defaults()
                 // methods in the generated classes 
                 // and not generate any ini file to describe the table.
                 
