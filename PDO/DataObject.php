@@ -1830,16 +1830,12 @@ class PDO_DataObject
             
             if (is_object($this->$k) && is_a($this->$k,'PDO_DataObject_Cast')) {
                 $value = $this->$k->toString($v,$DB);
-                if (PEAR::isError($value)) {
-                    $this->raiseError($value->toString() ,self::ERROR_INVALIDARGS);
-                    return false;
-                }
                 $rightq .=  $value;
                 continue;
             }
             
             
-            if (!($v & DB_DATAOBJECT_NOTNULL) && DB_DataObject::_is_null($this,$k)) {
+            if (!($v & self::NOTNULL) && self::_is_null($this,$k)) {
                 $rightq .= " NULL ";
                 continue;
             }
