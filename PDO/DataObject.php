@@ -2678,15 +2678,14 @@ class PDO_DataObject
      */
     function tableName()
     {
-        global $_DB_DATAOBJECT;
-        $args = func_get_args();
+         $args = func_get_args();
         if (count($args)) {
             $this->__table = $args[0];
         }
         if (empty($this->__table)) {
             return '';
         }
-        if (!empty($_DB_DATAOBJECT['CONFIG']['portability']) && $_DB_DATAOBJECT['CONFIG']['portability'] & 1) {
+        if (!empty(self::$config['portability']) && self::$config['portability'] & self::PORTABILITY_LOWERCASE) {
             return strtolower($this->__table);
         }
         return $this->__table;
