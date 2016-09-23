@@ -929,7 +929,7 @@ class PDO_DataObject
         }
         $this->N = 0;
         $query_before = $this->_query;
-        $this->_build_condition($this->table()) ;
+        $this->_build_condition($this->tableColumns()) ;
         
        
         $DB = $this->PDO();
@@ -1768,7 +1768,7 @@ class PDO_DataObject
         
         $PDO = $this->PDO();;
          
-        $items = $this->table();
+        $items = $this->tableColumns();
             
         if (!$items) {
             return $this->raiseError("insert:No table definition for {$this->tableName()}",
@@ -1988,7 +1988,7 @@ class PDO_DataObject
         
         $original_query =  $this->_query;
         
-        $items = $this->table();
+        $items = $this->tableColumns();
         
         // only apply update against sequence key if it is set?????
         
@@ -2185,7 +2185,7 @@ class PDO_DataObject
             $keys = $this->keys();
             $this->_query = array(); // as it's probably unset!
             $this->_query['condition'] = ''; // default behaviour not to use where condition
-            $this->_build_condition($this->table(),$keys);
+            $this->_build_condition($this->tableColumns(),$keys);
             
             $this->raiseError("Could not find primary key to build DELETE query",
                               self::ERROR_INVALID_ARGS);
@@ -2718,7 +2718,7 @@ class PDO_DataObject
      * @param  array key=>type array
      * @return array (associative)
      */
-    function table()
+    function tableColumns()
     {
         
         // for temporary storage of database fields..
@@ -2839,7 +2839,7 @@ class PDO_DataObject
         }
  
 
-        $table =  $this->table();
+        $table =  $this->tableColumns();
        
         $dbtype    = $_DB_DATAOBJECT['CONNECTIONS'][$this->_database_dsn_md5]->dsn['phptype'];
         
@@ -4001,7 +4001,7 @@ class PDO_DataObject
         $this->databaseStructure();
         $dbstructure = $_DB_DATAOBJECT['INI'][$this->_database];
         //print_r($map);
-        $tabdef = $this->table();
+        $tabdef = $this->tableColumns();
          
         // we need this as normally it's only cleared by an empty selectAs call.
        
@@ -4223,7 +4223,7 @@ class PDO_DataObject
     {
         global $_DB_DATAOBJECT;
         $keys  = $this->keys();
-        $items = $this->table();
+        $items = $this->tableColumns();
             
      
         if (!$items) {
@@ -4332,8 +4332,8 @@ class PDO_DataObject
         // need to look at this... -- 
         
         $ar = ($rf !== false) ?
-            (($hideEmpty === 0) ? $rf : array_merge($rf, $this->table())) :
-            $this->table();
+            (($hideEmpty === 0) ? $rf : array_merge($rf, $this->tableColumns())) :
+            $this->tableColumns();
 
         foreach($ar as $k=>$v) {
              
@@ -4391,7 +4391,7 @@ class PDO_DataObject
     {
         global $_DB_DATAOBJECT;
         require_once 'Validate.php';
-        $table = $this->table();
+        $table = $this->tableColumns();
         $ret   = array();
         $seq   = $this->sequenceKey();
         $options = $_DB_DATAOBJECT['CONFIG'];
@@ -4510,7 +4510,7 @@ class PDO_DataObject
     {
         global $_DB_DATAOBJECT;
         $options = $_DB_DATAOBJECT['CONFIG'];
-        $cols = $this->table();
+        $cols = $this->tableColumns();
         // dont know anything about this col..
         if (!isset($cols[$col]) || is_a($value, 'DB_DataObject_Cast')) {
             $this->$col = $value;
@@ -4614,7 +4614,7 @@ class PDO_DataObject
         if (is_null($format)) {
             return $this->$col;
         }
-        $cols = $this->table();
+        $cols = $this->tableColumns();
         switch (true) {
             case (($cols[$col] & DB_DATAOBJECT_DATE) &&  ($cols[$col] & DB_DATAOBJECT_TIME)):
                 if (!$this->$col) {
