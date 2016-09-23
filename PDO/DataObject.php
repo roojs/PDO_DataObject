@@ -2286,7 +2286,7 @@ class PDO_DataObject
         $where = $this->_query['condition'];
 
         if (!$whereAddOnly && $items)  {
-            $where = $t->_build_condition($items);
+            $where = $t->whereToString($items);
         }
         $keys = $this->keys();
 
