@@ -2185,7 +2185,7 @@ class PDO_DataObject
         
         $extra_cond = ' ' . (isset($this->_query['order_by']) ? $this->_query['order_by'] : ''); 
         
-        $where = !empty($this->_query) && !empty($this->_query['condition'])
+        $where = !empty($this->_query) && !empty($this->_query['condition']) ?
             $this->_query['condition'] : '';
         
         if (!$useWhere) {
@@ -2196,17 +2196,13 @@ class PDO_DataObject
             
             $where = $this->whereToString($this->tableColumns(),$keys);
             $this->_query = $array;
-            if (!strlen($where)) {
-                return $this->raiseError("Could not find primary key to build DELETE query",
-                              self::ERROR_INVALID_ARGS);
-            }
             
             
             //$extra_cond = ''; // why????
         } 
         
         // don't delete without a condition
-        if (empty($this->_query) || empty($this->_query['condition'])) {
+        if (!strlen($where)) {
             return $this->raiseError("delete: No condition specifed for query", self::ERROR_INVALIDARGS);
         }
         
