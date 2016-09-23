@@ -122,7 +122,8 @@ class PDO_DataObject
                 //         eg.
                 //         mydb => /var/www/mysite/Myproejct/DataObject/mydb.ini
                 //              value can be an array of absolute paths, or PATH_SEPERATED
-                
+     
+    
         // class - factory + load derived classes
             'class_prefix' => 'DataObjects_',
                 // Prefix Mapping of table name to PHP Class
