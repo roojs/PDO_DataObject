@@ -2832,14 +2832,15 @@ class PDO_DataObject
         
         $keys = $this->keys();
         if (!$keys) {
-            return $_DB_DATAOBJECT['SEQUENCE'][$this->_database][$this->tableName()] 
+            return self::$sequence[$this->_database_nickname][$this->tableName()] 
                 = array(false,false,false);
         }
  
 
         $table =  $this->tableColumns();
        
-        $dbtype    = $_DB_DATAOBJECT['CONNECTIONS'][$this->_database_dsn_md5]->dsn['phptype'];
+        $dbtype = $pdo->getAttribute(PDO::ATTR_DRIVER_NAME);
+
         
         $usekey = $keys[0];
         
@@ -2847,7 +2848,7 @@ class PDO_DataObject
         
         $seqname = false;
         
-        if (!empty($_DB_DATAOBJECT['CONFIG']['sequence_'.$this->tableName()])) {
+        if (!empty(self::$config['sequence_'.$this->tableName()])) {
             $seqname = $_DB_DATAOBJECT['CONFIG']['sequence_'.$this->tableName()];
             if (strpos($seqname,':') !== false) {
                 list($usekey,$seqname) = explode(':',$seqname);
