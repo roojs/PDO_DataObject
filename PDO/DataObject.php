@@ -2300,7 +2300,7 @@ class PDO_DataObject
         $l = $t->result()->fetchAll(PDO::FETCH_COLUMN, 0)[0];
         
         if (self::$debug) {
-            $this->debug('Count returned '. $l[0] ,1);
+            $this->debug('Count returned '. $l ,1);
         }
         return (int) $l;
     }
