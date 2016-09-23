@@ -1866,6 +1866,7 @@ class PDO_DataObject
             }
             /* flag up string values - only at debug level... !!!??? */
             if (is_object($this->$k) || is_array($this->$k)) {
+                $this->raiseError("Trying to insert a row - found object used as a column variable", self::ERROR_INVALIDARGS);
                 $this->debug('ODD DATA: ' .$k . ' ' .  print_r($this->$k,true),'ERROR');
                 continue;
             }
