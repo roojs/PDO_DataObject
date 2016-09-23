@@ -162,13 +162,16 @@ e) PDO_DataObject class
   * orderBy()  DONE / NEED TESTING
   * groupBy()  DONE / NEED TESTING
   * having()  DONE / NEED TESTING
+  * insert() 
+      -- emulated sequence are not supported at present!!
+  * sequenceKey()
 
-
-  * condition building
-    - whereAdd  + where() -- chained version?
   * named arguments  / prepare???
 
   * query and modify methods.
+PDO_DataObject_Cast ( $DB == PDO object...)
+
+
 Tests:
   needs fake DB and PDO objects
   test both DB_DAtaObject and PDO_DataObject for compatibility
