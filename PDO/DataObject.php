@@ -1792,7 +1792,9 @@ class PDO_DataObject
 
         // big check for using sequences
         
-        
+        if ($useEmulated) { 
+            $this->raiseError("Emulated Sequences are not supported at present");
+        }
         
         // if we haven't set disable_null_strings to "full"
         $ignore_null = self::$config['disable_null_strings'] === false; // default...
@@ -1801,14 +1803,9 @@ class PDO_DataObject
         foreach($items as $k => $v) {
             
             // if we are using autoincrement - skip the column...
-            if ($key && ($k == $key)) {
-                if ($useNative) {
-                    continue;
-                }
-                if ($useEmulated) { 
-                    $this->raiseError("Emulated Sequences are not supported at present");
-                }
-                // otherwise allow setting of the key!?
+            if ($key && ($k == $key) && $useNative) {
+                continue;
+                
             }
         
              
