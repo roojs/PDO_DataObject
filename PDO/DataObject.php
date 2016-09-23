@@ -1924,8 +1924,8 @@ class PDO_DataObject
                     // $db->insert();
                     // $db->query('COMMIT');
                     $res = $PDO->query("SELECT @@IDENTITY");
-                    $res->fetchAll(PDO::FETCH_COLUMN, 0)[0]; // could throw error...
-                    $this->$key = $mssql_key;
+                    $this->$key = $res->fetchAll(PDO::FETCH_COLUMN, 0)[0]; // could throw error...
+                
                     break; 
                     
                 case 'pgsql':
@@ -2297,16 +2297,12 @@ class PDO_DataObject
             "SELECT count({$countWhat}) as $as
                 FROM $table {$t->_join} {$t->_query['condition']}"
             );
-        $this->_result;
-         
-        $result  = $_DB_DATAOBJECT['RESULTS'][$t->_DB_resultid];
-        $l = $result->fetchRow(DB_DATAOBJECT_FETCHMODE_ORDERED);
-        // free the results - essential on oracle.
-        $t->free();
-        if (!empty($_DB_DATAOBJECT['CONFIG']['debug'])) {
+        $l = $t->result()->fetchAll(PDO::FETCH_COLUMN, 0)[0];
+        
+        if (self::$debug) {
             $this->debug('Count returned '. $l[0] ,1);
         }
-        return (int) $l[0];
+        return (int) $l;
     }
 
     /**
