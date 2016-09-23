@@ -2949,12 +2949,14 @@ class PDO_DataObject
                 $dbtype = $DB->dsn["phptype"];
                 $value = $this->$k->toString($v,$DB);
                 
-                if ((strtolower($value) === 'null') && !($v & DB_DATAOBJECT_NOTNULL)) {
-                    $ret .= strlen($ret) ? ' AND ' : '';
+                $ret .= strlen($ret) ? ' AND ' : '';
+                if ((strtolower($value) === 'null') && !($v & self::NOTNULL)) {
+                    
                     $ret .= " $kSql IS NULL";
                     continue;
                 }
-                $this->whereAdd(" $kSql = $value");
+                
+                $ret .= " $kSql = $value";
                 continue;
             }
             
