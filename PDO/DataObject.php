@@ -931,7 +931,7 @@ class PDO_DataObject
         }
         $this->N = 0;
         $query_before = $this->_query;
-        $this->_build_condition($this->tableColumns()) ;
+        $where = $this->whereToString($this->tableColumns()) ;
         
        
         $DB = $this->PDO();
