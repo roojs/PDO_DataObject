@@ -2826,25 +2826,7 @@ class PDO_DataObject
 
  
     
- 
-    
-    /**
-     * backend wrapper for quoting, as MDB2 and DB do it differently...
-     *
-     * @access private
-     * @return string quoted
-     */
-    
-    function _quote($str) 
-    {
-        global $_DB_DATAOBJECT;
-        return (empty($_DB_DATAOBJECT['CONFIG']['db_driver']) || 
-                ($_DB_DATAOBJECT['CONFIG']['db_driver'] == 'DB'))
-            ? $_DB_DATAOBJECT['CONNECTIONS'][$this->_database_dsn_md5]->quoteSmart($str)
-            : $_DB_DATAOBJECT['CONNECTIONS'][$this->_database_dsn_md5]->quote($str);
-    }
-    
-    
+   
      
 
     /**
