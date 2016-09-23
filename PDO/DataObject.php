@@ -2811,10 +2811,11 @@ class PDO_DataObject
      */
     function sequenceKey()
     {
+        $dn = $this->_database_nickname;
+        $tn = $this->tableName();
         
-        
-        if (!isset(self::$sequence[$this->_database_nickname])) {
-            self::$sequence[$this->_database_nickname] = array();
+        if (!isset(self::$sequence[$dn])) {
+            self::$sequence[$dn] = array();
         }
 
         
@@ -2822,10 +2823,10 @@ class PDO_DataObject
         if (count($args)) {
             $args[1] = isset($args[1]) ? $args[1] : false;
             $args[2] = isset($args[2]) ? $args[2] : false;
-            self::$sequence[$this->_database_nickname][$this->tableName()] = $args;
+            self::$sequence[$dn][$tn] = $args;
         }
-        if (isset(self::$sequence[$this->_database_nickname][$this->tableName()])) {
-            return self::$sequence[$this->_database_nickname][$this->tableName()];
+        if (isset(self::$sequence[$dn][$tn])) {
+            return self::$sequence[$dn][$tn];
         }
         // end call setting (eg. $do->sequenceKeys(a,b,c); )
         
@@ -2834,7 +2835,7 @@ class PDO_DataObject
         
         $keys = $this->keys();
         if (!$keys) {
-            return self::$sequence[$this->_database_nickname][$this->tableName()] 
+            return self::$sequence[$dn][$tn] 
                 = array(false,false,false);
         }
  
@@ -2846,23 +2847,22 @@ class PDO_DataObject
         
         $usekey = $keys[0];
         
-        $dn = $this->_database_nickname;
-        $tn = $this->tableName();
+     
         $seqname = false;
         
        
         
         // if the key is not an integer - then it's not a sequence or native
         if (empty($table[$usekey]) || !($table[$usekey] & self::INT)) {
-                return self::$sequence[$this->_database_nickname][$this->tableName()] = array(false,false,false);
+                return self::$sequence[$dn][$tn] = array(false,false,false);
         }
          
-        $realkeys = self::$ini[$this->_database_nickname][$this->tableName()."__keys"];
+        $realkeys = self::$ini[$dn][$tn."__keys"];
         
          
         // multiple unique primary keys without a native sequence...
         if (($realkeys[$usekey] == 'K') && (count($keys) > 1)) {
-            return self::$sequence[$this->_database_nickname][$this->tableName()]  = array(false,false,$seqname);
+            return self::$sequence[$dn][$tn]  = array(false,false,$seqname);
         }
         // use native sequence keys...
         // technically postgres native here...
@@ -2873,21 +2873,21 @@ class PDO_DataObject
         if (    in_array($dbtype , array('pgsql')) &&
                 ($table[$usekey] & self::INT) && 
                 isset($realkeys[$usekey]) && strlen($realkeys[$usekey]) > 1) {
-            return self::$sequence[$this->_database_nickname][$this->tableName()] = array($usekey,true, $realkeys[$usekey]);
+            return self::$sequence[$dn][$tn] = array($usekey,true, $realkeys[$usekey]);
         }
         
         if (    in_array($dbtype , array('pgsql', 'mysql',  'mssql', 'ifx')) && 
                 ($table[$usekey] & self::INT) && 
                 isset($realkeys[$usekey]) && ($realkeys[$usekey] == 'N')
                 ) {
-            return self::$sequence[$this->_database_nickname][$this->tableName()] = array($usekey,true,$seqname);
+            return self::$sequence[$dn][$tn] = array($usekey,true,$seqname);
         }
         
         
         
          
         // I assume it's going to try and be a nextval DB sequence.. (not native)
-        return self::$sequence[$this->_database_nickname][$this->tableName()] = array($usekey,false,$seqname);
+        return self::$sequence[$dn][$tn] = array($usekey,false,$seqname);
     }
     
     
