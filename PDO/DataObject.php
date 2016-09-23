@@ -1764,7 +1764,7 @@ class PDO_DataObject
         
         $quoteIdentifiers  = self::$config['quote_identifiers'];
         
-        $DB = $this->PDO();;
+        $PDO = $this->PDO();;
          
         $items = $this->table();
             
@@ -1829,7 +1829,7 @@ class PDO_DataObject
             $leftq .= ($quoteIdentifiers ? ($this->quoteIdentifier($k) . ' ')  : "$k ");
             
             if (is_object($this->$k) && is_a($this->$k,'PDO_DataObject_Cast')) {
-                $value = $this->$k->toString($v,$DB);
+                $value = $this->$k->toString($v,$PDO);
                 $rightq .=  $value;
                 continue;
             }
@@ -1879,7 +1879,7 @@ class PDO_DataObject
         
         
         
-        $dbtype    = $DB->getAttribute(PDO::ATTR_DRIVER_NAME);
+        $dbtype    = $PDO->getAttribute(PDO::ATTR_DRIVER_NAME);
         
         
         // not sure why we let empty insert here.. - I guess to generate a blank row..
@@ -1910,11 +1910,9 @@ class PDO_DataObject
         if ($key && $useNative) {
             switch ($dbtype) {
                 case 'mysql':
-                case 'mysqli':
+                case 'mysqli': //??
                     $method = "{$dbtype}_insert_id";
-                    $this->$key = $method(
-                        $_DB_DATAOBJECT['CONNECTIONS'][$this->_database_dsn_md5]->connection
-                    );
+                    $this->$key = $PDO->lastInsertId();
                     break;
                 
                 case 'mssql':
@@ -1930,20 +1928,13 @@ class PDO_DataObject
                     
                 case 'pgsql':
                     if (!$seq) {
-                        $seq = $DB->getSequenceName(strtolower($this->tableName()));
+                        $this->raiseError("Could not determine Sequence name for table: " . $this->tableName(),
+                                          self::ERROR_INVALIDCONFIG);
                     }
-                    $db_driver = empty($options['db_driver']) ? 'DB' : $options['db_driver'];
-                    $method = ($db_driver  == 'DB') ? 'getOne' : 'queryOne';
-                    $pgsql_key = $DB->$method("SELECT currval('".$seq . "')"); 
-
-
-                    if (PEAR::isError($pgsql_key)) {
-                        $this->raiseError($pgsql_key);
-                        return false;
-                    }
-                    $this->$key = $pgsql_key;
+                    $this->$key = $PDO->lastInsertId($seq); // hopefully...
+                    
                     break;
-                
+                /*
                 case 'ifx':
                     $this->$key = array_shift (
                         ifx_fetch_row (
@@ -1956,7 +1947,7 @@ class PDO_DataObject
                         )
                     ); 
                     break;
-                
+                */
             }
                     
         }
