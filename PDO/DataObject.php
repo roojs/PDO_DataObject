@@ -2279,10 +2279,10 @@ class PDO_DataObject
         $keys = $this->keys();
 
         if (empty($keys[0]) && (!is_string($countWhat) || (strtoupper($countWhat) == 'DISTINCT'))) {
-            $this->raiseError(
+            return $this->raiseError(
                 "You cannot do run count without keys - use \$do->count('id'), or use \$do->count('distinct id')';", 
-                self::ERROR_INVALIDARGS,PEAR_ERROR_DIE);
-            return false;
+                self::ERROR_INVALIDARGS);
+
             
         }
         $table   = ($quoteIdentifiers ? $DB->quoteIdentifier($this->tableName()) : $this->tableName());
