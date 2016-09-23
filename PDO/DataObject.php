@@ -2945,7 +2945,7 @@ class PDO_DataObject
              
              
             
-            if (is_object($this->$k) && is_a($this->$k,'DB_DataObject_Cast')) {
+            if (is_object($this->$k) && is_a($this->$k,'PDO_DataObject_Cast')) {
                 $dbtype = $DB->dsn["phptype"];
                 $value = $this->$k->toString($v,$DB);
                 if (PEAR::isError($value)) {
