@@ -3317,13 +3317,14 @@ class PDO_DataObject
              
         }
            if (false === self::$links[$dn] ) {
-            $this->raiseError("Failed to load any links schema for database={$this->_database_nickname} from these files/locations" . json_encode($tried),
-                         self::ERROR_INVALIDCONFIG, self::ERROR_DIE
+            $this->raiseError(
+                "Failed to load any links schema for database={$this->_database_nickname} from these files/locations" . json_encode($tried),
+                self::ERROR_INVALIDCONFIG 
             );
         }
         
         
-        if (!empty($_DB_DATAOBJECT['CONFIG']['portability']) && $_DB_DATAOBJECT['CONFIG']['portability'] & 1) {
+        if (self::$config['portability'] & self::PORTABILITY_LOWERCASE) {
             foreach(self::$links[$dn] as $k=>$v) {
                 
                 $nk = strtolower($k);
