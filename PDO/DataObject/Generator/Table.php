@@ -269,7 +269,7 @@ class PDO_DataObject_Generator_Table {
             
             
             $schema =  "\n" 
-                    . "    function table()\n" 
+                    . "    function tableColumns()\n" 
                     . "    {\n" 
                     . "         return array(\n"
                     . "             ". implode(",\n             ", $tdef) . "\n"
