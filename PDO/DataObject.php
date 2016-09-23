@@ -2185,6 +2185,9 @@ class PDO_DataObject
         
         $extra_cond = ' ' . (isset($this->_query['order_by']) ? $this->_query['order_by'] : ''); 
         
+        $where = !empty($this->_query) && !empty($this->_query['condition'])
+            $this->_query['condition'] : '';
+        
         if (!$useWhere) {
 
             $keys = $this->keys();
