@@ -2780,18 +2780,17 @@ class PDO_DataObject
             return $this->_database_keys;
         }
         
-        global $_DB_DATAOBJECT;
-        if (!isset($_DB_DATAOBJECT['CONNECTIONS'][$this->_database_dsn_md5])) {
-            $this->_connect();
+         
+        if (isset(self::$ini[$this->_database_nickname][$this->tableName() . '__keys'])) {
+            return self::$ini[$this->_database_nickname][$this->tableName() . '__keys'];
         }
-        if (isset($_DB_DATAOBJECT['INI'][$this->_database][$this->tableName()."__keys"])) {
-            return array_keys($_DB_DATAOBJECT['INI'][$this->_database][$this->tableName()."__keys"]);
-        }
+        
         $this->databaseStructure();
         
-        if (isset($_DB_DATAOBJECT['INI'][$this->_database][$this->tableName()."__keys"])) {
-            return array_keys($_DB_DATAOBJECT['INI'][$this->_database][$this->tableName()."__keys"]);
+        if (isset(self::$ini[$this->_database_nickname][$this->tableName() . '__keys'])) {
+            return self::$ini[$this->_database_nickname][$this->tableName() . '__keys'];
         }
+        
         return array();
     }
     /**
