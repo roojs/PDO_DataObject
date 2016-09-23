@@ -167,6 +167,8 @@ e) PDO_DataObject class
   * update() DONE / NEED TESTING
   * delete() DONE / NEED TESTING
 
+  * count()
+
 
   * sequenceKey()
   * _build_condition ???
