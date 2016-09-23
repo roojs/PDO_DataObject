@@ -1786,7 +1786,7 @@ class PDO_DataObject
         $useNative = isset($seqKeys[1]) ? $seqKeys[1] : false;
         $seq       = isset($seqKeys[2]) ? $seqKeys[2] : false;
         
-        
+        $useEmulated = !$useNative; /// make it clear..
          
         // nativeSequences or Sequences..     
 
@@ -1900,7 +1900,7 @@ class PDO_DataObject
         
         
         if ($leftq || $useNative) {
-            $table = ($quoteIdentifiers ? $DB->quoteIdentifier($this->tableName())    : $this->tableName());
+            $table = ($quoteIdentifiers ? $this->quoteIdentifier($this->tableName())    : $this->tableName());
             
             
             if (($dbtype == 'pgsql') && empty($leftq)) {
