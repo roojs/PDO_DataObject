@@ -2990,6 +2990,7 @@ class PDO_DataObject
             /* this is probably an error condition! */
             $ret .= "($kSql = ".intval($this->$k) .')';
         }
+        return $ret;
     }
 
     
