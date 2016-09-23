@@ -2016,7 +2016,7 @@ class PDO_DataObject
         $options = $_DB_DATAOBJECT['CONFIG'];
         
         
-        $ignore_null = $options['disable_null_strings'] === false;
+        $ignore_null = self::$config['disable_null_strings'] === false;
                     
       
         foreach($items as $k => $v) {
@@ -2041,7 +2041,7 @@ class PDO_DataObject
             
              // dont insert data into mysql timestamps 
             // use query() if you really want to do this!!!!
-            if ($v & DB_DATAOBJECT_MYSQLTIMESTAMP) {
+            if ($v & self::MYSQLTIMESTAMP) {
                 continue;
             }
             
