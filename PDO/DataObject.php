@@ -1886,7 +1886,7 @@ class PDO_DataObject
         
         
         if (!$leftq && !$useNative) {
-            $this->raiseError("insert: No Data specifed for query", self::ERROR_NODATA);
+            return $this->raiseError("insert: No Data specifed for query", self::ERROR_NODATA);
         }
         
         $table = ($quoteIdentifiers ? $this->quoteIdentifier($this->tableName())    : $this->tableName());
