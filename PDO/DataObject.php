@@ -1936,10 +1936,7 @@ class PDO_DataObject
             }
                     
         }
-
-        if (isset($_DB_DATAOBJECT['CACHE'][strtolower(get_class($this))])) {
-            $this->_clear_cache();
-        }
+ 
         if ($key) {
             return $this->$key;
         }
