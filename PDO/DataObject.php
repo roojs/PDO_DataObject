@@ -2503,7 +2503,7 @@ class PDO_DataObject
      * @return Array(databse Structure)|PEAR_Error|false     if no file exists
      *              or the array(tablename => array(column_name=>type)) if called with 1 argument.. (databasename)
      */
-    function databaseStructure($database_nickname = false, $inidata = false, $linksdata=false, $overwrite = false)
+    final function databaseStructure($database_nickname = false, $inidata = false, $linksdata=false, $overwrite = false)
     {
 
         
@@ -2648,7 +2648,8 @@ class PDO_DataObject
      * create an instance of the generator.
      * class can be set by using proxy = {classname}::
      * We do not really care if you have implemented it correctly....????
-     * 
+     *
+     * @return PDO_DataObject_Genertor
      */
     
     function generator()
