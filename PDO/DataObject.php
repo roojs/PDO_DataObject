@@ -2106,9 +2106,9 @@ class PDO_DataObject
         
         // prevent wiping out of data!
         if (empty($this->_query['condition'])) {
-            return  $this->raiseError("update: global table update not available
-                    do \$do->whereAdd('1=1'); if you really want to do that.
-                ", self::ERROR_INVALIDARGS);
+            return  $this->raiseError(
+                "update: global table update not available do \$do->whereAdd('1=1'); if you really want to do that.",
+                self::ERROR_INVALIDARGS);
             
         }
         
