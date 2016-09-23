@@ -2184,6 +2184,10 @@ class PDO_DataObject
             $this->_query = array(); // as it's probably unset!
             $this->_query['condition'] = ''; // default behaviour not to use where condition
             $this->_build_condition($this->table(),$keys);
+            
+            $this->raiseError("Could not find primary key to build DELETE query",
+                              self::ERROR_INVALID_ARGS)
+            
             // if primary keys are not set then use data from rest of object.
             if (!$this->_query['condition']) {
                 $this->_build_condition($this->table(),array(),$keys);
