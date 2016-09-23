@@ -3245,8 +3245,9 @@ class PDO_DataObject
        
         
         // alias for shorter code..
-        $lcfg  = &$_DB_DATAOBJECT['LINKS'];
-        $cfg   =  $_DB_DATAOBJECT['CONFIG'];
+        $dn = $this->_database_nickname;
+        $tn = $this->tableName();
+        
 
         if ($args = func_get_args()) {
             // an associative array was specified, that updates the current
@@ -3258,8 +3259,8 @@ class PDO_DataObject
             
         }
         // loaded and available.
-        if (isset($lcfg[$this->_database][$this->tableName()])) {
-            return $lcfg[$this->_database][$this->tableName()];
+        if (isset(self::$links[$this->_database][$this->tableName()])) {
+            return self::$links[$this->_database][$this->tableName()];
         }
 
         // loaded 
