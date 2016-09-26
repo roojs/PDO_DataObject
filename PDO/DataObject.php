@@ -4417,11 +4417,12 @@ class PDO_DataObject
                     $this->$col = date('Y-m-d',$value);
                     return true;
                 }
-                 
+                
+                
                 // try date!!!!
-                require_once 'Date.php';
-                $x = new Date($value);
-                $this->$col = $x->format("%Y-%m-%d");
+                
+                $x = new DateTime($value);
+                $this->$col = $x->format("Y-m-d");
                 return true;
             
             case ($cols[$col] & self::TIME):
