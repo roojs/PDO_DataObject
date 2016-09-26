@@ -81,7 +81,7 @@ class PDO_DataObject_Validate
             
             // if not null - and it's not set.......
             
-            if ($val & DB_DATAOBJECT_NOTNULL && DB_DataObject::_is_null($this, $key)) {
+            if ($val & PDO_DataObject::NOTNULL && PDO_DataObject::_is_null($this, $key)) {
                 // dont check empty sequence key values..
                 if (($key == $seq[0]) && ($seq[1] == true)) {
                     continue;
@@ -91,9 +91,9 @@ class PDO_DataObject_Validate
             }
             
             
-             if (DB_DataObject::_is_null($this, $key)) {
-                if ($val & DB_DATAOBJECT_NOTNULL) {
-                    $this->debug("'null' field used for '$key', but it is defined as NOT NULL", 'VALIDATION', 4);
+             if (PDO_DataObject::_is_null($this, $key)) {
+                if ($val & PDO_DataObject::NOTNULL) {
+                    $this->do->debug("'null' field used for '$key', but it is defined as NOT NULL", 'VALIDATION', 4);
                     $ret[$key] = false;
                     continue;
                 }
