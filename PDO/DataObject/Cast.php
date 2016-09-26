@@ -406,7 +406,7 @@ class DB_DataObject_Cast {
                  
    
             default:
-                return PEAR::raiseError("DB_DataObject_Cast cant handle blobs for Database:{$db->dsn['phptype']} Yet");
+                return self::raise("DB_DataObject_Cast cant handle blobs for Database:{$db->dsn['phptype']} Yet");
         }
     
     }
@@ -457,7 +457,7 @@ class DB_DataObject_Cast {
                 
 
             default:
-                return PEAR::raiseError("DB_DataObject_Cast cant handle blobs for Database:{$db->dsn['phptype']} Yet");
+                return self::raise("DB_DataObject_Cast cant handle blobs for Database:{$db->dsn['phptype']} Yet");
         }
     
     }
@@ -483,7 +483,7 @@ class DB_DataObject_Cast {
         // 
         
         if (($to !== false) && !($to & DB_DATAOBJECT_DATE)) {
-            return PEAR::raiseError('Invalid Cast from a DB_DataObject_Cast::string to something other than a date!'.
+            return self::raise('Invalid Cast from a DB_DataObject_Cast::string to something other than a date!'.
                 ' (why not just use native features)');
         }
         return "'{$this->year}-{$this->month}-{$this->day}'";
@@ -510,7 +510,7 @@ class DB_DataObject_Cast {
         // perhaps we should support TEXT fields???
         if (($to !== false) && 
             !($to & (DB_DATAOBJECT_DATE + DB_DATAOBJECT_TIME))) {
-            return PEAR::raiseError('Invalid Cast from a ' .
+            return self::raise('Invalid Cast from a ' .
                 ' DB_DataObject_Cast::dateTime to something other than a datetime!' .
                 ' (try using native features)');
         }
@@ -537,7 +537,7 @@ class DB_DataObject_Cast {
         // in blobs can only be cast to blobs.!
         // perhaps we should support TEXT fields???
         if (($to !== false) && !($to & DB_DATAOBJECT_TIME)) {
-            return PEAR::raiseError('Invalid Cast from a' . 
+            return self::raise('Invalid Cast from a' . 
                 ' DB_DataObject_Cast::time to something other than a time!'.
                 ' (try using native features)');
         }
