@@ -377,7 +377,7 @@ class DB_DataObject_Cast {
         // perhaps we should support TEXT fields???
         
         if (!($to & DB_DATAOBJECT_BLOB)) {
-            return PEAR::raiseError('Invalid Cast from a DB_DataObject_Cast::blob to something other than a blob!');
+            return self::raise('Invalid Cast from a DB_DataObject_Cast::blob to something other than a blob!');
         }
         
         switch ($db->dsn["phptype"]) {
@@ -569,7 +569,7 @@ class DB_DataObject_Cast {
      * @access public
      * @return error object
      */
-    function raise($message, $type = 0, $previous_exception = null)
+    static function raise($message, $type = 0, $previous_exception = null)
     {
         class_exists('PDO_DataObject') ? '' :
             require_once 'PDO/DataObject.php';
