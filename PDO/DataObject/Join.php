@@ -420,7 +420,7 @@ class PDO_DataObject_Join {
                 }
                 
                 if ($v & self::STR) {
-                    $obj->whereAdd("{$joinAs}.{$kSql} = " . $PDO->quote((string) (
+                    $obj->where("{$joinAs}.{$kSql} = " . $PDO->quote((string) (
                             ($v & self::BOOL) ? 
                                 // this is thanks to the braindead idea of postgres to 
                                 // use t/f for boolean.
@@ -430,7 +430,7 @@ class PDO_DataObject_Join {
                     continue;
                 }
                 if (is_numeric($obj->$k)) {
-                    $obj->whereAdd("{$joinAs}.{$kSql} = {$obj->$k}");
+                    $obj->where("{$joinAs}.{$kSql} = {$obj->$k}");
                     continue;
                 }
                             
