@@ -211,7 +211,8 @@ class PDO_DataObject_Join {
         $joinCol      = isset($options['joinCol'])  ? $options['joinCol']  : false;
         $joinAs       = isset($options['joinAs'])   ? $options['joinAs']   : false;
         $joinType     = isset($options['joinType']) ? $options['joinType'] : 'INNER';
-        $joinType     = isset($options['ofield']) ? $options['ofield']     : false;
+        $ofield     = isset($options['ofield']) ? $options['ofield']     : false;
+        $tfield     = isset($options['tfield']) ? $options['tfield']     : false;
         
           // support for array as first argument 
         // this assumes that you dont have a links.ini for the specified table.
@@ -297,7 +298,7 @@ class PDO_DataObject_Join {
                         $ar[1] = explode(',', $ar[1]);
                     }
                  
-                    if ($ar[0] != $this->tableName()) {
+                    if ($ar[0] != $this->do->tableName()) {
                         continue;
                     }
                     
