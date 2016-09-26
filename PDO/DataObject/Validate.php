@@ -20,12 +20,16 @@
  * @version    CVS: $Id: Cast.php 287158 2009-08-12 13:58:31Z alan_k $
  * @link       http://pear.php.net/package/DB_DataObject
  */
+
+ 
 class PDO_DataObject_Validate
 {
     
+    // the dataObject being validated..
     private $do;
+      
     /**
-     *
+     * Constructor
      * @param PDO_DataObject $dataobject The object to validate.
      *
      */
