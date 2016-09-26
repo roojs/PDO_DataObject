@@ -4430,13 +4430,13 @@ class PDO_DataObject
                 if (!$value) {
                     $this->$col = '';
                 }
-                try {
+                //try {
                     // should we sliently fail to update here???
                     $x = new DateTime($value);
                     $this->$col = $x->format('H:i:s');
-                } catch(Exception $e) {
+                //} catch(Exception $e) {
                     return false;
-                }
+                //}
                 
                 return true;
             
