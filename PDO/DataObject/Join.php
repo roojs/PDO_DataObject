@@ -206,9 +206,10 @@ class PDO_DataObject_Join {
         // and it doesnt exist as am extended dataobject!! - experimental.
         
         
-        if (!is_object($obj) || !is_a($obj,'PDO_DataObject')) {
-            return $this->raise("joinAdd: called without an object", self::ERROR_NODATA);
+        if (!is_a($obj,'PDO_DataObject')) {
+            return $this->do->raise("joinAdd: called without an object", self::ERROR_INVALIDARGS);
         }
+        
         /*  make sure $this->_database is set.  */
         $this->_connect();
         $DB = $_DB_DATAOBJECT['CONNECTIONS'][$this->_database_dsn_md5];
