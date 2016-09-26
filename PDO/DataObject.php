@@ -157,7 +157,7 @@ class PDO_DataObject
             'disable_null_strings' => false,
                 // DataObjects will convert the text value 'null' to NULL when building queries
                 // this may cause problems! Setting to true will turn off this feature.
-                // you can use DB_DataObject_Cast::SQL('NULL'); in where you have to turn this off.
+                // you can use PDO_DataObject_Cast::SQL('NULL'); in where you have to turn this off.
 		 
                 // can also be set to 'full' however - this may delete data quietly if properties are 
                 // not fetched and are set *** Highly recommended not to use this..
@@ -1159,14 +1159,14 @@ class PDO_DataObject
      *
      * A) ONE COLUMN ARRAY - Array of values (eg. a list of 'id')
      *
-     * $x = DB_DataObject::factory('mytable');
+     * $x = PDO_DataObject::factory('mytable');
      * $x->whereAdd('something = 1')
      * $ar = $x->fetchAll('id');
      * -- returns array(1,2,3,4,5)
      *
      * B) ONE COLUMN ARRAY - Fetch the first column (1st argument = true)
      *
-     * $x = DB_DataObject::factory('mytable');
+     * $x = PDO_DataObject::factory('mytable');
      * $x->selectAdd('id')
      * $x->whereAdd('something = 1')
      * $ar = $x->fetchAll(true);
@@ -1174,7 +1174,7 @@ class PDO_DataObject
     
      * C) ONE COLUMN ARRAY - Array of values (using selectAdd)
      *
-     * $x = DB_DataObject::factory('mytable');
+     * $x = PDO_DataObject::factory('mytable');
      * $x->whereAdd('something = 1');
      * $x->selectAdd();
      * $x->selectAdd('distinct(group_id) as group_id');
@@ -1185,26 +1185,26 @@ class PDO_DataObject
      * 
      * D) ASSOCIATIVE ARRAY - A key=>value associative array
      *
-     * $x = DB_DataObject::factory('mytable');
+     * $x = PDO_DataObject::factory('mytable');
      * $x->whereAdd('something = 1')
      * $ar = $x->fetchAll('id','name');
      * -- returns array(1=>'fred',2=>'blogs',3=> .......
      *
      * 
      * E) array of objects -- NO ARGUMENTS
-     * $x = DB_DataObject::factory('mytable');
+     * $x = PDO_DataObject::factory('mytable');
      * $x->whereAdd('something = 1');
      * $ar = $x->fetchAll();
      
      
      * E) array of associative arrays - No child dataobjects created... fetchAllArray()
-     * $x = DB_DataObject::factory('mytable');
+     * $x = PDO_DataObject::factory('mytable');
      * $x->whereAdd('something = 1');
      * $ar = $x->fetchAll(false,false, true);
      *  returns [ { a=>1 }, {a=>2}, .... ]
      *
      * F) array of associative arrays call by method...
-     * $x = DB_DataObject::factory('mytable');
+     * $x = PDO_DataObject::factory('mytable');
      * $x->whereAdd('something = 1');
      * $ar = $x->fetchAll(false,false,'toArray');
      *
@@ -1588,8 +1588,8 @@ class PDO_DataObject
      * unionAdd - adds another dataobject to this, building a unioned query.
      *
      * usage:  
-     * $doTable1 = DB_DataObject::factory("table1");
-     * $doTable2 = DB_DataObject::factory("table2");
+     * $doTable1 = PDO_DataObject::factory("table1");
+     * $doTable2 = PDO_DataObject::factory("table2");
      * 
      * $doTable1->selectAdd();
      * $doTable1->selectAdd("col1,col2");
@@ -1627,8 +1627,8 @@ class PDO_DataObject
      * (Chainable)
      * 
      * usage:  
-     * $doTable1 = DB_DataObject::factory("table1");
-     * $doTable2 = DB_DataObject::factory("table2");
+     * $doTable1 = PDO_DataObject::factory("table1");
+     * $doTable2 = PDO_DataObject::factory("table2");
      * 
      * $doTable1->selectAdd();
      * $doTable1->selectAdd("col1,col2");
@@ -2036,7 +2036,7 @@ class PDO_DataObject
      *
      * for example
      *
-     * $object = DB_DataObject::factory('mytable');
+     * $object = PDO_DataObject::factory('mytable');
      * $object->get("ID",234);
      * $object->email="testing@test.com";
      * if(!$object->update())
@@ -2051,7 +2051,7 @@ class PDO_DataObject
      * } // otherwise an error...
      *
      * performing global updates:
-     * $object = DB_DataObject::factory('mytable');
+     * $object = PDO_DataObject::factory('mytable');
      * $object->status = "dead";
      * $object->where('age > 150')
      *      ->update(PDO_DataObject::WHEREADD_ONLY);
@@ -2564,18 +2564,18 @@ class PDO_DataObject
      *
      * usage :
      * 1 argument - forces generator run..
-     * DB_DataObject::databaseStructure(  'databasename')
+     * PDO_DataObject::databaseStructure(  'databasename')
      *
      * 2 argument - just returns the database structure - if any.
-     * DB_DataObject::databaseStructure(  'databasename', false)
+     * PDO_DataObject::databaseStructure(  'databasename', false)
      * 
      * 
      * 2 arguments:
-     * DB_DataObject::databaseStructure(  'databasename', parse_ini_file('mydb.ini',true))
+     * PDO_DataObject::databaseStructure(  'databasename', parse_ini_file('mydb.ini',true))
      *  - set's the structure..
      *  
      * 3 arguments:
-     * DB_DataObject::databaseStructure(  'databasename',
+     * PDO_DataObject::databaseStructure(  'databasename',
      *                                    parse_ini_file('mydb.ini',true), 
      *                                    parse_ini_file('mydb.link.ini',true)); 
     
@@ -3053,7 +3053,7 @@ class PDO_DataObject
                 continue;
             }
             
-            if (!($v & self::NOTNULL) && DB_DataObject::_is_null($this,$k)) {
+            if (!($v & self::NOTNULL) && self::_is_null($this,$k)) {
                 $ret .= "($kSql  IS NULL)";
                 continue;
             }
@@ -3091,7 +3091,7 @@ class PDO_DataObject
      * usage: $do = PDO_DataObject::factory('person')
      * WARNING - this may emit a include error if the file does not exist..
      * use @ to silence it (if you are sure it is acceptable)
-     * eg. $do = @DB_DataObject::factory('person')
+     * eg. $do = PDO_DataObject::factory('person')
      *
      * table name can bedatabasename/table
      * - and allow modular dataobjects to be written..
@@ -3318,7 +3318,7 @@ class PDO_DataObject
     *           empty array - if there is a links.ini file, but no links on this table
     *           false       - if no links.ini exists for this database (hence try auto_links).
     * @access   public
-    * @see      DB_DataObject::getLinks(), DB_DataObject::getLink()
+    * @see      PDO_DataObject::applyLinks(), PDO_DataObject::link()
     */
     
     function links()
@@ -3635,10 +3635,10 @@ class PDO_DataObject
             } else {
                 list($toTable,$ofield) = explode(':',$obj[1]);
             
-                $obj = is_string($toTable) ? DB_DataObject::factory($toTable) : $toTable;
+                $obj = is_string($toTable) ? self::factory($toTable) : $toTable;
             
                 if (!$obj || !is_object($obj) || is_a($obj,'PEAR_Error')) {
-                    $obj = new DB_DataObject;
+                    $obj = new PDO_DataObject();
                     $obj->__table = $toTable;
                 }
                 $obj->_connect();
@@ -3648,7 +3648,7 @@ class PDO_DataObject
             $items = array();
         }
         
-        if (!is_object($obj) || !is_a($obj,'DB_DataObject')) {
+        if (!is_object($obj) || !is_a($obj,'PDO_DataObject')) {
             return $this->raise("joinAdd: called without an object", self::ERROR_NODATA);
         }
         /*  make sure $this->_database is set.  */
@@ -3838,7 +3838,7 @@ class PDO_DataObject
                 
                 $kSql = ($quoteIdentifiers ? $DB->quoteIdentifier($k) : $k);
                 
-                if (DB_DataObject::_is_null($obj,$k)) {
+                if (self::_is_null($obj,$k)) {
                 	$obj->whereAdd("{$joinAs}.{$kSql} IS NULL");
                 	continue;
                 }
@@ -3858,7 +3858,7 @@ class PDO_DataObject
                     continue;
                 }
                             
-                if (is_object($obj->$k) && is_a($obj->$k,'DB_DataObject_Cast')) {
+                if (is_object($obj->$k) && is_a($obj->$k,'PDO_DataObject_Cast')) {
                     $value = $obj->$k->toString($v,$DB);
                     if (PEAR::isError($value)) {
                         $this->raise($value->getMessage() ,self::ERROR_INVALIDARG);
@@ -3979,17 +3979,17 @@ class PDO_DataObject
     /**
      * autoJoin - using the links.ini file, it builds a query with all the joins 
      * usage: 
-     * $x = DB_DataObject::factory('mytable');
+     * $x = PDO_DataObject::factory('mytable');
      * $x->autoJoin();
      * $x->get(123); 
      *   will result in all of the joined data being added to the fetched object..
      * 
-     * $x = DB_DataObject::factory('mytable');
+     * $x = PDO_DataObject::factory('mytable');
      * $x->autoJoin();
      * $ar = $x->fetchAll();
      *   will result in an array containing all the data from the table, and any joined tables..
      * 
-     * $x = DB_DataObject::factory('mytable');
+     * $x = PDO_DataObject::factory('mytable');
      * $jdata = $x->autoJoin();
      * $x->selectAdd(); //reset..
      * foreach($_REQUEST['requested_cols'] as $c) {
@@ -4108,8 +4108,8 @@ class PDO_DataObject
                 continue;
             }
             
-            $xx = DB_DataObject::factory($tab);
-            if (!is_object($xx) || !is_a($xx, 'DB_DataObject')) {
+            $xx = PDO_DataObject::factory($tab);
+            if (!is_object($xx) || !is_a($xx, 'PDO_DataObject')) {
                 continue;
             }
             // skip columns that are excluded.
@@ -4204,11 +4204,11 @@ class PDO_DataObject
     }
     
     /**
-     * Factory method for calling DB_DataObject_Cast
+     * Factory method for calling PDO_DataObject_Cast
      *
-     * if used with 1 argument DB_DataObject_Cast::sql($value) is called
+     * if used with 1 argument PDO_DataObject_Cast::sql($value) is called
      * 
-     * if used with 2 arguments DB_DataObject_Cast::$value($callvalue) is called
+     * if used with 2 arguments PDO_DataObject_Cast::$value($callvalue) is called
      * valid first arguments are: blob, string, date, sql
      * 
      * eg. $member->updated = $member->sqlValue('NOW()');
@@ -4363,8 +4363,7 @@ class PDO_DataObject
     * @param   mixed        value to assign
     *
     * @return   true| false     (False on error)
-    * @access   public 
-    * @see      DB_DataObject::_call
+    * @access   public
     */
   
     
@@ -4373,7 +4372,7 @@ class PDO_DataObject
         
         $cols = $this->tableColumns();
         // dont know anything about this col..
-        if (!isset($cols[$col]) || is_a($value, 'DB_DataObject_Cast')) {
+        if (!isset($cols[$col]) || is_a($value, 'PDO_DataObject_Cast')) {
             $this->$col = $value;
             return true;
         }
@@ -4385,7 +4384,7 @@ class PDO_DataObject
                 return true;
                 
             // fail on setting null on a not null field..
-            case (($cols[$col] & self::NOTNULL) && DB_DataObject::_is_null($value,false)):
+            case (($cols[$col] & self::NOTNULL) && self::_is_null($value,false)):
 
                 return false;
         
@@ -4535,7 +4534,6 @@ class PDO_DataObject
     *
     * @return   true     Description
     * @access   public 
-    * @see      DB_DataObject::_call(),strftime(),Date::format()
     */
     function formatValue($col,$format = null) 
     {
@@ -4617,7 +4615,7 @@ class PDO_DataObject
     /**
      * Debugger. - use this in your extended classes to output debugging information.
      *
-     * Uses DB_DataObject::DebugLevel(x) to turn it on
+     * Uses PDO_DataObject::DebugLevel(x) to turn it on
      *
      *eg. logging into apache error.log 
      *
@@ -4663,7 +4661,7 @@ class PDO_DataObject
 
     /**
      * sets and returns debug level
-     * eg. DB_DataObject::debugLevel(4);
+     * eg. PDO_DataObject::debugLevel(4);
      * without arguments it just returns the existing debug level
      * It's an alias for PDO_DataObject::config('debug', $value);
      *
