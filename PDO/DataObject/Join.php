@@ -210,16 +210,13 @@ class PDO_DataObject_Join {
             return $this->do->raise("joinAdd: called without an object", self::ERROR_INVALIDARGS);
         }
         
-        /*  make sure $this->_database is set.  */
-        $this->_connect();
-        $DB = $_DB_DATAOBJECT['CONNECTIONS'][$this->_database_dsn_md5];
-       
-
         /// CHANGED 26 JUN 2009 - we prefer links from our local table over the remote one.
         
         /* otherwise see if there are any links from this table to the obj. */
         //print_r($this->links());
-        if (($ofield === false) && ($links = $this->links())) {
+        
+        
+        if (($ofield === false) && ($links = $this->do->links())) {
             // this enables for support for arrays of links in ini file.
             // link contains this_column[] =  linked_table:linked_column
             // or standard way.
