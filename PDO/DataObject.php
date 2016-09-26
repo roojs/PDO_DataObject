@@ -4373,7 +4373,7 @@ class PDO_DataObject
         
         $cols = $this->tableColumns();
         // dont know anything about this col..
-        if (is_a($value, 'DB_DataObject_Cast')) {
+        if (!isset($cols[$col]) || is_a($value, 'DB_DataObject_Cast')) {
             $this->$col = $value;
             return true;
         }
