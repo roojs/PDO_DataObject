@@ -406,6 +406,8 @@ class PDO_DataObject_Join {
             
             $ignore_null = $options['disable_null_strings'] === false;
             
+            $obj = clone($obj);
+            
 
             foreach($items as $k => $v) {
                 if (!isset($obj->$k) && $ignore_null) {
