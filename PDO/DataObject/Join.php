@@ -357,6 +357,14 @@ class PDO_DataObject_Join {
         
         
         $dbPrefix  = '';
+        $my_pdo = $this->do->PDO();
+        $obj_pdo = $obj->PDO();
+        
+        $my_db_name = $my_pdo->dsn_ar['database_name'];
+        $obj_db_name = $obj_pdo->dsn_ar['database_name'];
+        
+        
+        
         if (strlen($obj->_database) && in_array($DB->dsn['phptype'],array('mysql','mysqli'))) {
             $dbPrefix = ($quoteIdentifiers
                          ? $DB->quoteIdentifier($obj->_database)
