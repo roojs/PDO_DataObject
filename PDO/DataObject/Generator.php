@@ -181,8 +181,8 @@ class PDO_DataObject_Generator extends PDO_DataObject
         
         if (!is_array($cfg_in) && func_num_args() < 2) {
             // one arg = not an array..
-            (new PDO_DataObject())->raiseError("Invalid Call to config should be string+anther value or array",
-                              self::ERROR_INVALIDARGS, self::ERROR_DIE);
+            (new PDO_DataObject())->raise("Invalid Call to config should be string+anther value or array",
+                              self::ERROR_INVALIDARGS);
         }
         
         $old = self::$config;
@@ -192,8 +192,8 @@ class PDO_DataObject_Generator extends PDO_DataObject
         if (func_num_args() > 1) {
             // two args..
             if (!is_string($cfg_in)) {
-                (new PDO_DataObject())->raiseError("Invalid Call to config should be string+anther value or array",
-                              self::ERROR_INVALIDARGS, self::ERROR_DIE);    
+                (new PDO_DataObject())->raise("Invalid Call to config should be string+anther value or array",
+                              self::ERROR_INVALIDARGS);    
             }
             
             $k = $cfg_in;
@@ -203,8 +203,8 @@ class PDO_DataObject_Generator extends PDO_DataObject
           
         foreach ($cfg as $k=>$v) {
             if (!isset(self::$config[$k])) {
-                (new PDO_DataObject())->raiseError("Invalid Configuration setting : $k",
-                        self::ERROR_INVALIDCONFIG, self::ERROR_DIE);
+                (new PDO_DataObject())->raise("Invalid Configuration setting : $k",
+                        self::ERROR_INVALIDCONFIG);
             }
             self::$config[$k] = $v;
         }
@@ -243,7 +243,7 @@ class PDO_DataObject_Generator extends PDO_DataObject
                 require_once 'PDO/DataObject/Generator/Hooks.php';
         }
         if (!class_exists($hook)) {
-            $this->raiseError("Hook class '{$hook}' does not exist - please include it or use an autoloader");
+            $this->raise("Hook class '{$hook}' does not exist - please include it or use an autoloader");
         }
         $this->hook = new $hook($this);
     }
@@ -462,7 +462,7 @@ class PDO_DataObject_Generator extends PDO_DataObject
                 require_once 'PDO/DataObject/Generator/Table.php';
         }
         if (!class_exists($tcls)) {
-            $this->raiseError("Table class '{$tcls}' does not exist - please include it or use an autoloader");
+            $this->raise("Table class '{$tcls}' does not exist - please include it or use an autoloader");
         }
         return new $tcls($this,$name);
     }
@@ -518,8 +518,8 @@ class PDO_DataObject_Generator extends PDO_DataObject
         
         if (is_array($base)) {
             if (!isset($base[$this->_database_nickname])) {
-                $this->raiseError("Could not find schema location from config[schema_location] - array but no matching database",
-                    PDO_DataObject::ERROR_INVALIDCONFIG, PDO_DataObject::ERROR_DIE);
+                $this->raise("Could not find schema location from config[schema_location] - array but no matching database",
+                    PDO_DataObject::ERROR_INVALIDCONFIG);
             }
             $base =  explode(PATH_SEPARATOR, $base[$this->_database_nickname])[0]; // get the first path...
 
@@ -537,10 +537,10 @@ class PDO_DataObject_Generator extends PDO_DataObject
         //print_r($this->_newConfig);
         $fh = fopen($tmpname,'w');
         if (!$fh) {
-            return $this->raiseError(
+            return $this->raise(
                 "Failed to create temporary file: $tmpname\n".
                 "make sure session.save_path is set and is writable\n"
-                ,null, PDO_DataObject::ERROR_DIE);
+                ,null);
         }
         fwrite($fh,$out);
         fclose($fh);
@@ -554,11 +554,8 @@ class PDO_DataObject_Generator extends PDO_DataObject
             rename($tmpname, $file);
         }
         chmod($file,$perms);
-        //$ret = $this->_newConfig->writeInput($file,false);
 
-        //if (PEAR::isError($ret) ) {
-        //    return PEAR::raiseError($ret->message,null,PEAR_ERROR_DIE);
-        // }
+
     }
  
     
@@ -590,7 +587,7 @@ class PDO_DataObject_Generator extends PDO_DataObject
 
         
         if (!in_array($type  , array('mysql', 'mysqli', 'pgsql'))) {
-            return $this->raiseError("config[generate_links] only works currently with pgsql and mysql");
+            return $this->raise("config[generate_links] only works currently with pgsql and mysql");
             
         }
         $this->debug("generateForeignKeys: Start");
@@ -604,8 +601,8 @@ class PDO_DataObject_Generator extends PDO_DataObject
         
         if (is_array($base)) {
             if (!isset($base[$this->_database_nickname])) {
-                $this->raiseError("Could not find schema location from config[schema_location] - array but no matching database",
-                    PDO_DataObject::ERROR_INVALIDCONFIG, PDO_DataObject::ERROR_DIE);
+                $this->raise("Could not find schema location from config[schema_location] - array but no matching database",
+                    PDO_DataObject::ERROR_INVALIDCONFIG);
             }
             $base =  explode(PATH_SEPARATOR, $base[$this->_database_nickname])[0]; // get the first path...
 
@@ -625,10 +622,10 @@ class PDO_DataObject_Generator extends PDO_DataObject
        
         $fh = fopen($tmpname,'w');
         if (!$fh) {
-            return $this->raiseError(
+            return $this->raise(
                 "Failed to create temporary file: $tmpname\n".
                 "make sure session.save_path is set and is writable\n"
-                ,PDO_DataObject::ERROR_INVALIDCONFIG, PDO_DataObject::ERROR_DIE);
+                ,PDO_DataObject::ERROR_INVALIDCONFIG);
         }
         fwrite($fh,$out);
         fclose($fh);
@@ -685,10 +682,10 @@ class PDO_DataObject_Generator extends PDO_DataObject
        
             $fh = fopen($tmpname, "w");
             if (!$fh) {
-                return PEAR::raiseError(
+                return $this->do->raise(
                     "Failed to create temporary file: $tmpname\n".
                     "make sure session.save_path is set and is writable\n"
-                    ,null, PEAR_ERROR_DIE);
+                    ,null);
             }
             fputs($fh,$out);
             fclose($fh);
