@@ -150,19 +150,10 @@ class PDO_DataObject_Join {
      * @access   public
      * @author   Stijn de Reede      <sjr@gmx.co.uk>
      */
-    function add($obj = false, $options = array())
+    
+    
+    function joinAddBC($obj = false, $joinType='INNER', $joinAs=false, $joinCol=false)
     {
-          
-        
-        // new options can now go in here... (dont forget to document them)
-        $useWhereAsOn = isset($options['useWhereAsOn']) ? $options['useWhereAsOn'] : false;
-        $joinCol      = isset($options['joinCol'])  ? $options['joinCol']  : false;
-        $joinAs       = isset($options['joinAs'])   ? $options['joinAs']   : false;
-        $joinType     = isset($options['joinType']) ? $options['joinType'] : 'INNER';
-        
-        // support for array as first argument 
-        // this assumes that you dont have a links.ini for the specified table.
-        // and it doesnt exist as am extended dataobject!! - experimental.
         
         $ofield = false; // object field
         $tfield = false; // this field
@@ -176,18 +167,45 @@ class PDO_DataObject_Join {
             } else {
                 list($toTable,$ofield) = explode(':',$obj[1]);
             
-                $obj = is_string($toTable) ? self::factory($toTable) : $toTable;
+                $obj = is_string($toTable) ? PDO_DataObject::factory($toTable) : $toTable;
             
                 if (!$obj || !is_object($obj) || is_a($obj,'PEAR_Error')) {
-                    $obj = new PDO_DataObject();
-                    $obj->__table = $toTable;
+                    $obj = new PDO_DataObject($toTable);
+                    
                 }
-                $obj->_connect();
+                
             }
             // set the table items to nothing.. - eg. do not try and match
             // things in the child table...???
             $items = array();
         }
+        
+        
+        $this->add($obj, is_array($joinType) ? $joinType : array(
+            'joinType' => $joinType,
+            'joinCol' => $joinCol,
+            'joinAss' => $joinAs,
+        ));
+        
+    }
+    
+    function add($obj = false, $options = array())
+    {
+          
+        
+        // new options can now go in here... (dont forget to document them)
+        $useWhereAsOn = isset($options['useWhereAsOn']) ? $options['useWhereAsOn'] : false;
+        $joinCol      = isset($options['joinCol'])  ? $options['joinCol']  : false;
+        $joinAs       = isset($options['joinAs'])   ? $options['joinAs']   : false;
+        $joinType     = isset($options['joinType']) ? $options['joinType'] : 'INNER';
+        
+        
+        $ofield       = isset($options['object']) ? $options['object'] : false; // object field
+        
+        // support for array as first argument 
+        // this assumes that you dont have a links.ini for the specified table.
+        // and it doesnt exist as am extended dataobject!! - experimental.
+        
         
         if (!is_object($obj) || !is_a($obj,'PDO_DataObject')) {
             return $this->raise("joinAdd: called without an object", self::ERROR_NODATA);
