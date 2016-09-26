@@ -399,10 +399,10 @@ class PDO_DataObject_Join {
             // only fail if we where expecting it to work (eg. not joined on a array)
              
             if (!$items) {
-                $this->raise(
+                return $this->do->raise(
                     "joinAdd: No table definition for {$obj->tableName()}", 
-                    self::ERROR_INVALIDCONFIG);
-                return false;
+                    PDO_DataObject::ERROR_INVALIDCONFIG);
+                
             }
             
             $ignore_null = $options['disable_null_strings'] === false;
