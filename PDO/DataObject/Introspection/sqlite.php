@@ -147,6 +147,6 @@ class PDO_DataObject_Introspection_sqlite extends PDO_DataObject_Introspection
     }
     function foreignKeys($table)
     {
-        $this->do->raiseError("Foriegn keys on SQLite is Not supported");
+        $this->do->raise("Foriegn keys on SQLite is Not supported");
     }
 }
