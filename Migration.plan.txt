@@ -185,6 +185,8 @@ e) PDO_DataObject class
   * sqlValue() - DONE / NEED TESTING
   * setFrom() DONE / NEED TESTING
   * set() << chained version of setFrom? DONE / NEED TESTING
+  * fromValue() DONE / NEED TESTING
+
   * toArray() DONE / NEED TESTING
   * validate()  DONE / NEED TESTING - moved to seperate class...
   * raise  (was raiseError) -- all calls need DIE removing....
