@@ -370,7 +370,7 @@ class PDO_DataObject_Join {
         // database prefixes?  - only supported in mysql?
         if ($my_db_name != $obj_db_name  && $my_pdo->getAttribute(PDO::ATTR_DRIVER_NAME)  == 'mysql') {
             $dbPrefix = ($quoteIdentifiers
-                         ? $DB->quoteIdentifier($obj->_database)
+                         ? $this->do->quoteIdentifier($obj->_database)
                          : $obj->_database) . '.';    
         }
         
@@ -402,7 +402,6 @@ class PDO_DataObject_Join {
                 return $this->do->raise(
                     "joinAdd: No table definition for {$obj->tableName()}", 
                     PDO_DataObject::ERROR_INVALIDCONFIG);
-                
             }
             
             $ignore_null = $options['disable_null_strings'] === false;
@@ -413,9 +412,9 @@ class PDO_DataObject_Join {
                     continue;
                 }
                 
-                $kSql = ($quoteIdentifiers ? $DB->quoteIdentifier($k) : $k);
+                $kSql = ($quoteIdentifiers ? $this->do->quoteIdentifier($k) : $k);
                 
-                if (self::_is_null($obj,$k)) {
+                if (PDO_DataObject::_is_null($obj,$k)) {
                 	$obj->whereAdd("{$joinAs}.{$kSql} IS NULL");
                 	continue;
                 }
