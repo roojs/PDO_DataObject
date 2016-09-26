@@ -3005,6 +3005,7 @@ class PDO_DataObject
         
         $quoteIdentifiers  = self::$config['quote_identifiers'];
         
+        $tableName = $tableName ? $tableName : $this->tableName();
         
         // if we dont have query vars.. - reset them.
         
@@ -3032,8 +3033,8 @@ class PDO_DataObject
             }
             
             $kSql = $quoteIdentifiers 
-                ? ( $this->quoteIdentifier($this->tableName()) . '.' . $this->quoteIdentifier($k) )  
-                : "{$this->tableName()}.{$k}";
+                ? ( $this->quoteIdentifier($tableName) . '.' . $this->quoteIdentifier($k) )  
+                : "{$tableName}.{$k}";
              
              
             // everything after here results in a condition getting added.... 
