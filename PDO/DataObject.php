@@ -4561,7 +4561,7 @@ class PDO_DataObject
     *
     *  with formaters..
     * supported formaters:  
-    *   date/time : %d/%m/%Y (eg. php strftime) or pear::Date 
+    *   date/time : d/m/m (eg. php strftime) or pear::Date 
     *   numbers   : %02d (eg. sprintf)
     *  NOTE you will get unexpected results with times like 0000-00-00 !!!
     *
@@ -4574,7 +4574,7 @@ class PDO_DataObject
     * @access   public 
     * @see      DB_DataObject::_call(),strftime(),Date::format()
     */
-    function toValue($col,$format = null) 
+    function formatValue($col,$format = null) 
     {
         if (is_null($format)) {
             return $this->$col;
@@ -4582,38 +4582,16 @@ class PDO_DataObject
         $cols = $this->tableColumns();
         switch (true) {
             case (($cols[$col] & self::DATE) &&  ($cols[$col] & self::TIME)):
+            case ($cols[$col] & self::DATE):
+            case ($cols[$col] & self::TIME):    
                 if (!$this->$col) {
                     return '';
                 }
                 
                 $r = new DateTime($this->$col);
                 return $r->format($format);
-                
-                // eak... - no way to validate date time otherwise...
-                return $this->$col;
-            case ($cols[$col] & self::DATE):
-                if (!$this->$col) {
-                    return '';
-                } 
-                $guess = strtotime($this->$col);
-                if ($guess != -1) {
-                    return strftime($format,$guess);
-                }
-                // try date!!!!
-                require_once 'Date.php';
-                $x = new Date($this->$col);
-                return $x->format($format);
-                
-            case ($cols[$col] & self::TIME):
-                if (!$this->$col) {
-                    return '';
-                }
-                $guess = strtotime($this->$col);
-                if ($guess > -1) {
-                    return strftime($format, $guess);
-                }
-                // otherwise an error in type...
-                return $this->$col;
+                 
+            
                 
             case ($cols[$col] &  self::MYSQLTIMESTAMP):
                 if (!$this->$col) {
