@@ -4552,10 +4552,8 @@ class PDO_DataObject
  
    
      /**
-    * standard get* implementation.
-    *   you can write your own methods, and use this to format the output..
-    *   eg.
-    *   function updated_dt_formated($format) { return $this->toValue('updated_dt', $format); }
+    *  standard formated get* implementation.
+    *  BC Break: that the standard date formating is different from DB_DataObject.
     *
     *   
     *
