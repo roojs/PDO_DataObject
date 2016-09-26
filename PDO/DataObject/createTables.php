@@ -35,12 +35,12 @@ require_once 'PDO/DataObject/Generator.php';
 $do = new PDO_DataObject();
 
 if (!ini_get('register_argc_argv')) {
-    $do_>raiseError(
+    $do_>raise(
         "\nERROR: You must turn register_argc_argv On in you php.ini file for this to work\neg.\n\nregister_argc_argv = On\n\n");
 }
 
 if (!@$_SERVER['argv'][1]) {
-    $do_>raiseError("\nERROR: createTable.php usage:\n\nC:\php\pear\PDO\DataObjects\createTable.php example.ini\n\n");
+    $do_>raise("\nERROR: createTable.php usage:\n\nC:\php\pear\PDO\DataObjects\createTable.php example.ini\n\n");
     exit;
 }
 
