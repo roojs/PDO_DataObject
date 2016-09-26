@@ -188,7 +188,7 @@ class PDO_DataObject_Join {
                 'ofield' => $ofield,
                 'tfield' => $tfield,
                
-            ));
+            )));
             
         }
         
