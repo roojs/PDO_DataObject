@@ -154,10 +154,7 @@ class PDO_DataObject_Join {
     
     function joinAddBC($obj = false, $joinType='INNER', $joinAs=false, $joinCol=false)
     {
-         if ($obj === false) {
-            $this->_join = '';
-            return;
-        }
+         
          
         $ofield = false; // object field
         $tfield = false; // this field
