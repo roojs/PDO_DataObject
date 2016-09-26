@@ -34,10 +34,18 @@
  *
  * simplist
  *   $do->_join = ....... << set's the string..
- * 
- * 
  *
+ * joinAdd($obj, $jointype, 'INNER|....', joinAss,  ) ... lot's of args + allows array(....)
  *
+ *  
+ * autoJoin(.... old messy way... )
+ *
+ * 
+ * joinAppend(.....) << a string..
+ *
+ * joinDataObject(object, array options;;;)
+ *
+ * autoJoin
  *
  *
  */
