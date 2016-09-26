@@ -150,9 +150,10 @@ class PDO_DataObject_Join {
      * @access   public
      * @author   Stijn de Reede      <sjr@gmx.co.uk>
      */
-    function addDatObject($obj = false, $options = array())
+    function addDataObject($obj = false, $options = array())
     {
-        global $_DB_DATAOBJECT;
+        
+        
         if ($obj === false) {
             $this->_join = '';
             return;
