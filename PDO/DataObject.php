@@ -3743,7 +3743,7 @@ class PDO_DataObject
                             "'link from' table ({$obj->tableName()}). " . 
                             "Either remove the fourth argument to joinAdd() ".
                             "({$joinCol}), or alter your links.ini file. ",
-                            DB_DATAOBJECT_ERROR_NODATA);
+                            self::ERROR_NODATA);
                         return false;
                     }
                 
@@ -3767,7 +3767,7 @@ class PDO_DataObject
         if ($ofield === false) {
             $this->raise(
                 "joinAdd: {$obj->tableName()} has no link with {$this->tableName()}",
-                DB_DATAOBJECT_ERROR_NODATA);
+                self::ERROR_NODATA);
             return false;
         }
         $joinType = strtoupper($joinType);
@@ -3843,9 +3843,9 @@ class PDO_DataObject
                 	continue;
                 }
                 
-                if ($v & DB_DATAOBJECT_STR) {
+                if ($v & self::STR) {
                     $obj->whereAdd("{$joinAs}.{$kSql} = " . $PDO->quote((string) (
-                            ($v & DB_DATAOBJECT_BOOL) ? 
+                            ($v & self::BOOL) ? 
                                 // this is thanks to the braindead idea of postgres to 
                                 // use t/f for boolean.
                                 (($obj->$k === 'f') ? 0 : (int)(bool) $obj->$k) :  
@@ -3861,7 +3861,7 @@ class PDO_DataObject
                 if (is_object($obj->$k) && is_a($obj->$k,'DB_DataObject_Cast')) {
                     $value = $obj->$k->toString($v,$DB);
                     if (PEAR::isError($value)) {
-                        $this->raise($value->getMessage() ,DB_DATAOBJECT_ERROR_INVALIDARG);
+                        $this->raise($value->getMessage() ,self::ERROR_INVALIDARG);
                         return false;
                     } 
                     $obj->whereAdd("{$joinAs}.{$kSql} = $value");
@@ -4345,7 +4345,113 @@ class PDO_DataObject
         }
         return $this;
     }
+ 
+    /**
+    * standard set* implementation. - used by set()/setFrom()
+    *
+    * Current supports
+    *   date      = using (standard time format, or unixtimestamp).... so you could create a method :
+    *               function setLastread($string) { $this->fromValue('lastread',strtotime($string)); }
+    *
+    *   time      = using strtotime 
+    *   datetime  = using  same as date - accepts iso standard or unixtimestamp.
+    *   string    = typecast only..
+    * 
+    * TODO: add formater:: eg. d/m/Y for date! ???
+    *
+    * @param   string       column of database
+    * @param   mixed        value to assign
+    *
+    * @return   true| false     (False on error)
+    * @access   public 
+    * @see      DB_DataObject::_call
+    */
+  
+    
+    function fromValue($col,$value) 
+    {
+        
+        $cols = $this->tableColumns();
+        // dont know anything about this col..
+        if (!isset($cols[$col]) || is_a($value, 'DB_DataObject_Cast')) {
+            $this->$col = $value;
+            return true;
+        }
+        //echo "FROM VALUE $col, {$cols[$col]}, $value\n";
+        switch (true) {
+            // set to null and column is can be null...
+            case ((!($cols[$col] & self::NOTNULL)) && self::_is_null($value, false)):
+            case (is_object($value) && is_a($value,'DB_DataObject_Cast')): 
+                $this->$col = $value;
+                return true;
+                
+            // fail on setting null on a not null field..
+            case (($cols[$col] & self::NOTNULL) && DB_DataObject::_is_null($value,false)):
 
+                return false;
+        
+            case (($cols[$col] & self::DATE) &&  ($cols[$col] & self::TIME)):
+                // empty values get set to '' (which is inserted/updated as NULl
+                if (!$value) {
+                    $this->$col = '';
+                }
+            
+                if (is_numeric($value)) {
+                    $this->$col = date('Y-m-d H:i:s', $value);
+                    return true;
+                }
+              
+                // eak... - no way to validate date time otherwise...
+                $this->$col = (string) $value;
+                return true;
+            
+            case ($cols[$col] & self::DATE):
+                // empty values get set to '' (which is inserted/updated as NULl
+                 
+                if (!$value) {
+                    $this->$col = '';
+                    return true; 
+                }
+            
+                if (is_numeric($value)) {
+                    $this->$col = date('Y-m-d',$value);
+                    return true;
+                }
+                 
+                // try date!!!!
+                require_once 'Date.php';
+                $x = new Date($value);
+                $this->$col = $x->format("%Y-%m-%d");
+                return true;
+            
+            case ($cols[$col] & self::TIME):
+                // empty values get set to '' (which is inserted/updated as NULl
+                if (!$value) {
+                    $this->$col = '';
+                }
+            
+                $guess = strtotime($value);
+                if ($guess != -1) {
+                     $this->$col = date('H:i:s', $guess);
+                    return $return = true;
+                }
+                // otherwise an error in type...
+                return false;
+            
+            case ($cols[$col] & self::STR):
+                
+                $this->$col = (string) $value;
+                return true;
+                
+            // todo : floats numerics and ints...
+            default:
+                $this->$col = $value;
+                return true;
+        }
+    
+    
+    
+    }
     /**
      * Returns an associative array from the current data
      * (kind of oblivates the idea behind DataObjects, but
@@ -4442,114 +4548,7 @@ class PDO_DataObject
         
     }
  
-    
-    /**
-    * standard set* implementation.
-    *
-    * Current supports
-    *   date      = using (standard time format, or unixtimestamp).... so you could create a method :
-    *               function setLastread($string) { $this->fromValue('lastread',strtotime($string)); }
-    *
-    *   time      = using strtotime 
-    *   datetime  = using  same as date - accepts iso standard or unixtimestamp.
-    *   string    = typecast only..
-    * 
-    * TODO: add formater:: eg. d/m/Y for date! ???
-    *
-    * @param   string       column of database
-    * @param   mixed        value to assign
-    *
-    * @return   true| false     (False on error)
-    * @access   public 
-    * @see      DB_DataObject::_call
-    */
-  
-    
-    function fromValue($col,$value) 
-    {
-        global $_DB_DATAOBJECT;
-        $options = $_DB_DATAOBJECT['CONFIG'];
-        $cols = $this->tableColumns();
-        // dont know anything about this col..
-        if (!isset($cols[$col]) || is_a($value, 'DB_DataObject_Cast')) {
-            $this->$col = $value;
-            return true;
-        }
-        //echo "FROM VALUE $col, {$cols[$col]}, $value\n";
-        switch (true) {
-            // set to null and column is can be null...
-            case ((!($cols[$col] & DB_DATAOBJECT_NOTNULL)) && DB_DataObject::_is_null($value, false)):
-            case (is_object($value) && is_a($value,'DB_DataObject_Cast')): 
-                $this->$col = $value;
-                return true;
-                
-            // fail on setting null on a not null field..
-            case (($cols[$col] & DB_DATAOBJECT_NOTNULL) && DB_DataObject::_is_null($value,false)):
-
-                return false;
-        
-            case (($cols[$col] & DB_DATAOBJECT_DATE) &&  ($cols[$col] & DB_DATAOBJECT_TIME)):
-                // empty values get set to '' (which is inserted/updated as NULl
-                if (!$value) {
-                    $this->$col = '';
-                }
-            
-                if (is_numeric($value)) {
-                    $this->$col = date('Y-m-d H:i:s', $value);
-                    return true;
-                }
-              
-                // eak... - no way to validate date time otherwise...
-                $this->$col = (string) $value;
-                return true;
-            
-            case ($cols[$col] & DB_DATAOBJECT_DATE):
-                // empty values get set to '' (which is inserted/updated as NULl
-                 
-                if (!$value) {
-                    $this->$col = '';
-                    return true; 
-                }
-            
-                if (is_numeric($value)) {
-                    $this->$col = date('Y-m-d',$value);
-                    return true;
-                }
-                 
-                // try date!!!!
-                require_once 'Date.php';
-                $x = new Date($value);
-                $this->$col = $x->format("%Y-%m-%d");
-                return true;
-            
-            case ($cols[$col] & DB_DATAOBJECT_TIME):
-                // empty values get set to '' (which is inserted/updated as NULl
-                if (!$value) {
-                    $this->$col = '';
-                }
-            
-                $guess = strtotime($value);
-                if ($guess != -1) {
-                     $this->$col = date('H:i:s', $guess);
-                    return $return = true;
-                }
-                // otherwise an error in type...
-                return false;
-            
-            case ($cols[$col] & DB_DATAOBJECT_STR):
-                
-                $this->$col = (string) $value;
-                return true;
-                
-            // todo : floats numerics and ints...
-            default:
-                $this->$col = $value;
-                return true;
-        }
-    
-    
-    
-    }
+   
      /**
     * standard get* implementation.
     *
@@ -4575,7 +4574,7 @@ class PDO_DataObject
         }
         $cols = $this->tableColumns();
         switch (true) {
-            case (($cols[$col] & DB_DATAOBJECT_DATE) &&  ($cols[$col] & DB_DATAOBJECT_TIME)):
+            case (($cols[$col] & self::DATE) &&  ($cols[$col] & self::TIME)):
                 if (!$this->$col) {
                     return '';
                 }
@@ -4585,7 +4584,7 @@ class PDO_DataObject
                 }
                 // eak... - no way to validate date time otherwise...
                 return $this->$col;
-            case ($cols[$col] & DB_DATAOBJECT_DATE):
+            case ($cols[$col] & self::DATE):
                 if (!$this->$col) {
                     return '';
                 } 
@@ -4598,7 +4597,7 @@ class PDO_DataObject
                 $x = new Date($this->$col);
                 return $x->format($format);
                 
-            case ($cols[$col] & DB_DATAOBJECT_TIME):
+            case ($cols[$col] & self::TIME):
                 if (!$this->$col) {
                     return '';
                 }
@@ -4609,7 +4608,7 @@ class PDO_DataObject
                 // otherwise an error in type...
                 return $this->$col;
                 
-            case ($cols[$col] &  DB_DATAOBJECT_MYSQLTIMESTAMP):
+            case ($cols[$col] &  self::MYSQLTIMESTAMP):
                 if (!$this->$col) {
                     return '';
                 }
@@ -4620,9 +4619,9 @@ class PDO_DataObject
                 return $x->format($format);
             
              
-            case ($cols[$col] &  DB_DATAOBJECT_BOOL):
+            case ($cols[$col] &  self::BOOL):
                 
-                if ($cols[$col] &  DB_DATAOBJECT_STR) {
+                if ($cols[$col] &  self::STR) {
                     // it's a 't'/'f' !
                     return ($this->$col === 't');
                 }
