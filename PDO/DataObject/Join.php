@@ -346,15 +346,16 @@ class PDO_DataObject_Join {
         if ($joinAs === false) {
             $joinAs = $obj->tableName();
         }
-        
-        $quoteIdentifiers = !empty($_DB_DATAOBJECT['CONFIG']['quote_identifiers']);
-        $options = $_DB_DATAOBJECT['CONFIG'];
+        $options = PDO_DataObject::config();
+        $quoteIdentifiers = $options['quote_identifiers'];
         
         // not sure  how portable adding database prefixes is..
         $objTable = $quoteIdentifiers ? 
-                $DB->quoteIdentifier($obj->tableName()) : 
-                 $obj->tableName() ;
-                
+                $this->do->quoteIdentifier($obj->tableName()) : 
+                $obj->tableName() ;
+        
+        
+        
         $dbPrefix  = '';
         if (strlen($obj->_database) && in_array($DB->dsn['phptype'],array('mysql','mysqli'))) {
             $dbPrefix = ($quoteIdentifiers
