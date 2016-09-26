@@ -2996,10 +2996,11 @@ class PDO_DataObject
      * @param   mixed   $keys
      * @param   array   $filter (used by update to only uses keys in this filter list).
      * @param   array   $negative_filter (used by delete to prevent deleting using the keys mentioned..)
+     * @param   string $tablename (used by join to override tablename...)
      * @access  private
      * @return  string
      */
-    final function whereToString($keys, $filter = array(),$negative_filter=array())
+    final function whereToString($keys, $filter = array(),$negative_filter=array(), $tableName = false)
     {
         
         $quoteIdentifiers  = self::$config['quote_identifiers'];
