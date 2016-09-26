@@ -4411,24 +4411,7 @@ class PDO_DataObject
     /**
      * validate the values of the object (usually prior to inserting/updating..)
      *
-     * Note: This was always intended as a simple validation routine.
-     * It lacks understanding of field length, whether you are inserting or updating (and hence null key values)
-     *
-     * This should be moved to another class: DB_DataObject_Validate 
-     *      FEEL FREE TO SEND ME YOUR VERSION FOR CONSIDERATION!!!
-     *
-     * Usage:
-     * if (is_array($ret = $obj->validate())) { ... there are problems with the data ... }
-     *
-     * Logic:
-     *   - defaults to only testing strings/numbers if numbers or strings are the correct type and null values are correct
-     *   - validate Column methods : "validate{ROWNAME}()"  are called if they are defined.
-     *            These methods should return 
-     *                  true = everything ok
-     *                  false|object = something is wrong!
-     * 
-     *   - This method loads and uses the PEAR Validate Class.
-     *
+     * Uses PDO_DataObject_Validate
      *
      * @access  public
      * @return  array of validation results (where key=>value, value=false|object if it failed) or true (if they all succeeded)
