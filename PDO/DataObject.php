@@ -4400,10 +4400,10 @@ class PDO_DataObject
                     $this->$col = date('Y-m-d H:i:s', $value);
                     return true;
                 }
-              
-                // eak... - no way to validate date time otherwise...
-                $this->$col = (string) $value;
+                $x = new DateTime($value);
+                $this->$col = $x->format("Y-m-d H:i:s");
                 return true;
+            
             
             case ($cols[$col] & self::DATE):
                 // empty values get set to '' (which is inserted/updated as NULl
@@ -4585,6 +4585,8 @@ class PDO_DataObject
                 if (!$this->$col) {
                     return '';
                 }
+                
+                
                 $guess = strtotime($this->$col);
                 if ($guess != -1) {
                     return strftime($format, $guess);
