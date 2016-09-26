@@ -682,7 +682,7 @@ class PDO_DataObject_Generator extends PDO_DataObject
        
             $fh = fopen($tmpname, "w");
             if (!$fh) {
-                return $this->do->raise(
+                return $this->raise(
                     "Failed to create temporary file: $tmpname\n".
                     "make sure session.save_path is set and is writable\n"
                     ,null);
