@@ -143,7 +143,7 @@ class DB_DataObject_Links
             
  
         if (!isset($this->do->$field)) {
-            $this->do->raiseError("getLink: row not set $field", DB_DATAOBJECT_ERROR_NODATA);
+            $this->do->raise("getLink: row not set $field", PDO_DataObject::ERROR_NODATA);
             return false;
         }
         
@@ -161,9 +161,9 @@ class DB_DataObject_Links
         $obj = is_string($table) ? $this->do->factory($tn) : $table;;
         
         if (!is_a($obj,'DB_DataObject')) {
-            $this->do->raiseError(
+            $this->do->raise(
                 "getLink:Could not find class for row $field, table $tn", 
-                DB_DATAOBJECT_ERROR_INVALIDCONFIG);
+                PDO_DataObject::ERROR_INVALIDCONFIG);
             return false;
         }
         // -1 or 0 -- no referenced record..
@@ -282,9 +282,9 @@ class DB_DataObject_Links
         $info = $this->linkInfo($field);
          
         if (!$info) {
-            $this->do->raiseError(
+            $this->do->raise(
                 "getLink:Could not find link for row $field", 
-                DB_DATAOBJECT_ERROR_INVALIDCONFIG);
+                PDO_DataObject::ERROR_INVALIDCONFIG);
             return false;
         }
         $field = $info[2];
@@ -462,9 +462,9 @@ class DB_DataObject_Links
         $c  = $this->do->factory($table);
         
         if (!is_object($c) || !is_a($c,'DB_DataObject')) {
-            $this->do->raiseError(
+            $this->do->raise(
                 "getLinkArray:Could not find class for row $field, table $table", 
-                DB_DATAOBJECT_ERROR_INVALIDCONFIG
+                PDO_DataObject::ERROR_INVALIDCONFIG
             );
             return $ret;
         }
