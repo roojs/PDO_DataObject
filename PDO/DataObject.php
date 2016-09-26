@@ -4390,7 +4390,7 @@ class PDO_DataObject
                 continue;
             }
             // call the overloaded getXXXX() method. - except getLink and getLinks
-            if (method_exists($this,'get'.$k) && !in_array(strtolower($k),array('links','link'))) {
+            if (method_exists($this,'get'.$k)) {
                 $ret[$format === false ? $k : sprintf($format,$k)] = $this->{'get'.$k}();
                 continue;
             }
