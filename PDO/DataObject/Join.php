@@ -367,6 +367,7 @@ class PDO_DataObject_Join {
         $my_db_name = $my_pdo->dsn_ar['database_name'];
         $obj_db_name = $obj_pdo->dsn_ar['database_name'];
         
+        // database prefixes?  - only supported in mysql?
         if ($my_db_name != $obj_db_name  && $my_pdo->getAttribute(PDO::ATTR_DRIVER_NAME)  == 'mysql') {
             $dbPrefix = ($quoteIdentifiers
                          ? $DB->quoteIdentifier($obj->_database)
