@@ -393,7 +393,7 @@ class PDO_DataObject_Join {
         
         
         
-            $items = $obj->table();
+            $items = $obj->tableColumns();
             // will return an array if no items..
             
             // only fail if we where expecting it to work (eg. not joined on a array)
