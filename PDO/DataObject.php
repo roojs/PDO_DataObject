@@ -4502,7 +4502,7 @@ class PDO_DataObject
                 $ret[$format === false ? $k : sprintf($format,$k)] = $this->{'get'.$k}();
                 continue;
             }
-            // should this call toValue() ???
+            // should this call formatValue() ??? -- no... point...??
             $ret[$format === false ? $k : sprintf($format,$k)] = $this->$k;
         }
         if (!$this->_link_loaded) {
