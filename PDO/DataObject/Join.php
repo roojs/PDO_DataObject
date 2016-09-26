@@ -182,12 +182,22 @@ class PDO_DataObject_Join {
             $this->do->raise("JoinAddBC - Object is not a PDO_DataObject", PDO_DataObject::ERROR_INVALIDARGS);
         }
         
+        if (is_array($joinType)) {
+            return $this->add($obj, array_merge($joinType,  array(
+                
+                'ofield' => $ofield,
+                'tfield' => $tfield,
+               
+            ));
+            
+        }
         
-        $this->add($obj, is_array($joinType) ? $joinType : array(
+        return $this->add($obj,  array(
             'joinType' => $joinType,
             'joinCol' => $joinCol,
             'joinAss' => $joinAs,
             'ofield' => $ofield,
+            'tfield' => $tfield,
         ));
         
     }
