@@ -24,7 +24,11 @@ class PDO_DataObject_Validate
 {
     
     private $do;
-    
+    /**
+     *
+     * @param PDO_DataObject $dataobject The object to validate.
+     *
+     */
     function __construct($dataobject)
     {
         $this->do = $dataobject;
