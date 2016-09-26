@@ -4446,9 +4446,6 @@ class PDO_DataObject
     /**
     * standard set* implementation.
     *
-    * takes data and uses it to set dates/strings etc.
-    * normally called from __call..  
-    *
     * Current supports
     *   date      = using (standard time format, or unixtimestamp).... so you could create a method :
     *               function setLastread($string) { $this->fromValue('lastread',strtotime($string)); }
