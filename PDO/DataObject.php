@@ -84,8 +84,6 @@ class PDO_DataObject
     
     
     
-    const ERROR_DIE  =  9;  // from PEAR_ERROR_DIE
-
     
     /* ---------------- ---------------- static  -------------------------------- */
     /**
