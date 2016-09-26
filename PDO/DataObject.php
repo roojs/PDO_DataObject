@@ -4800,7 +4800,6 @@ class PDO_DataObject
      *
      * @param  int $message    message
      * @param  int $type       type
-     * @param  int $behaviour  behaviour (die or continue!);
      * @param  Exception $previous_exception  Cause of error...
      * @access public
      * @return error object
