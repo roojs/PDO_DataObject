@@ -345,11 +345,11 @@ class PDO_DataObject_Generator_Table {
             $body,$input);
         
         if (!strlen($ret)) {
-            return $this->gen->raiseError(
+            return $this->gen->raise(
                 "PREG_REPLACE failed to replace body, - you probably need to set these in your php.ini\n".
                 "pcre.backtrack_limit=1000000\n".
                 "pcre.recursion_limit=1000000\n"
-                ,null, PEAR_ERROR_DIE);
+                ,null);
         }
         
         return $ret;
