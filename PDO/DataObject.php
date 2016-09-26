@@ -4586,11 +4586,9 @@ class PDO_DataObject
                     return '';
                 }
                 
+                $r = new DateTime($this->$col);
+                return $r->format($format);
                 
-                $guess = strtotime($this->$col);
-                if ($guess != -1) {
-                    return strftime($format, $guess);
-                }
                 // eak... - no way to validate date time otherwise...
                 return $this->$col;
             case ($cols[$col] & self::DATE):
