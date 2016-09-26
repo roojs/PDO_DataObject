@@ -420,7 +420,7 @@ class PDO_DataObject_Join {
                 }
                 
                 if ($v & self::STR) {
-                    $obj->where("{$joinAs}.{$kSql} = " . $this->do->quote((string) (
+                    $obj->where("{$joinAs}.{$kSql} = " . $PDO->quote((string) (
                             ($v & self::BOOL) ? 
                                 // this is thanks to the braindead idea of postgres to 
                                 // use t/f for boolean.
