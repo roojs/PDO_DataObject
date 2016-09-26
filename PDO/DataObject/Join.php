@@ -307,7 +307,7 @@ class PDO_DataObject_Join {
                     // not sure if 1:1 table could cause probs here..
                     
                     if ($joinCol !== false) {
-                         $this->raise( 
+                         $this->do->raise( 
                             "joinAdd: You cannot target a join column in the " .
                             "'link from' table ({$obj->tableName()}). " . 
                             "Either remove the fourth argument to joinAdd() ".
