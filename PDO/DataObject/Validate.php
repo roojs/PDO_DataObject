@@ -65,17 +65,17 @@ class PDO_DataObject_Validate
     {
         require_once 'Validate.php';
         
-        $table = $this->tableColumns();
+        $table = $this->do->tableColumns();
         $ret   = array();
-        $seq   = $this->sequenceKey();
-        $options = $_DB_DATAOBJECT['CONFIG'];
+        $seq   = $this->do->sequenceKey();
+        
         foreach($table as $key => $val) {
             
             
             // call user defined validation always...
             $method = "Validate" . ucfirst($key);
-            if (method_exists($this, $method)) {
-                $ret[$key] = $this->$method();
+            if (method_exists($this->do, $method)) {
+                $ret[$key] = $this->do->$method();
                 continue;
             }
             
