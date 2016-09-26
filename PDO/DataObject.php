@@ -4553,6 +4553,11 @@ class PDO_DataObject
    
      /**
     * standard get* implementation.
+    *   you can write your own methods, and use this to format the output..
+    *   eg.
+    *   function updated_dt_formated($format) { return $this->toValue('updated_dt', $format); }
+    *
+    *   
     *
     *  with formaters..
     * supported formaters:  
@@ -4560,7 +4565,7 @@ class PDO_DataObject
     *   numbers   : %02d (eg. sprintf)
     *  NOTE you will get unexpected results with times like 0000-00-00 !!!
     *
-    *
+    * 
     * 
     * @param   string       column of database
     * @param   format       foramt
