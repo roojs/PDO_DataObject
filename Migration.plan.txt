@@ -188,6 +188,8 @@ e) PDO_DataObject class
   * fromValue() DONE / NEED TESTING
 
   * toArray() DONE / NEED TESTING
+  * toValue() - renamed to formatValue (date formating is not compatible)
+
   * validate()  DONE / NEED TESTING - moved to seperate class...
   * raise  (was raiseError) -- all calls need DIE removing....
  
