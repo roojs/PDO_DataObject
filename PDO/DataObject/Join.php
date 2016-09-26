@@ -38,12 +38,11 @@
  * joinAdd($obj, $jointype, 'INNER|....', joinAss,  ) ... lot's of args + allows array(....)
  *
  *  
- * autoJoin(.... old messy way... )
+ * joinAdd(.... old messy way... ) -- mapped to join()
  *
- * 
  * joinString(.....) << a string.. either '' (reset) or '....' appends 
  *
- * joinDataObject(object, array options;;;)
+ * join(object, array options;;;)
  * 
  *
  * autoJoin
