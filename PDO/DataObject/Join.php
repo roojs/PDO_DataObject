@@ -374,10 +374,6 @@ class PDO_DataObject_Join {
                          : $obj->_database) . '.';    
         }
         
-        // if they are the same, then dont add a prefix...                
-        if ($obj->_database == $this->_database) {
-           $dbPrefix = '';
-        }
         // as far as we know only mysql supports database prefixes..
         // prefixing the database name is now the default behaviour,
         // as it enables joining mutiple columns from multiple databases...
