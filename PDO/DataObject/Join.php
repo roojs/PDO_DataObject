@@ -415,7 +415,7 @@ class PDO_DataObject_Join {
                 $kSql = ($quoteIdentifiers ? $this->do->quoteIdentifier($k) : $k);
                 
                 if (PDO_DataObject::_is_null($obj,$k)) {
-                	$obj->whereAdd("{$joinAs}.{$kSql} IS NULL");
+                	$obj->where("{$joinAs}.{$kSql} IS NULL");
                 	continue;
                 }
                 
