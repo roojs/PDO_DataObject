@@ -4431,6 +4431,7 @@ class PDO_DataObject
                     $this->$col = '';
                 }
                 try {
+                    // should we sliently fail to update here???
                     $x = new DateTime($value);
                     $this->$col = $x->format('H:i:s');
                 } catch(Exception $e) {
