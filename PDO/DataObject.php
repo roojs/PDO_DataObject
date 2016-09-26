@@ -4760,7 +4760,7 @@ class PDO_DataObject
     * @access private
     * @return bool  object
     */
-    function _is_null($obj_or_ar , $prop) 
+    final function _is_null($obj_or_ar , $prop) 
     {
      	
         
