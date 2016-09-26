@@ -20,4 +20,112 @@
  * @version    CVS: $Id: Cast.php 287158 2009-08-12 13:58:31Z alan_k $
  * @link       http://pear.php.net/package/DB_DataObject
  */
-  
+class PDO_DataObject_Validate
+{
+    
+    private $do;
+    
+    function __construct($dataobject)
+    {
+        $this->do = $dataobject;
+    }
+    
+   /**
+     * validate the values of the object (can be used prior to inserting/updating..)
+     *
+     * Note: This was always intended as a simple validation routine.
+     * It lacks understanding of field length, whether you are inserting or updating (and hence null key values)
+     *
+     * Usage:
+     * if (is_array($ret = $obj->validate())) { ... there are problems with the data ... }
+     *
+     * Logic:
+     *   - defaults to only testing strings/numbers if numbers or strings are the correct type and null values are correct
+     *   - validate Column methods : "validate{ROWNAME}()"  are called if they are defined.
+     *            These methods should return 
+     *                  true = everything ok
+     *                  false|object = something is wrong!
+     * 
+     *   - This method loads and uses the PEAR Validate Class.
+     *
+     * @requires PEAR Validate.php
+     *
+     * @access  public
+     * @return  array of validation results (where key=>value, value=false|object if it failed) or true (if they all succeeded)
+     */
+    function validate()
+    {
+        require_once 'Validate.php';
+        
+        $table = $this->tableColumns();
+        $ret   = array();
+        $seq   = $this->sequenceKey();
+        $options = $_DB_DATAOBJECT['CONFIG'];
+        foreach($table as $key => $val) {
+            
+            
+            // call user defined validation always...
+            $method = "Validate" . ucfirst($key);
+            if (method_exists($this, $method)) {
+                $ret[$key] = $this->$method();
+                continue;
+            }
+            
+            // if not null - and it's not set.......
+            
+            if ($val & DB_DATAOBJECT_NOTNULL && DB_DataObject::_is_null($this, $key)) {
+                // dont check empty sequence key values..
+                if (($key == $seq[0]) && ($seq[1] == true)) {
+                    continue;
+                }
+                $ret[$key] = false;
+                continue;
+            }
+            
+            
+             if (DB_DataObject::_is_null($this, $key)) {
+                if ($val & DB_DATAOBJECT_NOTNULL) {
+                    $this->debug("'null' field used for '$key', but it is defined as NOT NULL", 'VALIDATION', 4);
+                    $ret[$key] = false;
+                    continue;
+                }
+                continue;
+            }
+
+            // ignore things that are not set. ?
+           
+            if (!isset($this->$key)) {
+                continue;
+            }
+            
+            // if the string is empty.. assume it is ok..
+            if (!is_object($this->$key) && !is_array($this->$key) && !strlen((string) $this->$key)) {
+                continue;
+            }
+            
+            // dont try and validate cast objects - assume they are problably ok..
+            if (is_object($this->$key) && is_a($this->$key,'DB_DataObject_Cast')) {
+                continue;
+            }
+            // at this point if you have set something to an object, and it's not expected
+            // the Validate will probably break!!... - rightly so! (your design is broken, 
+            // so issuing a runtime error like PEAR_Error is probably not appropriate..
+            
+            switch (true) {
+                // todo: date time.....
+                case  ($val & DB_DATAOBJECT_STR):
+                    $ret[$key] = Validate::string($this->$key, VALIDATE_PUNCTUATION . VALIDATE_NAME);
+                    continue;
+                case  ($val & DB_DATAOBJECT_INT):
+                    $ret[$key] = Validate::number($this->$key, array('decimal'=>'.'));
+                    continue;
+            }
+        }
+        // if any of the results are false or an object (eg. PEAR_Error).. then return the array..
+        foreach ($ret as $key => $val) {
+            if ($val !== true) {
+                return $ret;
+            }
+        }
+        return true; // everything is OK.
+    }
