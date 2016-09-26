@@ -121,10 +121,10 @@ class PDO_DataObject_Validate
             
             switch (true) {
                 // todo: date time.....
-                case  ($val & DB_DATAOBJECT_STR):
+                case  ($val & PDO_DataObject::STR):
                     $ret[$key] = Validate::string($this->do->$key, VALIDATE_PUNCTUATION . VALIDATE_NAME);
                     continue;
-                case  ($val & DB_DATAOBJECT_INT):
+                case  ($val & PDO_DataObject::INT):
                     $ret[$key] = Validate::number($this->do->$key, array('decimal'=>'.'));
                     continue;
             }
