@@ -41,7 +41,7 @@
  * autoJoin(.... old messy way... )
  *
  * 
- * joinAppend(.....) << a string..
+ * joinString(.....) << a string.. either '' (reset) or '....' appends 
  *
  * joinDataObject(object, array options;;;)
  * 
