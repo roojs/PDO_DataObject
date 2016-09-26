@@ -4437,13 +4437,7 @@ class PDO_DataObject
                     return $e->message;
                 }
                 
-                $guess = strtotime($value);
-                if ($guess != -1) {
-                     $this->$col = date('H:i:s', $guess);
-                    return $return = true;
-                }
-                // otherwise an error in type...
-                return false;
+                return true;
             
             case ($cols[$col] & self::STR):
                 
