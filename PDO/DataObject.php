@@ -80,6 +80,7 @@ class PDO_DataObject
     const ERROR_NODATA =        -2;  // no data available
     const ERROR_INVALIDCONFIG = -3;  // something wrong with the config
     const ERROR_NOCLASS =       -4;  // no class exists
+    const ERROR_SET =           -5;  // set() caused errors when calling set*** methods.
     
     
     
@@ -213,7 +214,15 @@ class PDO_DataObject
     // cache of sequence keys ??- used by autoincrement?? -- need to check..
     private static $sequence = array(); 
     
-    
+    /**
+     * calling set() may throw an exception.
+     *  -> you can catch PDO_DataObject_Exception_Set , and check this value to see what failed.
+     *
+     * @var array the errors (key == the object key, value == the error messages/return from set****)
+     *
+     */
+    public static  $set_errors = false;
+  
      
     
     /* ---------------- ---------------- non-static  -------------------------------- */
@@ -355,7 +364,7 @@ class PDO_DataObject
         // should error out if database is not set.. or know..
         $ds = $this->databaseStructure();
         if (!isset($ds[$this->__table])) {
-            $this->raiseError("Could not find INI values for database={$this->_database_nickname} and table={$this->__table}", self::ERROR_INVALIDARGS, self::ERROR_DIE );
+            $this->raise("Could not find INI values for database={$this->_database_nickname} and table={$this->__table}", self::ERROR_INVALIDARGS );
         }
         
         
@@ -394,10 +403,7 @@ class PDO_DataObject
             // connection is an error...?? assumes pear error???
             if (!is_a($con, $PDO)) {
                 
-                return $this->raiseError(
-                        $con->message,
-                        $con->code, self::ERROR_DIE
-                );
+                return $this->raise( $con->message, $con->code );
                  
             }
 
@@ -438,9 +444,9 @@ class PDO_DataObject
 
         // if still no database...
         if (!$dsn) {
-            return $this->raiseError(
+            return $this->raise(
                 "No database name / dsn found anywhere",
-                self::ERROR_INVALIDCONFIG, self::ERROR_DIE
+                self::ERROR_INVALIDCONFIG
             );
                  
         }
@@ -515,7 +521,7 @@ class PDO_DataObject
             default:
                 // by default we need to validate a little bit..
                 if (empty($dsn_ar['host']) || empty($dsn_ar['path'])  || strlen($dsn_ar['path']) < 2) {
-                    return $this->raiseError("Invalid syntax of DSN : {$dsn}\n". print_r($dsn_ar,true), 0, self::ERROR_DIE);
+                    return $this->raise("Invalid syntax of DSN : {$dsn}\n". print_r($dsn_ar,true), 0);
                 }
                 $pdo_dsn =
                     $dsn_ar['scheme'] . ':' .
@@ -555,7 +561,7 @@ class PDO_DataObject
             self::$connections[$md5]->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION); // just in case?
         } catch (PDOException $ex) {
             $this->debug( (string) $ex , "CONNECT FAILED",5);
-            return $this->raiseError("Connect failed, turn on debugging to 5 see why",0,self::ERROR_DIE, $ex );
+            return $this->raise("Connect failed, turn on debugging to 5 see why",0, $ex );
         }
         
         
@@ -621,8 +627,8 @@ class PDO_DataObject
         
         if (!is_array($cfg_in) && func_num_args() < 2) {
             // one arg = not an array..
-            (new PDO_DataObject())->raiseError("Invalid Call to config should be string+anther value or array",
-                              self::ERROR_INVALIDARGS, self::ERROR_DIE);
+            (new PDO_DataObject())->raise("Invalid Call to config should be string+anther value or array",
+                              self::ERROR_INVALIDARGS);
         }
         
         $old = self::$config;
@@ -632,8 +638,8 @@ class PDO_DataObject
         if (func_num_args() > 1) {
             // two args..
             if (!is_string($cfg_in)) {
-                (new PDO_DataObject())->raiseError("Invalid Call to config should be string+anther value or array",
-                              self::ERROR_INVALIDARGS, self::ERROR_DIE);    
+                (new PDO_DataObject())->raise("Invalid Call to config should be string+anther value or array",
+                              self::ERROR_INVALIDARGS);    
             }
             
             $k = $cfg_in;
@@ -643,8 +649,8 @@ class PDO_DataObject
           
         foreach ($cfg as $k=>$v) {
             if (!isset(self::$config[$k])) {
-                (new PDO_DataObject())->raiseError("Invalid Configuration setting : $k",
-                        self::ERROR_INVALIDCONFIG, self::ERROR_DIE);
+                (new PDO_DataObject())->raise("Invalid Configuration setting : $k",
+                        self::ERROR_INVALIDCONFIG);
             }
             self::$config[$k] = $v;
         }
@@ -670,7 +676,7 @@ class PDO_DataObject
     {
         $pdo = $this->PDO();
         if (!is_a($pdo, self::$config['PDO'])) {
-            $this->raiseError("Can not quoteIdentifier as connection failed", $pdo, self::ERROR_DIE);
+            $this->raise("Can not quoteIdentifier as connection failed", $pdo);
         }
         
         switch($pdo->getAttribute(PDO::ATTR_DRIVER_NAME)) {
@@ -717,8 +723,8 @@ class PDO_DataObject
         switch($drv) {
             case 'mysql':
                 if ($manip && $start) {
-                    $this->raiseError("Mysql may not support offset in modification queries",
-                            self::ERROR_INVALIDARGS, self::ERROR_DIE); // from PEAR DB?
+                    $this->raise("Mysql may not support offset in modification queries",
+                            self::ERROR_INVALIDARGS); // from PEAR DB?
                 }
                 $start = empty($start) ? '': ($start .',');
                 return "$sql LIMIT $start $count";
@@ -729,8 +735,8 @@ class PDO_DataObject
                 return "$sql LIMIT $count OFFSET $start";
             case 'oci':
                 if ($manip) {
-                    $this->raiseError("Oracle may not support offset in modification queries",
-                            self::ERROR_INVALIDARGS, self::ERROR_DIE); // from PEAR DB?
+                    $this->raise("Oracle may not support offset in modification queries",
+                            self::ERROR_INVALIDARGS); // from PEAR DB?
                 }
                 // from http://stackoverflow.com/questions/2912144/alternatives-to-limit-and-offset-for-paging-in-oracle
                 // note, it adds an extra column _pdo_rnum.... but we should be able to ingore it.
@@ -747,8 +753,8 @@ class PDO_DataObject
                 
                 
             default:
-                $this->raiseError("The Database $drv, does not support limit queries - if you know how this can be added, please send a patch.",
-                    self::ERROR_INVALIDARGS, self::ERROR_DIE); // from PEAR DB?
+                $this->raise("The Database $drv, does not support limit queries - if you know how this can be added, please send a patch.",
+                    self::ERROR_INVALIDARGS); // from PEAR DB?
         }
         
         
@@ -792,7 +798,7 @@ class PDO_DataObject
             $v = $k;
             $keys = $this->keys();
             if (!$keys) {
-                return $this->raiseError("No Keys available for {$this->tableName()}", self::ERROR_INVALIDCONFIG);
+                return $this->raise("No Keys available for {$this->tableName()}", self::ERROR_INVALIDCONFIG);
             }
             $k = $keys[0];
         }
@@ -801,7 +807,7 @@ class PDO_DataObject
         }
         
         if ($v === null) {
-            return $this->raiseError("No Value specified for get", self::ERROR_INVALIDARGS);
+            return $this->raise("No Value specified for get", self::ERROR_INVALIDARGS);
             
         }
         $this->$k = $v;
@@ -826,13 +832,13 @@ class PDO_DataObject
         $keys = $this->keys();
         if (!$keys) {
             
-            return $this->raiseError("No Keys available for {$this->tableName()}",
+            return $this->raise("No Keys available for {$this->tableName()}",
                             self::ERROR_INVALIDCONFIG);
 
         }
         $k = $keys[0];
         if (empty($this->$k)) { // we do not 
-            return $this->raiseError("pid() called on Object where primary key value not available",
+            return $this->raise("pid() called on Object where primary key value not available",
                             self::ERROR_NODATA);
         }
         return $this->$k;
@@ -911,7 +917,7 @@ class PDO_DataObject
     {
         
         if ($this->_query === false) {
-            return $this->raiseError(
+            return $this->raise(
                 "You cannot do two queries on the same object (copy it before finding)", 
                 self::ERROR_INVALIDARGS);
             return false;
@@ -924,7 +930,7 @@ class PDO_DataObject
         
         if (!strlen($this->tableName())) {
             // xdebug can backtrace this!
-            return $this->raiseError(
+            return $this->raise(
                 "NO \$__table SPECIFIED in class definition", 
                 self::ERROR_INVALIDARGS);
              
@@ -1017,7 +1023,7 @@ class PDO_DataObject
 
          
         if ($this->N === false) {
-            return $this->raiseError("Fetch Called without Query being run");
+            return $this->raise("Fetch Called without Query being run");
         }
         /*
         Some drivers may return '0' ?? SQLITE???
@@ -1265,7 +1271,7 @@ class PDO_DataObject
             }
         }
         if (!isset($cols[0])) {
-            return $this->raiseError("can not find column '{$key_col}' in results", self::ERROR_INVALIDARGS);
+            return $this->raise("can not find column '{$key_col}' in results", self::ERROR_INVALIDARGS);
         }
         // in theory this is not 
         if ($v === false) {
@@ -1274,7 +1280,7 @@ class PDO_DataObject
         
         // 2 args..
         if (!isset($cols[1])) {
-            return $this->raiseError("can not find column '{$key_col}' in results", self::ERROR_INVALIDARGS);
+            return $this->raise("can not find column '{$key_col}' in results", self::ERROR_INVALIDARGS);
         }
         
         // this is only a bit faster than standard.. - no better way to do this using the PDO API?
@@ -1292,7 +1298,7 @@ class PDO_DataObject
      * @access  public
      * @return  array  array of associative arrays (note does note create child dataobjects.
      */
-    final private function fetchAllAssoc()
+    final function fetchAllAssoc()
     {
         return $this->fetchAll(false,false,true);
         
@@ -1320,7 +1326,7 @@ class PDO_DataObject
         $_query = $this->_query;
          
         if (!isset($this->_query) || ($_query === false)) {
-            return $this->raiseError(
+            return $this->raise(
                 "You cannot do two queries on the same object (clone it before finding)", 
                 self::ERROR_INVALIDARGS);
         }
@@ -1333,7 +1339,7 @@ class PDO_DataObject
         }
         // check input...= 0 or '   ' == error!
         if (!trim($cond)) {
-            return $this->raiseError("WhereAdd: No Valid Arguments", self::ERROR_INVALIDARGS);
+            return $this->raise("WhereAdd: No Valid Arguments", self::ERROR_INVALIDARGS);
         }
         $r = $_query['condition'];
         if ($_query['condition']) {
@@ -1446,7 +1452,7 @@ class PDO_DataObject
     final function orderBy($order = false)
     {
         if ($this->_query === false) {
-            return $this->raiseError(
+            return $this->raise(
                 "You cannot do two queries on the same object (copy it before finding)", 
                 self::ERROR_INVALIDARGS);
         }
@@ -1456,7 +1462,7 @@ class PDO_DataObject
         }
         // check input...= 0 or '    ' == error!
         if (!trim($order)) {
-            return $this->raiseError("orderBy: No Valid Arguments", self::ERROR_INVALIDARGS);
+            return $this->raise("orderBy: No Valid Arguments", self::ERROR_INVALIDARGS);
         }
         
         if (!$this->_query['order_by']) {
@@ -1482,7 +1488,7 @@ class PDO_DataObject
     final function groupBy($group = false)
     {
         if ($this->_query === false) {
-            return $this->raiseError(
+            return $this->raise(
                 "You cannot do two queries on the same object (copy it before finding)", 
                 self::ERROR_INVALIDARGS);
         }
@@ -1492,7 +1498,7 @@ class PDO_DataObject
         }
         // check input...= 0 or '    ' == error!
         if (!trim($group)) {
-            return $this->raiseError("groupBy: No Valid Arguments", self::ERROR_INVALIDARGS);
+            return $this->raise("groupBy: No Valid Arguments", self::ERROR_INVALIDARGS);
         }
         
         
@@ -1518,7 +1524,7 @@ class PDO_DataObject
     final function having($having = false)
     {
         if ($this->_query === false) {
-            return $this->raiseError(
+            return $this->raise(
                 "You cannot do two queries on the same object (copy it before finding)", 
                 self::ERROR_INVALIDARGS);
         }
@@ -1528,7 +1534,7 @@ class PDO_DataObject
         }
         // check input...= 0 or '    ' == error!
         if (!trim($having)) {
-            return $this->raiseError("Having: No Valid Arguments", self::ERROR_INVALIDARGS);
+            return $this->raise("Having: No Valid Arguments", self::ERROR_INVALIDARGS);
         }
         
         
@@ -1557,7 +1563,7 @@ class PDO_DataObject
     final function useIndex($index = false)
     {
         if ($this->_query === false) {
-            return $this->raiseError(
+            return $this->raise(
                 "You cannot do two queries on the same object (copy it before finding)", 
                 self::ERROR_INVALIDARGS);
         }
@@ -1567,7 +1573,7 @@ class PDO_DataObject
         }
         // check input...= 0 or '    ' == error!
         if ((is_string($index) && !trim($index)) || (is_array($index) && !count($index)) ) {
-            return $this->raiseError("Having: No Valid Arguments", self::ERROR_INVALIDARGS);
+            return $this->raise("Having: No Valid Arguments", self::ERROR_INVALIDARGS);
         }
         $index = is_array($index) ? implode(', ', $index) : $index;
         
@@ -1578,6 +1584,80 @@ class PDO_DataObject
         $this->_query['useindex'] =  substr($this->_query['useindex'],0, -2) . ", {$index}) ";
         return $this;
     }
+    
+    
+     /**
+     * unionAdd - adds another dataobject to this, building a unioned query.
+     *
+     * usage:  
+     * $doTable1 = DB_DataObject::factory("table1");
+     * $doTable2 = DB_DataObject::factory("table2");
+     * 
+     * $doTable1->selectAdd();
+     * $doTable1->selectAdd("col1,col2");
+     * $doTable1->whereAdd("col1 > 100");
+     * $doTable1->orderBy("col1");
+     *
+     * $doTable2->selectAdd();
+     * $doTable2->selectAdd("col1, col2");
+     * $doTable2->whereAdd("col2 = 'v'");
+     * 
+     * $doTable1->unionAdd($doTable2);
+     * $doTable1->find();
+      * 
+     * Note: this model may be a better way to implement joinAdd?, eg. do the building in find?
+     * 
+     * 
+     * @param             $obj       object|false the union object or false to reset
+     * @param    optional $is_all    string 'ALL' to do all.
+     * @returns           $obj       object|array the added object, or old list if reset.
+     */
+    
+    final function unionAdd($obj,$is_all= '')
+    {
+        if ($obj === false) {
+            $ret = $this->_query['unions'];
+            $this->_query['unions'] = array();
+            return $ret;
+        }
+        $this->_query['unions'][] = array($obj, 'UNION ' . $is_all . ' ') ;
+        return $obj;
+    }
+
+      /**
+     * union  - adds another dataobject to this, building a unioned query.
+     * (Chainable)
+     * 
+     * usage:  
+     * $doTable1 = DB_DataObject::factory("table1");
+     * $doTable2 = DB_DataObject::factory("table2");
+     * 
+     * $doTable1->selectAdd();
+     * $doTable1->selectAdd("col1,col2");
+     * $doTable1->whereAdd("col1 > 100");
+     * $doTable1->orderBy("col1");
+     *
+     * $doTable2->selectAdd();
+     * $doTable2->selectAdd("col1, col2");
+     * $doTable2->whereAdd("col2 = 'v'");
+     * 
+     * $doTable1->unionAdd($doTable2);
+     * $doTable1->find();
+      * 
+     * Note: this model may be a better way to implement joinAdd?, eg. do the building in find?
+     * 
+     * 
+     * @param             $obj       object|false the union object or false to reset
+     * @param    optional $is_all    string 'ALL' to do all.
+     * @returns           PDO_DataObject        self
+     */
+    
+    final function union($obj,$is_all= '')
+    {
+        $this->unionAdd($obj,$is_all);
+        return $this;;
+    }
+
     /**
      * Sets the Limit (Chainable)
      *
@@ -1598,7 +1678,7 @@ class PDO_DataObject
     {
         
         if ($this->_query === false) {
-            return $this->raiseError(
+            return $this->raise(
                 "You cannot do two queries on the same object (copy it before finding)", 
                 self::ERROR_INVALIDARGS);
             
@@ -1612,7 +1692,7 @@ class PDO_DataObject
         }
         // check input...= 0 or '    ' == error!
         if (!is_numeric($a) || (func_num_args() > 1 && !is_numeric($b))) {
-            return $this->raiseError("limit: No Valid Arguments", self::ERROR_INVALIDARGS);
+            return $this->raise("limit: No Valid Arguments", self::ERROR_INVALIDARGS);
         }
         // used to connect here?? why?
         
@@ -1641,7 +1721,7 @@ class PDO_DataObject
     final function selectAdd($k = null)
     {
         if ($this->_query === false) {
-            return $this->raiseError(
+            return $this->raise(
                 "You cannot do two queries on the same object (copy it before finding)", 
                 self::ERROR_INVALIDARGS);
         }
@@ -1653,7 +1733,7 @@ class PDO_DataObject
         
         // check input...= 0 or '    ' == error!
         if (!trim($k)) {
-            return $this->raiseError("selectAdd: No Valid Arguments", self::ERROR_INVALIDARGS);
+            return $this->raise("selectAdd: No Valid Arguments", self::ERROR_INVALIDARGS);
         }
         
         if ($this->_query['data_select']) {
@@ -1708,7 +1788,7 @@ class PDO_DataObject
         global $_DB_DATAOBJECT;
         
         if ($this->_query === false) {
-            $this->raiseError(
+            $this->raise(
                 "You cannot do two queries on the same object (copy it before finding)", 
                 self::ERROR_INVALIDARGS);
             return false;
@@ -1774,7 +1854,7 @@ class PDO_DataObject
         $items = $this->tableColumns();
             
         if (!$items) {
-            return $this->raiseError("insert:No table definition for {$this->tableName()}",
+            return $this->raise("insert:No table definition for {$this->tableName()}",
                 self::ERROR_INVALIDCONFIG);
             return false;
         }
@@ -1800,7 +1880,7 @@ class PDO_DataObject
         // big check for using sequences
         
         if ($useEmulated) { 
-            $this->raiseError("Emulated Sequences are not supported at present");
+            $this->raise("Emulated Sequences are not supported at present");
         }
         
         // if we haven't set disable_null_strings to "full"
@@ -1873,7 +1953,7 @@ class PDO_DataObject
             }
             /* flag up string values - only at debug level... !!!??? */
             if (is_object($this->$k) || is_array($this->$k)) {
-                $this->raiseError("Trying to insert a row - found object used as a column variable ".
+                $this->raise("Trying to insert a row - found object used as a column variable ".
                                   print_r(array($k, $this->$k),true), self::ERROR_INVALIDARGS);
                 continue;
             }
@@ -1893,7 +1973,7 @@ class PDO_DataObject
         
         
         if (!$leftq && !$useNative) {
-            return $this->raiseError("insert: No Data specifed for query", self::ERROR_NODATA);
+            return $this->raise("insert: No Data specifed for query", self::ERROR_NODATA);
         }
         
         $table = ($quoteIdentifiers ? $this->quoteIdentifier($this->tableName())    : $this->tableName());
@@ -1933,7 +2013,7 @@ class PDO_DataObject
                     
                 case 'pgsql':
                     if (!$seq) {
-                        $this->raiseError("Could not determine Sequence name for table: " . $this->tableName(),
+                        $this->raise("Could not determine Sequence name for table: " . $this->tableName(),
                                           self::ERROR_INVALIDCONFIG);
                     }
                     $this->$key = $PDO->lastInsertId($seq); // hopefully...
@@ -1999,7 +2079,7 @@ class PDO_DataObject
         if ($seq[0] !== false) {
             $keys = array($seq[0]);
             if (!isset($this->{$keys[0]}) && $dataObject !== true) {
-                return $this->raiseError("update: trying to perform an update without 
+                return $this->raise("update: trying to perform an update without 
                         the key set, and argument to update is not 
                         PDO_DataObject::WHEREADD_ONLY
                     ". print_r(array('seq' => $seq , 'keys'=>$keys), true), self::ERROR_INVALIDARGS);
@@ -2010,7 +2090,7 @@ class PDO_DataObject
         
          
         if (!$items) {
-            return $this->raiseError("update:No table definition for {$this->tableName()}", self::ERROR_INVALIDCONFIG);
+            return $this->raise("update:No table definition for {$this->tableName()}", self::ERROR_INVALIDCONFIG);
         }
         $datasaved = 1;
         $settings  = '';
@@ -2113,7 +2193,7 @@ class PDO_DataObject
         
         // prevent wiping out of data!
         if (!strlen($where)) {
-            return  $this->raiseError(
+            return  $this->raise(
                 "update: global table update not available do \$do->whereAdd('1=1'); if you really want to do that.",
                 self::ERROR_INVALIDARGS);
         }
@@ -2127,7 +2207,7 @@ class PDO_DataObject
         }
         // now if you did an update with no values....
         if (!$settings) {
-             $this->raiseError(
+             $this->raise(
                 "update: No Data specifed for query $settings , {$this->_query['condition']}", 
                 self::ERROR_NODATA
             );
@@ -2137,7 +2217,7 @@ class PDO_DataObject
                     
         $table = ($quoteIdentifiers ? $this->quoteIdentifier($this->tableName()) : $this->tableName());
     
-        $r = $this->query("UPDATE  {$table}  SET {$settings} {$where}} ");
+        $r = $this->query("UPDATE  {$table}  SET {$settings} {$where} ");
         
         // restore original query conditions.
         $this->_query = $original_query;
@@ -2206,7 +2286,7 @@ class PDO_DataObject
         
         // don't delete without a condition
         if (!strlen($where)) {
-            return $this->raiseError("delete: No condition specifed for query", self::ERROR_INVALIDARGS);
+            return $this->raise("delete: No condition specifed for query", self::ERROR_INVALIDARGS);
         }
         
         
@@ -2276,7 +2356,7 @@ class PDO_DataObject
         
         
         if (!isset($t->_query)) {
-            return $this->raiseError(
+            return $this->raise(
                 "You cannot do run count after you have run fetch()", 
                 self::ERROR_INVALIDARGS);
         }
@@ -2291,7 +2371,7 @@ class PDO_DataObject
         $keys = $this->keys();
 
         if (empty($keys[0]) && (!is_string($countWhat) || (strtoupper($countWhat) == 'DISTINCT'))) {
-            return $this->raiseError(
+            return $this->raise(
                 "You cannot do run count without keys - use \$do->count('id'), or use \$do->count('distinct id')';", 
                 self::ERROR_INVALIDARGS);
         }
@@ -2420,7 +2500,7 @@ class PDO_DataObject
                 $this->debug((string)$result, "Query Error",1 );
             }
             $this->N = false;
-            return $this->raiseError("Could not run Query", 0, self::ERROR_DIE, $result);
+            return $this->raise("Could not run Query", 0, $result);
         }
         
         
@@ -2585,8 +2665,8 @@ class PDO_DataObject
         
         if (is_array(self::$config['schema_location'])) {
             if (!isset(PDO_DataObject::$config['schema_location'][$database_nickname])) {
-                $this->raiseError("Could not find configuration for database $database_nickname in schema_location",
-                        self::ERROR_INVALIDCONFIG, self::ERROR_DIE
+                $this->raise("Could not find configuration for database $database_nickname in schema_location",
+                        self::ERROR_INVALIDCONFIG
                 );
             }
             
@@ -2597,8 +2677,8 @@ class PDO_DataObject
             $schemas  = explode(PATH_SEPARATOR,PDO_DataObject::$config['schema_location']);
             $suffix = '/'. $database_nickname .'.ini';
         } else {
-            $this->raiseError("Invalid format or empty value for config[schema_location]",
-                            self::ERROR_INVALIDCONFIG, self::ERROR_DIE
+            $this->raise("Invalid format or empty value for config[schema_location]",
+                            self::ERROR_INVALIDCONFIG
             );
         }
           
@@ -2623,8 +2703,8 @@ class PDO_DataObject
         }
         
         if (empty($ini_out)) {
-            $this->raiseError("Failed to load any schema for database={$this->_database_nickname} from these files/locations" . json_encode($tried),
-                         self::ERROR_INVALIDCONFIG, self::ERROR_DIE
+            $this->raise("Failed to load any schema for database={$this->_database_nickname} from these files/locations" . json_encode($tried),
+                         self::ERROR_INVALIDCONFIG
             );
         }
         
@@ -2650,8 +2730,8 @@ class PDO_DataObject
         $this->debug("Cant find database schema: {$this->_database_nickname}\n".
                     "in links file data: " . print_r(self::$ini,true),"databaseStructure",5);
         // we have to die here!! - it causes chaos if we dont (including looping forever!)
-        $this->raiseError( "Unable to load schema for database and table (turn debugging up to 5 for full error message)",
-                self::ERROR_INVALIDARGS, self::ERROR_DIE);
+        $this->raise( "Unable to load schema for database and table (turn debugging up to 5 for full error message)",
+                self::ERROR_INVALIDARGS);
         return false;
         
          
@@ -2725,7 +2805,10 @@ class PDO_DataObject
     
     final function table()
     {
-        $this->raiseError("Table has been replaced with tableColumns()");
+        $this->raise("
+            Table has been replaced with tableColumns()
+            - we have to define it to ensure that if it was over-ridden an error occurs
+        ");
     }
     
   
@@ -3043,9 +3126,9 @@ class PDO_DataObject
         // no configuration available for database
         if (!empty($database) && empty(self::config['databases'][$database])) {
                 $do = new PDO_DataObject();
-                $do->raiseError(
+                $do->raise(
                     "unable to find databases[{$database}] in Configuration, It is required for factory with database"
-                    , self::ERROR_INVALIDARGS, self::ERROR_DIE);   
+                    , self::ERROR_INVALIDARGS);   
         }
         
        
@@ -3091,7 +3174,7 @@ class PDO_DataObject
         
         if (!$rclass || !class_exists($rclass)) {
             $dor = new PDO_DataObject();
-            return $dor->raiseError(
+            return $dor->raise(
                 "factory could not find class " . 
                 (is_array($class) ? implode(PATH_SEPARATOR, $class)  : $class  ). 
                 "from $table",
@@ -3183,7 +3266,7 @@ class PDO_DataObject
         if (!$found) {
             $search = implode(PATH_SEPARATOR, $file); // used for errors..
             $dor = new PDO_DataObject();
-            return $dor->raiseError(
+            return $dor->raise(
                 "autoload:Could not find class " . implode(',', $cls) .
                 " using class_location value :" . $search .
                 " using include_path value :" . ini_get('include_path'), 
@@ -3205,7 +3288,7 @@ class PDO_DataObject
         }
         if (!$ce) {
             $dor = new PDO_DataObject();
-            return $dor->raiseError(
+            return $dor->raise(
                 "autoload: Included $file however could not find the class :" . implode(',', $cls) , 
                  self::ERROR_INVALIDARGS);
             
@@ -3272,8 +3355,8 @@ class PDO_DataObject
         $suffix = '';
         if (is_array(self::$config['schema_location'])) {
             if (!isset(PDO_DataObject::$config['schema_location'][$database_nickname])) {
-                $this->raiseError("Could not find configuration for database $database_nickname in schema_location",
-                        self::ERROR_INVALIDCONFIG, self::ERROR_DIE
+                $this->raise("Could not find configuration for database $database_nickname in schema_location",
+                        self::ERROR_INVALIDCONFIG
                 );
             }
             
@@ -3284,8 +3367,8 @@ class PDO_DataObject
             $schemas  = explode(PATH_SEPARATOR,PDO_DataObject::$config['schema_location']);
             $suffix = '/'. $database_nickname .'.ini';
         } else {
-            $this->raiseError("Invalid format or empty value for config[schema_location]",
-                            self::ERROR_INVALIDCONFIG, self::ERROR_DIE
+            $this->raise("Invalid format or empty value for config[schema_location]",
+                            self::ERROR_INVALIDCONFIG
             );
         }
         
@@ -3318,7 +3401,7 @@ class PDO_DataObject
         }
         if (false === self::$links[$dn] ) {
             // this used to return 'null' ???? 
-            return $this->raiseError(
+            return $this->raise(
                 "Failed to load any links schema for database={$this->_database_nickname} from these files/locations" . json_encode($tried),
                 self::ERROR_INVALIDCONFIG 
             );
@@ -3385,8 +3468,8 @@ class PDO_DataObject
      */
     function link($field, $set_args = array())
     {
-        require_once 'DB/DataObject/Links.php';
-        $l = new DB_DataObject_Links($this);
+        require_once 'PDO/DataObject/Links.php';
+        $l = new PDO_DataObject_Links($this);
         return  $l->link($field,$set_args) ;
         
     }
@@ -3410,8 +3493,8 @@ class PDO_DataObject
      */
     function applyLinks($format = '_%s')
     {
-        require_once 'DB/DataObject/Links.php';
-         $l = new DB_DataObject_Links($this);
+        require_once 'PDO/DataObject/Links.php';
+         $l = new PDO_DataObject_Links($this);
         return $l->applyLinks($format);
            
     }
@@ -3447,50 +3530,13 @@ class PDO_DataObject
      */
     function linkArray($row, $table = null)
     {
-        require_once 'DB/DataObject/Links.php';
-        $l = new DB_DataObject_Links($this);
+        require_once 'PDO/DataObject/Links.php';
+        $l = new PDO_DataObject_Links($this);
         return $l->getLinkArray($row, $table === null ? false: $table);
      
     }
 
-     /**
-     * unionAdd - adds another dataobject to this, building a unioned query.
-     *
-     * usage:  
-     * $doTable1 = DB_DataObject::factory("table1");
-     * $doTable2 = DB_DataObject::factory("table2");
-     * 
-     * $doTable1->selectAdd();
-     * $doTable1->selectAdd("col1,col2");
-     * $doTable1->whereAdd("col1 > 100");
-     * $doTable1->orderBy("col1");
-     *
-     * $doTable2->selectAdd();
-     * $doTable2->selectAdd("col1, col2");
-     * $doTable2->whereAdd("col2 = 'v'");
-     * 
-     * $doTable1->unionAdd($doTable2);
-     * $doTable1->find();
-      * 
-     * Note: this model may be a better way to implement joinAdd?, eg. do the building in find?
-     * 
-     * 
-     * @param             $obj       object|false the union object or false to reset
-     * @param    optional $is_all    string 'ALL' to do all.
-     * @returns           $obj       object|array the added object, or old list if reset.
-     */
     
-    function unionAdd($obj,$is_all= '')
-    {
-        if ($obj === false) {
-            $ret = $this->_query['unions'];
-            $this->_query['unions'] = array();
-            return $ret;
-        }
-        $this->_query['unions'][] = array($obj, 'UNION ' . $is_all . ' ') ;
-        return $obj;
-    }
-
  
     /**
      * joinAdd - adds another dataobject to this, building a joined query.
@@ -3605,7 +3651,7 @@ class PDO_DataObject
         }
         
         if (!is_object($obj) || !is_a($obj,'DB_DataObject')) {
-            return $this->raiseError("joinAdd: called without an object", DB_DATAOBJECT_ERROR_NODATA,PEAR_ERROR_DIE);
+            return $this->raise("joinAdd: called without an object", DB_DATAOBJECT_ERROR_NODATA,PEAR_ERROR_DIE);
         }
         /*  make sure $this->_database is set.  */
         $this->_connect();
@@ -3694,7 +3740,7 @@ class PDO_DataObject
                     // not sure if 1:1 table could cause probs here..
                     
                     if ($joinCol !== false) {
-                         $this->raiseError( 
+                         $this->raise( 
                             "joinAdd: You cannot target a join column in the " .
                             "'link from' table ({$obj->tableName()}). " . 
                             "Either remove the fourth argument to joinAdd() ".
@@ -3721,7 +3767,7 @@ class PDO_DataObject
         /* did I find a conneciton between them? */
 
         if ($ofield === false) {
-            $this->raiseError(
+            $this->raise(
                 "joinAdd: {$obj->tableName()} has no link with {$this->tableName()}",
                 DB_DATAOBJECT_ERROR_NODATA);
             return false;
@@ -3778,7 +3824,7 @@ class PDO_DataObject
             // only fail if we where expecting it to work (eg. not joined on a array)
              
             if (!$items) {
-                $this->raiseError(
+                $this->raise(
                     "joinAdd: No table definition for {$obj->tableName()}", 
                     self::ERROR_INVALIDCONFIG);
                 return false;
@@ -3817,7 +3863,7 @@ class PDO_DataObject
                 if (is_object($obj->$k) && is_a($obj->$k,'DB_DataObject_Cast')) {
                     $value = $obj->$k->toString($v,$DB);
                     if (PEAR::isError($value)) {
-                        $this->raiseError($value->getMessage() ,DB_DATAOBJECT_ERROR_INVALIDARG);
+                        $this->raise($value->getMessage() ,DB_DATAOBJECT_ERROR_INVALIDARG);
                         return false;
                     } 
                     $obj->whereAdd("{$joinAs}.{$kSql} = $value");
@@ -3829,7 +3875,7 @@ class PDO_DataObject
                 $obj->whereAdd("{$joinAs}.{$kSql} = 0");
             }
             if ($this->_query === false) {
-                $this->raiseError(
+                $this->raise(
                     "joinAdd can not be run from a object that has had a query run on it,
                     clone the object or create a new one and use setFrom()", 
                     self::ERROR_INVALIDARGS);
@@ -4047,7 +4093,7 @@ class PDO_DataObject
         
         foreach($map as $ocl=>$info) {
             if (strpos($info, ':') === false) {
-                $this->raiseError(
+                $this->raise(
                     "format of links.ini is not correct for table {$this->tableName()} - missing 'colon:' in value - " . print_R($map,true), 
                     self::ERROR_INVALIDCONFIG);
                 continue;
@@ -4184,13 +4230,12 @@ class PDO_DataObject
             $method = $value;
             $value = func_get_arg(1);
         }
-        require_once 'DB/DataObject/Cast.php';
-        return call_user_func(array('DB_DataObject_Cast', $method), $value);
+        require_once 'PDO/DataObject/Cast.php';
+        return call_user_func(array('PDO_DataObject_Cast', $method), $value);
         
     }
     
-    
-    /**
+     /**
      * Copies items that are in the table definitions from an
      * array or object into the current object
      * will not override key values.
@@ -4200,17 +4245,17 @@ class PDO_DataObject
      * @param    string  $format eg. map xxxx_name to $object->name using 'xxxx_%s' (defaults to %s - eg. name -> $object->name
      * @param    boolean  $skipEmpty (dont assign empty values if a column is empty (eg. '' / 0 etc...)
      * @access   public
-     * @return   true on success or array of key=>setValue error message
+     * @throws  PDO_DataObject_Exception if tableColumns return empty..
+     * @return   true on success or array of key=>setValue error message retured from 
      */
-    function setFrom($from, $format = '%s', $skipEmpty=false)
+    final function setFrom($from, $format = '%s', $skipEmpty=false)
     {
-        global $_DB_DATAOBJECT;
         $keys  = $this->keys();
         $items = $this->tableColumns();
             
-     
+        
         if (!$items) {
-            $this->raiseError(
+            $this->raise(
                 "setFrom:Could not find table definition for {$this->tableName()}", 
                 self::ERROR_INVALIDCONFIG);
             return;
@@ -4224,11 +4269,8 @@ class PDO_DataObject
                 continue; // ignore empty keys!!! what
             }
             
-            $chk = is_object($from) &&  
-                (version_compare(phpversion(), "5.1.0" , ">=") ? 
-                    property_exists($from, sprintf($format,$k)) :  // php5.1
-                    array_key_exists( sprintf($format,$k), get_class_vars($from)) //older
-                );
+            $chk = is_object($from) &&  property_exists($from, sprintf($format,$k));
+                 
             // if from has property ($format($k)      
             if ($chk) {
                 $kk = (strtolower($k) == 'from') ? '_from' : $k;
@@ -4251,7 +4293,7 @@ class PDO_DataObject
                 continue;
             }
             
-            if (!isset($from[sprintf($format,$k)]) && !DB_DataObject::_is_null($from, sprintf($format,$k))) {
+            if (!isset($from[sprintf($format,$k)]) && !self::_is_null($from, sprintf($format,$k))) {
                 continue;
             }
            
@@ -4264,7 +4306,7 @@ class PDO_DataObject
                 continue;
             }
             $val = $from[sprintf($format,$k)];
-            if (is_a($val, 'DB_DataObject_Cast')) {
+            if (is_a($val, 'PDO_DataObject_Cast')) {
                 $this->$k = $val;
                 continue;
             }
@@ -4278,9 +4320,32 @@ class PDO_DataObject
             //$this->$k = $from[sprintf($format,$k)];
         }
         if ($overload_return) {
+          
             return $overload_return;
         }
         return true;
+    }
+    
+     
+    /**
+     * Chainable versoin of setFrom()
+     *
+     * If errors occur on set** methods, then $this->_set_errors will be set to the problem, and an exception is thrown.
+     *
+     * @param    array | object  $from
+     * @param    string  $format eg. map xxxx_name to $object->name using 'xxxx_%s' (defaults to %s - eg. name -> $object->name
+     * @param    boolean  $skipEmpty (dont assign empty values if a column is empty (eg. '' / 0 etc...)
+     * @access   public
+     * @return   PDO_DataObject
+     */
+    final function set($from, $format = '%s', $skipEmpty=false)
+    {
+        $ret = $this->setFrom($from, $format, $skipEmpty);
+        if ($ret !== true) {
+            self::$set_errors  = $ret;
+            return $this->raise("Set Errors Returned Values",self::ERROR_SET);
+        }
+        return $this;
     }
 
     /**
@@ -4742,11 +4807,10 @@ class PDO_DataObject
      * @access public
      * @return error object
      */
-    function raiseError($message, $type = 0, $behaviour = self::ERROR_DIE, $previous_exception = null)
+    function raise($message, $type = 0, $previous_exception = null)
     {
         
         PDO_DataObject::debug($message,'ERROR',1);
-        
         
         class_exists('PDO_DataObject_Exception') ? '' :
             require_once 'PDO/DataObject/Exception.php';
