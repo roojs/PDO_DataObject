@@ -162,22 +162,24 @@ class PDO_DataObject_Join {
             $tfield = $obj[0];
             
             if (count($obj) == 3) {
-                $ofield = $obj[2];
                 $obj = $obj[1];
+                $ofield = $obj[2];
             } else {
                 list($toTable,$ofield) = explode(':',$obj[1]);
-            
-                $obj = is_string($toTable) ? PDO_DataObject::factory($toTable) : $toTable;
-            
-                if (!$obj || !is_object($obj) || is_a($obj,'PEAR_Error')) {
+                
+                try {
+                    $obj = is_string($toTable) ? PDO_DataObject::factory($toTable) : $toTable;
+                } catch (Exception $e) {
                     $obj = new PDO_DataObject($toTable);
-                    
                 }
                 
             }
             // set the table items to nothing.. - eg. do not try and match
             // things in the child table...???
-            $items = array();
+            
+        }
+        if (!is_a('PDO_DataObject', $obj)) {
+            $this->do->raise("JoinAddBC - Object is not a PDO_DataObject", PDO_DataObject::ERROR_INVALIDARGS);
         }
         
         
