@@ -102,17 +102,17 @@ class PDO_DataObject_Validate
 
             // ignore things that are not set. ?
            
-            if (!isset($this->$key)) {
+            if (!isset($this->do->$key)) {
                 continue;
             }
             
             // if the string is empty.. assume it is ok..
-            if (!is_object($this->$key) && !is_array($this->$key) && !strlen((string) $this->$key)) {
+            if (!is_object($this->do->$key) && !is_array($this->do->$key) && !strlen((string) $this->do->$key)) {
                 continue;
             }
             
             // dont try and validate cast objects - assume they are problably ok..
-            if (is_object($this->$key) && is_a($this->$key,'DB_DataObject_Cast')) {
+            if (is_object($this->do->$key) && is_a($this->do->$key,'PDO_DataObject_Cast')) {
                 continue;
             }
             // at this point if you have set something to an object, and it's not expected
@@ -122,10 +122,10 @@ class PDO_DataObject_Validate
             switch (true) {
                 // todo: date time.....
                 case  ($val & DB_DATAOBJECT_STR):
-                    $ret[$key] = Validate::string($this->$key, VALIDATE_PUNCTUATION . VALIDATE_NAME);
+                    $ret[$key] = Validate::string($this->do->$key, VALIDATE_PUNCTUATION . VALIDATE_NAME);
                     continue;
                 case  ($val & DB_DATAOBJECT_INT):
-                    $ret[$key] = Validate::number($this->$key, array('decimal'=>'.'));
+                    $ret[$key] = Validate::number($this->do->$key, array('decimal'=>'.'));
                     continue;
             }
         }
