@@ -187,6 +187,7 @@ class PDO_DataObject_Join {
             'joinType' => $joinType,
             'joinCol' => $joinCol,
             'joinAss' => $joinAs,
+            'ofield' => $ofield,
         ));
         
     }
