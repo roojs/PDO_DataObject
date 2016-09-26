@@ -3321,7 +3321,7 @@ class PDO_DataObject
     * @see      PDO_DataObject::applyLinks(), PDO_DataObject::link()
     */
     
-    final function links()
+    function links()
     {
        
         
