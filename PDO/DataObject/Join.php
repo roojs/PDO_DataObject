@@ -154,7 +154,11 @@ class PDO_DataObject_Join {
     
     function joinAddBC($obj = false, $joinType='INNER', $joinAs=false, $joinCol=false)
     {
-        
+         if ($obj === false) {
+            $this->_join = '';
+            return;
+        }
+         
         $ofield = false; // object field
         $tfield = false; // this field
         $toTable = false;
@@ -201,10 +205,7 @@ class PDO_DataObject_Join {
         $joinAs       = isset($options['joinAs'])   ? $options['joinAs']   : false;
         $joinType     = isset($options['joinType']) ? $options['joinType'] : 'INNER';
         
-        
-        $ofield       = isset($options['object']) ? $options['object'] : false; // object field
-        
-        // support for array as first argument 
+          // support for array as first argument 
         // this assumes that you dont have a links.ini for the specified table.
         // and it doesnt exist as am extended dataobject!! - experimental.
         
