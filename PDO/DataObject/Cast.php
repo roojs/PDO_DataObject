@@ -571,13 +571,10 @@ class DB_DataObject_Cast {
      */
     function raise($message, $type = 0, $previous_exception = null)
     {
-        
-        PDO_DataObject::debug($message,'ERROR',1);
-        
-        class_exists('PDO_DataObject_Exception') ? '' :
-            require_once 'PDO/DataObject/Exception.php';
+        class_exists('PDO_DataObject') ? '' :
+            require_once 'PDO/DataObject.php';
          
-        throw  new PDO_DataObject_Exception($message, $type, $previous_exception);
+        return (new PDO_DataObject())->raise($message,$type, $previous_exception);
              
     }
 
