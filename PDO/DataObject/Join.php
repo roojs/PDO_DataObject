@@ -76,7 +76,7 @@ class PDO_DataObject_Join {
      * constructor
      * The primary dataObject to work on..
      */
-    function __construct($dataObject)
+    function __construct(PDO_DataObject $dataObject)
     {
         $this->do = $dataObject;
     }
