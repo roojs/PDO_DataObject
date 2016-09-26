@@ -4381,7 +4381,6 @@ class PDO_DataObject
         switch (true) {
             // set to null and column is can be null...
             case ((!($cols[$col] & self::NOTNULL)) && self::_is_null($value, false)):
-            case (is_object($value) && is_a($value,'PDO_DataObject_Cast')): 
                 $this->$col = $value;
                 return true;
                 
