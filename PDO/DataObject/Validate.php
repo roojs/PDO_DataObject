@@ -21,6 +21,9 @@
  * @link       http://pear.php.net/package/DB_DataObject
  */
 
+// validate is needed as some constants come from it.... 
+require_once 'Validate.php';
+
  
 class PDO_DataObject_Validate
 {
@@ -63,7 +66,6 @@ class PDO_DataObject_Validate
      */
     function validate()
     {
-        require_once 'Validate.php';
         
         $table = $this->do->tableColumns();
         $ret   = array();
