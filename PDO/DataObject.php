@@ -4434,7 +4434,7 @@ class PDO_DataObject
                     $x = new DateTime($value);
                     $this->$col = $x->format('H:i:s');
                 } catch(Exception $e) {
-                    return $e->message;
+                    return false;
                 }
                 
                 return true;
