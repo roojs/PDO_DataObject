@@ -4430,7 +4430,13 @@ class PDO_DataObject
                 if (!$value) {
                     $this->$col = '';
                 }
-            
+                try {
+                    $x = new DateTime($value);
+                    $this->$col = $x->format('H:i:s');
+                } catch(Exception $e) {
+                    return $e->message;
+                }
+                
                 $guess = strtotime($value);
                 if ($guess != -1) {
                      $this->$col = date('H:i:s', $guess);
