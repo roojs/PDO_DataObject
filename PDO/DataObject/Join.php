@@ -38,12 +38,13 @@
  * joinAdd($obj, $jointype, 'INNER|....', joinAss,  ) ... lot's of args + allows array(....)
  *
  *  
- * joinAdd(.... old messy way... ) -- mapped to join()
  *
  * joinString(.....) << a string.. either '' (reset) or '....' appends 
  *
  * join(object, array options;;;)
  * 
+ * BC: joinAdd(.... old messy way... ) -- mapped to join()
+ 
  *
  * autoJoin
  *
@@ -149,25 +150,16 @@ class PDO_DataObject_Join {
      * @access   public
      * @author   Stijn de Reede      <sjr@gmx.co.uk>
      */
-    function addDataObject($obj = false, $options = array())
+    function add($obj = false, $options = array())
     {
+          
         
+        // new options can now go in here... (dont forget to document them)
+        $useWhereAsOn = isset($options['useWhereAsOn']) ? $options['useWhereAsOn'] : false;
+        $joinCol      = isset($options['joinCol'])  ? $options['joinCol']  : false;
+        $joinAs       = isset($options['joinAs'])   ? $options['joinAs']   : false;
+        $joinType     = isset($options['joinType']) ? $options['joinType'] : 'INNER';
         
-        if ($obj === false) {
-            $this->_join = '';
-            return;
-        }
-         
-        //echo '<PRE>'; print_r(func_get_args());
-        $useWhereAsOn = false;
-        // support for 2nd argument as an array of options
-        if (is_array($joinType)) {
-            // new options can now go in here... (dont forget to document them)
-            $useWhereAsOn = !empty($joinType['useWhereAsOn']);
-            $joinCol      = isset($joinType['joinCol'])  ? $joinType['joinCol']  : $joinCol;
-            $joinAs       = isset($joinType['joinAs'])   ? $joinType['joinAs']   : $joinAs;
-            $joinType     = isset($joinType['joinType']) ? $joinType['joinType'] : 'INNER';
-        }
         // support for array as first argument 
         // this assumes that you dont have a links.ini for the specified table.
         // and it doesnt exist as am extended dataobject!! - experimental.
