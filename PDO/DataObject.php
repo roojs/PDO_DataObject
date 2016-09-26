@@ -4601,7 +4601,7 @@ class PDO_DataObject
      * @return PDOStatement|false  
      */
      
-    function result()
+    final function result()
     {
         return !$this->_result ? false :
             (is_a($this->_result,'StdClass') ? false : $this->_result);
