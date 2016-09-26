@@ -334,7 +334,7 @@ class PDO_DataObject_Join {
         /* did I find a conneciton between them? */
 
         if ($ofield === false) {
-            $this->raise(
+            $this->do->raise(
                 "joinAdd: {$obj->tableName()} has no link with {$this->tableName()}",
                 self::ERROR_NODATA);
             return false;
