@@ -72,7 +72,7 @@ abstract class PDO_DataObject_Introspection
         $sql = $this->getSpecialQuery($type); // can throw an exception...
         if ($sql === null) {
             $this->last_query = '';
-            return $this->do->raiseError("Can not get Listof $type", PDO_DataObject::ERROR_INVALIDCONFIG);
+            return $this->do->raise("Can not get Listof $type", PDO_DataObject::ERROR_INVALIDCONFIG);
         }
         $this->do->debug($sql, __FUNCTION__);
       
