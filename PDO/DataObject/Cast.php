@@ -560,6 +560,28 @@ class DB_DataObject_Cast {
     }
     
     
+    /**
+     * Wrapper around throw Exception..., 
+      *
+     * @param  int $message    message
+     * @param  int $type       type
+     * @param  int $behaviour  behaviour (die or continue!);
+     * @param  Exception $previous_exception  Cause of error...
+     * @access public
+     * @return error object
+     */
+    function raise($message, $type = 0, $previous_exception = null)
+    {
+        
+        PDO_DataObject::debug($message,'ERROR',1);
+        
+        class_exists('PDO_DataObject_Exception') ? '' :
+            require_once 'PDO/DataObject/Exception.php';
+         
+        throw  new PDO_DataObject_Exception($message, $type, $previous_exception);
+             
+    }
+
     
 }
 
