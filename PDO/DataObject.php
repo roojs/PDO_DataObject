@@ -4581,7 +4581,9 @@ class PDO_DataObject
         switch (true) {
             case (($cols[$col] & self::DATE) &&  ($cols[$col] & self::TIME)):
             case ($cols[$col] & self::DATE):
-            case ($cols[$col] & self::TIME):    
+            case ($cols[$col] & self::TIME):
+            case ($cols[$col] &  self::MYSQLTIMESTAMP): //?? really????
+
                 if (!$this->$col) {
                     return '';
                 }
@@ -4589,17 +4591,6 @@ class PDO_DataObject
                 $r = new DateTime($this->$col);
                 return $r->format($format);
                  
-            
-                
-            case ($cols[$col] &  self::MYSQLTIMESTAMP):
-                if (!$this->$col) {
-                    return '';
-                }
-                require_once 'Date.php';
-                
-                $x = new Date($this->$col);
-                
-                return $x->format($format);
             
              
             case ($cols[$col] &  self::BOOL):
