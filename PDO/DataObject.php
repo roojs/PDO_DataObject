@@ -4514,42 +4514,8 @@ class PDO_DataObject
         
         return $ret;
     }
-
-    /**
-     * validate the values of the object (usually prior to inserting/updating..)
-     *
-     * Uses PDO_DataObject_Validate
-     *
-     * @access  public
-     * @return  array of validation results (where key=>value, value=false|object if it failed) or true (if they all succeeded)
-     */
-    function validate()
-    {
-        class_exists('PDO_DataObject_Validate') ? '' :
-            require_once 'PDO/DataObject/Validate.php';
-            
-        $v = new PDO_DataObject_Validate($this);
-        return $v->validate();
-        
-    }
-
-   
- 
-    /**
-     * Gets the DB result object related to the objects active query
-     *
-     * @access public
-     * @return PDOStatement|false  
-     */
-     
-    function result()
-    {
-        return !$this->_result ? false :
-            (is_a($this->_result,'StdClass') ? false : $this->_result);
-        
-    }
- 
-   
+    
+    
      /**
     *  standard formated get* implementation.
     *  BC Break: that the standard date formating is different from DB_DataObject.
@@ -4608,6 +4574,43 @@ class PDO_DataObject
 
     }
     
+    
+
+    /**
+     * validate the values of the object (usually prior to inserting/updating..)
+     *
+     * Uses PDO_DataObject_Validate
+     *
+     * @access  public
+     * @return  array of validation results (where key=>value, value=false|object if it failed) or true (if they all succeeded)
+     */
+    function validate()
+    {
+        class_exists('PDO_DataObject_Validate') ? '' :
+            require_once 'PDO/DataObject/Validate.php';
+            
+        $v = new PDO_DataObject_Validate($this);
+        return $v->validate();
+        
+    }
+
+   
+ 
+    /**
+     * Gets the DB result object related to the objects active query
+     *
+     * @access public
+     * @return PDOStatement|false  
+     */
+     
+    function result()
+    {
+        return !$this->_result ? false :
+            (is_a($this->_result,'StdClass') ? false : $this->_result);
+        
+    }
+ 
+   
     
     /* ----------------------- Debugger ------------------ */
 
