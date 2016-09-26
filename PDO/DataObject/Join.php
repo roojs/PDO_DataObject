@@ -44,24 +44,45 @@
  * joinAppend(.....) << a string..
  *
  * joinDataObject(object, array options;;;)
+ * 
  *
  * autoJoin
+ *
+ * 
+ * 
  *
  *
  */
 class PDO_DataObject_Join {
     
     private $do;
+    
+    /**
+     * Associative map of joined elements and their names..
+     * 
+     * @access public
+     */
+    var $joins = array(); // 
+    /**
+     * Associative map of joined  names, with map of original 'dotted' column name to derived one..
+     * 
+     * @access public
+     */
+    
+    var $columns = array(); 
+    
+    
     /**
      * constructor
      * The primary dataObject to work on..
      */
-    
-    
     function __construct($dataObject)
     {
         $this->do = $dataObject;
     }
+    
+    
+    
     
     
     /**
