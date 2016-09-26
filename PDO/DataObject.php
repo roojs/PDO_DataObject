@@ -4793,10 +4793,7 @@ class PDO_DataObject
 
 
     /**
-     * Default error handling is to create throw an exception , unless config[excpetions] == false
-     * if it's off a pear error is returned (and may trigger a 'DIE' event
-     * if you need to handle errors you should look at setting the PEAR_Error callback
-     * this is due to the fact it would wreck havoc on the internal methods!
+     * wrapper around throw exception.
      *
      * @param  int $message    message
      * @param  int $type       type
