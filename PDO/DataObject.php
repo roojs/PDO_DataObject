@@ -3192,7 +3192,7 @@ class PDO_DataObject
     /**
      * table to ClassName
      * 
-     * @param  string  $table  tablename (use blank to create a new instance of the same class.)
+     * @param  string  $table  tablename  
      * @throws PDO_DataObject_Exception
      *              database not set or does not exist.
      *              file exists, but does not contain valid class.
