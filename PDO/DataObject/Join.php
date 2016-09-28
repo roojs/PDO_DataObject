@@ -1,6 +1,9 @@
 <?php
 /**
- * Join tables 
+ * Join tables
+ *
+ * Note - not complete - code is still in core DataObjects..
+ * 
  *
  * For PHP versions  5 and 7
  * 
@@ -41,13 +44,32 @@
  *
  * joinString(.....) << a string.. either '' (reset) or '....' appends 
  *
- * join(object, array options;;;)
+ * join('sometable as xxx')
+ * join('right join sometable as xxx')
+ * join('right join sometable as xxx on xxx.id=vv.id')
+ *
+ * --> set's _join_xxx to the dataobject...
+ * 
  * 
  * BC: joinAdd(.... old messy way... ) -- mapped to join()
  
  *
  * autoJoin
  *
+ * 
+ * ----------------
+ *
+ *
+ * Design theory..
+ *
+ * -> before we treated joins as just a method to build a string.
+ *
+ * Can we revamp that idea to add objects (and retreive)
+ * building the structured data, then calling 'toString()' on build, and generate the join..
+ *
+ * $sometable = $do->join('some_table');
+ * $sometable->id = 123
+ * $all_data = $do->fetchAllAssoc();
  * 
  * 
  *
@@ -346,6 +368,10 @@ class PDO_DataObject_Join {
         if ($joinAs === false) {
             $joinAs = $obj->tableName();
         }
+        
+        
+        
+        
         $options = PDO_DataObject::config();
         $quoteIdentifiers = $options['quote_identifiers'];
         
@@ -406,50 +432,9 @@ class PDO_DataObject_Join {
             
             $ignore_null = $options['disable_null_strings'] === false;
             
-            $obj = clone($obj);
             
-
-            foreach($items as $k => $v) {
-                if (!isset($obj->$k) && $ignore_null) {
-                    continue;
-                }
-                
-                $kSql = ($quoteIdentifiers ? $this->do->quoteIdentifier($k) : $k);
-                
-                if (PDO_DataObject::_is_null($obj,$k)) {
-                	$obj->where("{$joinAs}.{$kSql} IS NULL");
-                	continue;
-                }
-                
-                if ($v & self::STR) {
-                    $obj->where("{$joinAs}.{$kSql} = " . $PDO->quote((string) (
-                            ($v & self::BOOL) ? 
-                                // this is thanks to the braindead idea of postgres to 
-                                // use t/f for boolean.
-                                (($obj->$k === 'f') ? 0 : (int)(bool) $obj->$k) :  
-                                $obj->$k
-                        )));
-                    continue;
-                }
-                if (is_numeric($obj->$k)) {
-                    $obj->where("{$joinAs}.{$kSql} = {$obj->$k}");
-                    continue;
-                }
-                            
-                if (is_object($obj->$k) && is_a($obj->$k,'PDO_DataObject_Cast')) {
-                    $value = $obj->$k->toString($v,$DB);
-                    if (PEAR::isError($value)) {
-                        $this->raise($value->getMessage() ,self::ERROR_INVALIDARG);
-                        return false;
-                    } 
-                    $obj->whereAdd("{$joinAs}.{$kSql} = $value");
-                    continue;
-                }
-                
-                
-                /* this is probably an error condition! */
-                $obj->whereAdd("{$joinAs}.{$kSql} = 0");
-            }
+            $obj->tableName($joinAs);
+              
             if ($this->_query === false) {
                 $this->raise(
                     "joinAdd can not be run from a object that has had a query run on it,
