@@ -3811,7 +3811,7 @@ class PDO_DataObject
         }
         
         // if they are the same, then dont add a prefix...                
-        if ($obj->_database == $this->_database) {
+        if ($obj->_database_nickname == $this->_database_nickname) {
            $dbPrefix = '';
         }
         // as far as we know only mysql supports database prefixes..
