@@ -3756,12 +3756,12 @@ class PDO_DataObject
                     // not sure if 1:1 table could cause probs here..
                     
                     if ($joinCol !== false) {
-                         $this->raise( 
+                        $this->raise( 
                             "joinAdd: You cannot target a join column in the " .
                             "'link from' table ({$obj->tableName()}). " . 
                             "Either remove the fourth argument to joinAdd() ".
                             "({$joinCol}), or alter your links.ini file. ",
-                            self::ERROR_NODATA);
+                            self::ERROR_INVALIDARGS);
                         return false;
                     }
                 
@@ -3785,7 +3785,7 @@ class PDO_DataObject
         if ($ofield === false) {
             $this->raise(
                 "joinAdd: {$obj->tableName()} has no link with {$this->tableName()}",
-                self::ERROR_NODATA);
+                self::ERROR_INVALIDARGS);
             return false;
         }
         $joinType = strtoupper($joinType);
