@@ -3827,7 +3827,7 @@ class PDO_DataObject
         // it obvioulsy cant work out what child elements might exist...
         // until we get on the fly querying of tables..
         // note: we have already checked that it is_a(db_dataobject earlier)
-        if ( strtolower(get_class($obj)) != 'db_dataobject') {
+        if ( get_class($obj) != 'PDO_DataObject') {
                  
             // now add where conditions for anything that is set in the object 
         
