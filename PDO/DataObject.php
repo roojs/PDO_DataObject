@@ -3806,7 +3806,7 @@ class PDO_DataObject
         $dbPrefix  = '';
         if ($obj->PDO()->getAttribute(PDO::ATTR_DRIVER_NAME) == 'mysql') {
             $dbPrefix = ($quoteIdentifiers
-                         ? $DB->quoteIdentifier($obj->_database)
+                         ? $this->quoteIdentifier($obj->_database)
                          : $obj->_database) . '.';    
         }
         
