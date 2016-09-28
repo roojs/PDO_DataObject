@@ -3833,7 +3833,7 @@ class PDO_DataObject
         
         
         
-            $items = $obj->table();
+            $items = $obj->tableColumns();
             // will return an array if no items..
             
             // only fail if we where expecting it to work (eg. not joined on a array)
@@ -3853,7 +3853,7 @@ class PDO_DataObject
                     continue;
                 }
                 
-                $kSql = ($quoteIdentifiers ? $DB->quoteIdentifier($k) : $k);
+                $kSql = ($quoteIdentifiers ? $this->quoteIdentifier($k) : $k);
                 
                 if (self::_is_null($obj,$k)) {
                 	$obj->whereAdd("{$joinAs}.{$kSql} IS NULL");
