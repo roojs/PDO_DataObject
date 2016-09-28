@@ -3160,8 +3160,6 @@ class PDO_DataObject
      *              
      * @return string|classname
      *
-     *
-     *
      */
     static function tableToClass($table)
     {
