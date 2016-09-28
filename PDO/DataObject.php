@@ -3797,11 +3797,10 @@ class PDO_DataObject
         }
         
         $quoteIdentifiers = self::$config['quote_identifiers'];
-        $options = $_DB_DATAOBJECT['CONFIG'];
-        
+         
         // not sure  how portable adding database prefixes is..
         $objTable = $quoteIdentifiers ? 
-                $DB->quoteIdentifier($obj->tableName()) : 
+                $this->quoteIdentifier($obj->tableName()) : 
                  $obj->tableName() ;
                 
         $dbPrefix  = '';
@@ -3846,7 +3845,7 @@ class PDO_DataObject
                 return false;
             }
             
-            $ignore_null = $options['disable_null_strings'] === false;
+            $ignore_null = self::$config['disable_null_strings'] === false;
             
 
             foreach($items as $k => $v) {
