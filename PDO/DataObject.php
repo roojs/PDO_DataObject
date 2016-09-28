@@ -3234,7 +3234,7 @@ class PDO_DataObject
             $ce = class_exists($class,false);
         }
         
-        
+        return $class;
         
         
     }
