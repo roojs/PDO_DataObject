@@ -3161,7 +3161,7 @@ class PDO_DataObject
      * @return string|classname
      *
      */
-    static function tableToClass($table)
+    private static function tableToClass($table)
     {
         
         // multi-database support.. - experimental.
