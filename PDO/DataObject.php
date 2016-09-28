@@ -3197,6 +3197,7 @@ class PDO_DataObject
      * @param  string  $table  Table trying to load.
      * @access private
      * @return string classname on Success
+     * @throws PDO_DataObject_Exception only when class is loaded, and file does not exist.
      * @static
      */
     private static function _autoloadClass($class, $table=false)
