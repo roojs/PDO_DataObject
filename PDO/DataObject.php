@@ -3657,13 +3657,11 @@ class PDO_DataObject
             } else {
                 list($toTable,$ofield) = explode(':',$obj[1]);
             
-                $obj = is_string($toTable) ? self::factory($toTable) : $toTable;
-            
-                if (!$obj || !is_object($obj) || is_a($obj,'PEAR_Error')) {
+                
+                $obj = self::tableToClass($table);
+                if (!$obj) {
                     $obj = new PDO_DataObject($toTable);
-                    $obj->__table = $toTable;
                 }
-                $obj->_connect();
             }
             // set the table items to nothing.. - eg. do not try and match
             // things in the child table...???
