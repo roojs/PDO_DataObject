@@ -3192,8 +3192,6 @@ class PDO_DataObject
     /**
      * table to ClassName
      *
-     * It will try and load the class 
-     *
      * @return string|classname
      *
      *
@@ -3230,23 +3228,18 @@ class PDO_DataObject
     
         $class = array();
         foreach($cp as $cpr) {
-            
-            $class = self::_autoloadClass($cpr . $tbl, $table);
-            if ($class !== false) {
-                break;
-            }
             $ce =  class_exists($cpr . $tbl,false); //class exists without autoloader..
             if ($ce) {
                 $class = $cpr . $tbl;
                 return $class;
             }
             
-            $class = self::_autoloadClass($cpr . $tbl, $table);
+            $class[]  =  $cpr . $tbl;
             
         }
         
+        return self::_autoloadClass($class;, $table);
         
-        return $class;
         
         
     }
@@ -3263,13 +3256,13 @@ class PDO_DataObject
      * @throws PDO_DataObject_Exception only when class is loaded, and file does not exist.
      * @static
      */
-    private static function _autoloadClass($class, $table)
+    private static function _autoloadClass($class, $table=false)
     {
-     
-        if (class_exists($class,false)) {
-            return true;
-        }
-     
+         
+        $class_prefix = self::$config['class_prefix'];
+                
+        $table   = $table ? $table : substr($class,strlen($class_prefix));
+
         // only include the file if it exists - and barf badly if it has parse errors :)
         if (self::$config['proxy']|| empty(self::$config['class_location'])) {
             return false;
