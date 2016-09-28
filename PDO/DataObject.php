@@ -3253,7 +3253,7 @@ class PDO_DataObject
             foreach(explode(PATH_SEPARATOR,  ini_get('include_path')) as $p) {
                 $ff = "$p/$f";
 
-                if (file_exists($ff)) {
+                if (file_exists($ff) && is_readable($ff)) {
                     $file = $ff;
                     $found = true;
                     break;
@@ -3605,8 +3605,7 @@ class PDO_DataObject
      */
     function joinAdd($obj = false, $joinType='INNER', $joinAs=false, $joinCol=false)
     {
-        global $_DB_DATAOBJECT;
-        if ($obj === false) {
+         if ($obj === false) {
             $this->_join = '';
             return;
         }
@@ -3640,7 +3639,7 @@ class PDO_DataObject
                 $obj = is_string($toTable) ? self::factory($toTable) : $toTable;
             
                 if (!$obj || !is_object($obj) || is_a($obj,'PEAR_Error')) {
-                    $obj = new PDO_DataObject();
+                    $obj = new PDO_DataObject($toTable);
                     $obj->__table = $toTable;
                 }
                 $obj->_connect();
