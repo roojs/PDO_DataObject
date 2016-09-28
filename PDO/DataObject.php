@@ -3219,20 +3219,17 @@ class PDO_DataObject
         
         // multiprefix support.
         $tbl = preg_replace('/[^A-Z0-9]/i','_',ucfirst($table));
-        if (is_array($cp)) {
-            $class = array();
-            foreach($cp as $cpr) {
-                $ce =  class_exists($cpr . $tbl,false); //class exists without autoloader..
-                if ($ce) {
-                    $class = $cpr . $tbl;
-                    break;
-                }
-                $class[] = $cpr . $tbl;
+    
+        $class = array();
+        foreach($cp as $cpr) {
+            $ce =  class_exists($cpr . $tbl,false); //class exists without autoloader..
+            if ($ce) {
+                $class = $cpr . $tbl;
+                return $class;
             }
-        } else {
-            $class = $tbl;
-            $ce = class_exists($class,false);
+            $class[] = $cpr . $tbl;
         }
+        
         
         return $class;
         
