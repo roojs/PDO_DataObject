@@ -3669,7 +3669,7 @@ class PDO_DataObject
         }
         
         if (!is_object($obj) || !is_a($obj,'PDO_DataObject')) {
-            return $this->raise("joinAdd: called without an object", self::ERROR_NODATA);
+            return $this->raise("joinAdd: called without an object", self::ERROR_INVALIDARGS);
         }
         /*  make sure $this->_database is set.  */
         
