@@ -3238,7 +3238,7 @@ class PDO_DataObject
             
         }
         
-        return self::_autoloadClass($class;, $table);
+        return self::_autoloadClass($class, $table);
         
         
         
