@@ -3190,8 +3190,49 @@ class PDO_DataObject
         return $ret;
     }
     
-    private static tableToClass($table)
+    static function tableToClass($table)
     {
+        
+        // multi-database support.. - experimental.
+        $database = '';
+       
+        if (strpos( $table,'/') !== false ) {
+            list($database,$table) = explode('.',$table, 2);
+          
+        }
+         
+         
+        // no configuration available for database
+        if (!empty($database) && empty(self::config['databases'][$database])) {
+                $do = new PDO_DataObject();
+                $do->raise(
+                    "unable to find databases[{$database}] in Configuration, It is required for factory with database"
+                    , self::ERROR_INVALIDARGS);   
+        }
+        
+       
+        
+        // does this need multi db support??
+        $cp =  explode(PATH_SEPARATOR, self::$config['class_prefix']);
+        
+        //print_r($cp);
+        
+        // multiprefix support.
+        $tbl = preg_replace('/[^A-Z0-9]/i','_',ucfirst($table));
+        if (is_array($cp)) {
+            $class = array();
+            foreach($cp as $cpr) {
+                $ce =  class_exists($cpr . $tbl,false); //class exists without autoloader..
+                if ($ce) {
+                    $class = $cpr . $tbl;
+                    break;
+                }
+                $class[] = $cpr . $tbl;
+            }
+        } else {
+            $class = $tbl;
+            $ce = class_exists($class,false);
+        }
         
         
         
