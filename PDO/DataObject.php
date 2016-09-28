@@ -3192,6 +3192,10 @@ class PDO_DataObject
     /**
      * table to ClassName
      *
+     * @throws PDO_DataObject_Exception
+     *              database not set or does not exist.
+     *              file exists, but does not contain valid class.
+     *              
      * @return string|classname
      *
      *
