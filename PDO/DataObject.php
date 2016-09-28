@@ -3114,7 +3114,7 @@ class PDO_DataObject
     static function factory($table = '')
     {
         
-        $table = $table === '' ? $this->tableName();
+        $table = $table === '' ? $this->tableName() : $table;
         // multi-database support.. - experimental.
         $database = '';
        
