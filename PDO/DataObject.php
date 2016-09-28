@@ -3190,7 +3190,7 @@ class PDO_DataObject
         return $ret;
     }
     /**
-     * autoload Class
+     * autoload Class - Note - does not throw errors on loading, so can be used to test.
      *
      * @param  string|array  $class  Class
      * @param  string  $table  Table trying to load.
@@ -3265,6 +3265,7 @@ class PDO_DataObject
         }
         if (!$found) {
             $search = implode(PATH_SEPARATOR, $file); // used for errors..
+            
             $dor = new PDO_DataObject();
             return $dor->raise(
                 "autoload:Could not find class " . implode(',', $cls) .
