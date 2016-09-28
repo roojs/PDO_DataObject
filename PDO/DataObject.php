@@ -3796,7 +3796,7 @@ class PDO_DataObject
             $joinAs = $obj->tableName();
         }
         
-        $quoteIdentifiers = !empty($_DB_DATAOBJECT['CONFIG']['quote_identifiers']);
+        $quoteIdentifiers = self::$config['quote_identifiers'];
         $options = $_DB_DATAOBJECT['CONFIG'];
         
         // not sure  how portable adding database prefixes is..
