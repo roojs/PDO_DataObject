@@ -3189,6 +3189,16 @@ class PDO_DataObject
         }
         return $ret;
     }
+    
+    private static tableToClass($table)
+    {
+        
+        
+        
+        
+    }
+    
+    
     /**
      * autoload Class - Note - does not throw errors on loading, so can be used to test.
      * 
