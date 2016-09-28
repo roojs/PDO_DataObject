@@ -3189,7 +3189,16 @@ class PDO_DataObject
         }
         return $ret;
     }
-    
+    /**
+     * table to ClassName
+     *
+     * It will try and load the class 
+     *
+     * @return string|classname
+     *
+     *
+     *
+     */
     static function tableToClass($table)
     {
         
@@ -3200,8 +3209,7 @@ class PDO_DataObject
             list($database,$table) = explode('.',$table, 2);
           
         }
-         
-         
+          
         // no configuration available for database
         if (!empty($database) && empty(self::config['databases'][$database])) {
                 $do = new PDO_DataObject();
@@ -3222,12 +3230,19 @@ class PDO_DataObject
     
         $class = array();
         foreach($cp as $cpr) {
+            
+            $class = self::_autoloadClass($cpr . $tbl, $table);
+            if ($class !== false) {
+                break;
+            }
             $ce =  class_exists($cpr . $tbl,false); //class exists without autoloader..
             if ($ce) {
                 $class = $cpr . $tbl;
                 return $class;
             }
-            $class[] = $cpr . $tbl;
+            
+            $class = self::_autoloadClass($cpr . $tbl, $table);
+            
         }
         
         
@@ -3248,13 +3263,13 @@ class PDO_DataObject
      * @throws PDO_DataObject_Exception only when class is loaded, and file does not exist.
      * @static
      */
-    private static function _autoloadClass($class, $table=false)
+    private static function _autoloadClass($class, $table)
     {
-         
-        $class_prefix = self::$config['class_prefix'];
-                
-        $table   = $table ? $table : substr($class,strlen($class_prefix));
-
+     
+        if (class_exists($class,false)) {
+            return true;
+        }
+     
         // only include the file if it exists - and barf badly if it has parse errors :)
         if (self::$config['proxy']|| empty(self::$config['class_location'])) {
             return false;
