@@ -242,7 +242,7 @@ class PDO_DataObject_Introspection_pgsql extends PDO_DataObject_Introspection
                         pg_attribute.attnum ASC 
         
             ")
-            ->fetchAllFast();
+            ->fetchAllAssoc();
         
         if (PDO_DataObject::$debug > 2)  {
             // this is for the test_suite...
