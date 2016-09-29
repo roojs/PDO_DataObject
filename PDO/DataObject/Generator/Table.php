@@ -99,7 +99,8 @@ class PDO_DataObject_Generator_Table {
         
         if (count($base_ar) != 1 || !strlen($base_ar[0])) {
             $this->gen->raise(
-                "option[class_location] must be set, and a single location for the generator to work.",
+                "option[class_location] must be set, and a single location for the generator to work.".
+                "Current value is " . var_export($options['class_location'],true),
                 PDO_DataObject::ERROR_INVALIDCONFIG
             );
         }
