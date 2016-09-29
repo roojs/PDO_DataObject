@@ -35,7 +35,7 @@ class PDO_DataObject_Exception extends Exception
      *
      * @access public
      *
-     * @see PEAR_Error
+     * @see @Exception
      */
     // todo : - support code -> message handling, and translated error messages...
     static function factory($message, $type, $previous_exception)
@@ -46,11 +46,7 @@ class PDO_DataObject_Exception extends Exception
     }
     
     
-    
-    
-    
-    
-    
+     
 }
 
 // child classes - so you can catch them..
