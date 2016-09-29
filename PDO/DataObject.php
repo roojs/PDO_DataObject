@@ -3100,8 +3100,7 @@ class PDO_DataObject
      * Experimental Support for Multi-Database factory eg. mydatabase.mytable
      * 
      * 
-     * @param  string  $table  tablename (use blank to create a new instance of the same class.)
-     *    or database_nickname/tablename  
+     * @param  string  $table  tablename or database_nickname/tablename  
      * @access private
      * @throws PDO_DataObject_Exception for many reasons... 
      * @return PDO_DataObject
