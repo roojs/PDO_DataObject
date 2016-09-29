@@ -2498,7 +2498,7 @@ class PDO_DataObject
                 $this->debug((string)$result, "Query Error",1 );
             }
             $this->N = false;
-            return $this->raise("Could not run Query", 0, $result);
+            return $this->raise("Could not run Query", self::ERROR_QUERY, $result);
         }
         
         
