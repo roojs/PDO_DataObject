@@ -521,7 +521,7 @@ class PDO_DataObject
             default:
                 // by default we need to validate a little bit..
                 if (empty($dsn_ar['host']) || empty($dsn_ar['path'])  || strlen($dsn_ar['path']) < 2) {
-                    return $this->raise("Invalid syntax of DSN : {$dsn}\n". print_r($dsn_ar,true), 0);
+                    return $this->raise("Invalid syntax of DSN : {$dsn}\n". print_r($dsn_ar,true), self::ERROR_INVALIDCONFIG);
                 }
                 $pdo_dsn =
                     $dsn_ar['scheme'] . ':' .
@@ -561,7 +561,7 @@ class PDO_DataObject
             self::$connections[$md5]->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION); // just in case?
         } catch (PDOException $ex) {
             $this->debug( (string) $ex , "CONNECT FAILED",5);
-            return $this->raise("Connect failed, turn on debugging to 5 see why",0, $ex );
+            return $this->raise("Connect failed, turn on debugging to 5 see why", self::ERROR_CONNECT, $ex );
         }
         
         
