@@ -38,8 +38,7 @@ class DB_DataObject_Exeption extends Exception
      *
      * @see PEAR_Error
      */
-    function __construct($message = '', $code = DB_ERROR, $mode = PEAR_ERROR_RETURN,
-              $level = E_USER_NOTICE)
+    function __construct($message = '', $code = DB_ERROR)
     {
         parent::__construct('DB_DataObject Error: ' . $message, $code, $mode, $level);
         
