@@ -7283,7 +7283,7 @@ class DataObjects_Accnt extends PDO_DataObject
         $this->accnt_descrip_alt = $value;
     }
 
-    function table()
+    function tableColumns()
     {
          return array(
              'accnt_id' => PDO_DataObject::INT + PDO_DataObject::NOTNULL,
@@ -7662,7 +7662,7 @@ class DataObjects_Address extends PDO_DataObject
         $this->crmacct_name = $value;
     }
 
-    function table()
+    function tableColumns()
     {
          return array(
              'addr_id' => PDO_DataObject::INT,
