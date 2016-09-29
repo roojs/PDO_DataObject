@@ -3089,7 +3089,7 @@ class PDO_DataObject
     
     function factory()
     {
-        return self::factory($this);
+         
     }
     
      /**
