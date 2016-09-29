@@ -390,21 +390,13 @@ class PDO_DataObject_Cast {
         
         switch ($db->dsn["phptype"]) {
             case 'pgsql':
-                return $PDO->quote($this->value. PDO::PARAM_LOB) .'::bytea";
+                return $PDO->quote($this->value. PDO::PARAM_LOB) .'::bytea';
                 
             case 'mysql':
-                return "'".mysql_real_escape_string($this->value,$db->connection)."'";
+            case 'sqlite':    
+                return $PDO->quote($this->value);
             
-            case 'mysqli':
-                // this is funny - the parameter order is reversed ;)
-                return "'".mysqli_real_escape_string($db->connection, $this->value)."'";
-             
-            case 'sqlite':
-                // this is funny - the parameter order is reversed ;)
-                return "'".sqlite_escape_string($this->value)."'";
-           
             case 'mssql':
-                
                 if(is_numeric($this->value)) {
                     return $this->value;
                 }
@@ -445,16 +437,12 @@ class PDO_DataObject_Cast {
         // should probaly add that test as some point. 
         
         switch ($db->dsn['phptype']) {
+            case 'sqlite':    
             case 'pgsql':
-                return "'".pg_escape_string($this->value)."'::bytea";
-            
             case 'mysql':
-                return "'".mysql_real_escape_string($this->value,$db->connection)."'";
-            
-            
-            case 'mysqli':
-                return "'".mysqli_real_escape_string($db->connection, $this->value)."'";
-
+                return $PDO->quote($this->value);
+           
+           
             case 'mssql':
                 // copied from the old DB mssql code...?? not sure how safe this is.
                 return "'" . str_replace(
