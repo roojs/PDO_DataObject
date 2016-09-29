@@ -23,7 +23,7 @@
  */
   
  
-class DB_DataObject_Error extends PEAR_Error
+class DB_DataObject_Exeption extends Exception
 {
     
     /**
