@@ -2662,17 +2662,17 @@ class PDO_DataObject
         $suffix = '';
         
         if (is_array(self::$config['schema_location'])) {
-            if (!isset(PDO_DataObject::$config['schema_location'][$database_nickname])) {
+            if (!isset(self::$config['schema_location'][$database_nickname])) {
                 $this->raise("Could not find configuration for database $database_nickname in schema_location",
                         self::ERROR_INVALIDCONFIG
                 );
             }
             
-            $schemas = is_array(PDO_DataObject::$config['schema_location'][$database_nickname]) ?
-                PDO_DataObject::$config['schema_location'][$database_nickname]:
-                explode(PATH_SEPARATOR, PDO_DataObject::$config['schema_location'][$database_nickname]);
+            $schemas = is_array(self::$config['schema_location'][$database_nickname]) ?
+                self::$config['schema_location'][$database_nickname]:
+                explode(PATH_SEPARATOR, self::$config['schema_location'][$database_nickname]);
         } else if (is_string(self::$config['schema_location']) && !empty(self::$config['schema_location'])) {
-            $schemas  = explode(PATH_SEPARATOR,PDO_DataObject::$config['schema_location']);
+            $schemas  = explode(PATH_SEPARATOR,self::$config['schema_location']);
             $suffix = '/'. $database_nickname .'.ini';
         } else {
             $this->raise("Invalid format or empty value for config[schema_location]",
@@ -3375,17 +3375,17 @@ class PDO_DataObject
         
         $suffix = '';
         if (is_array(self::$config['schema_location'])) {
-            if (!isset(PDO_DataObject::$config['schema_location'][$database_nickname])) {
+            if (!isset(self::$config['schema_location'][$database_nickname])) {
                 $this->raise("Could not find configuration for database $database_nickname in schema_location",
                         self::ERROR_INVALIDCONFIG
                 );
             }
             
-            $schemas = is_array(PDO_DataObject::$config['schema_location'][$database_nickname]) ?
-                PDO_DataObject::$config['schema_location'][$database_nickname]:
-                explode(PATH_SEPARATOR, PDO_DataObject::$config['schema_location'][$database_nickname]);
+            $schemas = is_array(self::$config['schema_location'][$database_nickname]) ?
+                self::$config['schema_location'][$database_nickname]:
+                explode(PATH_SEPARATOR, self::$config['schema_location'][$database_nickname]);
         } else if (is_string(self::$config['schema_location']) && !empty(self::$config['schema_location'])) {
-            $schemas  = explode(PATH_SEPARATOR,PDO_DataObject::$config['schema_location']);
+            $schemas  = explode(PATH_SEPARATOR,self::$config['schema_location']);
             $suffix = '/'. $database_nickname .'.ini';
         } else {
             $this->raise("Invalid format or empty value for config[schema_location]",
