@@ -474,15 +474,7 @@ class DB_DataObject_Links
             );
             return $ret;
         }
-
-        // if the user defined method list exists - use it...
-        if (method_exists($c, 'listFind')) {
-            $c->listFind($this->id);
-            while ($c->fetch()) {
-                $ret[] = clone($c);
-            }
-            return $ret;
-        } 
+ 
         return $c->fetchAll($fkey, $fval, $fmethod);
         
         
