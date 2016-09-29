@@ -63,7 +63,7 @@ PDO_DataObject_Generator::config(array(
 
 try { 
     $gen->start();
-} catch(Exception $e) {
+} catch(PDO_DataObject_Exception_InvalidConfig $e) {
     echo "Expected Exception (no class location) - " . $e->getMessage();
 }
 echo "\nSetting class location\n";
@@ -92,21 +92,15 @@ QUERY: 9c36cac1372650b703400c60dd29042c
 QUERY: 6996acc544ef440ec8756b9a474a8261
 QUERY: fbfdf155a2b80c37a9da0b57c7ec0c8a
 QUERY: f77e1669034239c845220bf51ee0a9f2
-Expected Exception (no class location) - Exception: option[class_location] must be a single location for the generator to work. in /home/alan/gitlive/PDO_DataObject/PDO/DataObject.php:4919
-Stack trace:
-#0 /home/alan/gitlive/PDO_DataObject/PDO/DataObject/Generator/Table.php(103): PDO_DataObject->raiseError('option[class_lo...', -3, 9)
-#1 /home/alan/gitlive/PDO_DataObject/PDO/DataObject/Generator.php(669): PDO_DataObject_Generator_Table->toPhpFileName()
-#2 /home/alan/gitlive/PDO_DataObject/PDO/DataObject/Generator.php(292): PDO_DataObject_Generator->generatePhp()
-#3 /home/alan/gitlive/PDO_DataObject/tests/06-generator-fakedb-to-files.php(62): PDO_DataObject_Generator->start()
-#4 {main}
+Expected Exception (no class location) - option[class_location] must be set, and a single location for the generator to work.Current value is ''
 Setting class location
 QUERY: 9c36cac1372650b703400c60dd29042c
 QUERY: 6996acc544ef440ec8756b9a474a8261
 QUERY: fbfdf155a2b80c37a9da0b57c7ec0c8a
 QUERY: f77e1669034239c845220bf51ee0a9f2
-298059cad93cdb4b72d69f9b740517e3  Companies.php
-a8e94fafc252856183c3816aaba41744  Events.php
-73a267444dec2e5c3855e02ccfefc561  Groups.php
+3e2299f34018e2aef619036a82269563  Companies.php
+b1569d7150f2417d52a7a0b118c033d2  Events.php
+086c0d30a14f05968a8b5b627a213aa0  Groups.php
 a65c403d8bb8f3c328a370a38524d58d  mysql_anotherdb.ini
 <?php
 /**
@@ -628,7 +622,7 @@ class DataObjects_Companies extends PDO_DataObject_Test1
         $this->country = $value;
     }
 
-    function table()
+    function tableColumns()
     {
          return array(
              'id' => PDO_DataObject::INT + PDO_DataObject::NOTNULL,
