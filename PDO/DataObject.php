@@ -3311,7 +3311,7 @@ class PDO_DataObject
         if (!$ce) {
             $dor = new PDO_DataObject();
             return $dor->raise(
-                "autoload: Included $file however could not find the class :" . implode(',', $cls) , 
+                "autoload: Included $file \n   however could not find the class :" . implode(',', $cls) , 
                  self::ERROR_INVALIDARGS);
             
         }
