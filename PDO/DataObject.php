@@ -4715,7 +4715,7 @@ class PDO_DataObject
         class_exists('PDO_DataObject_Exception') ? '' :
             require_once 'PDO/DataObject/Exception.php';
          
-        throw  new PDO_DataObject_Exception($message, $type, $previous_exception);
+        throw  PDO_DataObject_Exception::factory($message, $type, $previous_exception);
              
     }
 
