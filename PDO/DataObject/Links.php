@@ -89,7 +89,7 @@ class DB_DataObject_Links
      *  @param {Array}           cfg  Configuration (basically properties of this object)
      */
     
-    function DB_DataObject_Links($do,$cfg= array())
+    function __construct($do,$cfg= array())
     {
         // check if do is set!!!?
         $this->do = $do;
