@@ -244,7 +244,7 @@ class PDO_DataObject_Introspection_pgsql extends PDO_DataObject_Introspection
             ")
             ->fetchAllAssoc();
         
-        if (PDO_DataObject::$debug > 2)  {
+        if (PDO_DataObject::debugLevel() > 2)  {
             // this is for the test_suite...
             $rr = array();
             foreach($records as $r) {
