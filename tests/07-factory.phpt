@@ -20,8 +20,10 @@ print_r(get_class($person);
 
 
 echo "--------\n";
-echo "factory call with proxy all\n";
+echo "factory call with proxy all (auto generate)\n";
 
+DB_DataObject::config('proxy', 'all');
+$person = DB_DataObject::factory('Person_invalid');
 
 
 
