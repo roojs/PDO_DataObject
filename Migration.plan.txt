@@ -192,8 +192,8 @@ e) PDO_DataObject class
   * validate()  DONE / NEED TESTING - moved to seperate class...
   * raise  (was raiseError) -- all calls need DIE removing....
  
-PDO_DataObject_Cast ( $DB == PDO object...)
-PDO_DataObject_Links ( )
+PDO_DataObject_Cast ( $DB == PDO object...)  DONE / NEED TESTING
+PDO_DataObject_Links ( )  DONE / NEED TESTING
 PDO_DataObject_Exception ( ) ** can call the old PEAR error handler??
 
 Tests:
