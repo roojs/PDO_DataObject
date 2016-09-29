@@ -3234,19 +3234,30 @@ class PDO_DataObject
         // with directory sepr
         // class_location = mydir/:mydir2/: => tries all of thes locations.
         $cl = self::$config['class_location'];
+        foreach (explode(PATH_SEPARATOR, self::$config['class_location']) as $cl) {
+            
+            if(strpos($cl ,'%s') !== false) {
+                $file[] = sprintf($cl , preg_replace('/[^A-Z0-9]/i','_',ucfirst($table)));
+                continue;
+            }
+            if (substr($cl,-1) == '/') {
+                $file[] = $cl .'/'.preg_replace('/[^A-Z0-9]/i','_',ucfirst($table)).".php";
+                continue;
+            }
+            // othwise we have a situation where it's not suffixed... - but we will allow directories.
+            if (file_exists($cl) && is_dir($cl)) {
+                $file[] = $cl .'/'.preg_replace('/[^A-Z0-9]/i','_',ucfirst($table)).".php";
+                continue;
+            }
+            $file[] = $cl . preg_replace('/[^A-Z0-9]/i','_',ucfirst($table)).".php";
+        }
+        
         
         $file = array();
         switch (true) {
-            case (strpos($cl ,'%s') !== false):
-                $file[] = sprintf($cl , preg_replace('/[^A-Z0-9]/i','_',ucfirst($table)));
-                break;
+            
                 
-            case (strpos($cl , PATH_SEPARATOR) !== false):
-               
-                foreach(explode(PATH_SEPARATOR, $cl ) as $p) {
-                    $file[] =  $p .'/'.preg_replace('/[^A-Z0-9]/i','_',ucfirst($table)).".php";
-                }
-                break;
+            
             default:
                 $file[] = $cl .'/'.preg_replace('/[^A-Z0-9]/i','_',ucfirst($table)).".php";
                 break;
@@ -3286,8 +3297,8 @@ class PDO_DataObject
             $search = implode(PATH_SEPARATOR, $file); // used for errors..
             
             self::debug(
-                "autoload:Could not find class " . implode(',', $cls) .
-                " using class_location value :" . $search .
+                "autoload:Could not find class " . implode(',', $cls) . "\n" .
+                " using class_location value :" . $search .  "\n" .
                 " using include_path value :" . ini_get('include_path'));
             return false;
         }
