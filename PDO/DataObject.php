@@ -2806,7 +2806,7 @@ class PDO_DataObject
         $this->raise("
             Table has been replaced with tableColumns()
             - we have to define it to ensure that if it was over-ridden an error occurs
-        ");
+        ",self::ERROR_INVALIDARGS);
     }
     
   
