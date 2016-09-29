@@ -9,7 +9,7 @@ DB_DataObject::config('class_location', __DIR__.'/includes/sample_classes');
 
 echo "Simple factory call\n";
 $person = DB_DataObject::factory('Customers');
-echo "factory returns a class called  " . get_class($person) . "\n";
+echo "factory('Customers') returns a class called  " . get_class($person) . "\n";
 
 
 echo "--------\n";
@@ -36,10 +36,8 @@ echo "--------\n";
 echo "factory call with proxy all (auto generate)\n";
 
 DB_DataObject::config('proxy', 'all');
-$person = DB_DataObject::factory('Employees');
-
-
-
+$Employees = DB_DataObject::factory('Employees');
+echo "factory('Employees') when using proxy returns a class called  " . get_class($Employees) . "\n";
 
 
 
