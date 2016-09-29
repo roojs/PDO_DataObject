@@ -18,7 +18,8 @@ echo "Calling factory on a existing dataobject.\n";
 $person = DB_DataObject::factory('Customers');
 $person->test = 1;
 $next_person = $person->factory();
-echo "new object 'test' value is :" . var_export($next_person->test, true) . "\n";
+
+echo "new object 'test' value is :" . (isset($next_person->test) ? "DEFINED" : "UNDEFINED") . "\n";
 
 
 echo "--------\n";
