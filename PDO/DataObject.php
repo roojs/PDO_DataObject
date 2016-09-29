@@ -4036,16 +4036,15 @@ class PDO_DataObject
      */
     function autoJoin($cfg = array())
     {
-        global $_DB_DATAOBJECT;
-        //var_Dump($cfg);exit;
+         //var_Dump($cfg);exit;
         $pre_links = $this->links();
         if (!empty($cfg['links'])) {
             $this->links(array_merge( $pre_links , $cfg['links']));
         }
         $map = $this->links( );
         
-        $this->databaseStructure();
-        $dbstructure = $_DB_DATAOBJECT['INI'][$this->_database];
+        $dbstructure = $this->databaseStructure();
+        
         //print_r($map);
         $tabdef = $this->tableColumns();
          
