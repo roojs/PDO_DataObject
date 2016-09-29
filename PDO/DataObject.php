@@ -1269,7 +1269,7 @@ class PDO_DataObject
             }
         }
         if (!isset($cols[0])) {
-            return $this->raise("can not find column '{$key_col}' in results", self::ERROR_INVALIDARGS);
+            return $this->raise("can not find column '{$k}' in results", self::ERROR_INVALIDARGS);
         }
         // in theory this is not 
         if ($v === false) {
