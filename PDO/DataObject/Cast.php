@@ -53,7 +53,7 @@
 *   
 *   inside DB_DataObject, 
 *   if (is_a($v,'db_dataobject_class')) {
-*           $value .= $v->toString(DB_DATAOBJECT_INT,'mysql');
+*           $value .= $v->toString(PDO_DataObject::INT,'mysql');
 *   }
 *
 *
@@ -105,7 +105,7 @@ class PDO_DataObject_Cast {
     * @access   public 
     */
   
-    function blob($value) {
+    static function blob($value) {
         $r = new PDO_DataObject_Cast;
         $r->type = 'blob';
         $r->value = $value;
@@ -125,7 +125,7 @@ class PDO_DataObject_Cast {
     * @access   public 
     */
   
-    function string($value) {
+    static function string($value) {
         $r = new PDO_DataObject_Cast;
         $r->type = 'string';
         $r->value = $value;
@@ -143,7 +143,7 @@ class PDO_DataObject_Cast {
     * @access   public 
     */
   
-    function sql($value) 
+    static function sql($value) 
     {
         $r = new PDO_DataObject_Cast;
         $r->type = 'sql';
@@ -172,7 +172,7 @@ class PDO_DataObject_Cast {
     * @access   public 
     */
   
-    function date() 
+    static function date() 
     {  
         $args = func_get_args();
         switch(count($args)) {
@@ -247,7 +247,7 @@ class PDO_DataObject_Cast {
     * @author   therion 5 at hotmail
     */
     
-    function dateTime()
+    static function dateTime()
     {
         $args = func_get_args();
         switch(count($args)) {
@@ -310,7 +310,7 @@ class PDO_DataObject_Cast {
     * @access   public 
     * @author   therion 5 at hotmail
     */
-    function time()
+    static function time()
     {
         $args = func_get_args();
         switch (count($args)) {
@@ -350,7 +350,7 @@ class PDO_DataObject_Cast {
     * get the string to use in the SQL statement for this...
     *
     * 
-    * @param   int      $to Type (DB_DATAOBJECT_*
+    * @param   int      $to Type (PDO_DataObject::*
     * @param   object   $db DB Connection Object
     * 
     *
@@ -358,39 +358,39 @@ class PDO_DataObject_Cast {
     * @access   public
     */
   
-    function toString($to=false,$db) 
+    function toString($to=false,$PDO) 
     {
         // if $this->type is not set, we are in serious trouble!!!!
         // values for to:
         $method = 'toStringFrom'.$this->type;
-        return $this->$method($to,$db);
+        return $this->$method($to,$PDO);
     }
     
     /**
     * get the string to use in the SQL statement from a blob of binary data 
     *   ** Suppots only blob->postgres::bytea
     *
-    * @param   int      $to Type (DB_DATAOBJECT_*
+    * @param   int      $to Type (PDO_DataObject::*
     * @param   object   $db DB Connection Object
     * 
     *
     * @return   string 
     * @access   public
     */
-    function toStringFromBlob($to,$db) 
+    function toStringFromBlob($to,$PDO) 
     {
         // first weed out invalid casts..
         // in blobs can only be cast to blobs.!
         
         // perhaps we should support TEXT fields???
         
-        if (!($to & DB_DATAOBJECT_BLOB)) {
+        if (!($to & PDO_DataObject::BLOB)) {
             return self::raise('Invalid Cast from a PDO_DataObject_Cast::blob to something other than a blob!');
         }
         
         switch ($db->dsn["phptype"]) {
             case 'pgsql':
-                return "'".pg_escape_bytea($this->value)."'::bytea";
+                return $PDO->quote($this->value. PDO::PARAM_LOB) .'::bytea";
                 
             case 'mysql':
                 return "'".mysql_real_escape_string($this->value,$db->connection)."'";
@@ -424,7 +424,7 @@ class PDO_DataObject_Cast {
     *   ** Suppots only string->postgres::bytea
     * 
     *
-    * @param   int      $to Type (DB_DATAOBJECT_*
+    * @param   int      $to Type (PDO_DataObject::*
     * @param   object   $db DB Connection Object
     * 
     *
@@ -476,7 +476,7 @@ class PDO_DataObject_Cast {
     *   
     * 
     *
-    * @param   int      $to Type (DB_DATAOBJECT_*
+    * @param   int      $to Type (PDO_DataObject::*
     * @param   object   $db DB Connection Object
     * 
     *
@@ -490,7 +490,7 @@ class PDO_DataObject_Cast {
          // perhaps we should support TEXT fields???
         // 
         
-        if (($to !== false) && !($to & DB_DATAOBJECT_DATE)) {
+        if (($to !== false) && !($to & PDO_DataObject::DATE)) {
             return self::raise('Invalid Cast from a PDO_DataObject_Cast::string to something other than a date!'.
                 ' (why not just use native features)');
         }
@@ -502,7 +502,7 @@ class PDO_DataObject_Cast {
     *   
     * 
     *
-    * @param   int     $to Type (DB_DATAOBJECT_*
+    * @param   int     $to Type (PDO_DataObject::*
     * @param   object   $db DB Connection Object
     * 
     *
@@ -517,7 +517,7 @@ class PDO_DataObject_Cast {
         // in blobs can only be cast to blobs.!
         // perhaps we should support TEXT fields???
         if (($to !== false) && 
-            !($to & (DB_DATAOBJECT_DATE + DB_DATAOBJECT_TIME))) {
+            !($to & (PDO_DataObject::DATE + PDO_DataObject::TIME))) {
             return self::raise('Invalid Cast from a ' .
                 ' PDO_DataObject_Cast::dateTime to something other than a datetime!' .
                 ' (try using native features)');
@@ -530,7 +530,7 @@ class PDO_DataObject_Cast {
     *   
     * 
     *
-    * @param   int     $to Type (DB_DATAOBJECT_*
+    * @param   int     $to Type (PDO_DataObject::*
     * @param   object   $db DB Connection Object
     * 
     *
@@ -544,7 +544,7 @@ class PDO_DataObject_Cast {
         // first weed out invalid casts..
         // in blobs can only be cast to blobs.!
         // perhaps we should support TEXT fields???
-        if (($to !== false) && !($to & DB_DATAOBJECT_TIME)) {
+        if (($to !== false) && !($to & PDO_DataObject::TIME)) {
             return self::raise('Invalid Cast from a' . 
                 ' PDO_DataObject_Cast::time to something other than a time!'.
                 ' (try using native features)');
@@ -555,7 +555,7 @@ class PDO_DataObject_Cast {
     /**
     * get the string to use in the SQL statement for a raw sql statement.
     *
-    * @param   int      $to Type (DB_DATAOBJECT_*
+    * @param   int      $to Type (PDO_DataObject::*
     * @param   object   $db DB Connection Object
     * 
     *
