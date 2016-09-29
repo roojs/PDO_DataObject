@@ -109,7 +109,7 @@ class PDO_DataObject_Introspection_mysql extends PDO_DataObject_Introspection
                         and
                         COLUMNS.TABLE_SCHEMA = DATABASE()
             ")
-            ->fetchAllFast();
+            ->fetchAllAssoc();
    
         if (PDO_DataObject::$debug > 2)  {
             // this is for the test_suite...
