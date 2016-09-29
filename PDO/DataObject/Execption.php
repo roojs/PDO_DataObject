@@ -64,5 +64,9 @@ class DB_DataObject_Exception extends Exception
 
 // child classes - so you can catch them..
 class DB_DataObject_Exception_InvalidArgs extends class DB_DataObject_Exception {};
+class DB_DataObject_Exception_NoData extends class DB_DataObject_Exception {};
+class DB_DataObject_Exception_InvalidConfig extends class DB_DataObject_Exception {};
+class DB_DataObject_Exception_NoClass extends class DB_DataObject_Exception {};
+class DB_DataObject_Exception_Set extends class DB_DataObject_Exception {};
 
 
