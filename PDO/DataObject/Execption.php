@@ -23,7 +23,7 @@
  */
   
  
-class DB_DataObject_Exeption extends Exception
+class DB_DataObject_Exception extends Exception
 {
     
     /**
@@ -40,15 +40,29 @@ class DB_DataObject_Exeption extends Exception
      */
     function __construct($message = '', $type, $previous_exception = null)
     {
-        
-        
         parent::__construct('DB_DataObject Error: ' . $message, $code, $mode, $level);
         
     }
     
     
     // todo : - support code -> message handling, and translated error messages...
+    static factory
+    
+    
+    
+    
+    
+    const ERROR_INVALIDARGS =   -1;  // wrong args to function
+    const ERROR_NODATA =        -2;  // no data available
+    const ERROR_INVALIDCONFIG = -3;  // something wrong with the config
+    const ERROR_NOCLASS =       -4;  // no class exists
+    const ERROR_SET =           -5;  // set() caused errors when calling set*** methods.
     
     
     
 }
+
+// child classes - so you can catch them..
+class DB_DataObject_Exception_InvalidArgs extends class DB_DataObject_Exception {};
+
+
