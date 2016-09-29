@@ -3845,6 +3845,8 @@ class PDO_DataObject
                 return false;
             }
             
+            $PDO = $this->PDO();
+            
             $ignore_null = self::$config['disable_null_strings'] === false;
             
             // obj->whereToString()???
@@ -3877,10 +3879,7 @@ class PDO_DataObject
                             
                 if (is_object($obj->$k) && is_a($obj->$k,'PDO_DataObject_Cast')) {
                     $value = $obj->$k->toString($v,$DB);
-                    if (PEAR::isError($value)) {
-                        $this->raise($value->getMessage() ,self::ERROR_INVALIDARG);
-                        return false;
-                    } 
+                     
                     $obj->whereAdd("{$joinAs}.{$kSql} = $value");
                     continue;
                 }
