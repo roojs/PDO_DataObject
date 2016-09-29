@@ -1021,7 +1021,7 @@ class PDO_DataObject
 
          
         if ($this->N === false) {
-            return $this->raise("Fetch Called without Query being run");
+            return $this->raise("Fetch Called without Query being run", self::ERROR_INVALIDARGS);
         }
         /*
         Some drivers may return '0' ?? SQLITE???
@@ -1878,7 +1878,7 @@ class PDO_DataObject
         // big check for using sequences
         
         if ($useEmulated) { 
-            $this->raise("Emulated Sequences are not supported at present");
+            $this->raise("Emulated Sequences are not supported at present", self::ERROR_INVALIDCONFIG);
         }
         
         // if we haven't set disable_null_strings to "full"
