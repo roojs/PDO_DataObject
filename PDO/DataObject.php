@@ -4710,7 +4710,7 @@ class PDO_DataObject
     function raise($message, $type  , $previous_exception = null)
     {
         
-        PDO_DataObject::debug($message,'ERROR',1);
+        self::debug($message,'ERROR',1);
         
         class_exists('PDO_DataObject_Exception') ? '' :
             require_once 'PDO/DataObject/Exception.php';
