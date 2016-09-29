@@ -4702,13 +4702,13 @@ class PDO_DataObject
     /**
      * wrapper around throw exception.
      *
-     * @param  int $message    message
-     * @param  int $type       type
-     * @param  Exception $previous_exception  Cause of error...
+     * @param  string $message    message
+     * @param  string $type       type
+     * @param  Exception (optional) $previous_exception  Cause of error...
      * @access public
      * @return error object
      */
-    function raise($message, $type = 0, $previous_exception = null)
+    function raise($message, $type  , $previous_exception = null)
     {
         
         PDO_DataObject::debug($message,'ERROR',1);
