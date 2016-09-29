@@ -4043,7 +4043,7 @@ class PDO_DataObject
         }
         $map = $this->links( );
         
-        $dbstructure = $this->databaseStructure();
+        $this->databaseStructure();
         $dbstructure = self::$ini[$this->_database_nickname];
         //print_r($map);
         $tabdef = $this->tableColumns();
@@ -4125,11 +4125,13 @@ class PDO_DataObject
             if (!empty($cfg['exclude']) && in_array($tab .'.*', $cfg['exclude'])) {
                 continue;
             }
-            
-            $xx = PDO_DataObject::factory($tab);
-            if (!is_object($xx) || !is_a($xx, 'PDO_DataObject')) {
+            $cls = self::tableToClass($tab);
+            if ($cls === false) {
                 continue;
             }
+            
+            $xx = self::factory($tab);
+            
             // skip columns that are excluded.
             
             // we ignore include here... - as
