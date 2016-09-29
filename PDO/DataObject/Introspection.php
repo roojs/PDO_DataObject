@@ -81,7 +81,7 @@ abstract class PDO_DataObject_Introspection
             return $sql;
         }
         $this->do->query($sql);
-        return $this->do->fetchAllAssoc(true);
+        return $this->do->fetchAll(true);
         
         //var_export($ret);
         
