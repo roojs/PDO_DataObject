@@ -1255,7 +1255,7 @@ class PDO_DataObject
             return $ret;
         }
         
-        if ($key_col === true) { // first column...
+        if ($k === true) { // first column...
             return $this->_result->fetchAll(PDO::FETCH_COLUMN, 0);
         }
          $cols = array();
