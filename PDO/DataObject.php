@@ -4044,7 +4044,7 @@ class PDO_DataObject
         $map = $this->links( );
         
         $dbstructure = $this->databaseStructure();
-        
+        $dbstructure = self::$ini[$this->_database_nickname];
         //print_r($map);
         $tabdef = $this->tableColumns();
          
