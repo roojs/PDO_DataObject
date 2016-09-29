@@ -179,9 +179,9 @@ e) PDO_DataObject class
 
   * links() DONE / NEED TESTING
 
-  * joinAdd()
-  * autoJoin()
-
+  * joinAdd() DONE / NEED TESTING
+  * autoJoin() DONE / NEED TESTING
+ 
   * sqlValue() - DONE / NEED TESTING
   * setFrom() DONE / NEED TESTING
   * set() << chained version of setFrom? DONE / NEED TESTING
@@ -189,7 +189,6 @@ e) PDO_DataObject class
 
   * toArray() DONE / NEED TESTING
   * toValue() - renamed to formatValue (date formating is not compatible)
-
   * validate()  DONE / NEED TESTING - moved to seperate class...
   * raise  (was raiseError) -- all calls need DIE removing....
  
