@@ -676,9 +676,6 @@ class PDO_DataObject
     final function quoteIdentifier($str)
     {
         $pdo = $this->PDO();
-        if (!is_a($pdo, self::$config['PDO'])) {
-            $this->raise("Can not quoteIdentifier as connection failed", $pdo);
-        }
         
         switch($pdo->getAttribute(PDO::ATTR_DRIVER_NAME)) {
             case 'mysql':
