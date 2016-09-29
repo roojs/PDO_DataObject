@@ -64,7 +64,7 @@ PDO_DataObject_Generator::config(array(
 try { 
     $gen->start();
 } catch(Exception $e) {
-    echo "Expected Exception (no class location) - " . (string)$e;
+    echo "Expected Exception (no class location) - " . $e->getMessage();
 }
 echo "\nSetting class location\n";
 
