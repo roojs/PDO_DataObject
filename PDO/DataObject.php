@@ -3085,7 +3085,20 @@ class PDO_DataObject
         }
         return $ret;
     }
-
+    
+    /**
+     * convience version of factory, can be called on an existing
+     * object to create a clean new instance.
+     * 
+     * usage:
+     * $do = PDO_DataObject::factory('person');
+     * $person = $do->factorySelf();
+     *
+     * @access public
+     * @throws PDO_DataObject_Exception for many reasons... 
+     * @return PDO_DataObject
+     */
+    
     
     function factorySelf()
     {
@@ -3105,7 +3118,7 @@ class PDO_DataObject
      * 
      * 
      * @param  string  $table  tablename or database_nickname/tablename  
-     * @access private
+     * @access public
      * @throws PDO_DataObject_Exception for many reasons... 
      * @return PDO_DataObject
      */
