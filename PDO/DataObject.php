@@ -3878,8 +3878,7 @@ class PDO_DataObject
                 }
                             
                 if (is_object($obj->$k) && is_a($obj->$k,'PDO_DataObject_Cast')) {
-                    $value = $obj->$k->toString($v,$DB);
-                     
+                    $value = $obj->$k->toString($v,$PDO);
                     $obj->whereAdd("{$joinAs}.{$kSql} = $value");
                     continue;
                 }
