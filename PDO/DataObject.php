@@ -3087,6 +3087,10 @@ class PDO_DataObject
     }
 
     
+    function factory()
+    {
+        return self::factory($this);
+    }
     
      /**
      * classic factory method for loading a table class
