@@ -290,7 +290,7 @@ class DataObjects_Customers extends PDO_DataObject
         $this->State = $value;
     }
 
-    function table()
+    function tableColumns()
     {
          return array(
              'CustomerID' => PDO_DataObject::INT,
@@ -474,7 +474,7 @@ class DataObjects_Employees extends PDO_DataObject
         $this->HireDate = $value;
     }
 
-    function table()
+    function tableColumns()
     {
          return array(
              'EmployeeID' => PDO_DataObject::INT,
@@ -634,7 +634,7 @@ class DataObjects_OrderDetails extends PDO_DataObject
         $this->Quantity = $value;
     }
 
-    function table()
+    function tableColumns()
     {
          return array(
              'OrderDetailID' => PDO_DataObject::INT,
@@ -858,7 +858,7 @@ class DataObjects_Orders extends PDO_DataObject
         $this->FreightCharge = $value;
     }
 
-    function table()
+    function tableColumns()
     {
          return array(
              'OrderID' => PDO_DataObject::INT,
@@ -978,7 +978,7 @@ class DataObjects_Shippers extends PDO_DataObject
         $this->Phone = $value;
     }
 
-    function table()
+    function tableColumns()
     {
          return array(
              'ShipperID' => PDO_DataObject::INT,

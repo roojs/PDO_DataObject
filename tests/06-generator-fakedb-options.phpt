@@ -628,7 +628,7 @@ class DataObjects_Companies extends PDO_DataObject_Test1
         $this->country = $value;
     }
 
-    function table()
+    function tableColumns()
     {
          return array(
              'id' => PDO_DataObject::INT + PDO_DataObject::NOTNULL,
