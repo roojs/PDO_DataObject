@@ -1278,13 +1278,13 @@ class PDO_DataObject
         
         // 2 args..
         if (!isset($cols[1])) {
-            return $this->raise("can not find column '{$key_col}' in results", self::ERROR_INVALIDARGS);
+            return $this->raise("can not find column '{$k}' in results", self::ERROR_INVALIDARGS);
         }
         
         // this is only a bit faster than standard.. - no better way to do this using the PDO API?
         $ret = array();
         while($row = $this->_result->fetch(PDO::FETCH_ASSOC)) {
-            $ret[$row[$key_col]] =  $row[$value_col];
+            $ret[$row[$k]] =  $row[$v];
         }
         return $ret;
          
