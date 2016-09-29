@@ -40,7 +40,7 @@ class PDO_DataObject_Exception extends Exception
      */
     function __construct($message = '', $type, $previous_exception = null)
     {
-        parent::__construct('PDO_DataObject Error: ' . $message, $code, $mode, $level);
+        parent::__construct($message, $code, $mode, $level);
         
     }
     
@@ -62,10 +62,10 @@ class PDO_DataObject_Exception extends Exception
 }
 
 // child classes - so you can catch them..
-class PDO_DataObject_Exception_InvalidArgs extends class PDO_DataObject_Exception {};
-class PDO_DataObject_Exception_NoData extends class PDO_DataObject_Exception {};
-class PDO_DataObject_Exception_InvalidConfig extends class PDO_DataObject_Exception {};
-class PDO_DataObject_Exception_NoClass extends class PDO_DataObject_Exception {};
-class PDO_DataObject_Exception_Set extends class PDO_DataObject_Exception {};
+class PDO_DataObject_Exception_InvalidArgs extends   PDO_DataObject_Exception {};
+class PDO_DataObject_Exception_NoData extends   PDO_DataObject_Exception {};
+class PDO_DataObject_Exception_InvalidConfig extends   PDO_DataObject_Exception {};
+class PDO_DataObject_Exception_NoClass extends   PDO_DataObject_Exception {};
+class PDO_DataObject_Exception_Set extends   PDO_DataObject_Exception {};
 
 
