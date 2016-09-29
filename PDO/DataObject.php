@@ -3134,7 +3134,7 @@ class PDO_DataObject
             $dor = new PDO_DataObject();
             return $dor->raise(
                 "factory could not find class " . 
-                (is_array($rclass) ? implode(PATH_SEPARATOR, $class)  : $class  ). 
+                (is_array($rclass) ? implode(PATH_SEPARATOR, $rclass)  : $rclass  ). 
                 "from $table",
                 self::ERROR_INVALIDARGS);
         }
