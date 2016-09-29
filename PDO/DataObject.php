@@ -3802,9 +3802,14 @@ class PDO_DataObject
         $objTable = $quoteIdentifiers ? 
                 $this->quoteIdentifier($obj->tableName()) : 
                  $obj->tableName() ;
-                
+        
+        $PDO = $this->PDO();
+                    
+        
         $dbPrefix  = '';
-        if ($obj->PDO()->getAttribute(PDO::ATTR_DRIVER_NAME) == 'mysql') {
+        
+        
+        if ($PDO->getAttribute(PDO::ATTR_DRIVER_NAME) == 'mysql') {
             $dbPrefix = ($quoteIdentifiers
                          ? $this->quoteIdentifier($obj->_database)
                          : $obj->_database) . '.';    
@@ -3845,8 +3850,7 @@ class PDO_DataObject
                 return false;
             }
             
-            $PDO = $this->PDO();
-            
+          
             $ignore_null = self::$config['disable_null_strings'] === false;
             
             // obj->whereToString()???
@@ -3914,7 +3918,7 @@ class PDO_DataObject
             // postgres allows nested queries, with ()'s
             // not sure what the results are with other databases..
             // may be unpredictable..
-            if (in_array($DB->dsn["phptype"],array('pgsql'))) {
+            if (in_array($PDO->getAttribute(PDO::ATTR_DRIVER_NAME) ,array('pgsql'))) {
                 $objTable = "($objTable {$obj->_join})";
             } else {
                 $appendJoin = $obj->_join;
@@ -3933,21 +3937,21 @@ class PDO_DataObject
         $table = $this->tableName();
         
         if ($quoteIdentifiers) {
-            $joinAs   = $DB->quoteIdentifier($joinAs);
-            $table    = $DB->quoteIdentifier($table);     
-            $ofield   = (is_array($ofield)) ? array_map(array($DB, 'quoteIdentifier'), $ofield) : $DB->quoteIdentifier($ofield);
-            $tfield   = (is_array($tfield)) ? array_map(array($DB, 'quoteIdentifier'), $tfield) : $DB->quoteIdentifier($tfield); 
+            $joinAs   = $this->quoteIdentifier($joinAs);
+            $table    = $this->quoteIdentifier($table);     
+            $ofield   = (is_array($ofield)) ? array_map(array($this, 'quoteIdentifier'), $ofield) : $this->quoteIdentifier($ofield);
+            $tfield   = (is_array($tfield)) ? array_map(array($this, 'quoteIdentifier'), $tfield) : $this->quoteIdentifier($tfield); 
         }
         // add database prefix if they are different databases
        
         
         $fullJoinAs = '';
-        $addJoinAs  = ($quoteIdentifiers ? $DB->quoteIdentifier($obj->tableName()) : $obj->tableName()) != $joinAs;
+        $addJoinAs  = ($quoteIdentifiers ? $this->quoteIdentifier($obj->tableName()) : $obj->tableName()) != $joinAs;
         if ($addJoinAs) {
             // join table a AS b - is only supported by a few databases and is probably not needed
             // , however since it makes the whole Statement alot clearer we are leaving it in
             // for those databases.
-            $fullJoinAs = in_array($DB->dsn["phptype"],array('mysql','mysqli','pgsql')) ? "AS {$joinAs}" :  $joinAs;
+            $fullJoinAs = in_array($PDO->getAttribute(PDO::ATTR_DRIVER_NAME) ,array('mysql','pgsql')) ? "AS {$joinAs}" :  $joinAs;
         } else {
             // if 
             $joinAs = $dbPrefix . $joinAs;
