@@ -3142,7 +3142,7 @@ class PDO_DataObject
                 explode('::', self::$config['proxy'])[1] : ('getProxy' . self::$config['proxy']);
         
             // if you have loaded (some other way) - dont try and load it again..
-            (new PDO_DataObject($database.'/'.$table))
+            (new PDO_DataObject($table))
                 ->generator()
                 ->{$proxyMethod}( $d->_database, $table);
             
