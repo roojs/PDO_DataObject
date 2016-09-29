@@ -18,13 +18,10 @@ echo "factory call with failure\n";
 $person = DB_DataObject::factory('Person_invalid');
 print_r(get_class($person);
 
-  
 
-$gen = (new PDO_DataObject('mysql_anotherdb/Events'))->generator();
-$gen->readTableList();
-echo $gen->toINI(); 
-echo $gen->toPhp('Companies');
- 
+echo "--------\n";
+echo "factory call with proxy all\n";
+
 
 
 
