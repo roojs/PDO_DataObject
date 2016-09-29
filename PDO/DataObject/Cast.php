@@ -388,7 +388,7 @@ class PDO_DataObject_Cast {
             return self::raise('Invalid Cast from a PDO_DataObject_Cast::blob to something other than a blob!');
         }
         
-        switch ($db->dsn["phptype"]) {
+        switch ($PDO->getAttribute(PDO::ATTR_DRIVER_NAME)) {
             case 'pgsql':
                 return $PDO->quote($this->value. PDO::PARAM_LOB) .'::bytea';
                 
@@ -423,7 +423,7 @@ class PDO_DataObject_Cast {
     * @return   string 
     * @access   public
     */
-    function toStringFromString($to,$db) 
+    function toStringFromString($to,$PDO) 
     {
         // first weed out invalid casts..
         // in blobs can only be cast to blobs.!
@@ -436,7 +436,7 @@ class PDO_DataObject_Cast {
         // will accept a string?? - which is stretching it a bit ...
         // should probaly add that test as some point. 
         
-        switch ($db->dsn['phptype']) {
+        switch ($PDO->getAttribute(PDO::ATTR_DRIVER_NAME)) {
             case 'sqlite':    
             case 'pgsql':
             case 'mysql':
