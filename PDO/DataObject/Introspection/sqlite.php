@@ -93,7 +93,7 @@ class PDO_DataObject_Introspection_sqlite extends PDO_DataObject_Introspection
 
         $records  = $this->do
             ->query("PRAGMA table_info('{$this->do->escape($table)}');")
-            ->fetchAllFast();
+            ->fetchAllAssoc();
         
         
         $case_func = 'strval';
