@@ -363,7 +363,8 @@ class PDO_DataObject
         // should error out if database is not set.. or know..
         $ds = $this->databaseStructure();
         if (!isset($ds[$this->__table])) {
-            $this->raise("Could not find INI values for database={$this->_database_nickname} and table={$this->__table}", self::ERROR_INVALIDARGS );
+            $this->raise("Could not find INI values for database={$this->_database_nickname} and table={$this->__table}",
+                         self::ERROR_INVALIDARGS );
         }
         
         
@@ -402,7 +403,7 @@ class PDO_DataObject
             // connection is an error...?? assumes pear error???
             if (!is_a($con, $PDO)) {
                 
-                return $this->raise( $con->message, $con->code );
+                return $this->raise( "Error with cached connection", self::ERROR_INVALIDCONFIG, $con);
                  
             }
 
