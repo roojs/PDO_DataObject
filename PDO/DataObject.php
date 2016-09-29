@@ -3094,6 +3094,8 @@ class PDO_DataObject
      * $do = PDO_DataObject::factory('person');
      * $person = $do->factorySelf();
      *
+     * It's needed, as PHP5 (later versions started enfocing static/calling etc..)
+     *
      * @access public
      * @throws PDO_DataObject_Exception for many reasons... 
      * @return PDO_DataObject
