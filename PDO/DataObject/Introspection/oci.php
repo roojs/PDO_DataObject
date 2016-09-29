@@ -99,7 +99,7 @@ class PDO_DataObject_Introspection_oci extends PDO_DataObject_Introspection
                         table_name='{$this->do->escape($table)}'
                     ORDER BY
                         column_id")
-            ->fetchAllFast();
+            ->fetchAllAssoc();
         
         $case_func = 'strval';
         if (PDO_DataObject::config()['portability'] & PDO_DataObject::PORTABILITY_LOWERCASE) {
