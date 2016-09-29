@@ -4,11 +4,15 @@ Factory test
 <?php
 require_once 'includes/init.php';
 
-
-
+DB_DataObject::config('class_location', __DIR__.'/includes/sample_classes');
 
 $person = DB_DataObject::factory('Person');
 print_r(get_class('Person'));
+
+
+echo "--\n";
+
+
   
 
 $gen = (new PDO_DataObject('mysql_anotherdb/Events'))->generator();
