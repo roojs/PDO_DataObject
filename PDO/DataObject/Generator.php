@@ -422,7 +422,7 @@ class PDO_DataObject_Generator extends PDO_DataObject
         
             // postgres strip the schema bit from the
             if (!empty($strip) ) {
-                var_dump($table);var_dump($strip);
+                
                 if (!is_string($strip) || preg_match($strip, $table)) { 
                     $bits = explode('.', $table,2);
                     $table = $bits[0];
