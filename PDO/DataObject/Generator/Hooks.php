@@ -7,7 +7,7 @@
  *
  *  NOTE - NONE OF THIS IS TESTED..... - please report issues if you use it..
  * 
- * Copyright (c) 2015 Alan Knowles
+ * Copyright (c) 2016 Alan Knowles
  * 
  * This program is free software: you can redistribute it and/or modify  
  * it under the terms of the GNU Lesser General Public License as   
