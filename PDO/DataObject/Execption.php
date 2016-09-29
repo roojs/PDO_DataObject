@@ -56,5 +56,6 @@ class PDO_DataObject_Exception_InvalidConfig extends   PDO_DataObject_Exception 
 class PDO_DataObject_Exception_NoClass extends   PDO_DataObject_Exception {};
 class PDO_DataObject_Exception_Set extends   PDO_DataObject_Exception {};
 class PDO_DataObject_Exception_Connect extends   PDO_DataObject_Exception_Connect {};
+class PDO_DataObject_Exception_Query extends   PDO_DataObject_Exception_Query {};
 
 
