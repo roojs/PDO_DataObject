@@ -30,7 +30,7 @@
  *
  * Example of how this could be used..
  * 
- * The lind method are now in here.
+ * The link method are now in here.
  *
  * Currenly only supports existing methods, and new 'link()' method
  *
