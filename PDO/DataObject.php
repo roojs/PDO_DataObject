@@ -3087,10 +3087,7 @@ class PDO_DataObject
     }
 
     
-    function factory()
-    {
-         
-    }
+    
     
      /**
      * classic factory method for loading a table class
@@ -3112,14 +3109,9 @@ class PDO_DataObject
     
     
 
-    static function factory($table = '')
+    static function factory($table)
     {
         
-        
-        if ($table === '') {
-            print_R(debug_backtrace()[1];exit);
-        }
-        $table = $table === '' ? $this->tableName() : $table;
         // multi-database support.. - experimental.
        
         $rclass = self::tableToClass($table);
