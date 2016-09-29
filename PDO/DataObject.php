@@ -76,11 +76,12 @@ class PDO_DataObject
      * 
      */
     
-    const ERROR_INVALIDARGS =   -1;  // wrong args to function
-    const ERROR_NODATA =        -2;  // no data available
-    const ERROR_INVALIDCONFIG = -3;  // something wrong with the config
-    const ERROR_NOCLASS =       -4;  // no class exists
-    const ERROR_SET =           -5;  // set() caused errors when calling set*** methods.
+    const ERROR_INVALIDARGS =   'InvalidArgs';  // wrong args to function
+    const ERROR_NODATA =        'NoData';  // no data available
+    const ERROR_INVALIDCONFIG = 'InvalidConfig';  // something wrong with the config
+    const ERROR_NOCLASS =       'NoClass';  // no class exists
+    const ERROR_SET =           'Set';  // set() caused errors when calling set*** methods.
+    const ERROR_QUERY =         'Query';  // if query throws an error....
     
     
     
