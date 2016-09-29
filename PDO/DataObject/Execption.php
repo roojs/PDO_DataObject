@@ -27,19 +27,11 @@ class PDO_DataObject_Exception extends Exception
 {
     
    
-    function __construct($message = '', $type, $previous_exception = null)
-    {
-        parent::__construct($message, $code, $mode, $level);
-        
-    }
-    
      /**
-     * PDO_DataObject_Error factory constructor.
-     * @param mixed   $message The text description of the message;
-     * @param mixed   $code   DB error code, or string with error message.
-     * @param integer $mode   what "error mode" to operate in
-     * @param integer $level  what error level to use for $mode & PEAR_ERROR_TRIGGER
-     * @param mixed   $debuginfo  additional debug info, such as the last query
+     * PDO_DataObject_Exception factory constructor.
+     * @param mixed   $message The text description of the message
+     * @param mixed   $type    The type of error message
+     * @param mixed   $previous_exception (optional)  the previous exception that triggered this one.
      *
      * @access public
      *
