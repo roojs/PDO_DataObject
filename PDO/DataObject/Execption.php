@@ -2,7 +2,7 @@
 /**
  * DataObjects error handler, loaded on demand...
  *
- * DB_DataObject_Error is a quick wrapper around pear error, so you can distinguish the
+ * PDO_DataObject_Error is a quick wrapper around pear error, so you can distinguish the
  * error code source.
  *
  * PHP versions 4 and 5
@@ -14,20 +14,20 @@
  * send a note to license@php.net so we can mail you a copy immediately.
  *
  * @category   Database
- * @package    DB_DataObject
+ * @package    PDO_DataObject
  * @author     Alan Knowles <alan@akbkhome.com>
  * @copyright  1997-2006 The PHP Group
  * @license    http://www.php.net/license/3_01.txt  PHP License 3.01
  * @version    CVS: $Id: Error.php 339237 2016-05-26 03:59:27Z alan_k $
- * @link       http://pear.php.net/package/DB_DataObject
+ * @link       http://pear.php.net/package/PDO_DataObject
  */
   
  
-class DB_DataObject_Exception extends Exception
+class PDO_DataObject_Exception extends Exception
 {
     
     /**
-     * DB_DataObject_Error constructor.
+     * PDO_DataObject_Error constructor.
      *
      * @param mixed   $code   DB error code, or string with error message.
      * @param integer $mode   what "error mode" to operate in
@@ -40,33 +40,32 @@ class DB_DataObject_Exception extends Exception
      */
     function __construct($message = '', $type, $previous_exception = null)
     {
-        parent::__construct('DB_DataObject Error: ' . $message, $code, $mode, $level);
+        parent::__construct('PDO_DataObject Error: ' . $message, $code, $mode, $level);
         
     }
     
     
     // todo : - support code -> message handling, and translated error messages...
-    static factory
+    static function factory($message, $type, $previous_exception)
+    {
+        $cls = 'PDO_DataObject_Exception_'. $type;
+        $code = $previous_exception ? $previous_exception->getCode() : 0;
+        return new $cls($message, $code, $previous_exception );
+    }
     
     
     
     
-    
-    const ERROR_INVALIDARGS =   -1;  // wrong args to function
-    const ERROR_NODATA =        -2;  // no data available
-    const ERROR_INVALIDCONFIG = -3;  // something wrong with the config
-    const ERROR_NOCLASS =       -4;  // no class exists
-    const ERROR_SET =           -5;  // set() caused errors when calling set*** methods.
     
     
     
 }
 
 // child classes - so you can catch them..
-class DB_DataObject_Exception_InvalidArgs extends class DB_DataObject_Exception {};
-class DB_DataObject_Exception_NoData extends class DB_DataObject_Exception {};
-class DB_DataObject_Exception_InvalidConfig extends class DB_DataObject_Exception {};
-class DB_DataObject_Exception_NoClass extends class DB_DataObject_Exception {};
-class DB_DataObject_Exception_Set extends class DB_DataObject_Exception {};
+class PDO_DataObject_Exception_InvalidArgs extends class PDO_DataObject_Exception {};
+class PDO_DataObject_Exception_NoData extends class PDO_DataObject_Exception {};
+class PDO_DataObject_Exception_InvalidConfig extends class PDO_DataObject_Exception {};
+class PDO_DataObject_Exception_NoClass extends class PDO_DataObject_Exception {};
+class PDO_DataObject_Exception_Set extends class PDO_DataObject_Exception {};
 
 
