@@ -97,9 +97,9 @@ class PDO_DataObject_Generator_Table {
         
         $base_ar = explode(PATH_SEPARATOR,$options['class_location']);
         
-        if (count($base_ar) != 1 || !strlen($base_ar[0] )) {
+        if (count($base_ar) != 1 || !strlen($base_ar[0])) {
             $this->gen->raise(
-                "option[class_location] must be a single location for the generator to work.",
+                "option[class_location] must be set, and a single location for the generator to work.",
                 PDO_DataObject::ERROR_INVALIDCONFIG
             );
         }
