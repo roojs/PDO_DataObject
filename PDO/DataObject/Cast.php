@@ -33,20 +33,20 @@
 *  
 * Common usages:
 *   // blobs
-*   $data = DB_DataObject_Cast::blob($somefile);
-*   $data = DB_DataObject_Cast::string($somefile);
+*   $data = PDO_DataObject_Cast::blob($somefile);
+*   $data = PDO_DataObject_Cast::string($somefile);
 *   $dataObject->someblobfield = $data
 *
 *   // dates?
-*   $d1 = new DB_DataObject_Cast::date('12/12/2000');
-*   $d2 = new DB_DataObject_Cast::date(2000,12,30);
-*   $d3 = new DB_DataObject_Cast::date($d1->year, $d1->month+30, $d1->day+30);
+*   $d1 = new PDO_DataObject_Cast::date('12/12/2000');
+*   $d2 = new PDO_DataObject_Cast::date(2000,12,30);
+*   $d3 = new PDO_DataObject_Cast::date($d1->year, $d1->month+30, $d1->day+30);
 *   
 *   // time, datetime.. ?????????
 *
 *   // raw sql????
-*    $data = DB_DataObject_Cast::sql('cast("123123",datetime)');
-*    $data = DB_DataObject_Cast::sql('NULL');
+*    $data = PDO_DataObject_Cast::sql('cast("123123",datetime)');
+*    $data = PDO_DataObject_Cast::sql('NULL');
 *
 *   // int's/string etc. are proably pretty pointless..!!!!
 *
@@ -61,7 +61,7 @@
 *
 
 */ 
-class DB_DataObject_Cast {
+class PDO_DataObject_Cast {
         
     /**
     * Type of data Stored in the object..
@@ -101,12 +101,12 @@ class DB_DataObject_Cast {
     * 
     * @param   string (with binary data!)
     *
-    * @return   object DB_DataObject_Cast
+    * @return   object PDO_DataObject_Cast
     * @access   public 
     */
   
     function blob($value) {
-        $r = new DB_DataObject_Cast;
+        $r = new PDO_DataObject_Cast;
         $r->type = 'blob';
         $r->value = $value;
         return $r;
@@ -121,12 +121,12 @@ class DB_DataObject_Cast {
     * 
     * @param   string (with binary data!)
     *
-    * @return   object DB_DataObject_Cast
+    * @return   object PDO_DataObject_Cast
     * @access   public 
     */
   
     function string($value) {
-        $r = new DB_DataObject_Cast;
+        $r = new PDO_DataObject_Cast;
         $r->type = 'string';
         $r->value = $value;
         return $r;
@@ -139,13 +139,13 @@ class DB_DataObject_Cast {
     * 
     * @param   string (with binary data!)
     *
-    * @return   object DB_DataObject_Cast
+    * @return   object PDO_DataObject_Cast
     * @access   public 
     */
   
     function sql($value) 
     {
-        $r = new DB_DataObject_Cast;
+        $r = new PDO_DataObject_Cast;
         $r->type = 'sql';
         $r->value = $value;
         return $r;
@@ -168,7 +168,7 @@ class DB_DataObject_Cast {
     *
     *
     *
-    * @return   object DB_DataObject_Cast
+    * @return   object PDO_DataObject_Cast
     * @access   public 
     */
   
@@ -177,7 +177,7 @@ class DB_DataObject_Cast {
         $args = func_get_args();
         switch(count($args)) {
             case 0: // no args = today!
-               $bits =  explode('-',date('Y-m-d'));
+                $bits =  explode('-',date('Y-m-d'));
                 break;
             case 1: // one arg = a string 
             
@@ -210,7 +210,7 @@ class DB_DataObject_Cast {
             // now mktime
             $bits = explode('-',date('Y-m-d',mktime(1,1,1,$bits[1],$bits[2],$bits[0])));
         }
-        $r = new DB_DataObject_Cast;
+        $r = new PDO_DataObject_Cast;
         $r->type = 'date';
         list($r->year,$r->month,$r->day) = $bits;
         return $r;
@@ -242,7 +242,7 @@ class DB_DataObject_Cast {
     *              array(yyyy,mm,dd,HH,MM,SS) 
     *
     *
-    * @return   object DB_DataObject_Cast
+    * @return   object PDO_DataObject_Cast
     * @access   public 
     * @author   therion 5 at hotmail
     */
@@ -275,7 +275,7 @@ class DB_DataObject_Cast {
             return false;
         }
         
-        $r = DB_DataObject_Cast::date($bits[0], $bits[1], $bits[2]);
+        $r = PDO_DataObject_Cast::date($bits[0], $bits[1], $bits[2]);
         if (!$r) {
             return $r; // pass thru error (False) - doesnt happen at present!
         }
@@ -306,7 +306,7 @@ class DB_DataObject_Cast {
     *              array(HH,MM,SS)    
     *
     *
-    * @return   object DB_DataObject_Cast
+    * @return   object PDO_DataObject_Cast
     * @access   public 
     * @author   therion 5 at hotmail
     */
@@ -335,7 +335,7 @@ class DB_DataObject_Cast {
         }
         
         // now take data from bits into object fields
-        $r = new DB_DataObject_Cast;
+        $r = new PDO_DataObject_Cast;
         $r->type = 'time';
         $r->hour = $bits[0];
         $r->minute = $bits[1];
@@ -385,7 +385,7 @@ class DB_DataObject_Cast {
         // perhaps we should support TEXT fields???
         
         if (!($to & DB_DATAOBJECT_BLOB)) {
-            return self::raise('Invalid Cast from a DB_DataObject_Cast::blob to something other than a blob!');
+            return self::raise('Invalid Cast from a PDO_DataObject_Cast::blob to something other than a blob!');
         }
         
         switch ($db->dsn["phptype"]) {
@@ -414,7 +414,7 @@ class DB_DataObject_Cast {
                  
    
             default:
-                return self::raise("DB_DataObject_Cast cant handle blobs for Database:{$db->dsn['phptype']} Yet");
+                return self::raise("PDO_DataObject_Cast cant handle blobs for Database:{$db->dsn['phptype']} Yet");
         }
     
     }
@@ -465,7 +465,7 @@ class DB_DataObject_Cast {
                 
 
             default:
-                return self::raise("DB_DataObject_Cast cant handle blobs for Database:{$db->dsn['phptype']} Yet");
+                return self::raise("PDO_DataObject_Cast cant handle blobs for Database:{$db->dsn['phptype']} Yet");
         }
     
     }
@@ -491,7 +491,7 @@ class DB_DataObject_Cast {
         // 
         
         if (($to !== false) && !($to & DB_DATAOBJECT_DATE)) {
-            return self::raise('Invalid Cast from a DB_DataObject_Cast::string to something other than a date!'.
+            return self::raise('Invalid Cast from a PDO_DataObject_Cast::string to something other than a date!'.
                 ' (why not just use native features)');
         }
         return "'{$this->year}-{$this->month}-{$this->day}'";
@@ -519,7 +519,7 @@ class DB_DataObject_Cast {
         if (($to !== false) && 
             !($to & (DB_DATAOBJECT_DATE + DB_DATAOBJECT_TIME))) {
             return self::raise('Invalid Cast from a ' .
-                ' DB_DataObject_Cast::dateTime to something other than a datetime!' .
+                ' PDO_DataObject_Cast::dateTime to something other than a datetime!' .
                 ' (try using native features)');
         }
         return "'{$this->year}-{$this->month}-{$this->day} {$this->hour}:{$this->minute}:{$this->second}'";
@@ -546,7 +546,7 @@ class DB_DataObject_Cast {
         // perhaps we should support TEXT fields???
         if (($to !== false) && !($to & DB_DATAOBJECT_TIME)) {
             return self::raise('Invalid Cast from a' . 
-                ' DB_DataObject_Cast::time to something other than a time!'.
+                ' PDO_DataObject_Cast::time to something other than a time!'.
                 ' (try using native features)');
         }
         return "'{$this->hour}:{$this->minute}:{$this->second}'";
