@@ -13,10 +13,22 @@ print_r(get_class($person);
 
 
 echo "--------\n";
+echo "Calling factory on a existing dataobject.\n";
+
+$person = DB_DataObject::factory('Customers');
+$person->test = 1;
+$next_person = $person->factory();
+echo "new object 'test' value is :" . var_export($next_person->test, true) . "\n";
+
+
+echo "--------\n";
 echo "factory call with failure\n";
 
 $person = DB_DataObject::factory('Customers_invalid');
 print_r(get_class($person);
+
+
+
 
 
 echo "--------\n";
