@@ -3233,6 +3233,8 @@ class PDO_DataObject
         // class_location = mydir/myfile_%s.php => maps to mydir/myfile_Tablename
         // with directory sepr
         // class_location = mydir/:mydir2/: => tries all of thes locations.
+        $file = array();
+       
         $cl = self::$config['class_location'];
         foreach (explode(PATH_SEPARATOR, self::$config['class_location']) as $cl) {
             
@@ -3253,15 +3255,6 @@ class PDO_DataObject
         }
         
         
-        $file = array();
-        switch (true) {
-            
-                
-            
-            default:
-                $file[] = $cl .'/'.preg_replace('/[^A-Z0-9]/i','_',ucfirst($table)).".php";
-                break;
-        }
         
         $cls = is_array($class) ? $class : array($class);
         
