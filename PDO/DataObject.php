@@ -1228,8 +1228,7 @@ class PDO_DataObject
         if (!$this->_result) {
             if ($k !== false && 
                 (   // only do this is we have not been explicit..
-                    empty($this->_query['data_select']) || 
-                    ($this->_query['data_select'] == '*')
+                    $this->_query['data_select'] === false
                 )
             ) {
                 $this->selectAdd();
