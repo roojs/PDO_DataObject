@@ -49,7 +49,7 @@ try {
  
 ?>
 --EXPECT--
- --------
+--------
 simple where
 first add result: SELECT *
  FROM   Companies   
