@@ -57,8 +57,7 @@ PDO_DataObject::config(array(
 $Employees = PDO_DataObject::factory('Employees');
 echo "factory('Employees') when using proxy returns a class called  " . get_class($Employees) . "\n";
 
-
-
+ 
 
 ?>
 --EXPECT--
