@@ -799,7 +799,7 @@ class PDO_DataObject
             $v = $k;
             $keys = $this->keys();
             if (!$keys) {
-                return $this->raise("No Keys available for {$this->tableName()}", self::ERROR_INVALIDCONFIG);
+                return $this->raise("No Keys available for table '{$this->tableName()}'", self::ERROR_INVALIDCONFIG);
             }
             $k = $keys[0];
         }
@@ -866,16 +866,16 @@ class PDO_DataObject
             // this is a derived select..
             // not much support in the api yet..
             
-            return 'SELECT ' .
+            return trim('SELECT ' .
                $this->_query['derive_select'] . " \n" .
                    "FROM ( SELECT\n" .
                         " " . $this->_query['data_select'] . " \n" .
                         " FROM   $tn  " . $this->_query['useindex'] . " \n" .
                         ($this->_join == '' ? '' :               $this->_join . " \n") .
-                        ($this->_query['condition'] == '' ? '' : 'WHERE ' . $this->_query['condition'] . " \n") .
+                        ($this->_query['condition'] == '' ? '' : ' WHERE ' . $this->_query['condition'] . " \n") .
                         ($this->_query['group_by']  == '' ? '' : $this->_query['group_by'] . " \n") .
                         ($this->_query['having']    == '' ? '' : $this->_query['having'] . " \n") .
-                    ') ' . $this->_query['derive_table'];
+                    ') ' . $this->_query['derive_table']);
             
                      
             
@@ -883,13 +883,13 @@ class PDO_DataObject
         
        
         
-        return 'SELECT ' . $this->_query['data_select'] . "\n" .
+        return trim('SELECT ' . $this->_query['data_select'] . "\n" .
             " FROM   $tn  " . $this->_query['useindex'] . " \n" .
             ($this->_join == '' ? '' :               $this->_join . " \n") .
-            ($this->_query['condition'] == '' ? '' : 'WHERE ' . $this->_query['condition'] . " \n") .
+            ($this->_query['condition'] == '' ? '' : ' WHERE ' . $this->_query['condition'] . " \n") .
             ($this->_query['group_by']  == '' ? '' : $this->_query['group_by'] . " \n") .
             ($this->_query['having']    == '' ? '' : $this->_query['having'] . " \n")
-        ;
+        );
         
     }
 
