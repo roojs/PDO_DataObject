@@ -863,7 +863,7 @@ class PDO_DataObject
         
         $data_select = $this->_query['data_select'] === false ? '*' $this->_query['data_select'];
         
-        if (!strlen($data_select)) {
+        if (!strlen(trim($data_select))) {
              $this->raise("Select is empty, call select with some arguments", self::ERROR_INVALIDARGS);
         }
 
