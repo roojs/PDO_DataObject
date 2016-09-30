@@ -22,7 +22,10 @@ $events->select("c,d");
 $events->where('e=f');
 
 $company->union($events);
- 
+
+$company->orderBy('b desc');
+$company->limit(10);
+
 
 echo "resulting query: " . $company->toSelectSQL();
 
