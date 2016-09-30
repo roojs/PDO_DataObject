@@ -867,7 +867,7 @@ class PDO_DataObject
              $this->raise("Select is empty, call select with some arguments", self::ERROR_INVALIDARGS);
         }
 
-        $sql =  trim('SELECT ' . $data_select . "\n" .
+        $sql =  trim('SELECT ' . trim($data_select) . "\n" .
             " FROM   $tn  " . $this->_query['useindex'] . " \n" .
             ($this->_join == '' ? '' :               $this->_join . " \n") .
             ($this->_query['condition'] == '' ? '' : ' WHERE ' . $this->_query['condition'] . " \n") .
