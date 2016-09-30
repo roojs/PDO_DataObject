@@ -39,9 +39,11 @@ $events->where('e=f');
 $company->union();
 $company->union($events);
 
-$company->orderBy('b desc');
-$company->limit(10);
- 
+$company->orderBy('c desc');
+$company->limit(50);
+
+echo "resulting query: " . $company->toSelectSQL();
+
 ?>
 --EXPECT--
 --------
@@ -57,3 +59,16 @@ UNION
  WHERE ( e=f ) 
  ORDER BY b desc  
  LIMIT  10
+
+--------
+test union rest
+resulting query: SELECT a,b
+ FROM   Companies   
+ WHERE ( a=b )
+UNION  
+ SELECT e as a, f as b
+ FROM   Events   
+ WHERE ( e=f ) 
+ ORDER BY b desc  , c desc 
+ LIMIT  50
+
