@@ -22,10 +22,16 @@ echo "select multiple calls\n" ;
 
 $events = PDO_DataObject::factory('Events');
 $events->select("e as a, f as b");
-$events->select('h as j, vv as q');
+        ->select('h as j, vv as q');
 
 
 echo "resulting query: " . $events->toSelectSQL();
+
+
+
+
+
+
 
 ?>
 --EXPECT--
