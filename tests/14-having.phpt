@@ -24,6 +24,14 @@ $company = PDO_DataObject::factory('Companies');
 $company->having('a=b')->having('c=d');
 echo "resulting query: " . $company->toSelectSQL();
  
+ 
+ echo "\n\n--------\n";
+echo "test having mulitple or\n" ;
+$company = PDO_DataObject::factory('Companies');
+$company->having('a=b')->having('c=d', 'OR');
+echo "resulting query: " . $company->toSelectSQL();
+
+ 
 echo "\n\n--------\n";
 echo "test having clear\n" ;
 $company->having()->having('e=f'); 
@@ -31,3 +39,29 @@ $company->having()->having('e=f');
  
 ?>
 --EXPECT--
+--------
+test having
+resulting query: SELECT *
+ FROM   Companies   
+ HAVING a=b 
+
+
+--------
+test having mulitple
+resulting query: SELECT *
+ FROM   Companies   
+ HAVING a=b AND c=d 
+
+
+--------
+test having mulitple or
+resulting query: SELECT *
+ FROM   Companies   
+ HAVING a=b OR c=d 
+
+
+--------
+test having clear
+resulting query: SELECT *
+ FROM   Companies   
+ HAVING e=f
