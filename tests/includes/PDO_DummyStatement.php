@@ -168,16 +168,16 @@ class PDO_DummyStatement {
                  "updated_by":"0","updated_dt":"0000-00-00 00:00:00"}
                 ]',
              '4f8bbbe831550e7ece687a7f98bbdb32' => '[]', // id = 13 .. no results..
-             'cbd9c7848089dfd2e47f930f24c423dc' => '[
+             'ba1ed5f8fbeba84966d40094fc0771f4' => '[
               {"code":"MASL","name":"Modern (INTL) Access & Scaffolding Ltd","remarks":"","owner_id":"0","address":"",
                  "tel":"","fax":"","email":"test@example.com","id":"15","isOwner":"0","logo_id":"0","background_color":"","comptype":"",
                  "url":"","main_office_id":"0","created_by":"0","created_dt":"0000-00-00 00:00:00",
                  "updated_by":"0","updated_dt":"0000-00-00 00:00:00"}
             ]',
-            'd75c2aa04f615504daa9b0e152c460b3' => '[]', // id = 12 and isOwner = 1
-            '91094393302d56a8ca0cf0c424afbe8f' => '[]', // id = 12 and updated_by > 10
+            'b72a52d4f5f0ada645dcf4e594992766' => '[]', // id = 12 and isOwner = 1
+            'e3d46f1f19d5a7eacbd4e5464358b26e' => '[]', // id = 12 and updated_by > 10
             // select a single row from events.. (bad pid test)
-            'ba1ed5f8fbeba84966d40094fc0771f4' => '[
+            '196f2986575f749efe84e6134d37fbf7' => '[
                 {"id":"3523","person_name":"Alan","event_when":"2009-04-16 14:05:32","action":"RELOAD",
                 "ipaddr":"202.134.82.251","on_id":"0","on_table":"","person_id":"4","remarks":"0","person_table":null}
             ]',

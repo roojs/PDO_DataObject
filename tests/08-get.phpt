@@ -68,12 +68,11 @@ PDO_DataObject   : databaseStructure       : CALL:[]
 __construct==["mysql:dbname=gettest;host=localhost","user","pass",[]]
 setAttribute==[3,2]
 PDO_DataObject   : find       : true
-PDO_DataObject   : QUERY       : 99589c46dbd978ffe3f382d56e38be75 : SELECT *
+PDO_DataObject   : QUERY       : dde36b8c2603ce0b7357c878a4c6ad50 : SELECT *
  FROM   Companies   
- WHERE ( (Companies.id = 12) )  
- 
+ WHERE ( (Companies.id = 12) ) 
 
-QUERY: 99589c46dbd978ffe3f382d56e38be75
+QUERY: dde36b8c2603ce0b7357c878a4c6ad50
 PDO_DataObject   : query       : NO# of results: 1
 PDO_DataObject   : find       : CHECK autofetched true
 PDO_DataObject   : find       : ABOUT TO AUTOFETCH
@@ -115,12 +114,11 @@ Array
 get by id / no results
 PDO_DataObject   : databaseStructure       : CALL:[]
 PDO_DataObject   : find       : true
-PDO_DataObject   : QUERY       : 0171501aea9c3a9ec2df4ae3d2a936a4 : SELECT *
+PDO_DataObject   : QUERY       : 4f8bbbe831550e7ece687a7f98bbdb32 : SELECT *
  FROM   Companies   
- WHERE ( (Companies.id = 13) )  
- 
+ WHERE ( (Companies.id = 13) ) 
 
-QUERY: 0171501aea9c3a9ec2df4ae3d2a936a4
+QUERY: 4f8bbbe831550e7ece687a7f98bbdb32
 PDO_DataObject   : query       : NO# of results: 0
 PDO_DataObject   : find       : CHECK autofetched true
 correctly got no result
@@ -129,12 +127,11 @@ correctly got no result
 --------
 get by key value
 PDO_DataObject   : find       : true
-PDO_DataObject   : QUERY       : cbd9c7848089dfd2e47f930f24c423dc : SELECT *
+PDO_DataObject   : QUERY       : ba1ed5f8fbeba84966d40094fc0771f4 : SELECT *
  FROM   Companies   
- WHERE ( (Companies.email  = 'test@example.com') )  
- 
+ WHERE ( (Companies.email  = 'test@example.com') ) 
 
-QUERY: cbd9c7848089dfd2e47f930f24c423dc
+QUERY: ba1ed5f8fbeba84966d40094fc0771f4
 PDO_DataObject   : query       : NO# of results: 1
 PDO_DataObject   : find       : CHECK autofetched true
 PDO_DataObject   : find       : ABOUT TO AUTOFETCH
@@ -176,12 +173,11 @@ Array
 get with other values set. / no result 
 PDO_DataObject   : databaseStructure       : CALL:[]
 PDO_DataObject   : find       : true
-PDO_DataObject   : QUERY       : d75c2aa04f615504daa9b0e152c460b3 : SELECT *
+PDO_DataObject   : QUERY       : b72a52d4f5f0ada645dcf4e594992766 : SELECT *
  FROM   Companies   
- WHERE ( (Companies.id = 12) AND (Companies.isOwner = 1) )  
- 
+ WHERE ( (Companies.id = 12) AND (Companies.isOwner = 1) ) 
 
-QUERY: d75c2aa04f615504daa9b0e152c460b3
+QUERY: b72a52d4f5f0ada645dcf4e594992766
 PDO_DataObject   : query       : NO# of results: 0
 PDO_DataObject   : find       : CHECK autofetched true
 correctly got no result
@@ -191,12 +187,11 @@ correctly got no result
 get with conditions set.
 PDO_DataObject   : databaseStructure       : CALL:[]
 PDO_DataObject   : find       : true
-PDO_DataObject   : QUERY       : 91094393302d56a8ca0cf0c424afbe8f : SELECT *
+PDO_DataObject   : QUERY       : e3d46f1f19d5a7eacbd4e5464358b26e : SELECT *
  FROM   Companies   
- WHERE ( WHERE ( updated_by > 10 ) AND (Companies.id = 12) )  
- 
+ WHERE ( ( updated_by > 10 ) AND (Companies.id = 12) ) 
 
-QUERY: 91094393302d56a8ca0cf0c424afbe8f
+QUERY: e3d46f1f19d5a7eacbd4e5464358b26e
 PDO_DataObject   : query       : NO# of results: 0
 PDO_DataObject   : find       : CHECK autofetched true
 correctly got no result
