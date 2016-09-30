@@ -1651,7 +1651,7 @@ class PDO_DataObject
      * Note: this model may be a better way to implement joinAdd?, eg. do the building in find?
      * 
      * 
-     * @param             $obj       object 
+     * @param             $obj       object   the union object - leave blank to reset.
      * @param    optional $is_all    string 'ALL' to do all.
      * @returns           PDO_DataObject        self
      */
