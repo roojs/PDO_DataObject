@@ -1795,7 +1795,7 @@ class PDO_DataObject
      * $object->selectAdd($object,'prefix_%s'); // calls $object->get_table and adds it all as
      *                  objectTableName.colnameA as prefix_colnameA
      *
-     * @param  array|object|null the array or object to take column names from.
+     * @param  array|object|string|null the array or object, or tablename(for factory) to take column names from.
      * @param  string           format in sprintf format (use %s for the colname)
      * @param  string           table name eg. if you have joinAdd'd or send $from as an array.
      * @access public
