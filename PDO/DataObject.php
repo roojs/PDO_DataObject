@@ -836,7 +836,7 @@ class PDO_DataObject
                             self::ERROR_INVALIDCONFIG);
 
         }
-        $k = $keys[0];
+        $k = array_keys($keys)[0];
         if (empty($this->$k)) { // we do not 
             return $this->raise("pid() called on Object where primary key value not available",
                             self::ERROR_NODATA);
@@ -3065,7 +3065,7 @@ class PDO_DataObject
 
             if ($v & self::STR) {
                 $ret .= "($kSql  = " .
-                        $PDO->quote((string) (
+                        $this->PDO()->quote((string) (
                             ($v & self::BOOL) ? 
                                 // this is thanks to the braindead idea of postgres to 
                                 // use t/f for boolean.
