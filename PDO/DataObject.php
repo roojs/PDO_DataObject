@@ -305,7 +305,8 @@ class PDO_DataObject
         'limit_count' => '', // the LIMIT condition
         'data_select' => false, // the columns to be SELECTed (false == '*') the default.
         'derive_table' => '', // derived table name (BETA)
-        'derive_select' => '', // derived table select (BETA)
+        'derive_select' => '', // derived table select (BETA),
+        'unions' => array(), // unions
     );
         
     
@@ -1625,8 +1626,8 @@ class PDO_DataObject
             return $ret;
         }
         if (!is_object($obj) || !is_a($obj, 'PDO_DataObject')) {
-            $this->raise("unionAdd invalid first argument - must be false or an DataObject
-
+            $this->raise("unionAdd invalid first argument - must be false or an DataObject", self::ERROR_INVALIDARGS);
+        }
         $this->_query['unions'][] = array($obj, 'UNION ' . $is_all . ' ') ;
         return $obj;
     }
@@ -1802,8 +1803,7 @@ class PDO_DataObject
      */
     final function selectAs($from = null,$format = '%s',$tableName=false)
     {
-        global $_DB_DATAOBJECT;
-        
+         
         if ($this->_query === false) {
             $this->raise(
                 "You cannot do two queries on the same object (copy it before finding)", 
@@ -1823,7 +1823,7 @@ class PDO_DataObject
         $table = $this->tableName();
         if (is_object($from)) {
             $table = $from->tableName();
-            $from = array_keys($from->table());
+            $from = array_keys($from->tableColumns());
         }
         
         if ($tableName !== false) {
