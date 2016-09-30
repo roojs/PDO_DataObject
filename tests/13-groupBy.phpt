@@ -19,13 +19,13 @@ echo "resulting query: " . $company->toSelectSQL();
 
 
 echo "\n\n--------\n";
-echo "test order By mulitple\n" ;
+echo "test groupBy mulitple\n" ;
 $company = PDO_DataObject::factory('Companies');
 $company->groupBy('id, a')->groupBy('c,d');
 echo "resulting query: " . $company->toSelectSQL();
  
 echo "\n\n--------\n";
-echo "test order clear\n" ;
+echo "test groupBy clear\n" ;
 $company->groupBy()->groupBy('c asc'); 
  echo "resulting query: " . $company->toSelectSQL();
  
