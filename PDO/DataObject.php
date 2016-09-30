@@ -891,7 +891,7 @@ class PDO_DataObject
         
         if ($unions) {
             foreach ($this->_query['unions'] as $union_ar) {  
-                 $sql .=   $union_ar[1] .   $union_ar[0]->toSelectSQL(false) . " \n";
+                 $sql .=  "\n " .  $union_ar[1] .   $union_ar[0]->toSelectSQL(false) . " \n";
             }
             $sql .=  $this->_query['order_by']  . " \n";
                 
@@ -1732,7 +1732,7 @@ class PDO_DataObject
         if ($k === null) {
             $old = $this->_query['data_select'];
             $this->_query['data_select'] = '';
-            return $old === false : '*' : $old;
+            return $old === false ? '*' : $old;
         }
         
         // check input...= 0 or '    ' == error!
