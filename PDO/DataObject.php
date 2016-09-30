@@ -940,9 +940,6 @@ class PDO_DataObject
         $this->N = 0;
         $query_before = $this->_query;
         $where = $this->whereToString($this->tableColumns()) ;
-        if (strlen($where)) {
-            $this->where()->where($where);
-        }
         
        
         $DB = $this->PDO();
