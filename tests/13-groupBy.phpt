@@ -14,19 +14,19 @@ echo "\n\n--------\n";
 echo "test order By\n" ;
 
 $company = PDO_DataObject::factory('Companies');
-$company->groupBy('id');
+$company->groupBy('id, a');
 echo "resulting query: " . $company->toSelectSQL();
 
 
 echo "\n\n--------\n";
 echo "test order By mulitple\n" ;
 $company = PDO_DataObject::factory('Companies');
-$company->orderBy('id desc')->orderBy('c asc');
+$company->groupBy('id, a')->groupBy('c,d');
 echo "resulting query: " . $company->toSelectSQL();
  
 echo "\n\n--------\n";
 echo "test order clear\n" ;
-$company->orderBy()->orderBy('c asc'); 
+$company->groupBy()->groupBy('c asc'); 
  echo "resulting query: " . $company->toSelectSQL();
  
 ?>
