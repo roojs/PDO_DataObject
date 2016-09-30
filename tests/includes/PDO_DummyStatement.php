@@ -161,7 +161,7 @@ class PDO_DummyStatement {
         // 08-get tests..
         'mysql:dbname=gettest;host=localhost' => array(
             // select companies where id = 12;
-              '99589c46dbd978ffe3f382d56e38be75'     => '[
+              'dde36b8c2603ce0b7357c878a4c6ad50'     => '[
               {"code":"MASL","name":"Modern (INTL) Access & Scaffolding Ltd","remarks":"","owner_id":"0","address":"",
                  "tel":"","fax":"","email":null,"id":"12","isOwner":"0","logo_id":"0","background_color":"","comptype":"",
                  "url":"","main_office_id":"0","created_by":"0","created_dt":"0000-00-00 00:00:00",
@@ -176,6 +176,8 @@ class PDO_DummyStatement {
             ]',
             'd75c2aa04f615504daa9b0e152c460b3' => '[]', // id = 12 and isOwner = 1
             '91094393302d56a8ca0cf0c424afbe8f' => '[]', // id = 12 and updated_by > 10
+            // select a single row from events.. (bad pid test)
+            //'196f2986575f749efe84e6134d37fbf7' =>
         ), 
         
         
