@@ -177,7 +177,12 @@ class PDO_DummyStatement {
             'd75c2aa04f615504daa9b0e152c460b3' => '[]', // id = 12 and isOwner = 1
             '91094393302d56a8ca0cf0c424afbe8f' => '[]', // id = 12 and updated_by > 10
             // select a single row from events.. (bad pid test)
-            //'196f2986575f749efe84e6134d37fbf7' =>
+            '196f2986575f749efe84e6134d37fbf7' => '[
+                {"id":"3523","person_name":"Alan","event_when":"2009-04-16 14:05:32","action":"RELOAD",
+                "ipaddr":"202.134.82.251","on_id":"0","on_table":"","person_id":"4","remarks":"0","person_table":null}
+                ]',
+                
+            ]
         ), 
         
         
