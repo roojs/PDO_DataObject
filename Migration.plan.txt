@@ -148,12 +148,7 @@ e) PDO_DataObject class
   * loadClass   DONE (private) was _autoloadClass
   * get()  DONE 
   * pid()  DONE  
-  * _build_select ->   toSelectSQL()   DONE / NEED TESTING
-  * find() DONE / NEED TESTING
 
-  * fetch() DONE - tested by earlier code
-  * fetchAll() DONE - tested by earlier code ?? 
-  * fetchAllAssoc() - alias to fetchAll(false,false,true);
   
   * where()  = new 'chained version'  DONE / NEED TESTING
   * whereAdd()  DONE / NEED TESTING
@@ -164,6 +159,14 @@ e) PDO_DataObject class
   * having()  DONE / NEED TESTING
   * unionAdd()  DONE / NEED TESTING
   * union()  = new 'chained verison'  DONE / NEED TESTING
+
+  * toSelectSQL() (was _build_select) ->     DONE / NEED TESTING
+  * find() DONE / NEED TESTING
+
+  * fetch() DONE - tested by earlier code
+  * fetchAll() DONE - tested by earlier code ?? 
+  * fetchAllAssoc() - alias to fetchAll(false,false,true);
+
 
   * insert() DONE / NEED TESTING
       -- emulated sequence are not supported at present!!
