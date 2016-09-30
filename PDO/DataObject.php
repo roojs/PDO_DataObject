@@ -833,7 +833,7 @@ class PDO_DataObject
         $keys = $this->keys();
         if (!$keys) {
             
-            return $this->raise("No Keys available for {$this->tableName()}",
+            return $this->raise("No Primary Key available for table '{$this->tableName()}'",
                             self::ERROR_INVALIDCONFIG);
 
         }
