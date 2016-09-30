@@ -732,7 +732,7 @@ class PDO_DataObject_Generator extends PDO_DataObject
         $tbl  = $this->tables[$table] ;
         
         $classname = $tbl->toPhpClassName();
-        $out = $tbl->toPhp();
+        $out = $tbl->toPhp('');
         //echo $out;
         eval('?>'.$out);
         return new $classname;
