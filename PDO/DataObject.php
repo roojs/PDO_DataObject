@@ -1734,7 +1734,7 @@ class PDO_DataObject
         if ($k === null) {
             $old = $this->_query['data_select'];
             $this->_query['data_select'] = '';
-            return $old;
+            return $old === false : '*' : $old;
         }
         
         // check input...= 0 or '    ' == error!
