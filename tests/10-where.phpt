@@ -55,10 +55,10 @@ echo "\n\n--------\n";
 echo "replacing whereAdd.\n";
 
 
-$old = $company->whereAdd);
+$old = $company->whereAdd();
 echo "Old query: $old\n";
 $company->whereAdd('c = d');
-
+echo "New query: {$company->toSelectSQL()}\n";
 
 
 
