@@ -2624,15 +2624,12 @@ class PDO_DataObject
             
             // will not get here....
         }
-        
+        $this->PDO();  /// need to connect to assign database nickname...
         if (false === $database_nickname) {
+
             $database_nickname = $this->_database_nickname;
         }
         
-        // not sure why we need to connect here...
-        //if (!$this->_database) {
-        $this->PDO();
-        //}
         
          
         // if this table is already loaded this table..
@@ -2703,7 +2700,7 @@ class PDO_DataObject
         if (empty($ini_out)) {
             $this->raise("Failed to load any schema for database: '{$this->_database_nickname} \n" .
                         "  using schema_location=" . var_export(self::$config['schema_location'], true). "\n" .
-                        "  from these files/locations: " . json_enocde($tried,true) ."\n  ",
+                        "  from these files/locations: " . implode(', ', $tried) ."\n  ",
                          self::ERROR_INVALIDCONFIG
             );
         }
