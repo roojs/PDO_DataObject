@@ -16,20 +16,16 @@ echo "select default\n" ;
 $company = PDO_DataObject::factory('Companies');
 echo "resulting query: " . $company->toSelectSQL();
 
+
 echo "\n\n--------\n";
-echo "test union rest\n" ;
+echo "select multiple calls\n" ;
 
 $events = PDO_DataObject::factory('Events');
 $events->select("e as a, f as b");
-$events->where('e=f');
+$events->select('h as j, vv as q');
 
-$company->union();
-$company->union($events);
 
-$company->orderBy('c desc');
-$company->limit(50);
-
-echo "resulting query: " . $company->toSelectSQL();
+echo "resulting query: " . $events->toSelectSQL();
 
 ?>
 --EXPECT--
