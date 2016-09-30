@@ -19,7 +19,7 @@ echo "Simple get by id call\n";
 $company = PDO_DataObject::factory('Companies');
 if ($company->get(12)) {
     echo "GOT result\n";
-    print_r(get_object_properties($Company));
+    print_r(get_object_vars($company));
 }
 
 
@@ -37,7 +37,7 @@ echo "get by key value\n";
 $company = PDO_DataObject::factory('Companies');
 if ($company->get('email','test@example.com')) {
     echo "GOT result\n";
-    print_r($company);
+    print_r((array)$Company);
 }
   
 echo "\n\n--------\n";
@@ -47,7 +47,7 @@ $company = PDO_DataObject::factory('Companies');
 $preson->active = 1;
 if ($company->get(12)) {
     echo "GOT result\n";
-    print_r($company);
+    print_r(get_object_properties($Company));
 }
 
 echo "\n\n--------\n";
@@ -57,7 +57,7 @@ $company = PDO_DataObject::factory('Companies');
 $company->where("age > 10");
 if ($company->get(12)) {
     echo "GOT result\n";
-    print_r($company);
+    print_r(get_object_properties($Company));
 }
   
 
