@@ -57,7 +57,7 @@ echo "replacing whereAdd.\n";
 
 $old = $company->whereAdd);
 echo "Old query: $old\n";
-
+$company->whereAdd('c = d');
 
 
 
