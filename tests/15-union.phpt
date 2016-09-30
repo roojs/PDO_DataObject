@@ -14,10 +14,11 @@ echo "\n\n--------\n";
 echo "test union\n" ;
 
 $company = PDO_DataObject::factory('Companies');
+$events->select("a,b");
 $company->where('a=b');
 
 $events = PDO_DataObject::factory('Events');
-$events->select("a)
+$events->select("a,b");
 $events->where('c=d');
 
 $company->union($events)
