@@ -2877,13 +2877,13 @@ class PDO_DataObject
         
          
         if (isset(self::$ini[$this->_database_nickname][$this->tableName() . '__keys'])) {
-            return self::$ini[$this->_database_nickname][$this->tableName() . '__keys'];
+            return array_keys(self::$ini[$this->_database_nickname][$this->tableName() . '__keys']);
         }
         
         $this->databaseStructure();
         
         if (isset(self::$ini[$this->_database_nickname][$this->tableName() . '__keys'])) {
-            return self::$ini[$this->_database_nickname][$this->tableName() . '__keys'];
+            return array_keys(self::$ini[$this->_database_nickname][$this->tableName() . '__keys']);
         }
         
         return array();
