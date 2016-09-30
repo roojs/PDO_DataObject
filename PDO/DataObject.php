@@ -3143,9 +3143,13 @@ class PDO_DataObject
         
             // if you have loaded (some other way) - dont try and load it again..
             $do = new PDO_DataObject($table);
-            return $do
-                ->generator()
-                ->{$proxyMethod}( $do->_database_nickname, $table);
+            $gen = $do->generator();
+            if (!method_exists($gen, $proxyMethod)) {
+                $do->raise("Generator does not have method $proxyMethod, \n".
+                           "  usually proxy should be set to 'Full', you set it to ". var_export(self::$config['proxy'],true),
+                           self::ERROR_INVALIDCONFIG);
+            }
+            return $do->generator()->{$proxyMethod}( $do->_database_nickname, $table);
             
         }
         
@@ -3236,7 +3240,7 @@ class PDO_DataObject
      * @throws PDO_DataObject_Exception only when class is loaded, and file does not exist.
      * @static
      */
-    private static function _autoloadClass($class, $table=false)
+    private static function loadClass($class, $table=false)
     {
          
         $class_prefix = self::$config['class_prefix'];
