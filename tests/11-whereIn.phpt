@@ -9,15 +9,15 @@ PDO_DataObject::config(array(
         'database' => 'mysql://user:pass@localhost/gettest'
 ));
 
-var $numbers = array(1,2,3,4,5);
-var $text = explode(' ', 'this is a test of escaping');
+$numbers = array(1,2,3,4,5);
+$text = explode(' ', 'this is a test of escaping');
 
 echo "\n\n--------\n";
 echo "test numbers\n" ;
 
 $company = PDO_DataObject::factory('Companies');
 $company->whereIn('id', $numbers, 'int');
-echo "esulting query: " . $company->toSelectSQL();
+echo "resulting query: " . $company->toSelectSQL();
 
 
 echo "\n\n--------\n";
