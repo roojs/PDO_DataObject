@@ -84,28 +84,42 @@ $events->select(' ');
 ?>
 --EXPECT--
 --------
-test union
-__construct==["mysql:dbname=gettest;host=localhost","user","pass",[]]
-setAttribute==[3,2]
-resulting query: SELECT a,b
- FROM   Companies   
- WHERE ( a=b )
-UNION  
- SELECT c as a, d as b
- FROM   Events   
- WHERE ( e=f ) 
- ORDER BY b desc  
- LIMIT  10
+select default
+resulting query: SELECT *
+ FROM   Companies 
+
 
 --------
-test union rest
-resulting query: SELECT a,b
- FROM   Companies   
- WHERE ( a=b )
-UNION  
- SELECT e as a, f as b
- FROM   Events   
- WHERE ( e=f ) 
- ORDER BY b desc  , c desc 
- LIMIT  50
+select multiple calls
+resulting query: SELECT e as a, f as b ,  h as j, vv as q
+ FROM   Events 
+
+
+--------
+select multiple calls - manually add star 
+resulting query: SELECT * ,  e as a, f as b ,  h as j, vv as q
+ FROM   Events 
+
+
+--------
+classic selectAdd with star added by default 
+resulting query: SELECT *,  e as a, f as b
+ FROM   Events 
+
+
+--------
+select reset calls
+resulting query: SELECT a as b, c as d
+ FROM   Events 
+
+
+--------
+select reset nothing new (error)..
+PDO_DataObject   : ERROR       : Select is empty, call select with some arguments
+as expected toSelectSQL failed : Select is empty, call select with some arguments
+
+--------
+select reset invalid args..
+PDO_DataObject   : ERROR       : selectAdd: No Valid Arguments
+as expected select failed : selectAdd: No Valid Arguments
 
