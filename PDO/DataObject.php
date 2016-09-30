@@ -304,7 +304,6 @@ class PDO_DataObject
         'limit_start' => '', // the LIMIT condition
         'limit_count' => '', // the LIMIT condition
         'data_select' => false, // the columns to be SELECTed (false == '*') the default.
-        'unions'      => array(), // the added unions,
         'derive_table' => '', // derived table name (BETA)
         'derive_select' => '', // derived table select (BETA)
     );
@@ -855,7 +854,7 @@ class PDO_DataObject
      * @access public
      */
     
-    final function toSelectSQL()
+    final function toSelectSQL($unions = true)
     {
         $quoteIdentifiers = self::$config['quote_identifiers'];
         
