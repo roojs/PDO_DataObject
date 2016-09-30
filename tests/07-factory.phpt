@@ -62,3 +62,24 @@ echo "factory('Employees') when using proxy returns a class called  " . get_clas
 
 ?>
 --EXPECT--
+Simple factory call
+factory('Customers') returns a class called  DataObjects_Customers
+
+
+--------
+Calling factory on a existing dataobject, creates a fresh instance
+new object 'test' value is :UNDEFINED
+
+
+--------
+factory call with failure
+calling factory on a non-existant table results in an PDO_DataObject_Exception_InvalidArgs and a message of factory could not find class from Customers_invalid
+
+--------
+factory call with invalid proxy method
+calling factory with proxy set wrong results in an PDO_DataObject_Exception_InvalidConfig and a message of: Generator does not have method getProxyall, 
+  usually proxy should be set to 'Full', you set it to 'all'
+
+--------
+factory call with proxy all (auto generate)
+factory('Employees') when using proxy returns a class called  DataObjects_Employees
