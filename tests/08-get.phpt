@@ -36,15 +36,18 @@ if ($person->get('email','test@example.com')) {
 echo "\n\n--------\n";
 echo "get with other values set.\n";
 
-
 $person = PDO_DataObject::factory('Customers');
-if ($person->get('email','test@example.com')) {
+$preson->active = 1;
+if ($person->get(12)) {
     echo "GOT result\n"
     print_r($person);
 }
 
+echo "\n\n--------\n";
+echo "get with conditions set.\n";
 
 $person = PDO_DataObject::factory('Customers');
+$person->where("age > 10");
 if ($person->get('email','test@example.com')) {
     echo "GOT result\n"
     print_r($person);
