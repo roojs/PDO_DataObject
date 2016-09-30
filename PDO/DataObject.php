@@ -1231,10 +1231,9 @@ class PDO_DataObject
                     $this->_query['data_select'] === false
                 )
             ) {
-                $this->selectAdd();
-                $this->selectAdd($k);
+                $this->select($k);
                 if ($v !== false) {
-                    $this->selectAdd($v);
+                    $this->select($v);
                 }
             }
             
