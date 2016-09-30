@@ -156,6 +156,8 @@ class PDO_DataObject
                 // currently it only lowercases the tablename when you call tableName(), and
                 // flatten's ini files ..
                 
+            'quote_identifiers' => false,
+                
             'disable_null_strings' => false,
                 // DataObjects will convert the text value 'null' to NULL when building queries
                 // this may cause problems! Setting to true will turn off this feature.
@@ -712,7 +714,7 @@ class PDO_DataObject
     {
         $start = $this->_query['limit_start'];
         $count = $this->_query['limit_count'];
-        if ($start === '' && $end === '') {
+        if ($start === '' && $count === '') {
             return $sql;
         }
         $count = (int)$count;
@@ -865,13 +867,13 @@ class PDO_DataObject
             
             return 'SELECT ' .
                $this->_query['derive_select'] . " \n" .
-                   "FROM ( SELECT  \n" .
-                        $this->_query['data_select'] . " \n" .
-                        "FROM   $tn  " . $this->_query['useindex'] . " \n" .
-                        $this->_join == '' ? '' :               $this->_join . " \n" .
-                        $this->_query['condition'] == '' ? '' : $this->_query['condition'] . " \n" .
-                        $this->_query['group_by']  == '' ? '' : $this->_query['group_by'] . " \n" .
-                        $this->_query['having']    == '' ? '' : $this->_query['having'] . " \n"
+                   "FROM ( SELECT\n" .
+                        " " . $this->_query['data_select'] . " \n" .
+                        " FROM   $tn  " . $this->_query['useindex'] . " \n" .
+                        ($this->_join == '' ? '' :               $this->_join . " \n") .
+                        ($this->_query['condition'] == '' ? '' : $this->_query['condition'] . " \n") .
+                        ($this->_query['group_by']  == '' ? '' : $this->_query['group_by'] . " \n") .
+                        ($this->_query['having']    == '' ? '' : $this->_query['having'] . " \n") .
                     ') ' . $this->_query['derive_table'];
             
                      
@@ -882,10 +884,10 @@ class PDO_DataObject
         
         return 'SELECT ' . $this->_query['data_select'] . "\n" .
             " FROM   $tn  " . $this->_query['useindex'] . " \n" .
-            $this->_join == '' ? '' :               $this->_join . " \n" .
-            $this->_query['condition'] == '' ? '' : $this->_query['condition'] . " \n" .
-            $this->_query['group_by']  == '' ? '' : $this->_query['group_by'] . " \n" .
-            $this->_query['having']    == '' ? '' : $this->_query['having'] . " \n"
+            ($this->_join == '' ? '' :               $this->_join . " \n") .
+            ($this->_query['condition'] == '' ? '' : $this->_query['condition'] . " \n") .
+            ($this->_query['group_by']  == '' ? '' : $this->_query['group_by'] . " \n") .
+            ($this->_query['having']    == '' ? '' : $this->_query['having'] . " \n")
         ;
         
     }
