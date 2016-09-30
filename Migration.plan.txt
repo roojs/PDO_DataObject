@@ -163,8 +163,8 @@ e) PDO_DataObject class
 
   * select/selectAdd  DONE / NEED TESTING
   * selectAs DONE / NEED TESTING
+  * toSelectSQL() (was _build_select) ->     DONE (part of all above tests..)
 
-  * toSelectSQL() (was _build_select) ->     DONE / NEED TESTING
   * find() DONE / NEED TESTING
 
   * fetch() DONE - tested by earlier code
