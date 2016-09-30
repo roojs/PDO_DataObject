@@ -860,7 +860,7 @@ class PDO_DataObject
         
         $tn = ($quoteIdentifiers ? $this->quoteIdentifier($this->tableName()) : $this->tableName()) ;
         
-        $data_select = $this->_query['data_select'] === false ? '*' $this->_query['data_select'];
+        $data_select = $this->_query['data_select'] === false ? '*' : $this->_query['data_select'];
         
         if (!strlen(trim($data_select))) {
              $this->raise("Select is empty, call select with some arguments", self::ERROR_INVALIDARGS);
