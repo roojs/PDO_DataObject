@@ -891,7 +891,7 @@ class PDO_DataObject
         
         if ($unions) {
             foreach ($this->_query['unions'] as $union_ar) {  
-                 $sql .=  "\n " .  $union_ar[1] .   $union_ar[0]->toSelectSQL(false) . " \n";
+                 $sql .=  "\n" .  $union_ar[1] . "\n " .  $union_ar[0]->toSelectSQL(false) . " \n";
             }
             $sql .=  $this->_query['order_by']  . " \n";
                 
@@ -1659,7 +1659,7 @@ class PDO_DataObject
     final function union($obj,$is_all= '')
     {
         $this->unionAdd($obj,$is_all);
-        return $this;;
+        return $this;
     }
 
     /**
