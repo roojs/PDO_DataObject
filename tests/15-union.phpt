@@ -29,7 +29,18 @@ $company->limit(10);
 
 echo "resulting query: " . $company->toSelectSQL();
 
- 
+echo "\n\n--------\n";
+echo "test union rest\n" ;
+
+$events = PDO_DataObject::factory('Events');
+$events->select("e as a, f as b");
+$events->where('e=f');
+
+$company->union(false);
+$company->union($events);
+
+$company->orderBy('b desc');
+$company->limit(10);
  
 ?>
 --EXPECT--
