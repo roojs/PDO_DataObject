@@ -29,7 +29,7 @@ echo "resulting query: " . $events->toSelectSQL();
 
 
 echo "\n\n--------\n";
-echo "select multiple calls - re-add star \n" ;
+echo "select multiple calls - manually add star \n" ;
 
 $events = PDO_DataObject::factory('Events');
 $events->select('*')
@@ -38,6 +38,18 @@ $events->select('*')
 
 
 echo "resulting query: " . $events->toSelectSQL();
+
+
+echo "\n\n--------\n";
+echo "classic selectAdd with star added by default \n" ;
+
+$events = PDO_DataObject::factory('Events');
+$events->selectAdd('e as a, f as b');
+
+
+echo "resulting query: " . $events->toSelectSQL();
+
+
 
 
 echo "\n\n--------\n";
