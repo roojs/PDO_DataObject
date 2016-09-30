@@ -38,6 +38,9 @@ $company->where()->where("c > 10")->where('d >= 10', 'OR');
 
 echo "After clear: " $company->toSelectSQL();
 
+echo "\n\n--------\n";
+echo "some invalid input.\n";
+
 
 
 
