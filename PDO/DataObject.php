@@ -1741,6 +1741,9 @@ class PDO_DataObject
         if (!trim($k)) {
             return $this->raise("selectAdd: No Valid Arguments", self::ERROR_INVALIDARGS);
         }
+        if ($this->_query['data_select'] === false) {        
+            $this->_query['data_select'] = '*';
+        }
         
         if ($this->_query['data_select']) {
             $this->_query['data_select'] .= ', ';
