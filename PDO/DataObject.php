@@ -2701,8 +2701,9 @@ class PDO_DataObject
         }
         
         if (empty($ini_out)) {
-            $this->raise("Failed to load any schema for database: '{$this->_database_nickname} \n"
-                        "  from these files/locations: " . json_encode($tried),
+            $this->raise("Failed to load any schema for database: '{$this->_database_nickname} \n" .
+                        "  using schema_location=" . var_export(self::$config['schema_location'], true). "\n" .
+                        "  from these files/locations: " . var_export($tried,true),
                          self::ERROR_INVALIDCONFIG
             );
         }
