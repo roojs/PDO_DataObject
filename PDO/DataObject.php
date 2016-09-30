@@ -1794,6 +1794,8 @@ class PDO_DataObject
      * $object->selectAs(array('a','b'),'ddd_%s','ccc'); // adds "ccc.a as ddd_a, ccc.b as ddd_b"
      * $object->selectAdd($object,'prefix_%s'); // calls $object->get_table and adds it all as
      *                  objectTableName.colnameA as prefix_colnameA
+     * $object->selectAdd('another_table','prefix_%s'); // calls $object->get_table and adds it all as
+     *                  objectTableName.colnameA as prefix_colnameA
      *
      * @param  array|object|string|null the array or object, or tablename(for factory) to take column names from.
      * @param  string           format in sprintf format (use %s for the colname)
