@@ -22,10 +22,7 @@ $events->select("a,b");
 $events->where('c=d');
 
 $company->union($events)
-
-
-
-
+ 
 
 echo "resulting query: " . $company->toSelectSQL();
 
