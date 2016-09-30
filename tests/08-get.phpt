@@ -37,17 +37,16 @@ echo "get by key value\n";
 $company = PDO_DataObject::factory('Companies');
 if ($company->get('email','test@example.com')) {
     echo "GOT result\n";
-    print_r((array)$Company);
+    print_r(get_object_vars($company));
 }
   
 echo "\n\n--------\n";
-echo "get with other values set.\n";
+echo "get with other values set. / no result \n";
 
 $company = PDO_DataObject::factory('Companies');
-$preson->active = 1;
-if ($company->get(12)) {
-    echo "GOT result\n";
-    print_r(get_object_properties($Company));
+$company->isOwner = 1;
+if (!$company->get(12)) {
+    echo "correctly got no result\n";
 }
 
 echo "\n\n--------\n";
