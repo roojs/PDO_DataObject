@@ -16,7 +16,10 @@ PDO_DataObject::config(array(
 echo "\n\n--------\n";
 echo "get some pid's\n" 
 
-
+$company = PDO_DataObject::factory('Companies');
+if ($company->get(12)) {
+    echo "PID is : " . $company->pid();
+}
 
 
 
