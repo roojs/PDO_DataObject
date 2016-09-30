@@ -798,7 +798,7 @@ class PDO_DataObject
             if (!$keys) {
                 return $this->raise("No Keys available for {$this->tableName()}", self::ERROR_INVALIDCONFIG);
             }
-            $k = $keys[0];
+            $k = array_keys($keys)[0];
         }
         if (!empty($_DB_DATAOBJECT['CONFIG']['debug'])) {
             $this->debug("$k $v " .print_r($keys,true), "GET");
@@ -863,7 +863,7 @@ class PDO_DataObject
             // this is a derived select..
             // not much support in the api yet..
             
-            return 'SELECT ' .
+            return str_repeat("\n\n", "\n", 'SELECT ' .
                $this->_query['derive_select'] . " \n" .
                    "FROM ( SELECT  \n" .
                         $this->_query['data_select'] . " \n" .
@@ -872,7 +872,7 @@ class PDO_DataObject
                         $this->_query['condition'] . " \n" .
                         $this->_query['group_by'] . " \n" .
                         $this->_query['having'] . " \n" .
-                    ') ' . $this->_query['derive_table'];
+                    ') ' . $this->_query['derive_table']);
                      
             
         }
