@@ -4,53 +4,60 @@ get test
 <?php
 require_once 'includes/init.php';
 PDO_DataObject::debugLevel(1);
-PDO_DataObject::config('class_location', __DIR__.'/includes/sample_classes/DataObjects_');
+PDO_DataObject::config(array(
+        'class_location' => __DIR__.'/includes/sample_classes/DataObjects_',
+    // fake db..
+        'database' => 'mysql://user:pass@localhost/gettest'
+   // real db...
+    //    'database' => 'mysql://root:@localhost/pman',
+    //    'PDO' => 'PDO',        'proxy' => 'full',
+));
 
 echo "\n\n--------\n";
 
 echo "Simple get by id call\n";
-$person = PDO_DataObject::factory('Customers');
-if ($person->get(12)) {
+$company = PDO_DataObject::factory('Companies');
+if ($company->get(12)) {
     echo "GOT result\n";
-    print_r($person);
+    print_r(get_object_properties($Company));
 }
 
 
 echo "\n\n--------\n";
 echo "get by id / no results\n";
 
-$person = PDO_DataObject::factory('Customers');
-if (!$person->get(13)) {
+$company = PDO_DataObject::factory('Companies');
+if (!$company->get(13)) {
     echo "correctly got no result\n";
 }
 
 echo "\n\n--------\n";
 echo "get by key value\n";
 
-$person = PDO_DataObject::factory('Customers');
-if ($person->get('email','test@example.com')) {
-    echo "GOT result\n"
-    print_r($person);
+$company = PDO_DataObject::factory('Companies');
+if ($company->get('email','test@example.com')) {
+    echo "GOT result\n";
+    print_r($company);
 }
   
 echo "\n\n--------\n";
 echo "get with other values set.\n";
 
-$person = PDO_DataObject::factory('Customers');
+$company = PDO_DataObject::factory('Companies');
 $preson->active = 1;
-if ($person->get(12)) {
-    echo "GOT result\n"
-    print_r($person);
+if ($company->get(12)) {
+    echo "GOT result\n";
+    print_r($company);
 }
 
 echo "\n\n--------\n";
 echo "get with conditions set.\n";
 
-$person = PDO_DataObject::factory('Customers');
-$person->where("age > 10");
-if ($person->get(12)) {
-    echo "GOT result\n"
-    print_r($person);
+$company = PDO_DataObject::factory('Companies');
+$company->where("age > 10");
+if ($company->get(12)) {
+    echo "GOT result\n";
+    print_r($company);
 }
   
 
@@ -59,7 +66,7 @@ if ($person->get(12)) {
 ?>
 --EXPECT--
 Simple factory call
-factory('Customers') returns a class called  DataObjects_Customers
+factory('Companies') returns a class called  DataObjects_Companies
 
 
 --------
@@ -69,7 +76,7 @@ new object 'test' value is :UNDEFINED
 
 --------
 factory call with failure
-calling factory on a non-existant table results in an PDO_DataObject_Exception_InvalidArgs and a message of factory could not find class from Customers_invalid
+calling factory on a non-existant table results in an PDO_DataObject_Exception_InvalidArgs and a message of factory could not find class from Companies_invalid
 
 --------
 factory call with invalid proxy method
