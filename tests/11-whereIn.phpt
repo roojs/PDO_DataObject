@@ -1,5 +1,5 @@
 --TEST--
-pid test
+whereIn test
 --FILE--
 <?php
 require_once 'includes/init.php';
