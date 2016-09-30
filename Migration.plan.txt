@@ -157,8 +157,8 @@ e) PDO_DataObject class
   * orderBy()  DONE  
   * groupBy()  DONE  
   * having()  DONE  
-  * unionAdd()  DONE / NEED TESTING
-  * union()  = new 'chained verison'  DONE / NEED TESTING
+  * unionAdd()  DONE (part of union)
+  * union()  = new 'chained verison'  DONE
   * limit() DONE/ NEEEDS TESTING
 
   * toSelectSQL() (was _build_select) ->     DONE / NEED TESTING
