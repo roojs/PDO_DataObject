@@ -150,8 +150,8 @@ e) PDO_DataObject class
   * pid()  DONE  
 
   
-  * where()  = new 'chained version'  DONE / NEED TESTING
-  * whereAdd()  DONE / NEED TESTING
+  * where()  = new 'chained version'  DONE 
+  * whereAdd()  DONE (tested as part of where...)
   * whereIn() = new 'chained version'  DONE / NEED TESTING
   * whereAddIn()  DONE / NEED TESTING
   * orderBy()  DONE / NEED TESTING
