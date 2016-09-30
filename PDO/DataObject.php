@@ -878,9 +878,8 @@ class PDO_DataObject
             
             $sql  = 'SELECT ' .
                $this->_query['derive_select'] . " \n" .
-                   "FROM ( $sql ) .  $this->_query['derive_table']);
+                   "FROM ( $sql ) " .  $this->_query['derive_table'];
             
-                     
             
         }
         
