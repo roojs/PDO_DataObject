@@ -25,7 +25,7 @@ echo "\n\n--------\n";
 echo "factory call with failure\n";
 try {
 $person = PDO_DataObject::factory('Customers_invalid');
-} catch (PDO_DataObject_Exception_InvalidArgs $e) {
+} catch (PDO_DataObject_Exception_NoClass $e) {
     echo "calling factory on a non-existant table results in an ". get_class($e) . " and a message of " . $e->getMessage();
 }
 
@@ -72,7 +72,8 @@ new object 'test' value is :UNDEFINED
 
 --------
 factory call with failure
-calling factory on a non-existant table results in an PDO_DataObject_Exception_InvalidArgs and a message of factory could not find class from Customers_invalid
+calling factory on a non-existant table results in an PDO_DataObject_Exception_NoClass and a message of factory could not find class from
+                Customers_invalid
 
 --------
 factory call with invalid proxy method
