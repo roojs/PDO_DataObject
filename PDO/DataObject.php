@@ -800,7 +800,7 @@ class PDO_DataObject
             if (!$keys) {
                 return $this->raise("No Keys available for {$this->tableName()}", self::ERROR_INVALIDCONFIG);
             }
-            $k = array_keys($keys)[0];
+            $k = $keys[0];
         }
         if (!empty($_DB_DATAOBJECT['CONFIG']['debug'])) {
             $this->debug("$k $v " .print_r($keys,true), "GET");
