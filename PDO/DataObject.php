@@ -1352,7 +1352,7 @@ class PDO_DataObject
             $this->_query = $_query;
             return $r;
         }
-        $_query['condition'] = " ( {$cond} ) ";
+        $_query['condition'] = "( {$cond} ) ";
         $this->_query = $_query;
         return $r;
     }
