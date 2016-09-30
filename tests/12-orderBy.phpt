@@ -15,6 +15,7 @@ echo "test order By\n" ;
 
 $company = PDO_DataObject::factory('Companies');
 $company->orderBy('id desc');
+$company->find();
 echo "resulting query: " . $company->toSelectSQL();
 
 
