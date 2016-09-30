@@ -860,6 +860,15 @@ class PDO_DataObject
         $quoteIdentifiers = self::$config['quote_identifiers'];
         
         $tn = ($quoteIdentifiers ? $this->quoteIdentifier($this->tableName()) : $this->tableName()) ;
+
+        $sql =  trim('SELECT ' . $this->_query['data_select'] . "\n" .
+            " FROM   $tn  " . $this->_query['useindex'] . " \n" .
+            ($this->_join == '' ? '' :               $this->_join . " \n") .
+            ($this->_query['condition'] == '' ? '' : ' WHERE ' . $this->_query['condition'] . " \n") .
+            ($this->_query['group_by']  == '' ? '' : $this->_query['group_by'] . " \n") .
+            ($this->_query['having']    == '' ? '' : $this->_query['having'] . " \n")
+        );
+
         
         // derive table.. not sure how well this is really supported...??
         if (!empty($this->_query['derive_table']) && !empty($this->_query['derive_select']) ) {
@@ -867,16 +876,9 @@ class PDO_DataObject
             // this is a derived select..
             // not much support in the api yet..
             
-            return trim('SELECT ' .
+            $sql  = 'SELECT ' .
                $this->_query['derive_select'] . " \n" .
-                   "FROM ( SELECT\n" .
-                        " " . $this->_query['data_select'] . " \n" .
-                        " FROM   $tn  " . $this->_query['useindex'] . " \n" .
-                        ($this->_join == '' ? '' :               $this->_join . " \n") .
-                        ($this->_query['condition'] == '' ? '' : ' WHERE ' . $this->_query['condition'] . " \n") .
-                        ($this->_query['group_by']  == '' ? '' : $this->_query['group_by'] . " \n") .
-                        ($this->_query['having']    == '' ? '' : $this->_query['having'] . " \n") .
-                    ') ' . $this->_query['derive_table']);
+                   "FROM ( $sql ) .  $this->_query['derive_table']);
             
                      
             
@@ -884,13 +886,18 @@ class PDO_DataObject
         
        
         
-        return trim('SELECT ' . $this->_query['data_select'] . "\n" .
-            " FROM   $tn  " . $this->_query['useindex'] . " \n" .
-            ($this->_join == '' ? '' :               $this->_join . " \n") .
-            ($this->_query['condition'] == '' ? '' : ' WHERE ' . $this->_query['condition'] . " \n") .
-            ($this->_query['group_by']  == '' ? '' : $this->_query['group_by'] . " \n") .
-            ($this->_query['having']    == '' ? '' : $this->_query['having'] . " \n")
-        );
+
+       foreach ($this->_query['unions'] as $union_ar) {  
+            $sql .=   $union_ar[1] .   $union_ar[0]->toSelectSQL() . " \n";
+        }
+        
+        $sql .=  $this->_query['order_by']  . " \n";
+        
+        
+        /* We are checking for method modifyLimitQuery as it is PEAR DB specific */
+        
+        $sql = $this->modifyLimitQuery($sql);
+
         
     }
 
@@ -953,16 +960,7 @@ class PDO_DataObject
         
         $sql = $this->toSelectSQL();
         
-        foreach ($this->_query['unions'] as $union_ar) {  
-            $sql .=   $union_ar[1] .   $union_ar[0]->toSelectSQL() . " \n";
-        }
-        
-        $sql .=  $this->_query['order_by']  . " \n";
-        
-        
-        /* We are checking for method modifyLimitQuery as it is PEAR DB specific */
-        
-        $sql = $this->modifyLimitQuery($sql);
+     
         
         // this should throw an error if there is a problem..
         $this->query($sql);
