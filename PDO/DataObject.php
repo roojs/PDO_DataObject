@@ -1612,14 +1612,14 @@ class PDO_DataObject
      * Note: this model may be a better way to implement joinAdd?, eg. do the building in find?
      * 
      * 
-     * @param             $obj       object|false the union object or false to reset
+     * @param             $obj       object|false the union object, or false to reset
      * @param    optional $is_all    string 'ALL' to do all.
      * @returns           $obj       object|array the added object, or old list if reset.
      */
     
     final function unionAdd($obj,$is_all= '')
     {
-        if ($obj === false) {
+        if ($obj === false ) {
             $ret = $this->_query['unions'];
             $this->_query['unions'] = array();
             return $ret;
@@ -1651,14 +1651,14 @@ class PDO_DataObject
      * Note: this model may be a better way to implement joinAdd?, eg. do the building in find?
      * 
      * 
-     * @param             $obj       object|false the union object or false to reset
+     * @param             $obj       object 
      * @param    optional $is_all    string 'ALL' to do all.
      * @returns           PDO_DataObject        self
      */
     
     final function union($obj,$is_all= '')
     {
-        $this->unionAdd($obj,$is_all);
+        $this->unionAdd(func_num_args() ? $obj : false ,$is_all);
         return $this;
     }
 
