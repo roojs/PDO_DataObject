@@ -40,6 +40,10 @@ echo "After clear: " $company->toSelectSQL();
 
 echo "\n\n--------\n";
 echo "some invalid input.\n";
+$company->where('   ');
+
+
+
 
 
 
