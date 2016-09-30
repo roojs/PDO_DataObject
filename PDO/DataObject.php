@@ -1768,6 +1768,10 @@ class PDO_DataObject
      */
     final function select($k = null)
     {
+        
+        if ($k !== null &&  $this->_query['data_select'] == '*') {
+           $this->_query['data_select'] = '';
+        }
         $this->selectAdd($k);
         return $this;
     }
