@@ -24,14 +24,16 @@ if ($company->get(12)) {
 
 
 echo "\n\n--------\n";
-echo "get pid on object that does not support it..\n" 
+echo "get pid on object that does not support it..\n";
 
 $events = PDO_DataObject::factory('Events');
 $events->limit(1);
 $events->find(true);
 //try {
-    $pid $company->pid();
+    $pid = $events->pid();
 //} catch
+    echo "Getting Events pid() returned an exception as expected : " . $e->getMessage();
+//}
 
 ?>
 --EXPECT--

@@ -167,7 +167,15 @@ class PDO_DummyStatement {
                  "url":"","main_office_id":"0","created_by":"0","created_dt":"0000-00-00 00:00:00",
                  "updated_by":"0","updated_dt":"0000-00-00 00:00:00"}
                 ]',
-                                     
+             '0171501aea9c3a9ec2df4ae3d2a936a4' => '[]', // id = 13 .. no results..
+             'cbd9c7848089dfd2e47f930f24c423dc' => '[
+              {"code":"MASL","name":"Modern (INTL) Access & Scaffolding Ltd","remarks":"","owner_id":"0","address":"",
+                 "tel":"","fax":"","email":"test@example.com","id":"15","isOwner":"0","logo_id":"0","background_color":"","comptype":"",
+                 "url":"","main_office_id":"0","created_by":"0","created_dt":"0000-00-00 00:00:00",
+                 "updated_by":"0","updated_dt":"0000-00-00 00:00:00"}
+            ]',
+            'd75c2aa04f615504daa9b0e152c460b3' => '[]', // id = 12 and isOwner = 1
+            '91094393302d56a8ca0cf0c424afbe8f' => '[]', // id = 12 and updated_by > 10
         ), 
         
         
