@@ -147,7 +147,7 @@ e) PDO_DataObject class
   * factory  DONE  
   * loadClass   DONE (private) was _autoloadClass
   * get()  DONE 
-  * pid()  DONE / NEED TESTING
+  * pid()  DONE  
   * _build_select ->   toSelectSQL()   DONE / NEED TESTING
   * find() DONE / NEED TESTING
 
