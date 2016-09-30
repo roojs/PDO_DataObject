@@ -11,7 +11,7 @@ PDO_DataObject::config(array(
  
 
 echo "\n\n--------\n";
-echo "test order By\n" ;
+echo "test group By\n" ;
 
 $company = PDO_DataObject::factory('Companies');
 $company->groupBy('id, a');
@@ -32,7 +32,7 @@ $company->groupBy()->groupBy('e, f');
 ?>
 --EXPECT--
 --------
-test order By
+test group By
 resulting query: SELECT *
  FROM   Companies   
  GROUP BY id, a 
