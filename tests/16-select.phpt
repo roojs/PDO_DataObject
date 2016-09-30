@@ -33,9 +33,9 @@ echo "select reset calls\n" ;
 
 $events->select()
         ->select('a as b, c as d');
-
-
 echo "resulting query: " . $events->toSelectSQL();
+
+
 echo "\n\n--------\n";
 echo "select reset nothing new (error)..\n" ;
 
@@ -43,6 +43,11 @@ $events->select();
 echo "resulting query: " . $events->toSelectSQL();
 
 
+echo "\n\n--------\n";
+echo "select reset invalid args..\n" ;
+
+$events->select(' ');
+echo "resulting query: " . $events->toSelectSQL();
 
 
 
