@@ -940,7 +940,7 @@ class PDO_DataObject
         $this->N = 0;
         $query_before = $this->_query;
         $where = $this->whereToString($this->tableColumns()) ;
-        $this->where()->where($where);
+        $this->where('')->where($where);
         
        
         $DB = $this->PDO();
@@ -3161,8 +3161,9 @@ class PDO_DataObject
             return $dor->raise(
                 "factory could not find class " . 
                 (is_array($rclass) ? implode(PATH_SEPARATOR, $rclass)  : $rclass  ). 
-                "from $table",
-                self::ERROR_INVALIDARGS);
+                "from
+                $table",
+                self::ERROR_NOCLASS);
         }
  
         $ret = new $rclass();
@@ -3338,7 +3339,7 @@ class PDO_DataObject
             $dor = new PDO_DataObject();
             return $dor->raise(
                 "autoload: Included $file \n   however could not find the class :" . implode(',', $cls) , 
-                 self::ERROR_INVALIDARGS);
+                 self::ERROR_NOCLASS);
             
         }
         return $class;
