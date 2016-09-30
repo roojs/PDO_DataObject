@@ -18,7 +18,7 @@ $company->select("a,b");
 $company->where('a=b');
 
 $events = PDO_DataObject::factory('Events');
-$events->select("c,d");
+$events->select("c as a, d as b");
 $events->where('e=f');
 
 $company->union($events);
@@ -33,3 +33,16 @@ echo "resulting query: " . $company->toSelectSQL();
  
 ?>
 --EXPECT--
+--------
+test union
+__construct==["mysql:dbname=gettest;host=localhost","user","pass",[]]
+setAttribute==[3,2]
+resulting query: SELECT a,b
+ FROM   Companies   
+ WHERE ( a=b )
+UNION  
+ SELECT c as a, d as b
+ FROM   Events   
+ WHERE ( e=f ) 
+ ORDER BY b desc  
+ LIMIT  10
