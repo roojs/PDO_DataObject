@@ -1624,6 +1624,9 @@ class PDO_DataObject
             $this->_query['unions'] = array();
             return $ret;
         }
+        if (!is_object($obj) || !is_a($obj, 'PDO_DataObject')) {
+            $this->raise("unionAdd invalid first argument - must be false or an DataObject
+
         $this->_query['unions'][] = array($obj, 'UNION ' . $is_all . ' ') ;
         return $obj;
     }
