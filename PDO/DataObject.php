@@ -863,17 +863,17 @@ class PDO_DataObject
             // this is a derived select..
             // not much support in the api yet..
             
-            return str_replace("\n \n", "\n", 'SELECT ' .
+            return 'SELECT ' .
                $this->_query['derive_select'] . " \n" .
                    "FROM ( SELECT  \n" .
                         $this->_query['data_select'] . " \n" .
                         "FROM   $tn  " . $this->_query['useindex'] . " \n" .
-                        $this->_join . " \n" .
-                        $this->_query['condition'] . " \n" .
-                        $this->_query['group_by'] . " \n" .
-                        $this->_query['having'] . " \n" .
-                    ') ' . $this->_query['derive_table']
-            );
+                        $this->_join == '' ? '' :               $this->_join . " \n" .
+                        $this->_query['condition'] == '' ? '' : $this->_query['condition'] . " \n" .
+                        $this->_query['group_by']  == '' ? '' : $this->_query['group_by'] . " \n" .
+                        $this->_query['having']    == '' ? '' : $this->_query['having'] . " \n"
+                    ') ' . $this->_query['derive_table'];
+            
                      
             
         }
