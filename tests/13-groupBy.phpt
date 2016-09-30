@@ -26,7 +26,7 @@ echo "resulting query: " . $company->toSelectSQL();
  
 echo "\n\n--------\n";
 echo "test groupBy clear\n" ;
-$company->groupBy()->groupBy('c asc'); 
+$company->groupBy()->groupBy('e, f'); 
  echo "resulting query: " . $company->toSelectSQL();
  
 ?>
@@ -34,16 +34,19 @@ $company->groupBy()->groupBy('c asc');
 --------
 test order By
 resulting query: SELECT *
- FROM   Companies ORDER BY id desc  
+ FROM   Companies   
+ GROUP BY id, a 
 
 
 --------
-test order By mulitple
+test groupBy mulitple
 resulting query: SELECT *
- FROM   Companies ORDER BY id desc  , c asc 
+ FROM   Companies   
+ GROUP BY id, a  , c,d 
 
 
 --------
-test order clear
+test groupBy clear
 resulting query: SELECT *
- FROM   Companies ORDER BY c asc
+ FROM   Companies   
+ GROUP BY e, f
