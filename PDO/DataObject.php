@@ -1821,6 +1821,11 @@ class PDO_DataObject
         
         
         $table = $this->tableName();
+      
+        if (is_string($from)) {
+            $from = self::factory($from);
+        }
+
         if (is_object($from)) {
             $table = $from->tableName();
             $from = array_keys($from->tableColumns());
