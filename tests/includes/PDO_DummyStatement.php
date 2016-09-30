@@ -160,11 +160,13 @@ class PDO_DummyStatement {
         ),
         // 08-get tests..
         'mysql:dbname=gettest;host=localhost' => array(
+            // select companies where id = 12;
               '99589c46dbd978ffe3f382d56e38be75'     => '[
               {"code":"MASL","name":"Modern (INTL) Access & Scaffolding Ltd","remarks":"","owner_id":"0","address":"",
                  "tel":"","fax":"","email":null,"id":"12","isOwner":"0","logo_id":"0","background_color":"","comptype":"",
                  "url":"","main_office_id":"0","created_by":"0","created_dt":"0000-00-00 00:00:00",
                  "updated_by":"0","updated_dt":"0000-00-00 00:00:00"}
+                ]',
                                      
         ), 
         
