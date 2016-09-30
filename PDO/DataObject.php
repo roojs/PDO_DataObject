@@ -1656,7 +1656,7 @@ class PDO_DataObject
      * @returns           PDO_DataObject        self
      */
     
-    final function union($obj,$is_all= '')
+    final function union($obj='',$is_all= '')
     {
         $this->unionAdd(func_num_args() ? $obj : false ,$is_all);
         return $this;
