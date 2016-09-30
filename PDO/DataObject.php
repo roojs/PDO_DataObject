@@ -892,11 +892,12 @@ class PDO_DataObject
             foreach ($this->_query['unions'] as $union_ar) {  
                  $sql .=   $union_ar[1] .   $union_ar[0]->toSelectSQL(false) . " \n";
             }
+            $sql .=  $this->_query['order_by']  . " \n";
+                
+            $sql = $this->modifyLimitQuery($sql);
+
         }
         
-        $sql .=  $this->_query['order_by']  . " \n";
-                
-        $sql = $this->modifyLimitQuery($sql);
       
         return $sql;
         
