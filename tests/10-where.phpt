@@ -33,7 +33,7 @@ echo "multiple chained : " $company->toSelectSQL();
 
 echo "\n\n--------\n";
 echo "reset and clear\n";
-$company->where()->where("c > 10")
+$company->where()->where("c > 10")->where('d >= 10', 'OR');
        
 
 echo "After clear: " $company->toSelectSQL();
