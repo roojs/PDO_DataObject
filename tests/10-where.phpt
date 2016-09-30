@@ -31,9 +31,9 @@ echo "multiple chained : " .$company->toSelectSQL();
 echo "\n\n--------\n";
 echo "reset and clear and OR condition.\n";
 $company->where()->where("c > 10")->where('d >= 10', 'OR');
-       
-
 echo "After clear: " . $company->toSelectSQL();
+
+
 
 echo "\n\n--------\n";
 echo "some invalid input.\n";
@@ -42,6 +42,27 @@ try {
 } catch (PDO_DataObject_Exception_InvalidArgs $e) {
     echo "got exception as expected " . $e->getMessage() . "\n";
 }
+ 
+
+echo "\n\n--------\n";
+echo "classic whereAdd.\n";
+$company = PDO_DataObject::factory('Companies');
+$company->whereAdd('a > b');
+
+echo "after adding " . $company->toSelectSQL();
+
+echo "\n\n--------\n";
+echo "replacing whereAdd.\n";
+
+
+$old = $company->whereAdd);
+echo "Old query: $old\n";
+
+
+
+
+
+ 
  
  
 ?>
