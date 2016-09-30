@@ -1835,7 +1835,7 @@ class PDO_DataObject
             $format = $this->quoteIdentifier($format); 
         }
         foreach ($from as $k) {
-            $this->select(sprintf("{$s}.{$s} as {$format}",$table,$k,$k));
+            $this->select(sprintf("{$s}.{$s} as {$format}",$table,$k,$k) . "\n");
         }
       
         //$this->_query['data_select'] .= "\n";
