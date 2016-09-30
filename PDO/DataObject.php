@@ -836,7 +836,7 @@ class PDO_DataObject
                             self::ERROR_INVALIDCONFIG);
 
         }
-        $k = array_keys($keys)[0];
+        $k = $keys[0];
         if (empty($this->$k)) { // we do not 
             return $this->raise("pid() called on Object where primary key value not available",
                             self::ERROR_NODATA);
