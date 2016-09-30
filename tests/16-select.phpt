@@ -21,7 +21,19 @@ echo "\n\n--------\n";
 echo "select multiple calls\n" ;
 
 $events = PDO_DataObject::factory('Events');
-$events->select("e as a, f as b");
+$events->select("e as a, f as b")
+        ->select('h as j, vv as q');
+
+
+echo "resulting query: " . $events->toSelectSQL();
+
+
+echo "\n\n--------\n";
+echo "select multiple calls - re-add star \n" ;
+
+$events = PDO_DataObject::factory('Events');
+$events->select('*')
+        ->select("e as a, f as b")
         ->select('h as j, vv as q');
 
 
@@ -39,15 +51,21 @@ echo "resulting query: " . $events->toSelectSQL();
 echo "\n\n--------\n";
 echo "select reset nothing new (error)..\n" ;
 
-$events->select();
-echo "resulting query: " . $events->toSelectSQL();
 
+$events->select();
+try {
+echo "resulting query: " . $events->toSelectSQL();
+} catch (PDO_DataObject_Exception_InvalidArgs $e) {
+    echo "as expected toSelectSQL failed : " . $e->getMessage();
+}
 
 echo "\n\n--------\n";
 echo "select reset invalid args..\n" ;
-
+try {
 $events->select(' ');
-echo "resulting query: " . $events->toSelectSQL();
+} catch (PDO_DataObject_Exception_InvalidArgs $e) {
+    echo "as expected select failed : " . $e->getMessage();
+}
 
 
 
