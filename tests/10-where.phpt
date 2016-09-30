@@ -89,3 +89,17 @@ After clear: SELECT *
 some invalid input.
 PDO_DataObject   : ERROR       : WhereAdd: No Valid Arguments
 got exception as expected WhereAdd: No Valid Arguments
+
+
+--------
+classic whereAdd.
+after adding SELECT *
+ FROM   Companies   
+ WHERE ( a > b )
+
+--------
+replacing whereAdd.
+Old query: ( a > b ) 
+New query: SELECT *
+ FROM   Companies   
+ WHERE ( c = d )
