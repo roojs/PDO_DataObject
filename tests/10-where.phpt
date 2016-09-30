@@ -18,7 +18,7 @@ echo "simple where\n" ;
 
 $company = PDO_DataObject::factory('Companies');
 $company->where("a > 100");
-echo "first add result: " $company->toSelectSQL();
+echo "first add result: " . $company->toSelectSQL();
 
 
 echo "\n\n--------\n";
@@ -28,7 +28,7 @@ $company = PDO_DataObject::factory('Companies');
 $company->where("a > 100")
        ->where("b < 100");
 
-echo "multiple chained : " $company->toSelectSQL();
+echo "multiple chained : " .$company->toSelectSQL();
 
 
 echo "\n\n--------\n";
@@ -36,18 +36,38 @@ echo "reset and clear and OR condition.\n";
 $company->where()->where("c > 10")->where('d >= 10', 'OR');
        
 
-echo "After clear: " $company->toSelectSQL();
+echo "After clear: " . $company->toSelectSQL();
 
 echo "\n\n--------\n";
 echo "some invalid input.\n";
-$company->where('   ');
-
-
-
-
-
-
-
+try {
+    $company->where('   ');
+} catch (PDO_DataObject_Exception_InvalidArgs $e) {
+    echo "got exception as expected " . $e->getMessage() . "\n";
+}
+ 
+ 
 ?>
 --EXPECT--
- 
+ --------
+simple where
+first add result: SELECT *
+ FROM   Companies   
+ WHERE ( a > 100 )
+
+--------
+multiple chained where 
+multiple chained : SELECT *
+ FROM   Companies   
+ WHERE ( a > 100 )  AND ( b < 100 )
+
+--------
+reset and clear and OR condition.
+After clear: SELECT *
+ FROM   Companies   
+ WHERE ( c > 10 )  OR ( d >= 10 )
+
+--------
+some invalid input.
+PDO_DataObject   : ERROR       : WhereAdd: No Valid Arguments
+got exception as expected WhereAdd: No Valid Arguments
