@@ -1776,7 +1776,7 @@ class PDO_DataObject
     final function select($k = null)
     {
         
-        if ($k !== null &&  $this->_query['data_select'] == '*') {
+        if ($k !== null &&  $this->_query['data_select'] === false) {
            $this->_query['data_select'] = '';
         }
         $this->selectAdd($k);
