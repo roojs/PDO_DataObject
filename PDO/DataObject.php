@@ -1838,7 +1838,6 @@ class PDO_DataObject
             $this->select(sprintf("{$s}.{$s} as {$format}",$table,$k,$k) . "\n");
         }
       
-        //$this->_query['data_select'] .= "\n";
         return $this;
     }
     /**
