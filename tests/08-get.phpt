@@ -48,7 +48,7 @@ echo "get with conditions set.\n";
 
 $person = PDO_DataObject::factory('Customers');
 $person->where("age > 10");
-if ($person->get('email','test@example.com')) {
+if ($person->get(12)) {
     echo "GOT result\n"
     print_r($person);
 }
