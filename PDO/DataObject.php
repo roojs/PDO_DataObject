@@ -942,7 +942,7 @@ class PDO_DataObject
         $where = $this->whereToString($this->tableColumns()) ;
         $this->where(); //clear existing...
         if (strlen($where)) {
-            $this->where()->where($where);
+            $this->where($where);
         }
         
        
