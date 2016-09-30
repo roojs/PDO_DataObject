@@ -15,7 +15,15 @@ PDO_DataObject::config(array(
 
 echo "\n\n--------\n";
 echo "get some pid's\n" 
- 
+
+
+
+
+
+echo "\n\n--------\n";
+echo "get pid on object that does not support it..\n" 
+
+
 
 ?>
 --EXPECT--
