@@ -31,3 +31,16 @@ echo "resulting query: " . $company->toSelectSQL();
  
 ?>
 --EXPECT--
+--------
+test numbers
+resulting query: SELECT *
+ FROM   Companies   
+ WHERE ( id  IN (1,2,3,4,5) )
+
+--------
+test strings
+__construct==["mysql:dbname=gettest;host=localhost","user","pass",[]]
+setAttribute==[3,2]
+resulting query: SELECT *
+ FROM   Companies   
+ WHERE ( name  IN ('this','is','a','test','of','escaping') )
