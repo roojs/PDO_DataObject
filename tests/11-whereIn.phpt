@@ -6,12 +6,11 @@ require_once 'includes/init.php';
 PDO_DataObject::debugLevel(1);
 PDO_DataObject::config(array(
         'class_location' => __DIR__.'/includes/sample_classes/DataObjects_',
-    // fake db..
         'database' => 'mysql://user:pass@localhost/gettest'
-   // real db...
-    //    'database' => 'mysql://root:@localhost/pman',
-    //    'PDO' => 'PDO',        'proxy' => 'full',
 ));
+
+var $numbers = array(1,2,3,4,5);
+var $text = explode(' ', 'this is a test of escaping');
 
 echo "\n\n--------\n";
 echo "simple where\n" ;
