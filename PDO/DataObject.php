@@ -1528,7 +1528,7 @@ class PDO_DataObject
             return $this->raise(
                 "Having logic should be AND or OR", 
                 self::ERROR_INVALIDARGS);
-
+        }
 
         if ($having === false) {
             $this->_query['having'] = '';
@@ -1541,10 +1541,10 @@ class PDO_DataObject
         
         
         if (!$this->_query['having']) {
-            $this->_query['having'] = " HAVING {$having} ";
+            $this->_query['having'] = " HAVING {$having}";
             return $this;
         }
-        $this->_query['having'] .= " AND {$having}";
+        $this->_query['having'] .= " {$logic} {$having}";
         return $this;
     }
 
@@ -1750,6 +1750,9 @@ class PDO_DataObject
      * Adds a select columns
      * Chainable Version
      * NOTE : ALWAYS ENSURE ARGUMENTS ARE ESCAPED 
+     *
+     * Initial behaviour is slightly different to selectAdd()
+     * when you call select() with an argument the first time, it will remove the '*' 
      *
      * $object->selectAdd(); // resets select to nothing!
      * $object->selectAdd("*"); // default select
