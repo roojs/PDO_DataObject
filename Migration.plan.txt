@@ -161,6 +161,9 @@ e) PDO_DataObject class
   * union()  = new 'chained verison'  DONE
   * limit() DONE (part of modify Limit Query)
 
+  * select/selectAdd  DONE / NEED TESTING
+  * selectAs DONE / NEED TESTING
+
   * toSelectSQL() (was _build_select) ->     DONE / NEED TESTING
   * find() DONE / NEED TESTING
 
