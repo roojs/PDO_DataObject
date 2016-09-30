@@ -36,7 +36,7 @@ $events = PDO_DataObject::factory('Events');
 $events->select("e as a, f as b");
 $events->where('e=f');
 
-$company->union(false);
+$company->union();
 $company->union($events);
 
 $company->orderBy('b desc');
