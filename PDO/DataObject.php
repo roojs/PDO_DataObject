@@ -2701,7 +2701,8 @@ class PDO_DataObject
         }
         
         if (empty($ini_out)) {
-            $this->raise("Failed to load any schema for database={$this->_database_nickname} from these files/locations" . json_encode($tried),
+            $this->raise("Failed to load any schema for database: '{$this->_database_nickname} \n"
+                        "  from these files/locations: " . json_encode($tried),
                          self::ERROR_INVALIDCONFIG
             );
         }
@@ -3222,7 +3223,7 @@ class PDO_DataObject
             
         }
         
-        return self::_autoloadClass($class, $table);
+        return self::loadClass($class, $table);
         
         
         
