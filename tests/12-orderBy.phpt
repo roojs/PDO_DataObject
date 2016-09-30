@@ -11,34 +11,22 @@ PDO_DataObject::config(array(
  
 
 echo "\n\n--------\n";
-echo "test numbers\n" ;
+echo "test order By\n" ;
 
 $company = PDO_DataObject::factory('Companies');
-$company->whereIn('id', $numbers, 'int');
+$company->orderBy('id desc');
 echo "resulting query: " . $company->toSelectSQL();
 
 
 echo "\n\n--------\n";
-echo "test strings\n";
-
-$company = PDO_DataObject::factory('Companies');
-$company->whereIn('name', $text, 'string');
+echo "test order By mulitple\n" ;
+$company->orderBy('id desc')->orderBy('c asc');
 echo "resulting query: " . $company->toSelectSQL();
-
-
+ 
+echo "\n\n--------\n";
+echo "test order clear\n" ;
+$company->orderBy()->orderBy('c asc'); 
+ echo "resulting query: " . $company->toSelectSQL();
  
 ?>
 --EXPECT--
---------
-test numbers
-resulting query: SELECT *
- FROM   Companies   
- WHERE ( id  IN (1,2,3,4,5) )
-
---------
-test strings
-__construct==["mysql:dbname=gettest;host=localhost","user","pass",[]]
-setAttribute==[3,2]
-resulting query: SELECT *
- FROM   Companies   
- WHERE ( name  IN ('this','is','a','test','of','escaping') )
