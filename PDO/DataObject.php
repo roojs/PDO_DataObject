@@ -884,19 +884,15 @@ class PDO_DataObject
         }
         
        
-        
-
-       foreach ($this->_query['unions'] as $union_ar) {  
+        foreach ($this->_query['unions'] as $union_ar) {  
             $sql .=   $union_ar[1] .   $union_ar[0]->toSelectSQL() . " \n";
         }
         
         $sql .=  $this->_query['order_by']  . " \n";
-        
-        
-        /* We are checking for method modifyLimitQuery as it is PEAR DB specific */
-        
+                
         $sql = $this->modifyLimitQuery($sql);
-
+      
+        return $sql;
         
     }
 
@@ -1521,13 +1517,19 @@ class PDO_DataObject
      * @access public
      * @return PDO_DataObject self
      */
-    final function having($having = false)
+    final function having($having = false, $logic = 'AND' )
     {
         if ($this->_query === false) {
             return $this->raise(
                 "You cannot do two queries on the same object (copy it before finding)", 
                 self::ERROR_INVALIDARGS);
         }
+        if (!in_array($logic,array('AND','OR'))) {
+            return $this->raise(
+                "Having logic should be AND or OR", 
+                self::ERROR_INVALIDARGS);
+
+
         if ($having === false) {
             $this->_query['having'] = '';
             return $this;
