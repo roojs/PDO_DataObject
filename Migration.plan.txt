@@ -156,7 +156,7 @@ e) PDO_DataObject class
   * whereAddIn()  DONE (tested as part of whereIn...)
   * orderBy()  DONE  
   * groupBy()  DONE  
-  * having()  DONE / NEED TESTING
+  * having()  DONE  
   * unionAdd()  DONE / NEED TESTING
   * union()  = new 'chained verison'  DONE / NEED TESTING
   * limit() DONE/ NEEEDS TESTING
