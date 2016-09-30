@@ -1226,11 +1226,7 @@ class PDO_DataObject
     {
         // should it even do this!!!?!?
         if (!$this->_result) {
-            if ($k !== false && 
-                (   // only do this is we have not been explicit..
-                    $this->_query['data_select'] === false
-                )
-            ) {
+            if ($k !== false &&   $this->_query['data_select'] === false) {
                 $this->select($k);
                 if ($v !== false) {
                     $this->select($v);
