@@ -28,6 +28,14 @@ $events->select("e as a, f as b");
 echo "resulting query: " . $events->toSelectSQL();
 
 
+echo "\n\n--------\n";
+echo "select reset calls\n" ;
+
+$events->select()
+        ->select('a as b, c as d');
+
+
+echo "resulting query: " . $events->toSelectSQL();
 
 
 
