@@ -1403,13 +1403,10 @@ class PDO_DataObject
         }
         // fix type for short entry. 
         $type = $type == 'int' ? 'integer' : $type; 
-
-        if ($type == 'string') {
-            $this->_connect();
-        }
-
+  
+        $PDO =  ($type == 'string')  ? $this->PDO() : false;
         $ar = array();
-        $PDO = $this->PDO();
+
         foreach($list as $k) {
             settype($k, $type);
             $ar[] = $type == 'string' ? $PDO->quote($k) : $k;
