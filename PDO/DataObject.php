@@ -303,7 +303,7 @@ class PDO_DataObject
         'useindex'   => '', // the USE INDEX condition
         'limit_start' => '', // the LIMIT condition
         'limit_count' => '', // the LIMIT condition
-        'data_select' => '*', // the columns to be SELECTed
+        'data_select' => false, // the columns to be SELECTed
         'unions'      => array(), // the added unions,
         'derive_table' => '', // derived table name (BETA)
         'derive_select' => '', // derived table select (BETA)
@@ -860,8 +860,14 @@ class PDO_DataObject
         $quoteIdentifiers = self::$config['quote_identifiers'];
         
         $tn = ($quoteIdentifiers ? $this->quoteIdentifier($this->tableName()) : $this->tableName()) ;
+        
+        $data_select = $this->_query['data_select'] === false ? '*' $this->_query['data_select'];
+        
+        if (!strlen($data_select)) {
+             $this->raise("Select is empty, call select with some arguments", self::ERROR_INVALIDARGS);
+        }
 
-        $sql =  trim('SELECT ' . $this->_query['data_select'] . "\n" .
+        $sql =  trim('SELECT ' . $data_select . "\n" .
             " FROM   $tn  " . $this->_query['useindex'] . " \n" .
             ($this->_join == '' ? '' :               $this->_join . " \n") .
             ($this->_query['condition'] == '' ? '' : ' WHERE ' . $this->_query['condition'] . " \n") .
