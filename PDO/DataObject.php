@@ -2687,7 +2687,7 @@ class PDO_DataObject
                 continue;
             }
             $fn = $suffix ? rtrim($ini ,'/') . $suffix : $ini;
-            $tried[] = $ini;
+            $tried[] = $fn;
             if (!file_exists($fn) || !is_file($fn) || !is_readable ($fn)) {
                 continue;
             }
