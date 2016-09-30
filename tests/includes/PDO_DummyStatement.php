@@ -158,7 +158,12 @@ class PDO_DummyStatement {
             
             
         ),
-          
+        // 08-get tests..
+        'mysql:dbname=gettest;host=localhost' => array(
+                                                      
+        ), 
+        
+        
         
         // another DB...
     );
