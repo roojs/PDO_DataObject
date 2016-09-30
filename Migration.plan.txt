@@ -431,6 +431,8 @@ database() - renamed databaseNickname -
       ( PDO()->dsn[database_name]
 
 table() - renamed to tableColumns() 
+factory() - without arguments will not work (PHP change) - use factorySelf()
+
 
 staticGet -- removed? - create your own cache layer .. it's pretty trivial.
 fetchRow  -- removed (use PDO()->fetch(...))
