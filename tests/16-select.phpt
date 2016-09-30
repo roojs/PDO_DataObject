@@ -36,6 +36,15 @@ $events->select()
 
 
 echo "resulting query: " . $events->toSelectSQL();
+echo "\n\n--------\n";
+echo "select reset nothing new (error)..\n" ;
+
+$events->select();
+
+
+
+
+echo "resulting query: " . $events->toSelectSQL();
 
 
 
