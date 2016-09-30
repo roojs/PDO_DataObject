@@ -159,6 +159,7 @@ e) PDO_DataObject class
   * having()  DONE / NEED TESTING
   * unionAdd()  DONE / NEED TESTING
   * union()  = new 'chained verison'  DONE / NEED TESTING
+  * limit() DONE/ NEEEDS TESTING
 
   * toSelectSQL() (was _build_select) ->     DONE / NEED TESTING
   * find() DONE / NEED TESTING
