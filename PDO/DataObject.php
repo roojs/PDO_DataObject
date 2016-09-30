@@ -83,6 +83,7 @@ class PDO_DataObject
     const ERROR_SET =           'Set';  // set() caused errors when calling set*** methods.
     const ERROR_QUERY =         'Query';  // if query throws an error....
     const ERROR_CONNECT =       'Connect';  // if connect throws an error....
+
     
     
     
