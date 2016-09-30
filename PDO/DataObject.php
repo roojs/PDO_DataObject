@@ -1752,7 +1752,7 @@ class PDO_DataObject
      * NOTE : ALWAYS ENSURE ARGUMENTS ARE ESCAPED 
      *
      * Initial behaviour is slightly different to selectAdd()
-     * when you call select() with an argument the first time, it will remove the '*' 
+     * when you call select() with an argument the first time, it will remove the default '*' 
      *
      * $object->selectAdd(); // resets select to nothing!
      * $object->selectAdd("*"); // default select
