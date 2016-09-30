@@ -14,7 +14,18 @@ echo "\n\n--------\n";
 echo "test union\n" ;
 
 $company = PDO_DataObject::factory('Companies');
-$company->having('a=b');
+$company->where('a=b');
+
+$events = PDO_DataObject::factory('Events');
+$events->select("a)
+$events->where('c=d');
+
+$company->union($events)
+
+
+
+
+
 echo "resulting query: " . $company->toSelectSQL();
 
 
