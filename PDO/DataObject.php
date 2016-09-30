@@ -1812,7 +1812,9 @@ class PDO_DataObject
         
         if ($from === null) {
             // blank the '*' 
-            $this->selectAdd();
+            if ($this->_query['data_select'] === false) {
+                $this->_query['data_select'] = '';
+            }
             $from = $this;
         }
         
