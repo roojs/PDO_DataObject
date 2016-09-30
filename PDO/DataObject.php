@@ -303,7 +303,7 @@ class PDO_DataObject
         'useindex'   => '', // the USE INDEX condition
         'limit_start' => '', // the LIMIT condition
         'limit_count' => '', // the LIMIT condition
-        'data_select' => false, // the columns to be SELECTed
+        'data_select' => false, // the columns to be SELECTed (false == '*') the default.
         'unions'      => array(), // the added unions,
         'derive_table' => '', // derived table name (BETA)
         'derive_select' => '', // derived table select (BETA)
