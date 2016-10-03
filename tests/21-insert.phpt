@@ -37,7 +37,7 @@ print_r($event->toArray());
 
 echo "\n\n--------\n";
 echo "empty insert (postgresql);\n" ;
-PDO_DataObject::config('database' , 'pgsql://user:pass@localhost/inserttest');
+PDO_DataObject::config('database' , 'pgsql://user:pass@localhost/pginsert');
     // real db...
 
 $event = PDO_DataObject::factory('Events');
@@ -50,6 +50,7 @@ print_r($event->toArray());
 
 echo "\n\n--------\n";
 echo "simple insert;\n" ;
+PDO_DataObject::config('database' , 'mysql://user:pass@localhost/inserttest');
 
 $event = PDO_DataObject::factory('Events');
 $event ->set(array(
@@ -67,7 +68,8 @@ var_dump($id);
 print_r($event->toArray());
 
 
-
+//---------------
+SQLlite...
 
 
 
