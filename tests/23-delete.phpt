@@ -28,7 +28,7 @@ PDO_DataObject::debugLevel(1);
 //PDO_DataObject::factory('Events')->limit(1)->find(true);
 
 echo "\n\n--------\n";
-echo "basic dlete;\n" ;
+echo "basic delete;\n" ;
 
 $event = PDO_DataObject::factory('Events');
 $event->get(12);
@@ -51,7 +51,11 @@ echo "\n\n--------\n";
 echo "delete all?....);\n" ;
 
 $event = PDO_DataObject::factory('Events');
-$res = $event->delete();
+try {
+    $event->delete();
+} catch (PDO_DataObject_Exception_InvalidArgs $e) {
+    echo "failed as expected : " . $e->toMessage();
+}
 // should throw error..
 
  
@@ -104,7 +108,7 @@ echo "Test SQLite  delete where .\n" ;
 
 
 echo "There is ". PDO_DataObject::factory('Customers')->count() ." records\n";
-PDO_DataObject::factory('Customers');
+PDO_DataObject::factory('Customers')
         ->where("CustomerID > 2")->delete(PDO_DataObject::WHEREADD_ONLY);
 
 echo "There are now only ". PDO_DataObject::factory('Customers')->count() ." records\n";
