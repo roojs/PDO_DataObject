@@ -3,7 +3,7 @@ find() test
 --FILE--
 <?php
 require_once 'includes/init.php';
-PDO_DataObject::debugLevel(1);
+PDO_DataObject::debugLevel01);
 PDO_DataObject::config(array(
         'class_location' => __DIR__.'/includes/sample_classes/DataObjects_',
     // fake db..
@@ -20,7 +20,7 @@ echo "find with a single name\n" ;
 
 $company = PDO_DataObject::factory('Companies');
 $company->comptype = 'CONSULTANT';
-$comptype->limit(3);
+$company->limit(3);
 $rows = $company->find();
 echo "Got $rows rows from find\n";
 while ($company->fetch()) {
