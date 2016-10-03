@@ -770,9 +770,10 @@ class PDO_DataObject
 
     /**
      * Get a result using key, value.
+     * Chainable.
      *
      * for example
-     * $object->get("ID",1234);
+     * $object->load("ID",1234);
      * Returns Number of rows located (usually 1) for success,
      * and puts all the table columns into this classes variables
      *
@@ -786,7 +787,7 @@ class PDO_DataObject
      * @param   string  $v value
      * @throws PDO_DataObject_Exception
      * @access  public
-     * @return  int     No. of rows
+     * @return  PDO_DataObject  self.
      */
     final function get($k = null, $v = null)
     {
@@ -813,6 +814,29 @@ class PDO_DataObject
         return $this->find(true);
     }
     
+ /**
+     * Get a result using key, value.
+     *
+     * for example
+     * $object->get("ID",1234);
+     * Returns Number of rows located (usually 1) for success,
+     * and puts all the table columns into this classes variables
+     *
+     * see the fetch example on how to extend this.
+     *
+     * if no value is entered, it is assumed that $key is a value
+     * and get will then use the first key in keys()
+     * to obtain the key.
+     *
+     * @param   string  $k column
+     * @param   string  $v value
+     * @throws PDO_DataObject_Exception
+     * @access  public
+     * @return  int     No. of rows
+     */
+
+
+
     /**
      * Get the value of the primary id
      *
