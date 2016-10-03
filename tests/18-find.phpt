@@ -19,7 +19,8 @@ echo "\n\n--------\n";
 echo "find with a single name\n" ;
 
 $company = PDO_DataObject::factory('Companies');
-$company->name = 'fred';
+$company->comptype = 'CONSULTANT';
+$comptype->limit(3);
 $rows = $company->find();
 echo "Got $rows rows from find\n";
 while ($company->fetch()) {
@@ -30,7 +31,7 @@ echo "\n\n--------\n";
 echo "find & fetch with a single name\n" ;
 
 $company = PDO_DataObject::factory('Companies');
-$company->name = 'fred';
+$company->comptype = 'CONSULTANT';
 $company->limit(1);
 $company->find(true);
 
@@ -41,7 +42,7 @@ echo "\n\n--------\n";
 echo "find - mixing where and properties\n" ;
 
 $company = PDO_DataObject::factory('Companies');
-$company->name = 'fred';
+$company->comptype = 'CONSULTANT';
 $company->where('id !=1 ');
 $company->limit(1);
 $company->find(true);
@@ -52,7 +53,7 @@ print_r($company->toArray());
 echo "\n\n--------\n";
 echo "error running find twice..\n" ;
 $company = PDO_DataObject::factory('Companies');
-$company->name = 'fred';
+$company->comptype = 'CONSULTANT';
 $company->find();
 while ($company->fetch()) {
     print_r($company->toArray());
