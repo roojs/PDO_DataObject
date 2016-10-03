@@ -70,11 +70,24 @@ echo "array of arrays (faster version - no dataObject created)\n" ;
 $company = PDO_DataObject::factory('Companies');
 $company->comptype = 'CONSULTANT';
 $company->limit(3);
-$ar = $company->fetchAll();
-foreach($ar as $a) {
-    echo get_class($a) . " {$a->id}\n";
-}
+print_r($company->fetchAll(false, false, true));
 
+echo "\n\n--------\n";
+echo "array of arrays  - fetchAllAssoc - aliased method (faster version - no dataObject created)\n" ;
+$company = PDO_DataObject::factory('Companies');
+$company->comptype = 'CONSULTANT';
+$company->limit(3);
+print_r($company->fetchAllAssoc());
+
+
+
+
+echo "\n\n--------\n";
+echo "array of arrays (by calling toArray())\n" ;
+$company = PDO_DataObject::factory('Companies');
+$company->comptype = 'CONSULTANT';
+$company->limit(3);
+print_r($company->fetchAll(false, false, 'toArray'));
 
 
 
