@@ -956,8 +956,6 @@ class PDO_DataObject
        
         $DB = $this->PDO();
         
-       
-        
         $sql = $this->toSelectSQL();
         
      
