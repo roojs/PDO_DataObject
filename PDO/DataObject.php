@@ -2752,7 +2752,7 @@ class PDO_DataObject
             // databaseStructure('mydb',   a$tabledatarray(.... schema....), array( ... links')
             if ($inidata !== false) {
                 if (self::$debug) {
-                    $this->debug("databaseStructure setting ini data: " . print_R($inidata, true), 3);
+                    $this->debug("databaseStructure setting ini data: " . print_R($inidata, true),  __METHOD__, 3);
                 }
                 self::$ini[$database_nickname] = isset( self::$ini[$database_nickname]) && !$overwrite ?
                     self::$ini[$database_nickname] + $inidata :
@@ -2760,7 +2760,7 @@ class PDO_DataObject
             }
             if ($linksdata !== false)  {
                 if (self::$debug) {
-                    $this->debug("databaseStructure setting links ini data: " . print_R($inidata, true), 3);
+                    $this->debug("databaseStructure setting links ini data: " . print_R($inidata, true), __METHOD__, 3);
                 }
                 self::$links[$database_nickname] = isset(self::$links[$database_nickname]) && !$overwrite ?  
                     self::$links[$database_nickname] + $linksdata :
@@ -2780,7 +2780,7 @@ class PDO_DataObject
         // if this table is already loaded this table..
         if (!empty(self::$ini[$database_nickname])) {
             if (self::$debug) {
-                $this->debug("structure already loaded", , __METHOD__, 3);
+                $this->debug("structure already loaded",  __METHOD__, 3);
             }
             return self::$ini[$database_nickname];  
         }
@@ -2797,7 +2797,7 @@ class PDO_DataObject
         
         if ( self::$config['proxy'])   {
             if (self::$debug) {
-                $this->debug("loading structure from proxy", 3);
+                $this->debug("loading structure from proxy",  __METHOD__, 3);
             }
 
             return $this->generator()->databaseStructureProxy($database_nickname);
@@ -2840,7 +2840,7 @@ class PDO_DataObject
             if (!file_exists($fn) || !is_file($fn) || !is_readable ($fn)) {
                 continue;
             }
-            $this->debug("load schema from: ". $fn , "SCHEMA", 3);
+            $this->debug("load schema from: ". $fn ,  __METHOD__, , 3);
             $ini_out = array_merge(
                 $ini_out,
                 parse_ini_file($fn, true)
@@ -2881,7 +2881,7 @@ class PDO_DataObject
         }
        
         $this->debug("Cant find database schema: {$this->_database_nickname}\n".
-                    "in links file data: " . print_r(self::$ini,true),"databaseStructure",5);
+                    "in links file data: " . print_r(self::$ini,true), __METHOD__, 5);
         // we have to die here!! - it causes chaos if we dont (including looping forever!)
         $this->raise( "Unable to load schema for database and table (turn debugging up to 5 for full error message)",
                 self::ERROR_INVALIDARGS);
