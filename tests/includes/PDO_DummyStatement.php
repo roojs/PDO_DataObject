@@ -204,6 +204,13 @@ class PDO_DummyStatement {
                  "url":"","main_office_id":"0","created_by":"0","created_dt":"0000-00-00 00:00:00",
                  "updated_by":"0","updated_dt":"0000-00-00 00:00:00"},
             ]',
+             // limit 1... (!=1)
+            'd67f7387466fef0c36b56c91273fa513' => '[
+                  {"code":"vinski","name":"Vinski Web","remarks":"","owner_id":"0","address":"",
+                 "tel":"","fax":"","email":"test@example.com","id":"15","isOwner":"0","logo_id":"0","background_color":"","comptype":"CONSULTANT",
+                 "url":"","main_office_id":"0","created_by":"0","created_dt":"0000-00-00 00:00:00",
+                 "updated_by":"0","updated_dt":"0000-00-00 00:00:00"},
+            ]',
         ), 
         
         
