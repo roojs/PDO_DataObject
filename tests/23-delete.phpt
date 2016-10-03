@@ -46,6 +46,16 @@ echo "DELETED {$res} records\n";
 
 
 
+echo "\n\n--------\n";
+echo "delete where, without flag?....);\n" ;
+
+$event = PDO_DataObject::factory('Events');
+try {
+    $event->delete();
+} catch (PDO_DataObject_Exception_InvalidArgs $e) {
+    echo "failed as expected : " . $e->toMessage();
+}
+
 
 echo "\n\n--------\n";
 echo "delete all?....);\n" ;
