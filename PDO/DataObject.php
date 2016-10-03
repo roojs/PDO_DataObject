@@ -768,12 +768,12 @@ class PDO_DataObject
     /* ============================================================= */
 
 
-    /**
+  
+ /**
      * Get a result using key, value.
-     * Chainable.
      *
      * for example
-     * $object->load("ID",1234);
+     * $object->get("ID",1234);
      * Returns Number of rows located (usually 1) for success,
      * and puts all the table columns into this classes variables
      *
@@ -787,7 +787,7 @@ class PDO_DataObject
      * @param   string  $v value
      * @throws PDO_DataObject_Exception
      * @access  public
-     * @return  PDO_DataObject  self.
+     * @return  int     No. of rows
      */
     final function get($k = null, $v = null)
     {
@@ -811,18 +811,14 @@ class PDO_DataObject
             
         }
         $this->$k = $v;
-        if (!$this->find(true)) {
-            return $this->raise("No Data available", self::ERROR_NODATA);
-        }
-        return $this;
-        
+        return $this->find(true);
     }
-    
- /**
+      /**
      * Get a result using key, value.
+     * Chainable.
      *
      * for example
-     * $object->get("ID",1234);
+     * $object->load("ID",1234);
      * Returns Number of rows located (usually 1) for success,
      * and puts all the table columns into this classes variables
      *
@@ -836,9 +832,15 @@ class PDO_DataObject
      * @param   string  $v value
      * @throws PDO_DataObject_Exception
      * @access  public
-     * @return  int     No. of rows
+     * @return  PDO_DataObject  self.
      */
-
+     final function load($k = null, $v = null)
+     {
+          if (!$this->get($k, $v) {
+              $this->raise("No Data returned from load", self::ERROR_NODATA);
+          }
+          returnt $this;
+     }
 
 
     /**
