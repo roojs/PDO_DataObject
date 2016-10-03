@@ -35,7 +35,8 @@ echo "resulting query: " . $company->toSelectSQL();
 test numbers
 resulting query: SELECT *
  FROM   Companies   
- WHERE ( id  IN (1,2,3,4,5) )
+ WHERE ( id  IN (1,2,3,4,5) ) 
+
 
 --------
 test strings
