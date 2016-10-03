@@ -72,3 +72,66 @@ PDO_DataObject::config('keep_query_after_fetch', true);
 
 ?>
 --EXPECT--
+--------
+simple fetch
+__construct==["mysql:dbname=gettest;host=localhost","user","pass",[]]
+setAttribute==[3,2]
+QUERY: ebba0af48c52cc567e77a69664b3addb
+Got 3 rows from find
+Fetch Row 0 / 3
+Array
+(
+    [code] => vinski
+    [name] => Vinski Web
+    [remarks] => 
+    [owner_id] => 0
+    [address] => 
+    [tel] => 
+    [fax] => 
+    [email] => test@example.com
+    [id] => 15
+    [isOwner] => 0
+    [logo_id] => 0
+    [background_color] => 
+    [comptype] => CONSULTANT
+    [url] => 
+    [main_office_id] => 0
+    [created_by] => 0
+    [created_dt] => 0000-00-00 00:00:00
+    [updated_by] => 0
+    [updated_dt] => 0000-00-00 00:00:00
+)
+
+
+--------
+fetch with 'fetch_into' set - might be faster....
+QUERY: ebba0af48c52cc567e77a69664b3addb
+Got 3 rows from find
+Fetch Row 0 / 3
+Array
+(
+    [code] => vinski
+    [name] => Vinski Web
+    [remarks] => 
+    [owner_id] => 0
+    [address] => 
+    [tel] => 
+    [fax] => 
+    [email] => test@example.com
+    [id] => 15
+    [isOwner] => 0
+    [logo_id] => 0
+    [background_color] => 
+    [comptype] => CONSULTANT
+    [url] => 
+    [main_office_id] => 0
+    [created_by] => 0
+    [created_dt] => 0000-00-00 00:00:00
+    [updated_by] => 0
+    [updated_dt] => 0000-00-00 00:00:00
+)
+
+
+--------
+fetch without find (error)
+got exception as expected: Fetch Called without Query being run
