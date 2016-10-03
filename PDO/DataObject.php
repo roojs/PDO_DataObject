@@ -349,7 +349,7 @@ class PDO_DataObject
         
         
         if (self::$debug) {
-            $this->debug(json_encode(func_get_args()), __FUNCTION__,1);
+            $this->debug(json_encode(func_get_args()),  __METHOD__,1);
         }
         if (!is_array($cfg)) {
             $cfg = explode('/', $cfg);
@@ -419,7 +419,7 @@ class PDO_DataObject
             }
             
             if (self::$debug) {
-                $this->debug("Using Cached connection",__FUNCTION__,4); // occurs quite a lot...
+                $this->debug("Using Cached connection",__METHOD__,4); // occurs quite a lot...
             }
             // theoretically we have a md5, it's listed in connections and it's not an error.
             // so everything is ok!
@@ -434,7 +434,7 @@ class PDO_DataObject
             $this->_database_nickname = isset(self::$config['tables'][$tn]) ? self::$config['tables'][$tn] : false;
         }
         if (self::$debug && $this->_database_nickname) {
-            $this->debug("Checking for database specific ini ('{$this->_database_nickname}') : config[databases][$this->_database_nickname] in options",__FUNCTION__);
+            $this->debug("Checking for database specific ini ('{$this->_database_nickname}') : config[databases][$this->_database_nickname] in options",__METHOD__);
         }
         
         if ($this->_database_nickname && !empty(self::$config['databases'][$this->_database_nickname]))  {
@@ -462,7 +462,7 @@ class PDO_DataObject
         
         if (!empty(self::$connections[$md5])) {
             if (self::$debug) {
-                $this->debug("USING CACHED CONNECTION", __FUNCTION__,3);
+                $this->debug("USING CACHED CONNECTION", __METHOD__,3);
             }
             
             
@@ -549,9 +549,9 @@ class PDO_DataObject
         }
         
         if (self::$debug) {
-            $this->debug("NEW CONNECTION TO DATABASE :" .$dsn_ar['database_name'], __FUNCTION__,3);
+            $this->debug("NEW CONNECTION TO DATABASE :" .$dsn_ar['database_name'], __METHOD__,3);
             /* actualy make a connection */
-            $this->debug(print_r($dsn,true) . ' ' . $pdo_dsn . ' ' . $this->_database_dsn_md5, __FUNCTION__,3);
+            $this->debug(print_r($dsn,true) . ' ' . $pdo_dsn . ' ' . $this->_database_dsn_md5, __METHOD__,3);
         }    
             
         $username = isset($dsn_ar['user']) ? urldecode( $dsn_ar['user'] ): '';
@@ -562,14 +562,14 @@ class PDO_DataObject
             self::$connections[$md5] = new $PDO($pdo_dsn, $username, $password, $opts );
             self::$connections[$md5]->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION); // just in case?
         } catch (PDOException $ex) {
-            $this->debug( (string) $ex , "CONNECT FAILED",5);
+            $this->debug( (string) $ex , __METHOD__,5);
             return $this->raise("Connect failed, turn on debugging to 5 see why", self::ERROR_CONNECT, $ex );
         }
         
         
         
         if (self::$debug) {
-            $this->debug(print_r(self::$connections,true), __FUNCTION__,5);
+            $this->debug(print_r(self::$connections,true), __METHOD__,5);
         } 
         
         $dsn_ar['nickname'] = empty($this->_database_nickname) ?
@@ -803,7 +803,7 @@ class PDO_DataObject
             $k = $keys[0];
         }
         if (!empty($_DB_DATAOBJECT['CONFIG']['debug'])) {
-            $this->debug("$k $v " .print_r($keys,true), "GET");
+            $this->debug("$k $v " .print_r($keys,true), __METHOD__);
         }
         
         if ($v === null) {
@@ -966,7 +966,7 @@ class PDO_DataObject
         
        
         if (self::$debug) {
-            $this->debug(var_export($n,true), "find",1);
+            $this->debug(var_export($n,true), __METHOD__,1);
         }
         
         if (!strlen($this->tableName())) {
@@ -994,7 +994,7 @@ class PDO_DataObject
         $this->query($sql);
        
         if (self::$debug) {
-            $this->debug("CHECK autofetched " . var_export($n, true), "find", 1);
+            $this->debug("CHECK autofetched " . var_export($n, true), __METHOD__, 1);
         }
         
         
@@ -1018,7 +1018,7 @@ class PDO_DataObject
             $ret = ($ret === true) ? $fs : $ret;
         }
         if (self::$debug) {
-            $this->debug("DONE", "find", 1);
+            $this->debug("DONE", __METHOD__, 1);
         }
         $this->_query = $query_before;
         return $ret;
@@ -1071,7 +1071,7 @@ class PDO_DataObject
         if ($this->_result === 0 || is_a($this->_result,'StdClass'))
         {
             if (self::$debug) {
-                $this->debug('fetched on object after fetch completed (no results found)');
+                $this->debug('fetched on object after fetch completed (no results found)',__METHOD__);
             }
             return false;
         }
@@ -1084,7 +1084,7 @@ class PDO_DataObject
         } else {
             $array = $this->_result->fetch(PDO::FETCH_ASSOC);
             if (self::$debug) {
-                $this->debug(json_encode($array),"FETCH");
+                $this->debug(json_encode($array),__METHOD__);
             }
         }
         
@@ -1098,7 +1098,7 @@ class PDO_DataObject
                 $this->debug("Last Data Fetch'ed after " . 
                         number_format($t[0]+$t[1]- $this->_result->time_query_end ,3) . 
                         " seconds",
-                    "FETCH", 2);
+                   __METHOD__, 2);
             }
             $fields = $this->_result->fields;
             $this->_result->closeCursor();
@@ -1169,7 +1169,7 @@ class PDO_DataObject
                     $k : str_replace($replace, '_', $k);
                     
                 if (self::$debug) {
-                    $this->debug("$kk = ". $array[$k], "fetchrow LINE", 4);
+                    $this->debug("$kk = ". $array[$k], __METHOD__, 4);
                 }
                 $this->$kk = $array[$k];
             }
@@ -1177,7 +1177,7 @@ class PDO_DataObject
         // set link flag
         $this->_link_loaded = false;
         if (self::$debug) {
-            $this->debug("{$this->tableName()} DONE", "fetchrow",2);
+            $this->debug("{$this->tableName()} DONE", __METHOD__,2);
         }
         if ($this->_query !== false) {
             $this->_query = false;
@@ -1268,7 +1268,7 @@ class PDO_DataObject
             // ignore's key/value.
             $ret = $this->_result->fetchAll(PDO::FETCH_ASSOC);
             if (self::$debug) {
-                $this->debug("fetchAll returned: ". json_encode($ret),1);
+                $this->debug("fetchAll returned: ". json_encode($ret),__METHOD__);
             }
             return $ret;
         }
@@ -1291,7 +1291,7 @@ class PDO_DataObject
         if ($k === true) { // first column...
             $ret = $this->_result->fetchAll(PDO::FETCH_COLUMN, 0);
             if (self::$debug) {
-                $this->debug("fetchAll returned: ". json_encode($ret),1);
+                $this->debug("fetchAll returned: ". json_encode($ret),__METHOD__);
             }
             return $ret;
         }
@@ -1326,7 +1326,7 @@ class PDO_DataObject
         $ret = array();
         while($row = $this->_result->fetch(PDO::FETCH_ASSOC)) {
             if (self::$debug) {
-                $this->debug("fetch FETCH_ASSOC: (Columns {$k}/{$v} " . json_encode($row),1);
+                $this->debug("fetch FETCH_ASSOC: (Columns {$k}/{$v} " . json_encode($row),__METHOD__);
             }
             
             $ret[$row[$k]] =  $row[$v];
@@ -2264,7 +2264,7 @@ class PDO_DataObject
          
         
         if (self::$debug) {
-            $this->debug("got keys as ".serialize($keys),3);
+            $this->debug("got keys as ".serialize($keys),__METHOD__,3);
         }
         $where = isset($this->_query)   && isset($this->_query['condition']) ? $this->_query['condition'] : '';
         
@@ -2531,7 +2531,7 @@ class PDO_DataObject
         $l = $t->result()->fetchAll(PDO::FETCH_COLUMN, 0)[0];
         
         if (self::$debug) {
-            $this->debug('Count returned '. $l ,1);
+            $this->debug('Count returned '. $l ,__METHOD__, 1);
         }
         return (int) $l;
     }
@@ -2559,8 +2559,8 @@ class PDO_DataObject
             $t= explode(' ',microtime());
             $time = $t[0]+$t[1];
          
-            $this->debug( md5($string) . ' : ' . $string,"QUERY");
-            $this->debug( "Driver: " . $pdo->getAttribute(PDO::ATTR_DRIVER_NAME), 'QUERY', 3);
+            $this->debug( md5($string) . ' : ' . $string,__METHOD__);
+            $this->debug( "Driver: " . $pdo->getAttribute(PDO::ATTR_DRIVER_NAME), __METHOD__, 3);
         }
         
         if (
@@ -2568,7 +2568,7 @@ class PDO_DataObject
             strtoupper($string) == 'START TRANSACTION'
         ) {
             if (self::$debug) {
-                $this->debug('BEGIN');
+                $this->debug('BEGIN',__METHOD__);
             }
             $pdo->beginTranaction();
             
@@ -2577,7 +2577,7 @@ class PDO_DataObject
         
         if (strtoupper($string) == 'COMMIT') {
             if (self::$debug) {
-                $this->debug('COMMIT');
+                $this->debug('COMMIT',__METHOD__);
             }
             $pdo->commit();
             $pdo->setAttribute(PDO::ATTR_AUTOCOMMIT, true); // not sure if needed...
@@ -2587,7 +2587,7 @@ class PDO_DataObject
         
         if (strtoupper($string) == 'ROLLBACK') {
             if (self::$debug) {
-                $this->debug('ROLLBACK');
+                $this->debug('ROLLBACK',__METHOD__);
             }
             $pdo->rollBack();
             $pdo->setAttribute(PDO::ATTR_AUTOCOMMIT, true); // not sure if needed...
@@ -2613,7 +2613,7 @@ class PDO_DataObject
                 
                 
             } catch (PDOException $e) {
-                $this->debug((string)$e, "Query Error",1 );
+                $this->debug((string)$e, __METHOD__,1 );
                 $result = $e;
                 switch($e->getCode()) {
                     // see http://www.csee.umbc.edu/portal/help/oracle8/server.815/a58231/appd.htm
@@ -2636,7 +2636,7 @@ class PDO_DataObject
 
         if (is_a($result,'PDOException')) {
             if (self::$debug) { 
-                $this->debug((string)$result, "Query Error",1 );
+                $this->debug((string)$result, __METHOD__,1 );
             }
             $this->N = false;
             return $this->raise("Could not run Query", self::ERROR_QUERY, $result);
@@ -2646,8 +2646,8 @@ class PDO_DataObject
         if (self::$debug) {
             $t= explode(' ',microtime());
             $result->time_query_end = $t[0]+$t[1];
-            $this->debug('QUERY DONE IN  '.number_format($t[0]+$t[1]-$time,3)." seconds", 'query',2);
-            $this->debug('NO# of results: '.$result->rowCount(), 'query',1);
+            $this->debug('QUERY DONE IN  '.number_format($t[0]+$t[1]-$time,3)." seconds", __METHOD__,2);
+            $this->debug('NO# of results: '.$result->rowCount(), __METHOD__,1);
         }
         
         
