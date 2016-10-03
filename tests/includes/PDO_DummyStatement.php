@@ -188,11 +188,11 @@ class PDO_DummyStatement {
                  "url":"","main_office_id":"0","created_by":"0","created_dt":"0000-00-00 00:00:00",
                  "updated_by":"0","updated_dt":"0000-00-00 00:00:00"},
                  {"code":"MASL","name":"Modern (INTL) Access & Scaffolding Ltd","remarks":"","owner_id":"0","address":"",
-                 "tel":"","fax":"","email":"test@example.com","id":"15","isOwner":"0","logo_id":"0","background_color":"","comptype":"CONSULTANT",
+                 "tel":"","fax":"","email":"test@example.com","id":"16","isOwner":"0","logo_id":"0","background_color":"","comptype":"CONSULTANT",
                  "url":"","main_office_id":"0","created_by":"0","created_dt":"0000-00-00 00:00:00",
                  "updated_by":"0","updated_dt":"0000-00-00 00:00:00"},
                  {"code":"HKDNR","name":"HK Domain Registry","remarks":"","owner_id":"0","address":"",
-                 "tel":"","fax":"","email":"test@example.com","id":"15","isOwner":"0","logo_id":"0","background_color":"","comptype":"CONSULTANT",
+                 "tel":"","fax":"","email":"test@example.com","id":"17","isOwner":"0","logo_id":"0","background_color":"","comptype":"CONSULTANT",
                  "url":"","main_office_id":"0","created_by":"0","created_dt":"0000-00-00 00:00:00",
                  "updated_by":"0","updated_dt":"0000-00-00 00:00:00"}
                 
