@@ -57,7 +57,6 @@ $res = $event->delete();
  
 // joined????  
  
-exit; 
  
  
  
