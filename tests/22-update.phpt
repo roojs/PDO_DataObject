@@ -136,16 +136,15 @@ echo "Test SQLite  update - with old.\n" ;
 
 $Customers = PDO_DataObject::factory('Customers');
 $Customers->get(3);
+$old = clone($Customers);
 print_r($Customers->toArray());
 $Customers->set(array(
     'CompanyName' => 'test1',
     'ContactName' => 'test2',
 
 ));
-$Customers->update();
+$Customers->update($old);
 print_r($Customers->toArray());
-
-
 
 
 
