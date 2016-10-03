@@ -54,12 +54,19 @@ echo "UPDATED {$event->update($old)} records\n";
 
 
 echo "\n\n--------\n";
-echo "bulk update using where;\n" ;
+echo "bulk update using where (wrong usage);\n" ;
 
 $event = PDO_DataObject::factory('Events');
 $event->action="ssss";
 $rows = $event->update(PDO_DataObject::WHEREADD_ONLY);
 
+echo "\n\n--------\n";
+echo "bulk update using where (wrong usage);\n" ;
+
+$event = PDO_DataObject::factory('Events');
+$event->action="ssss";
+$event->wher('id = 15');
+$rows = $event->update(PDO_DataObject::WHEREADD_ONLY);
 
 
 
