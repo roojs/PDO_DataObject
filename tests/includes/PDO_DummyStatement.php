@@ -254,7 +254,7 @@ class PDO_DummyStatement {
         ),
         'mysql:dbname=inserttest;host=localhost' => array(  
             // insert....
-            '8fe483fd6145e049256892c0c9d45fa9' => 34343
+            '2732bab1b67f89b767359d7851590945' => 34343
         ), 
         
         
