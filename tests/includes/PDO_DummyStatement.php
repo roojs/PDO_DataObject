@@ -297,7 +297,7 @@ class PDO_DummyStatement {
     
     
     
-    function fetch($method=false)
+    function fetch($method = false)
     {
         $method = $method === false ? $this->fetchMode : $method;
         
