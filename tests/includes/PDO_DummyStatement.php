@@ -286,8 +286,8 @@ class PDO_DummyStatement {
         echo "Close Cursor\n";
     }
     
-    var $fetchMode;
-    var $fetchModeObject
+    var $fetchMode = false;
+    var $fetchModeObject;
     
     function setFetchMode($method, $obj)
     {
@@ -299,7 +299,7 @@ class PDO_DummyStatement {
     
     function fetch($method=false)
     {
-        $method = $method === false $this->fetchMode;
+        $method = $method === false ? $this->fetchMode : $method;
         
         echo "Fetch Row {$this->row} / " . count($this->result) . "\n";
         
