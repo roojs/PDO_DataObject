@@ -1240,7 +1240,7 @@ class PDO_DataObject
             if (self::$debug) {
                 $this->debug("fetchAll returned: ". json_encode($ret),1);
             }
-            return $ret
+            return $ret;
         }
         if ($k === false && $v === false ) {
              
@@ -1263,7 +1263,7 @@ class PDO_DataObject
             if (self::$debug) {
                 $this->debug("fetchAll returned: ". json_encode($ret),1);
             }
-            return 
+            return $ret;
         }
          $cols = array();
         for($i =0;$i< $this->_result->columnCount(); $i++) {
@@ -1284,7 +1284,7 @@ class PDO_DataObject
             if (self::$debug) {
                 $this->debug("fetchAll returned: (Column {$cols[0]} ". json_encode($ret),1);
             }
-            return $ret
+            return $ret;
         }
         
         // 2 args..
