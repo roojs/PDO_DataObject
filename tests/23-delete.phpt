@@ -32,8 +32,8 @@ echo "basic update;\n" ;
 
 $event = PDO_DataObject::factory('Events');
 $event->get(12);
-$event->action = "testing";
-echo "UPDATED {$event->update()} records\n";
+$res = $event->delete();
+echo "UPDATED {$res} records\n";
 
 
 echo "\n\n--------\n";
