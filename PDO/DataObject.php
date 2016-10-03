@@ -943,7 +943,6 @@ class PDO_DataObject
         }
         
         if (!strlen($this->tableName())) {
-            // xdebug can backtrace this!
             return $this->raise(
                 "NO \$__table SPECIFIED in class definition", 
                 self::ERROR_INVALIDARGS);
