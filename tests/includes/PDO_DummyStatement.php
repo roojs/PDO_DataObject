@@ -311,6 +311,7 @@ class PDO_DummyStatement {
             foreach($row as $k=>$v) {
                 $this->fetchModeObject->$k = $v;
             }
+            return $row;
         }
         if ($method & PDO::FETCH_ASSOC) {
             return $row;
