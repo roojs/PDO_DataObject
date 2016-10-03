@@ -23,7 +23,7 @@ echo "fetchAll('id');\n" ;
 
 $company = PDO_DataObject::factory('Companies');
 $company->comptype = 'CONSULTANT';
-$company->limit(10);
+$company->limit(3);
 $company->orderBy('id ASC');
 print_r($company->fetchAll('id'));
 
@@ -32,7 +32,7 @@ echo "fetchAll(true);\n" ;
 
 $company = PDO_DataObject::factory('Companies');
 $company->comptype = 'CONSULTANT';
-$company->limit(10);
+$company->limit(3);
 $company->select('LENGTH(name)')
 $company->orderBy('LENGTH(name) DESC');
 print_r($company->fetchAll(true));
@@ -42,10 +42,9 @@ echo "select('name'), fetchAll('name');\n" ;
 
 $company = PDO_DataObject::factory('Companies');
 $company->comptype = 'CONSULTANT';
-$company->limit(10);
+$company->limit(3);
 $company->select('name')
-$company->orderBy('LENGTH(name) DESC');
-print_r($company->fetchAll(true));
+print_r($company->fetchAll('name'));
 
 
 
