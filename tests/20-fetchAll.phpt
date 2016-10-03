@@ -34,8 +34,8 @@ $company = PDO_DataObject::factory('Companies');
 $company->comptype = 'CONSULTANT';
 $company->limit(10);
 $company->select('LENGTH(name)')
-$company->orderBy('id ASC');
-print_r($company->fetchAll('id'));
+$company->orderBy('LENGTH(name) DESC');
+print_r($company->fetchAll(true));
 
 
 
