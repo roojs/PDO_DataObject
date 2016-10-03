@@ -175,6 +175,9 @@ e) PDO_DataObject class
   * insert() DONE  
       -- emulated sequence are not supported at present!!
   * update() DONE / NEED TESTING
+
+  * save()??? should we add it???
+
   * delete() DONE / NEED TESTING
   * count() DONE / NEED TESTING
 
