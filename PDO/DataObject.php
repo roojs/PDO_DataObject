@@ -2104,7 +2104,7 @@ class PDO_DataObject
      */
     final function update($dataObject = false)
     {
-        print_R($this->_query);
+ 
         // connect will load the config!
         $PDO = $this->PDO();
         
@@ -2143,9 +2143,9 @@ class PDO_DataObject
         
         $ignore_null = self::$config['disable_null_strings'] === false;
                     
-      
+
         foreach($items as $k => $v) {
-            
+
             // I think this is ignoring empty vlalues
             if ((!isset($this->$k) || ($v == 1 && $this->$k === ''))
                     && $ignore_null
@@ -2197,16 +2197,16 @@ class PDO_DataObject
                 $settings .= "$kSql = NULL ";
                 continue;
             }
-            
+            print_r(array($k,$this->$k, "type=$v"));
 
             if ($v & self::STR) {
-                $settings .= "$kSql = ". $PDO->quote((string) (
-                        ($v & self::BOOL) ? 
-                            // this is thanks to the braindead idea of postgres to 
-                            // use t/f for boolean.
-                            (($this->$k === 'f') ? 0 : (int)(bool) $this->$k) :  
-                            $this->$k
-                    )) . ' ';
+                echo "ISBOO?"; var_dump($v & self::BOOL);
+                $val = $this->$k;
+                if ($v &  self::BOOL) {
+                    $val = ($this->$k === 'f') ? 0 : (int)(bool) $this->$k;
+                }
+
+                $settings .= "$kSql = ". $PDO->quote((string) $val) . ' ';
                 continue;
             }
             if (is_numeric($this->$k)) {
@@ -2256,7 +2256,7 @@ class PDO_DataObject
                     
         $table = ($quoteIdentifiers ? $this->quoteIdentifier($this->tableName()) : $this->tableName());
     
-        
+        // where has to be set... see above...        
 
         $r = $this->query("UPDATE  {$table}  SET {$settings} WHERE {$where} ");
         
