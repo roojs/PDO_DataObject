@@ -2139,7 +2139,9 @@ class PDO_DataObject
         $dbtype    = $PDO->getAttribute(PDO::ATTR_DRIVER_NAME);
         $quoteIdentifiers = !empty($_DB_DATAOBJECT['CONFIG']['quote_identifiers']);
 
-        
+        if ($dataObject !== true && !empty($this->_snapshot) {
+            $dataObject = $this->_snapshot();
+        }
         
         $ignore_null = self::$config['disable_null_strings'] === false;
                     
