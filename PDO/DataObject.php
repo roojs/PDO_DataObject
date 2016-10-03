@@ -2424,7 +2424,8 @@ class PDO_DataObject
         
         // don't delete without a condition
         if (!strlen($where)) {
-            return $this->raise("delete: No condition specifed for query", self::ERROR_INVALIDARGS);
+            return $this->raise("deleting all data from database is disabled by default, use where('1=1') if your really want to do that.", 
+                self::ERROR_INVALIDARGS);
         }
         
         
