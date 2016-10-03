@@ -3,7 +3,7 @@ find() test
 --FILE--
 <?php
 require_once 'includes/init.php';
-PDO_DataObject::debugLevel(0);
+
 PDO_DataObject::config(array(
         'class_location' => __DIR__.'/includes/sample_classes/DataObjects_',
     // fake db..
@@ -15,7 +15,7 @@ PDO_DataObject::config(array(
 
 //PDO_DataObject::debugLevel(0);
 //PDO_DataObject::factory('Companies')->databaseStructure();
-//PDO_DataObject::debugLevel(1);
+PDO_DataObject::debugLevel(1);
 
 
 echo "\n\n--------\n";
@@ -81,11 +81,21 @@ try {
 --EXPECT--
 --------
 find with a single name
+PDO_DataObject   : find       : false
 __construct==["mysql:dbname=gettest;host=localhost","user","pass",[]]
 setAttribute==[3,2]
+PDO_DataObject   : databaseStructure       : CALL:[]
+PDO_DataObject   : QUERY       : ebba0af48c52cc567e77a69664b3addb : SELECT *
+ FROM   Companies   
+ WHERE ( (Companies.comptype  = 'CONSULTANT') ) 
+ LIMIT  3
 QUERY: ebba0af48c52cc567e77a69664b3addb
+PDO_DataObject   : query       : NO# of results: 3
+PDO_DataObject   : find       : CHECK autofetched false
+PDO_DataObject   : find       : DONE
 Got 3 rows from find
 Fetch Row 0 / 3
+PDO_DataObject   : FETCH       : {"code":"vinski","name":"Vinski Web","remarks":"","owner_id":"0","address":"","tel":"","fax":"","email":"test@example.com","id":"15","isOwner":"0","logo_id":"0","background_color":"","comptype":"CONSULTANT","url":"","main_office_id":"0","created_by":"0","created_dt":"0000-00-00 00:00:00","updated_by":"0","updated_dt":"0000-00-00 00:00:00"}
 Array
 (
     [code] => vinski
@@ -109,6 +119,7 @@ Array
     [updated_dt] => 0000-00-00 00:00:00
 )
 Fetch Row 1 / 3
+PDO_DataObject   : FETCH       : {"code":"MASL","name":"Modern (INTL) Access & Scaffolding Ltd","remarks":"","owner_id":"0","address":"","tel":"","fax":"","email":"test@example.com","id":"15","isOwner":"0","logo_id":"0","background_color":"","comptype":"CONSULTANT","url":"","main_office_id":"0","created_by":"0","created_dt":"0000-00-00 00:00:00","updated_by":"0","updated_dt":"0000-00-00 00:00:00"}
 Array
 (
     [code] => MASL
@@ -132,6 +143,7 @@ Array
     [updated_dt] => 0000-00-00 00:00:00
 )
 Fetch Row 2 / 3
+PDO_DataObject   : FETCH       : {"code":"HKDNR","name":"HK Domain Registry","remarks":"","owner_id":"0","address":"","tel":"","fax":"","email":"test@example.com","id":"15","isOwner":"0","logo_id":"0","background_color":"","comptype":"CONSULTANT","url":"","main_office_id":"0","created_by":"0","created_dt":"0000-00-00 00:00:00","updated_by":"0","updated_dt":"0000-00-00 00:00:00"}
 Array
 (
     [code] => HKDNR
@@ -155,12 +167,20 @@ Array
     [updated_dt] => 0000-00-00 00:00:00
 )
 Fetch Row 3 / 3
+PDO_DataObject   : FETCH       : false
 Close Cursor
 
 
 --------
 find & fetch with a single name
+PDO_DataObject   : find       : true
+PDO_DataObject   : QUERY       : 2a1daa39fc1c411b62e53c52ff873eee : SELECT *
+ FROM   Companies   
+ WHERE ( (Companies.comptype  = 'CONSULTANT') ) 
+ LIMIT  1
 QUERY: 2a1daa39fc1c411b62e53c52ff873eee
+PDO_DataObject   : query       : NO# of results: 0
+PDO_DataObject   : find       : CHECK autofetched true
 Array
 (
     [id] => 
@@ -191,7 +211,14 @@ Array
 
 --------
 find - mixing where and properties
+PDO_DataObject   : find       : true
+PDO_DataObject   : QUERY       : d67f7387466fef0c36b56c91273fa513 : SELECT *
+ FROM   Companies   
+ WHERE ( ( id !=1  ) AND (Companies.comptype  = 'CONSULTANT') ) 
+ LIMIT  1
 QUERY: d67f7387466fef0c36b56c91273fa513
+PDO_DataObject   : query       : NO# of results: 0
+PDO_DataObject   : find       : CHECK autofetched true
 Array
 (
     [id] => 
@@ -222,8 +249,17 @@ Array
 
 --------
 error running find twice..
+PDO_DataObject   : find       : false
+PDO_DataObject   : QUERY       : ebba0af48c52cc567e77a69664b3addb : SELECT *
+ FROM   Companies   
+ WHERE ( (Companies.comptype  = 'CONSULTANT') ) 
+ LIMIT  3
 QUERY: ebba0af48c52cc567e77a69664b3addb
+PDO_DataObject   : query       : NO# of results: 3
+PDO_DataObject   : find       : CHECK autofetched false
+PDO_DataObject   : find       : DONE
 Fetch Row 0 / 3
+PDO_DataObject   : FETCH       : {"code":"vinski","name":"Vinski Web","remarks":"","owner_id":"0","address":"","tel":"","fax":"","email":"test@example.com","id":"15","isOwner":"0","logo_id":"0","background_color":"","comptype":"CONSULTANT","url":"","main_office_id":"0","created_by":"0","created_dt":"0000-00-00 00:00:00","updated_by":"0","updated_dt":"0000-00-00 00:00:00"}
 Array
 (
     [code] => vinski
@@ -247,6 +283,7 @@ Array
     [updated_dt] => 0000-00-00 00:00:00
 )
 Fetch Row 1 / 3
+PDO_DataObject   : FETCH       : {"code":"MASL","name":"Modern (INTL) Access & Scaffolding Ltd","remarks":"","owner_id":"0","address":"","tel":"","fax":"","email":"test@example.com","id":"15","isOwner":"0","logo_id":"0","background_color":"","comptype":"CONSULTANT","url":"","main_office_id":"0","created_by":"0","created_dt":"0000-00-00 00:00:00","updated_by":"0","updated_dt":"0000-00-00 00:00:00"}
 Array
 (
     [code] => MASL
@@ -270,6 +307,7 @@ Array
     [updated_dt] => 0000-00-00 00:00:00
 )
 Fetch Row 2 / 3
+PDO_DataObject   : FETCH       : {"code":"HKDNR","name":"HK Domain Registry","remarks":"","owner_id":"0","address":"","tel":"","fax":"","email":"test@example.com","id":"15","isOwner":"0","logo_id":"0","background_color":"","comptype":"CONSULTANT","url":"","main_office_id":"0","created_by":"0","created_dt":"0000-00-00 00:00:00","updated_by":"0","updated_dt":"0000-00-00 00:00:00"}
 Array
 (
     [code] => HKDNR
@@ -293,5 +331,7 @@ Array
     [updated_dt] => 0000-00-00 00:00:00
 )
 Fetch Row 3 / 3
+PDO_DataObject   : FETCH       : false
 Close Cursor
+PDO_DataObject   : ERROR       : You cannot do two queries on the same object (copy it before finding)
 Threw exception as expected You cannot do two queries on the same object (copy it before finding)
