@@ -2758,8 +2758,6 @@ class PDO_DataObject
                          self::ERROR_INVALIDCONFIG
             );
         }
-        
-        
                 
                
         // are table name lowecased..
@@ -2771,6 +2769,12 @@ class PDO_DataObject
         }
         
         self::$ini[$database_nickname] =  $ini_out;
+
+        
+        if (self::$debug) {
+                $this->debug("schema for {$database_nickname} is now " . print_r($ini_out,true), 3);
+        }
+
         
         // now have we loaded the structure.. 
         
@@ -2877,10 +2881,10 @@ class PDO_DataObject
         // note this is not declared as we dont want to bloat the print_r output
         $args = func_get_args();
         if (count($args)) {
-            $this->_result->fields = $args[0];
+            $this->_assigned_fields = $args[0];
         }
-        if (isset($this->_result->fields)) {
-            return $this->_result->fields;
+        if (isset($this->_assigned_fields)) {
+            return $this->_assigned_fields;
         }
         
         $this->PDO();
