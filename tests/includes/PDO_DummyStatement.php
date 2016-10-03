@@ -221,21 +221,35 @@ class PDO_DummyStatement {
             ]',
             /// 
             '9beebf44ab64393f0c2b80f9d7f1172b' => '[
-                    {"code":"vinski","name":"Vinski Web","remarks":"","owner_id":"0","address":"",
+                {"code":"vinski","name":"Vinski Web","remarks":"","owner_id":"0","address":"",
                  "tel":"","fax":"","email":"test@example.com","id":"15","isOwner":"0","logo_id":"0","background_color":"","comptype":"CONSULTANT",
                  "url":"","main_office_id":"0","created_by":"0","created_dt":"0000-00-00 00:00:00",
                  "updated_by":"0","updated_dt":"0000-00-00 00:00:00"},
                  {"code":"MASL","name":"Modern (INTL) Access & Scaffolding Ltd","remarks":"","owner_id":"0","address":"",
-                 "tel":"","fax":"","email":"test@example.com","id":"15","isOwner":"0","logo_id":"0","background_color":"","comptype":"CONSULTANT",
+                 "tel":"","fax":"","email":"test@example.com","id":"16","isOwner":"0","logo_id":"0","background_color":"","comptype":"CONSULTANT",
                  "url":"","main_office_id":"0","created_by":"0","created_dt":"0000-00-00 00:00:00",
                  "updated_by":"0","updated_dt":"0000-00-00 00:00:00"},
                  {"code":"HKDNR","name":"HK Domain Registry","remarks":"","owner_id":"0","address":"",
+                 "tel":"","fax":"","email":"test@example.com","id":"17","isOwner":"0","logo_id":"0","background_color":"","comptype":"CONSULTANT",
+                 "url":"","main_office_id":"0","created_by":"0","created_dt":"0000-00-00 00:00:00",
+                 "updated_by":"0","updated_dt":"0000-00-00 00:00:00"}
+                
+            ]',
+            'd4905245ba332d8a3f42024e1e09c124' => '[
+                {"code":"vinski","name":"Vinski Web","remarks":"","owner_id":"0","address":"",
                  "tel":"","fax":"","email":"test@example.com","id":"15","isOwner":"0","logo_id":"0","background_color":"","comptype":"CONSULTANT",
+                 "url":"","main_office_id":"0","created_by":"0","created_dt":"0000-00-00 00:00:00",
+                 "updated_by":"0","updated_dt":"0000-00-00 00:00:00"},
+                 {"code":"MASL","name":"Modern (INTL) Access & Scaffolding Ltd","remarks":"","owner_id":"0","address":"",
+                 "tel":"","fax":"","email":"test@example.com","id":"16","isOwner":"0","logo_id":"0","background_color":"","comptype":"CONSULTANT",
+                 "url":"","main_office_id":"0","created_by":"0","created_dt":"0000-00-00 00:00:00",
+                 "updated_by":"0","updated_dt":"0000-00-00 00:00:00"},
+                 {"code":"HKDNR","name":"HK Domain Registry","remarks":"","owner_id":"0","address":"",
+                 "tel":"","fax":"","email":"test@example.com","id":"17","isOwner":"0","logo_id":"0","background_color":"","comptype":"CONSULTANT",
                  "url":"","main_office_id":"0","created_by":"0","created_dt":"0000-00-00 00:00:00",
                  "updated_by":"0","updated_dt":"0000-00-00 00:00:00"}
                 
             ]'
-            
         ), 
         
         
