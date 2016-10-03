@@ -44,6 +44,13 @@ $event->action = "testing";
 $event->update($old);
 
 
+echo "\n\n--------\n";
+echo "update (nothing changed);\n" ;
+
+$event = PDO_DataObject::factory('Events');
+$event->get(12);
+$old = clone($event);
+$event->update($old);
 
 
 
