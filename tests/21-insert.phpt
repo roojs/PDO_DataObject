@@ -23,75 +23,13 @@ PDO_DataObject::debugLevel(1);
 echo "\n\n--------\n";
 echo "simple insert;\n" ;
 
-$company = PDO_DataObject::factory('Companies');
-$company->comptype = 'CONSULTANT';
-$company->limit(3);
-$company->orderBy('id ASC');
-print_r($company->fetchAll('id'));
+$event = PDO_DataObject::factory('Events');
+$event ->set(array(
+    'evtype' => 'TEST',
+    'remarks' => 'a test event',
 
-echo "\n\n--------\n";
-echo "single col - fetchAll(true);\n" ;
-
-$company = PDO_DataObject::factory('Companies');
-$company->comptype = 'CONSULTANT';
-$company->limit(3);
-$company->select('LENGTH(name)');
-$company->orderBy('LENGTH(name) DESC');
-print_r($company->fetchAll(true));
-
-echo "\n\n--------\n";
-echo "single col -  select('name'), fetchAll('name');\n" ;
-
-$company = PDO_DataObject::factory('Companies');
-$company->comptype = 'CONSULTANT';
-$company->limit(3);
-$company->select('*,  name');
-print_r($company->fetchAll('name'));
-
-
-echo "\n\n--------\n";
-echo "associative array\n" ;
-$company = PDO_DataObject::factory('Companies');
-$company->comptype = 'CONSULTANT';
-$company->limit(3);
-print_r($company->fetchAll('id', 'name'));
-
-
-echo "\n\n--------\n";
-echo "array of objects\n" ;
-$company = PDO_DataObject::factory('Companies');
-$company->comptype = 'CONSULTANT';
-$company->limit(3);
-$ar = $company->fetchAll();
-foreach($ar as $a) {
-    echo get_class($a) . " {$a->id}\n";
-}
-
-echo "\n\n--------\n";
-echo "array of arrays (faster version - no dataObject created)\n" ;
-$company = PDO_DataObject::factory('Companies');
-$company->comptype = 'CONSULTANT';
-$company->limit(3);
-print_r($company->fetchAll(false, false, true));
-
-echo "\n\n--------\n";
-echo "array of arrays  - fetchAllAssoc - aliased method (faster version - no dataObject created)\n" ;
-$company = PDO_DataObject::factory('Companies');
-$company->comptype = 'CONSULTANT';
-$company->limit(3);
-print_r($company->fetchAllAssoc());
-
-
-
-echo "\n\n--------\n";
-echo "array of arrays (by calling toArray())\n" ;
-$company = PDO_DataObject::factory('Companies');
-$company->comptype = 'CONSULTANT';
-$company->limit(3);
-print_r($company->fetchAll(false, false, 'toArray'));
-
-
-
+));
+$event->insert();
 
 
 
