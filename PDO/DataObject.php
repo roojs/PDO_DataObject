@@ -2271,10 +2271,11 @@ class PDO_DataObject
         return $r;
     
     }
+    private $_snapshot = false;
 
     /**
      *  Save data to database (simple wrapper around insert/update)
-     *  recommend it is used with begin()
+     *  recommend it is used with snapshot()
      *  Chainable? 
      * 
      *  Uses primary id to determine if data should be updated or inserted.
@@ -2293,22 +2294,19 @@ class PDO_DataObject
             $this->insert();
             return $this;
         }
-        if (!isset($this->_start_copy)) {
-            $this->raise("Save only works when you run 'start' before changing properties", self::ERROR_INVALIDARGS);
-        }
-        $this->update($this->_start_copy);
+        
+        $this->update();
         return $this;
     }
     /**
-     *  Save data to database (simple wrapper around insert/update)
-     *  recommend it is used with begin()
+     *  snapshot the objects state (for updating later)
      *  Chainable? 
      * 
-     *  Uses primary id to determine if data should be updated or inserted.
+     *  When you use 'update' or save, 
      * 
      *  @returns PDO_DAtaObject  self  
      */
-    function start()
+    function snapshot()
     {
         $keys = $this->keys();
         if (!$keys) {            
@@ -2319,7 +2317,7 @@ class PDO_DataObject
         if (empty($this->$k)) { // no need to store originall...
             return;
         }
-        $this->_start_copy = clone($this);
+        $this->_snapshot = clone($this);
         return $this;
     }
   
