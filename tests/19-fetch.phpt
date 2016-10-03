@@ -27,7 +27,7 @@ $company->limit(3);
 $rows = $company->find();
 echo "Got $rows rows from find\n";
 $company->fetch();
-var_dump($company->toArray());
+print_r($company->toArray());
 
 
 
@@ -38,11 +38,11 @@ PDO_DataObject::config('fetch_into', true);
 
 $company = PDO_DataObject::factory('Companies');
 $company->comptype = 'CONSULTANT';
-$company->limit(1);
+$company->limit(3);
 $rows = $company->find();
 echo "Got $rows rows from find\n";
 $company->fetch();
-var_dump($company->toArray());
+print_r($company->toArray());
 
 
 
