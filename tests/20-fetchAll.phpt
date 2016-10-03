@@ -19,7 +19,7 @@ PDO_DataObject::debugLevel(0);
 
 
 echo "\n\n--------\n";
-echo "fetchAll('id');\n" ;
+echo "single col - fetchAll('id');\n" ;
 
 $company = PDO_DataObject::factory('Companies');
 $company->comptype = 'CONSULTANT';
@@ -28,7 +28,7 @@ $company->orderBy('id ASC');
 print_r($company->fetchAll('id'));
 
 echo "\n\n--------\n";
-echo "fetchAll(true);\n" ;
+echo "single col - fetchAll(true);\n" ;
 
 $company = PDO_DataObject::factory('Companies');
 $company->comptype = 'CONSULTANT';
@@ -38,13 +38,24 @@ $company->orderBy('LENGTH(name) DESC');
 print_r($company->fetchAll(true));
 
 echo "\n\n--------\n";
-echo "select('name'), fetchAll('name');\n" ;
+echo "single col -  select('name'), fetchAll('name');\n" ;
 
 $company = PDO_DataObject::factory('Companies');
 $company->comptype = 'CONSULTANT';
 $company->limit(3);
 $company->select('*, LENGTH(name) as name_len')
 print_r($company->fetchAll('name_len'));
+
+
+echo "\n\n--------\n";
+echo "associative array\n" ;
+$company = PDO_DataObject::factory('Companies');
+$company->comptype = 'CONSULTANT';
+$company->limit(3);
+
+print_r($company->fetchAll('id', 'name'));
+
+
 
 
 
