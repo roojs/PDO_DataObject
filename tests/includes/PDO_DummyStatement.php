@@ -213,7 +213,7 @@ class PDO_DummyStatement {
             ]',
             // fetchall - id only
             '23df5cd6e811c14da7711b51d7298521' => '[
-                    {"id": 2}, {"id": 4}, {"id": 6},
+                    {"id": 2}, {"id": 4}, {"id": 6}
             ]'
             
         ), 
@@ -303,8 +303,13 @@ class PDO_DummyStatement {
         
         return count(array_keys((array)$this->result[0]));
     }
-    function getColumnMeta()
+    function getColumnMeta($i)
     {
+        // limited support for this..
+        
+        return array(
+            'name' => array_keys($this->result[0])[$i]
+        );
         return false; // pretend we do not support stuff.
     }
     
