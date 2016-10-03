@@ -65,6 +65,15 @@ foreach($ar as $a) {
     echo get_class($a) . " {$a->id}\n";
 }
 
+echo "\n\n--------\n";
+echo "array of arrays (faster version - no dataObject created)\n" ;
+$company = PDO_DataObject::factory('Companies');
+$company->comptype = 'CONSULTANT';
+$company->limit(3);
+$ar = $company->fetchAll();
+foreach($ar as $a) {
+    echo get_class($a) . " {$a->id}\n";
+}
 
 
 
