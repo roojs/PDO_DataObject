@@ -68,7 +68,7 @@ PDO_DataObject   : databaseStructure       : CALL:[]
 __construct==["mysql:dbname=gettest;host=localhost","user","pass",[]]
 setAttribute==[3,2]
 PDO_DataObject   : find       : true
-PDO_DataObject   : QUERY       : dde36b8c2603ce0b7357c878a4c6ad50 : SELECT *
+PDO_DataObject   : query       : dde36b8c2603ce0b7357c878a4c6ad50 : SELECT *
  FROM   Companies   
  WHERE ( (Companies.id = 12) ) 
 
@@ -77,7 +77,7 @@ PDO_DataObject   : query       : NO# of results: 1
 PDO_DataObject   : find       : CHECK autofetched true
 PDO_DataObject   : find       : ABOUT TO AUTOFETCH
 Fetch Row 0 / 1
-PDO_DataObject   : FETCH       : {"code":"MASL","name":"Modern (INTL) Access & Scaffolding Ltd","remarks":"","owner_id":"0","address":"","tel":"","fax":"","email":null,"id":"12","isOwner":"0","logo_id":"0","background_color":"","comptype":"","url":"","main_office_id":"0","created_by":"0","created_dt":"0000-00-00 00:00:00","updated_by":"0","updated_dt":"0000-00-00 00:00:00"}
+PDO_DataObject   : fetch       : {"code":"MASL","name":"Modern (INTL) Access & Scaffolding Ltd","remarks":"","owner_id":"0","address":"","tel":"","fax":"","email":null,"id":"12","isOwner":"0","logo_id":"0","background_color":"","comptype":"","url":"","main_office_id":"0","created_by":"0","created_dt":"0000-00-00 00:00:00","updated_by":"0","updated_dt":"0000-00-00 00:00:00"}
 PDO_DataObject   : find       : DONE
 GOT result
 Array
@@ -114,7 +114,7 @@ Array
 get by id / no results
 PDO_DataObject   : databaseStructure       : CALL:[]
 PDO_DataObject   : find       : true
-PDO_DataObject   : QUERY       : 4f8bbbe831550e7ece687a7f98bbdb32 : SELECT *
+PDO_DataObject   : query       : 4f8bbbe831550e7ece687a7f98bbdb32 : SELECT *
  FROM   Companies   
  WHERE ( (Companies.id = 13) ) 
 
@@ -127,7 +127,7 @@ correctly got no result
 --------
 get by key value
 PDO_DataObject   : find       : true
-PDO_DataObject   : QUERY       : ba1ed5f8fbeba84966d40094fc0771f4 : SELECT *
+PDO_DataObject   : query       : ba1ed5f8fbeba84966d40094fc0771f4 : SELECT *
  FROM   Companies   
  WHERE ( (Companies.email  = 'test@example.com') ) 
 
@@ -136,7 +136,7 @@ PDO_DataObject   : query       : NO# of results: 1
 PDO_DataObject   : find       : CHECK autofetched true
 PDO_DataObject   : find       : ABOUT TO AUTOFETCH
 Fetch Row 0 / 1
-PDO_DataObject   : FETCH       : {"code":"MASL","name":"Modern (INTL) Access & Scaffolding Ltd","remarks":"","owner_id":"0","address":"","tel":"","fax":"","email":"test@example.com","id":"15","isOwner":"0","logo_id":"0","background_color":"","comptype":"","url":"","main_office_id":"0","created_by":"0","created_dt":"0000-00-00 00:00:00","updated_by":"0","updated_dt":"0000-00-00 00:00:00"}
+PDO_DataObject   : fetch       : {"code":"MASL","name":"Modern (INTL) Access & Scaffolding Ltd","remarks":"","owner_id":"0","address":"","tel":"","fax":"","email":"test@example.com","id":"15","isOwner":"0","logo_id":"0","background_color":"","comptype":"","url":"","main_office_id":"0","created_by":"0","created_dt":"0000-00-00 00:00:00","updated_by":"0","updated_dt":"0000-00-00 00:00:00"}
 PDO_DataObject   : find       : DONE
 GOT result
 Array
@@ -173,7 +173,7 @@ Array
 get with other values set. / no result 
 PDO_DataObject   : databaseStructure       : CALL:[]
 PDO_DataObject   : find       : true
-PDO_DataObject   : QUERY       : b72a52d4f5f0ada645dcf4e594992766 : SELECT *
+PDO_DataObject   : query       : b72a52d4f5f0ada645dcf4e594992766 : SELECT *
  FROM   Companies   
  WHERE ( (Companies.id = 12) AND (Companies.isOwner = 1) ) 
 
@@ -187,7 +187,7 @@ correctly got no result
 get with conditions set.
 PDO_DataObject   : databaseStructure       : CALL:[]
 PDO_DataObject   : find       : true
-PDO_DataObject   : QUERY       : e3d46f1f19d5a7eacbd4e5464358b26e : SELECT *
+PDO_DataObject   : query       : e3d46f1f19d5a7eacbd4e5464358b26e : SELECT *
  FROM   Companies   
  WHERE ( ( updated_by > 10 ) AND (Companies.id = 12) ) 
 
