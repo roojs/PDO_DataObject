@@ -41,7 +41,7 @@ echo "delete where....);\n" ;
 
 $event = PDO_DataObject::factory('Events');
 $event->where('id > 12');
-$res = $event->delete(PDO_DAtaObject::WHEREADD_ONLY);
+$res = $event->delete(PDO_DAtaObject::WHERE_ONLY);
 echo "DELETED {$res} records\n";
 
 
@@ -54,7 +54,7 @@ try {
     $event->where('id > 12');
     $event->delete();
 } catch (PDO_DataObject_Exception_InvalidArgs $e) {
-    echo "failed as expected : " . $e->toMessage();
+    echo "failed as expected : " . $e->getMessage();
 }
 
 
@@ -65,7 +65,7 @@ $event = PDO_DataObject::factory('Events');
 try {
     $event->delete();
 } catch (PDO_DataObject_Exception_InvalidArgs $e) {
-    echo "failed as expected : " . $e->toMessage();
+    echo "failed as expected : " . $e->getMessage();
 }
 // should throw error..
 
@@ -134,3 +134,94 @@ unlink($temp);
 
 ?>
 --EXPECT--
+--------
+basic delete;
+PDO_DataObject   : PDO_DataObject::databaseStructure       : CALL:[]
+__construct==["mysql:dbname=inserttest;host=localhost","user","pass",[]]
+setAttribute==[3,2]
+PDO_DataObject   : PDO_DataObject::find       : true
+PDO_DataObject   : PDO_DataObject::query       : 2bdf264b81e628acfbf68368a1175be6 : SELECT *
+ FROM   Events   
+ WHERE ( (Events.id = 12) ) 
+
+QUERY: 2bdf264b81e628acfbf68368a1175be6
+PDO_DataObject   : PDO_DataObject::query       : NO# of results: 1
+PDO_DataObject   : PDO_DataObject::find       : CHECK autofetched true
+PDO_DataObject   : find       : ABOUT TO AUTOFETCH
+Fetch Row 0 / 1
+PDO_DataObject   : PDO_DataObject::fetch       : {"id":"3523","person_name":"Alan","event_when":"2009-04-16 14:05:32","action":"RELOAD","ipaddr":"202.134.82.251","on_id":"0","on_table":"","person_id":"4","remarks":"0","person_table":null}
+PDO_DataObject   : PDO_DataObject::find       : DONE
+PDO_DataObject   : PDO_DataObject::query       : e343124dcbff70aa23becf0195d27e35 : DELETE FROM Events WHERE (Events.id = 3523) 
+QUERY: e343124dcbff70aa23becf0195d27e35
+PDO_DataObject   : PDO_DataObject::query       : NO# of results: 1
+DELETED 1 records
+
+
+--------
+delete where....);
+PDO_DataObject   : PDO_DataObject::query       : e0f63974357eab3b7b082f80cf5c26aa : DELETE FROM Events WHERE ( id > 12 )  
+QUERY: e0f63974357eab3b7b082f80cf5c26aa
+PDO_DataObject   : PDO_DataObject::query       : NO# of results: 10
+DELETED 10 records
+
+
+--------
+delete where, without flag....);
+PDO_DataObject   : PDO_DataObject::raise       : deleting all data from database is disabled by default, use where('1=1') if your really want to do that.
+failed as expected : deleting all data from database is disabled by default, use where('1=1') if your really want to do that.
+
+--------
+delete all?....);
+PDO_DataObject   : PDO_DataObject::raise       : deleting all data from database is disabled by default, use where('1=1') if your really want to do that.
+failed as expected : deleting all data from database is disabled by default, use where('1=1') if your really want to do that.
+
+--------
+Test SQLite  update - empty
+PDO_DataObject   : PDO_DataObject::databaseStructure       : CALL:[]
+PDO_DataObject   : PDO_DataObject::PDO       : Checking for database specific ini ('EssentialSQL') : config[databases][EssentialSQL] in options
+PDO_DataObject   : PDO_DataObject::find       : true
+PDO_DataObject   : PDO_DataObject::query       : 2ee20b35241ab34768d20c8f10e8510d : SELECT *
+ FROM   Customers   
+ WHERE ( (Customers.CustomerID = 2) ) 
+
+PDO_DataObject   : PDO_DataObject::query       : NO# of results: 0
+PDO_DataObject   : PDO_DataObject::find       : CHECK autofetched true
+PDO_DataObject   : find       : ABOUT TO AUTOFETCH
+PDO_DataObject   : PDO_DataObject::fetch       : {"CustomerID":"2","CompanyName":"Sagebrush Carpet","ContactName":"Barbara Berber","ContactTitle":"Director of Installations","Address":"10 Industrial Drive","City":"El Paso","State":"TX"}
+PDO_DataObject   : PDO_DataObject::find       : DONE
+PDO_DataObject   : PDO_DataObject::query       : b638ac545f0ca96fbbc8ea538f5908b5 : DELETE FROM Customers WHERE (Customers.CustomerID = 2) 
+PDO_DataObject   : PDO_DataObject::query       : NO# of results: 1
+PDO_DataObject   : PDO_DataObject::databaseStructure       : CALL:[]
+PDO_DataObject   : PDO_DataObject::PDO       : Checking for database specific ini ('EssentialSQL') : config[databases][EssentialSQL] in options
+PDO_DataObject   : PDO_DataObject::find       : true
+PDO_DataObject   : PDO_DataObject::query       : 2ee20b35241ab34768d20c8f10e8510d : SELECT *
+ FROM   Customers   
+ WHERE ( (Customers.CustomerID = 2) ) 
+
+PDO_DataObject   : PDO_DataObject::query       : NO# of results: 1
+PDO_DataObject   : PDO_DataObject::find       : CHECK autofetched true
+PDO_DataObject   : find       : ABOUT TO AUTOFETCH
+PDO_DataObject   : PDO_DataObject::fetch       : false
+PDO_DataObject   : PDO_DataObject::find       : DONE
+id=2 has been deleted as expected
+
+
+--------
+Test SQLite  delete where .
+PDO_DataObject   : PDO_DataObject::PDO       : Checking for database specific ini ('EssentialSQL') : config[databases][EssentialSQL] in options
+PDO_DataObject   : PDO_DataObject::PDO       : Checking for database specific ini ('EssentialSQL') : config[databases][EssentialSQL] in options
+PDO_DataObject   : PDO_DataObject::query       : 9d3e7ecc7ac70671316cfe4cfdb42db1 : SELECT count(Customers.CustomerID) as DATAOBJECT_NUM
+                FROM Customers  
+PDO_DataObject   : PDO_DataObject::query       : NO# of results: 0
+PDO_DataObject   : PDO_DataObject::count       : Count returned 4
+There is 4 records
+PDO_DataObject   : PDO_DataObject::PDO       : Checking for database specific ini ('EssentialSQL') : config[databases][EssentialSQL] in options
+PDO_DataObject   : PDO_DataObject::query       : 7068b0ce4990031ff71d3618eb0d34af : DELETE FROM Customers WHERE ( CustomerID > 2 )  
+PDO_DataObject   : PDO_DataObject::query       : NO# of results: 3
+PDO_DataObject   : PDO_DataObject::PDO       : Checking for database specific ini ('EssentialSQL') : config[databases][EssentialSQL] in options
+PDO_DataObject   : PDO_DataObject::PDO       : Checking for database specific ini ('EssentialSQL') : config[databases][EssentialSQL] in options
+PDO_DataObject   : PDO_DataObject::query       : 9d3e7ecc7ac70671316cfe4cfdb42db1 : SELECT count(Customers.CustomerID) as DATAOBJECT_NUM
+                FROM Customers  
+PDO_DataObject   : PDO_DataObject::query       : NO# of results: 0
+PDO_DataObject   : PDO_DataObject::count       : Count returned 1
+There are now only 1 records
