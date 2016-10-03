@@ -160,31 +160,8 @@ basic update;
 PDO_DataObject   : databaseStructure       : CALL:[]
 __construct==["mysql:dbname=inserttest;host=localhost","user","pass",[]]
 setAttribute==[3,2]
-PDO_DataObject   : 3       : schema for inserttest is now Array
-(
-    [Events] => Array
-        (
-            [id] => 129
-            [person_name] => 130
-            [event_when] => 142
-            [action] => 130
-            [ipaddr] => 130
-            [on_id] => 129
-            [on_table] => 130
-            [person_id] => 129
-            [person_table] => 130
-            [remarks] => 162
-        )
-
-    [Events__keys] => Array
-        (
-            [id] => N
-        )
-
-)
-
 PDO_DataObject   : find       : true
-PDO_DataObject   : QUERY       : 2bdf264b81e628acfbf68368a1175be6 : SELECT *
+PDO_DataObject   : query       : 2bdf264b81e628acfbf68368a1175be6 : SELECT *
  FROM   Events   
  WHERE ( (Events.id = 12) ) 
 
@@ -193,10 +170,9 @@ PDO_DataObject   : query       : NO# of results: 1
 PDO_DataObject   : find       : CHECK autofetched true
 PDO_DataObject   : find       : ABOUT TO AUTOFETCH
 Fetch Row 0 / 1
-PDO_DataObject   : FETCH       : {"id":"3523","person_name":"Alan","event_when":"2009-04-16 14:05:32","action":"RELOAD","ipaddr":"202.134.82.251","on_id":"0","on_table":"","person_id":"4","remarks":"0","person_table":null}
+PDO_DataObject   : fetch       : {"id":"3523","person_name":"Alan","event_when":"2009-04-16 14:05:32","action":"RELOAD","ipaddr":"202.134.82.251","on_id":"0","on_table":"","person_id":"4","remarks":"0","person_table":null}
 PDO_DataObject   : find       : DONE
-PDO_DataObject   : 3       : got keys as a:1:{i:0;s:2:"id";}
-PDO_DataObject   : QUERY       : 0b5821c352497585812c2320e23bccbb : UPDATE  Events  SET person_name = 'Alan' , event_when = '2009-04-16 14:05:32' , action = 'testing' , ipaddr = '202.134.82.251' , on_id = 0 , on_table = '' , person_id = 4 , remarks = '0'  WHERE (Events.id = 3523) 
+PDO_DataObject   : query       : 0b5821c352497585812c2320e23bccbb : UPDATE  Events  SET person_name = 'Alan' , event_when = '2009-04-16 14:05:32' , action = 'testing' , ipaddr = '202.134.82.251' , on_id = 0 , on_table = '' , person_id = 4 , remarks = '0'  WHERE (Events.id = 3523) 
 QUERY: 0b5821c352497585812c2320e23bccbb
 PDO_DataObject   : query       : NO# of results: 1
 UPDATED 1 records
@@ -205,9 +181,8 @@ UPDATED 1 records
 --------
 update (changed columns);
 PDO_DataObject   : databaseStructure       : CALL:[]
-PDO_DataObject   : 3       : structure already loaded
 PDO_DataObject   : find       : true
-PDO_DataObject   : QUERY       : 2bdf264b81e628acfbf68368a1175be6 : SELECT *
+PDO_DataObject   : query       : 2bdf264b81e628acfbf68368a1175be6 : SELECT *
  FROM   Events   
  WHERE ( (Events.id = 12) ) 
 
@@ -216,10 +191,9 @@ PDO_DataObject   : query       : NO# of results: 1
 PDO_DataObject   : find       : CHECK autofetched true
 PDO_DataObject   : find       : ABOUT TO AUTOFETCH
 Fetch Row 0 / 1
-PDO_DataObject   : FETCH       : {"id":"3523","person_name":"Alan","event_when":"2009-04-16 14:05:32","action":"RELOAD","ipaddr":"202.134.82.251","on_id":"0","on_table":"","person_id":"4","remarks":"0","person_table":null}
+PDO_DataObject   : fetch       : {"id":"3523","person_name":"Alan","event_when":"2009-04-16 14:05:32","action":"RELOAD","ipaddr":"202.134.82.251","on_id":"0","on_table":"","person_id":"4","remarks":"0","person_table":null}
 PDO_DataObject   : find       : DONE
-PDO_DataObject   : 3       : got keys as a:1:{i:0;s:2:"id";}
-PDO_DataObject   : QUERY       : 9da43100ad8e2d1eee0cfee396c16588 : UPDATE  Events  SET action = 'testing'  WHERE (Events.id = 3523) 
+PDO_DataObject   : query       : 9da43100ad8e2d1eee0cfee396c16588 : UPDATE  Events  SET action = 'testing'  WHERE (Events.id = 3523) 
 QUERY: 9da43100ad8e2d1eee0cfee396c16588
 PDO_DataObject   : query       : NO# of results: 1
 UPDATED 1 records
@@ -228,9 +202,8 @@ UPDATED 1 records
 --------
 update (nothing changed);
 PDO_DataObject   : databaseStructure       : CALL:[]
-PDO_DataObject   : 3       : structure already loaded
 PDO_DataObject   : find       : true
-PDO_DataObject   : QUERY       : 2bdf264b81e628acfbf68368a1175be6 : SELECT *
+PDO_DataObject   : query       : 2bdf264b81e628acfbf68368a1175be6 : SELECT *
  FROM   Events   
  WHERE ( (Events.id = 12) ) 
 
@@ -239,23 +212,20 @@ PDO_DataObject   : query       : NO# of results: 1
 PDO_DataObject   : find       : CHECK autofetched true
 PDO_DataObject   : find       : ABOUT TO AUTOFETCH
 Fetch Row 0 / 1
-PDO_DataObject   : FETCH       : {"id":"3523","person_name":"Alan","event_when":"2009-04-16 14:05:32","action":"RELOAD","ipaddr":"202.134.82.251","on_id":"0","on_table":"","person_id":"4","remarks":"0","person_table":null}
+PDO_DataObject   : fetch       : {"id":"3523","person_name":"Alan","event_when":"2009-04-16 14:05:32","action":"RELOAD","ipaddr":"202.134.82.251","on_id":"0","on_table":"","person_id":"4","remarks":"0","person_table":null}
 PDO_DataObject   : find       : DONE
-PDO_DataObject   : 3       : got keys as a:1:{i:0;s:2:"id";}
 UPDATED 1 records
 
 
 --------
 bulk update using where (wrong usage);
-PDO_DataObject   : 3       : got keys as a:1:{i:0;s:2:"id";}
-PDO_DataObject   : ERROR       : updating all records in a table is not enabled by default, use $do->whereAdd('1=1'); if you really want to do that.
+PDO_DataObject   : raise       : updating all records in a table is not enabled by default, use $do->whereAdd('1=1'); if you really want to do that.
 Throws exception as expected: updating all records in a table is not enabled by default, use $do->whereAdd('1=1'); if you really want to do that.
 
 
 --------
 bulk update using where  ;
-PDO_DataObject   : 3       : got keys as a:1:{i:0;s:2:"id";}
-PDO_DataObject   : QUERY       : a6282b3421edef2d12c5aa79b5c3ea77 : UPDATE  Events  SET action = 'ssss'  WHERE ( id >15 and id < 20 )  
+PDO_DataObject   : query       : a6282b3421edef2d12c5aa79b5c3ea77 : UPDATE  Events  SET action = 'ssss'  WHERE ( id >15 and id < 20 )  
 QUERY: a6282b3421edef2d12c5aa79b5c3ea77
 PDO_DataObject   : query       : NO# of results: 3
 UPDATED 3 records
@@ -266,30 +236,7 @@ empty insert (postgresql);
 __construct==["pgsql:dbname=pginsert;host=localhost","user","pass",[]]
 setAttribute==[3,2]
 PDO_DataObject   : databaseStructure       : CALL:[]
-PDO_DataObject   : 3       : schema for pginsert is now Array
-(
-    [Events] => Array
-        (
-            [id] => 129
-            [person_name] => 130
-            [event_when] => 142
-            [action] => 130
-            [ipaddr] => 130
-            [on_id] => 129
-            [on_table] => 130
-            [person_id] => 129
-            [person_table] => 130
-            [remarks] => 162
-        )
-
-    [Events__keys] => Array
-        (
-            [id] => id_sequence
-        )
-
-)
-
-PDO_DataObject   : QUERY       : b641522a3fbae38828891f330aeb7313 : INSERT INTO Events DEFAULT VALUES
+PDO_DataObject   : query       : b641522a3fbae38828891f330aeb7313 : INSERT INTO Events DEFAULT VALUES
 QUERY: b641522a3fbae38828891f330aeb7313
 PDO_DataObject   : query       : NO# of results: 43434
 lastInsertId from sequence='id_sequence'  is 43434
@@ -313,16 +260,15 @@ Array
 Test SQLite  update - empty
 PDO_DataObject   : databaseStructure       : CALL:[]
 PDO_DataObject   : PDO       : Checking for database specific ini ('EssentialSQL') : config[databases][EssentialSQL] in options
-PDO_DataObject   : 3       : structure already loaded
 PDO_DataObject   : find       : true
-PDO_DataObject   : QUERY       : 2ee20b35241ab34768d20c8f10e8510d : SELECT *
+PDO_DataObject   : query       : 2ee20b35241ab34768d20c8f10e8510d : SELECT *
  FROM   Customers   
  WHERE ( (Customers.CustomerID = 2) ) 
 
 PDO_DataObject   : query       : NO# of results: 0
 PDO_DataObject   : find       : CHECK autofetched true
 PDO_DataObject   : find       : ABOUT TO AUTOFETCH
-PDO_DataObject   : FETCH       : {"CustomerID":"2","CompanyName":"Sagebrush Carpet","ContactName":"Barbara Berber","ContactTitle":"Director of Installations","Address":"10 Industrial Drive","City":"El Paso","State":"TX"}
+PDO_DataObject   : fetch       : {"CustomerID":"2","CompanyName":"Sagebrush Carpet","ContactName":"Barbara Berber","ContactTitle":"Director of Installations","Address":"10 Industrial Drive","City":"El Paso","State":"TX"}
 PDO_DataObject   : find       : DONE
 Array
 (
@@ -334,8 +280,7 @@ Array
     [City] => El Paso
     [State] => TX
 )
-PDO_DataObject   : 3       : got keys as a:1:{i:0;s:10:"CustomerID";}
-PDO_DataObject   : QUERY       : 5be360208e9172d983b550bd69253bd1 : UPDATE  Customers  SET CompanyName = 'test1' , ContactName = 'test2' , ContactTitle = 'Director of Installations' , Address = '10 Industrial Drive' , City = 'El Paso' , State = 'TX'  WHERE (Customers.CustomerID = 2) 
+PDO_DataObject   : query       : 5be360208e9172d983b550bd69253bd1 : UPDATE  Customers  SET CompanyName = 'test1' , ContactName = 'test2' , ContactTitle = 'Director of Installations' , Address = '10 Industrial Drive' , City = 'El Paso' , State = 'TX'  WHERE (Customers.CustomerID = 2) 
 PDO_DataObject   : query       : NO# of results: 1
 Array
 (
@@ -353,16 +298,15 @@ Array
 Test SQLite  update - with old.
 PDO_DataObject   : databaseStructure       : CALL:[]
 PDO_DataObject   : PDO       : Checking for database specific ini ('EssentialSQL') : config[databases][EssentialSQL] in options
-PDO_DataObject   : 3       : structure already loaded
 PDO_DataObject   : find       : true
-PDO_DataObject   : QUERY       : d59a6682883acfa372854db08a88caf2 : SELECT *
+PDO_DataObject   : query       : d59a6682883acfa372854db08a88caf2 : SELECT *
  FROM   Customers   
  WHERE ( (Customers.CustomerID = 3) ) 
 
 PDO_DataObject   : query       : NO# of results: 0
 PDO_DataObject   : find       : CHECK autofetched true
 PDO_DataObject   : find       : ABOUT TO AUTOFETCH
-PDO_DataObject   : FETCH       : {"CustomerID":"3","CompanyName":"Floor Co.","ContactName":"Jim Wood","ContactTitle":"Installer","Address":"34218 Private Lane","City":"Monclair","State":"NJ"}
+PDO_DataObject   : fetch       : {"CustomerID":"3","CompanyName":"Floor Co.","ContactName":"Jim Wood","ContactTitle":"Installer","Address":"34218 Private Lane","City":"Monclair","State":"NJ"}
 PDO_DataObject   : find       : DONE
 Array
 (
@@ -374,8 +318,7 @@ Array
     [City] => Monclair
     [State] => NJ
 )
-PDO_DataObject   : 3       : got keys as a:1:{i:0;s:10:"CustomerID";}
-PDO_DataObject   : QUERY       : a66b273860037f83132521bbfa541f35 : UPDATE  Customers  SET CompanyName = 'test1' , ContactName = 'test2'  WHERE (Customers.CustomerID = 3) 
+PDO_DataObject   : query       : a66b273860037f83132521bbfa541f35 : UPDATE  Customers  SET CompanyName = 'test1' , ContactName = 'test2'  WHERE (Customers.CustomerID = 3) 
 PDO_DataObject   : query       : NO# of results: 1
 Array
 (
