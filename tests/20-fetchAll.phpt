@@ -52,10 +52,18 @@ echo "associative array\n" ;
 $company = PDO_DataObject::factory('Companies');
 $company->comptype = 'CONSULTANT';
 $company->limit(3);
-
 print_r($company->fetchAll('id', 'name'));
 
 
+echo "\n\n--------\n";
+echo "array of objects\n" ;
+$company = PDO_DataObject::factory('Companies');
+$company->comptype = 'CONSULTANT';
+$company->limit(3);
+$ar = $company->fetchAll();
+foreach($ar as $a) {
+    echo get_class($a) . " {$a->id}\n";
+}
 
 
 
