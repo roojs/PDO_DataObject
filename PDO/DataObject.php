@@ -2298,7 +2298,7 @@ class PDO_DataObject
             return $this;
         }
         
-        $this->update();
+        $this->update($dataObject);
         return $this;
     }
     /**
