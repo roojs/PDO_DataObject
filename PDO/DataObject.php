@@ -2096,6 +2096,20 @@ class PDO_DataObject
      * $object->status = "dead";
      * $object->where('age > 150')
      *      ->update(PDO_DataObject::WHEREADD_ONLY);
+     * 
+     * NEW in PDO DataObjects 
+
+     * PDO_DataObject::factory('mytable');
+     *      ->load(23)
+     *      ->snapshot()
+     *      ->set(['email' => "test@testing.com"]),
+     *      ->save()
+     
+     * $object->where('age > 150')
+     *      ->update(PDO_DataObject::WHEREADD_ONLY);
+ 
+     *
+     *
      *
      * @param  object|boolean (optional)  dataobject | PDO_DataObject::WHEREADD_ONLY - used to only update changed items.
      * @access public
