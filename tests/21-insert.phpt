@@ -69,8 +69,20 @@ print_r($event->toArray());
 
 
 //---------------
-SQLlite...
+///SQLlite...
+PDO_DataObject::config(array(
+        'PDO' => 'PDO', // we can do this for real...
+        'tables' => array(
+            'Customers' => 'EssentialSQL'
+        ),
+        'databases' => array(
+            'EssentialSQL' => 'sqlite:'.__DIR__.'/includes/EssentialSQL.db'
+        ),
+        'proxy' => true,
+        'debug' => 0,
+));
 
+ 
 
 
 
