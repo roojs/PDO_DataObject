@@ -175,11 +175,7 @@ class PDO_DataObject
                 // use PDO's fetch_INTO for performance... - not sure what other effects this may have..
             
             // -----   behavior
-            
-            'keep_query_after_fetch' => false,
-                // the query building will be cleared after a fetch , or find 
-                // To disable this behavior set this to 1
-
+ 
                 
             'debug' => 0,
                 // debuging - only relivant on initialization - modifying it after, may be ignored.
