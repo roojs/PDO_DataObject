@@ -7,10 +7,10 @@ require_once 'includes/init.php';
 PDO_DataObject::config(array(
         'class_location' => __DIR__.'/includes/sample_classes/DataObjects_',
     // fake db..
-    
+   /* 
          'database' => 'mysql://user:pass@localhost/inserttest'
-    // real db...
-    /*
+    */// real db...
+    
         'database' => '',
         'tables' => array(
             'Events'=> 'inserttest',
@@ -19,7 +19,7 @@ PDO_DataObject::config(array(
             'inserttest' => 'mysql://root:@localhost/pman',
         ),
          'PDO' => 'PDO',
-         */
+         
 ));
 
 PDO_DataObject::debugLevel(1);
@@ -31,7 +31,7 @@ echo "basic update;\n" ;
 $event = PDO_DataObject::factory('Events');
 $event->get(12);
 $event->action = "testing";
-$event->update();
+echo "UPDATED {$event->update()} records\n";
 
 
 echo "\n\n--------\n";
@@ -41,7 +41,7 @@ $event = PDO_DataObject::factory('Events');
 $event->get(12);
 $old = clone($event);
 $event->action = "testing";
-$event->update($old);
+echo "UPDATED {$event->update($old)} records\n";
 
 
 echo "\n\n--------\n";
@@ -50,7 +50,7 @@ echo "update (nothing changed);\n" ;
 $event = PDO_DataObject::factory('Events');
 $event->get(12);
 $old = clone($event);
-$event->update($old);
+echo "UPDATED {$event->update($old)} records\n";
 
 
 echo "\n\n--------\n";
