@@ -974,6 +974,7 @@ class PDO_DataObject
         $ret = $this->N;
         if (!$ret && !empty( $this->_result)) {     
             // clear up memory if nothing found!?
+           $this->_query = $query_before;
             $this->_result = 0;
             return $ret;
         }
@@ -2016,11 +2017,10 @@ class PDO_DataObject
         
         $table = ($quoteIdentifiers ? $this->quoteIdentifier($this->tableName())    : $this->tableName());
         
-        
-        if (($dbtype == 'pgsql') && empty($leftq)) {
+        // simplyfy this...
+
+        if (empty($leftq) && in_array($dbtype, array('pgsql', 'sqlite'))) {
             $r = $this->query("INSERT INTO {$table} DEFAULT VALUES");
-        } else  if (($dbtype == 'pgsql') && empty($leftq)) { 
-            $r = $this->query("INSERT INTO {$table} VALUES ()");
         } else {
            $r = $this->query("INSERT INTO {$table} ($leftq) VALUES ($rightq) ");
         }
@@ -2140,7 +2140,7 @@ class PDO_DataObject
         
         $dbtype    = $PDO->getAttribute(PDO::ATTR_DRIVER_NAME);
         $quoteIdentifiers = !empty($_DB_DATAOBJECT['CONFIG']['quote_identifiers']);
-        $options = $_DB_DATAOBJECT['CONFIG'];
+
         
         
         $ignore_null = self::$config['disable_null_strings'] === false;
@@ -2202,7 +2202,7 @@ class PDO_DataObject
             
 
             if ($v & self::STR) {
-                $settings .= "$kSql = ". $$PDO->quote((string) (
+                $settings .= "$kSql = ". $PDO->quote((string) (
                         ($v & self::BOOL) ? 
                             // this is thanks to the braindead idea of postgres to 
                             // use t/f for boolean.
@@ -2454,7 +2454,7 @@ class PDO_DataObject
 
         $dbtype = $pdo->getAttribute(PDO::ATTR_DRIVER_NAME);
 
-        //$options = $_DB_DATAOBJECT['CONFIG'];
+ 
         
         
         if (self::$debug) {
