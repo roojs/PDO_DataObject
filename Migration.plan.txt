@@ -165,7 +165,7 @@ e) PDO_DataObject class
   * selectAs DONE  
   * toSelectSQL() (was _build_select) ->     DONE (part of all above tests..)
 
-  * find() DONE / NEED TESTING
+  * find() DONE  
 
   * fetch() DONE - tested by earlier code
   * fetchAll() DONE - tested by earlier code ?? 
