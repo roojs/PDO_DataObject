@@ -2197,10 +2197,10 @@ class PDO_DataObject
                 $settings .= "$kSql = NULL ";
                 continue;
             }
-            print_r(array($k,$this->$k, "type=$v"));
+ 
 
             if ($v & self::STR) {
-                echo "ISBOO?"; var_dump($v & self::BOOL);
+ 
                 $val = $this->$k;
                 if ($v &  self::BOOL) {
                     $val = ($this->$k === 'f') ? 0 : (int)(bool) $this->$k;
@@ -2233,7 +2233,7 @@ class PDO_DataObject
         // prevent wiping out of data!
         if (!strlen($where)) {
             return  $this->raise(
-                "update: global table update not available do \$do->whereAdd('1=1'); if you really want to do that.",
+                "updating all records in a table is not enabled by default, use \$do->whereAdd('1=1'); if you really want to do that.",
                 self::ERROR_INVALIDARGS);
         }
         
@@ -2271,6 +2271,16 @@ class PDO_DataObject
         return $r;
     
     }
+
+    /**
+     *  Save data to database (simple wrapper around insert/update)
+     *  Chainable? 
+     * 
+     *  Uses primary id to determine if data should be updated or inserted.
+     * 
+     *  @returns PDO_DAtaObject  self  
+     *
+
 
     /**
      * Deletes items from table which match current objects variables
@@ -2878,7 +2888,8 @@ class PDO_DataObject
     {
         
         // for temporary storage of database fields..
-        // note this is not declared as we dont want to bloat the print_r output
+        // it's not really a good idea to use this... 
+      
         $args = func_get_args();
         if (count($args)) {
             $this->_assigned_fields = $args[0];
