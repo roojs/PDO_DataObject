@@ -80,16 +80,20 @@ PDO_DataObject::config(array(
             'Customers' => 'EssentialSQL'
         ),
         'databases' => array(
-            'EssentialSQL' => 'sqlite:'.$tmp
+            'EssentialSQL' => 'sqlite:'.$temp
         ),
-        'proxy' => true,
+        'proxy' => 'Full',
         'debug' => 0,
 ));
 
  
 
+$event = PDO_DataObject::factory('Customers');
+ 
 
-
+$id = $event->insert();
+var_dump($id);
+print_r($event->toArray());
 
 
 
