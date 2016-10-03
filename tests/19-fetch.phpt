@@ -33,14 +33,16 @@ var_dump($company->toArray());
 
 
 echo "\n\n--------\n";
-echo "fetch with 'fetch_into set\n" ;
+echo "fetch with 'fetch_into' set - might be faster....\n" ;
+PDO_DataObject::config('fetch_into', true);
 
 $company = PDO_DataObject::factory('Companies');
 $company->comptype = 'CONSULTANT';
 $company->limit(1);
-$company->find(true);
-
-print_r($company->toArray());
+$rows = $company->find();
+echo "Got $rows rows from find\n";
+$company->fetch()
+var_dump($company->toArray());
 
 
 echo "\n\n--------\n";
