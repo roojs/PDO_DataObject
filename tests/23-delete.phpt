@@ -100,7 +100,7 @@ if (!$Customers->get(2)) {
 
 
 echo "\n\n--------\n";
-echo "Test SQLite  update - with old.\n" ;
+echo "Test SQLite  delete where .\n" ;
 
 
 
@@ -108,24 +108,8 @@ echo "There is ". PDO_DataObject::factory('Customers')->count() ." records\n";
 PDO_DataObject::factory('Customers');
         ->where("CustomerID > 2")->delete(PDO_DataObject::WHEREADD_ONLY);
 
-
-
 echo "There are now only ". PDO_DataObject::factory('Customers')->count() ." records\n";
 
-
-
-
-$Customers = PDO_DataObject::factory('Customers');
-$Customers->get(3);
-$old = clone($Customers);
-print_r($Customers->toArray());
-$Customers->set(array(
-    'CompanyName' => 'test1',
-    'ContactName' => 'test2',
-
-));
-$Customers->update($old);
-print_r($Customers->toArray());
 
 
 
