@@ -51,7 +51,11 @@ echo "fetch without find (error)\n" ;
 
 $company = PDO_DataObject::factory('Companies');
 $company->comptype = 'CONSULTANT';
-$company->fetch();
+try {
+    $company->fetch();
+} catch(PDO_DataObject_Exception_InvalidArgs $e) {
+    echo "got exception as expected: {$e->getMessage()}\n";
+}
 
 echo "\n\n--------\n";
 echo "mutliple find/fetch with keep_query_after_fetch\n" ;
@@ -60,11 +64,11 @@ PDO_DataObject::config('keep_query_after_fetch', true);
 
 $company = PDO_DataObject::factory('Companies');
 $company->comptype = 'CONSULTANT';
-$company->limit(1);
+$company->limit(3);
 $rows = $company->find();
 echo "Got $rows rows from find\n";
 $company->fetch();
-var_dump($company->toArray());
+print_r($company->toArray());
 
 $rows = $company->find();
 echo "Got $rows rows from find\n";
