@@ -35,7 +35,7 @@ $event->update();
 
 
 echo "\n\n--------\n";
-echo "update (changed columns;\n" ;
+echo "update (changed columns);\n" ;
 
 $event = PDO_DataObject::factory('Events');
 $event->get(12);
