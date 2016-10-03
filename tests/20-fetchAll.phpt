@@ -43,8 +43,8 @@ echo "select('name'), fetchAll('name');\n" ;
 $company = PDO_DataObject::factory('Companies');
 $company->comptype = 'CONSULTANT';
 $company->limit(3);
-$company->select('name')
-print_r($company->fetchAll('name'));
+$company->select('name as dog')
+print_r($company->fetchAll('dog'));
 
 
 
