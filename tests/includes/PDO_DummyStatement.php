@@ -286,8 +286,21 @@ class PDO_DummyStatement {
         echo "Close Cursor\n";
     }
     
-    function fetch($method , &$obj=null)
+    var $fetchMode;
+    var $fetchModeObject
+    
+    function setFetchMode($method, $obj)
     {
+        $this->fetchMode = $method;
+        $this->fetchModeObject = $obj;
+    }
+    
+    
+    
+    function fetch($method=false)
+    {
+        $method = $method === false $this->fetchMode;
+        
         echo "Fetch Row {$this->row} / " . count($this->result) . "\n";
         
         $row = $this->row  >= count($this->result) ? false : (array)$this->result[$this->row++];
@@ -296,7 +309,7 @@ class PDO_DummyStatement {
         }
         if ($method & PDO::FETCH_INTO) {
             foreach($row as $k=>$v) {
-                $obj->$k = $v;
+                $this->fetchModeObject->$k = $v;
             }
         }
         if ($method & PDO::FETCH_ASSOC) {
