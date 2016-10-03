@@ -1236,7 +1236,11 @@ class PDO_DataObject
         
         if ($method == true) {
             // ignore's key/value.
-            return $this->_result->fetchAll(PDO::FETCH_ASSOC);
+            $ret = $this->_result->fetchAll(PDO::FETCH_ASSOC);
+            if (self::$debug) {
+                $this->debug("fetchAll returned: ". json_encode($ret),1);
+            }
+            return $ret
         }
         if ($k === false && $v === false ) {
              
@@ -1255,7 +1259,11 @@ class PDO_DataObject
         }
         
         if ($k === true) { // first column...
-            return $this->_result->fetchAll(PDO::FETCH_COLUMN, 0);
+            $ret = $this->_result->fetchAll(PDO::FETCH_COLUMN, 0);
+            if (self::$debug) {
+                $this->debug("fetchAll returned: ". json_encode($ret),1);
+            }
+            return 
         }
          $cols = array();
         for($i =0;$i< $this->_result->columnCount(); $i++) {
@@ -1272,7 +1280,11 @@ class PDO_DataObject
         }
         // in theory this is not 
         if ($v === false) {
-            return $this->_result->fetchAll(PDO::FETCH_COLUMN, $cols[0]);
+            $ret = $this->_result->fetchAll(PDO::FETCH_COLUMN, $cols[0]);
+            if (self::$debug) {
+                $this->debug("fetchAll returned: (Column {$cols[0]} ". json_encode($ret),1);
+            }
+            return $ret
         }
         
         // 2 args..
@@ -1283,6 +1295,10 @@ class PDO_DataObject
         // this is only a bit faster than standard.. - no better way to do this using the PDO API?
         $ret = array();
         while($row = $this->_result->fetch(PDO::FETCH_ASSOC)) {
+            if (self::$debug) {
+                $this->debug("fetch FETCH_ASSOC: (Columns {$k}/{$v} " . json_encode($row),1);
+            }
+            
             $ret[$row[$k]] =  $row[$v];
         }
         return $ret;
