@@ -167,7 +167,7 @@ e) PDO_DataObject class
 
   * find() DONE  
 
-  * fetch() DONE  / NEED TESTING- tested by earlier code
+  * fetch() DONE   
   * fetchAll() DONE  / NEED TESTING- tested by earlier code ?? 
   * fetchAllAssoc() - alias to fetchAll(false,false,true);
 
