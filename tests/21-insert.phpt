@@ -70,13 +70,17 @@ print_r($event->toArray());
 
 //---------------
 ///SQLlite...
+
+$temp  = tempnam(ini_get('session.save-path'), 'sqlite-test');
+copy(__DIR__.'/includes/EssentialSQL.db', $temp);
+
 PDO_DataObject::config(array(
         'PDO' => 'PDO', // we can do this for real...
         'tables' => array(
             'Customers' => 'EssentialSQL'
         ),
         'databases' => array(
-            'EssentialSQL' => 'sqlite:'.__DIR__.'/includes/EssentialSQL.db'
+            'EssentialSQL' => 'sqlite:'.$tmp
         ),
         'proxy' => true,
         'debug' => 0,
