@@ -181,6 +181,12 @@ e) PDO_DataObject class
   * delete() DONE / NEED TESTING
   * count() DONE / NEED TESTING
 
+  *  load() - chainable get
+  *  save() - generic update/insert
+  *  snapshot() - pre-save before an update..
+  
+  *  each() ????
+
   * table() - renamed to tableColumns()   DONE / NEED TESTING
   * keys()   DONE / NEED TESTING
   * sequenceKey() DONE / NEED TESTING
