@@ -90,7 +90,7 @@ After clear: SELECT *
 
 --------
 some invalid input.
-PDO_DataObject   : ERROR       : WhereAdd: No Valid Arguments
+PDO_DataObject   : raise       : WhereAdd: No Valid Arguments
 got exception as expected WhereAdd: No Valid Arguments
 
 
