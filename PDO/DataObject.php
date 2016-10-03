@@ -1050,7 +1050,8 @@ class PDO_DataObject
         
         // fast_fetch - experimentall... - not sure what happens on missing/null values etc.. on rows.
         if (self::$config['fetch_into']) {
-            $array = $this->_result->fetch(PDO::FETCH_INTO|PDO::FETCH_ASSOC, $this);
+            $this->_result->->setFetchMode(PDO::FETCH_INTO, $this);
+            $array = $this->_result->fetch();
         } else {
             $array = $this->_result->fetch(PDO::FETCH_ASSOC);
             if (self::$debug) {
