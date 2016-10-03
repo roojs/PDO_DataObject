@@ -29,13 +29,13 @@ echo "simple insert;\n" ;
 
 $event = PDO_DataObject::factory('Events');
 $event ->set(array(
-    'evtype' => 'TEST',
+    'action' => 'TEST',
     'remarks' => 'a test event',
 
 ));
 $id = $event->insert();
 var_dump($id);
-print_r($event);
+print_r($event->toArray());
 
 
 
