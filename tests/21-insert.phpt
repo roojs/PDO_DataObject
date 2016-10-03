@@ -74,6 +74,7 @@ print_r($event->toArray());
 $temp  = tempnam(ini_get('session.save-path'), 'sqlite-test');
 copy(__DIR__.'/includes/EssentialSQL.db', $temp);
 
+PDO_DataObject::reset();
 PDO_DataObject::config(array(
         'PDO' => 'PDO', // we can do this for real...
         'tables' => array(
@@ -83,7 +84,7 @@ PDO_DataObject::config(array(
             'EssentialSQL' => 'sqlite:'.$temp
         ),
         'proxy' => 'Full',
-        'debug' => 0,
+        'debug' => 1,
 ));
 
  
@@ -92,12 +93,23 @@ $Customers = PDO_DataObject::factory('Customers');
  
 $id = $Customers->insert();
 var_dump($id);
-print_r($event->toArray());
+print_r($Customers->toArray());
 
 
+ 
+
+$Customers = PDO_DataObject::factory('Customers');
+$Customers->set(array(
+    'CompanyName' => 'test1',
+    'ContactName' => 'test2',
+
+));
+$id = $Customers->insert();
+var_dump($id);
+print_r($Customers->toArray());
 
 
-
+unlink($temp);
 
 
 
