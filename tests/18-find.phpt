@@ -7,10 +7,10 @@ PDO_DataObject::debugLevel(0);
 PDO_DataObject::config(array(
         'class_location' => __DIR__.'/includes/sample_classes/DataObjects_',
     // fake db..
-     //   'database' => 'mysql://user:pass@localhost/gettest'
+        'database' => 'mysql://user:pass@localhost/gettest'
    // real db...
-        'database' => 'mysql://root:@localhost/pman',
-        'PDO' => 'PDO',        'proxy' => 'full',
+   //     'database' => 'mysql://root:@localhost/pman',
+   //     'PDO' => 'PDO',        'proxy' => 'full',
 ));
 
 PDO_DataObject::debugLevel(0);
@@ -65,7 +65,7 @@ while ($company->fetch()) {
 try {
     $company->find();
 } catch (PDO_DataObject_Exception_InvalidArgs $e) {
-    echo "Threw exceptoin as expected $e\n";
+    echo "Threw exception as expected $e\n";
 }
 
 
