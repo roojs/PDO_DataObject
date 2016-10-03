@@ -10,9 +10,10 @@ PDO_DataObject::config(array(
     
         // 'database' => 'mysql://user:pass@localhost/inserttest'
     // real db...
-      //  'databases' => array(
-                'inserttest' => 'mysql://root:@localhost/pman',
-            ),
+        'database' => '',
+        'databases' => array(
+            'inserttest' => 'mysql://root:@localhost/pman',
+        ),
          'PDO' => 'PDO',        'proxy' => 'full',
 ));
 
