@@ -2283,16 +2283,56 @@ class PDO_DataObject
      */
     function save()
     {
-        if (!$this->pid()) {
+        $keys = $this->keys();
+        if (!$keys) {            
+            return $this->raise("No Primary Key available for table '{$this->tableName()}'",
+                            self::ERROR_INVALIDCONFIG);
+        }
+        $k = $keys[0];
+        if (empty($this->$k)) { 
             $this->insert();
             return $this;
         }
-        if (!isset($this->_begin_copy)) {
-            $this->raise("Save only works when you run 'begin' before changing properties", self::ERROR_INVALIDARGS);
+        if (!isset($this->_start_copy)) {
+            $this->raise("Save only works when you run 'start' before changing properties", self::ERROR_INVALIDARGS);
         }
-        $this->update($this->_begin_copy);
+        $this->update($this->_start_copy);
         return $this;
     }
+    /**
+     *  Save data to database (simple wrapper around insert/update)
+     *  recommend it is used with begin()
+     *  Chainable? 
+     * 
+     *  Uses primary id to determine if data should be updated or inserted.
+     * 
+     *  @returns PDO_DAtaObject  self  
+     */
+    function start()
+    {
+        $keys = $this->keys();
+        if (!$keys) {            
+            return $this->raise("No Primary Key available for table '{$this->tableName()}'",
+                            self::ERROR_INVALIDCONFIG);
+        }
+        $k = $keys[0];
+        if (empty($this->$k)) { // no need to store originall...
+            return;
+        }
+                
+
+if (!$this->pid()) {
+            return;
+        }
+        if (!isset($this->_start_copy)) {
+            $this->raise("Save only works when you run 'begin' before changing properties", self::ERROR_INVALIDARGS);
+        }
+        $this->update($this->_start_copy);
+        return $this;
+    }
+  
+
+
 
     /**
      * Deletes items from table which match current objects variables
