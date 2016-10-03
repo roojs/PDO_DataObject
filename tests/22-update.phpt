@@ -7,10 +7,10 @@ require_once 'includes/init.php';
 PDO_DataObject::config(array(
         'class_location' => __DIR__.'/includes/sample_classes/DataObjects_',
     // fake db..
-   /* 
+   
          'database' => 'mysql://user:pass@localhost/inserttest'
-    */// real db...
-    
+    // real db...
+    /*
         'database' => '',
         'tables' => array(
             'Events'=> 'inserttest',
@@ -19,11 +19,13 @@ PDO_DataObject::config(array(
             'inserttest' => 'mysql://root:@localhost/pman',
         ),
          'PDO' => 'PDO',
-         
+      */   
 ));
 
 PDO_DataObject::debugLevel(1);
  
+// used to extract sample data...
+//PDO_DataObject::factory('Events')->limit(1)->find(true);
 
 echo "\n\n--------\n";
 echo "basic update;\n" ;
@@ -69,20 +71,11 @@ echo "bulk update using where  ;\n" ;
 
 $event = PDO_DataObject::factory('Events');
 $event->action="ssss";
-$event->where('id = 15');
+$event->where('id >15 and id < 20');
 $rows = $event->update(PDO_DataObject::WHEREADD_ONLY);
 
-
-
-exit;
-
-
-
-
-
-
-
-
+echo "UPDATED {$rows} records\n";
+ 
 echo "\n\n--------\n";
 echo "empty insert (postgresql);\n" ;
 PDO_DataObject::config('database' , 'pgsql://user:pass@localhost/pginsert');
@@ -94,31 +87,10 @@ $id = $event->insert();
 var_dump($id);
 print_r($event->toArray());
 
-
-
-echo "\n\n--------\n";
-echo "insert with data;\n" ;
-PDO_DataObject::config('database' , 'mysql://user:pass@localhost/inserttest');
-
-$event = PDO_DataObject::factory('Events');
-$event ->set(array(
-    'person_name' => 'fred',
-    'event_when' => '2016-10-03 13:58:06',
-    'action' => 'TEST',
-    'ip' => '127.0.0.1',
-    'on_id' => 0,
-    'on_table' => '',
-    'remarks' => 'a test event',
-
-));
-$id = $event->insert();
-var_dump($id);
-print_r($event->toArray());
-
-
+ 
 
 echo "\n\n--------\n";
-echo "Test SQLite  insert - empty\n" ;
+echo "Test SQLite  update - empty\n" ;
 
 $temp  = tempnam(ini_get('session.save-path'), 'sqlite-test');
 copy(__DIR__.'/includes/EssentialSQL.db', $temp);
@@ -139,28 +111,44 @@ PDO_DataObject::config(array(
 PDO_DataObject::factory('Customers')->databaseStructure();
 
 PDO_DataObject::debugLevel(1);
-$Customers = PDO_DataObject::factory('Customers');
+
  
-$id = $Customers->insert();
-var_dump($id);
+
+$Customers = PDO_DataObject::factory('Customers');
+$Customers->get(2);
 print_r($Customers->toArray());
-
-echo "\n\n--------\n";
-echo "Test SQLite  insert with data;\n" ;
-
- 
-
-$Customers = PDO_DataObject::factory('Customers');
 $Customers->set(array(
     'CompanyName' => 'test1',
     'ContactName' => 'test2',
 
 ));
-$id = $Customers->insert();
-var_dump($id);
+$Customers->update();
 print_r($Customers->toArray());
 
-PDO_DataObject::reset();
+
+
+
+echo "\n\n--------\n";
+echo "Test SQLite  update - with old.\n" ;
+
+
+
+
+$Customers = PDO_DataObject::factory('Customers');
+$Customers->get(3);
+print_r($Customers->toArray());
+$Customers->set(array(
+    'CompanyName' => 'test1',
+    'ContactName' => 'test2',
+
+));
+$Customers->update();
+print_r($Customers->toArray());
+
+
+
+
+
 
 unlink($temp);
 
