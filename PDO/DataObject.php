@@ -2742,7 +2742,7 @@ class PDO_DataObject
         $args = func_get_args();
     
         if (self::$debug) {
-            self::debug('CALL:' . json_encode($args, true), __FUNCTION__ , 1);
+            self::debug('CALL:' . json_encode($args, true), __METHOD__, 1);
         }
         
         
@@ -3294,7 +3294,7 @@ class PDO_DataObject
         // proxy = full|light
         if (!$rclass && self::$config['proxy']) { 
         
-            self::debug("FAILED TO Autoload  $table - using proxy.","FACTORY",1);
+            self::debug("FAILED TO Autoload  $table - using proxy.",__METHOD__,1);
             
             $proxyMethod  = (is_string(self::$config['proxy']) && strpos(self::$config['proxy'], '::') !== false) ?
                 explode('::', self::$config['proxy'])[1] : ('getProxy' . self::$config['proxy']);
@@ -3324,7 +3324,7 @@ class PDO_DataObject
         $ret = new $rclass();
  
         if (!empty($database)) {
-            self::debug("Setting database to $database","FACTORY",1);
+            self::debug("Setting database to $database",__METHOD__,1);
             $ret->database($database);
         }
         return $ret;
@@ -3474,7 +3474,7 @@ class PDO_DataObject
             self::debug(
                 "autoload:Could not find class " . implode(',', $cls) . "\n" .
                 " using class_location value :" . $search .  "\n" .
-                " using include_path value :" . ini_get('include_path'));
+                " using include_path value :" . ini_get('include_path'),__METHOD__);
             return false;
         }
         
