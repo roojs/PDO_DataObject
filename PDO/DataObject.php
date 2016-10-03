@@ -2274,13 +2274,25 @@ class PDO_DataObject
 
     /**
      *  Save data to database (simple wrapper around insert/update)
+     *  recommend it is used with begin()
      *  Chainable? 
      * 
      *  Uses primary id to determine if data should be updated or inserted.
      * 
      *  @returns PDO_DAtaObject  self  
-     *
-
+     */
+    function save()
+    {
+        if (!$this->pid()) {
+            $this->insert();
+            return $this;
+        }
+        if (!isset($this->_begin_copy)) {
+            $this->raise("Save only works when you run 'begin' before changing properties", self::ERROR_INVALIDARGS);
+        }
+        $this->update($this->_begin_copy);
+        return $this;
+    }
 
     /**
      * Deletes items from table which match current objects variables
