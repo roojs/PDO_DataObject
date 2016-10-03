@@ -53,30 +53,23 @@ $company = PDO_DataObject::factory('Companies');
 $company->comptype = 'CONSULTANT';
 $company->fetch();
 
-
-
-
-
-
-
-
 echo "\n\n--------\n";
-echo "error running find twice..\n" ;
+echo "mutliple find/fetch with keep_query_after_fetch\n" ;
+
+PDO_DataObject::config('keep_query_after_fetch', true);
+
 $company = PDO_DataObject::factory('Companies');
 $company->comptype = 'CONSULTANT';
-$company->limit(3);
-$company->find();
-while ($company->fetch()) {
-    print_r($company->toArray());
-}
-try {
-    $company->find();
-} catch (PDO_DataObject_Exception_InvalidArgs $e) {
-    echo "Threw exception as expected {$e->getMessage()}\n";
-}
+$company->limit(1);
+$rows = $company->find();
+echo "Got $rows rows from find\n";
+$company->fetch()
+var_dump($company->toArray());
 
-
-
+$rows = $company->find();
+echo "Got $rows rows from find\n";
+$company->fetch()
+var_dump($company->toArray());
 
 
 
