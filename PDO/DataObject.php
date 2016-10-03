@@ -2098,16 +2098,14 @@ class PDO_DataObject
      *      ->update(PDO_DataObject::WHEREADD_ONLY);
      * 
      * NEW in PDO DataObjects 
-
+     *
      * PDO_DataObject::factory('mytable');
      *      ->load(23)
      *      ->snapshot()
      *      ->set(['email' => "test@testing.com"]),
      *      ->save()
-     
-     * $object->where('age > 150')
-     *      ->update(PDO_DataObject::WHEREADD_ONLY);
- 
+     *
+     *
      *
      *
      *
