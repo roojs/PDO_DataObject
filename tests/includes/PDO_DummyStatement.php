@@ -258,8 +258,11 @@ class PDO_DummyStatement {
             
             '5f82f3a2da7afaa78228444fbcba3e37' => 123123,
             // update testing..
-            
-            
+            '2bdf264b81e628acfbf68368a1175be6' => '[
+                {"id":"3523","person_name":"Alan","event_when":"2009-04-16 14:05:32","action":"RELOAD","ipaddr":"202.134.82.251","on_id":"0","on_table":"","person_id":"4","remarks":"0","person_table":null}
+             ]',
+             'b2a4eb0dec91cfe1617857e5cf0eda5c' => 1, // update rows affected...
+            '3f0674a212def589588fd13a21361b1e' => 3, // update with where, rows affected...
             
             
         ), 
