@@ -15,7 +15,8 @@ echo "find with a single name\n" ;
 
 $company = PDO_DataObject::factory('Companies');
 $company->name = 'fred';
-$company->find();
+$rows = $company->find();
+echo "Got $rows rows from find\n";
 while ($company->fetch()) {
     print_r($company->toArray());
 }
@@ -27,6 +28,7 @@ $company = PDO_DataObject::factory('Companies');
 $company->name = 'fred';
 $company->limit(1);
 $company->find(true);
+
 print_r($company->toArray());
 
 
