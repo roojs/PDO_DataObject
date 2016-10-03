@@ -41,7 +41,7 @@ echo "delete where....);\n" ;
 
 $event = PDO_DataObject::factory('Events');
 $event->where('id > 12');
-$res = $event->delete();
+$res = $event->delete(PDO_DAtaObject::WHEREADD_ONLY);
 echo "DELETED {$res} records\n";
 
 
