@@ -29,11 +29,9 @@ echo "\n\n--------\n";
 echo "empty insert;\n" ;
 
 $event = PDO_DataObject::factory('Events');
-
-$id = $event->insert();
-var_dump($id);
-print_r($event->toArray());
-
+$event->get(12);
+$event->action = "testing";
+$event->update();
 
 echo "\n\n--------\n";
 echo "empty insert (postgresql);\n" ;
