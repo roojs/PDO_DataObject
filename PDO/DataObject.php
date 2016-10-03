@@ -2653,11 +2653,14 @@ class PDO_DataObject
             
             // databaseStructure('mydb',   a$tabledatarray(.... schema....), array( ... links')
             if ($inidata !== false) {
+                $this->debug("databaseStructure setting ini data: " . print_R($inidata, true), 3);
+
                 self::$ini[$database_nickname] = isset( self::$ini[$database_nickname]) && !$overwrite ?
                     self::$ini[$database_nickname] + $inidata :
                     $inidata;
             }
             if ($linksdata !== false)  {
+                $this->debug("databaseStructure setting links ini data: " . print_R($inidata, true), 3);
                 self::$links[$database_nickname] = isset(self::$links[$database_nickname]) && !$overwrite ?  
                     self::$links[$database_nickname] + $linksdata :
                     $linksdata;
