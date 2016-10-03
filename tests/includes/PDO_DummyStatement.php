@@ -181,6 +181,20 @@ class PDO_DummyStatement {
                 {"id":"3523","person_name":"Alan","event_when":"2009-04-16 14:05:32","action":"RELOAD",
                 "ipaddr":"202.134.82.251","on_id":"0","on_table":"","person_id":"4","remarks":"0","person_table":null}
             ]',
+            // 18 - find test 3 rows where comptype = 'CONSULT'
+            'ebba0af48c52cc567e77a69664b3addb' => '[
+                  {"code":"vinski","name":"Vinski Web","remarks":"","owner_id":"0","address":"",
+                 "tel":"","fax":"","email":"test@example.com","id":"15","isOwner":"0","logo_id":"0","background_color":"","comptype":"CONSULTANT",
+                 "url":"","main_office_id":"0","created_by":"0","created_dt":"0000-00-00 00:00:00",
+                 "updated_by":"0","updated_dt":"0000-00-00 00:00:00"},
+                 {"code":"MASL","name":"Modern (INTL) Access & Scaffolding Ltd","remarks":"","owner_id":"0","address":"",
+                 "tel":"","fax":"","email":"test@example.com","id":"15","isOwner":"0","logo_id":"0","background_color":"","comptype":"CONSULTANT",
+                 "url":"","main_office_id":"0","created_by":"0","created_dt":"0000-00-00 00:00:00",
+                 "updated_by":"0","updated_dt":"0000-00-00 00:00:00"}
+                
+                
+                
+            ]'
             
             
         ), 
