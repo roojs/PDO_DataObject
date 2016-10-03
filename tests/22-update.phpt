@@ -26,12 +26,35 @@ PDO_DataObject::debugLevel(1);
  
 
 echo "\n\n--------\n";
-echo "empty insert;\n" ;
+echo "basic update;\n" ;
 
 $event = PDO_DataObject::factory('Events');
 $event->get(12);
 $event->action = "testing";
 $event->update();
+
+
+echo "\n\n--------\n";
+echo "update (changed columns;\n" ;
+
+$event = PDO_DataObject::factory('Events');
+$event->get(12);
+$old = clone($event);
+$event->action = "testing";
+$event->update($old);
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 echo "\n\n--------\n";
 echo "empty insert (postgresql);\n" ;
