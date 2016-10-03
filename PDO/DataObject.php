@@ -977,7 +977,7 @@ class PDO_DataObject
         $ret = $this->N;
         if (!$ret && !empty( $this->_result)) {     
             // clear up memory if nothing found!?
-            $this->_result = false;
+            $this->_result = 0;
             return $ret;
         }
         
@@ -1152,7 +1152,7 @@ class PDO_DataObject
         if (self::$debug) {
             $this->debug("{$this->tableName()} DONE", "fetchrow",2);
         }
-        if (($this->_query !== false) &&  !self::$config['keep_query_after_fetch']) {
+        if ($this->_query !== false) {
             $this->_query = false;
         }
         return true;
