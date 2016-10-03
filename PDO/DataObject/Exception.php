@@ -42,7 +42,7 @@ class PDO_DataObject_Exception extends Exception
     {
         $cls = 'PDO_DataObject_Exception_'. $type;
         $code = $previous_exception ? $previous_exception->getCode() : 0;
-        return new $cls($message, $code, $previous_exception );
+        return new $cls($message, 0, $previous_exception );
     }
     
     

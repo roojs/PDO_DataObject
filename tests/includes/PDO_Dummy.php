@@ -81,7 +81,7 @@ class PDO_Dummy {
     }
     function lastInsertId($val= '')
     {
-        echo "lastInsertId from sequence={$val}  is {$this->last_statement->result}\n";
+        echo "lastInsertId from sequence='{$val}'  is {$this->last_statement->result}\n";
         return $this->last_statement->result;
         
     }

@@ -265,7 +265,10 @@ class PDO_DummyStatement {
              '9da43100ad8e2d1eee0cfee396c16588' => 1, // update rows affected...
             'a6282b3421edef2d12c5aa79b5c3ea77' => 3, // update with where, rows affected...
             
+            // delete tests..
+            'e343124dcbff70aa23becf0195d27e35' => 1,
             
+            'e0f63974357eab3b7b082f80cf5c26aa' => 10, // multiple delte..
         ), 
          'pgsql:dbname=pginsert;host=localhost' => array(  
             // insert....
