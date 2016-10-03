@@ -167,8 +167,8 @@ e) PDO_DataObject class
 
   * find() DONE  
 
-  * fetch() DONE - tested by earlier code
-  * fetchAll() DONE - tested by earlier code ?? 
+  * fetch() DONE  / NEED TESTING- tested by earlier code
+  * fetchAll() DONE  / NEED TESTING- tested by earlier code ?? 
   * fetchAllAssoc() - alias to fetchAll(false,false,true);
 
 
@@ -463,6 +463,8 @@ ignore_sequence_keys  << no longer used - override sequenceKey()
 dont_use_pear_sequences << not relivant.. 
 links_**** not used
 ini_**** not used  - use schema_location[database] = .....
+
+keep_query_after_fetch = removed - behaviour was inconsistant - and unpredictable...
 
 -- Debug Levels
 1 - basic QUERY and results.
