@@ -2279,10 +2279,10 @@ class PDO_DataObject
      *  Chainable? 
      * 
      *  Uses primary id to determine if data should be updated or inserted.
-     * 
+     *  @param  PDO_DAtaObject (optional) original snapshot of object, before it was changed.
      *  @returns PDO_DAtaObject  self  
      */
-    function save()
+    function save($dataObject = false)
     {
         $keys = $this->keys();
         if (!$keys) {            
@@ -2302,7 +2302,7 @@ class PDO_DataObject
      *  snapshot the objects state (for updating later)
      *  Chainable? 
      * 
-     *  When you use 'update' or save, 
+     *  When you use 'update' or save, this makes a copy, so you do not need to clone/pass arguments to save or  
      * 
      *  @returns PDO_DAtaObject  self  
      */
