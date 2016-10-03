@@ -30,6 +30,8 @@ $company->find(true);
 print_r($company->toArray());
 
 
+echo "\n\n--------\n";
+echo "error running find twice..\n" ;
 
 
 
