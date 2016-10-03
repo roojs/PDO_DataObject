@@ -811,7 +811,11 @@ class PDO_DataObject
             
         }
         $this->$k = $v;
-        return $this->find(true);
+        if (!$this->find(true)) {
+            return $this->raise("No Data available", self::ERROR_NODATA);
+        }
+        return $this;
+        
     }
     
  /**
