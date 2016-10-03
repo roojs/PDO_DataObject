@@ -2035,6 +2035,7 @@ class PDO_DataObject
         if ($key && $useNative) {
             switch ($dbtype) {
                 case 'mysql':
+                case 'sqlite': // possibly...
                     $this->$key = $PDO->lastInsertId();
                     break;
                 
@@ -2971,7 +2972,7 @@ class PDO_DataObject
 
         $table =  $this->tableColumns();
        
-        $dbtype = $pdo->getAttribute(PDO::ATTR_DRIVER_NAME);
+        $dbtype = $this->PDO()->getAttribute(PDO::ATTR_DRIVER_NAME);
 
         
         $usekey = $keys[0];
