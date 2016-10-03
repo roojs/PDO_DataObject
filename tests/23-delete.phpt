@@ -104,14 +104,13 @@ echo "Test SQLite  update - with old.\n" ;
 
 
 
-
+echo "There is ". PDO_DataObject::factory('Customers')->count() ." records\n";
 PDO_DataObject::factory('Customers');
         ->where("CustomerID > 2")->delete(PDO_DataObject::WHEREADD_ONLY);
 
 
-$Customers = PDO_DataObject::factory('Customers');
 
-echo "There are now only {$Customers->count()} records\n";
+echo "There are now only ". PDO_DataObject::factory('Customers')->count() ." records\n";
 
 
 
