@@ -3,7 +3,7 @@ find() test
 --FILE--
 <?php
 require_once 'includes/init.php';
-PDO_DataObject::debugLevel01);
+PDO_DataObject::debugLevel(0);
 PDO_DataObject::config(array(
         'class_location' => __DIR__.'/includes/sample_classes/DataObjects_',
     // fake db..
@@ -13,7 +13,10 @@ PDO_DataObject::config(array(
         'PDO' => 'PDO',        'proxy' => 'full',
 ));
 
- 
+PDO_DataObject::debugLevel(0);
+PDO_DataObject::factory('Companies')->databaseStructure();
+PDO_DataObject::debugLevel(1);
+
 
 echo "\n\n--------\n";
 echo "find with a single name\n" ;
@@ -54,11 +57,16 @@ echo "\n\n--------\n";
 echo "error running find twice..\n" ;
 $company = PDO_DataObject::factory('Companies');
 $company->comptype = 'CONSULTANT';
+$company->limit(3);
 $company->find();
 while ($company->fetch()) {
     print_r($company->toArray());
 }
-$company->find();
+try {
+    $company->find();
+} catch (PDO_DataObject_Exception_InvalidArgs $e) {
+    echo "Threw exceptoin as expected $e\n";
+}
 
 
 
