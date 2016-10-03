@@ -53,6 +53,15 @@ $old = clone($event);
 $event->update($old);
 
 
+echo "\n\n--------\n";
+echo "bulk update using where;\n" ;
+
+$event = PDO_DataObject::factory('Events');
+$event->action="ssss";
+$rows = $event->update(PDO_DataObject::WHEREADD_ONLY);
+
+
+
 
 
 
