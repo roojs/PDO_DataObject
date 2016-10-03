@@ -215,7 +215,9 @@ class PDO_DummyStatement {
             '23df5cd6e811c14da7711b51d7298521' => '[
                     {"id": 2}, {"id": 4}, {"id": 6}
             ]',
-            '33f59edd5519f8086b193b7f9132403d'
+            '33f59edd5519f8086b193b7f9132403d' {
+                    {"alen": 29}, {"alen": 19}, {"alen": 17}
+            }
             
         ), 
         
