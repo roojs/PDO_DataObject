@@ -54,50 +54,14 @@ $event = PDO_DataObject::factory('Events');
 $res = $event->delete();
 // should throw error..
 
-
-echo "\n\n--------\n";
-echo "update (nothing changed);\n" ;
-
-$event = PDO_DataObject::factory('Events');
-$event->get(12);
-$old = clone($event);
-echo "UPDATED {$event->update($old)} records\n";
-
-
-echo "\n\n--------\n";
-echo "bulk update using where (wrong usage);\n" ;
-
-$event = PDO_DataObject::factory('Events');
-$event->action="ssss";
-try {
-     $event->update(PDO_DataObject::WHEREADD_ONLY);
-} catch(PDO_DataObject_Exception_InvalidArgs $e) {
-    echo "Throws exception as expected: {$e->getMessage()}\n";
-}
-
-echo "\n\n--------\n";
-echo "bulk update using where  ;\n" ;
-
-$event = PDO_DataObject::factory('Events');
-$event->action="ssss";
-$event->where('id >15 and id < 20');
-$rows = $event->update(PDO_DataObject::WHEREADD_ONLY);
-
-echo "UPDATED {$rows} records\n";
  
-echo "\n\n--------\n";
-echo "empty insert (postgresql);\n" ;
-PDO_DataObject::config('database' , 'pgsql://user:pass@localhost/pginsert');
-    // real db...
-
-$event = PDO_DataObject::factory('Events');
-
-$id = $event->insert();
-var_dump($id);
-print_r($event->toArray());
-
  
-
+ 
+exit; 
+ 
+ 
+ 
+ 
 echo "\n\n--------\n";
 echo "Test SQLite  update - empty\n" ;
 
