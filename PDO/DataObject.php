@@ -2262,6 +2262,7 @@ class PDO_DataObject
 
         $r = $this->query("UPDATE  {$table}  SET {$settings} WHERE {$where} ");
         
+        $this->snapshot(); // store the current state, so any future updates will use that as a comparison..
         // restore original query conditions.
         $this->_query = $original_query;
         
