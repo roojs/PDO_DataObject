@@ -185,7 +185,7 @@ e) PDO_DataObject class
   *  save() - generic update/insert
   *  snapshot() - pre-save before an update..
   
-  *  each() ????
+  *  each() ???? same as foreach, but runs a method on each object... 
 
   * table() - renamed to tableColumns()   DONE / NEED TESTING
   * keys()   DONE / NEED TESTING
