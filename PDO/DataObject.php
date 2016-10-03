@@ -144,6 +144,7 @@ class PDO_DataObject
 
             
             'proxy' => false,
+                // NOT RECOMMENDED - it's very slow!!!!
                 // normally we use pre-created 'ini' files, but if you use proxy, it will generate the
                 // the database schema on the fly..
                 // true - calls PDO_DataObject_Generator->
