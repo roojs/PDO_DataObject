@@ -45,15 +45,18 @@ $company->fetch()
 var_dump($company->toArray());
 
 
+
 echo "\n\n--------\n";
-echo "find - mixing where and properties\n" ;
+echo "fetch without find (error)\n" ;
 
 $company = PDO_DataObject::factory('Companies');
 $company->comptype = 'CONSULTANT';
-$company->where('id !=1 ');
-$company->limit(1);
-$company->find(true);
-print_r($company->toArray());
+$company->fetch();
+
+
+
+
+
 
 
 
