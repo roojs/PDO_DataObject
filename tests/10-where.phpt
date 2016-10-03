@@ -71,19 +71,22 @@ echo "New query: {$company->toSelectSQL()}\n";
 simple where
 first add result: SELECT *
  FROM   Companies   
- WHERE ( a > 100 )
+ WHERE ( a > 100 ) 
+
 
 --------
 multiple chained where 
 multiple chained : SELECT *
  FROM   Companies   
- WHERE ( a > 100 )  AND ( b < 100 )
+ WHERE ( a > 100 )  AND ( b < 100 ) 
+
 
 --------
 reset and clear and OR condition.
 After clear: SELECT *
  FROM   Companies   
- WHERE ( c > 10 )  OR ( d >= 10 )
+ WHERE ( c > 10 )  OR ( d >= 10 ) 
+
 
 --------
 some invalid input.
@@ -95,7 +98,8 @@ got exception as expected WhereAdd: No Valid Arguments
 classic whereAdd.
 after adding SELECT *
  FROM   Companies   
- WHERE ( a > b )
+ WHERE ( a > b ) 
+
 
 --------
 replacing whereAdd.
