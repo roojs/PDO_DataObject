@@ -37,6 +37,17 @@ $company->select('LENGTH(name)')
 $company->orderBy('LENGTH(name) DESC');
 print_r($company->fetchAll(true));
 
+echo "\n\n--------\n";
+echo "select('name'), fetchAll('name');\n" ;
+
+$company = PDO_DataObject::factory('Companies');
+$company->comptype = 'CONSULTANT';
+$company->limit(10);
+$company->select('name')
+$company->orderBy('LENGTH(name) DESC');
+print_r($company->fetchAll(true));
+
+
 
 
 ?>
