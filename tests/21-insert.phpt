@@ -10,11 +10,14 @@ PDO_DataObject::config(array(
     
         // 'database' => 'mysql://user:pass@localhost/inserttest'
     // real db...
-        'database' => 'mysql://root:@localhost/pman',
+        'database' => '',
+        'tables' => array(
+            'Events'=> 'inserttest',
+        ),
         'databases' => array(
             'inserttest' => 'mysql://root:@localhost/pman',
         ),
-         'PDO' => 'PDO',        'proxy' => 'full',
+         'PDO' => 'PDO',     
 ));
 
 PDO_DataObject::debugLevel(1);
@@ -30,7 +33,9 @@ $event ->set(array(
     'remarks' => 'a test event',
 
 ));
-$event->insert();
+$id = $event->insert();
+var_dump($id);
+print_r($event);
 
 
 
