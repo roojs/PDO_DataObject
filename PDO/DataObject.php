@@ -836,7 +836,7 @@ class PDO_DataObject
      */
      final function load($k = null, $v = null)
      {
-          if (!$this->get($k, $v) {
+          if (!$this->get($k, $v)) {
               $this->raise("No Data returned from load", self::ERROR_NODATA);
           }
           return $this;
@@ -2181,7 +2181,7 @@ class PDO_DataObject
         $dbtype    = $PDO->getAttribute(PDO::ATTR_DRIVER_NAME);
         $quoteIdentifiers = !empty($_DB_DATAOBJECT['CONFIG']['quote_identifiers']);
 
-        if ($dataObject !== true && !empty($this->_snapshot) {
+        if ($dataObject !== true && !empty($this->_snapshot)) {
             $dataObject = $this->_snapshot();
         }
         
@@ -2870,7 +2870,7 @@ class PDO_DataObject
 
         
         if (self::$debug) {
-                $this->debug("schema for {$database_nickname} is now " . print_r($ini_out,true), 3);
+                $this->debug("schema for {$database_nickname} is now " . print_r($ini_out,true), __METHOD__, 3);
         }
 
         
