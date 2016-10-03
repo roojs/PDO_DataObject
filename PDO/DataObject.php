@@ -2653,14 +2653,17 @@ class PDO_DataObject
             
             // databaseStructure('mydb',   a$tabledatarray(.... schema....), array( ... links')
             if ($inidata !== false) {
-                $this->debug("databaseStructure setting ini data: " . print_R($inidata, true), 3);
-
+                if (self::$debug) {
+                    $this->debug("databaseStructure setting ini data: " . print_R($inidata, true), 3);
+                }
                 self::$ini[$database_nickname] = isset( self::$ini[$database_nickname]) && !$overwrite ?
                     self::$ini[$database_nickname] + $inidata :
                     $inidata;
             }
             if ($linksdata !== false)  {
-                $this->debug("databaseStructure setting links ini data: " . print_R($inidata, true), 3);
+                if (self::$debug) {
+                    $this->debug("databaseStructure setting links ini data: " . print_R($inidata, true), 3);
+                }
                 self::$links[$database_nickname] = isset(self::$links[$database_nickname]) && !$overwrite ?  
                     self::$links[$database_nickname] + $linksdata :
                     $linksdata;
@@ -2672,15 +2675,16 @@ class PDO_DataObject
         }
         $this->PDO();  /// need to connect to assign database nickname...
         if (false === $database_nickname) {
-
             $database_nickname = $this->_database_nickname;
         }
         
         
-         
         // if this table is already loaded this table..
         if (!empty(self::$ini[$database_nickname])) {
-            return self::$ini[$database_nickname];
+            if (self::$debug) {
+                $this->debug("structure already loaded", 3);
+            }
+            return self::$ini[$database_nickname];  
         }
         
         // initialize the ini data.. if empt..
@@ -2694,6 +2698,10 @@ class PDO_DataObject
         // if we are configured to use the proxy..
         
         if ( self::$config['proxy'])   {
+            if (self::$debug) {
+                $this->debug("loading structure from proxy", 3);
+            }
+
             return $this->generator()->databaseStructureProxy($database_nickname);
         }
             
