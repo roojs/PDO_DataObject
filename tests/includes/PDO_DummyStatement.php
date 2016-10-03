@@ -219,7 +219,7 @@ class PDO_DummyStatement {
             '33f59edd5519f8086b193b7f9132403d' => '[
                     {"alen": 29}, {"alen": 19}, {"alen": 17}
             ]',
-            /// 
+            /// list of names.
             '9beebf44ab64393f0c2b80f9d7f1172b' => '[
                 {"code":"vinski","name":"Vinski Web","remarks":"","owner_id":"0","address":"",
                  "tel":"","fax":"","email":"test@example.com","id":"15","isOwner":"0","logo_id":"0","background_color":"","comptype":"CONSULTANT",
@@ -235,6 +235,7 @@ class PDO_DummyStatement {
                  "updated_by":"0","updated_dt":"0000-00-00 00:00:00"}
                 
             ]',
+            // id=>name
             'd4905245ba332d8a3f42024e1e09c124' => '[
                 {"code":"vinski","name":"Vinski Web","remarks":"","owner_id":"0","address":"",
                  "tel":"","fax":"","email":"test@example.com","id":"15","isOwner":"0","logo_id":"0","background_color":"","comptype":"CONSULTANT",
