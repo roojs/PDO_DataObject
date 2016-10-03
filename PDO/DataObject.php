@@ -830,7 +830,7 @@ class PDO_DataObject
      *
      * @param   string  $k column
      * @param   string  $v value
-     * @throws PDO_DataObject_Exception
+     * @throws PDO_DataObject_Exception (if not matching row returned)
      * @access  public
      * @return  PDO_DataObject  self.
      */
@@ -839,7 +839,7 @@ class PDO_DataObject
           if (!$this->get($k, $v) {
               $this->raise("No Data returned from load", self::ERROR_NODATA);
           }
-          returnt $this;
+          return $this;
      }
 
 
