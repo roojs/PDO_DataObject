@@ -58,14 +58,18 @@ echo "bulk update using where (wrong usage);\n" ;
 
 $event = PDO_DataObject::factory('Events');
 $event->action="ssss";
-$rows = $event->update(PDO_DataObject::WHEREADD_ONLY);
+try {
+     $event->update(PDO_DataObject::WHEREADD_ONLY);
+} catch(PDO_DataObject_Exception_InvalidArgs $e) {
+    echo "Throws exception as expected: {$e->getMessage()}\n";
+}
 
 echo "\n\n--------\n";
-echo "bulk update using where (wrong usage);\n" ;
+echo "bulk update using where  ;\n" ;
 
 $event = PDO_DataObject::factory('Events');
 $event->action="ssss";
-$event->wher('id = 15');
+$event->where('id = 15');
 $rows = $event->update(PDO_DataObject::WHEREADD_ONLY);
 
 
