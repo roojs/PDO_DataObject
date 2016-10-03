@@ -31,7 +31,31 @@ print_r($company->toArray());
 
 
 echo "\n\n--------\n";
+echo "find - mixing where and properties\n" ;
+
+$company = PDO_DataObject::factory('Companies');
+$company->name = 'fred';
+$company->where('id !=1 ');
+$company->limit(1);
+$company->find(true);
+print_r($company->toArray());
+
+
+
+echo "\n\n--------\n";
 echo "error running find twice..\n" ;
+$company = PDO_DataObject::factory('Companies');
+$company->name = 'fred';
+$company->find();
+while ($company->fetch()) {
+    print_r($company->toArray());
+}
+$company->find();
+
+
+
+
+
 
 
 
