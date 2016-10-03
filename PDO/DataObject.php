@@ -1102,7 +1102,8 @@ class PDO_DataObject
                         " seconds",
                    __METHOD__, 2);
             }
-            $fields = $this->_result->fields;
+            //may not be available in sqlite when zero rows returned.. we only find out after a fetch..
+            $fields = isset($this->_result->fileds)$this->_result->fields;
             $this->_result->closeCursor();
             $this->_result = new StdClass;
             $this->_result->fields  = $fields;
@@ -2127,7 +2128,7 @@ class PDO_DataObject
      * $object = PDO_DataObject::factory('mytable');
      * $object->status = "dead";
      * $object->where('age > 150')
-     *      ->update(PDO_DataObject::WHEREADD_ONLY);
+     *      ->update(PDO_DataObject::WHERE_ONLY);
      * 
      * NEW in PDO DataObjects 
      *
@@ -2141,7 +2142,7 @@ class PDO_DataObject
      *
      *
      *
-     * @param  object|boolean (optional)  dataobject | PDO_DataObject::WHEREADD_ONLY - used to only update changed items.
+     * @param  object|boolean (optional)  dataobject | PDO_DataObject::WHERE_ONLY - used to only update changed items.
      * @access public
      * @throws PDO_DataObject_Error
      * @return  int|true Number rows affected (may be 0), true (if no difference between old/new), false
@@ -2164,7 +2165,7 @@ class PDO_DataObject
             if (!isset($this->{$keys[0]}) && $dataObject !== true) {
                 return $this->raise("update: trying to perform an update without 
                         the key set, and argument to update is not 
-                        PDO_DataObject::WHEREADD_ONLY
+                        PDO_DataObject::WHERE_ONLY
                     ". print_r(array('seq' => $seq , 'keys'=>$keys), true), self::ERROR_INVALIDARGS);
             }
         } else {
@@ -2390,7 +2391,7 @@ class PDO_DataObject
      * $object->orderBy('age DESC');
      * $object->delete(true); // dont use object vars, use the conditions, limit and order.
      *
-     * @param bool $useWhere (optional) If PDO_DataObject::WHEREADD_ONLY is passed in then
+     * @param bool $useWhere (optional) If PDO_DataObject::WHERE_ONLY is passed in then
      *             we will build the condition only using the whereAdd's.  Default is to
      *             build the condition only using the object parameters.
      *
@@ -2439,7 +2440,7 @@ class PDO_DataObject
                    "{$table} FROM {$table} {$this->_join} " : 
                    "FROM {$table}"
             ) .
-                $where . $extra_cond;
+              " WHERE " .  $where . $extra_cond;
         
         // add limit..
         $sql = $this->modifyLimitQuery($sql, true);
@@ -2476,7 +2477,7 @@ class PDO_DataObject
      *                      otherwise  => normally it counts primary keys - you can use 
      *                                    this to do things like $do->count('distinct mycol');
      *                  
-     * @param bool      $whereAddOnly (optional) If PDO_DataObject::WHEREADD_ONLY is passed in then
+     * @param bool      $whereAddOnly (optional) If PDO_DataObject::WHERE_ONLY is passed in then
      *                  we will build the condition only using the whereAdd's.  Default is to
      *                  build the condition using the object parameters as well.
      *                  
