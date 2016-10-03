@@ -172,7 +172,7 @@ e) PDO_DataObject class
   * fetchAllAssoc() DONE - alias to fetchAll(false,false,true);
 
 
-  * insert() DONE / NEED TESTING
+  * insert() DONE  
       -- emulated sequence are not supported at present!!
   * update() DONE / NEED TESTING
   * delete() DONE / NEED TESTING
