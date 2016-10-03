@@ -251,10 +251,10 @@ class PDO_DummyStatement {
                  "updated_by":"0","updated_dt":"0000-00-00 00:00:00"}
                 
             ]'
-            
-            
+        ),
+        'mysql:dbname=inserttest;host=localhost' => array(  
             // insert....
-            '8fe483fd6145e049256892c0c9d45fa9'
+            '8fe483fd6145e049256892c0c9d45fa9' => 34343
         ), 
         
         
