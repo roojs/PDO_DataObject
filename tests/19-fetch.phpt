@@ -23,10 +23,10 @@ echo "simple fetch\n" ;
 
 $company = PDO_DataObject::factory('Companies');
 $company->comptype = 'CONSULTANT';
-$company->limit(1);
+$company->limit(3);
 $rows = $company->find();
 echo "Got $rows rows from find\n";
-$company->fetch()
+$company->fetch();
 var_dump($company->toArray());
 
 
@@ -41,7 +41,7 @@ $company->comptype = 'CONSULTANT';
 $company->limit(1);
 $rows = $company->find();
 echo "Got $rows rows from find\n";
-$company->fetch()
+$company->fetch();
 var_dump($company->toArray());
 
 
@@ -63,12 +63,12 @@ $company->comptype = 'CONSULTANT';
 $company->limit(1);
 $rows = $company->find();
 echo "Got $rows rows from find\n";
-$company->fetch()
+$company->fetch();
 var_dump($company->toArray());
 
 $rows = $company->find();
 echo "Got $rows rows from find\n";
-$company->fetch()
+$company->fetch();
 var_dump($company->toArray());
 
 
