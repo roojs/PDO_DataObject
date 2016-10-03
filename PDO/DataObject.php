@@ -2104,7 +2104,7 @@ class PDO_DataObject
      */
     final function update($dataObject = false)
     {
-         
+        print_R($this->_query);
         // connect will load the config!
         $PDO = $this->PDO();
         
@@ -2256,7 +2256,9 @@ class PDO_DataObject
                     
         $table = ($quoteIdentifiers ? $this->quoteIdentifier($this->tableName()) : $this->tableName());
     
-        $r = $this->query("UPDATE  {$table}  SET {$settings} {$where} ");
+        
+
+        $r = $this->query("UPDATE  {$table}  SET {$settings} WHERE {$where} ");
         
         // restore original query conditions.
         $this->_query = $original_query;
