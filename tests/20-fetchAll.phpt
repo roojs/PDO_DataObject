@@ -13,7 +13,7 @@ PDO_DataObject::config(array(
          'PDO' => 'PDO',        'proxy' => 'full',
 ));
 
-PDO_DataObject::debugLevel(0);
+PDO_DataObject::debugLevel(1);
  
 
 
