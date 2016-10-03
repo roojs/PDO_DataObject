@@ -40,10 +40,19 @@ echo "\n\n--------\n";
 echo "delete where....);\n" ;
 
 $event = PDO_DataObject::factory('Events');
-$event->get(12);
-$old = clone($event);
-$event->action = "testing";
-echo "UPDATED {$event->update($old)} records\n";
+$event->where('id > 12');
+$res = $event->delete();
+echo "DELETED {$res} records\n";
+
+
+
+
+echo "\n\n--------\n";
+echo "delete all?....);\n" ;
+
+$event = PDO_DataObject::factory('Events');
+$res = $event->delete();
+// should throw error..
 
 
 echo "\n\n--------\n";
