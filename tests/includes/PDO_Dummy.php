@@ -68,7 +68,8 @@ class PDO_Dummy {
         
         require_once __DIR__ .'/PDO_DummyStatement.php';
         
-        return new PDO_DummyStatement($this->_dsn, $str);
+        $last_statement = new PDO_DummyStatement($this->_dsn, $str);
+        return $last_statement;
         
         
         
@@ -77,6 +78,10 @@ class PDO_Dummy {
     {
         // not  a very good test...
         return "'" . str_replace("'", "\'", $str) . "'";
+    }
+    function lastInsertId()
+    {
+        
     }
     
     
