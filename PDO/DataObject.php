@@ -1172,7 +1172,7 @@ class PDO_DataObject
      * B) ONE COLUMN ARRAY - Fetch the first column (1st argument = true)
      *
      * $x = PDO_DataObject::factory('mytable');
-     * $x->selectAdd('id')
+     * $x->select('id')
      * $x->whereAdd('something = 1')
      * $ar = $x->fetchAll(true);
      * -- returns array(1,2,3,4,5)
@@ -1181,8 +1181,7 @@ class PDO_DataObject
      *
      * $x = PDO_DataObject::factory('mytable');
      * $x->whereAdd('something = 1');
-     * $x->selectAdd();
-     * $x->selectAdd('distinct(group_id) as group_id');
+     * $x->select('distinct(group_id) as group_id');
      * $ar = $x->fetchAll('group_id');
      * -- returns array(1,2,3,4,5)
      *
@@ -1202,7 +1201,7 @@ class PDO_DataObject
      * $ar = $x->fetchAll();
      
      
-     * E) array of associative arrays - No child dataobjects created... fetchAllArray()
+     * E) array of associative arrays - No child dataobjects created... fetchAllAssoc()
      * $x = PDO_DataObject::factory('mytable');
      * $x->whereAdd('something = 1');
      * $ar = $x->fetchAll(false,false, true);
