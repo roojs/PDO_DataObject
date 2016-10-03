@@ -168,8 +168,8 @@ e) PDO_DataObject class
   * find() DONE  
 
   * fetch() DONE   
-  * fetchAll() DONE  / NEED TESTING- tested by earlier code ?? 
-  * fetchAllAssoc() - alias to fetchAll(false,false,true);
+  * fetchAll() DONE  /  tested by earlier code ?? 
+  * fetchAllAssoc() DONE - alias to fetchAll(false,false,true);
 
 
   * insert() DONE / NEED TESTING
