@@ -308,7 +308,8 @@ class PDO_DummyStatement {
         // limited support for this..
         
         return array(
-            'name' => array_keys($this->result[0])[$i]
+            'name' => array_keys($this->result[0])[$i],
+            'pdo_type' => 2, // default string...
         );
         return false; // pretend we do not support stuff.
     }
