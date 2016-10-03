@@ -105,6 +105,17 @@ echo "Test SQLite  update - with old.\n" ;
 
 
 
+PDO_DataObject::factory('Customers');
+        ->where("CustomerID > 2")->delete(PDO_DataObject::WHEREADD_ONLY);
+
+
+$Customers = PDO_DataObject::factory('Customers');
+
+echo "There are now only {$Customers->count()} records\n";
+
+
+
+
 $Customers = PDO_DataObject::factory('Customers');
 $Customers->get(3);
 $old = clone($Customers);
