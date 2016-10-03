@@ -61,8 +61,10 @@ class PDO_DataObject
     /**
     * Used for clarity in methods like delete() and count() to specify that the method should
     * build the condition only out of the whereAdd's and not the object parameters. 
+    * use WHERE_ONLY now.. whereadd's only the for easier conversion.
     */
     const WHEREADD_ONLY = true;
+    const WHERE_ONLY = true;
 
     /**
      * used by config[portability]
@@ -2840,7 +2842,7 @@ class PDO_DataObject
             if (!file_exists($fn) || !is_file($fn) || !is_readable ($fn)) {
                 continue;
             }
-            $this->debug("load schema from: ". $fn ,  __METHOD__, , 3);
+            $this->debug("load schema from: ". $fn ,  __METHOD__,   3);
             $ini_out = array_merge(
                 $ini_out,
                 parse_ini_file($fn, true)
