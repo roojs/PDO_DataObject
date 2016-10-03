@@ -2019,6 +2019,8 @@ class PDO_DataObject
         
         if (($dbtype == 'pgsql') && empty($leftq)) {
             $r = $this->query("INSERT INTO {$table} DEFAULT VALUES");
+        } else  if (($dbtype == 'pgsql') && empty($leftq)) { 
+            $r = $this->query("INSERT INTO {$table} VALUES ()");
         } else {
            $r = $this->query("INSERT INTO {$table} ($leftq) VALUES ($rightq) ");
         }
@@ -2942,6 +2944,7 @@ class PDO_DataObject
      */
     function sequenceKey()
     {
+        $this->PDO(); // needed to get database nickname.        
         $dn = $this->_database_nickname;
         $tn = $this->tableName();
         
@@ -2986,7 +2989,7 @@ class PDO_DataObject
         if (empty($table[$usekey]) || !($table[$usekey] & self::INT)) {
                 return self::$sequence[$dn][$tn] = array(false,false,false);
         }
-         
+      
         $realkeys = self::$ini[$dn][$tn."__keys"];
         
          
@@ -3006,7 +3009,8 @@ class PDO_DataObject
             return self::$sequence[$dn][$tn] = array($usekey,true, $realkeys[$usekey]);
         }
         
-        if (    in_array($dbtype , array('pgsql', 'mysql',  'mssql', 'ifx')) && 
+        // database that support native sequences?? 
+        if (    in_array($dbtype , array('pgsql', 'mysql',  'mssql', 'ifx', 'sqlite')) && 
                 ($table[$usekey] & self::INT) && 
                 isset($realkeys[$usekey]) && ($realkeys[$usekey] == 'N')
                 ) {
