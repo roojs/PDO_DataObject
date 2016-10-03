@@ -2319,15 +2319,7 @@ class PDO_DataObject
         if (empty($this->$k)) { // no need to store originall...
             return;
         }
-                
-
-if (!$this->pid()) {
-            return;
-        }
-        if (!isset($this->_start_copy)) {
-            $this->raise("Save only works when you run 'begin' before changing properties", self::ERROR_INVALIDARGS);
-        }
-        $this->update($this->_start_copy);
+        $this->_start_copy = clone($this);
         return $this;
     }
   
