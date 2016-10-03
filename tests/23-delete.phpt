@@ -28,16 +28,16 @@ PDO_DataObject::debugLevel(1);
 //PDO_DataObject::factory('Events')->limit(1)->find(true);
 
 echo "\n\n--------\n";
-echo "basic update;\n" ;
+echo "basic dlete;\n" ;
 
 $event = PDO_DataObject::factory('Events');
 $event->get(12);
 $res = $event->delete();
-echo "UPDATED {$res} records\n";
+echo "DELETED {$res} records\n";
 
 
 echo "\n\n--------\n";
-echo "update (changed columns);\n" ;
+echo "delete where....);\n" ;
 
 $event = PDO_DataObject::factory('Events');
 $event->get(12);
