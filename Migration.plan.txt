@@ -175,10 +175,9 @@ e) PDO_DataObject class
   * insert() DONE  
       -- emulated sequence are not supported at present!!
   * update() DONE  
-
-  * save()??? should we add it???
-
   * delete() DONE 
+
+
   * count() DONE / NEED TESTING
 
   * load() DONE / NEED TESTING- chainable get
