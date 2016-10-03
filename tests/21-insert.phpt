@@ -88,10 +88,9 @@ PDO_DataObject::config(array(
 
  
 
-$event = PDO_DataObject::factory('Customers');
+$Customers = PDO_DataObject::factory('Customers');
  
-
-$id = $event->insert();
+$id = $Customers->insert();
 var_dump($id);
 print_r($event->toArray());
 
