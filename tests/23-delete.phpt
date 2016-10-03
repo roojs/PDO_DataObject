@@ -89,14 +89,12 @@ PDO_DataObject::debugLevel(1);
 
 $Customers = PDO_DataObject::factory('Customers');
 $Customers->get(2);
-print_r($Customers->toArray());
-$Customers->set(array(
-    'CompanyName' => 'test1',
-    'ContactName' => 'test2',
+$Customers->delete();
 
-));
-$Customers->update();
-print_r($Customers->toArray());
+$Customers = PDO_DataObject::factory('Customers');
+if (!$Customers->get(2)) {
+    echo "id=2 has been deleted as expected\n";
+}
 
 
 
