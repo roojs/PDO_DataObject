@@ -258,10 +258,10 @@ class PDO_DummyStatement {
             
             '5f82f3a2da7afaa78228444fbcba3e37' => 123123,
         ), 
-         'pgsql:dbname=inserttest;host=localhost' => array(  
+         'pgsql:dbname=pginsert;host=localhost' => array(  
             // insert....
             
-            '5f82f3a2da7afaa78228444fbcba3e37' => 123123,
+            'b641522a3fbae38828891f330aeb7313' => 43434,
         ), 
         
         
