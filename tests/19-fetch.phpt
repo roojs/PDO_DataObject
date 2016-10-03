@@ -19,19 +19,21 @@ PDO_DataObject::debugLevel(0);
 
 
 echo "\n\n--------\n";
-echo "find with a single name\n" ;
+echo "simple fetch\n" ;
 
 $company = PDO_DataObject::factory('Companies');
 $company->comptype = 'CONSULTANT';
-$company->limit(3);
+$company->limit(1);
 $rows = $company->find();
 echo "Got $rows rows from find\n";
-while ($company->fetch()) {
-    print_r($company->toArray());
-}
+$company->fetch()
+var_dump($company->toArray());
+
+
+
 
 echo "\n\n--------\n";
-echo "find & fetch with a single name\n" ;
+echo "fetch with 'fetch_into set\n" ;
 
 $company = PDO_DataObject::factory('Companies');
 $company->comptype = 'CONSULTANT';
