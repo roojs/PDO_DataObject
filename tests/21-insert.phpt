@@ -1,5 +1,5 @@
 --TEST--
-fetchAll() test
+insert() test
 --FILE--
 <?php
 require_once 'includes/init.php';
