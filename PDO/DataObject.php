@@ -2780,7 +2780,7 @@ class PDO_DataObject
         // if this table is already loaded this table..
         if (!empty(self::$ini[$database_nickname])) {
             if (self::$debug) {
-                $this->debug("structure already loaded", 3);
+                $this->debug("structure already loaded", , __METHOD__, 3);
             }
             return self::$ini[$database_nickname];  
         }
