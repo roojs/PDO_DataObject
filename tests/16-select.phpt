@@ -115,11 +115,10 @@ resulting query: SELECT a as b, c as d
 
 --------
 select reset nothing new (error)..
-PDO_DataObject   : ERROR       : Select is empty, call select with some arguments
+PDO_DataObject   : raise       : Select is empty, call select with some arguments
 as expected toSelectSQL failed : Select is empty, call select with some arguments
 
 --------
 select reset invalid args..
-PDO_DataObject   : ERROR       : selectAdd: No Valid Arguments
+PDO_DataObject   : raise       : selectAdd: No Valid Arguments
 as expected select failed : selectAdd: No Valid Arguments
-
