@@ -1261,10 +1261,10 @@ class PDO_DataObject
         for($i =0;$i< $this->_result->columnCount(); $i++) {
             $meta = $this->_result->getColumnMeta($i);
             if ($meta['name'] == $k) {
-                $cols[0] == $i;
+                $cols[0] = $i;
             }
             if ($meta['name'] == $v) {
-                $cols[1] == $i;
+                $cols[1] = $i;
             }
         }
         if (!isset($cols[0])) {
@@ -1272,7 +1272,7 @@ class PDO_DataObject
         }
         // in theory this is not 
         if ($v === false) {
-            return $this->_result->fetchAll(PDO::FETCH_FUNC, $cols[0]);
+            return $this->_result->fetchAll(PDO::FETCH_COLUMN, $cols[0]);
         }
         
         // 2 args..
