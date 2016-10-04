@@ -58,13 +58,50 @@ echo PDO_DataObject::factory('Dummy')
     ->whereToString();
 
 
+
+
+
+
+
+PDO_DataObject::debugLevel(1);
+echo "\n\n--------\n";
+echo "sqlValue - null values on notnull;\n" ;
+
+
+DO_DataObject::factory('Dummy')
+    ->set([
+       'ex_string' => null,
+        'ex_int' => null,
+    ]);
+
+
+
+PDO_DataObject::factory('Dummy')
+    ->set([
+       'ex_string' => 'NULL',
+        'ex_int' => 'NULL',
+    ])
+    ->whereToString();
+    
+
+
+
+PDO_DataObject::debugLevel(1);
 echo "\n\n--------\n";
 echo "sqlValue - null values;\n" ;
 
+
+
+
+
+
+
+
+
 echo "\nusing value null: " . PDO_DataObject::factory('Dummy')
     ->set([
-      //  'ex_string' => null,
-      //  'ex_int' => null,
+       'ex_string' => null,
+        'ex_int' => null,
         'ex_null_string' => null,
         'ex_null_int' => null
     ])
@@ -74,8 +111,8 @@ echo "\nusing value null: " . PDO_DataObject::factory('Dummy')
 
 echo "\nusing string null: " . PDO_DataObject::factory('Dummy')
     ->set([
-        'ex_string' => 'NULL',
-        'ex_int' => 'NULL',
+       // 'ex_string' => 'NULL',
+       // 'ex_int' => 'NULL',
         'ex_null_string' => 'NULL',
         'ex_null_sql' => 'NULL'
     ])
