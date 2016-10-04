@@ -5020,9 +5020,7 @@ class PDO_DataObject
                   self::raise("argument passed to is_null_member was not an object or array",
                         self::ERROR_INVALIDARGS);
         }
-
-        
-        
+ 
     	  
                      
         $crazy_null =   self::$config['disable_null_strings'] === 'full'; // why case insensitive?
