@@ -587,7 +587,7 @@ class PDO_DataObject_Cast {
     * @return   bool
     * @access   public
     */
-    function isNull($to,$db) 
+    function isNull() 
     {
         return $this->type == 'sql' && strtolower($this->value) == 'null'; 
     }
