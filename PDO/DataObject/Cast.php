@@ -275,10 +275,8 @@ class PDO_DataObject_Cast {
             return false;
         }
         
-        $r = PDO_DataObject_Cast::date($bits[0], $bits[1], $bits[2]);
-        if (!$r) {
-            return $r; // pass thru error (False) - doesnt happen at present!
-        }
+        $r = PDO_DataObject_Cast::date((int)$bits[0], (int)$bits[1], (int)$bits[2]);
+       
         // change the type!
         $r->type = 'datetime';
         
@@ -337,9 +335,9 @@ class PDO_DataObject_Cast {
         // now take data from bits into object fields
         $r = new PDO_DataObject_Cast;
         $r->type = 'time';
-        $r->hour = $bits[0];
-        $r->minute = $bits[1];
-        $r->second = $bits[2];
+        $r->hour = (int)$bits[0];
+        $r->minute = (int)$bits[1];
+        $r->second = (int)$bits[2];
         return $r;
 
     }
