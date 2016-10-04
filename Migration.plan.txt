@@ -211,7 +211,7 @@ e) PDO_DataObject class
 
 --- > databases[] set, but no database - should scan ini to determine which db to use...
 --- > transactions BEGIN/ROLLBACK/COMMIT
---- > buffered queries?? - results in get failing!?!
+--- > un-buffered queries?? - results in get failing!?!
 
 
 
