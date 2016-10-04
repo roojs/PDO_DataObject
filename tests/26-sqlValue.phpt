@@ -25,26 +25,19 @@ echo PDO_DataObject::factory('Events')
 echo "\n\n--------\n";
 echo "sqlValue - various values..;\n" ;
 
-echo PDO_DataObject::factory('Events')
+echo PDO_DataObject::factory('Dummy')
     ->set([
-        'action' => PDO_DataObject::sqlValue('blob','a long piece of data'))
-        'remarks' => PDO_DataObject::sqlValue('string', 123123),
-        'person_name' => PDO_DataObject::sqlValue('sql', 'NOW()'),
-        'event_when' => PDO_DataObject::sqlValue('date', '2000-01-01 10:00:00)'),  
+        'ex_blob' => PDO_DataObject::sqlValue('blob','a long piece of data'),
+        'ex_string' => PDO_DataObject::sqlValue('string', 123123),
+        'ex_sql' => PDO_DataObject::sqlValue('sql', 'NOW()'),
+        'ex_date' => PDO_DataObject::sqlValue('date', '2000-01-01 10:00:00)'),
+        'ex_datetime' => PDO_DataObject::sqlValue('dateTime', '2000-01-01 10:00:00)'),
+        'ex_time' => PDO_DataObject::sqlValue('time', '2000-01-01 10:00:00)'),        
     ])
     ->whereToString();
 
-
-// need a few more date fields to test really..
-echo PDO_DataObject::factory('Events')
-    ->set([ 'event_when' => PDO_DataObject::sqlValue('dateTime', '2000-01-01 10:00:00)'),  
-    ])
-    ->whereToString() . "\n";
+// test other crosses.. probably throwing errors..
     
-echo PDO_DataObject::factory('Events')
-    ->set([ 'event_when' => PDO_DataObject::sqlValue('time', '2000-01-01 10:00:00)'),  
-    ])
-    ->whereToString() . "\n";
     
 //=== test on pgsql.. for blobs.
 
