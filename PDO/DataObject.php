@@ -163,7 +163,7 @@ class PDO_DataObject
             'quote_identifiers' => false,
                 // Quote table and column names when building queries 
  
-            'disable_null_strings' => false,
+            'enable_null_strings' => false,
                 // DataObjects will convert the text value 'null' to NULL when building queries
                 // this may cause problems! Setting to true will turn off this feature.
                 // you can use PDO_DataObject_Cast::SQL('NULL'); in where you have to turn this off.
