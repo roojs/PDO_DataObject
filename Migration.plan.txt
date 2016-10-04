@@ -190,16 +190,9 @@ e) PDO_DataObject class
   * sequenceKey() DONE tested as part of insert/update...
   * whereToString() (was _build_condition) DONE testing as part of select/selectAdd..
   
-  * sqlValue() - DONE / NEED TESTING
-  * PDO_DataObject_Cast ( $DB == PDO object...)  DONE / NEED TESTING
+  * sqlValue() - DONE 
+  * PDO_DataObject_Cast ( $DB == PDO object...)  DONE  
 
-
-  * links() DONE / NEED TESTING
-
-  * joinAdd() DONE / NEED TESTING
-  * autoJoin() DONE / NEED TESTING
- 
- 
   * setFrom() DONE / NEED TESTING
   * set() << chained version of setFrom? DONE / NEED TESTING
   * fromValue() DONE / NEED TESTING
@@ -207,7 +200,14 @@ e) PDO_DataObject class
   * toArray() DONE / NEED TESTING
   * toValue() - renamed to formatValue (date formating is not compatible)
   * validate()  DONE / NEED TESTING - moved to seperate class...
-  * raise  (was raiseError) -- all calls need DIE removing....
+  * raise  (was raiseError) -- DONE - tests all over the place......
+ 
+
+  * links() DONE / NEED TESTING
+
+  * joinAdd() DONE / NEED TESTING
+  * autoJoin() DONE / NEED TESTING
+ 
  
   * config DONE / NEEDS TESTING - of various settings...
 
