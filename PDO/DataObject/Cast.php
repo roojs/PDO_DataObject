@@ -482,7 +482,8 @@ class PDO_DataObject_Cast {
             return self::raise('Invalid Cast from a PDO_DataObject_Cast::string to something other than a date!'.
                 ' (why not just use native features)',PDO_DataObject::ERROR_INVALIDARGS);
         }
-        return "'{$this->year}-{$this->month}-{$this->day}'";
+        return sprintf("'%04d-%02d-%02d'", 
+            $this->year,$this->month, $this->day);
     }
     
     /**
@@ -510,7 +511,8 @@ class PDO_DataObject_Cast {
                 ' PDO_DataObject_Cast::dateTime to something other than a datetime!' .
                 ' (try using native features)',PDO_DataObject::ERROR_INVALIDARGS);
         }
-        return "'{$this->year}-{$this->month}-{$this->day} {$this->hour}:{$this->minute}:{$this->second}'";
+        return sprintf("'%04d-%02d-%02d %02d:%02d:%02d'", 
+            $this->year,$this->month, $this->day,  $this->hour,$this->minute, $this->second);
     }
 
     /**
