@@ -845,8 +845,11 @@ class PDO_DataObject
           } else {
               $res = $this->get($k, $v)l
           }
-          if ($res != 1) {
+          if ($res < 1) {
               $this->raise("No Data returned from load", self::ERROR_NODATA);
+          }
+          if ($res > 1) {
+              $this->raise("No Data returned from load", self::ERROR_INVALIDARGS);
           }
           $this->snapshot();
           return $this;
