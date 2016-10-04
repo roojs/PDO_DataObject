@@ -171,8 +171,8 @@ class PDO_DataObject
                 // if you want or needto use NULL in your database:
                 // use PDO_DataObject::sqlValue('NULL');
 
-		 
-                // values true  means  'NULL' as a string is supported
+		            // BC - not recommended for new code...
+                // values true  means  'NULL' as a string is supported      
                 // values 'full' means both 'NULL' and guessing with isset() is supported
                 
                 
