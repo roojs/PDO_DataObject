@@ -288,7 +288,9 @@ class PDO_DummyStatement {
             
             'de2b1352684938007346c359b3406ea9' => false, // invalid SQL..
             
-            
+             '8954200ac8480d37239612ab7fe410a3' => '[
+                {"id":"3523","person_name":"Alan","event_when":"2009-04-16 14:05:32","action":"RELOAD","ipaddr":"202.134.82.251","on_id":"0","on_table":"","person_id":"4","remarks":"0","person_table":null}
+             ]',
         ), 
          'pgsql:dbname=pginsert;host=localhost' => array(  
             // insert....
@@ -309,16 +311,24 @@ class PDO_DummyStatement {
     
     function __construct($db, $query)
     {
+        
         if (isset(self::$results[$db][$query])) {
-            $this->result = json_decode(self::$results[$db][$query], true);
-            return;
+            $value = self::$results[$db][$query];
+            
+            
         }
         if (isset(self::$results[$db][md5($query)])) {
-            $this->result = json_decode(self::$results[$db][md5($query)], true);
+            $value = self::$results[$db][md5($query)];
             
-            return;
         }
-        throw new Exception(__CLASS__  . " missing query: DB: $db  QUERY=  " . md5($query) ."\n" . $query);
+        if (!isset($value)) {
+            throw new Exception(__CLASS__  . " missing query: DB: $db  QUERY=  " . md5($query) ."\n" . $query);
+        }
+        
+        if ($value === false) {
+            throw new PDOException("dummy sql error", 9999);
+        }
+        $this->result = json_decode($value,true);
         
         
         
