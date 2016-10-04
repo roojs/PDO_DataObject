@@ -270,7 +270,7 @@ class PDO_DummyStatement {
             'e0f63974357eab3b7b082f80cf5c26aa' => 10, // multiple delte..
             
             // count tests..
-            'da10443bc8585f7dc122c0bb5c930945' => '[ { "DATAOBJECT_NUM": 574675 }]';
+            'da10443bc8585f7dc122c0bb5c930945' => '[ { "DATAOBJECT_NUM": 574675 }]',
             
             
         ), 
