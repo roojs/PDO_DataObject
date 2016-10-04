@@ -1,5 +1,5 @@
 --TEST--
-delete() test
+count() test
 --FILE--
 <?php
 require_once 'includes/init.php';
