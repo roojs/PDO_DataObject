@@ -580,7 +580,7 @@ class PDO_DataObject_Cast {
     }
     
     /**
-    * is This object representing a 'null' value...
+    * does this object representing a 'null' value...
     *
     * 
     *
