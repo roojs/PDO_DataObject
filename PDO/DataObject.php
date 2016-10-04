@@ -3268,10 +3268,7 @@ class PDO_DataObject
                 $ret .= "($kSql = {$this->$k})";
                 continue;
             }
-            //if ($v & self::INT && is_string($this->$k)) {
-            //    $ret .=  "($kSql = ". (empty($this->$k) ? 0 : 1 ) . ')';
-            //    continue;
-            //}
+            // strings get cast to '0' .... it's a little unexpected...
             /* this is probably an error condition! */
             $ret .= "($kSql = ".intval($this->$k) .')';
         }
