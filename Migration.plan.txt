@@ -211,6 +211,7 @@ e) PDO_DataObject class
  
   * config DONE / NEEDS TESTING - of various settings...
 
+--- > NULL values in INSERT/UPDATE 
 --- > databases[] set, but no database - should scan ini to determine which db to use...
 --- > transactions BEGIN/ROLLBACK/COMMIT
 --- > un-buffered queries?? - results in get failing!?!
