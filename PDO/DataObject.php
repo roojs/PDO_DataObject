@@ -4522,7 +4522,9 @@ class PDO_DataObject
             if (!array_key_exists( sprintf($format,$k), $from)) {
                 continue;
             }
-            
+           
+
+
             $kk = (strtolower($k) == 'from') ? '_from' : $k;
             if (method_exists($this,'set'. $kk)) {
                 $ret =  $this->{'set'.$kk}($from[sprintf($format,$k)]);
@@ -4532,6 +4534,11 @@ class PDO_DataObject
                 continue;
             }
             $val = $from[sprintf($format,$k)];
+            if (self::_is_null($from, sprintf($format,$k)) {
+                $val = $this->sqlValue('NULL');
+            }
+
+
             if (is_a($val, 'PDO_DataObject_Cast')) {
                 $this->$k = $val;
                 continue;
