@@ -842,8 +842,8 @@ class PDO_DataObject
           $res = 0;          
           if ($k === null && $v === null) {
 
-              $str = $this->toWhereString($this->tableColumns());
-              if (!strlen(trim($str)) {
+              $str = $this->whereToString($this->tableColumns());
+              if (!strlen(trim($str))) {
                   $this->raise("No condition (property or where) set for loading data.", self::ERROR_INVALIDARGS);
               }
               $res = $this->find(true);

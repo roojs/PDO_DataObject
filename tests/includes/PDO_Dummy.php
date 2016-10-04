@@ -85,6 +85,9 @@ class PDO_Dummy {
         return $this->last_statement->result;
         
     }
-    
+    function beginTransaction()
+    {
+        
+    }
     
 }
