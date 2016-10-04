@@ -50,6 +50,45 @@ echo "Total rows (with person_id < 20): {$event->count(PDO_DataObject::WHERE_ONL
 
 
 
+echo "\n\n--------\n";
+echo "count distinct;\n" ;
+
+$event = PDO_DataObject::factory('Events');
+echo "Total rows (distinct person_name): {$event->count('distinct person_name')}\n";
+
+
+
+echo "\n\n--------\n";
+echo "count distinct + property;\n" ;
+
+$event = PDO_DataObject::factory('Events');
+$event->action = 'RELOAD';
+echo "Total rows (distinct person_name) - with action=RELOAD: {$event->count('distinct person_name')}\n";
+
+
+echo "\n\n--------\n";
+echo "count distinct + property + where ;\n" ;
+
+$event = PDO_DataObject::factory('Events');
+$event->action = 'RELOAD';
+$event->where('id = > 10000');
+echo "Total rows (distinct person_name) - with action=RELOAD  where: {$event->count('distinct person_name')}\n";
+
+
+
+echo "\n\n--------\n";
+echo "count distinct + property + where + WHERE_ONLY ;\n" ;
+
+$event = PDO_DataObject::factory('Events');
+$event->action = 'RELOAD';
+$event->where('id = > 10000');
+echo "Total rows (distinct person_name) - with action=RELOAD  where: {$event->count('distinct person_name', PDO_DataObject::WHERE_ONLY)}\n";
+
+
+
+
+
+
 
 
 
