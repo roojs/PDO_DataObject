@@ -98,41 +98,6 @@ $event->limit(1);
 $event->fetchAll();
 $event->count();
 
-
-
-
-$res = $event->delete(PDO_DAtaObject::WHERE_ONLY);
-echo "DELETED {$res} records\n";
-
-
-
-echo "\n\n--------\n";
-echo "delete where, without flag....);\n" ;
-
-$event = PDO_DataObject::factory('Events');
-try {
-    $event->where('id > 12');
-    $event->delete();
-} catch (PDO_DataObject_Exception_InvalidArgs $e) {
-    echo "failed as expected : " . $e->getMessage();
-}
-
-
-echo "\n\n--------\n";
-echo "delete all?....);\n" ;
-
-$event = PDO_DataObject::factory('Events');
-try {
-    $event->delete();
-} catch (PDO_DataObject_Exception_InvalidArgs $e) {
-    echo "failed as expected : " . $e->getMessage();
-}
-// should throw error..
-
- 
-// joined????  
- 
- 
  
  
  
