@@ -49,18 +49,26 @@ echo PDO_DataObject::factory('Dummy')
     ->whereToString();    
 
 echo "\n\n--------\n";
-echo "sqlValue - datetime to other types..;\n" ;
+echo "sqlValue - date to other types..;\n" ;
 
 echo PDO_DataObject::factory('Dummy')
     ->set([
         
-        'ex_date' => PDO_DataObject::sqlValue('date', '2000-01-01 10:00:00'),
-        'ex_datetime' => PDO_DataObject::sqlValue('date', '2000-01-01 10:00:00'),
+        'ex_date' => PDO_DataObject::sqlValue('date', '2000-01-01'),
+        'ex_datetime' => PDO_DataObject::sqlValue('date', '2000-01-01'),
     ])
     ->whereToString();    
     
     
 //=== test on pgsql.. for blobs.
+
+PDO_DataObject::config(array(
+        'class_location' => __DIR__.'/includes/sample_classes/DataObjects_',
+    // fake db..
+   
+        'database' => 'pgsql://user:pass@localhost/inserttest'
+      
+));
 
 ?>
 --EXPECT--
