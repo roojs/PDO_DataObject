@@ -2464,7 +2464,7 @@ class PDO_DataObject
      * $object = new mytable();
      * $object->name = "fred";
      * echo $object->count();
-     * echo $object->count(true);  // dont use object vars.
+     * echo $object->count(PDO_DataObject::WHERE_ONLY);  // dont use object vars.
      * echo $object->count('distinct mycol');   count distinct mycol.
      * echo $object->count('distinct mycol',true); // dont use object vars.
      * echo $object->count('distinct');      // count distinct id (eg. the primary key)
