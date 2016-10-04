@@ -31,10 +31,18 @@ echo "\n\n--------\n";
 echo "basic load/set/save;\n" ;
 
 PDO_DataObject::factory('Events')
-    ->load(12);
+    ->load(3523);
     ->set(['action => "testing" ])
     ->save();
 
+
+echo "\n\n--------\n";
+echo "basic load/set/save;\n" ;
+
+PDO_DataObject::factory('Events')
+    ->load(3523);
+    ->set(['action => "testing" ])
+    ->save();
 
 
 
