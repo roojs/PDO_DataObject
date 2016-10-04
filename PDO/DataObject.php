@@ -5023,10 +5023,9 @@ class PDO_DataObject
 
         
         
-    	  $options = self::$config;
-    	
+    	  
                      
-        $crazy_null =   $options['disable_null_strings'] === 'full'; // why case insensitive?
+        $crazy_null =   self::$config['disable_null_strings'] === 'full'; // why case insensitive?
         
         
         if ($isset) {
@@ -5062,7 +5061,7 @@ class PDO_DataObject
         
     	  $options = self::$config;
     	
-        $null_strings =  $options['disable_null_strings'] === false;
+        $null_strings =  self::$config['disable_null_strings'] === false;
         
         if (is_a($value, 'PDO_DataObject_Cast') && $value->isNull()) {
             return true;
