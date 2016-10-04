@@ -1,3 +1,6 @@
+--TEST--
+sqlValue Test
+--FILE--
 <?php
 require_once 'includes/init.php';
 
