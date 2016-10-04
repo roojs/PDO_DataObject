@@ -1974,8 +1974,8 @@ class PDO_DataObject
             $this->raise("Emulated Sequences are not supported at present", self::ERROR_INVALIDCONFIG);
         }
         
-        // if we haven't set disable_null_strings to "full"
-        $ignore_null = self::$config['disable_null_strings'] === false; // default...
+        // if we haven't set enable_null_strings to "full"
+        $ignore_null = self::$config['enable_null_strings'] !== false; // default...
                     
              
         foreach($items as $k => $v) {
@@ -2209,7 +2209,7 @@ class PDO_DataObject
             $dataObject = $this->_snapshot;
         }
         
-        $ignore_null = self::$config['disable_null_strings'] === false;
+        $ignore_null = self::$config['enable_null_strings'] !== false;
                     
 
         foreach($items as $k => $v) {
@@ -5011,10 +5011,10 @@ class PDO_DataObject
         
     }
     /**
-    * Evaluate whether or not a value is set to null, taking the 'disable_null_strings' option into account.
-    * If the value is a string set to "null" and the "disable_null_strings" option is not set to 
+    * Evaluate whether or not a value is set to null, taking the 'enable_null_strings' option into account.
+    * If the value is a string set to "null" and the "enable_null_strings" option is not set to 
     * true, then the value is considered to be null.
-    * If the value is actually a PHP NULL value, and "disable_null_strings" has been set to 
+    * If the value is actually a PHP NULL value, and "enable_null_strings" has been set to 
     * the value "full", then it will also be considered null. - this can not differenticate between not set
     * 
     * 
@@ -5059,10 +5059,10 @@ class PDO_DataObject
     	
     }
      /**
-    * Evaluate whether a simple value is set to null, taking the 'disable_null_strings' option into account.
-    * If the value is a string set to "null" and the "disable_null_strings" option is not set to 
+    * Evaluate whether a simple value is set to null, taking the 'enable_null_strings' option into account.
+    * If the value is a string set to "null" and the "enable_null_strings" option is not set to 
     * true, then the value is considered to be null.
-    * If the value is actually a PHP NULL value, and "disable_null_strings" has been set to 
+    * If the value is actually a PHP NULL value, and "enable_null_strings" has been set to 
     * the value "full", then it will also be considered null. - this can not differenticate between not set
     * 
     * @param  mixed $value to check
