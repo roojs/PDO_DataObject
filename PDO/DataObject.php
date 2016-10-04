@@ -4538,7 +4538,7 @@ class PDO_DataObject
                 continue;
             }
             $val = $from[sprintf($format,$k)];
-            if (self::_is_null_member($from, sprintf($format,$k)) {
+            if (self::_is_null_member($from, sprintf($format,$k))) {
                 $val = $this->sqlValue('NULL');
             }
 
