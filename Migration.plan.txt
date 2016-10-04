@@ -211,6 +211,9 @@ e) PDO_DataObject class
 
 --- > databases[] set, but no database - should scan ini to determine which db to use...
 --- > transactions BEGIN/ROLLBACK/COMMIT
+--- > buffered queries?? - results in get failing!?!
+
+
 
 PDO_DataObject_Cast ( $DB == PDO object...)  DONE / NEED TESTING
 PDO_DataObject_Links ( )  DONE / NEED TESTING
