@@ -65,7 +65,8 @@ echo PDO_DataObject::factory('Dummy')
 
 PDO_DataObject::debugLevel(1);
 echo "\n\n--------\n";
- 
+echo "enable_null_valus = default = off\n" ;
+
  
 echo "\nsetting string and int to null: " . PDO_DataObject::factory('Dummy')
     ->set([
@@ -75,13 +76,23 @@ echo "\nsetting string and int to null: " . PDO_DataObject::factory('Dummy')
         'ex_null_int' => null,
     ])->whereToString(). "\n";
     
-echo "\nsetting string and int to 'NULL' : " . PDO_DataObject::factory('Dummy')
+echo "\nsetting string   to 'NULL' : " . PDO_DataObject::factory('Dummy')
     ->set([
         'ex_string' => 'NULL',
-        'ex_int' => 'NULL',
         'ex_null_string' => 'NULL',
-        'ex_null_int' => 'NULL',
     ])->whereToString() . "\n";
+    
+try {   
+echo "\nsetting string and int to 'NULL' : " . PDO_DataObject::factory('Dummy')
+    ->set([
+        'ex_int' => 'NULL',
+        'ex_null_int' => 'NULL',
+    ])->whereToString() . "\n";    
+ 
+    
+} catch (PDO_DataObject_Exception_Set $e) {
+    echo "\nset got errors as expected: {$e->getMessage()}\n";
+}   
     
 
 try {
