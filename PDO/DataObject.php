@@ -4522,12 +4522,7 @@ class PDO_DataObject
             if (!array_key_exists( sprintf($format,$k), $from)) {
                 continue;
             }
-            // if value is not null, and value is being set to some kind of NULL
-            // then ignore it!?!?
-            if ($type & self::NOTNULL && self::_is_null($from, sprintf($format,$k))) {
-                continue;
-            }
-           
+            
             $kk = (strtolower($k) == 'from') ? '_from' : $k;
             if (method_exists($this,'set'. $kk)) {
                 $ret =  $this->{'set'.$kk}($from[sprintf($format,$k)]);
@@ -4546,7 +4541,7 @@ class PDO_DataObject
             }
             $ret = $this->fromValue($k,$val);
             if ($ret !== true)  {
-                $overload_return[$k] = 'Not A Valid Value';
+                $overload_return[$k] = $ret === false ? 'Not A Valid Value' : $ret;
             }
             //$this->$k = $from[sprintf($format,$k)];
         }
@@ -4574,7 +4569,7 @@ class PDO_DataObject
         $ret = $this->setFrom($from, $format, $skipEmpty);
         if ($ret !== true) {
             self::$set_errors  = $ret;
-            return $this->raise("Set Errors Returned Values",self::ERROR_SET);
+            return $this->raise("Set Errors Returned Values: \n" . print_R($ret,true),self::ERROR_SET);
         }
         return $this;
     }
@@ -4595,7 +4590,7 @@ class PDO_DataObject
     * @param   string       column of database
     * @param   mixed        value to assign
     *
-    * @return   true| false     (False on error)
+    * @return   string|true     (String on error)
     * @access   public
     */
   
