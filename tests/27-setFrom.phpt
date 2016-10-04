@@ -61,8 +61,27 @@ echo PDO_DataObject::factory('Dummy')
 echo "\n\n--------\n";
 echo "sqlValue - null values;\n" ;
 
- 
- 
+echo PDO_DataObject::factory('Dummy')
+    ->set([
+        'ex_string' => 'NULL',
+        'ex_int' => 'NULL',
+        'ex_null_string' => null,
+        'ex_null_int' => null
+    ])
+    ->whereToString();
+
+
+
+echo PDO_DataObject::factory('Dummy')
+    ->set([
+        'ex_null_string' => 'NULL',
+        'ex_null_sql' => 'NULL'
+    ])
+    ->whereToString();
+
+
+ ex_null_string = 2
+ex_null_int = 1
  
 ?>
 --EXPECT--
