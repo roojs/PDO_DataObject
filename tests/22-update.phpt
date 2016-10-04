@@ -166,14 +166,10 @@ PDO_DataObject   : query       : 2bdf264b81e628acfbf68368a1175be6 : SELECT *
  WHERE ( (Events.id = 12) ) 
 
 QUERY: 2bdf264b81e628acfbf68368a1175be6
-PDO_DataObject   : query       : NO# of results: 1
+PDO_DataObject   : query       : NO# of results: 0
 PDO_DataObject   : find       : CHECK autofetched true
-PDO_DataObject   : find       : ABOUT TO AUTOFETCH
-Fetch Row 0 / 1
-PDO_DataObject   : fetch       : {"id":"3523","person_name":"Alan","event_when":"2009-04-16 14:05:32","action":"RELOAD","ipaddr":"202.134.82.251","on_id":"0","on_table":"","person_id":"4","remarks":"0","person_table":null}
-PDO_DataObject   : find       : DONE
-PDO_DataObject   : query       : 0b5821c352497585812c2320e23bccbb : UPDATE  Events  SET person_name = 'Alan' , event_when = '2009-04-16 14:05:32' , action = 'testing' , ipaddr = '202.134.82.251' , on_id = 0 , on_table = '' , person_id = 4 , remarks = '0'  WHERE (Events.id = 3523) 
-QUERY: 0b5821c352497585812c2320e23bccbb
+PDO_DataObject   : query       : b2a4eb0dec91cfe1617857e5cf0eda5c : UPDATE  Events  SET action = 'testing'  WHERE (Events.id = 12) 
+QUERY: b2a4eb0dec91cfe1617857e5cf0eda5c
 PDO_DataObject   : query       : NO# of results: 1
 UPDATED 1 records
 
@@ -187,14 +183,10 @@ PDO_DataObject   : query       : 2bdf264b81e628acfbf68368a1175be6 : SELECT *
  WHERE ( (Events.id = 12) ) 
 
 QUERY: 2bdf264b81e628acfbf68368a1175be6
-PDO_DataObject   : query       : NO# of results: 1
+PDO_DataObject   : query       : NO# of results: 0
 PDO_DataObject   : find       : CHECK autofetched true
-PDO_DataObject   : find       : ABOUT TO AUTOFETCH
-Fetch Row 0 / 1
-PDO_DataObject   : fetch       : {"id":"3523","person_name":"Alan","event_when":"2009-04-16 14:05:32","action":"RELOAD","ipaddr":"202.134.82.251","on_id":"0","on_table":"","person_id":"4","remarks":"0","person_table":null}
-PDO_DataObject   : find       : DONE
-PDO_DataObject   : query       : 9da43100ad8e2d1eee0cfee396c16588 : UPDATE  Events  SET action = 'testing'  WHERE (Events.id = 3523) 
-QUERY: 9da43100ad8e2d1eee0cfee396c16588
+PDO_DataObject   : query       : b2a4eb0dec91cfe1617857e5cf0eda5c : UPDATE  Events  SET action = 'testing'  WHERE (Events.id = 12) 
+QUERY: b2a4eb0dec91cfe1617857e5cf0eda5c
 PDO_DataObject   : query       : NO# of results: 1
 UPDATED 1 records
 
@@ -208,12 +200,8 @@ PDO_DataObject   : query       : 2bdf264b81e628acfbf68368a1175be6 : SELECT *
  WHERE ( (Events.id = 12) ) 
 
 QUERY: 2bdf264b81e628acfbf68368a1175be6
-PDO_DataObject   : query       : NO# of results: 1
+PDO_DataObject   : query       : NO# of results: 0
 PDO_DataObject   : find       : CHECK autofetched true
-PDO_DataObject   : find       : ABOUT TO AUTOFETCH
-Fetch Row 0 / 1
-PDO_DataObject   : fetch       : {"id":"3523","person_name":"Alan","event_when":"2009-04-16 14:05:32","action":"RELOAD","ipaddr":"202.134.82.251","on_id":"0","on_table":"","person_id":"4","remarks":"0","person_table":null}
-PDO_DataObject   : find       : DONE
 UPDATED 1 records
 
 
