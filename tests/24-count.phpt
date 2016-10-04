@@ -28,19 +28,32 @@ PDO_DataObject::debugLevel(1);
 //PDO_DataObject::factory('Events')->limit(1)->find(true);
 
 echo "\n\n--------\n";
-echo "basic delete;\n" ;
+echo "basic count;\n" ;
 
 $event = PDO_DataObject::factory('Events');
-$event->get(12);
-$res = $event->delete();
-echo "DELETED {$res} records\n";
+echo "Total rows: {$event->count()}\n";
 
 
 echo "\n\n--------\n";
-echo "delete where....);\n" ;
+echo "count matching properties....);\n" ;
 
 $event = PDO_DataObject::factory('Events');
-$event->where('id > 12');
+$event->person_name = 'Alan';
+echo "Total rows (with person=Alan): {$event->count()}\n";
+
+echo "\n\n--------\n";
+echo "count based on where......);\n" ;
+
+$event = PDO_DataObject::factory('Events');
+$event->where('person_id < 20')
+echo "Total rows (with person_id < 20): {$event->count(PDO_DataObject::WHERE_ONLY)}\n";
+
+
+
+
+
+
+
 $res = $event->delete(PDO_DAtaObject::WHERE_ONLY);
 echo "DELETED {$res} records\n";
 
