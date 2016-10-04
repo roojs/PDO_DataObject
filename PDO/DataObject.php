@@ -4522,9 +4522,10 @@ class PDO_DataObject
             if (!array_key_exists( sprintf($format,$k), $from)) {
                 continue;
             }
-
-            if (!($type & self::NOTNULL) && self::_is_null($from, sprintf($format,$k))) {
-                $this->
+            // if value is not null, and value is being set to some kind of NULL
+            // then ignore it!?!?
+            if ($type & self::NOTNULL && self::_is_null($from, sprintf($format,$k))) {
+                continue;
             }
            
             $kk = (strtolower($k) == 'from') ? '_from' : $k;
@@ -4612,7 +4613,7 @@ class PDO_DataObject
         switch (true) {
             // set to null and column is can be null...
             case ((!($cols[$col] & self::NOTNULL)) && self::_is_null($value, false)):
-                $this->$col = $value;
+                $this->$col = $this->sqlValue('NULL');
                 return true;
                 
             // fail on setting null on a not null field..
