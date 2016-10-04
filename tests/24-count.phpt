@@ -91,7 +91,7 @@ echo "count distinct + property + where + WHERE_ONLY ;\n" ;
 $event = PDO_DataObject::factory('Events');
 $event->action = 'RELOAD';
 $event->where('id < -1');
-echo "Total rows (distinct person_name) - with action=RELOAD  where: {$event->count('distinct person_name', PDO_DataObject::WHERE_ONLY)}\n";
+echo "Total rows (zero results) where: {$event->count(PDO_DataObject::WHERE_ONLY)}\n";
 
 
 
