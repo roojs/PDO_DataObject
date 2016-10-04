@@ -36,6 +36,8 @@ echo PDO_DataObject::factory('Dummy')
     ])
     ->whereToString();
 
+echo "\n\n--------\n";
+echo "sqlValue - datetime to other types..;\n" ;
 // test other crosses.. probably throwing errors..
 echo PDO_DataObject::factory('Dummy')
     ->set([
@@ -45,6 +47,15 @@ echo PDO_DataObject::factory('Dummy')
         'ex_time' => PDO_DataObject::sqlValue('dateTime',  '2000-01-01 10:00:00'),        
     ])
     ->whereToString();    
+
+echo PDO_DataObject::factory('Dummy')
+    ->set([
+        
+        'ex_date' => PDO_DataObject::sqlValue('date', '2000-01-01 10:00:00'),
+        'ex_datetime' => PDO_DataObject::sqlValue('date', '2000-01-01 10:00:00'),
+    ])
+    ->whereToString();    
+    
     
 //=== test on pgsql.. for blobs.
 
