@@ -5025,12 +5025,13 @@ class PDO_DataObject
                         self::ERROR_INVALIDARGS);
         }
    
-        $crazy_null =   self::$config['disable_null_strings'] === 'full'; // why case insensitive?
-         
+          
         if ($isset) {
             return self::_is_null($value);
         }
         
+        $crazy_null =   self::$config['disable_null_strings'] === 'full'; // why case insensitive?
+       
         if ( $crazy_null && !$isset )  {
         	  return true;
         }
