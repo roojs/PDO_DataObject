@@ -86,7 +86,7 @@ echo "Total rows (distinct person_name) - with action=RELOAD  where: {$event->co
 
 
 echo "\n\n--------\n";
-echo "count distinct + property + where + WHERE_ONLY ;\n" ;
+echo "count zero results. ;\n" ;
 
 $event = PDO_DataObject::factory('Events');
 $event->action = 'RELOAD';
