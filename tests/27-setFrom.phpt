@@ -67,13 +67,15 @@ PDO_DataObject::debugLevel(1);
 echo "\n\n--------\n";
 echo "sqlValue - null values on notnull;\n" ;
 
-
-DO_DataObject::factory('Dummy')
+try {
+PDO_DataObject::factory('Dummy')
     ->set([
        'ex_string' => null,
         'ex_int' => null,
     ]);
-
+} catch (PDO_DataObject_Exception_Set $e) {
+    echo "set got errors as expected: {$e->getMessage()}\n";
+}
 
 
 PDO_DataObject::factory('Dummy')
