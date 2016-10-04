@@ -45,7 +45,7 @@ echo "\n\n--------\n";
 echo "count based on where......);\n" ;
 
 $event = PDO_DataObject::factory('Events');
-$event->where('person_id < 20')
+$event->where('person_id < 20');
 echo "Total rows (with person_id < 20): {$event->count(PDO_DataObject::WHERE_ONLY)}\n";
 
 
@@ -102,10 +102,9 @@ $event->count();
  
  
 echo "\n\n--------\n";
-echo "Test SQLite  update - empty\n" ;
+echo "Test SQLite\n" ;
 
-$temp  = tempnam(ini_get('session.save-path'), 'sqlite-test');
-copy(__DIR__.'/includes/EssentialSQL.db', $temp);
+
 
 PDO_DataObject::reset();
 PDO_DataObject::config(array(
@@ -114,7 +113,7 @@ PDO_DataObject::config(array(
             'Customers' => 'EssentialSQL'
         ),
         'databases' => array(
-            'EssentialSQL' => 'sqlite:'.$temp
+            'EssentialSQL' => 'sqlite:'.$__DIR__.'/includes/EssentialSQL.db'
         ),
         'proxy' => 'Full',
         'debug' => 0,
@@ -126,34 +125,77 @@ PDO_DataObject::debugLevel(1);
 
  
 
-$Customers = PDO_DataObject::factory('Customers');
-$Customers->get(2);
-$Customers->delete();
+
+echo "\n\n--------\n";
+echo "basic count;\n" ;
 
 $Customers = PDO_DataObject::factory('Customers');
-if (!$Customers->get(2)) {
-    echo "id=2 has been deleted as expected\n";
-}
+echo "Total rows: {$Customers->count()}\n";
+
+
+echo "\n\n--------\n";
+echo "count matching properties....);\n" ;
+
+$Customers = PDO_DataObject::factory('Customers');
+$Customers->State='FL';
+echo "Total rows (with state=FL): {$Customers->count()}\n";
+
+echo "\n\n--------\n";
+echo "count based on where......);\n" ;
+
+$Customers = PDO_DataObject::factory('Customers');
+$Customers->where("state in ('FL', 'TX')");
+echo "Total rows (with FL or TX): {$Customers->count(PDO_DataObject::WHERE_ONLY)}\n";
+
+
+
+echo "\n\n--------\n";
+echo "count distinct;\n" ;
+
+$Customers = PDO_DataObject::factory('Customers');
+echo "Total rows (distinct state): {$Customers->count('distinct state')}\n";
+
+
+
+echo "\n\n--------\n";
+echo "count distinct + property;\n" ;
+
+$Customers = PDO_DataObject::factory('Customers');
+$Customers->action = 'RELOAD';
+echo "Total rows (distinct person_name) - with action=RELOAD: {$Customers->count('distinct person_name')}\n";
+
+
+echo "\n\n--------\n";
+echo "count distinct + property + where ;\n" ;
+
+$Customers = PDO_DataObject::factory('Customers');
+$Customers->action = 'RELOAD';
+$Customers->where('id = > 10000');
+echo "Total rows (distinct person_name) - with action=RELOAD  where: {$Customers->count('distinct person_name')}\n";
+
+
+
+echo "\n\n--------\n";
+echo "count distinct + property + where + WHERE_ONLY ;\n" ;
+
+$Customers = PDO_DataObject::factory('Customers');
+$Customers->action = 'RELOAD';
+$Customers->where('id = > 10000');
+echo "Total rows (distinct person_name) - with action=RELOAD  where: {$Customers->count('distinct person_name', PDO_DataObject::WHERE_ONLY)}\n";
+
 
 
 
 
 echo "\n\n--------\n";
-echo "Test SQLite  delete where .\n" ;
+echo "count after fetch (error) ;\n" ;
 
 
-
-echo "There is ". PDO_DataObject::factory('Customers')->count() ." records\n";
-PDO_DataObject::factory('Customers')
-        ->where("CustomerID > 2")->delete(PDO_DataObject::WHEREADD_ONLY);
-
-echo "There are now only ". PDO_DataObject::factory('Customers')->count() ." records\n";
-
-
-
-
-
-unlink($temp);
+$Customers = PDO_DataObject::factory('Customers');
+$Customers->action = 'RELOAD';
+$Customers->limit(1);
+$Customers->fetchAll();
+$Customers->count();
 
 
 
