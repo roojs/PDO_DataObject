@@ -176,7 +176,7 @@ PDO_DataObject   : raise       : deleting all data from database is disabled by 
 failed as expected : deleting all data from database is disabled by default, use where('1=1') if your really want to do that.
 
 --------
-Test SQLite  update - empty
+Test SQLite  delete single
 PDO_DataObject   : databaseStructure       : CALL:[]
 PDO_DataObject   : PDO       : Checking for database specific ini ('EssentialSQL') : config[databases][EssentialSQL] in options
 PDO_DataObject   : find       : true
