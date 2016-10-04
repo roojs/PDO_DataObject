@@ -291,6 +291,10 @@ class PDO_DummyStatement {
              '8954200ac8480d37239612ab7fe410a3' => '[
                 {"id":"3523","person_name":"Alan","event_when":"2009-04-16 14:05:32","action":"RELOAD","ipaddr":"202.134.82.251","on_id":"0","on_table":"","person_id":"4","remarks":"0","person_table":null}
              ]',
+             
+            // load/save... 
+             
+             
         ), 
          'pgsql:dbname=pginsert;host=localhost' => array(  
             // insert....
