@@ -4647,7 +4647,9 @@ class PDO_DataObject
                     return true;
                 }
                 
-                
+                  if (!is_string($value)) {
+                    return false;
+                }
                 // try date!!!!
                 
                 $x = new DateTime($value);
