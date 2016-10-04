@@ -4068,7 +4068,7 @@ class PDO_DataObject
             }
             
           
-            $ignore_null = self::$config['enable_null_strings'] !== true;
+            $ignore_null = self::$config['enable_null_strings'] !== false;
             
             // obj->whereToString()???
             foreach($items as $k => $v) {
