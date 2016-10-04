@@ -5071,7 +5071,7 @@ class PDO_DataObject
     {
      	
           
-        $null_strings =  self::$config['enable_null_strings'] === true;
+        $null_strings =  self::$config['enable_null_strings'] !== false;
         
         if (is_a($value, 'PDO_DataObject_Cast') && $value->isNull()) {
             return true;
