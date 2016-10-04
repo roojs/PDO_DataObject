@@ -436,3 +436,267 @@ echo $d->whereToString();
 
 ?>
 --EXPECT--
+--------
+sqlValue - basic Raw;
+__construct==["mysql:dbname=inserttest;host=localhost","user","pass",[]]
+setAttribute==[3,2]
+ Events.action = NOW()
+
+--------
+sqlValue - various values..;
+FROM VALUE ex_string, 130, 'aaa' 
+FROM VALUE ex_sql, 130, 'bbb' 
+(Dummy.ex_string  = 'aaa') AND (Dummy.ex_sql  = 'bbb')
+
+--------
+sqlValue - using formating ..;
+FROM VALUE ex_string, 130, 'aaa' 
+FROM VALUE ex_sql, 130, 'bbb' 
+(Dummy.ex_string  = 'aaa') AND (Dummy.ex_sql  = 'bbb')
+
+--------
+sqlValue - skip empty...;
+FROM VALUE ex_string, 130, 'aaa' 
+FROM VALUE ex_sql, 130, 'bbb' 
+FROM VALUE ex_string, 130, 'ccc' 
+(Dummy.ex_string  = 'ccc') AND (Dummy.ex_sql  = 'bbb')
+
+----------------------------------------------------------------
+
+
+--------
+enable_null_valus = default = off
+PDO_DataObject   : databaseStructure       : CALL:[]
+FROM VALUE ex_int, 129, NULL 
+FROM VALUE ex_string, 130, NULL 
+FROM VALUE ex_null_string, 2, NULL 
+FROM VALUE ex_null_int, 1, NULL 
+
+setting string and int to null: (Dummy.ex_int = 0) AND (Dummy.ex_string  = '') AND (Dummy.ex_null_string  = '') AND (Dummy.ex_null_int = 0)
+
+
+--------
+TESTING string NULL - enable_null_valus = default = off
+PDO_DataObject   : databaseStructure       : CALL:[]
+FROM VALUE ex_string, 130, 'NULL' 
+FROM VALUE ex_null_string, 2, 'NULL' 
+
+setting string   to 'NULL' : (Dummy.ex_string  = 'NULL') AND (Dummy.ex_null_string  = 'NULL')
+PDO_DataObject   : databaseStructure       : CALL:[]
+FROM VALUE ex_int, 129, 'NULL' 
+FROM VALUE ex_null_int, 1, 'NULL' 
+PDO_DataObject   : raise       : Set Errors Returned Values: 
+Array
+(
+    [ex_int] => Error: ex_int : type is INT -> Non numeric 'NULL' passed to it
+    [ex_null_int] => Error: ex_null_int : type is INT -> Non numeric 'NULL' passed to it
+)
+
+
+set got errors as expected: Set Errors Returned Values: 
+Array
+(
+    [ex_int] => Error: ex_int : type is INT -> Non numeric 'NULL' passed to it
+    [ex_null_int] => Error: ex_null_int : type is INT -> Non numeric 'NULL' passed to it
+)
+
+TESTING CAST NULL - enable_null_valus = default = off
+PDO_DataObject   : databaseStructure       : CALL:[]
+PDO_DataObject   : raise       : Set Errors Returned Values: 
+Array
+(
+    [ex_int] => setting column ex_int to Null is invalid as it's NOTNULL
+    [ex_string] => setting column ex_string to Null is invalid as it's NOTNULL
+)
+
+set got errors as expected: Set Errors Returned Values: 
+Array
+(
+    [ex_int] => setting column ex_int to Null is invalid as it's NOTNULL
+    [ex_string] => setting column ex_string to Null is invalid as it's NOTNULL
+)
+
+PDO_DataObject   : databaseStructure       : CALL:[]
+
+empty where with real null.: (Dummy.ex_null_string IS NULL) AND (Dummy.ex_null_int IS NULL)
+
+--------
+TESTING props setting
+
+using null props : ==  == 
+
+using null props : == (Dummy.ex_int = 0) AND (Dummy.ex_string  = 'null') AND (Dummy.ex_null_string  = 'null') AND (Dummy.ex_null_int = 0) == 
+
+using null props : == (Dummy.ex_null_string IS NULL) AND (Dummy.ex_null_int IS NULL) == 
+PDO_DataObject   : raise       : Error setting col 'ex_string' to NULL - column is NOT NULL
+set got errors as expected: Error setting col 'ex_string' to NULL - column is NOT NULL
+PDO_DataObject   : raise       : Error setting col 'ex_int' to NULL - column is NOT NULL
+set got errors as expected: Error setting col 'ex_int' to NULL - column is NOT NULL
+
+
+----------------------------------------------------------------
+enable_null_strings = true
+PDO_DataObject   : databaseStructure       : CALL:[]
+FROM VALUE ex_int, 129, NULL 
+FROM VALUE ex_string, 130, NULL 
+FROM VALUE ex_null_string, 2, NULL 
+FROM VALUE ex_null_int, 1, NULL 
+
+setting string and int to null: (Dummy.ex_int = 0) AND (Dummy.ex_string  = '') AND (Dummy.ex_null_string  = '') AND (Dummy.ex_null_int = 0)
+
+
+--------
+TESTING string NULL -  enable_null_strings = true 
+PDO_DataObject   : databaseStructure       : CALL:[]
+
+setting string   to 'NULL' : (Dummy.ex_null_string IS NULL) AND (Dummy.ex_null_int IS NULL)
+PDO_DataObject   : databaseStructure       : CALL:[]
+PDO_DataObject   : raise       : Set Errors Returned Values: 
+Array
+(
+    [ex_int] => setting column ex_int to Null is invalid as it's NOTNULL
+    [ex_string] => setting column ex_string to Null is invalid as it's NOTNULL
+)
+
+
+set got errors as expected: Set Errors Returned Values: 
+Array
+(
+    [ex_int] => setting column ex_int to Null is invalid as it's NOTNULL
+    [ex_string] => setting column ex_string to Null is invalid as it's NOTNULL
+)
+
+TESTING CAST NULL - enable_null_strings = true
+PDO_DataObject   : databaseStructure       : CALL:[]
+PDO_DataObject   : raise       : Set Errors Returned Values: 
+Array
+(
+    [ex_int] => setting column ex_int to Null is invalid as it's NOTNULL
+    [ex_string] => setting column ex_string to Null is invalid as it's NOTNULL
+)
+
+set got errors as expected: Set Errors Returned Values: 
+Array
+(
+    [ex_int] => setting column ex_int to Null is invalid as it's NOTNULL
+    [ex_string] => setting column ex_string to Null is invalid as it's NOTNULL
+)
+
+PDO_DataObject   : databaseStructure       : CALL:[]
+
+empty where with real null.: (Dummy.ex_null_string IS NULL) AND (Dummy.ex_null_int IS NULL)
+
+--------
+TESTING props setting
+
+using null props : ==  == 
+
+
+--------
+TESTING props setting (string)
+
+using null props : == (Dummy.ex_null_string  IS NULL) AND (Dummy.ex_null_int  IS NULL) == 
+PDO_DataObject   : raise       : Error setting col 'ex_string' to NULL - column is NOT NULL
+set got errors as expected: Error setting col 'ex_string' to NULL - column is NOT NULL
+PDO_DataObject   : raise       : Error setting col 'ex_int' to NULL - column is NOT NULL
+set got errors as expected: Error setting col 'ex_int' to NULL - column is NOT NULL
+
+
+--------
+TESTING props setting cast)
+
+using null props : == (Dummy.ex_null_string IS NULL) AND (Dummy.ex_null_int IS NULL) == 
+PDO_DataObject   : raise       : Error setting col 'ex_string' to NULL - column is NOT NULL
+set got errors as expected: Error setting col 'ex_string' to NULL - column is NOT NULL
+PDO_DataObject   : raise       : Error setting col 'ex_int' to NULL - column is NOT NULL
+set got errors as expected: Error setting col 'ex_int' to NULL - column is NOT NULL
+
+
+----------------------------------------------------------------
+enable_null_strings = full
+PDO_DataObject   : databaseStructure       : CALL:[]
+
+setting string and int to null: (Dummy.ex_null_string IS NULL) AND (Dummy.ex_null_int IS NULL)
+PDO_DataObject   : databaseStructure       : CALL:[]
+PDO_DataObject   : raise       : Set Errors Returned Values: 
+Array
+(
+    [ex_int] => setting column ex_int to Null is invalid as it's NOTNULL
+    [ex_string] => setting column ex_string to Null is invalid as it's NOTNULL
+)
+
+
+set got errors as expected: Set Errors Returned Values: 
+Array
+(
+    [ex_int] => setting column ex_int to Null is invalid as it's NOTNULL
+    [ex_string] => setting column ex_string to Null is invalid as it's NOTNULL
+)
+
+
+
+--------
+TESTING string NULL -  enable_null_strings = full 
+PDO_DataObject   : databaseStructure       : CALL:[]
+
+setting string   to 'NULL' : (Dummy.ex_null_string IS NULL) AND (Dummy.ex_null_int IS NULL)
+PDO_DataObject   : databaseStructure       : CALL:[]
+PDO_DataObject   : raise       : Set Errors Returned Values: 
+Array
+(
+    [ex_int] => setting column ex_int to Null is invalid as it's NOTNULL
+    [ex_string] => setting column ex_string to Null is invalid as it's NOTNULL
+)
+
+
+set got errors as expected: Set Errors Returned Values: 
+Array
+(
+    [ex_int] => setting column ex_int to Null is invalid as it's NOTNULL
+    [ex_string] => setting column ex_string to Null is invalid as it's NOTNULL
+)
+
+TESTING CAST NULL - enable_null_strings = true
+PDO_DataObject   : databaseStructure       : CALL:[]
+PDO_DataObject   : raise       : Set Errors Returned Values: 
+Array
+(
+    [ex_int] => setting column ex_int to Null is invalid as it's NOTNULL
+    [ex_string] => setting column ex_string to Null is invalid as it's NOTNULL
+)
+
+set got errors as expected: Set Errors Returned Values: 
+Array
+(
+    [ex_int] => setting column ex_int to Null is invalid as it's NOTNULL
+    [ex_string] => setting column ex_string to Null is invalid as it's NOTNULL
+)
+
+PDO_DataObject   : databaseStructure       : CALL:[]
+
+empty where with real null.: (Dummy.ex_null_string IS NULL) AND (Dummy.ex_null_int IS NULL)
+
+--------
+TESTING props setting
+
+using null props with FULL - this is a broken situation, which is why removed support for it.: ==  == 
+
+
+--------
+TESTING props setting (string)
+
+using null props : == (Dummy.ex_null_string  IS NULL) AND (Dummy.ex_null_int  IS NULL) == 
+PDO_DataObject   : raise       : Error setting col 'ex_string' to NULL - column is NOT NULL
+set got errors as expected: Error setting col 'ex_string' to NULL - column is NOT NULL
+PDO_DataObject   : raise       : Error setting col 'ex_int' to NULL - column is NOT NULL
+set got errors as expected: Error setting col 'ex_int' to NULL - column is NOT NULL
+
+
+--------
+TESTING props setting cast)
+
+using null props : == (Dummy.ex_null_string IS NULL) AND (Dummy.ex_null_int IS NULL) == 
+PDO_DataObject   : raise       : Error setting col 'ex_string' to NULL - column is NOT NULL
+set got errors as expected: Error setting col 'ex_string' to NULL - column is NOT NULL
+PDO_DataObject   : raise       : Error setting col 'ex_int' to NULL - column is NOT NULL
+set got errors as expected: Error setting col 'ex_int' to NULL - column is NOT NULL
