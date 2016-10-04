@@ -3268,9 +3268,10 @@ class PDO_DataObject
                 $ret .= "($kSql = {$this->$k})";
                 continue;
             }
-            if ($v & self::INT && is_string($this->$k)) {
-                $ret .=  "($kSql = ". (empty($this->$k) ? 0 : 1 ) . ')';
-}       
+            //if ($v & self::INT && is_string($this->$k)) {
+            //    $ret .=  "($kSql = ". (empty($this->$k) ? 0 : 1 ) . ')';
+            //    continue;
+            //}
             /* this is probably an error condition! */
             $ret .= "($kSql = ".intval($this->$k) .')';
         }
