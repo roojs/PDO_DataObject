@@ -284,9 +284,9 @@ class PDO_DataObject_Cast {
         
         // should we mathematically sort this out.. 
         // (or just assume that no-one's dumb enough to enter 26:90:90 as a time!
-        $r->hour = $bits[3];
-        $r->minute = $bits[4];
-        $r->second = $bits[5];
+        $r->hour = (int)$bits[3];
+        $r->minute = (int)$bits[4];
+        $r->second = (int)$bits[5];
         return $r;
 
     }
