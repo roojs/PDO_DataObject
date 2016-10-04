@@ -136,6 +136,12 @@ $d->ex_null_int' = "null";
 echo "using null props : == {$d->whereToString()} == \n";
 
 
+$d =  PDO_DataObject::factory('Dummy');
+$d->ex_string' = PDO_DataObject::sqlValue('NULL');
+$d->ex_int' = PDO_DataObject::sqlValue('NULL');
+$d->ex_null_string' = PDO_DataObject::sqlValue('NULL');
+$d->ex_null_int' = PDO_DataObject::sqlValue('NULL');
+echo "using null props : == {$d->whereToString()} == \n";
 
 
 
