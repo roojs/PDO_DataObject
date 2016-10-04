@@ -3215,6 +3215,7 @@ class PDO_DataObject
                     continue;
                 }
             }
+ 
             if (!isset($this->$k)) {
                 continue;
             }
@@ -3243,12 +3244,14 @@ class PDO_DataObject
                 $ret .= " $kSql = $value";
                 continue;
             }
-            
+
             if (!($v & self::NOTNULL) && self::_is_null_member($this,$k)) {
                 $ret .= "($kSql  IS NULL)";
                 continue;
             }
-            
+            if (($v & self::NOTNULL) && self::_is_null_member($this,$k)) {
+                $this->raise("Error setting col '$k' to NULL - column is NOT NULL", self::ERROR_INVALIDARGS);
+            }
 
             if ($v & self::STR) {
                 $ret .= "($kSql  = " .
