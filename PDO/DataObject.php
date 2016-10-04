@@ -823,6 +823,7 @@ class PDO_DataObject
      * $object->load("ID",1234);
      * Returns Number of rows located (usually 1) for success,
      * and puts all the table columns into this classes variables
+     * Note: this also snapshot's the object, ready for update..
      *
      * see the fetch example on how to extend this.
      *
