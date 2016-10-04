@@ -3268,7 +3268,9 @@ class PDO_DataObject
                 $ret .= "($kSql = {$this->$k})";
                 continue;
             }
-            
+            if ($v & self::INT && is_string($this->$k)) {
+                $ret .=  "($kSql = ". (empty($this->$k) ? 0 : 1 ) . ')';
+}       
             /* this is probably an error condition! */
             $ret .= "($kSql = ".intval($this->$k) .')';
         }
@@ -5070,7 +5072,6 @@ class PDO_DataObject
     final function _is_null($value) 
     {
      	
-          
         $null_strings =  self::$config['enable_null_strings'] !== false;
         
         if (is_a($value, 'PDO_DataObject_Cast') && $value->isNull()) {
