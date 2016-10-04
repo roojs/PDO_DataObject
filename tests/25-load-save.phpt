@@ -8,9 +8,9 @@ PDO_DataObject::config(array(
         'class_location' => __DIR__.'/includes/sample_classes/DataObjects_',
     // fake db..
    
-         'database' => 'mysql://user:pass@localhost/inserttest'
+   //      'database' => 'mysql://user:pass@localhost/inserttest'
     // real db...
-    /*
+    
         'database' => '',
         'tables' => array(
             'Events'=> 'inserttest',
@@ -19,13 +19,15 @@ PDO_DataObject::config(array(
             'inserttest' => 'mysql://root:@localhost/pman',
         ),
          'PDO' => 'PDO',
-      */   
+     // */   
 ));
 
 PDO_DataObject::debugLevel(1);
  
 // used to extract sample data...
 //PDO_DataObject::factory('Events')->limit(1)->find(true);
+
+PDO_DataObject::factory('Events')->query('BEGIN');
 
 echo "\n\n--------\n";
 echo "basic load/set/save;\n" ;
@@ -53,14 +55,18 @@ PDO_DataObject::factory('Events')
     ->set(['action' => "RELOAD" ])
     ->limit(1)
     ->load()
-    ->set(['action => "testing" ])
+    ->set(['action' => "testing" ])
     ->save();
+
+
+
 
 // error condition.. loading data that does not exist...
 PDO_DataObject::factory('Events')
-    ->load(3523)
+    ->load(12);
 
-
+// as this normally triggers an error....
+PDO_DataObject::factory('Events')->PDO()->setAttribute(PDO::MYSQL_ATTR_USE_BUFFERED_QUERY, true);
 PDO_DataObject::factory('Events')
     ->load();
 
