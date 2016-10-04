@@ -182,7 +182,7 @@ e) PDO_DataObject class
 
   * load() DONE chainable get
   * save() DONE   generic update/insert
-  * snapshot() DONE / NEED TESTING pre-save before an update..
+  * snapshot() DONE (this is auto called on load()) ...
   
   * fetchall(CALLABLE) ???? same as foreach, but runs a method on each object... 
 
