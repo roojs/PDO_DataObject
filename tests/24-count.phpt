@@ -156,47 +156,7 @@ $Customers = PDO_DataObject::factory('Customers');
 echo "Total rows (distinct state): {$Customers->count('distinct state')}\n";
 
 
-
-echo "\n\n--------\n";
-echo "count distinct + property;\n" ;
-
-$Customers = PDO_DataObject::factory('Customers');
-$Customers->action = 'RELOAD';
-echo "Total rows (distinct person_name) - with action=RELOAD: {$Customers->count('distinct person_name')}\n";
-
-
-echo "\n\n--------\n";
-echo "count distinct + property + where ;\n" ;
-
-$Customers = PDO_DataObject::factory('Customers');
-$Customers->action = 'RELOAD';
-$Customers->where('id = > 10000');
-echo "Total rows (distinct person_name) - with action=RELOAD  where: {$Customers->count('distinct person_name')}\n";
-
-
-
-echo "\n\n--------\n";
-echo "count distinct + property + where + WHERE_ONLY ;\n" ;
-
-$Customers = PDO_DataObject::factory('Customers');
-$Customers->action = 'RELOAD';
-$Customers->where('id = > 10000');
-echo "Total rows (distinct person_name) - with action=RELOAD  where: {$Customers->count('distinct person_name', PDO_DataObject::WHERE_ONLY)}\n";
-
-
-
-
-
-echo "\n\n--------\n";
-echo "count after fetch (error) ;\n" ;
-
-
-$Customers = PDO_DataObject::factory('Customers');
-$Customers->action = 'RELOAD';
-$Customers->limit(1);
-$Customers->fetchAll();
-$Customers->count();
-
+  
 
 
 ?>
