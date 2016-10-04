@@ -2209,7 +2209,7 @@ class PDO_DataObject
             $dataObject = $this->_snapshot;
         }
         
-        $ignore_null = self::$config['enable_null_strings'] !== false;
+        $ignore_null = self::$config['enable_null_strings'] === false;
                     
 
         foreach($items as $k => $v) {
@@ -4068,7 +4068,7 @@ class PDO_DataObject
             }
             
           
-            $ignore_null = self::$config['enable_null_strings'] !== false;
+            $ignore_null = self::$config['enable_null_strings'] === false;
             
             // obj->whereToString()???
             foreach($items as $k => $v) {
@@ -4623,7 +4623,7 @@ class PDO_DataObject
             $this->$col = $value;
             return true;
         }
-        echo "FROM VALUE $col, {$cols[$col]}, " .  var_export( $value, true) . " \n";
+        //echo "FROM VALUE $col, {$cols[$col]}, " .  var_export( $value, true) . " \n";
         switch (true) {
             // set to null and column is can be null...
             case ((!($cols[$col] & self::NOTNULL)) && self::_is_null($value)):

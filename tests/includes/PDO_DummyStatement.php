@@ -261,12 +261,12 @@ class PDO_DummyStatement {
             '2bdf264b81e628acfbf68368a1175be6' => '[
                 {"id":"3523","person_name":"Alan","event_when":"2009-04-16 14:05:32","action":"RELOAD","ipaddr":"202.134.82.251","on_id":"0","on_table":"","person_id":"4","remarks":"0","person_table":null}
              ]',
-             '0b5821c352497585812c2320e23bccbb' => 1, // update rows affected...
+             'b2a4eb0dec91cfe1617857e5cf0eda5c' => 1, // update rows affected...
              '9da43100ad8e2d1eee0cfee396c16588' => 1, // update rows affected...
             'a6282b3421edef2d12c5aa79b5c3ea77' => 3, // update with where, rows affected...
             
             // delete tests..
-            'e343124dcbff70aa23becf0195d27e35' => 1,
+            'c3b86f332b94f57d9d3008b059b2a1f7' => 1,
             'e0f63974357eab3b7b082f80cf5c26aa' => 10, // multiple delte..
             
             // count tests..

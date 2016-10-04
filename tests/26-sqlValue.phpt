@@ -167,4 +167,8 @@ bool test: (Dummy.ex_pgbool  = '0')
 
 --------
 sqlValue - Date time invalid..;
-Setting a date field to a boolean throws an error... as expected : Set Errors Returned Values
+Setting a date field to a boolean throws an error... as expected : Set Errors Returned Values: 
+Array
+(
+    [ex_datetime] => Error: ex_datetime : type is DATE/TIME -> value is not string or number
+)

@@ -145,14 +145,10 @@ PDO_DataObject   : query       : 2bdf264b81e628acfbf68368a1175be6 : SELECT *
  WHERE ( (Events.id = 12) ) 
 
 QUERY: 2bdf264b81e628acfbf68368a1175be6
-PDO_DataObject   : query       : NO# of results: 1
+PDO_DataObject   : query       : NO# of results: 0
 PDO_DataObject   : find       : CHECK autofetched true
-PDO_DataObject   : find       : ABOUT TO AUTOFETCH
-Fetch Row 0 / 1
-PDO_DataObject   : fetch       : {"id":"3523","person_name":"Alan","event_when":"2009-04-16 14:05:32","action":"RELOAD","ipaddr":"202.134.82.251","on_id":"0","on_table":"","person_id":"4","remarks":"0","person_table":null}
-PDO_DataObject   : find       : DONE
-PDO_DataObject   : query       : e343124dcbff70aa23becf0195d27e35 : DELETE FROM Events WHERE (Events.id = 3523) 
-QUERY: e343124dcbff70aa23becf0195d27e35
+PDO_DataObject   : query       : c3b86f332b94f57d9d3008b059b2a1f7 : DELETE FROM Events WHERE (Events.id = 12) 
+QUERY: c3b86f332b94f57d9d3008b059b2a1f7
 PDO_DataObject   : query       : NO# of results: 1
 DELETED 1 records
 

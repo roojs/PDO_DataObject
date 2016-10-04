@@ -432,6 +432,10 @@ echo $d->whereToString();
 
  
 
+
+
+
+
  
 
 ?>
@@ -444,21 +448,14 @@ setAttribute==[3,2]
 
 --------
 sqlValue - various values..;
-FROM VALUE ex_string, 130, 'aaa' 
-FROM VALUE ex_sql, 130, 'bbb' 
 (Dummy.ex_string  = 'aaa') AND (Dummy.ex_sql  = 'bbb')
 
 --------
 sqlValue - using formating ..;
-FROM VALUE ex_string, 130, 'aaa' 
-FROM VALUE ex_sql, 130, 'bbb' 
 (Dummy.ex_string  = 'aaa') AND (Dummy.ex_sql  = 'bbb')
 
 --------
 sqlValue - skip empty...;
-FROM VALUE ex_string, 130, 'aaa' 
-FROM VALUE ex_sql, 130, 'bbb' 
-FROM VALUE ex_string, 130, 'ccc' 
 (Dummy.ex_string  = 'ccc') AND (Dummy.ex_sql  = 'bbb')
 
 ----------------------------------------------------------------
@@ -467,10 +464,6 @@ FROM VALUE ex_string, 130, 'ccc'
 --------
 enable_null_valus = default = off
 PDO_DataObject   : databaseStructure       : CALL:[]
-FROM VALUE ex_int, 129, NULL 
-FROM VALUE ex_string, 130, NULL 
-FROM VALUE ex_null_string, 2, NULL 
-FROM VALUE ex_null_int, 1, NULL 
 
 setting string and int to null: (Dummy.ex_int = 0) AND (Dummy.ex_string  = '') AND (Dummy.ex_null_string  = '') AND (Dummy.ex_null_int = 0)
 
@@ -478,13 +471,9 @@ setting string and int to null: (Dummy.ex_int = 0) AND (Dummy.ex_string  = '') A
 --------
 TESTING string NULL - enable_null_valus = default = off
 PDO_DataObject   : databaseStructure       : CALL:[]
-FROM VALUE ex_string, 130, 'NULL' 
-FROM VALUE ex_null_string, 2, 'NULL' 
 
 setting string   to 'NULL' : (Dummy.ex_string  = 'NULL') AND (Dummy.ex_null_string  = 'NULL')
 PDO_DataObject   : databaseStructure       : CALL:[]
-FROM VALUE ex_int, 129, 'NULL' 
-FROM VALUE ex_null_int, 1, 'NULL' 
 PDO_DataObject   : raise       : Set Errors Returned Values: 
 Array
 (
@@ -537,10 +526,6 @@ set got errors as expected: Error setting col 'ex_int' to NULL - column is NOT N
 ----------------------------------------------------------------
 enable_null_strings = true
 PDO_DataObject   : databaseStructure       : CALL:[]
-FROM VALUE ex_int, 129, NULL 
-FROM VALUE ex_string, 130, NULL 
-FROM VALUE ex_null_string, 2, NULL 
-FROM VALUE ex_null_int, 1, NULL 
 
 setting string and int to null: (Dummy.ex_int = 0) AND (Dummy.ex_string  = '') AND (Dummy.ex_null_string  = '') AND (Dummy.ex_null_int = 0)
 
