@@ -508,7 +508,7 @@ class PDO_DataObject_Cast {
             !($to & (PDO_DataObject::DATE + PDO_DataObject::TIME))) {
             return self::raise('Invalid Cast from a ' .
                 ' PDO_DataObject_Cast::dateTime to something other than a datetime!' .
-                ' (try using native features)');
+                ' (try using native features)',PDO_DataObject::ERROR_INVALIDARGS);
         }
         return "'{$this->year}-{$this->month}-{$this->day} {$this->hour}:{$this->minute}:{$this->second}'";
     }
@@ -535,7 +535,7 @@ class PDO_DataObject_Cast {
         if (($to !== false) && !($to & PDO_DataObject::TIME)) {
             return self::raise('Invalid Cast from a' . 
                 ' PDO_DataObject_Cast::time to something other than a time!'.
-                ' (try using native features)');
+                ' (try using native features)',PDO_DataObject::ERROR_INVALIDARGS);
         }
         return "'{$this->hour}:{$this->minute}:{$this->second}'";
     }
@@ -565,7 +565,7 @@ class PDO_DataObject_Cast {
      * @access public
      * @return error object
      */
-    static function raise($message, $type = 0, $previous_exception = null)
+    static function raise($message, $type , $previous_exception = null)
     {
         class_exists('PDO_DataObject') ? '' :
             require_once 'PDO/DataObject.php';
