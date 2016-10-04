@@ -279,8 +279,12 @@ class PDO_DummyStatement {
             'b8e89f17120074c01b0f14f4c0d6af77' => '[ { "DATAOBJECT_NUM": 41 }]',
             // distinct + property
             '617692175d0901d4d050a9fb4ff199c2' => '[ { "DATAOBJECT_NUM": 19 }]',
-            //
-            '617692175d0901d4d050a9fb4ff199c2' => '[ { "DATAOBJECT_NUM": 19 }]',
+            // distinct, where + property
+            '3aea344ea577bc8c10cd183ac72dad94' => '[ { "DATAOBJECT_NUM": 16 }]',
+            // distinct, where + property & WHERE_ONLY
+            'b39eb0824e17aab3aef96a262d2a8b7a'=> '[ { "DATAOBJECT_NUM": 38 }]',
+              // zero results.
+            'fc6b5bd4000b9295f9d2efdf833d5335'=> '[ { "DATAOBJECT_NUM": 0 }]',
             
             
             
