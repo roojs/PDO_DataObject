@@ -62,11 +62,14 @@ PDO_DataObject::factory('Events')
 
 
 // error condition.. loading data that does not exist...
+try {
 PDO_DataObject::factory('Events')
     ->load(12);
+} catch (PDO_DataObject_Exception_NoData $e) {
+    echo "Error thrown as expected: {$e->getMessage()}\n";
+}
 
-// as this normally triggers an error....
-PDO_DataObject::factory('Events')->PDO()->setAttribute(PDO::MYSQL_ATTR_USE_BUFFERED_QUERY, true);
+// as this normally triggers an out of memory error...
 PDO_DataObject::factory('Events')
     ->load();
 
