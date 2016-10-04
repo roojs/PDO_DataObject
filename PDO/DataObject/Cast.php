@@ -453,7 +453,8 @@ class PDO_DataObject_Cast {
                 
 
             default:
-                return self::raise("PDO_DataObject_Cast cant handle blobs for Database:{$db->dsn['phptype']} Yet");
+                return self::raise("PDO_DataObject_Cast cant handle blobs for Database:{$PDO->getAttribute(PDO::ATTR_DRIVER_NAME)} Yet",
+                  PDO_DataObject::ERROR_INVALIDARGS);
         }
     
     }
@@ -480,7 +481,7 @@ class PDO_DataObject_Cast {
         
         if (($to !== false) && !($to & PDO_DataObject::DATE)) {
             return self::raise('Invalid Cast from a PDO_DataObject_Cast::string to something other than a date!'.
-                ' (why not just use native features)');
+                ' (why not just use native features)',PDO_DataObject::ERROR_INVALIDARGS);
         }
         return "'{$this->year}-{$this->month}-{$this->day}'";
     }
