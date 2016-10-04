@@ -841,6 +841,7 @@ class PDO_DataObject
           if (!$this->get($k, $v)) {
               $this->raise("No Data returned from load", self::ERROR_NODATA);
           }
+          $this->snapshot();
           return $this;
      }
 
