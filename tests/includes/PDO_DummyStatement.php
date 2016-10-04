@@ -267,8 +267,12 @@ class PDO_DummyStatement {
             
             // delete tests..
             'e343124dcbff70aa23becf0195d27e35' => 1,
-            
             'e0f63974357eab3b7b082f80cf5c26aa' => 10, // multiple delte..
+            
+            // count tests..
+            'da10443bc8585f7dc122c0bb5c930945' => '[ { "DATAOBJECT_NUM": 574675 }]';
+            
+            
         ), 
          'pgsql:dbname=pginsert;host=localhost' => array(  
             // insert....
