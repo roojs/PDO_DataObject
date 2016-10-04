@@ -88,6 +88,18 @@ echo "Total rows (distinct person_name) - with action=RELOAD  where: {$event->co
 
 
 
+echo "\n\n--------\n";
+echo "count after fetch (error) ;\n" ;
+
+
+$event = PDO_DataObject::factory('Events');
+$event->action = 'RELOAD';
+$event->limit(3);
+$event->fetchAll();
+echo "Total rows (distinct person_name) - with action=RELOAD  where: {$event->count('distinct person_name', PDO_DataObject::WHERE_ONLY)}\n";
+
+
+
 
 $res = $event->delete(PDO_DAtaObject::WHERE_ONLY);
 echo "DELETED {$res} records\n";
