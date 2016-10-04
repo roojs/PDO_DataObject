@@ -4614,7 +4614,7 @@ class PDO_DataObject
             // fail on setting null on a not null field..
             case (($cols[$col] & self::NOTNULL) && self::_is_null($value,false)):
                 self::debug("Error: $col : type is NOTNULL -> value is equal null", __FUNCTION__);
-                return false;
+                return "Error: $col : type is NOTNULL -> value is equal null";
         
             case (($cols[$col] & self::DATE) &&  ($cols[$col] & self::TIME)):
                 // empty values get set to '' (which is inserted/updated as NULl
@@ -4628,7 +4628,7 @@ class PDO_DataObject
                 }
                 if (!is_string($value)) {
                     self::debug("Error: $col : type is DATE/TIME -> value is not string or number", __FUNCTION__);
-                    return false;
+                    return "Error: $col : type is DATE/TIME -> value is not string or number";
                 }
                 $x = new DateTime($value);
                 $this->$col = $x->format("Y-m-d H:i:s");
@@ -4650,7 +4650,7 @@ class PDO_DataObject
                 
                   if (!is_string($value)) {
                     self::debug("Error: $col : type is DATE -> value is not string or number", __FUNCTION__);
-                    return false;
+                    return "Error: $col : type is DATE -> value is not string or number";
                 }
                 // try date!!!!
                 
@@ -4670,7 +4670,7 @@ class PDO_DataObject
                 } catch(Exception $e) {
                     self::debug("Error: $col : type is TIME -> Datetime threw an error {$e->getMessage()}", __FUNCTION__);
     
-                    return false;
+                    return "Error: $col : type is TIME -> Datetime threw an error {$e->getMessage()}";
                 }
                 
                 return true;
