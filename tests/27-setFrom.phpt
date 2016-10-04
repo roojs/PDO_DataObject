@@ -27,14 +27,33 @@ echo "sqlValue - various values..;\n" ;
 
 echo PDO_DataObject::factory('Dummy')
     ->set([
-        'ex_blob' => PDO_DataObject::sqlValue('blob','a long piece of data'),
-        'ex_string' => PDO_DataObject::sqlValue('string', 123123),
-        'ex_sql' => PDO_DataObject::sqlValue('sql', 'NOW()'),
-        'ex_date' => PDO_DataObject::sqlValue('date', '2000-01-01'),
-        'ex_datetime' => PDO_DataObject::sqlValue('dateTime', '2000-01-01 10:00:00'),
-        'ex_time' => PDO_DataObject::sqlValue('time', '10:00:00'),        
+        'ex_string' => 'aaa',
+        'ex_sql' => 'bbb'
     ])
     ->whereToString();
+
+echo "\n\n--------\n";
+echo "sqlValue - using formating ..;\n" ;
+
+echo PDO_DataObject::factory('Dummy')
+    ->set([
+        'a_ex_string' => 'aaa',
+        'a_ex_sql' => 'bbb'
+    ], 'a_%s')
+    ->whereToString();
+
+
+echo "\n\n--------\n";
+echo "sqlValue - skip empty. formating ..;\n" ;
+
+echo PDO_DataObject::factory('Dummy')
+    ->set([
+        'a_ex_string' => 'aaa',
+        'a_ex_sql' => 'bbb'
+    ], 'a_%s')
+    ->whereToString();
+
+
 
 echo "\n\n--------\n";
 echo "sqlValue - datetime to other types..;\n" ;
