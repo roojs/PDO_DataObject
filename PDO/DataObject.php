@@ -842,7 +842,7 @@ class PDO_DataObject
           $res = 0;          
           if ($k === null && $v === null) {
 
-              $str = $this->whereToString($this->tableColumns());
+              $str = $this->whereToString();
               if (!strlen(trim($str))) {
                   $this->raise("No condition (property or where) set for loading data.", self::ERROR_INVALIDARGS);
               }
@@ -996,7 +996,7 @@ class PDO_DataObject
         }
         $this->N = 0;
         $query_before = $this->_query;
-        $where = $this->whereToString($this->tableColumns()) ;
+        $where = $this->whereToString() ;
         $this->where(); //clear existing...
         if (strlen($where)) {
             $this->where($where);
@@ -2525,7 +2525,7 @@ class PDO_DataObject
         $where = $this->_query['condition'];
 
         if (!$whereAddOnly && $items)  {
-            $where = $t->whereToString($items);
+            $where = $t->whereToString();
  
         }
         $keys = $this->keys();
@@ -3225,8 +3225,7 @@ class PDO_DataObject
             
             
             if (is_object($this->$k) && is_a($this->$k,'PDO_DataObject_Cast')) {
-                $dbtype = $DB->dsn["phptype"];
-                $value = $this->$k->toString($v,$DB);
+                $value = $this->$k->toString($v,$this->PDO());
                 
                 
                 if ((strtolower($value) === 'null') && !($v & self::NOTNULL)) {
@@ -4626,6 +4625,9 @@ class PDO_DataObject
                 if (is_numeric($value)) {
                     $this->$col = date('Y-m-d H:i:s', $value);
                     return true;
+                }
+                if (!is_string($value)) {
+                    return false;
                 }
                 $x = new DateTime($value);
                 $this->$col = $x->format("Y-m-d H:i:s");
