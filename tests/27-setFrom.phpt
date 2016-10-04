@@ -127,9 +127,7 @@ echo "enable_null_strings = true\n" ;
 PDO_DataObject::config('enable_null_strings', true);
 
 PDO_DataObject::debugLevel(1);
-echo "\n\n--------\n";
-echo "enable_null_valus = default = off\n" ;
-
+  
  
 echo "\nsetting string and int to null: " . PDO_DataObject::factory('Dummy')
     ->set([
@@ -147,13 +145,14 @@ echo "TESTING string NULL - enable_null_valus = default = off\n" ;
 echo "\nsetting string   to 'NULL' : " . PDO_DataObject::factory('Dummy')
     ->set([
         'ex_string' => 'NULL',
-        'ex_null_string' => 'NULL',
+       
     ])->whereToString() . "\n";
     
 try {   
 echo "\nsetting string and int to 'NULL' : " . PDO_DataObject::factory('Dummy')
     ->set([
         'ex_int' => 'NULL',
+        'ex_null_string' => 'NULL',
         'ex_null_int' => 'NULL',
     ])->whereToString() . "\n";    
 } catch (PDO_DataObject_Exception_Set $e) {
