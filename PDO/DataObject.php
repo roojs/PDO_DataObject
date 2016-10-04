@@ -4523,7 +4523,7 @@ class PDO_DataObject
                 continue;
             }
 
-            if (self::_is_null($from, sprintf($format,$k))) {
+            if (!($type & self::NOTNULL) && self::_is_null($from, sprintf($format,$k))) {
                 $this->
             }
            
