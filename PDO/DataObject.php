@@ -2009,7 +2009,7 @@ class PDO_DataObject
             }
             
             
-            if (!($v & self::NOTNULL) && self::_is_null($this,$k)) {
+            if (!($v & self::NOTNULL) && self::_is_null_member($this,$k)) {
                 $rightq .= " NULL ";
                 continue;
             }
@@ -2248,7 +2248,7 @@ class PDO_DataObject
             }
             
             // special values ... at least null is handled...
-            if (!($v & self::NOTNULL) && self::_is_null($this,$k)) {
+            if (!($v & self::NOTNULL) && self::_is_null_member($this,$k)) {
                 $settings .= "$kSql = NULL ";
                 continue;
             }
@@ -3237,7 +3237,7 @@ class PDO_DataObject
                 continue;
             }
             
-            if (!($v & self::NOTNULL) && self::_is_null($this,$k)) {
+            if (!($v & self::NOTNULL) && self::_is_null_member($this,$k)) {
                 $ret .= "($kSql  IS NULL)";
                 continue;
             }
@@ -4068,7 +4068,7 @@ class PDO_DataObject
                 
                 $kSql = ($quoteIdentifiers ? $this->quoteIdentifier($k) : $k);
                 
-                if (self::_is_null($obj,$k)) {
+                if (self::_is_null_member($obj,$k)) {
                 	$obj->whereAdd("{$joinAs}.{$kSql} IS NULL");
                 	continue;
                 }
@@ -4534,7 +4534,7 @@ class PDO_DataObject
                 continue;
             }
             $val = $from[sprintf($format,$k)];
-            if (self::_is_null($from, sprintf($format,$k)) {
+            if (self::_is_null_member($from, sprintf($format,$k)) {
                 $val = $this->sqlValue('NULL');
             }
 
@@ -4614,12 +4614,12 @@ class PDO_DataObject
         //echo "FROM VALUE $col, {$cols[$col]}, $value\n";
         switch (true) {
             // set to null and column is can be null...
-            case ((!($cols[$col] & self::NOTNULL)) && self::_is_null($value, false)):
+            case ((!($cols[$col] & self::NOTNULL)) && self::_is_null($value)):
                 $this->$col = $this->sqlValue('NULL');
                 return true;
                 
             // fail on setting null on a not null field..
-            case (($cols[$col] & self::NOTNULL) && self::_is_null($value,false)):
+            case (($cols[$col] & self::NOTNULL) && self::_is_null($value)):
                 self::debug("Error: $col : type is NOTNULL -> value is equal null", __FUNCTION__);
                 return "Error: $col : type is NOTNULL -> value is equal null";
         
@@ -5004,7 +5004,62 @@ class PDO_DataObject
     * @access private
     * @return bool  object
     */
-    final function _is_null($obj_or_ar , $prop) 
+    final function _is_null_member($obj_or_ar , $prop) 
+    {
+     	
+        switch(true) {
+              case is_array($obj_or_ar):
+                  $isset = isset($obj_or_ar[$prop]);
+                  $value = $isset ? $obj_or_ar[$prop] : null;
+              
+              case is_object($obj_or_ar):
+                  $isset = isset($obj_or_ar->$prop);
+                  $value = $isset ? $obj_or_ar->$prop : null;
+              
+              default:
+                  self::raise("argument passed to is_null_member was not an object or array",
+                        self::ERROR_INVALIDARGS);
+        }
+
+        
+        
+    	  $options = self::$config;
+    	
+        $null_strings =  $options['disable_null_strings'] === false;
+                    
+        $crazy_null =   $options['disable_null_strings'] === 'full'; // why case insensitive?
+        
+        if ($isset && is_a($value, 'PDO_DataObject_Cast') && $value->isNull()) {
+            return true;
+        }
+
+        if ( $null_strings && $isset  && is_string($value)  && (strtolower($value) === 'null') ) {
+            return true;
+        }
+        
+        if ( $crazy_null && !$isset )  {
+        	return true;
+        }
+        
+        return false;
+        
+    	
+    }
+     /**
+    * Evaluate whether or not a value is set to null, taking the 'disable_null_strings' option into account.
+    * If the value is a string set to "null" and the "disable_null_strings" option is not set to 
+    * true, then the value is considered to be null.
+    * If the value is actually a PHP NULL value, and "disable_null_strings" has been set to 
+    * the value "full", then it will also be considered null. - this can not differenticate between not set
+    * 
+    * 
+    * @param  object|array $obj_or_ar 
+    * @param  string|false $prop prperty
+    
+    * @access private
+    * @return bool  object
+    */
+    final function _is_null($value) 
     {
      	
         
@@ -5018,7 +5073,7 @@ class PDO_DataObject
         
         
         
-    	$options = self::$config;
+    	  $options = self::$config;
     	
         $null_strings =  $options['disable_null_strings'] === false;
                     
