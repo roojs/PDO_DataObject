@@ -1975,7 +1975,7 @@ class PDO_DataObject
         }
         
         // if we haven't set enable_null_strings to "full"
-        $ignore_null = self::$config['enable_null_strings'] !== false; // default...
+        $ignore_null = self::$config['enable_null_strings'] === false; // default...
                     
              
         foreach($items as $k => $v) {
