@@ -89,10 +89,6 @@ echo "Total rows (distinct person_name) - with action=RELOAD  where: {$event->co
 
 
 
-
-
-
-
 $res = $event->delete(PDO_DAtaObject::WHERE_ONLY);
 echo "DELETED {$res} records\n";
 
