@@ -61,7 +61,32 @@ echo PDO_DataObject::factory('Dummy')
 echo "\n\n--------\n";
 echo "sqlValue - null values;\n" ;
 
-echo PDO_DataObject::factory('Dummy')
+echo "\nusing value null: " . PDO_DataObject::factory('Dummy')
+    ->set([
+      //  'ex_string' => null,
+      //  'ex_int' => null,
+        'ex_null_string' => null,
+        'ex_null_int' => null
+    ])
+    ->whereToString();
+
+
+
+echo "\nusing string null: " . PDO_DataObject::factory('Dummy')
+    ->set([
+        'ex_string' => 'NULL',
+        'ex_int' => 'NULL',
+        'ex_null_string' => 'NULL',
+        'ex_null_sql' => 'NULL'
+    ])
+    ->whereToString();
+    
+    
+echo "\n\n--------\n";
+echo "sqlValue - null values (disable_null_strings);\n" ;
+PDO_DataObject::config('disable_null_strings', true);
+
+echo "\nusing value null: " . PDO_DataObject::factory('Dummy')
     ->set([
         'ex_string' => null,
         'ex_int' => null,
@@ -72,7 +97,7 @@ echo PDO_DataObject::factory('Dummy')
 
 
 
-echo PDO_DataObject::factory('Dummy')
+echo "\nusing string null: " . PDO_DataObject::factory('Dummy')
     ->set([
         'ex_string' => 'NULL',
         'ex_int' => 'NULL',
@@ -80,10 +105,6 @@ echo PDO_DataObject::factory('Dummy')
         'ex_null_sql' => 'NULL'
     ])
     ->whereToString();
-
-PDO_DataObject::config('disable_null_strings', true);
-
-
 
 
  
