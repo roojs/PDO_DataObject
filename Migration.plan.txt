@@ -193,9 +193,9 @@ e) PDO_DataObject class
   * sqlValue() - DONE 
   * PDO_DataObject_Cast ( $DB == PDO object...)  DONE  
 
-  * setFrom() DONE / NEED TESTING
-  * set() << chained version of setFrom? DONE / NEED TESTING
-  * fromValue() DONE / NEED TESTING
+  * setFrom() DONE  
+  * set() << chained version of setFrom? DONE 
+  * fromValue() DONE 
 
   * toArray() DONE / NEED TESTING
   * formatValue()   DONE / NEED TESTING - was toValue() (date formating is not compatible)
