@@ -28,12 +28,15 @@ PDO_DataObject::debugLevel(1);
 //PDO_DataObject::factory('Events')->limit(1)->find(true);
 
 echo "\n\n--------\n";
-echo "basic update;\n" ;
+echo "basic load/set/save;\n" ;
 
-$event = PDO_DataObject::factory('Events');
-$event->get(12);
-$event->action = "testing";
-echo "UPDATED {$event->update()} records\n";
+PDO_DataObject::factory('Events')
+    ->load(12);
+    ->set(['action => "testing" ])
+    ->save();
+
+
+
 
 
 echo "\n\n--------\n";
