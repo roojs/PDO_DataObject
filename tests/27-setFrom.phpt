@@ -81,9 +81,11 @@ echo PDO_DataObject::factory('Dummy')
     ])
     ->whereToString();
 
+PDO_DataObject::config('disable_null_strings', true);
 
- ex_null_string = 2
-ex_null_int = 1
+
+
+
  
 ?>
 --EXPECT--
