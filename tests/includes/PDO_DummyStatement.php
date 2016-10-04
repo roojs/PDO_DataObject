@@ -293,6 +293,15 @@ class PDO_DummyStatement {
              ]',
              
             // load/save... 
+            '19aad9f2fe3ce0023298ab83f7e75775'  => 1,
+            '183b4035a4a59e23b849e6bdd8a53fdb' => '[
+                {"id":"3523","person_name":"Alan","event_when":"2009-04-16 14:05:32","action":"RELOAD","ipaddr":"202.134.82.251","on_id":"0","on_table":"","person_id":"4","remarks":"0","person_table":null}
+             ]',
+             '9da43100ad8e2d1eee0cfee396c16588' => 1, // update
+             '30e4e6e9c534f092302558ec8faa1c11' =>'[
+                {"id":"3601","person_name":"Alan","event_when":"2009-04-16 14:05:32","action":"RELOAD","ipaddr":"202.134.82.251","on_id":"0","on_table":"","person_id":"4","remarks":"0","person_table":null}
+             ]', 
+             '35026f20209f1caa71d6443d725b9aa2' => 1,
              
              
         ), 
