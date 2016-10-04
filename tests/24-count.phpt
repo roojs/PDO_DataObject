@@ -8,9 +8,9 @@ PDO_DataObject::config(array(
         'class_location' => __DIR__.'/includes/sample_classes/DataObjects_',
     // fake db..
    
-    //     'database' => 'mysql://user:pass@localhost/inserttest'
+         'database' => 'mysql://user:pass@localhost/inserttest'
     // real db...
-    
+    /*
         'database' => '',
         'tables' => array(
             'Events'=> 'inserttest',
@@ -22,7 +22,7 @@ PDO_DataObject::config(array(
       //*/   
 ));
 
-PDO_DataObject::debugLevel(1);
+PDO_DataObject::debugLevel(0);
  
 // used to extract sample data...
 //PDO_DataObject::factory('Events')->limit(1)->find(true);
@@ -66,12 +66,26 @@ $event->action = 'RELOAD';
 echo "Total rows (distinct person_name) - with action=RELOAD: {$event->count('distinct person_name')}\n";
 
 
+
+echo "\n\n--------\n";
+echo "sql typo;\n" ;
+
+$event = PDO_DataObject::factory('Events');
+$event->action = 'RELOAD';
+$event->where('id = > 10000');
+try {
+    $event->count('distinct person_name');
+} catch(PDO_DataObject_Exception_Query $e) {
+    echo "Typo got exception as expected : {$e->getMessage()}\n";
+}
+
+
 echo "\n\n--------\n";
 echo "count distinct + property + where ;\n" ;
 
 $event = PDO_DataObject::factory('Events');
 $event->action = 'RELOAD';
-$event->where('id = > 10000');
+$event->where('id >= 10000');
 echo "Total rows (distinct person_name) - with action=RELOAD  where: {$event->count('distinct person_name')}\n";
 
 
@@ -81,7 +95,7 @@ echo "count distinct + property + where + WHERE_ONLY ;\n" ;
 
 $event = PDO_DataObject::factory('Events');
 $event->action = 'RELOAD';
-$event->where('id = > 10000');
+$event->where('id >= 10000');
 echo "Total rows (distinct person_name) - with action=RELOAD  where: {$event->count('distinct person_name', PDO_DataObject::WHERE_ONLY)}\n";
 
 
@@ -103,9 +117,14 @@ echo "count after fetch (error) ;\n" ;
 
 $event = PDO_DataObject::factory('Events');
 $event->action = 'RELOAD';
-$event->limit(1);
+$event->limit(3);
 $event->fetchAll();
-$event->count();
+try {
+    $event->count();
+} catch(PDO_DataObject_Exception_InvalidArgs $e) {
+    echo "count after fetch, throws error as expected: {$e->getMessage()}\n";
+}
+
 
  
  
@@ -122,7 +141,7 @@ PDO_DataObject::config(array(
             'Customers' => 'EssentialSQL'
         ),
         'databases' => array(
-            'EssentialSQL' => 'sqlite:'.$__DIR__.'/includes/EssentialSQL.db'
+            'EssentialSQL' => 'sqlite:'.__DIR__.'/includes/EssentialSQL.db'
         ),
         'proxy' => 'Full',
         'debug' => 0,
