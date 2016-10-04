@@ -4487,7 +4487,7 @@ class PDO_DataObject
             return;
         }
         $overload_return = array();
-        foreach (array_keys($items) as $k) {
+        foreach ($items as $k => $type) {
             if (in_array($k,$keys)) {
                 continue; // dont overwrite keys
             }
@@ -4518,9 +4518,13 @@ class PDO_DataObject
             if (empty($from[sprintf($format,$k)]) && $skipEmpty) {
                 continue;
             }
-            
-            if (!isset($from[sprintf($format,$k)]) && !self::_is_null($from, sprintf($format,$k))) {
+          
+            if (!array_key_exists( sprintf($format,$k), $from)) {
                 continue;
+            }
+
+            if (self::_is_null($from, sprintf($format,$k))) {
+                $this->
             }
            
             $kk = (strtolower($k) == 'from') ? '_from' : $k;
@@ -4613,7 +4617,7 @@ class PDO_DataObject
                 
             // fail on setting null on a not null field..
             case (($cols[$col] & self::NOTNULL) && self::_is_null($value,false)):
-
+                self::debug("Error: $col : type is NOTNULL -> value is equal null", __FUNCTION__);
                 return false;
         
             case (($cols[$col] & self::DATE) &&  ($cols[$col] & self::TIME)):
@@ -4627,6 +4631,7 @@ class PDO_DataObject
                     return true;
                 }
                 if (!is_string($value)) {
+                    self::debug("Error: $col : type is DATE/TIME -> value is not string or number", __FUNCTION__);
                     return false;
                 }
                 $x = new DateTime($value);
@@ -4648,6 +4653,7 @@ class PDO_DataObject
                 }
                 
                   if (!is_string($value)) {
+                    self::debug("Error: $col : type is DATE -> value is not string or number", __FUNCTION__);
                     return false;
                 }
                 // try date!!!!
@@ -4666,6 +4672,8 @@ class PDO_DataObject
                     $x = new DateTime($value);
                     $this->$col = $x->format('H:i:s');
                 } catch(Exception $e) {
+                    self::debug("Error: $col : type is TIME -> Datetime threw an error {$e->getMessage()}", __FUNCTION__);
+    
                     return false;
                 }
                 
