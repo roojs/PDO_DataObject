@@ -849,7 +849,7 @@ class PDO_DataObject
               $this->raise("No Data returned from load", self::ERROR_NODATA);
           }
           if ($res > 1) {
-              $this->raise("No Data returned from load", self::ERROR_INVALIDARGS);
+              $this->raise("Too many rows returned from load", self::ERROR_INVALIDARGS);
           }
           $this->snapshot();
           return $this;
