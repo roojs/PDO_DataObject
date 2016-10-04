@@ -63,8 +63,8 @@ echo "sqlValue - null values;\n" ;
 
 echo PDO_DataObject::factory('Dummy')
     ->set([
-        'ex_string' => 'NULL',
-        'ex_int' => 'NULL',
+        'ex_string' => null,
+        'ex_int' => null,
         'ex_null_string' => null,
         'ex_null_int' => null
     ])
@@ -74,6 +74,8 @@ echo PDO_DataObject::factory('Dummy')
 
 echo PDO_DataObject::factory('Dummy')
     ->set([
+        'ex_string' => 'NULL',
+        'ex_int' => 'NULL',
         'ex_null_string' => 'NULL',
         'ex_null_sql' => 'NULL'
     ])
