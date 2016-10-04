@@ -95,5 +95,20 @@ PDO_DataObject::factory('Events')
 }
 
 
+
+
+echo "\n\n--------\n";
+echo "Testing insert save;\n" ;
+
+PDO_DataObject::factory('Events')->set(
+    PDO_DataObject::factory('Events')
+        ->load(3523)
+)->save();
+ 
+
+
+
+
+
 ?>
 --EXPECT--
