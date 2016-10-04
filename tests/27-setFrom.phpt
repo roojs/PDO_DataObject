@@ -101,11 +101,16 @@ echo "\nempty where with real null.: " . PDO_DataObject::factory('Dummy')
        'ex_string' => PDO_DataObject::sqlValue('NULL'),
        'ex_int' => PDO_DataObject::sqlValue('NULL'),
     ])->whereToString();
-
-    
+   
 } catch (PDO_DataObject_Exception_Set $e) {
     echo "set got errors as expected: {$e->getMessage()}\n";
 }
+
+
+
+
+
+
 echo "\n\n--------\n";
 echo "sqlValue - string null values on notnull (null);\n" ;
 
