@@ -75,9 +75,6 @@ try {
  
  
  
- 
-echo "\n\n--------\n";
-echo "Test SQLite  update - empty\n" ;
 
 $temp  = tempnam(ini_get('session.save-path'), 'sqlite-test');
 copy(__DIR__.'/includes/EssentialSQL.db', $temp);
@@ -101,6 +98,9 @@ PDO_DataObject::debugLevel(1);
 
  
 
+ 
+echo "\n\n--------\n";
+echo "Test SQLite  delete single\n" ;
 $Customers = PDO_DataObject::factory('Customers');
 $Customers->get(2);
 $Customers->delete();
