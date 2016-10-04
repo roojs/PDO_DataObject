@@ -385,7 +385,7 @@ class PDO_DataObject_Cast {
         // perhaps we should support TEXT fields???
         
         if (!($to & PDO_DataObject::BLOB)) {
-            return self::raise('Invalid Cast from a PDO_DataObject_Cast::blob to something other than a blob!');
+            return self::raise('Invalid Cast from a PDO_DataObject_Cast::blob to something other than a blob!', PDO_DataObject::ERROR_INVALIDARGS);
         }
         
         switch ($PDO->getAttribute(PDO::ATTR_DRIVER_NAME)) {
@@ -406,7 +406,8 @@ class PDO_DataObject_Cast {
                  
    
             default:
-                return self::raise("PDO_DataObject_Cast cant handle blobs for Database:{$db->dsn['phptype']} Yet");
+                return self::raise("PDO_DataObject_Cast cant handle blobs for Database:{$PDO->getAttribute(PDO::ATTR_DRIVER_NAME)} Yet",
+                    PDO_DataObject::ERROR_INVALIDARGS);
         }
     
     }
