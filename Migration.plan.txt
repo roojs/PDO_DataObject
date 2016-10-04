@@ -178,7 +178,7 @@ e) PDO_DataObject class
   * delete() DONE 
 
 
-  * count() DONE / NEED TESTING
+  * count() DONE  
 
   * load() DONE / NEED TESTING- chainable get
   * save() DONE / NEED TESTING - generic update/insert
