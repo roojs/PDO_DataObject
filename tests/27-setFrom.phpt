@@ -65,19 +65,36 @@ echo PDO_DataObject::factory('Dummy')
 
 PDO_DataObject::debugLevel(1);
 echo "\n\n--------\n";
-echo "sqlValue - null values on notnull;\n" ;
+echo "sqlValue - null values on notnull (null);\n" ;
 
-try {
-PDO_DataObject::factory('Dummy')
+ 
+echo "\nempty where: " . PDO_DataObject::factory('Dummy')
     ->set([
        'ex_string' => null,
         'ex_int' => null,
-    ]);
+    ])->whereToString();
+    
+echo "\nempty where with string values.: " . PDO_DataObject::factory('Dummy')
+    ->set([
+       'ex_string' => 'NULL',
+        'ex_int' => 'NULL',
+    ])->whereToString();
+    
+
+echo "\nempty where with string values.: " . PDO_DataObject::factory('Dummy')
+    ->set([
+       'ex_string' => PDO_DataObject::sqlValue('NULL'),
+        'ex_int' => PDO_DataObject::sqlValue('NULL'),
+    ])->whereToString();
+
+    
 } catch (PDO_DataObject_Exception_Set $e) {
     echo "set got errors as expected: {$e->getMessage()}\n";
 }
+echo "\n\n--------\n";
+echo "sqlValue - string null values on notnull (null);\n" ;
 
-
+try {
 PDO_DataObject::factory('Dummy')
     ->set([
        'ex_string' => 'NULL',
@@ -85,7 +102,9 @@ PDO_DataObject::factory('Dummy')
     ])
     ->whereToString();
     
-
+} catch (PDO_DataObject_Exception_Set $e) {
+    echo "set got errors as expected: {$e->getMessage()}\n";
+}
 
 
 PDO_DataObject::debugLevel(1);
