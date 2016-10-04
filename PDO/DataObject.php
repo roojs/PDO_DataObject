@@ -2509,7 +2509,7 @@ class PDO_DataObject
 
         if (!$whereAddOnly && $items)  {
             $where = $t->whereToString($items);
-          var_dump($where);
+ 
         }
         $keys = $this->keys();
 
@@ -2528,9 +2528,11 @@ class PDO_DataObject
         
         $countWhat = is_string($countWhat) ? $countWhat : "{$table}.{$key_col}";
         
+        $where = strlen(trim($where)) ? "WHERE $where" : '';
+
         $r = $t->query(
             "SELECT count({$countWhat}) as $as
-                FROM $table {$t->_join} $where}"
+                FROM $table {$t->_join} $where"
             );
         $l = $t->result()->fetchAll(PDO::FETCH_COLUMN, 0)[0];
         
