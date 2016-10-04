@@ -286,7 +286,7 @@ class PDO_DummyStatement {
               // zero results.
             'fc6b5bd4000b9295f9d2efdf833d5335'=> '[ { "DATAOBJECT_NUM": 0 }]',
             
-            
+            'de2b1352684938007346c359b3406ea9' => false, // invalid SQL..
             
             
         ), 
