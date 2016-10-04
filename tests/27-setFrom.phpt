@@ -120,6 +120,28 @@ echo "\nempty where with real null.: " . PDO_DataObject::factory('Dummy')
     ])->whereToString();
 
 
+// now setting properties...
+$d =  PDO_DataObject::factory('Dummy');
+$d->ex_string' = null;
+$d->ex_int' = null;
+$d->ex_null_string' = null;
+$d->ex_null_int' = null;
+echo "using null props : == {$d->whereToString()} == \n";
+
+$d =  PDO_DataObject::factory('Dummy');
+$d->ex_string' = "null";
+$d->ex_int' = "null";
+$d->ex_null_string' = "null";
+$d->ex_null_int' = "null";
+echo "using null props : == {$d->whereToString()} == \n";
+
+
+
+
+
+
+
+
 
 echo "\n\n----------------------------------------------------------------\n";
 
