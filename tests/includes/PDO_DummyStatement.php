@@ -273,7 +273,11 @@ class PDO_DummyStatement {
             'da10443bc8585f7dc122c0bb5c930945' => '[ { "DATAOBJECT_NUM": 574675 }]',
             // personname = alan..
             '47e8ef81ad766bcb6406bbafc65c9a68' => '[ { "DATAOBJECT_NUM": 4516 }]',
-            
+            // person_id < 20
+             '6dae8ae5d6c695bb4e18534694646a97' => '[ { "DATAOBJECT_NUM": 547179 }]',
+            // distinct person_name
+            'b8e89f17120074c01b0f14f4c0d6af77' => '[ { "DATAOBJECT_NUM": 41 }]',
+        
             
         ), 
          'pgsql:dbname=pginsert;host=localhost' => array(  
