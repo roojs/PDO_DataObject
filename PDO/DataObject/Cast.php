@@ -478,7 +478,7 @@ class PDO_DataObject_Cast {
          // perhaps we should support TEXT fields???
         // 
          switch (true) {
-            case ($to & (PDO_DataObject::DATE + PDO_DataObject::TIME)):
+             case ($to & PDO_DataObject::DATE && $to & PDO_DataObject::TIME):
                 return sprintf("'%04d-%02d-%02d %02d:%02d:%02d'", 
                     $this->year,$this->month, $this->day,  0,0,0);
 
@@ -513,9 +513,9 @@ class PDO_DataObject_Cast {
         // first weed out invalid casts..
         // in blobs can only be cast to blobs.!
         // perhaps we should support TEXT fields???
-
+        var_dump($to);
         switch (true) {
-            case ($to & (PDO_DataObject::DATE + PDO_DataObject::TIME)):
+            case ($to & PDO_DataObject::DATE && $to & PDO_DataObject::TIME):
                 return sprintf("'%04d-%02d-%02d %02d:%02d:%02d'", 
                     $this->year,$this->month, $this->day,  $this->hour,$this->minute, $this->second);
 
@@ -524,8 +524,8 @@ class PDO_DataObject_Cast {
                     $this->year,$this->month, $this->day);
 
             case ($to & PDO_DataObject::TIME):
-                return sprintf("' %02d:%02d:%02d'", 
-                     $this->year,$this->month, $this->day,  $this->hour,$this->minute, $this->second)       
+                return sprintf("'%02d:%02d:%02d'", 
+                     $this->year,$this->month, $this->day,  $this->hour,$this->minute, $this->second);
 
             default:
 
@@ -579,7 +579,18 @@ class PDO_DataObject_Cast {
         return $this->value; 
     }
     
-    
+    /**
+    * is This object representing a 'null' value...
+    *
+    * 
+    *
+    * @return   bool
+    * @access   public
+    */
+    function isNull($to,$db) 
+    {
+        return $this->type == 'sql' && strtolower($this->value) == 'null'; 
+    }
     /**
      * Wrapper around throw Exception..., 
       *
