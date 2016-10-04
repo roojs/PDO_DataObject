@@ -60,21 +60,40 @@ PDO_DataObject::factory('Events')
 
 
 
+echo "\n\n--------\n";
+echo "Testing errors in load;\n" ;
+
+
 
 // error condition.. loading data that does not exist...
 try {
-PDO_DataObject::factory('Events')
-    ->load(12);
+
+    PDO_DataObject::factory('Events')
+        ->load(12);
+
 } catch (PDO_DataObject_Exception_NoData $e) {
-    echo "Error thrown as expected: {$e->getMessage()}\n";
+    echo "Load fail - Error thrown as expected: {$e->getMessage()}\n";
 }
 
-// as this normally triggers an out of memory error...
+try {
+
 PDO_DataObject::factory('Events')
     ->load();
 
+} catch (PDO_DataObject_Exception_InvalidArgs $e) {
+    echo "Load fail - Error thrown as expected: {$e->getMessage()}\n";
+}
+try {
 
- 
+PDO_DataObject::factory('Events')
+    ->where("id > 100")
+    ->limit(10)
+    ->load();
+
+} catch (PDO_DataObject_Exception_InvalidArgs $e) {
+    echo "Load fail - Error thrown as expected: {$e->getMessage()}\n";
+}
+
 
 ?>
 --EXPECT--
