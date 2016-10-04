@@ -312,7 +312,11 @@ class PDO_DummyStatement {
               '0115ca6837334e416b34e84c0b4f31a7' => 1, // update
               
               '2bdf264b81e628acfbf68368a1175be6' => '[]', // no results..
-              
+              // to many reuslts...
+              '65e45926e39a354d24d0cefa47038dd8' => '[
+                {"id":"3524","person_name":"Alan","event_when":"2009-04-16 14:05:32","action":"RELOAD","ipaddr":"202.134.82.251","on_id":"0","on_table":"","person_id":"4","remarks":"0","person_table":null}
+                {"id":"3525","person_name":"Alan","event_when":"2009-04-16 14:05:32","action":"RELOAD","ipaddr":"202.134.82.251","on_id":"0","on_table":"","person_id":"4","remarks":"0","person_table":null}
+              ]',
               
              
         ), 
