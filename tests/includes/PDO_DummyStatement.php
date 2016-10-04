@@ -287,7 +287,7 @@ class PDO_DummyStatement {
             'fc6b5bd4000b9295f9d2efdf833d5335'=> '[ { "DATAOBJECT_NUM": 0 }]',
             
             'de2b1352684938007346c359b3406ea9' => false, // invalid SQL..
-            
+            // error testing - fetch, then count.
              '8954200ac8480d37239612ab7fe410a3' => '[
                 {"id":"3523","person_name":"Alan","event_when":"2009-04-16 14:05:32","action":"RELOAD","ipaddr":"202.134.82.251","on_id":"0","on_table":"","person_id":"4","remarks":"0","person_table":null}
              ]',

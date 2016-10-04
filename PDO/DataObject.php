@@ -2497,7 +2497,7 @@ class PDO_DataObject
         $quoteIdentifiers = self::$config['quote_identifiers'];
         
         
-        if (!isset($t->_query)) {
+        if ($t->_query === false) {
             return $this->raise(
                 "You cannot do run count after you have run fetch()", 
                 self::ERROR_INVALIDARGS);

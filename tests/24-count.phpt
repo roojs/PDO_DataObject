@@ -189,3 +189,114 @@ echo "Total rows (distinct state): {$Customers->count('distinct state')}\n";
 
 ?>
 --EXPECT--
+--------
+basic count;
+__construct==["mysql:dbname=inserttest;host=localhost","user","pass",[]]
+setAttribute==[3,2]
+QUERY: da10443bc8585f7dc122c0bb5c930945
+Total rows: 574675
+
+
+--------
+count matching properties....);
+QUERY: 47e8ef81ad766bcb6406bbafc65c9a68
+Total rows (with person=Alan): 4516
+
+
+--------
+count based on where......);
+QUERY: 6dae8ae5d6c695bb4e18534694646a97
+Total rows (with person_id < 20): 547179
+
+
+--------
+count distinct;
+QUERY: b8e89f17120074c01b0f14f4c0d6af77
+Total rows (distinct person_name): 41
+
+
+--------
+count distinct + property;
+QUERY: 617692175d0901d4d050a9fb4ff199c2
+Total rows (distinct person_name) - with action=RELOAD: 19
+
+
+--------
+sql typo;
+QUERY: de2b1352684938007346c359b3406ea9
+Typo got exception as expected : Could not run Query
+
+
+--------
+count distinct + property + where ;
+QUERY: 3aea344ea577bc8c10cd183ac72dad94
+Total rows (distinct person_name) - with action=RELOAD  where: 16
+
+
+--------
+count distinct + property + where + WHERE_ONLY ;
+QUERY: b39eb0824e17aab3aef96a262d2a8b7a
+Total rows (distinct person_name) - with action=RELOAD  where: 38
+
+
+--------
+count zero results. ;
+QUERY: fc6b5bd4000b9295f9d2efdf833d5335
+Total rows (zero results) where: 0
+
+
+--------
+count after fetch (error) ;
+QUERY: 8954200ac8480d37239612ab7fe410a3
+Fetch Row 0 / 1
+Fetch Row 1 / 1
+Close Cursor
+count after fetch, throws error as expected: You cannot do run count after you have run fetch()
+
+
+--------
+Test SQLite
+
+
+--------
+basic count;
+PDO_DataObject   : PDO       : Checking for database specific ini ('EssentialSQL') : config[databases][EssentialSQL] in options
+PDO_DataObject   : PDO       : Checking for database specific ini ('EssentialSQL') : config[databases][EssentialSQL] in options
+PDO_DataObject   : query       : 9d3e7ecc7ac70671316cfe4cfdb42db1 : SELECT count(Customers.CustomerID) as DATAOBJECT_NUM
+                FROM Customers  
+PDO_DataObject   : query       : NO# of results: 0
+PDO_DataObject   : count       : Count returned 5
+Total rows: 5
+
+
+--------
+count matching properties....);
+PDO_DataObject   : PDO       : Checking for database specific ini ('EssentialSQL') : config[databases][EssentialSQL] in options
+PDO_DataObject   : PDO       : Checking for database specific ini ('EssentialSQL') : config[databases][EssentialSQL] in options
+PDO_DataObject   : query       : 58201c0ee2b824c542628d084a9b4662 : SELECT count(Customers.CustomerID) as DATAOBJECT_NUM
+                FROM Customers  WHERE (Customers.State  = 'FL')
+PDO_DataObject   : query       : NO# of results: 0
+PDO_DataObject   : count       : Count returned 1
+Total rows (with state=FL): 1
+
+
+--------
+count based on where......);
+PDO_DataObject   : PDO       : Checking for database specific ini ('EssentialSQL') : config[databases][EssentialSQL] in options
+PDO_DataObject   : PDO       : Checking for database specific ini ('EssentialSQL') : config[databases][EssentialSQL] in options
+PDO_DataObject   : query       : 89dd46447e29fc19a6c9062de946e1b0 : SELECT count(Customers.CustomerID) as DATAOBJECT_NUM
+                FROM Customers  WHERE ( state in ('FL', 'TX') ) 
+PDO_DataObject   : query       : NO# of results: 0
+PDO_DataObject   : count       : Count returned 2
+Total rows (with FL or TX): 2
+
+
+--------
+count distinct;
+PDO_DataObject   : PDO       : Checking for database specific ini ('EssentialSQL') : config[databases][EssentialSQL] in options
+PDO_DataObject   : PDO       : Checking for database specific ini ('EssentialSQL') : config[databases][EssentialSQL] in options
+PDO_DataObject   : query       : b6c610edea2b86c03c56bcfdb19c8656 : SELECT count(distinct state) as DATAOBJECT_NUM
+                FROM Customers  
+PDO_DataObject   : query       : NO# of results: 0
+PDO_DataObject   : count       : Count returned 5
+Total rows (distinct state): 5
