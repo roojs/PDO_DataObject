@@ -311,6 +311,7 @@ class PDO_DummyStatement {
               ]',
               '0115ca6837334e416b34e84c0b4f31a7' => 1, // update
               
+              '2bdf264b81e628acfbf68368a1175be6' => '[]', // no results..
               
               
              
