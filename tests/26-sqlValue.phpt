@@ -79,9 +79,36 @@ echo PDO_DataObject::factory('Dummy')
         'ex_sql' => PDO_DataObject::sqlValue('sql', 'NOW()'),
         'ex_date' => PDO_DataObject::sqlValue('date', '2000-01-01'),
         'ex_datetime' => PDO_DataObject::sqlValue('dateTime', '2000-01-01 10:00:00'),
-        'ex_time' => PDO_DataObject::sqlValue('time', '10:00:00'),        
+        'ex_time' => PDO_DataObject::sqlValue('time', '10:00:00'),
+        
     ])
     ->whereToString();
+
+echo "\nbool test: " . PDO_DataObject::factory('Dummy')
+    ->set([ 'ex_pgbool' => true ])
+    ->whereToString();
+
+echo "\nbool test: " . PDO_DataObject::factory('Dummy')
+    ->set([ 'ex_pgbool' => false ])
+    ->whereToString();
+
+echo "\nbool test: " . PDO_DataObject::factory('Dummy')
+    ->set([ 'ex_pgbool' => 't' ])
+    ->whereToString();
+
+echo "\nbool test: " . PDO_DataObject::factory('Dummy')
+    ->set([ 'ex_pgbool' => 'f' ])
+    ->whereToString();
+
+echo "\nbool test: " . PDO_DataObject::factory('Dummy')
+    ->set([ 'ex_pgbool' => 1 ])
+    ->whereToString();
+
+echo "\nbool test: " . PDO_DataObject::factory('Dummy')
+    ->set([ 'ex_pgbool' => 0 ])
+    ->whereToString();
+
+
 
 ?>
 --EXPECT--
