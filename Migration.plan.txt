@@ -180,8 +180,8 @@ e) PDO_DataObject class
 
   * count() DONE  
 
-  * load() DONE / NEED TESTING- chainable get
-  * save() DONE / NEED TESTING - generic update/insert
+  * load() DONE chainable get
+  * save() DONE   generic update/insert
   * snapshot() DONE / NEED TESTING pre-save before an update..
   
   * fetchall(CALLABLE) ???? same as foreach, but runs a method on each object... 
