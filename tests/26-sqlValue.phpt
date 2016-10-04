@@ -48,6 +48,9 @@ echo PDO_DataObject::factory('Dummy')
     ])
     ->whereToString();    
 
+echo "\n\n--------\n";
+echo "sqlValue - datetime to other types..;\n" ;
+
 echo PDO_DataObject::factory('Dummy')
     ->set([
         
