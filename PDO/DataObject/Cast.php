@@ -477,13 +477,21 @@ class PDO_DataObject_Cast {
         // in blobs can only be cast to blobs.!
          // perhaps we should support TEXT fields???
         // 
-        
-        if (($to !== false) && !($to & PDO_DataObject::DATE)) {
-            return self::raise('Invalid Cast from a PDO_DataObject_Cast::string to something other than a date!'.
-                ' (why not just use native features)',PDO_DataObject::ERROR_INVALIDARGS);
+         switch (true) {
+            case ($to & (PDO_DataObject::DATE + PDO_DataObject::TIME)):
+                return sprintf("'%04d-%02d-%02d %02d:%02d:%02d'", 
+                    $this->year,$this->month, $this->day,  0,0,0);
+
+            case ($to & PDO_DataObject::DATE):
+                return sprintf("'%04d-%02d-%02d'", 
+                    $this->year,$this->month, $this->day);
+
+            default:
+
+                return self::raise('Invalid Cast from a PDO_DataObject_Cast::string to something other than a date or datetime!'.
+                    ' (why not just use native features)',PDO_DataObject::ERROR_INVALIDARGS);
         }
-        return sprintf("'%04d-%02d-%02d'", 
-            $this->year,$this->month, $this->day);
+
     }
     
     /**
