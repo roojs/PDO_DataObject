@@ -5033,13 +5033,13 @@ class PDO_DataObject
             return true;
         }
         
-        // value is 'null'  .. and null strings is supported.
+        // value is 'null'  .. and null strings is supported. (default)
         if ( $null_strings && $isset  && is_string($value)  && (strtolower($value) === 'null') ) {
             return true;
         }
         
         if ( $crazy_null && !$isset )  {
-        	return true;
+        	  return true;
         }
         
         return false;
