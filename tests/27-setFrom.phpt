@@ -182,6 +182,79 @@ echo "\nempty where with real null.: " . PDO_DataObject::factory('Dummy')
     ])->whereToString();
 
 
+
+
+
+
+
+echo "\n\n----------------------------------------------------------------\n";
+
+echo "enable_null_strings = full\n" ;
+PDO_DataObject::config('enable_null_strings', 'full');
+
+PDO_DataObject::debugLevel(1);
+  
  
+echo "\nsetting string and int to null: " . PDO_DataObject::factory('Dummy')
+    ->set([
+       'ex_string' => null,
+        'ex_int' => null,
+        'ex_null_string' => null,
+        'ex_null_int' => null,
+    ])->whereToString(). "\n";
+
+
+echo "\n\n--------\n";
+echo "TESTING string NULL -  enable_null_strings = true \n" ;
+
+    
+echo "\nsetting string   to 'NULL' : " . PDO_DataObject::factory('Dummy')
+    ->set([
+        
+        'ex_null_string' => 'NULL',
+        'ex_null_int' => 'NULL',
+    ])->whereToString() . "\n";
+    
+try {   
+echo "\nsetting string and int to 'NULL' : " . PDO_DataObject::factory('Dummy')
+    ->set([
+        'ex_int' => 'NULL',
+        'ex_string' => 'NULL',
+        
+    ])->whereToString() . "\n";    
+} catch (PDO_DataObject_Exception_Set $e) {
+    echo "\nset got errors as expected: {$e->getMessage()}\n";
+}   
+
+
+
+echo "TESTING CAST NULL - enable_null_strings = true\n" ;    
+
+try {
+echo "\nempty where with real null.: " . PDO_DataObject::factory('Dummy')
+    ->set([
+       'ex_string' => PDO_DataObject::sqlValue('NULL'),
+       'ex_int' => PDO_DataObject::sqlValue('NULL'),
+    ])->whereToString();
+   
+} catch (PDO_DataObject_Exception_Set $e) {
+    echo "set got errors as expected: {$e->getMessage()}\n";
+}
+
+echo "\nempty where with real null.: " . PDO_DataObject::factory('Dummy')
+    ->set([
+       'ex_null_string' => PDO_DataObject::sqlValue('NULL'),
+       'ex_null_int' => PDO_DataObject::sqlValue('NULL'),
+    ])->whereToString();
+
+
+
+
+
+
+
+
+
+
 ?>
 --EXPECT--
