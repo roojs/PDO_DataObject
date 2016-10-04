@@ -184,7 +184,6 @@ e) PDO_DataObject class
   * save() DONE   generic update/insert
   * snapshot() DONE (this is auto called on load()) ...
   
-  * fetchall(CALLABLE) ???? same as foreach, but runs a method on each object... 
 
   * table() - renamed to tableColumns()   DONE / NEED TESTING
   * keys()   DONE / NEED TESTING
@@ -212,7 +211,7 @@ e) PDO_DataObject class
 --- > databases[] set, but no database - should scan ini to determine which db to use...
 --- > transactions BEGIN/ROLLBACK/COMMIT
 --- > un-buffered queries?? - results in get failing!?!
-
+--- >  * fetchall(CALLABLE) ???? same as foreach, but runs a method on each object... 
 
 
 PDO_DataObject_Cast ( $DB == PDO object...)  DONE / NEED TESTING
