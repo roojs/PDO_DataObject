@@ -5047,9 +5047,7 @@ class PDO_DataObject
     * If the value is actually a PHP NULL value, and "disable_null_strings" has been set to 
     * the value "full", then it will also be considered null. - this can not differenticate between not set
     * 
-    * 
-    * @param  object|array $obj_or_ar 
-    * @param  string|false $prop prperty
+    * @param  mixed $value to check
     
     * @access private
     * @return bool  object
