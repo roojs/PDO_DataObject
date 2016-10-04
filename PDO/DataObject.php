@@ -4687,10 +4687,15 @@ class PDO_DataObject
                 return true;
             
             case ($cols[$col] & self::STR):
-                
+            case ($cols[$col] & self::BLOB):                
                 $this->$col = (string) $value;
                 return true;
+            
+            case ($cols[$col] & self::INT):
                 
+                $this->$col = 1 *  $value;
+                return true;
+               
             // todo : floats numerics and ints...
             default:
                 $this->$col = $value;
@@ -5015,11 +5020,13 @@ class PDO_DataObject
               case is_array($obj_or_ar):
                   $isset = isset($obj_or_ar[$prop]);
                   $value = $isset ? $obj_or_ar[$prop] : null;
+                  break;
               
               case is_object($obj_or_ar):
                   $isset = isset($obj_or_ar->$prop);
                   $value = $isset ? $obj_or_ar->$prop : null;
-              
+                  break;
+
               default:
                   self::raise("argument passed to is_null_member was not an object or array",
                         self::ERROR_INVALIDARGS);
@@ -5030,7 +5037,7 @@ class PDO_DataObject
             return self::_is_null($value);
         }
         
-        $crazy_null =   self::$config['disable_null_strings'] === 'full'; // why case insensitive?
+        $crazy_null =   self::$config['enable_null_strings'] === 'full'; // why case insensitive?
        
         if ( $crazy_null && !$isset )  {
         	  return true;
