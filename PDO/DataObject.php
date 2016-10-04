@@ -843,7 +843,7 @@ class PDO_DataObject
           if ($k === null && $v === null) {
               $res = $this->find(true);
           } else {
-              $res = $this->get($k, $v)l
+              $res = $this->get($k, $v);
           }
           if ($res < 1) {
               $this->raise("No Data returned from load", self::ERROR_NODATA);
@@ -2196,7 +2196,7 @@ class PDO_DataObject
         $quoteIdentifiers = !empty($_DB_DATAOBJECT['CONFIG']['quote_identifiers']);
 
         if ($dataObject !== true && !empty($this->_snapshot)) {
-            $dataObject = $this->_snapshot();
+            $dataObject = $this->snapshot();
         }
         
         $ignore_null = self::$config['disable_null_strings'] === false;
