@@ -1,5 +1,5 @@
 --TEST--
-sqlValue Test
+sqlValue Test + postgres casting 
 --FILE--
 <?php
 require_once 'includes/init.php';
