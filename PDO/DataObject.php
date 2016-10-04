@@ -5047,7 +5047,7 @@ class PDO_DataObject
     	
     }
      /**
-    * Evaluate whether or not a value is set to null, taking the 'disable_null_strings' option into account.
+    * Evaluate whether a simple value is set to null, taking the 'disable_null_strings' option into account.
     * If the value is a string set to "null" and the "disable_null_strings" option is not set to 
     * true, then the value is considered to be null.
     * If the value is actually a PHP NULL value, and "disable_null_strings" has been set to 
@@ -5063,30 +5063,21 @@ class PDO_DataObject
     final function _is_null($value) 
     {
      	
-        
-        $isset = $prop === false ? isset($obj_or_ar) : 
-            (is_array($obj_or_ar) ? isset($obj_or_ar[$prop]) : isset($obj_or_ar->$prop));
-        
-        $value = $isset ? 
-            ($prop === false ? $obj_or_ar : 
-                (is_array($obj_or_ar) ? $obj_or_ar[$prop] : $obj_or_ar->$prop))
-            : null;
-        
-        
+         
         
     	  $options = self::$config;
     	
         $null_strings =  $options['disable_null_strings'] === false;
-                    
-        $crazy_null =   $options['disable_null_strings'] === 'full'; // why case insensitive?
         
-        if ( $null_strings && $isset  && is_string($value)  && (strtolower($value) === 'null') ) {
+        if (is_a($value, 'PDO_DataObject_Cast') && $value->isNull()) {
             return true;
         }
         
-        if ( $crazy_null && !$isset )  {
-        	return true;
+
+        if ( $null_strings  && is_string($value)  && (strtolower($value) === 'null') ) {
+            return true;
         }
+        
         
         return false;
         
