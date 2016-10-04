@@ -164,12 +164,16 @@ class PDO_DataObject
                 // Quote table and column names when building queries 
  
             'enable_null_strings' => false,
-                // DataObjects will convert the text value 'null' to NULL when building queries
-                // this may cause problems! Setting to true will turn off this feature.
-                // you can use PDO_DataObject_Cast::SQL('NULL'); in where you have to turn this off.
+                // This is only for BC support - 
+                // previously you could use 'null' as a string to represent a NULL, or even null 
+                // however this behaviour is very problematic.
+                // 
+                // if you want or needto use NULL in your database:
+                // use PDO_DataObject::sqlValue('NULL');
+
 		 
-                // can also be set to 'full' however - this may delete data quietly if properties are 
-                // not fetched and are set *** Highly recommended not to use this..
+                // values true  means  'NULL' as a string is supported
+                // values 'full' means both 'NULL' and guessing with isset() is supported
                 
                 
         //  NEW ------------   peformance 
