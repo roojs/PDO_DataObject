@@ -185,7 +185,7 @@ e) PDO_DataObject class
   * snapshot() DONE (this is auto called on load()) ...
   
 
-  * table() - renamed to tableColumns()   DONE / NEED TESTING
+  * tableColumns() - was table()   DONE / NEED TESTING
   * keys()   DONE / NEED TESTING
   * sequenceKey() DONE / NEED TESTING
   * whereToString() (was _build_condition) DONE / NEED TESTING
