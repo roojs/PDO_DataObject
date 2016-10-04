@@ -5032,7 +5032,8 @@ class PDO_DataObject
         if ($isset && is_a($value, 'PDO_DataObject_Cast') && $value->isNull()) {
             return true;
         }
-
+        
+        // value is 'null'  .. and null strings is supported.
         if ( $null_strings && $isset  && is_string($value)  && (strtolower($value) === 'null') ) {
             return true;
         }
