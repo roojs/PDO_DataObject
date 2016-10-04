@@ -365,10 +365,74 @@ echo "\nempty where with real null.: " . PDO_DataObject::factory('Dummy')
 
 
 
+echo "\n\n--------\n";
+echo "TESTING props setting\n" ;
+
+// now setting properties... -- in theory this is what 'full' was supposed to do, but it will never work,
+// as we can not test this!?!?
+$d =  PDO_DataObject::factory('Dummy');
+$d->ex_string = null;
+$d->ex_int = null;
+$d->ex_null_string = null;
+$d->ex_null_int = null;
+echo "\nusing null props with FULL - this is a broken situation, which is why removed support for it.: == {$d->whereToString()} == \n";
+
+ 
 
 
 
+echo "\n\n--------\n";
+echo "TESTING props setting (string)\n" ;
 
+$d =  PDO_DataObject::factory('Dummy');
+$d->ex_null_string = "null";
+$d->ex_null_int = "null";
+echo "\nusing null props : == {$d->whereToString()} == \n";
+
+try {
+$d =  PDO_DataObject::factory('Dummy');
+$d->ex_string = "null";
+echo $d->whereToString();
+} catch (PDO_DataObject_Exception_InvalidArgs $e) {
+    echo "set got errors as expected: {$e->getMessage()}\n";
+}
+try {
+$d =  PDO_DataObject::factory('Dummy');
+$d->ex_int = "null";
+echo $d->whereToString();
+} catch (PDO_DataObject_Exception_InvalidArgs $e) {
+    echo "set got errors as expected: {$e->getMessage()}\n";
+}
+
+echo "\n\n--------\n";
+echo "TESTING props setting cast)\n" ;
+
+
+
+$d =  PDO_DataObject::factory('Dummy');
+$d->ex_null_string = PDO_DataObject::sqlValue('NULL');
+$d->ex_null_int = PDO_DataObject::sqlValue('NULL');
+echo "\nusing null props : == {$d->whereToString()} == \n";
+
+try {
+$d =  PDO_DataObject::factory('Dummy');
+$d->ex_string = PDO_DataObject::sqlValue('NULL');
+echo $d->whereToString();
+} catch (PDO_DataObject_Exception_InvalidArgs $e) {
+    echo "set got errors as expected: {$e->getMessage()}\n";
+}
+
+try {
+$d =  PDO_DataObject::factory('Dummy');
+$d->ex_int = PDO_DataObject::sqlValue('NULL');
+echo $d->whereToString();
+} catch (PDO_DataObject_Exception_InvalidArgs $e) {
+    echo "set got errors as expected: {$e->getMessage()}\n";
+}
+
+ 
+
+ 
 
 ?>
 --EXPECT--
