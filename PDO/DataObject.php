@@ -3230,13 +3230,16 @@ class PDO_DataObject
             
             if (is_object($this->$k) && is_a($this->$k,'PDO_DataObject_Cast')) {
                 $value = $this->$k->toString($v,$this->PDO());
-                
-                
-                if ((strtolower($value) === 'null') && !($v & self::NOTNULL)) {
+                if ($this->$k->isNull() && ($v & self::NOTNULL)) {                
+                    $this->raise("Error setting col '$k' to NULL - column is NOT NULL", self::ERROR_INVALIDARGS);
+                }
+                if ($this->$k->isNull() && !($v & self::NOTNULL)) {
                     $ret .= "($kSql IS NULL)";
                     continue;
                 }
                 
+
+
                 $ret .= " $kSql = $value";
                 continue;
             }
@@ -4538,16 +4541,13 @@ class PDO_DataObject
                 continue;
             }
             $val = $from[sprintf($format,$k)];
+
+            // convert's 'null' and null (if enable_null_strings is set..
             if (self::_is_null_member($from, sprintf($format,$k))) {
                 $val = $this->sqlValue('NULL');
             }
 
-
-            if (is_a($val, 'PDO_DataObject_Cast')) {
-                $this->$k = $val;
-                continue;
-            }
-            if (is_object($val) || is_array($val)) {
+            if (!is_a($val, 'PDO_DataObject_Cast') && (is_object($val) || is_array($val))) {
                 continue;
             }
             $ret = $this->fromValue($k,$val);
@@ -4612,10 +4612,15 @@ class PDO_DataObject
         $cols = $this->tableColumns();
         // dont know anything about this col..
         if (!isset($cols[$col]) || is_a($value, 'PDO_DataObject_Cast')) {
+
+            if ($cols[$col] & self::NOTNULL && $value->isNull()) {
+                return "setting column $col to Null is invalid as it's NOTNULL";
+            }
+
             $this->$col = $value;
             return true;
         }
-        //echo "FROM VALUE $col, {$cols[$col]}, $value\n";
+        echo "FROM VALUE $col, {$cols[$col]}, " .  var_export( $value, true) . " \n";
         switch (true) {
             // set to null and column is can be null...
             case ((!($cols[$col] & self::NOTNULL)) && self::_is_null($value)):
@@ -4692,8 +4697,11 @@ class PDO_DataObject
                 return true;
             
             case ($cols[$col] & self::INT):
-                
-                $this->$col = 1 *  $value;
+                $value = is_null($value) ? 0 : $value;
+                if (!is_numeric($value)) {
+                    return "Error: $col : type is INT -> Non numeric '$value' passed to it";
+                }
+                $this->$col = $value;
                 return true;
                
             // todo : floats numerics and ints...
