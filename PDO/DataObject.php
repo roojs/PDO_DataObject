@@ -3181,7 +3181,7 @@ class PDO_DataObject
      * @access  private
      * @return  string
      */
-    final function whereToString($keys, $filter = array(),$negative_filter=array(), $tableName = false)
+    final function whereToString($keys = false, $filter = array(),$negative_filter=array(), $tableName = false)
     {
         
         $quoteIdentifiers  = self::$config['quote_identifiers'];
@@ -4442,12 +4442,13 @@ class PDO_DataObject
      * 
      * might handle more arguments for escaping later...
      * 
-     *
+     * @static
      * @param string $value (or type if used with 2 arguments)
      * @param string $callvalue (optional) used with date/null etc..
+     * @return PDO_DataObject_Cast 
      */
     
-    function sqlValue($value)
+    static function sqlValue($value)
     {
         $method = 'sql';
         if (func_num_args() == 2) {
