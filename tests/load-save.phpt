@@ -31,20 +31,38 @@ echo "\n\n--------\n";
 echo "basic load/set/save;\n" ;
 
 PDO_DataObject::factory('Events')
-    ->load(3523);
-    ->set(['action => "testing" ])
+    ->load(3523)
+    ->set(['action' => "testing" ])
     ->save();
 
 
 echo "\n\n--------\n";
-echo "basic load/set/save;\n" ;
+echo "using where to filter.. find/set/save;\n" ;
 
 PDO_DataObject::factory('Events')
-    ->load(3523);
+    ->where('id > 3600')
+    ->limit(1)
+    ->load()
+    ->set(['action' => "testing" ])
+    ->save();
+
+echo "\n\n--------\n";
+echo "using where set filter.. find/set/save;\n" ;
+
+PDO_DataObject::factory('Events')
+    ->set(['action' => "RELOAD" ])
+    ->limit(1)
+    ->load()
     ->set(['action => "testing" ])
     ->save();
 
+// error condition.. loading data that does not exist...
+PDO_DataObject::factory('Events')
+    ->load(3523)
 
+
+PDO_DataObject::factory('Events')
+    ->load()
 
 
 echo "\n\n--------\n";
