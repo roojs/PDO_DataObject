@@ -785,8 +785,8 @@ class PDO_DataObject
      * and get will then use the first key in keys()
      * to obtain the key.
      *
-     * @param   string  $k column
-     * @param   string  $v value
+     * @param  mixed  $k column (or primary key value)
+     * @param  mixed $v (optional) value
      * @throws PDO_DataObject_Exception
      * @access  public
      * @return  int     No. of rows
@@ -839,7 +839,13 @@ class PDO_DataObject
      */
      final function load($k = null, $v = null)
      {
-          if (!$this->get($k, $v)) {
+          $res = 0;          
+          if ($k === null && $v === null) {
+              $res = $this->find(true);
+          } else {
+              $res = $this->get($k, $v)l
+          }
+          if (!$res) {
               $this->raise("No Data returned from load", self::ERROR_NODATA);
           }
           $this->snapshot();
