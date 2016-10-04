@@ -823,7 +823,7 @@ class PDO_DataObject
      * $object->load("ID",1234);
      * Returns Number of rows located (usually 1) for success,
      * and puts all the table columns into this classes variables
-     * Note: this also snapshot's the object, ready for update..
+     * Note: this also snapshot's the object, ready for update.., and clears any 'where condition'
      *
      * see the fetch example on how to extend this.
      *
@@ -841,6 +841,11 @@ class PDO_DataObject
      {
           $res = 0;          
           if ($k === null && $v === null) {
+
+              $str = $this->toWhereString($this->tableColumns());
+              if (!strlen(trim($str)) {
+                  $this->raise("No condition (property or where) set for loading data.", self::ERROR_INVALIDARGS);
+              }
               $res = $this->find(true);
           } else {
               $res = $this->get($k, $v);
@@ -851,6 +856,7 @@ class PDO_DataObject
           if ($res > 1) {
               $this->raise("Too many rows returned from load", self::ERROR_INVALIDARGS);
           }
+          $this->_query['condition'] = '';
           $this->snapshot();
           return $this;
      }
@@ -2196,7 +2202,7 @@ class PDO_DataObject
         $quoteIdentifiers = !empty($_DB_DATAOBJECT['CONFIG']['quote_identifiers']);
 
         if ($dataObject !== true && !empty($this->_snapshot)) {
-            $dataObject = $this->snapshot();
+            $dataObject = $this->_snapshot;
         }
         
         $ignore_null = self::$config['disable_null_strings'] === false;
@@ -2587,7 +2593,7 @@ class PDO_DataObject
             if (self::$debug) {
                 $this->debug('BEGIN',__FUNCTION__);
             }
-            $pdo->beginTranaction();
+            $pdo->beginTransaction();
             
             return $this;
         }
