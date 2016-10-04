@@ -76,15 +76,15 @@ echo "\nempty where: " . PDO_DataObject::factory('Dummy')
     
 echo "\nempty where with string values.: " . PDO_DataObject::factory('Dummy')
     ->set([
-       'ex_string' => 'NULL',
+        'ex_string' => 'NULL',
         'ex_int' => 'NULL',
     ])->whereToString();
     
 
-echo "\nempty where with string values.: " . PDO_DataObject::factory('Dummy')
+echo "\nempty where with real null.: " . PDO_DataObject::factory('Dummy')
     ->set([
        'ex_string' => PDO_DataObject::sqlValue('NULL'),
-        'ex_int' => PDO_DataObject::sqlValue('NULL'),
+       'ex_int' => PDO_DataObject::sqlValue('NULL'),
     ])->whereToString();
 
     
