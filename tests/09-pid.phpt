@@ -3,7 +3,7 @@ pid test
 --FILE--
 <?php
 require_once 'includes/init.php';
-PDO_DataObject::debugLevel(1);
+PDO_DataObject::debugLevel(0);
 PDO_DataObject::config(array(
         'class_location' => __DIR__.'/includes/sample_classes/DataObjects_',
         'database' => 'mysql://user:pass@localhost/gettest'
