@@ -4270,7 +4270,7 @@ class PDO_DataObject
      *                    Use TABLENAME.* to prevent a join occuring to a specific table.
      *          include  Array of specific columns to include (none others are added to select, join is still done though)
      *          links    The equivilant links.ini data for this table eg.
-     *                    array( 'person_id' => 'person:id', .... )
+     *                    array( 'person_id' => 'person:id', .... ) - only applied to this instance of the DataObject (used to be applied globally)
      *          distinct Array of distinct columns.
      *          
      * @return   array      info about joins
