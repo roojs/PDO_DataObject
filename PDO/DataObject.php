@@ -4323,9 +4323,9 @@ class PDO_DataObject
         if (!empty($cfg['distinct']) && $keys) {
             
             // reset the columsn?
+             
             $cols = array();
-            
- 
+             
             foreach($keys as $c) {
  
                 
@@ -4339,9 +4339,12 @@ class PDO_DataObject
                 
             }
             // apply our filtered version, which excludes the distinct column.
+            if ($has_distinct) {
+                 $selectAs = empty($cols) ?  array() : array(array(array($cols) , '%s', false)) ;
+            } 
             
-            $selectAs = empty($cols) ?  array() : array(array(array($cols) , '%s', false)) ;
-            
+
+
             
             
         } 
