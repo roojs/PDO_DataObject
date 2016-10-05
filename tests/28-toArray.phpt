@@ -56,7 +56,7 @@ print_r(
 
 echo "\n\ntoArray - using cast;\n" ;
 
-print_r(
+var_export(
     PDO_DataObject::factory('Dummy')
     ->set([
         'ex_blob' => PDO_DataObject::sqlValue('blob','a long piece of data'),
@@ -65,19 +65,12 @@ print_r(
         'ex_date' => PDO_DataObject::sqlValue('date', '2000-01-01'),
         'ex_datetime' => PDO_DataObject::sqlValue('dateTime', '2000-01-01 10:00:00'),
         'ex_time' => PDO_DataObject::sqlValue('time', '10:00:00'),
+        'ex_null_string' => PDO_DataObject::sqlValue('null'),
         
     ])
     ->toArray()
 );
 
-print_r(
-    PDO_DataObject::factory('Dummy')
-    ->set([
-        'ex_sql' => PDO_DataObject::sqlValue('null'),
-        
-    ])
-    ->toArray()
-);
 
  
 echo "\n\n--------\n";
@@ -137,6 +130,9 @@ Array
     [ex_null_string] => 
     [ex_null_int] => 
 )
+
+
+toArray - with prefix;
 Array
 (
     [with_prefix_id] => 
@@ -151,6 +147,19 @@ Array
     [with_prefix_ex_null_int] => 
 )
 
+
+toArray - using cast;
+array (
+  'id' => '',
+  'ex_blob' => 'a long piece of data',
+  'ex_int' => '',
+  'ex_string' => 123123,
+  'ex_date' => '2000-01-01',
+  'ex_datetime' => '2000-01-01 10:00:00',
+  'ex_time' => '10:00:00',
+  'ex_null_string' => NULL,
+  'ex_null_int' => '',
+)
 
 --------
 toArray - default - table columns + result;
