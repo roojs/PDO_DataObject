@@ -4830,13 +4830,22 @@ class PDO_DataObject
             
              
             case ($cols[$col] &  self::BOOL):
-                
+                $val =  $this->$col;
+
                 if ($cols[$col] &  self::STR) {
                     // it's a 't'/'f' !
-                    return ($this->$col === 't');
+                    $val = ($this->$col === 't');
                 }
-                return (bool) $this->$col;
-            
+                $val = (bool) $this->val;
+                switch($format) {
+                    case '%s':
+                        return $val ? 'true' : 'false';
+                    case '%d':
+                        return (int)$val;
+                    default:
+                        return $this->$col;
+                  }
+                  // should not get here....
                
             default:
                 if (is_null($format)) {
