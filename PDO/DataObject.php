@@ -4271,7 +4271,7 @@ class PDO_DataObject
      *          include  Array of specific columns to include (none others are added to select, join is still done though)
      *          links    The equivilant links.ini data for this table eg.
      *                    array( 'person_id' => 'person:id', .... ) - only applied to this instance of the DataObject (used to be applied globally)
-     *          distinct Array of distinct columns.
+     *          distinct Array of distinct columns. (note you may need to add GROUP BY for this to work)
      *          
      * @return   array      info about joins
      *                      cols => map of resulting {joined_tablename}.{joined_table_column_name}
@@ -4325,9 +4325,9 @@ class PDO_DataObject
             // reset the columsn?
             $cols = array();
             
-             //echo '<PRE>' ;print_r($xx);exit;
+ 
             foreach($keys as $c) {
-                //var_dump($c);
+ 
                 
                 if (  $cfg['distinct'] == $c) {
                     $has_distinct = 'DISTINCT( ' . $this->tableName() .'.'. $c .') as ' . $c;
@@ -4340,7 +4340,7 @@ class PDO_DataObject
             }
             // apply our filtered version, which excludes the distinct column.
             
-            $selectAs = empty($cols) ?  array() : array(array(array(  $cols) , '%s', false)) ;
+            $selectAs = empty($cols) ?  array() : array(array(array($cols) , '%s', false)) ;
             
             
             
