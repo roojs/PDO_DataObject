@@ -4468,7 +4468,8 @@ class PDO_DataObject
      * joinAll - chained Version of autoJoin()
      * usage: 
      * $array  = PDO_DataObject::factory('mytable')->joinAll()->fetchAll();
-     *
+     * 
+     * @see #autoJoin for more details.
      *
      * @param     array     Configuration
      *          exclude  Array of columns to exclude from results (eg. modified_by_id)
