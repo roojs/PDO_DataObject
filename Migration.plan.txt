@@ -198,7 +198,7 @@ e) PDO_DataObject class
   * fromValue() DONE 
 
   * toArray() DONE  
-  * formatValue()   DONE / NEED TESTING - was toValue() (date formating is not compatible)
+  * formatValue()   DONE  - was toValue() (date formating is not compatible)
   * validate()  DONE / NEED TESTING - moved to seperate class...
   * raise  (was raiseError) -- DONE - tests all over the place......
  
