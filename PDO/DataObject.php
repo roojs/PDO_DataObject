@@ -3883,15 +3883,14 @@ class PDO_DataObject
             
                 
                 $obj = self::tableToClass($toTable);
- var_dump($obj);
-                if ($obj) {
-                    $obj = new PDO_DataObject($toTable);
-                }
+                 
             }
             // set the table items to nothing.. - eg. do not try and match
             // things in the child table...???
             $items = array();
         }
+
+
         
         if (!is_object($obj) || !is_a($obj,'PDO_DataObject')) {
             return $this->raise("joinAdd: called without an object", self::ERROR_INVALIDARGS);
