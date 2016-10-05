@@ -131,7 +131,10 @@ class PDO_DataObject_Validate
                     //$ret[$key] = Validate::string($this->do->$key, VALIDATE_PUNCTUATION . VALIDATE_NAME);
                     continue;
                 case  ($val & PDO_DataObject::INT):
-                    $ret[$key] = Validate::number($this->do->$key, array('decimal'=>'.'));
+                    if ( is_numeric($this->do->$key)) {
+                        continue;
+                    }
+                    $ret[$key] = "Value is not numeric";
                     continue;
             }
         }
