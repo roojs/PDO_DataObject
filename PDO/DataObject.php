@@ -4282,11 +4282,11 @@ class PDO_DataObject
     function autoJoin($cfg = array())
     {
          //var_Dump($cfg);exit;
-        $pre_links = $this->links();
-        if (!empty($cfg['links'])) {
-            $this->links(array_merge( $pre_links , $cfg['links']));
-        }
+         
         $map = $this->links();
+        if (!empty($cfg['links'])) {
+            $map = array_merge( $map, $cfg['links']));
+        }
         
         $this->databaseStructure();
         $dbstructure = self::$ini[$this->_database_nickname];
@@ -4473,9 +4473,7 @@ class PDO_DataObject
         foreach($selectAs as $ar) {            
             $this->selectAs($ar[0], $ar[1], $ar[2]);
         }
-        // restore links..
-        $this->links( $pre_links );
-        
+    
         return $ret;
         
     }
