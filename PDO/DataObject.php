@@ -3883,7 +3883,12 @@ class PDO_DataObject
             
                 
                 $obj = self::tableToClass($toTable);
-                 
+
+                if ($obj) {
+                    $obj =self::factory($toTable);
+                } else {
+                    $obj = new PDO_DataObject($toTable);
+                }
             }
             // set the table items to nothing.. - eg. do not try and match
             // things in the child table...???
@@ -4209,7 +4214,12 @@ class PDO_DataObject
                 
             case '': // this is just a standard multitable select..
                 $this->_join .= "\n , {$objTable} {$fullJoinAs} {$appendJoin}";
-                $this->whereAdd("{$joinAs}.{$ofield}={$table}.{$tfield}");
+                $this->where("{$joinAs}.{$ofield}={$table}.{$tfield}");
+                break;
+
+            default:
+                return $this->raise("Invalid Join type :'{$joinType}'", self::ERROR_INVALIDARGS);
+
         }
          
          
