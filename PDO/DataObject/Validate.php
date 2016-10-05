@@ -1,6 +1,7 @@
 <?php
 /**
- * Validation code (simple version.)
+ * Validation code - really only here for compatibility...
+ *    it's debatable if this should even be used..
  *
  * For PHP versions  5 and 7
  * 
