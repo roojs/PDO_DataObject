@@ -110,7 +110,7 @@ class PDO_DataObject_Validate
             if (!isset($this->do->$key)) {
                 continue;
             }
-            $ret[$key] = true; /// 
+            $ret[$key] = true; /// default to everything is ok...
 
 
             // if the string is empty.. assume it is ok..
