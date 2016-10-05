@@ -20,7 +20,7 @@ $j = PDO_DataObject::factory('joinerb')
     ->joinAll()
     ->find(true);
 
-print_r(     
+var_export(     
     PDO_DataObject::factory('joinerb')
     ->autoJoin()
 );
@@ -39,7 +39,7 @@ $j = PDO_DataObject::factory('joinerb')
     ])
     ->find(true);
 
-print_r(     
+var_export(     
     PDO_DataObject::factory('joinerb')
     ->autoJoin([
         'exclude' => array('childa_id_ca_id', 'childc_id')
@@ -55,7 +55,14 @@ $j = PDO_DataObject::factory('joinerb')
     ])
     ->find(true);
 
-    
+
+var_export(     
+    PDO_DataObject::factory('joinerb')
+    ->autoJoin([
+         'exclude' => array('childc_id.*')
+    ])
+);    
+        
     
     
 echo "\nexclude joined table using target* and 'joined as' name.., .\n";
@@ -66,6 +73,13 @@ $j = PDO_DataObject::factory('joinerc')
     ->find(true);
  
  
+var_export(     
+    PDO_DataObject::factory('joinerb')
+    ->autoJoin([
+          'exclude' => array('childa.*','join_childb_id_ca_id')
+    ])
+);    
+   
 echo "\n\n--------\n";
 echo "Include tests\n" ;
 
@@ -77,17 +91,30 @@ $j = PDO_DataObject::factory('joinerc')
     ->find(true);
   
  
+var_export(     
+    PDO_DataObject::factory('joinerb')
+    ->autoJoin([
+          'include' => array('childa_id','childa_id_name')
+    ])
+);    
+   
 echo "\n\n--------\n";
 echo "links tests\n" ;
 
-echo "\n include only two columns...  .\n";
+echo "\n links add extra link...  .\n";
 $j = PDO_DataObject::factory('joiner')
     ->joinAll([
         'links' => array('childb_id' => 'childb:cb_id')
     ])
     ->find(true);
 
-
+var_export(     
+    PDO_DataObject::factory('joinerb')
+    ->autoJoin([
+          'links' => array('childb_id' => 'childb:cb_id')
+    ])
+);    
+   
 
 echo "\n distinct column...  .\n";
 $j = PDO_DataObject::factory('joiner')
@@ -97,6 +124,12 @@ $j = PDO_DataObject::factory('joiner')
     ->find(true);
     
  
+var_export(     
+    PDO_DataObject::factory('joinerb')
+    ->autoJoin([
+          'distinct' => 'childa_id'
+    ])
+);   
 echo "\n distinct column...  .\n";
 $j = PDO_DataObject::factory('joiner')
     ->joinAll([
@@ -104,6 +137,12 @@ $j = PDO_DataObject::factory('joiner')
     ])
     ->find(true);
   
+var_export(     
+    PDO_DataObject::factory('joinerb')
+    ->autoJoin([
+          'distinct' => 'childa_id_name'
+    ])
+);   
  
  
  
