@@ -26,9 +26,9 @@ $d = PDO_DataObject::factory('Dummy')
         'ex_time' => PDO_DataObject::sqlValue('time', '10:00:00'),        
     ]);
 
-echo "date : {$d->formatValue('ex_date', 'd/M/Y')}\n"
-echo "date : {$d->formatValue('ex_datetime', 'd/M/Y H:i')}\n"
-echo "date : {$d->formatValue('ex_time', 'H:i')}\n"
+echo "date : {$d->formatValue('ex_date', 'd/M/Y')}\n";
+echo "date : {$d->formatValue('ex_datetime', 'd/M/Y H:i')}\n";
+echo "date : {$d->formatValue('ex_time', 'H:i')}\n";
  
  $d = PDO_DataObject::factory('Dummy')
     ->set([
@@ -36,9 +36,9 @@ echo "date : {$d->formatValue('ex_time', 'H:i')}\n"
         'ex_datetime' => '2000-01-01 10:00:00',
         'ex_time' => '10:00:00',        
     ]);
-echo "date : {$d->formatValue('ex_date', 'd/M/Y')}\n"
-echo "date : {$d->formatValue('ex_datetime', 'd/M/Y H:i')}\n"
-echo "date : {$d->formatValue('ex_time', 'H:i')}\n"
+echo "date : {$d->formatValue('ex_date', 'd/M/Y')}\n";
+echo "date : {$d->formatValue('ex_datetime', 'd/M/Y H:i')}\n";
+echo "date : {$d->formatValue('ex_time', 'H:i')}\n";
 
 echo "Booleans "
 var_export(PDO_DataObject::factory('Dummy')
