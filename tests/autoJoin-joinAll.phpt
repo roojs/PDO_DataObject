@@ -16,9 +16,9 @@ PDO_DataObject::debugLevel(0);
  
 // these need the links to calculate the join..
  
-echo "\nsimple join - with object: ". PDO_DataObject::factory('joiner')
-    ->joinAdd(PDO_DataObject::factory('childa'))
-    ->_join;
+$j = PDO_DataObject::factory('joiner')
+    ->joinAll()
+    ->find(true);
     
 echo "\nsimple join - with string: ". PDO_DataObject::factory('joiner')
     ->joinAdd('childa')
