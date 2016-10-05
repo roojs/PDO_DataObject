@@ -22,7 +22,7 @@ PDO_DataObject::config(array(
          */
 ));
 
-PDO_DataObject::debugLevel(1);
+PDO_DataObject::debugLevel(0);
  
 
 echo "\n\n--------\n";
@@ -124,10 +124,8 @@ unlink($temp);
 empty insert;
 __construct==["mysql:dbname=inserttest;host=localhost","user","pass",[]]
 setAttribute==[3,2]
-PDO_DataObject   : databaseStructure       : CALL:[]
-PDO_DataObject   : query       : 5f82f3a2da7afaa78228444fbcba3e37 : INSERT INTO Events () VALUES () 
-QUERY: 5f82f3a2da7afaa78228444fbcba3e37
-PDO_DataObject   : query       : NO# of results: 123123
+QUERY:5f82f3a2da7afaa78228444fbcba3e37:
+INSERT INTO Events () VALUES () 
 lastInsertId from sequence=''  is 123123
 int(123123)
 Array
@@ -149,10 +147,8 @@ Array
 empty insert (postgresql);
 __construct==["pgsql:dbname=pginsert;host=localhost","user","pass",[]]
 setAttribute==[3,2]
-PDO_DataObject   : databaseStructure       : CALL:[]
-PDO_DataObject   : query       : b641522a3fbae38828891f330aeb7313 : INSERT INTO Events DEFAULT VALUES
-QUERY: b641522a3fbae38828891f330aeb7313
-PDO_DataObject   : query       : NO# of results: 43434
+QUERY:b641522a3fbae38828891f330aeb7313:
+INSERT INTO Events DEFAULT VALUES
 lastInsertId from sequence='id_sequence'  is 43434
 int(43434)
 Array
@@ -172,10 +168,8 @@ Array
 
 --------
 insert with data;
-PDO_DataObject   : databaseStructure       : CALL:[]
-PDO_DataObject   : query       : 628879af4d41c471483702443eb35560 : INSERT INTO Events (person_name , event_when , action , on_id , on_table , remarks ) VALUES ('fred' , '2016-10-03 13:58:06' , 'TEST' ,  0 , '' , 'a test event' ) 
-QUERY: 628879af4d41c471483702443eb35560
-PDO_DataObject   : query       : NO# of results: 34343
+QUERY:628879af4d41c471483702443eb35560:
+INSERT INTO Events (person_name , event_when , action , on_id , on_table , remarks ) VALUES ('fred' , '2016-10-03 13:58:06' , 'TEST' ,  0 , '' , 'a test event' ) 
 lastInsertId from sequence=''  is 34343
 int(34343)
 Array
