@@ -4393,12 +4393,13 @@ class PDO_DataObject
             
             
             if (!empty($cfg['exclude'])) {
-                $keys = array_intersect($keys, array_diff($keys, $cfg['exclude']));
-                
-                foreach($keys as $k) {
+                $nkeys = array_intersect($keys, array_diff($keys, $cfg['exclude']));
+                $keys = array();
+                foreach($nkeys as $k) {
                     if (in_array($ocl.'_'.$k, $cfg['exclude'])) {
-                        $keys = array_diff($keys, $k); // removes the k..
+                        continue;
                     }
+                    $keys[] = $k;
                 }
                 
             }
