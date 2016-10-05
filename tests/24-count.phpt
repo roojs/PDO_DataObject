@@ -193,61 +193,83 @@ echo "Total rows (distinct state): {$Customers->count('distinct state')}\n";
 basic count;
 __construct==["mysql:dbname=inserttest;host=localhost","user","pass",[]]
 setAttribute==[3,2]
-QUERY: da10443bc8585f7dc122c0bb5c930945
+QUERY:da10443bc8585f7dc122c0bb5c930945:
+SELECT count(Events.id) as DATAOBJECT_NUM
+                FROM Events  
 Total rows: 574675
 
 
 --------
 count matching properties....);
-QUERY: 47e8ef81ad766bcb6406bbafc65c9a68
+QUERY:47e8ef81ad766bcb6406bbafc65c9a68:
+SELECT count(Events.id) as DATAOBJECT_NUM
+                FROM Events  WHERE (Events.person_name  = 'Alan')
 Total rows (with person=Alan): 4516
 
 
 --------
 count based on where......);
-QUERY: 6dae8ae5d6c695bb4e18534694646a97
+QUERY:6dae8ae5d6c695bb4e18534694646a97:
+SELECT count(Events.id) as DATAOBJECT_NUM
+                FROM Events  WHERE ( person_id < 20 ) 
 Total rows (with person_id < 20): 547179
 
 
 --------
 count distinct;
-QUERY: b8e89f17120074c01b0f14f4c0d6af77
+QUERY:b8e89f17120074c01b0f14f4c0d6af77:
+SELECT count(distinct person_name) as DATAOBJECT_NUM
+                FROM Events  
 Total rows (distinct person_name): 41
 
 
 --------
 count distinct + property;
-QUERY: 617692175d0901d4d050a9fb4ff199c2
+QUERY:617692175d0901d4d050a9fb4ff199c2:
+SELECT count(distinct person_name) as DATAOBJECT_NUM
+                FROM Events  WHERE (Events.action  = 'RELOAD')
 Total rows (distinct person_name) - with action=RELOAD: 19
 
 
 --------
 sql typo;
-QUERY: de2b1352684938007346c359b3406ea9
+QUERY:de2b1352684938007346c359b3406ea9:
+SELECT count(distinct person_name) as DATAOBJECT_NUM
+                FROM Events  WHERE ( id = > 10000 ) AND (Events.action  = 'RELOAD')
 Typo got exception as expected : Could not run Query
 
 
 --------
 count distinct + property + where ;
-QUERY: 3aea344ea577bc8c10cd183ac72dad94
+QUERY:3aea344ea577bc8c10cd183ac72dad94:
+SELECT count(distinct person_name) as DATAOBJECT_NUM
+                FROM Events  WHERE ( id >= 10000 ) AND (Events.action  = 'RELOAD')
 Total rows (distinct person_name) - with action=RELOAD  where: 16
 
 
 --------
 count distinct + property + where + WHERE_ONLY ;
-QUERY: b39eb0824e17aab3aef96a262d2a8b7a
+QUERY:b39eb0824e17aab3aef96a262d2a8b7a:
+SELECT count(distinct person_name) as DATAOBJECT_NUM
+                FROM Events  WHERE ( id >= 10000 ) 
 Total rows (distinct person_name) - with action=RELOAD  where: 38
 
 
 --------
 count zero results. ;
-QUERY: fc6b5bd4000b9295f9d2efdf833d5335
+QUERY:fc6b5bd4000b9295f9d2efdf833d5335:
+SELECT count(Events.id) as DATAOBJECT_NUM
+                FROM Events  WHERE ( id < -1 ) 
 Total rows (zero results) where: 0
 
 
 --------
 count after fetch (error) ;
-QUERY: 8954200ac8480d37239612ab7fe410a3
+QUERY:8954200ac8480d37239612ab7fe410a3:
+SELECT *
+ FROM   Events   
+ WHERE ( (Events.action  = 'RELOAD') ) 
+ LIMIT  3
 Fetch Row 0 / 1
 Fetch Row 1 / 1
 Close Cursor
