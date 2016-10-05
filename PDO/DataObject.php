@@ -4239,6 +4239,7 @@ class PDO_DataObject
 
     /**
      * autoJoin - using the links.ini file, it builds a query with all the joins 
+     * Note: modifies 'select' as well..
      * usage: 
      * $x = PDO_DataObject::factory('mytable');
      * $x->autoJoin();
