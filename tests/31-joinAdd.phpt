@@ -97,13 +97,10 @@ echo   PDO_DataObject::factory('joinerb')
 echo "\n\n--------\n";
 echo "useWhereAsOn\n" ;
 
-$ca = PDO_DataObject::factory('childa')->set({
+$ca = PDO_DataObject::factory('childa')->set(['name' => 'fred']);
     
-    
-    
-})
 echo   PDO_DataObject::factory('joiner')
-    ->joinAdd('childa', array(
+    ->joinAdd($ca, array(
             'useWhereAsOn' => true
     ))
     ->_join;
@@ -112,3 +109,47 @@ echo   PDO_DataObject::factory('joiner')
 
 ?>
 --EXPECT--
+__construct==["mysql:dbname=inserttest;host=localhost","user","pass",[]]
+setAttribute==[3,2]
+
+simple join - with object: 
+ INNER JOIN childa  ON (childa.ca_id=joiner.childa_id)  
+simple join - with string: 
+ INNER JOIN childa  ON (childa.ca_id=joiner.childa_id)  
+simple join - with array (2): 
+ INNER JOIN childb  ON (childb.cb_id=joiner.childb_id)  
+simple join - with array (3): 
+ INNER JOIN childb  ON (childb.cb_id=joiner.childb_id)  
+
+--------
+join Types
+
+simple join left join: 
+ LEFT JOIN childa  ON (childa.ca_id=joiner.childa_id)  
+simple join right join 
+ RIGHT JOIN childa  ON (childa.ca_id=joiner.childa_id)  
+simple join empty string type: 
+ , childa  
+ - with WHERE:
+( childa.ca_id=joiner.childa_id )
+ threw exception as expected Invalid Join type :'XXX'
+
+
+--------
+join As
+
+ LEFT JOIN childa AS first_child ON (first_child.ca_id=joiner.childa_id)  
+
+--------
+joinCol
+
+joining without specifying which column, fails as expected: There are multiple locations where table 'childa' is joined to 'joinerb' 
+ you should use the joinCol argument to specify which one to use
+
+ INNER JOIN childa AS join_childa_first ON (join_childa_first.ca_id=joinerb.childa_id)  
+ INNER JOIN childa AS join_childa_second ON (join_childa_second.ca_id=joinerb.childc_id)  
+
+--------
+useWhereAsOn
+
+ INNER JOIN childa  ON (childa.ca_id=joiner.childa_id)  AND ( childa.name = 'fred' )
