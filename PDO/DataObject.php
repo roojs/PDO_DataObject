@@ -4286,7 +4286,7 @@ class PDO_DataObject
         if (!empty($cfg['links'])) {
             $this->links(array_merge( $pre_links , $cfg['links']));
         }
-        $map = $this->links( );
+        $map = $this->links();
         
         $this->databaseStructure();
         $dbstructure = self::$ini[$this->_database_nickname];
