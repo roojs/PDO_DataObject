@@ -38,7 +38,6 @@ print_r( PDO_DataObject::factory('Dummy')
     ->toArray()
 );
 
-*/
 print_r( PDO_DataObject::factory('Dummy')
     ->set([
          
@@ -51,6 +50,7 @@ print_r( PDO_DataObject::factory('Dummy')
     ->toArray('with_prefix_%s')
 );
 
+*/
 print_r(  PDO_DataObject::factory('Companies')
     ->set(['comptype' => 'CONSULTANT'])
     ->select(" id, name, 'fred the dog' as the_dog")
