@@ -4386,7 +4386,7 @@ class PDO_DataObject
                 continue;
             }
             
-            $tabdef = $xx->table();
+            $tabdef = $xx->tableColumns();
             $table = $xx->tableName();
             
             $keys = array_keys($tabdef);
