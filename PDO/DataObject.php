@@ -3570,13 +3570,11 @@ class PDO_DataObject
         
 
         if ($args = func_get_args()) {
-            // an associative array was specified, that updates the current
-            // schema... - be careful doing this
-            if (empty( self::$links[$dn])) {
-                self::$links[$dn] = array();
-            }
-            self::$links[$dn][$tn] = $args[0];
+            $this->_assigned_links = $args[0];
             
+        }
+        if (isset($this->_assigned_links)) {
+            return $this->_assigned_links;
         }
         
 
