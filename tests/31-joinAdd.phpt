@@ -30,8 +30,11 @@ echo "simple join - with array (2): ". PDO_DataObject::factory('Joiner')
     ->_join;
         
 echo "simple join - with array (3): ". PDO_DataObject::factory('Joiner')
-    ->joinAdd(array('child_id', PDO_DataObject::factory('Child'), 'id'))
+    ->joinAdd(array('child_id', PDO_DataObject::factory('Child2'), 'id'))
     ->_join;
+     
+     
+     
      
  
 var_export(
