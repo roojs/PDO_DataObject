@@ -3838,15 +3838,15 @@ class PDO_DataObject
      * 
      * 
      * @return   PDO_DataObject                 for chaining
+     * @throws   PDO_DataObject_Exception       if it can not work out how to join...
      * @access   public
      * @author   Stijn de Reede      <sjr@gmx.co.uk>
      */
     function joinAdd($obj = false, $joinType='INNER', $joinAs=false, $joinCol=false)
     {
          if ($obj === false) {
-            $ret = $this->_join;
             $this->_join = '';
-            return $ret;
+            return $this;
         }
          
         //echo '<PRE>'; print_r(func_get_args());
