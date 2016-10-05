@@ -578,12 +578,31 @@ class PDO_DataObject_Cast {
     {
         return $this->value; 
     }
-    
+     /**
+    * can this property be converted to a plain value (for toArray)
+    *
+    * @return   bool 
+    * @access   public
+    */
+    function canToValue($to,$db) 
+    {
+        switch($this->type) {
+            case 'date':
+            case 'datetime':
+            case 'time':
+            case 'blob': //???
+            case 'string':
+              return true; 
+          
+            case 'sql':
+              return strtolower($this->value) == 'null' ? true : false;
+            
+            default:
+              return false; // not sould not get here...
+    }
     /**
     * does this object representing a 'null' value...
-    *
     * 
-    *
     * @return   bool
     * @access   public
     */
