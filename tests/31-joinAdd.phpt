@@ -40,18 +40,18 @@ echo "join Types\n" ;
     
 // second param...
 
-echo "\nsimple join - with string: ". PDO_DataObject::factory('joiner')
+echo "\nsimple join left join: ". PDO_DataObject::factory('joiner')
     ->joinAdd('childa','LEFT')
     ->_join;
 
-echo "\nsimple join - with string: ". PDO_DataObject::factory('joiner')
+echo "\nsimple join right join ". PDO_DataObject::factory('joiner')
     ->joinAdd('childa','RIGHT')
     ->_join;
  
  
 $j = PDO_DataObject::factory('joiner')
     ->joinAdd('childa','');
-echo "\nsimple join - with string: ". $j->_join ."\n - with WHERE:\n" .
+echo "\nsimple join empty string type: ". $j->_join ."\n - with WHERE:\n" .
     $j->whereToString();
     
     
