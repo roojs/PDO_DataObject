@@ -4465,6 +4465,13 @@ class PDO_DataObject
         
     }
     
+
+    function joinAll($cfg = array())
+    {
+         $this->autoJoin($cfg);
+         return $this;
+    }
+
     /**
      * Factory method for calling PDO_DataObject_Cast
      *
