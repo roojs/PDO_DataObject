@@ -601,7 +601,7 @@ class PDO_DataObject
     
     /**
      * Set/get the global configuration...
-     * Used to be via PEAR::getStaticProperty() - now depricated..
+     * Used to be via PEAR::getStaticProperty() - now removed
      *
      * Usage:
      *
@@ -1385,7 +1385,7 @@ class PDO_DataObject
      * @param    string  $logic optional logic "OR" (defaults to "AND")
      * @throws   PDO_DataObject_Exception running on object with results., or invalid arguments
      * @access   public
-     * @return   string|PEAR::Error - previous condition or Error when invalid args found
+     * @return   string - previous condition
      */
     final function whereAdd($cond = false, $logic = 'AND')
     {
