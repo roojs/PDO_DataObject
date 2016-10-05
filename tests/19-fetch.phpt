@@ -15,7 +15,7 @@ PDO_DataObject::config(array(
 
 //PDO_DataObject::debugLevel(0);
 //PDO_DataObject::factory('Companies')->databaseStructure();
-PDO_DataObject::debugLevel(1);
+PDO_DataObject::debugLevel(0);
 
 
 echo "\n\n--------\n";
@@ -74,21 +74,15 @@ PDO_DataObject::config('keep_query_after_fetch', true);
 --EXPECT--
 --------
 simple fetch
-PDO_DataObject   : find       : false
 __construct==["mysql:dbname=gettest;host=localhost","user","pass",[]]
 setAttribute==[3,2]
-PDO_DataObject   : databaseStructure       : CALL:[]
-PDO_DataObject   : query       : ebba0af48c52cc567e77a69664b3addb : SELECT *
+QUERY:ebba0af48c52cc567e77a69664b3addb:
+SELECT *
  FROM   Companies   
  WHERE ( (Companies.comptype  = 'CONSULTANT') ) 
  LIMIT  3
-QUERY: ebba0af48c52cc567e77a69664b3addb
-PDO_DataObject   : query       : NO# of results: 3
-PDO_DataObject   : find       : CHECK autofetched false
-PDO_DataObject   : find       : DONE
 Got 3 rows from find
 Fetch Row 0 / 3
-PDO_DataObject   : fetch       : {"code":"vinski","name":"Vinski Web","remarks":"","owner_id":"0","address":"","tel":"","fax":"","email":"test@example.com","id":"15","isOwner":"0","logo_id":"0","background_color":"","comptype":"CONSULTANT","url":"","main_office_id":"0","created_by":"0","created_dt":"0000-00-00 00:00:00","updated_by":"0","updated_dt":"0000-00-00 00:00:00"}
 Array
 (
     [code] => vinski
@@ -119,15 +113,11 @@ Array
 
 --------
 fetch with 'fetch_into' set - might be faster....
-PDO_DataObject   : find       : false
-PDO_DataObject   : query       : ebba0af48c52cc567e77a69664b3addb : SELECT *
+QUERY:ebba0af48c52cc567e77a69664b3addb:
+SELECT *
  FROM   Companies   
  WHERE ( (Companies.comptype  = 'CONSULTANT') ) 
  LIMIT  3
-QUERY: ebba0af48c52cc567e77a69664b3addb
-PDO_DataObject   : query       : NO# of results: 3
-PDO_DataObject   : find       : CHECK autofetched false
-PDO_DataObject   : find       : DONE
 Got 3 rows from find
 Fetch Row 0 / 3
 Array
@@ -160,5 +150,4 @@ Array
 
 --------
 fetch without find (error)
-PDO_DataObject   : raise       : Fetch Called without Query being run
 got exception as expected: Fetch Called without Query being run
