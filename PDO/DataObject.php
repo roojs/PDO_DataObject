@@ -808,7 +808,7 @@ class PDO_DataObject
             }
             $k = $keys[0];
         }
-        if (!empty($_DB_DATAOBJECT['CONFIG']['debug'])) {
+        if (self::$debug) {
             $this->debug("$k $v " .print_r($keys,true), __FUNCTION__);
         }
         
@@ -2203,7 +2203,7 @@ class PDO_DataObject
         
         
         $dbtype    = $PDO->getAttribute(PDO::ATTR_DRIVER_NAME);
-        $quoteIdentifiers = !empty($_DB_DATAOBJECT['CONFIG']['quote_identifiers']);
+        $quoteIdentifiers = self::$config['quote_identifiers']);
 
         if ($dataObject !== true && !empty($this->_snapshot)) {
             $dataObject = $this->_snapshot;
