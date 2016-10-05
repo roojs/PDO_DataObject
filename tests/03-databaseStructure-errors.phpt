@@ -81,8 +81,7 @@ no such table - no schema -  Exception Thrown: Fake connection failed to non-exi
 
 __construct==["mysql:dbname=somedb;host=localhost;port=3344","username","test",[]]
 setAttribute==[3,2]
-QUERY:9c36cac1372650b703400c60dd29042c:
-SHOW TABLES
+QUERY:9c36cac1372650b703400c60dd29042c: [Query hidden from tests]
 QUERY:f77e1669034239c845220bf51ee0a9f2:
 
                     
