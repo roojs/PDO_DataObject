@@ -36,7 +36,7 @@ echo "\nsimple join - with array (3): ". PDO_DataObject::factory('Joiner')
      
  
 echo "\n\n--------\n";
-echo "join Types;\n" ;
+echo "join Types\n" ;
     
 // second param...
 
@@ -63,6 +63,12 @@ PDO_DataObject::factory('joiner')
 } catch(PDO_DataObject_Exception_InvalidArgs $e) {
     echo "\n threw exception as expected {$e->getMessage()}\n";
 }
+
+
+echo "\n\n--------\n";
+echo "join As\n" ;
+
+
 
 
 
