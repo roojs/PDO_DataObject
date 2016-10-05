@@ -4766,13 +4766,14 @@ class PDO_DataObject
             }
             $v = $this->$k;
             if (is_a($v, 'PDO_DataObject_Cast')) {
-                if ($this->$k->canToValue()) {
-                    $v = $this->$k->toValue();
+                if (!$this->$k->canToValue()) {
+                    continue;
                 }
+                $v = $this->$k->toValue();
             }
 
             // should this call formatValue() ??? -- no... point...??
-            $ret[$format === false ? $k : sprintf($format,$k)] = $this->$k;
+            $ret[$format === false ? $k : sprintf($format,$k)] = $v;
         }
         if (!$this->_link_loaded) {
             return $ret;
@@ -4808,15 +4809,16 @@ class PDO_DataObject
     */
     function formatValue($col,$format = null) 
     {
-        if (is_null($format)) {
-            return $this->$col;
-        }
+       
         $cols = $this->tableColumns();
         switch (true) {
             case (($cols[$col] & self::DATE) &&  ($cols[$col] & self::TIME)):
             case ($cols[$col] & self::DATE):
             case ($cols[$col] & self::TIME):
             case ($cols[$col] &  self::MYSQLTIMESTAMP): //?? really????
+                if (is_null($format)) {
+                    return $this->$col;
+                }
 
                 if (!$this->$col) {
                     return '';
@@ -4837,6 +4839,10 @@ class PDO_DataObject
             
                
             default:
+                if (is_null($format)) {
+                    return $this->$col;
+                }
+
                 return sprintf($format,$this->col);
         }
             
