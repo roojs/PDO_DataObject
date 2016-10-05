@@ -35,7 +35,10 @@ $j = PDO_DataObject::factory('joinerb')
     ])
     ->find(true);
 
-echo "\nexclude joined table.., .\n";
+    
+    
+    
+echo "\nexclude joined table using target* and 'joined as' name.., .\n";
 $j = PDO_DataObject::factory('joinerc')
     ->joinAll([
         'exclude' => array('childa.*','join_childb_id_ca_id')
