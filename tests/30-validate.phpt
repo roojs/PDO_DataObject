@@ -47,6 +47,29 @@ var_export(
         ->validate()
 );
 
+class DataObject_Testdog extends PDO_DataObject {
+    var $__table = 'testdog';
+    function validateDog()
+    {
+        return "problem with dog";
+    }
+    function tableColumns() {
+        return array('id' => 129, 'dog' => 130);
+    }
+    function sequenceKeys()
+    {
+        return array('id',true, false);
+    }
+    
+}
+$a =  PDO_DataObject::factory('testdog');
+$a->dog = 123;
+var_export(
+    $a->validate()
+);
+
+
+
  
 
 ?>
