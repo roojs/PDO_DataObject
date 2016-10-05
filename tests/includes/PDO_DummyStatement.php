@@ -475,6 +475,8 @@ class PDO_DummyStatement {
              'f77e1669034239c845220bf51ee0a9f2',
             //'SELECT table_name FROM user_tables'
             'd632f626d40c91f7f96d697e86122c38' ,
+            'f77e1669034239c845220bf51ee0a9f2',
+            
         );
             
     
