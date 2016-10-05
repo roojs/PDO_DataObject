@@ -22,7 +22,7 @@ PDO_DataObject::config(array(
       */   
 ));
 
-PDO_DataObject::debugLevel(1);
+PDO_DataObject::debugLevel(0);
  
 // used to extract sample data...
 //PDO_DataObject::factory('Events')->limit(1)->find(true);
