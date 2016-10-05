@@ -3602,6 +3602,7 @@ class PDO_DataObject
                 self::$config['schema_location'][$database_nickname]:
                 explode(PATH_SEPARATOR, self::$config['schema_location'][$database_nickname]);
         } else if (is_string(self::$config['schema_location']) && !empty(self::$config['schema_location'])) {
+            $this->PDO(); // as we need the nickname..
             $schemas  = explode(PATH_SEPARATOR,self::$config['schema_location']);
             $suffix = '/'. $this->_database_nickname .'.ini';
         } else {
@@ -4030,11 +4031,13 @@ class PDO_DataObject
         
         $dbPrefix  = '';
         
+
+// FIXME --- database_nickname may not be the 'real' database name...!!!!
         
         if ($PDO->getAttribute(PDO::ATTR_DRIVER_NAME) == 'mysql') {
             $dbPrefix = ($quoteIdentifiers
-                         ? $this->quoteIdentifier($obj->_database)
-                         : $obj->_database) . '.';    
+                         ? $this->quoteIdentifier($obj->_database_nickname)
+                         : $obj->_database_nickname) . '.';    
         }
         
         // if they are the same, then dont add a prefix...                
