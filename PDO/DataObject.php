@@ -4823,7 +4823,10 @@ class PDO_DataObject
                 if (!$this->$col) {
                     return '';
                 }
-                
+                $val = $this->$col;
+                if (is_a($val, 'PDO_DataObject_Cast')) {
+                    $val = $val->toValue(); // might throw error if you do it on sql='NOW()' etc...
+                }
                 $r = new DateTime($this->$col);
                 return $r->format($format);
                  
