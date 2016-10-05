@@ -21,6 +21,12 @@ $j = PDO_DataObject::factory('joinerb')
     ->find(true);
      
 
+
+
+echo "\n\n--------\n";
+echo "Exclude tests\n" ;
+     
+     
 echo "\nexclude single resulting column and column that hides a link.\n";
 $j = PDO_DataObject::factory('joinerb')
     ->joinAll([
@@ -44,6 +50,18 @@ $j = PDO_DataObject::factory('joinerc')
         'exclude' => array('childa.*','join_childb_id_ca_id')
     ])
     ->find(true);
+ 
+ 
+echo "\n\n--------\n";
+echo "Include tests\n" ;
+
+echo "\nexclude joined table using target* and 'joined as' name.., .\n";
+$j = PDO_DataObject::factory('joinerc')
+    ->joinAll([
+        'include' => array('childa_id')
+    ])
+    ->find(true);
+  
  
 ?>
 --EXPECT--
