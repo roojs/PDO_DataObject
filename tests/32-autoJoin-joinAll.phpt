@@ -31,7 +31,7 @@ $j = PDO_DataObject::factory('joinerb')
 echo "\nexclude joined table.., but keep the column.\n";
 $j = PDO_DataObject::factory('joinerb')
     ->joinAll([
-        'exclude' => array('childa_id_ca_id', 'childc_id')
+        'exclude' => array('childc_id.*')
     ])
     ->find(true);
 
