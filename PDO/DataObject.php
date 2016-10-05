@@ -3603,7 +3603,7 @@ class PDO_DataObject
                 explode(PATH_SEPARATOR, self::$config['schema_location'][$database_nickname]);
         } else if (is_string(self::$config['schema_location']) && !empty(self::$config['schema_location'])) {
             $schemas  = explode(PATH_SEPARATOR,self::$config['schema_location']);
-            $suffix = '/'. $database_nickname .'.ini';
+            $suffix = '/'. $this->_database_nickname .'.ini';
         } else {
             $this->raise("Invalid format or empty value for config[schema_location]",
                             self::ERROR_INVALIDCONFIG
@@ -3881,7 +3881,7 @@ class PDO_DataObject
                 list($toTable,$ofield) = explode(':',$obj[1]);
             
                 
-                $obj = self::tableToClass($table);
+                $obj = self::tableToClass($toTable);
                 if (!$obj) {
                     $obj = new PDO_DataObject($toTable);
                 }
