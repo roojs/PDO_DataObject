@@ -37,12 +37,34 @@ echo "\nsimple join - with array (3): ". PDO_DataObject::factory('Joiner')
      
 // second param...
 
-echo "\nsimple join - with object: ". PDO_DataObject::factory('joiner')
-    ->joinAdd(PDO_DataObject::factory('childa', 'LEFT'))
+echo "\nsimple join - with string: ". PDO_DataObject::factory('joiner')
+    ->joinAdd('childa','LEFT')
     ->_join;
-    
 
+echo "\nsimple join - with string: ". PDO_DataObject::factory('joiner')
+    ->joinAdd('childa','RIGHT')
+    ->_join;
  
+ 
+$j = PDO_DataObject::factory('joiner')
+    ->joinAdd('childa','') 
+echo "\nsimple join - with string: ". $j->_join ."\n" .
+    $j->whereToString();
+    
+    
+    
+try {
+PDO_DataObject::factory('joiner')
+    ->joinAdd('childa','XXX')
+    ->_join;
+} catch(PDO_DataObject_Exception_InvalidArgs $e) {
+    echo "\n threw exception as expected {$e->getMessage()}\n";
+}
+
+
+
+
+
 
 ?>
 --EXPECT--
