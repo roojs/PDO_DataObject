@@ -3837,7 +3837,7 @@ class PDO_DataObject
      *                                          into ON arguments.
      * 
      * 
-     * @return   none
+     * @return   none|string         String when resetting (useful  for testing)
      * @access   public
      * @author   Stijn de Reede      <sjr@gmx.co.uk>
      */
