@@ -214,7 +214,7 @@ e) PDO_DataObject class
 --- > NULL values in INSERT/UPDATE 
 --- > databases[] set, but no database - should scan ini to determine which db to use...
 --- > transactions BEGIN/ROLLBACK/COMMIT
---- > un-buffered queries?? - results in get failing!?!
+--- > un-buffered queries?? - results in get failing!?! -- ?? sqlite can it do bufferd?
 --- >  * fetchall(CALLABLE) ???? same as foreach, but runs a method on each object... 
 
 
