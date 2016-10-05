@@ -22,7 +22,7 @@ PDO_DataObject::config(array(
 
 PDO_DataObject::debugLevel(0);
  
-
+/*
 echo "\n\n--------\n";
 echo "toArray - basic Raw;\n" ;
 
@@ -38,7 +38,7 @@ print_r( PDO_DataObject::factory('Dummy')
     ->toArray()
 );
 
-
+*/
 print_r( PDO_DataObject::factory('Dummy')
     ->set([
          
