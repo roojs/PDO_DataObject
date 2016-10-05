@@ -21,12 +21,22 @@ $j = PDO_DataObject::factory('joinerb')
     ->find(true);
      
 
-echo "TEST exclude single resulting column and column that hides a link."
+echo "\nexclude single resulting column and column that hides a link.\n";
 $j = PDO_DataObject::factory('joinerb')
     ->joinAll([
         'exclude' => array('childa_id_ca_id', 'childc_id')
     ])
     ->find(true);
+
+echo "\nexclude joined table.., but keep the column.\n";
+$j = PDO_DataObject::factory('joinerb')
+    ->joinAll([
+        'exclude' => array('childa_id_ca_id', 'childc_id')
+    ])
+    ->find(true);
+
+
+
      
 ?>
 --EXPECT--
