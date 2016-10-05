@@ -4036,8 +4036,8 @@ class PDO_DataObject
         
         if ($PDO->getAttribute(PDO::ATTR_DRIVER_NAME) == 'mysql') {
             $dbPrefix = ($quoteIdentifiers
-                         ? $this->quoteIdentifier($obj->_database_nickname)
-                         : $obj->_database_nickname) . '.';    
+                         ? $this->quoteIdentifier($PDO->dsn['database_name'])
+                         : $obj->PDO()->dsn['database_name']) . '.';    
         }
         
         // if they are the same, then dont add a prefix...                
