@@ -79,7 +79,7 @@ class PDO_DataObject_Validate
         
         foreach($table as $key => $val) {
             
-            
+             
             // call user defined validation always...
             $method = "validate" . ucfirst($key);
             if (method_exists($this->do, $method)) {
@@ -110,7 +110,9 @@ class PDO_DataObject_Validate
             if (!isset($this->do->$key)) {
                 continue;
             }
-            
+            $ret[$key] = true; /// 
+
+
             // if the string is empty.. assume it is ok..
             if (!is_object($this->do->$key) && !is_array($this->do->$key) && !strlen((string) $this->do->$key)) {
                 continue;
