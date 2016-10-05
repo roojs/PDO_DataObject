@@ -3883,7 +3883,8 @@ class PDO_DataObject
             
                 
                 $obj = self::tableToClass($toTable);
-                if (!$obj) {
+ var_dump($obj);
+                if ($obj) {
                     $obj = new PDO_DataObject($toTable);
                 }
             }
@@ -4031,7 +4032,7 @@ class PDO_DataObject
         
         $dbPrefix  = '';
         
-        $obj_database = $obj->PDO()->dsn['database_name']);
+        $obj_database = $obj->PDO()->dsn['database_name'];
         
         if ($PDO->getAttribute(PDO::ATTR_DRIVER_NAME) == 'mysql') {
             $dbPrefix = ($quoteIdentifiers
@@ -4040,7 +4041,7 @@ class PDO_DataObject
         }
         
         // if they are the same, then dont add a prefix...                
-        if ($obj_database == $PDO->dsn['database_nickname']) {
+        if ($obj_database == $PDO->dsn['database_name']) {
            $dbPrefix = '';
         }
         // as far as we know only mysql supports database prefixes..
