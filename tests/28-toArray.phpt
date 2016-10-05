@@ -26,9 +26,41 @@ print_r( PDO_DataObject::factory('Dummy')
         'ex_datetime'  '2000-01-01 10:00:00',
         'ex_time' => '10:00:00',
         'ex_int' => 123
-   
     ])
     ->toArray()
+);
+
+
+print_r( PDO_DataObject::factory('Dummy')
+    ->set([
+         
+        'ex_string' => 'string'
+        'ex_date' => '2000-01-01',
+        'ex_datetime'  '2000-01-01 10:00:00',
+        'ex_time' => '10:00:00',
+        'ex_int' => 123
+    ])
+    ->toArray('with_prefix_%s')
+);
+
+print_r( PDO_DataObject::factory('Dummy')
+    ->set([
+         
+        'ex_string' => 'string'
+        'ex_date' => '2000-01-01',
+        'ex_datetime'  '2000-01-01 10:00:00',
+        'ex_time' => '10:00:00',
+        'ex_int' => 123
+    ])
+    ->toArray('%s', true)
+);
+
+
+print_r(  PDO_DataObject::factory('Companies')
+    ->set(['comptype' => 'CONSULTANT'])
+    ->limit(1)
+    ->load()
+    ->toArray('%s', 0)
 );
 
 
