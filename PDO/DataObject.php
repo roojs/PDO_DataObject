@@ -4827,7 +4827,7 @@ class PDO_DataObject
                 if (is_a($val, 'PDO_DataObject_Cast')) {
                     $val = $val->toValue(); // might throw error if you do it on sql='NOW()' etc...
                 }
-                $r = new DateTime($this->$col);
+                $r = new DateTime($val);
                 return $r->format($format);
                  
             
@@ -4839,14 +4839,14 @@ class PDO_DataObject
                     // it's a 't'/'f' !
                     $val = ($this->$col === 't');
                 }
-                $val = (bool) $this->val;
+                $val = (bool) $val;
                 switch($format) {
                     case '%s':
                         return $val ? 'true' : 'false';
                     case '%d':
                         return (int)$val;
                     default:
-                        return $this->$col;
+                        return $val;
                   }
                   // should not get here....
                
@@ -5049,7 +5049,7 @@ class PDO_DataObject
     * @access private
     * @return bool  object
     */
-    final function _is_null_member($obj_or_ar , $prop) 
+    static function _is_null_member($obj_or_ar , $prop) 
     {
      	
         switch(true) {
@@ -5095,7 +5095,7 @@ class PDO_DataObject
     * @access private
     * @return bool  object
     */
-    final function _is_null($value) 
+    static function _is_null($value) 
     {
      	
         $null_strings =  self::$config['enable_null_strings'] !== false;

@@ -8,8 +8,8 @@ PDO_DataObject::config(array(
         'class_location' => __DIR__.'/includes/sample_classes/DataObjects_',
     // fake db..
    
-        'database' => 'mysql://user:pass@localhost/inserttest'
-      
+        'database' => 'mysql://user:pass@localhost/inserttest',
+        'class_prefix' => 'DataObjects_',
 ));
 
 PDO_DataObject::debugLevel(0);
@@ -36,18 +36,14 @@ $d = PDO_DataObject::factory('Dummy');
 $d->ex_string = $d->sqlValue('NULL');
 var_export($d->validate());
 
-echo "\ntest validate methods?..\n";
+echo "\nvalidate numeric..\n";
+
+$d= PDO_DataObject::factory('Dummy');
+$d->ex_int = 'a dog';
+var_export($d->validate());
 
 
-var_export(
-    PDO_DataObject::factory('Dummy')
-        ->set([
-            'ex_int' => 'a dog'
-        ])
-        ->validate()
-);
-
-class DataObject_Testdog extends PDO_DataObject {
+class DataObjects_Testdog extends PDO_DataObject {
     var $__table = 'testdog';
     function validateDog()
     {
@@ -62,6 +58,10 @@ class DataObject_Testdog extends PDO_DataObject {
     }
     
 }
+
+
+echo "\ntest validate methods?..\n";
+
 $a =  PDO_DataObject::factory('testdog');
 $a->dog = 123;
 var_export(
@@ -74,4 +74,18 @@ var_export(
 
 ?>
 --EXPECT--
- 
+--------
+validate ;
+__construct==["mysql:dbname=inserttest;host=localhost","user","pass",[]]
+setAttribute==[3,2]
+true
+test not null..
+true
+validate numeric..
+array (
+  'ex_int' => 'Value is not numeric',
+)
+test validate methods?..
+array (
+  'dog' => 'problem with dog',
+)

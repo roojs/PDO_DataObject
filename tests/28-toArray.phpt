@@ -129,6 +129,7 @@ Array
     [ex_sql] => 
     [ex_null_string] => 
     [ex_null_int] => 
+    [ex_str_bool] => 
 )
 
 
@@ -145,6 +146,7 @@ Array
     [with_prefix_ex_sql] => 
     [with_prefix_ex_null_string] => 
     [with_prefix_ex_null_int] => 
+    [with_prefix_ex_str_bool] => 
 )
 
 
@@ -159,6 +161,7 @@ array (
   'ex_time' => '10:00:00',
   'ex_null_string' => NULL,
   'ex_null_int' => '',
+  'ex_str_bool' => '',
 )
 
 --------

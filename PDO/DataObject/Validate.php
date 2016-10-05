@@ -144,3 +144,4 @@ class PDO_DataObject_Validate
         }
         return true; // everything is OK.
     }
+}
