@@ -81,7 +81,7 @@ class PDO_DataObject_Validate
             
             
             // call user defined validation always...
-            $method = "Validate" . ucfirst($key);
+            $method = "validate" . ucfirst($key);
             if (method_exists($this->do, $method)) {
                 $ret[$key] = $this->do->$method();
                 continue;
