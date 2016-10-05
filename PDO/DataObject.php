@@ -2991,7 +2991,7 @@ class PDO_DataObject
         ",self::ERROR_INVALIDARGS);
     }
     
-    // used to assign tableColumns to an instance.. - use databaseStructure to set globally.
+    // used to store tableColumns for a specific instance.. - use databaseStructure to set globally.
     private $_assigned_fields;
   
     /**
@@ -3538,7 +3538,8 @@ class PDO_DataObject
     
     
     
-    
+    // used to store links for a specific instance.. - use databaseStructure to set globally.
+    private $_assigned_links;
     
     /**
     * Get the links associate array  as defined by the links.ini file.
