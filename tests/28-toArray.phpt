@@ -1,5 +1,5 @@
 --TEST--
-setFrom / set Test
+toArray test
 --FILE--
 <?php
 require_once 'includes/init.php';
