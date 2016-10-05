@@ -68,12 +68,45 @@ PDO_DataObject::factory('joiner')
 echo "\n\n--------\n";
 echo "join As\n" ;
 
-echo "\n ". PDO_DataObject::factory('joiner')
+echo   PDO_DataObject::factory('joiner')
     ->joinAdd('childa', 'LEFT', 'first_child')
     ->_join;
 
 
 
+
+echo "\n\n--------\n";
+echo "joinCol\n" ;
+
+// error...
+try {
+  PDO_DataObject::factory('joinerb')
+    ->joinAdd('childa')
+    ->_join;
+} catch(PDO_DataObject_Exception_InvalidArgs $e){
+    echo "\njoining without specifying which column, fails as expected: {$e->getMessage()}\n";
+}
+
+echo   PDO_DataObject::factory('joinerb')
+    ->joinAdd('childa','INNER', 'join_childa_first', 'childa_id')
+    ->joinAdd('childa','INNER', 'join_childa_second', 'childc_id')
+    ->_join;
+
+
+
+echo "\n\n--------\n";
+echo "useWhereAsOn\n" ;
+
+$ca = PDO_DataObject::factory('childa')->set({
+    
+    
+    
+})
+echo   PDO_DataObject::factory('joiner')
+    ->joinAdd('childa', array(
+            'useWhereAsOn' => true
+    ))
+    ->_join;
 
 
 
