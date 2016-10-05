@@ -338,8 +338,10 @@ class PDO_DummyStatement {
              // autojoin include test
              'f22c41fe7544ede8005d2d59ee926b49' => '[]',
              // autojon links test.
-             'd59065c5dbeda04c7f93f1ef9784618d' => '[]'
-             
+             '09bd7e8892d64e8dfe9e6b4b620b5890' => '[]',
+             // distinct
+             'a1d40fdfa7c3e183c07d017ffdff67e9' => '[]',
+             '155a7e32d3188fa3b596136f3a738a6a' => '[]',
              
              
         ), 

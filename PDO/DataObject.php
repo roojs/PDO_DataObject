@@ -4285,7 +4285,7 @@ class PDO_DataObject
          
         $map = $this->links();
         if (!empty($cfg['links'])) {
-            $map = array_merge( $map, $cfg['links']));
+            $map = array_merge( $map, $cfg['links']);
         }
         
         $this->databaseStructure();
