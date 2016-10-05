@@ -127,17 +127,14 @@ class PDO_DataObject_Validate
             // the Validate will probably break!!... - rightly so! (your design is broken, 
             // so issuing a runtime error like PEAR_Error is probably not appropriate..
             
-            switch (true) {
-                // todo: date time..... ??
- 
-                
-                case  ($val & PDO_DataObject::INT):
+            if  ($val & PDO_DataObject::INT) {
                     if ( is_numeric($this->do->$key)) {
                         continue;
                     }
                     $ret[$key] = "Value is not numeric";
                     continue;
             }
+
         }
         // if any of the results are false or an object (eg. PEAR_Error).. then return the array..
         foreach ($ret as $key => $val) {
