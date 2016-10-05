@@ -2991,6 +2991,8 @@ class PDO_DataObject
         ",self::ERROR_INVALIDARGS);
     }
     
+    // used to assign tableColumns to an instance.. - use databaseStructure to set globally.
+    private $_assigned_fields;
   
     /**
      * get/set an associative array of table columns
@@ -3571,7 +3573,6 @@ class PDO_DataObject
 
         if ($args = func_get_args()) {
             $this->_assigned_links = $args[0];
-            
         }
         if (isset($this->_assigned_links)) {
             return $this->_assigned_links;
