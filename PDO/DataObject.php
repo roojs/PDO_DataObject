@@ -4365,7 +4365,8 @@ class PDO_DataObject
                 continue;
             }
             
-            if (!empty($cfg['exclude']) && in_array($tab .'.*', $cfg['exclude'])) {
+            if (!empty($cfg['exclude']) && 
+                 (in_array($tab .'.*', $cfg['exclude']) || in_array($ocl .'.*', $cfg['exclude']) ) {
                 continue;
             }
             $cls = self::tableToClass($tab);
@@ -4381,11 +4382,7 @@ class PDO_DataObject
              
             // this is borked ... for multiple jions..
             $this->joinAdd($xx, 'LEFT', 'join_'.$ocl.'_'. $col, $ocl);
-            
-            if (!empty($cfg['exclude']) && in_array($ocl, $cfg['exclude'])) {
-                continue;
-            }
-            
+             
             $tabdef = $xx->tableColumns();
             $table = $xx->tableName();
             
