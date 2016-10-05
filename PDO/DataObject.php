@@ -1453,7 +1453,7 @@ class PDO_DataObject
     * @param    string  $type  string|int|integer|float|bool  cast to type. 
     * @param    string  $logic optional logic to call whereAdd with eg. "OR" (defaults to "AND")
     * @access   public
-    * @return   string|PEAR::Error - previous condition or Error when invalid args found
+    * @return   string previous condition or Error when invalid args found
     */
     final function whereAddIn($key, $list, $type, $logic = 'AND') 
     {
