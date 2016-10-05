@@ -98,7 +98,11 @@ print_r($company->fetchAll(false, false, 'toArray'));
 single col - fetchAll('id');
 __construct==["mysql:dbname=gettest;host=localhost","user","pass",[]]
 setAttribute==[3,2]
-QUERY: 23df5cd6e811c14da7711b51d7298521
+QUERY:23df5cd6e811c14da7711b51d7298521:
+SELECT id
+ FROM   Companies   
+ WHERE ( (Companies.comptype  = 'CONSULTANT') ) ORDER BY id ASC  
+ LIMIT  3
 Array
 (
     [0] => 2
@@ -109,7 +113,11 @@ Array
 
 --------
 single col - fetchAll(true);
-QUERY: 33f59edd5519f8086b193b7f9132403d
+QUERY:33f59edd5519f8086b193b7f9132403d:
+SELECT LENGTH(name)
+ FROM   Companies   
+ WHERE ( (Companies.comptype  = 'CONSULTANT') ) ORDER BY LENGTH(name) DESC  
+ LIMIT  3
 Array
 (
     [0] => 29
@@ -120,7 +128,11 @@ Array
 
 --------
 single col -  select('name'), fetchAll('name');
-QUERY: 9beebf44ab64393f0c2b80f9d7f1172b
+QUERY:9beebf44ab64393f0c2b80f9d7f1172b:
+SELECT *,  name
+ FROM   Companies   
+ WHERE ( (Companies.comptype  = 'CONSULTANT') ) 
+ LIMIT  3
 Array
 (
     [0] => Vinski Web
@@ -131,7 +143,11 @@ Array
 
 --------
 associative array
-QUERY: d4905245ba332d8a3f42024e1e09c124
+QUERY:d4905245ba332d8a3f42024e1e09c124:
+SELECT id ,  name
+ FROM   Companies   
+ WHERE ( (Companies.comptype  = 'CONSULTANT') ) 
+ LIMIT  3
 Fetch Row 0 / 3
 Fetch Row 1 / 3
 Fetch Row 2 / 3
@@ -146,7 +162,11 @@ Array
 
 --------
 array of objects
-QUERY: ebba0af48c52cc567e77a69664b3addb
+QUERY:ebba0af48c52cc567e77a69664b3addb:
+SELECT *
+ FROM   Companies   
+ WHERE ( (Companies.comptype  = 'CONSULTANT') ) 
+ LIMIT  3
 Fetch Row 0 / 3
 Fetch Row 1 / 3
 Fetch Row 2 / 3
@@ -159,7 +179,11 @@ DataObjects_Companies 17
 
 --------
 array of arrays (faster version - no dataObject created)
-QUERY: ebba0af48c52cc567e77a69664b3addb
+QUERY:ebba0af48c52cc567e77a69664b3addb:
+SELECT *
+ FROM   Companies   
+ WHERE ( (Companies.comptype  = 'CONSULTANT') ) 
+ LIMIT  3
 Array
 (
     [0] => Array
@@ -236,7 +260,11 @@ Array
 
 --------
 array of arrays  - fetchAllAssoc - aliased method (faster version - no dataObject created)
-QUERY: ebba0af48c52cc567e77a69664b3addb
+QUERY:ebba0af48c52cc567e77a69664b3addb:
+SELECT *
+ FROM   Companies   
+ WHERE ( (Companies.comptype  = 'CONSULTANT') ) 
+ LIMIT  3
 Array
 (
     [0] => Array
@@ -313,7 +341,11 @@ Array
 
 --------
 array of arrays (by calling toArray())
-QUERY: ebba0af48c52cc567e77a69664b3addb
+QUERY:ebba0af48c52cc567e77a69664b3addb:
+SELECT *
+ FROM   Companies   
+ WHERE ( (Companies.comptype  = 'CONSULTANT') ) 
+ LIMIT  3
 Array
 (
     [0] => Array
