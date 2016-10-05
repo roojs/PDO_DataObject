@@ -24,6 +24,7 @@ echo "simple join - with string: ". PDO_DataObject::factory('Joiner')
     ->joinAdd('Child')
     ->_join;
         
+// these do not need the links.. to calculate the join..
     
 echo "simple join - with array (2): ". PDO_DataObject::factory('Joiner')
     ->joinAdd(array('child_id', 'Child2:id'))
