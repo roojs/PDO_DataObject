@@ -4032,11 +4032,10 @@ class PDO_DataObject
         $dbPrefix  = '';
         
 
-// FIXME --- database_nickname may not be the 'real' database name...!!!!
         
         if ($PDO->getAttribute(PDO::ATTR_DRIVER_NAME) == 'mysql') {
             $dbPrefix = ($quoteIdentifiers
-                         ? $this->quoteIdentifier($PDO->dsn['database_name'])
+                         ? $this->quoteIdentifier($obj->()->PDO->dsn['database_name'])
                          : $obj->PDO()->dsn['database_name']) . '.';    
         }
         
