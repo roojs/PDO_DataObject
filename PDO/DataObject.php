@@ -4449,7 +4449,7 @@ class PDO_DataObject
              
         }
         
-        // fill in the select details..
+        // clear the existing select...
         $this->selectAdd(); 
         
         if ($has_distinct) {
