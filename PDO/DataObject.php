@@ -4382,7 +4382,11 @@ class PDO_DataObject
              
             // this is borked ... for multiple jions..
             $this->joinAdd($xx, 'LEFT', 'join_'.$ocl.'_'. $col, $ocl);
-             
+            
+            if (!empty($cfg['exclude']) && in_array($ocl, $cfg['exclude'])) {
+                continue;
+            }
+            
             $tabdef = $xx->tableColumns();
             $table = $xx->tableName();
             
@@ -4390,6 +4394,7 @@ class PDO_DataObject
             
             
             if (!empty($cfg['exclude'])) {
+                
                 $nkeys = array_intersect($keys, array_diff($keys, $cfg['exclude']));
                 $keys = array();
                 foreach($nkeys as $k) {
