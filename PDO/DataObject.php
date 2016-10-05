@@ -4266,9 +4266,10 @@ class PDO_DataObject
      * @param     array     Configuration
      *          exclude  Array of columns to exclude from results (eg. modified_by_id)
      *                    Use TABLENAME.* to prevent a join occuring to a specific table.
+     *          include  Array of columns to include
      *          links    The equivilant links.ini data for this table eg.
      *                    array( 'person_id' => 'person:id', .... )
-     *          include  Array of columns to include
+
      *          distinct Array of distinct columns.
      *          
      * @return   array      info about joins
@@ -4366,7 +4367,14 @@ class PDO_DataObject
             }
             
             if (!empty($cfg['exclude']) && 
-                 (in_array($tab .'.*', $cfg['exclude']) || in_array($ocl .'.*', $cfg['exclude']) ) {
+                 (
+                    in_array($tab .'.*', $cfg['exclude']) 
+                    || 
+                    in_array($ocl .'.*', $cfg['exclude'])
+                    ||
+                    in_array('join_'.$ocl.'_'. $col,$cfg['exclude'])
+                )
+            ) {
                 continue;
             }
             $cls = self::tableToClass($tab);
