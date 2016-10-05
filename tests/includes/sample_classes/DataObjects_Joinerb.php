@@ -2,8 +2,8 @@
 
 // a simple class for customers..
 
-class DataObjects_Joiner extends PDO_DataObject {
+class DataObjects_Joinerb extends PDO_DataObject {
     
-    var $__table = 'joiner';
+    var $__table = 'joinerb';
     
 }
