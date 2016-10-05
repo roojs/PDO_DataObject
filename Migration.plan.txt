@@ -203,10 +203,10 @@ e) PDO_DataObject class
   * raise  (was raiseError) -- DONE - tests all over the place......
  
 
-  * links() DONE / NEED TESTING
 
   * joinAdd() DONE / NEED TESTING
   * autoJoin() DONE / NEED TESTING
+  * links() DONE / NEED TESTING
  
  
   * config DONE / NEEDS TESTING - of various settings...
