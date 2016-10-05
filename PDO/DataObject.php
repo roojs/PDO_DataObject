@@ -4464,7 +4464,23 @@ class PDO_DataObject
         return $ret;
         
     }
-    
+    /**
+     * joinAll - chained Version of autoJoin()
+     * usage: 
+     * $array  = PDO_DataObject::factory('mytable')->joinAll()->fetchAll();
+     *
+     *
+     * @param     array     Configuration
+     *          exclude  Array of columns to exclude from results (eg. modified_by_id)
+     *                    Use TABLENAME.* to prevent a join occuring to a specific table.
+     *          links    The equivilant links.ini data for this table eg.
+     *                    array( 'person_id' => 'person:id', .... )
+     *          include  Array of columns to include
+     *          distinct Array of distinct columns.
+     *          
+     * @return   PDO_DataObject self
+     * @access   public
+     */
 
     function joinAll($cfg = array())
     {
