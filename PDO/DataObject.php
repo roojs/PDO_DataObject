@@ -4031,16 +4031,16 @@ class PDO_DataObject
         
         $dbPrefix  = '';
         
-
+        $obj_database = $obj->PDO()->dsn['database_name']);
         
         if ($PDO->getAttribute(PDO::ATTR_DRIVER_NAME) == 'mysql') {
             $dbPrefix = ($quoteIdentifiers
-                         ? $this->quoteIdentifier($obj->()->PDO->dsn['database_name'])
-                         : $obj->PDO()->dsn['database_name']) . '.';    
+                         ? $this->quoteIdentifier($obj_database)
+                         : $obj_database) . '.';    
         }
         
         // if they are the same, then dont add a prefix...                
-        if ($obj->_database_nickname == $this->_database_nickname) {
+        if ($obj_database == $PDO->dsn['database_nickname']) {
            $dbPrefix = '';
         }
         // as far as we know only mysql supports database prefixes..
