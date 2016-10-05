@@ -3912,6 +3912,9 @@ class PDO_DataObject
             // link contains this_column[] =  linked_table:linked_column
             // or standard way.
             // link contains this_column =  linked_table:linked_column
+
+
+
             foreach ($links as $k => $linkVar) {
             
                 if (!is_array($linkVar)) {
@@ -3937,6 +3940,7 @@ class PDO_DataObject
                     if ($joinCol !== false) {
                         if ($k == $joinCol) {
                             // got it!?
+
                             $tfield = $k;
                             $ofield = $ar[1];
                             break;
@@ -3944,11 +3948,17 @@ class PDO_DataObject
                         continue;
                         
                     } 
+                    if ($tfield !== false) {
+                        $this->raise("There are multiple locations where table '{$obj->tableName()}' is joined to '{$this->tableName()}' \n" .
+                                     " you should use the joinCol argument to specify which one to use", self::ERROR_INVALIDARGS);
+                    }
+
                     $tfield = $k;
                     $ofield = $ar[1];
                     break;
                         
                 }
+  
             }
         }
          /* look up the links for obj table */
