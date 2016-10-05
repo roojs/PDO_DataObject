@@ -22,7 +22,7 @@ PDO_DataObject::config(array(
       */   
 ));
 
-PDO_DataObject::debugLevel(1);
+PDO_DataObject::debugLevel(0);
  
 // used to extract sample data...
 //PDO_DataObject::factory('Events')->limit(1)->find(true);
@@ -136,45 +136,42 @@ unlink($temp);
 --EXPECT--
 --------
 basic delete;
-PDO_DataObject   : databaseStructure       : CALL:[]
 __construct==["mysql:dbname=inserttest;host=localhost","user","pass",[]]
 setAttribute==[3,2]
-PDO_DataObject   : find       : true
-PDO_DataObject   : query       : 2bdf264b81e628acfbf68368a1175be6 : SELECT *
+QUERY:2bdf264b81e628acfbf68368a1175be6:
+SELECT *
  FROM   Events   
  WHERE ( (Events.id = 12) ) 
 
-QUERY: 2bdf264b81e628acfbf68368a1175be6
-PDO_DataObject   : query       : NO# of results: 0
-PDO_DataObject   : find       : CHECK autofetched true
-PDO_DataObject   : query       : c3b86f332b94f57d9d3008b059b2a1f7 : DELETE FROM Events WHERE (Events.id = 12) 
-QUERY: c3b86f332b94f57d9d3008b059b2a1f7
-PDO_DataObject   : query       : NO# of results: 1
+QUERY:c3b86f332b94f57d9d3008b059b2a1f7:
+DELETE FROM Events WHERE (Events.id = 12) 
 DELETED 1 records
 
 
 --------
 delete where....);
-PDO_DataObject   : query       : e0f63974357eab3b7b082f80cf5c26aa : DELETE FROM Events WHERE ( id > 12 )  
-QUERY: e0f63974357eab3b7b082f80cf5c26aa
-PDO_DataObject   : query       : NO# of results: 10
+QUERY:e0f63974357eab3b7b082f80cf5c26aa:
+DELETE FROM Events WHERE ( id > 12 )  
 DELETED 10 records
 
 
 --------
 delete where, without flag....);
-PDO_DataObject   : raise       : deleting all data from database is disabled by default, use where('1=1') if your really want to do that.
 failed as expected : deleting all data from database is disabled by default, use where('1=1') if your really want to do that.
 
 --------
 delete all?....);
-PDO_DataObject   : raise       : deleting all data from database is disabled by default, use where('1=1') if your really want to do that.
 failed as expected : deleting all data from database is disabled by default, use where('1=1') if your really want to do that.
 
 --------
 Test SQLite  delete single
 PDO_DataObject   : databaseStructure       : CALL:[]
 PDO_DataObject   : PDO       : Checking for database specific ini ('EssentialSQL') : config[databases][EssentialSQL] in options
+PDO_DataObject   : get       : CustomerID 2 Array
+(
+    [0] => CustomerID
+)
+
 PDO_DataObject   : find       : true
 PDO_DataObject   : query       : 2ee20b35241ab34768d20c8f10e8510d : SELECT *
  FROM   Customers   
@@ -189,6 +186,11 @@ PDO_DataObject   : query       : b638ac545f0ca96fbbc8ea538f5908b5 : DELETE FROM 
 PDO_DataObject   : query       : NO# of results: 1
 PDO_DataObject   : databaseStructure       : CALL:[]
 PDO_DataObject   : PDO       : Checking for database specific ini ('EssentialSQL') : config[databases][EssentialSQL] in options
+PDO_DataObject   : get       : CustomerID 2 Array
+(
+    [0] => CustomerID
+)
+
 PDO_DataObject   : find       : true
 PDO_DataObject   : query       : 2ee20b35241ab34768d20c8f10e8510d : SELECT *
  FROM   Customers   
