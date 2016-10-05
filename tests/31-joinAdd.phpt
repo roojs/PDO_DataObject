@@ -48,7 +48,7 @@ echo "\nsimple join - with string: ". PDO_DataObject::factory('joiner')
  
 $j = PDO_DataObject::factory('joiner')
     ->joinAdd('childa','') 
-echo "\nsimple join - with string: ". $j->_join ."\n" .
+echo "\nsimple join - with string: ". $j->_join ."\n - with WHERE:\n" .
     $j->whereToString();
     
     
