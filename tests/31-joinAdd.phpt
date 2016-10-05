@@ -34,7 +34,10 @@ echo "\nsimple join - with array (3): ". PDO_DataObject::factory('Joiner')
     ->joinAdd(array('childb_id', PDO_DataObject::factory('childb'), 'cb_id'))
     ->_join;
      
-     
+ 
+echo "\n\n--------\n";
+echo "join Types;\n" ;
+    
 // second param...
 
 echo "\nsimple join - with string: ". PDO_DataObject::factory('joiner')
@@ -47,7 +50,7 @@ echo "\nsimple join - with string: ". PDO_DataObject::factory('joiner')
  
  
 $j = PDO_DataObject::factory('joiner')
-    ->joinAdd('childa','') 
+    ->joinAdd('childa','');
 echo "\nsimple join - with string: ". $j->_join ."\n - with WHERE:\n" .
     $j->whereToString();
     
