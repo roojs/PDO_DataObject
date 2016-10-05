@@ -28,7 +28,7 @@
  * @link       https://github.com/roojs/PDO_DataObject
  */
 // validate is needed as some constants come from it.... 
-require_once 'Validate.php';
+ 
 
  
 class PDO_DataObject_Validate
@@ -130,7 +130,7 @@ class PDO_DataObject_Validate
                 // todo: date time.....
                 case  ($val & PDO_DataObject::STR):
                     // this test is pointless.. - really it should do validation of string length...
-                    //$ret[$key] = Validate::string($this->do->$key, VALIDATE_PUNCTUATION . VALIDATE_NAME);
+ 
                     continue;
                 case  ($val & PDO_DataObject::INT):
                     if ( is_numeric($this->do->$key)) {
