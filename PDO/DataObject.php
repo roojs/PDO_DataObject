@@ -4006,10 +4006,9 @@ class PDO_DataObject
         /* did I find a conneciton between them? */
 
         if ($ofield === false) {
-            $this->raise(
+            return $this->raise(
                 "joinAdd: {$obj->tableName()} has no link with {$this->tableName()}",
                 self::ERROR_INVALIDARGS);
-            return false;
         }
         $joinType = strtoupper($joinType);
         
@@ -4067,10 +4066,9 @@ class PDO_DataObject
             // only fail if we where expecting it to work (eg. not joined on a array)
              
             if (!$items) {
-                $this->raise(
+                return $this->raise(
                     "joinAdd: No table definition for {$obj->tableName()}", 
                     self::ERROR_INVALIDCONFIG);
-                return false;
             }
             
           
@@ -4115,11 +4113,10 @@ class PDO_DataObject
                 $obj->whereAdd("{$joinAs}.{$kSql} = 0");
             }
             if ($this->_query === false) {
-                $this->raise(
+                return $this->raise(
                     "joinAdd can not be run from a object that has had a query run on it,
                     clone the object or create a new one and use setFrom()", 
                     self::ERROR_INVALIDARGS);
-                return false;
             }
         }
 
@@ -4214,7 +4211,7 @@ class PDO_DataObject
         }
          
          
-        return true;
+        return $this;
 
     }
 
