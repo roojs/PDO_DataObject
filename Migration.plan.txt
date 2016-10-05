@@ -197,7 +197,7 @@ e) PDO_DataObject class
   * set() << chained version of setFrom? DONE 
   * fromValue() DONE 
 
-  * toArray() DONE / NEED TESTING
+  * toArray() DONE  
   * formatValue()   DONE / NEED TESTING - was toValue() (date formating is not compatible)
   * validate()  DONE / NEED TESTING - moved to seperate class...
   * raise  (was raiseError) -- DONE - tests all over the place......
