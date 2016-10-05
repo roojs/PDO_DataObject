@@ -54,6 +54,10 @@ print_r( PDO_DataObject::factory('Dummy')
 );
 
 */
+echo "\n\n--------\n";
+echo "toArray - default - table columns + result;\n" ;
+
+
 print_r(
     PDO_DataObject::factory('Companies')
         ->set(['comptype' => 'CONSULTANT'])
@@ -63,6 +67,8 @@ print_r(
         ->toArray('%s')
 );
 
+echo "\n\n--------\n";
+echo "toArray - (3rd argument = true) -  table columns (not null) + result;\n" ;
 
 print_r(
     PDO_DataObject::factory('Companies')
@@ -72,6 +78,8 @@ print_r(
         ->load()
         ->toArray('%s', true)
 );
+echo "\n\n--------\n";
+echo "toArray - (3rd argument = 0) -  result columns only;\n" ;
 
 print_r(
     PDO_DataObject::factory('Companies')
