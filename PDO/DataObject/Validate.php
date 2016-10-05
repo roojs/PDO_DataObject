@@ -127,11 +127,9 @@ class PDO_DataObject_Validate
             // so issuing a runtime error like PEAR_Error is probably not appropriate..
             
             switch (true) {
-                // todo: date time.....
-                case  ($val & PDO_DataObject::STR):
-                    // this test is pointless.. - really it should do validation of string length...
+                // todo: date time..... ??
  
-                    continue;
+                
                 case  ($val & PDO_DataObject::INT):
                     if ( is_numeric($this->do->$key)) {
                         continue;
