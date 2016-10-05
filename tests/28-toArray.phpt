@@ -51,29 +51,32 @@ print_r( PDO_DataObject::factory('Dummy')
 );
 
 */
-print_r(  PDO_DataObject::factory('Companies')
-    ->set(['comptype' => 'CONSULTANT'])
-    ->select(" id, name, 'fred the dog' as the_dog")
-    ->limit(1)
-    ->load()
-    ->toArray('%s')
+print_r(
+    PDO_DataObject::factory('Companies')
+        ->set(['comptype' => 'CONSULTANT'])
+        ->select(" id, name, 'fred the dog' as the_dog")
+        ->limit(1)
+        ->load()
+        ->toArray('%s')
 );
 
 
-print_r(  PDO_DataObject::factory('Companies')
-    ->set(['comptype' => 'CONSULTANT'])
-    ->select(" id, name, 'fred the dog' as the_dog  ")
-    ->limit(1)
-    ->load()
-    ->toArray('%s', true)
+print_r(
+    PDO_DataObject::factory('Companies')
+        ->set(['comptype' => 'CONSULTANT'])
+        ->select(" id, name, 'fred the dog' as the_dog  ")
+        ->limit(1)
+        ->load()
+        ->toArray('%s', true)
 );
 
-print_r(  PDO_DataObject::factory('Companies')
-    ->set(['comptype' => 'CONSULTANT'])
-    ->select(" id, name, 'fred the dog' as the_dog  ")
-    ->limit(1)
-    ->load()
-    ->toArray('%s', 0)
+print_r(
+    PDO_DataObject::factory('Companies')
+        ->set(['comptype' => 'CONSULTANT'])
+        ->select(" id, name, 'fred the dog' as the_dog  ")
+        ->limit(1)
+        ->load()
+        ->toArray('%s', 0)
 );
 
 
