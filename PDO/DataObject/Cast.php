@@ -599,6 +599,7 @@ class PDO_DataObject_Cast {
             
             default:
               return false; // not sould not get here...
+        }
     }
 
     /**
@@ -618,7 +619,7 @@ class PDO_DataObject_Cast {
                     $this->year,$this->month, $this->day,  $this->hour,$this->minute, $this->second);
 
             case 'time':
-              return sprintf("%02d:%02d:%02d",  this->hour,$this->minute, $this->second);
+              return sprintf("%02d:%02d:%02d",  $this->hour,$this->minute, $this->second);
 
             case 'blob': //???
             case 'string':
@@ -633,31 +634,10 @@ class PDO_DataObject_Cast {
             
             default:
               $this->raise("converting cast object with type={$this->type}  is not supported ", 
-                    PDO_DataObject::ERROR_INVALIDARGS);.
+                    PDO_DataObject::ERROR_INVALIDARGS);
+        }
     }
-    /**
-    * convert element to a plain value (for toArray)
-    *
-    * @return   string
-    * @access   public
-    */
-    function toValue() 
-    {
-        switch($this->type) {
-            case 'date':
-      
-            case 'datetime':
-            case 'time':
-            case 'blob': //???
-            case 'string':
-              return true; 
-          
-            case 'sql':
-              return strtolower($this->value) == 'null' ? true : false;
-            
-            default:
-              return false; // not sould not get here...
-    }
+   
 
 
     /**
