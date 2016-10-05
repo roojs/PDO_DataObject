@@ -19,6 +19,11 @@ PDO_DataObject::debugLevel(0);
 $j = PDO_DataObject::factory('joinerb')
     ->joinAll()
     ->find(true);
+
+print_r(     
+    PDO_DataObject::factory('joinerb')
+    ->autoJoin()
+);
      
 
 
@@ -34,6 +39,15 @@ $j = PDO_DataObject::factory('joinerb')
     ])
     ->find(true);
 
+print_r(     
+    PDO_DataObject::factory('joinerb')
+    ->autoJoin([
+        'exclude' => array('childa_id_ca_id', 'childc_id')
+    ])
+);    
+    
+    
+    
 echo "\nexclude joined table.., but keep the column.\n";
 $j = PDO_DataObject::factory('joinerb')
     ->joinAll([
@@ -55,13 +69,43 @@ $j = PDO_DataObject::factory('joinerc')
 echo "\n\n--------\n";
 echo "Include tests\n" ;
 
-echo "\nexclude joined table using target* and 'joined as' name.., .\n";
+echo "\n include only two columns...  .\n";
 $j = PDO_DataObject::factory('joinerc')
     ->joinAll([
-        'include' => array('childa_id')
+        'include' => array('childa_id','childa_id_name')
     ])
     ->find(true);
   
+ 
+echo "\n\n--------\n";
+echo "links tests\n" ;
+
+echo "\n include only two columns...  .\n";
+$j = PDO_DataObject::factory('joiner')
+    ->joinAll([
+        'links' => array('childb_id' => 'childb:cb_id')
+    ])
+    ->find(true);
+
+
+
+echo "\n distinct column...  .\n";
+$j = PDO_DataObject::factory('joiner')
+    ->joinAll([
+        'distinct' => 'childa_id'
+    ])
+    ->find(true);
+    
+ 
+echo "\n distinct column...  .\n";
+$j = PDO_DataObject::factory('joiner')
+    ->joinAll([
+        'distinct' => 'childa_id_name'
+    ])
+    ->find(true);
+  
+ 
+ 
  
 ?>
 --EXPECT--
