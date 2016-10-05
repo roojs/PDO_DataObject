@@ -578,13 +578,13 @@ class PDO_DataObject_Cast {
     {
         return $this->value; 
     }
-     /**
+    /**
     * can this property be converted to a plain value (for toArray)
     *
     * @return   bool 
     * @access   public
     */
-    function canToValue($to,$db) 
+    function canToValue() 
     {
         switch($this->type) {
             case 'date':
@@ -600,6 +600,66 @@ class PDO_DataObject_Cast {
             default:
               return false; // not sould not get here...
     }
+
+    /**
+    * can this property be converted to a plain value (for toArray)
+    *
+    * @return   bool 
+    * @access   public
+    */
+    function toValue() 
+    {
+        switch($this->type) {
+            case 'date':
+              return sprintf("%04d-%02d-%02d",  $this->year,$this->month, $this->day);
+
+            case 'datetime':
+              return sprintf("%04d-%02d-%02d %02d:%02d:%02d", 
+                    $this->year,$this->month, $this->day,  $this->hour,$this->minute, $this->second);
+
+            case 'time':
+              return sprintf("%02d:%02d:%02d",  this->hour,$this->minute, $this->second);
+
+            case 'blob': //???
+            case 'string':
+              return $this->value; 
+          
+            case 'sql':
+              if (strtolower($this->value) == 'null') {
+                  return null;
+              }
+              $this->raise("converting sql to a plain value is not supported (except for null)", 
+                    PDO_DataObject::ERROR_INVALIDARGS);
+            
+            default:
+              $this->raise("converting cast object with type={$this->type}  is not supported ", 
+                    PDO_DataObject::ERROR_INVALIDARGS);.
+    }
+    /**
+    * convert element to a plain value (for toArray)
+    *
+    * @return   string
+    * @access   public
+    */
+    function toValue() 
+    {
+        switch($this->type) {
+            case 'date':
+      
+            case 'datetime':
+            case 'time':
+            case 'blob': //???
+            case 'string':
+              return true; 
+          
+            case 'sql':
+              return strtolower($this->value) == 'null' ? true : false;
+            
+            default:
+              return false; // not sould not get here...
+    }
+
+
     /**
     * does this object representing a 'null' value...
     * 
