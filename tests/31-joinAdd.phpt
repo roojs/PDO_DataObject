@@ -14,7 +14,7 @@ PDO_DataObject::config(array(
 
 PDO_DataObject::debugLevel(0);
  
-
+// these need the links to calculate the join..
  
 echo "simple join - with object: ". PDO_DataObject::factory('Joiner')
     ->joinAdd(PDO_DataObject::factory('Child'))
