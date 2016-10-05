@@ -4468,7 +4468,7 @@ class PDO_DataObject
     /**
      * joinAll - chained Version of autoJoin()
      * usage: 
-     * $array  = PDO_DataObject::factory('mytable')->joinAll()->fetchAll();
+     * $array  = PDO_DataObject::factory('mytable')->joinAll()->fetchAssoc();
      * 
      * @see #autoJoin for more details.
      *
