@@ -330,6 +330,16 @@ class PDO_DummyStatement {
                      {"id":"68","name":"A company name","the_dog":"fred the dog"}
              ]',
              
+             // autojoin tests.
+             '63b2e336f37283287a1211f183a9e1df' => '[]',
+             '53ff1c2697a5129f4b05a7f2cf134fb9' => '[]',
+             '6ca862a16d64367cc5608215a75be882' => '[]',
+             'ce74af86aeeaf9fd9261e3bdf54a9e33' => '[]',
+             // autojoin include test
+             'f22c41fe7544ede8005d2d59ee926b49' => '[]',
+             // autojon links test.
+             'd59065c5dbeda04c7f93f1ef9784618d' => '[]'
+             
              
              
         ), 
