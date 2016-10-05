@@ -201,8 +201,7 @@ e) PDO_DataObject class
   * formatValue()   DONE  - was toValue() (date formating is not compatible)
   * validate()  DONE   moved to seperate class...
   * raise  (was raiseError) -- DONE - tests all over the place......
- 
-
+  
 
   * joinAdd() DONE / NEED TESTING
   * autoJoin() DONE / NEED TESTING
@@ -211,7 +210,7 @@ e) PDO_DataObject class
  
   * config DONE / NEEDS TESTING - of various settings...
 
---- > NULL values in INSERT/UPDATE 
+--- > NULL/cast? values in INSERT/UPDATE 
 --- > databases[] set, but no database - should scan ini to determine which db to use...
 --- > transactions BEGIN/ROLLBACK/COMMIT
 --- > un-buffered queries?? - results in get failing!?! -- ?? sqlite can it do bufferd?
