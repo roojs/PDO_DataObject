@@ -323,6 +323,15 @@ class PDO_DummyStatement {
              ]',
              '86f9b0a9131676c87d66a0cb0264b879' => 1, // insert.
              
+             
+             // to Array tests..
+             
+             '765668840e5fa133769973c8b3d27bef' => '[
+                     {"id":"68","name":"A company name","the_dog":"fred the dog"}
+             ]',
+             
+             
+             
         ), 
          'pgsql:dbname=pginsert;host=localhost' => array(  
             // insert....
