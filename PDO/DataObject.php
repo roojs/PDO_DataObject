@@ -3540,7 +3540,7 @@ class PDO_DataObject
     
     /**
     * Get the links associate array  as defined by the links.ini file.
-    * mapping the foriegn key relationships (which MAY NOT be enforced by the database)
+    * mapping the foreign key relationships (which MAY NOT be enforced by the database)
     *
     * Will attempt to load the file
     *   This can be over-ridden rather than using links.ini files...
