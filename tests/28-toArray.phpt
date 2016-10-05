@@ -8,8 +8,16 @@ PDO_DataObject::config(array(
         'class_location' => __DIR__.'/includes/sample_classes/DataObjects_',
     // fake db..
    
-        'database' => 'mysql://user:pass@localhost/inserttest'
+   //     'database' => 'mysql://user:pass@localhost/inserttest'
       
+        'database' => '',
+        'tables' => array(
+            'Events'=> 'inserttest',
+        ),
+        'databases' => array(
+            'inserttest' => 'mysql://root:@localhost/pman',
+        ),
+         'PDO' => 'PDO',
 ));
 
 PDO_DataObject::debugLevel(0);
@@ -45,7 +53,7 @@ print_r( PDO_DataObject::factory('Dummy')
 
 print_r(  PDO_DataObject::factory('Companies')
     ->set(['comptype' => 'CONSULTANT'])
-    ->select(" id, name, 'fred the dog' as the_dog ")
+    ->select(" id, name, 'fred the dog' as the_dog")
     ->limit(1)
     ->load()
     ->toArray('%s')
