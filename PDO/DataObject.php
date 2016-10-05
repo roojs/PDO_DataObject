@@ -4764,6 +4764,13 @@ class PDO_DataObject
                 $ret[$format === false ? $k : sprintf($format,$k)] = $this->{'get'.$k}();
                 continue;
             }
+            $v = $this->$k;
+            if (is_a($v, 'PDO_DataObject_Cast')) {
+                if ($this->$k->canToValue()) {
+                    $v = $this->$k->toValue();
+                }
+            }
+
             // should this call formatValue() ??? -- no... point...??
             $ret[$format === false ? $k : sprintf($format,$k)] = $this->$k;
         }
