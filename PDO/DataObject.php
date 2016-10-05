@@ -3865,6 +3865,11 @@ class PDO_DataObject
         $ofield = false; // object field
         $tfield = false; // this field
         $toTable = false;
+
+        if (is_string($obj)) {
+            $obj = self::factory($obj);
+        }
+
         if (is_array($obj)) {
             $tfield = $obj[0];
             
