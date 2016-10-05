@@ -20,7 +20,13 @@ echo "toArray - basic Raw;\n" ;
 
 print_r( PDO_DataObject::factory('Dummy')
     ->set([
-    'action' => PDO_DataObject::sqlValue('NOW()')
+         
+        'ex_string' => 'string'
+        'ex_date' => '2000-01-01',
+        'ex_datetime'  '2000-01-01 10:00:00',
+        'ex_time' => '10:00:00',
+        'ex_int' => 123
+   
     ])
     ->toArray()
 );
