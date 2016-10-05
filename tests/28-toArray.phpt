@@ -95,7 +95,6 @@ print_r(
 ?>
 --EXPECT--
 --------
---------
 toArray - basic Raw;
 __construct==["mysql:dbname=inserttest;host=localhost","user","pass",[]]
 setAttribute==[3,2]

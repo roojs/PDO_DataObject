@@ -462,9 +462,9 @@ class PDO_DummyStatement {
     // saves outputting really long queries. in the test results.
     static $hide_queries = array(
            //'SHOW TABLES' 
-           // '6996acc544ef440ec8756b9a474a8261' ,
+           '6996acc544ef440ec8756b9a474a8261' ,
            // 'fbfdf155a2b80c37a9da0b57c7ec0c8a' ,
-            'f77e1669034239c845220bf51ee0a9f2' ,
+            //'f77e1669034239c845220bf51ee0a9f2' , == keep 03-errors
             //"SELECT table_name FROM information_schema.tables WHERE table_type = 'BASE TABLE' AND table_schema = 'public' order by table_name ASC" 
             
            // 'eb30dc0b1b7c48a6974d9399257e82ff' ,

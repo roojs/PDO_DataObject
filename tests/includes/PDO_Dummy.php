@@ -64,7 +64,7 @@ class PDO_Dummy {
         require_once __DIR__ .'/PDO_DummyStatement.php';
         // hopefully database is set!!!
         $q = md5($str);
-        if (!isset(PDO_DummyStatement::$hide_queries[$q])) {
+        if (!in_array($q, PDO_DummyStatement::$hide_queries)) {
             $q .= ":\n" . $str;
         } else {
             $q .= ": [Query hidden from tests]";

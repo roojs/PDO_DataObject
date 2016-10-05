@@ -2203,7 +2203,7 @@ class PDO_DataObject
         
         
         $dbtype    = $PDO->getAttribute(PDO::ATTR_DRIVER_NAME);
-        $quoteIdentifiers = self::$config['quote_identifiers']);
+        $quoteIdentifiers = self::$config['quote_identifiers'];
 
         if ($dataObject !== true && !empty($this->_snapshot)) {
             $dataObject = $this->_snapshot;
