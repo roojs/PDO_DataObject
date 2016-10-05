@@ -68,7 +68,7 @@ PDO_DataObject::factory('joiner')
 echo "\n\n--------\n";
 echo "join As\n" ;
 
-echo "\nsimple join - with string: ". PDO_DataObject::factory('joiner')
+echo "\n ". PDO_DataObject::factory('joiner')
     ->joinAdd('childa', 'LEFT', 'first_child')
     ->_join;
 
