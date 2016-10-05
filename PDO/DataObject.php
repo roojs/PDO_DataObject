@@ -3802,7 +3802,7 @@ class PDO_DataObject
      * }
      *
      *
-     * @param    optional $obj       object |array    the joining object (no value resets the join)
+     * @param    optional $obj       string | object |array    the joining object (no value resets the join)
      *                                          If you use an array here it should be in the format:
      *                                          array('local_column','remotetable:remote_column');
      *                                             if remotetable does not have a definition, you should
@@ -3844,8 +3844,9 @@ class PDO_DataObject
     function joinAdd($obj = false, $joinType='INNER', $joinAs=false, $joinCol=false)
     {
          if ($obj === false) {
+            $ret = $this->_join;
             $this->_join = '';
-            return;
+            return $ret;
         }
          
         //echo '<PRE>'; print_r(func_get_args());
