@@ -4269,7 +4269,6 @@ class PDO_DataObject
      *          include  Array of specific columns to include (none others are added to select, join is still done though)
      *          links    The equivilant links.ini data for this table eg.
      *                    array( 'person_id' => 'person:id', .... )
-
      *          distinct Array of distinct columns.
      *          
      * @return   array      info about joins
