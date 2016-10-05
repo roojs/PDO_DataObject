@@ -61,10 +61,19 @@ print_r(
     ->set([
         'ex_blob' => PDO_DataObject::sqlValue('blob','a long piece of data'),
         'ex_string' => PDO_DataObject::sqlValue('string', 123123),
-        'ex_sql' => PDO_DataObject::sqlValue('sql', 'NOW()'),
+        'ex_sql' => PDO_DataObject::sqlValue('NOW()'),
         'ex_date' => PDO_DataObject::sqlValue('date', '2000-01-01'),
         'ex_datetime' => PDO_DataObject::sqlValue('dateTime', '2000-01-01 10:00:00'),
         'ex_time' => PDO_DataObject::sqlValue('time', '10:00:00'),
+        
+    ])
+    ->toArray()
+);
+
+print_r(
+    PDO_DataObject::factory('Dummy')
+    ->set([
+        'ex_sql' => PDO_DataObject::sqlValue('null'),
         
     ])
     ->toArray()
