@@ -58,9 +58,16 @@ var_export(PDO_DataObject::factory('Dummy')
 );
 var_export(PDO_DataObject::factory('Dummy')
     ->set([
+        'ex_str_bool' => 'f'
+    ])->formatValue('ex_str_bool')
+);
+
+var_export(PDO_DataObject::factory('Dummy')
+    ->set([
         'ex_str_bool' => false
     ])->formatValue('ex_str_bool', '%s')
 );
+
 var_export(PDO_DataObject::factory('Dummy')
     ->set([
         'ex_str_bool' => false
