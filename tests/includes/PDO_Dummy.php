@@ -61,12 +61,17 @@ class PDO_Dummy {
     
     function query($str)
     {
-        
-        // hopefully database is set!!!
-        
-        echo "QUERY: ". md5($str) ."\n";
-        
         require_once __DIR__ .'/PDO_DummyStatement.php';
+        // hopefully database is set!!!
+        $q = md5($str);
+        if (!isset(PDO_DummyStatement::$hide_queries[$q])) {
+            $q .= ":\n" . $str;
+        } else {
+            $q .= ": [Query hidden from tests]";
+        }
+        echo "QUERY:". $q ."\n";
+        
+        
         
         $this->last_statement = new PDO_DummyStatement($this->_dsn, $str);
         return $this->last_statement;
