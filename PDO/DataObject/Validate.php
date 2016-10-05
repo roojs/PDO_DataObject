@@ -127,6 +127,7 @@ class PDO_DataObject_Validate
             switch (true) {
                 // todo: date time.....
                 case  ($val & PDO_DataObject::STR):
+                    // this test is pointless.. - really it should do validation of string length...
                     //$ret[$key] = Validate::string($this->do->$key, VALIDATE_PUNCTUATION . VALIDATE_NAME);
                     continue;
                 case  ($val & PDO_DataObject::INT):
