@@ -204,7 +204,7 @@ e) PDO_DataObject class
   
 
   * joinAdd() DONE  
-  * autoJoin() DONE / NEED TESTING
+  * autoJoin() DONE  
   * links() DONE / NEED TESTING
  
  
