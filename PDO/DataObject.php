@@ -1058,6 +1058,7 @@ class PDO_DataObject
         $ret = $this->N;
         if (!$ret && !empty($this->_result)) {     
             // clear up memory if nothing found!?
+            $this->debug("FIND: nothing found - reseting query and result)?",1);
             $this->_query = $query_before;
             $this->_result = 0;
             return $ret;
