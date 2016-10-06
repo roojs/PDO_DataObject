@@ -90,13 +90,12 @@ PDO_DataObject::factory('Companies')
     ->set(['comptype' => 'CONSULTANT' ])
     ->limit(3)
     ->fetchAll(function($row) {
-          echo "callback" . $this->name ."\n";
-          if ($this->name == 'HK Domain Registry') {
-                $this->snapshot()
-                    ->set(['code' => 'newcode'])
-                    ->save();
+            echo "callback" . $this->name ."\n";
+            $this->snapshot()
+                ->set(['code' => $this->code . '-add a bit'])
+                ->save();
                 // do an update on it..
-          }
+           
     
     });
 
