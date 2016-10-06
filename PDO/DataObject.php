@@ -1371,7 +1371,7 @@ class PDO_DataObject
                     continue;
                 }
                 if ($v !== false) {
-                    $ret[$this->$v] = clone($this);
+                    $ret[$v === true ? $this->pid() : $this->$v] = clone($this);
                     continue;
                 }
                 $ret[] = $k === false ? 
