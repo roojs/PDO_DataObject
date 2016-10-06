@@ -128,6 +128,19 @@ PDO_DataObject::factory('Dummy')
     ->toArray()
 );
 
+
+PDO_DataObject::factory('Dummy')
+    ->get(123)
+    ->set([
+        'ex_null_string' => PDO_DataObject::sqlValue('null'),
+        'ex_null_int' => PDO_DataObject::sqlValue('null'),
+    ])
+    ->save()
+    
+
+
+
+
 echo "\n\n--------\n";
 echo "Testing insert null testing;\n" ;
 try {
