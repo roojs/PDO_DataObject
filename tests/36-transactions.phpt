@@ -34,6 +34,13 @@ PDO_DataObject::factory('Events')
 
 
 
+
+echo "\n\n--------\n";
+echo "Test Mysql - empty\n" ;
+
+
+
+
 echo "\n\n--------\n";
 echo "Test SQLite  insert - empty\n" ;
 
@@ -51,6 +58,7 @@ PDO_DataObject::config(array(
         ),
         'proxy' => 'Full',
         'debug' => 0,
+        'transactions' => false,
 ));
 
 PDO_DataObject::factory('Customers')->databaseStructure();
