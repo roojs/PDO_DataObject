@@ -53,3 +53,15 @@ echo get_class(PDO_DataObject::factory('Events')) . "\n";
 
 ?>
 --EXPECT--
+--------
+load standard
+DataObjects_Events
+Dummyshort
+LongPrefix_DataObjects_Dummylong
+PercentA_Events
+PDO_DataObject   : __construct       : ["Events"]
+PDO_DataObject   : databaseStructure       : CALL:[]
+PDO_DataObject   : databaseStructure       : CALL:["inserttest"]
+__construct==["mysql:dbname=inserttest;host=localhost","user","pass",[]]
+setAttribute==[3,2]
+PercentB_Events
