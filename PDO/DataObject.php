@@ -3578,7 +3578,7 @@ class PDO_DataObject
      * @throws PDO_DataObject_Exception only when class is loaded, and file does not exist.
      * @static
      */
-    private static function loadClass($class, $table=false)
+    private static function loadClass($class, $table = false, $database = false)
     {
          
         $class_prefix = self::$config['class_prefix'];
@@ -3604,7 +3604,7 @@ class PDO_DataObject
                 continue;
             }
             if(strpos($cl ,'%2$s') !== false || strpos($cl ,'%1$s')) {
-                $file[] = sprintf($cl , preg_replace('/[^A-Z0-9]/i','_',ucfirst($table)), ucfirst($this->_database_nickname) );
+                $file[] = sprintf($cl , preg_replace('/[^A-Z0-9]/i','_',ucfirst($table)), ucfirst($database) );
                 continue;
             }
             if (substr($cl,-1) == '/') {
