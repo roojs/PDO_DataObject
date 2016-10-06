@@ -372,3 +372,155 @@ Fetch Row 0 / 1
 QUERY:86f9b0a9131676c87d66a0cb0264b879:
 INSERT INTO Events (person_name , event_when , action , ipaddr , on_id , on_table , person_id , remarks ) VALUES ('Alan' , '2009-04-16 14:08:40' , 'RELOAD' , '202.134.82.251' ,  0 , '' ,  4 , '0' ) 
 lastInsertId from sequence=''  is 1
+
+
+--------
+Testing cast;
+string(3) "140"
+QUERY:108a355193fb27d09332bc366bb171bd:
+INSERT INTO Dummy (ex_blob , ex_string , ex_date , ex_datetime , ex_time , ex_sql , ex_null_string , ex_null_int ) VALUES ('a long piece of data', '123123', '2000-01-01', '2000-01-01 10:00:00', '10:00:00', NOW(), NULL, NULL) 
+lastInsertId from sequence=''  is 134
+QUERY:6788f6fdaf20faf6090c919d156389ba:
+SELECT *
+ FROM   Dummy   
+ WHERE ( (Dummy.id = 134) ) 
+
+Fetch Row 0 / 1
+Array
+(
+    [id] => 134
+    [ex_blob] => a long piece of data
+    [ex_string] => 123123
+    [ex_date] => 2000-01-01
+    [ex_datetime] => 2000-01-01 10:00:00
+    [ex_time] => 10:00:00
+    [ex_sql] => 2000-01-01 10:00:00
+    [ex_null_string] => 
+    [ex_null_int] => 
+    [ex_int] => 
+    [ex_str_bool] => 
+)
+QUERY:1652d7b57c57078e2a9b3b09d3dca169:
+SELECT *
+ FROM   Dummy   
+ WHERE ( (Dummy.id = 123) ) 
+
+Fetch Row 0 / 1
+QUERY:c8d6d4b551d4b67722aca033ffbb0565:
+UPDATE  Dummy  SET ex_null_string = NULL , ex_null_int = NULL  WHERE (Dummy.id = 123) 
+
+
+--------
+Testing update with 'null' and null (with set) ;
+QUERY:1652d7b57c57078e2a9b3b09d3dca169:
+SELECT *
+ FROM   Dummy   
+ WHERE ( (Dummy.id = 123) ) 
+
+Fetch Row 0 / 1
+QUERY:6b645525eb7211f33f4fc3b5b6dc5662:
+UPDATE  Dummy  SET ex_null_string = 'null' , ex_null_int = NULL  WHERE (Dummy.id = 123) 
+
+
+--------
+Testing update with 'null' and null (with properties) - ignore the raw null..;
+QUERY:1652d7b57c57078e2a9b3b09d3dca169:
+SELECT *
+ FROM   Dummy   
+ WHERE ( (Dummy.id = 123) ) 
+
+Fetch Row 0 / 1
+QUERY:c98633c24f80f97ffcf852d6a685573a:
+UPDATE  Dummy  SET ex_null_string = 'null'  WHERE (Dummy.id = 123) 
+
+
+--------
+Testing insert null testing;
+
+got exception as expected : Trying to set ex_string to null however it's set as NOT NULL
+
+
+--------
+Testing string null = inserts a string..;
+QUERY:dc4ce49311092488f2b6ef4f8c69de95:
+INSERT INTO Dummy (ex_null_string ) VALUES ('null' ) 
+lastInsertId from sequence=''  is 3434
+
+
+--------
+SET enable_null_strings= TRUE
+
+
+--------
+Testing null (string null);
+QUERY:3b7ff9bae558b4da7dd1c66bba394523:
+INSERT INTO Dummy (ex_null_string ) VALUES (NULL) 
+lastInsertId from sequence=''  is 101
+
+
+--------
+Testing null string where non-null column;
+
+got exception as expected : Trying to set ex_string to null however it's set as NOT NULL
+
+
+--------
+Testing update with 'null' and null (with set) - both should be null;
+QUERY:1652d7b57c57078e2a9b3b09d3dca169:
+SELECT *
+ FROM   Dummy   
+ WHERE ( (Dummy.id = 123) ) 
+
+Fetch Row 0 / 1
+QUERY:c8d6d4b551d4b67722aca033ffbb0565:
+UPDATE  Dummy  SET ex_null_string = NULL , ex_null_int = NULL  WHERE (Dummy.id = 123) 
+
+
+--------
+Testing update with 'null' and null (with properties) - expect string null to work..;
+QUERY:1652d7b57c57078e2a9b3b09d3dca169:
+SELECT *
+ FROM   Dummy   
+ WHERE ( (Dummy.id = 123) ) 
+
+Fetch Row 0 / 1
+QUERY:51f07942c9284421cf98a6ba687c0b06:
+UPDATE  Dummy  SET ex_null_string = NULL  WHERE (Dummy.id = 123) 
+
+
+--------
+SET enable_null_strings= FULL
+
+
+--------
+Testing null (string null);
+
+got exception as expected : Trying to set ex_blob to null however it's set as NOT NULL
+string(3) "140"
+QUERY:95c0c9fb39ff2e1f982dd42609cc40c4:
+INSERT INTO Dummy (ex_blob , ex_int , ex_string , ex_date , ex_datetime , ex_time , ex_sql , ex_null_string , ex_null_int , ex_str_bool ) VALUES ('a long piece of data',  1 , '123123', '2000-01-01', '2000-01-01 10:00:00', '10:00:00', NOW(), NULL, NULL, '1' ) 
+lastInsertId from sequence=''  is 12
+
+
+--------
+Testing update with 'null' and null (with set) - both should be null;
+QUERY:1652d7b57c57078e2a9b3b09d3dca169:
+SELECT *
+ FROM   Dummy   
+ WHERE ( (Dummy.id = 123) ) 
+
+Fetch Row 0 / 1
+QUERY:c8d6d4b551d4b67722aca033ffbb0565:
+UPDATE  Dummy  SET ex_null_string = NULL , ex_null_int = NULL  WHERE (Dummy.id = 123) 
+
+
+--------
+Testing update with 'null' and null (with properties) -   result = both of them will get set to nul..;
+QUERY:1652d7b57c57078e2a9b3b09d3dca169:
+SELECT *
+ FROM   Dummy   
+ WHERE ( (Dummy.id = 123) ) 
+
+Fetch Row 0 / 1
+QUERY:c8d6d4b551d4b67722aca033ffbb0565:
+UPDATE  Dummy  SET ex_null_string = NULL , ex_null_int = NULL  WHERE (Dummy.id = 123)
