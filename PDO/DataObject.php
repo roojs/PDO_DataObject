@@ -872,10 +872,11 @@ class PDO_DataObject
      * Chainable.
      *
      * for example
-     * $object->load(1234)
-     *         ->set([ 'ex_datetime' => PDO_DataObject::sqlValue('sql', 'NOW()') ])
-     *         ->update()
-     *         ->reload(true)
+     * $object->joinAll()
+     *        ->load(1234)
+     *        ->set([ 'ex_datetime' => PDO_DataObject::sqlValue('sql', 'NOW()') ])
+     *        ->update()
+     *        ->reload(true)
      * 
     
      *    
