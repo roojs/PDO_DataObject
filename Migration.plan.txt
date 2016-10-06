@@ -471,7 +471,7 @@ fetchRow  -- removed (use PDO()->fetch(...))
 links() - previously calling it with arguments set the global links for that object.
           It now only set's it for that instance, use  
 
-link() - second argument can not be an array 
+link() - second argument can not be an array (not sure why that was ever supported - it just read the first item in the array?!?
 
 getLink - removed - used link()
 getLinkArray - renamed - linkArray()
