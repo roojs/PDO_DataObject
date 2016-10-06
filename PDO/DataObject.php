@@ -827,7 +827,7 @@ class PDO_DataObject
      *
      * for example
      * $object->load("ID",1234);
-     * Returns Number of rows located (usually 1) for success,
+     *
      * and puts all the table columns into this classes variables
      * Note: this also snapshot's the object, ready for update.., and clears any 'where condition'
      *
@@ -866,8 +866,53 @@ class PDO_DataObject
           $this->snapshot();
           return $this;
      }
+    
+   /**
+     * reload (usually called after update or insert)
+     * Chainable.
+     *
+     * for example
+     * $object->load(1234)
+     *         ->set([ 'ex_datetime' => PDO_DataObject::sqlValue('sql', 'NOW()') ])
+     *         ->update()
+     *         ->reload()
+     *
+     * see the fetch example on how to extend this.
+     *
+     * if no value is entered, it is assumed that $key is a value
+     * and get will then use the first key in keys()
+     * to obtain the key.
+     *
+     * @param   string  $k column
+     * @param   string  $v value
+     * @throws PDO_DataObject_Exception (if not matching row returned)
+     * @access  public
+     * @return  PDO_DataObject  self.
+     */
+     final function load($k = null, $v = null)
+     {
+          $res = 0;          
+          if ($k === null && $v === null) {
 
-
+              $str = $this->whereToString();
+              if (!strlen(trim($str))) {
+                  $this->raise("No condition (property or where) set for loading data.", self::ERROR_INVALIDARGS);
+              }
+              $res = $this->find(true);
+          } else {
+              $res = $this->get($k, $v);
+          }
+          if ($res < 1) {
+              $this->raise("No Data returned from load", self::ERROR_NODATA);
+          }
+          if ($res > 1) {
+              $this->raise("Too many rows returned from load", self::ERROR_INVALIDARGS);
+          }
+          $this->_query['condition'] = '';
+          $this->snapshot();
+          return $this;
+     }
+    
     /**
      * Get the value of the primary id
      *
