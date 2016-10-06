@@ -92,7 +92,14 @@ class PDO_Dummy {
     }
     function beginTransaction()
     {
-        
+        echo __METHOD__ ."\n"
     }
-    
+    function commit()
+    {
+        echo __METHOD__ ."\n"
+    }
+    function rollback()
+    {
+        echo __METHOD__ ."\n"
+    }
 }
