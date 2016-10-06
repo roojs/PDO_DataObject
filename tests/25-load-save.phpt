@@ -138,7 +138,7 @@ PDO_DataObject::factory('Dummy')
     ->save();
     
 
-
+// this works, as set has 'null' support?!?
 PDO_DataObject::factory('Dummy')
     ->load(123)
     ->set([
@@ -146,6 +146,13 @@ PDO_DataObject::factory('Dummy')
         'ex_null_int' => null,
     ])
     ->save();
+    
+
+$d = PDO_DataObject::factory('Dummy')
+    ->load(123);
+$d->ex_null_string = 'null';
+$d->ex_null_int = null;
+$d->save();
     
 
 
