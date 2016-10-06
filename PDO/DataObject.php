@@ -3711,7 +3711,7 @@ class PDO_DataObject
      * 
      *
      * @param  string $column  which column to get or set  (or the link specification)           
-     * @param  mixed $set_value (optional)   int, DataObject
+     * @param  mixed $set_value (optional)   int or DataObject
      * @author Alan Knowles
      * @access public
      * @throws 
