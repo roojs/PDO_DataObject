@@ -5,11 +5,7 @@ config - schema_location Test
 require_once 'includes/init.php';
 
 
-echo "\n\n--------\n";
-echo "Test Mysql \n" ;
-
-
-
+ 
 PDO_DataObject::config(array(
         'class_location' => __DIR__.'/includes/sample_classes/DataObjects_',
         
