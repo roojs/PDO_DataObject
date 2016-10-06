@@ -4,6 +4,17 @@ PDO replacement for PEAR's DB_DataObject
 
 Work has been funded by CentralNic Group plc 
 
+# Installation
+
+```
+sudo pear channel-discover roojs.github.com/pear-channel
+sudo pear install roojs/PDO_DataObject-0.0.1
+```
+composer comming soon...
+
+# Notes
+
+
 In General, this should be API compatible with DB_DataObject, except for
 
  * getDatabaseConnection(), which is replaced with PDOConnection() - and returns a PDO object, rather than a PEAR DB object.
