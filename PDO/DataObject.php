@@ -2658,9 +2658,9 @@ class PDO_DataObject
             strtoupper($string) == 'START TRANSACTION'
         ) {
             if (self::$debug) {
-                $this->debug('BEGIN',__FUNCTION__);
+                $this->debug('BEGIN' . (self::$config['transactions'] ? '' : '--IGNORED'),__FUNCTION__);
             }
-            if (!self::$config['transactions'])) {
+            if (!self::$config['transactions']) {
                 return $this;
             }
             $pdo->setAttribute(PDO::ATTR_AUTOCOMMIT, false); // we do not commit by default...
@@ -2671,9 +2671,9 @@ class PDO_DataObject
         
         if (strtoupper($string) == 'COMMIT') {
             if (self::$debug) {
-                $this->debug('COMMIT',__FUNCTION__);
+                $this->debug('COMMIT' . (self::$config['transactions'] ? '' : '--IGNORED'),__FUNCTION__);
             }
-            if (!self::$config['transactions'])) {
+            if (!self::$config['transactions']) {
                 return $this;
             }
             $pdo->commit();
@@ -2684,15 +2684,15 @@ class PDO_DataObject
         
         if (strtoupper($string) == 'ROLLBACK') {
             if (self::$debug) {
-                $this->debug('ROLLBACK',__FUNCTION__);
+                $this->debug('ROLLBACK' . (self::$config['transactions'] ? '' : '--IGNORED'),__FUNCTION__);
             }
-            if (!self::$config['transactions'])) {
+            if (!self::$config['transactions']) {
                 return $this;
             }
             $pdo->rollBack();
             $pdo->setAttribute(PDO::ATTR_AUTOCOMMIT, true); // not sure if needed...
             
-            return true;
+            return $this;
         }
         
         
@@ -2742,12 +2742,23 @@ class PDO_DataObject
             return $this->raise("Could not run Query", self::ERROR_QUERY, $result);
         }
         
-        
+        $no_results =  $result->rowCount();
+
+        case $dbtype  == 'sqlite':
+            case $pdo->getAttribute(PDO::MYSQL_ATTR_USE_BUFFERED_QUERY) === false:
+                $no_results = true;
+                break;
+    
+            default:
+              break;
+        }        
+
+
         if (self::$debug) {
             $t= explode(' ',microtime());
             $result->time_query_end = $t[0]+$t[1];
             $this->debug('QUERY DONE IN  '.number_format($t[0]+$t[1]-$time,3)." seconds", __FUNCTION__,2);
-            $this->debug('NO# of results: '.$result->rowCount(), __FUNCTION__,1);
+            $this->debug('NO# of results: '. ($no_results === true ? 'Unknown' : $no_results ), __FUNCTION__,1);
         }
         
         
@@ -2755,13 +2766,21 @@ class PDO_DataObject
             case 'insert':
             case 'update':
             case 'delete':
-                return $result->rowCount();
+                return $no_results;
         }
         
         // previously we used _DB_resultid as a pointer to a result array..
         // hopefully this will result in better memory management???
         $this->_result = $result;
-        $this->N = $dbtype  == 'sqlite' ? true : $result->rowCount();
+        switch(true) {
+            case $dbtype  == 'sqlite':
+            case $pdo->getAttribute(PDO::MYSQL_ATTR_USE_BUFFERED_QUERY) === false:
+                $this->N = true;
+                break;
+    
+            default:
+              $this->N = $result->rowCount();
+        }
         
         return $this; // for chaining...
      
