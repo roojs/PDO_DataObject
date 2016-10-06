@@ -354,6 +354,8 @@ class PDO_DataObject_Links
      * load related objects
      * @depricated
      *
+     * This code has not been tested with PDO_DataObjects
+     *
      * Generally not recommended to use this.
      * The generator should support creating getter_setter methods which are better suited.
      *
@@ -427,6 +429,14 @@ class PDO_DataObject_Links
     
     /**
      * getLinkArray
+     * @depricated
+     * 
+     * I think the original idea was to load reverse foriegn keys... 
+     * it would be far more usefull, if this used a cross reference table to load and save related items.
+     * as that is a far more common pattern.
+     *
+     * This code has not been tested with PDO_DataObjects
+     *
      * Fetch an array of related objects. This should be used in conjunction with a
      * <dbname>.links.ini file configuration (see the introduction on linking for details on this).
      *
