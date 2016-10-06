@@ -353,6 +353,11 @@ class PDO_DummyStatement {
                { "ca_id":2,"name":"x","ex_int":2,"ex_string":"test","ex_date":"2001-01-01","ex_datetime":"2002-02-02 12:12:12","ex_time":"04:04:04"}
             ]',
              
+            'e0d21de2663b8a6765bb6d5bf8d0e1f8' => '[
+                {"id":"1","childa_id":"2","childb_id ":"3"}
+            ]',
+             
+             
              '0c192ff0f3a2aa7370db30026808f365'=> '[
                { "ca_id":3,"name":"yyy","ex_int":99,"ex_string":"test","ex_date":"2001-01-01","ex_datetime":"2002-02-02 12:12:12","ex_time":"04:04:04"}
             ]',
@@ -361,6 +366,8 @@ class PDO_DummyStatement {
                 { "ca_id":5,"name":"yyy","ex_int":99,"ex_string":"test","ex_date":"2001-01-01","ex_datetime":"2002-02-02 12:12:12","ex_time":"04:04:04"}
              ]',
              '969e31a113b519f231a2fd01b811d14e' => 1,
+             '9d99040b862edc9987b3172f357b1346' => 0, // zero..
+             '40eb1d8f650d4ed98324e3914ef8d70d' => '[]', // empty result for get?
              
              
         ), 
