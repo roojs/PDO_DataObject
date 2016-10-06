@@ -177,13 +177,13 @@ PDO_DataObject   : query       : 2ee20b35241ab34768d20c8f10e8510d : SELECT *
  FROM   Customers   
  WHERE ( (Customers.CustomerID = 2) ) 
 
-PDO_DataObject   : query       : NO# of results: 0
+PDO_DataObject   : query       : NO# of results: Unknown
 PDO_DataObject   : find       : CHECK autofetched true
 PDO_DataObject   : find       : ABOUT TO AUTOFETCH
 PDO_DataObject   : fetch       : {"CustomerID":"2","CompanyName":"Sagebrush Carpet","ContactName":"Barbara Berber","ContactTitle":"Director of Installations","Address":"10 Industrial Drive","City":"El Paso","State":"TX"}
 PDO_DataObject   : find       : DONE
 PDO_DataObject   : query       : b638ac545f0ca96fbbc8ea538f5908b5 : DELETE FROM Customers WHERE (Customers.CustomerID = 2) 
-PDO_DataObject   : query       : NO# of results: 1
+PDO_DataObject   : query       : NO# of results: Unknown
 PDO_DataObject   : databaseStructure       : CALL:[]
 PDO_DataObject   : PDO       : Checking for database specific ini ('EssentialSQL') : config[databases][EssentialSQL] in options
 PDO_DataObject   : get       : ('CustomerID', 2) keys= Array
@@ -196,7 +196,7 @@ PDO_DataObject   : query       : 2ee20b35241ab34768d20c8f10e8510d : SELECT *
  FROM   Customers   
  WHERE ( (Customers.CustomerID = 2) ) 
 
-PDO_DataObject   : query       : NO# of results: 1
+PDO_DataObject   : query       : NO# of results: Unknown
 PDO_DataObject   : find       : CHECK autofetched true
 PDO_DataObject   : find       : ABOUT TO AUTOFETCH
 PDO_DataObject   : fetch       : false
@@ -210,16 +210,16 @@ PDO_DataObject   : PDO       : Checking for database specific ini ('EssentialSQL
 PDO_DataObject   : PDO       : Checking for database specific ini ('EssentialSQL') : config[databases][EssentialSQL] in options
 PDO_DataObject   : query       : 9d3e7ecc7ac70671316cfe4cfdb42db1 : SELECT count(Customers.CustomerID) as DATAOBJECT_NUM
                 FROM Customers  
-PDO_DataObject   : query       : NO# of results: 0
+PDO_DataObject   : query       : NO# of results: Unknown
 PDO_DataObject   : count       : Count returned 4
 There is 4 records
 PDO_DataObject   : PDO       : Checking for database specific ini ('EssentialSQL') : config[databases][EssentialSQL] in options
 PDO_DataObject   : query       : 7068b0ce4990031ff71d3618eb0d34af : DELETE FROM Customers WHERE ( CustomerID > 2 )  
-PDO_DataObject   : query       : NO# of results: 3
+PDO_DataObject   : query       : NO# of results: Unknown
 PDO_DataObject   : PDO       : Checking for database specific ini ('EssentialSQL') : config[databases][EssentialSQL] in options
 PDO_DataObject   : PDO       : Checking for database specific ini ('EssentialSQL') : config[databases][EssentialSQL] in options
 PDO_DataObject   : query       : 9d3e7ecc7ac70671316cfe4cfdb42db1 : SELECT count(Customers.CustomerID) as DATAOBJECT_NUM
                 FROM Customers  
-PDO_DataObject   : query       : NO# of results: 0
+PDO_DataObject   : query       : NO# of results: Unknown
 PDO_DataObject   : count       : Count returned 1
 There are now only 1 records
