@@ -130,14 +130,22 @@ PDO_DataObject::factory('Dummy')
 
 
 PDO_DataObject::factory('Dummy')
-    ->get(123)
+    ->load(123)
     ->set([
         'ex_null_string' => PDO_DataObject::sqlValue('null'),
         'ex_null_int' => PDO_DataObject::sqlValue('null'),
     ])
-    ->save()
+    ->save();
     
 
+
+PDO_DataObject::factory('Dummy')
+    ->load(123)
+    ->set([
+        'ex_null_string' => 'null',
+    ])
+    ->save();
+    
 
 
 
