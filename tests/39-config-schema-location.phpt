@@ -39,7 +39,7 @@ PDO_DataObject::factory('Events')
         ->find(true);
 
 
-PDO_DataObject::factory('account_code')
+PDO_DataObject::factory('account_transaction')
         ->limit(1)
         ->find();
 
