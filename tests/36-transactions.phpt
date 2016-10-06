@@ -24,3 +24,10 @@ PDO_DataObject::factory('Events')
     ->save()
     ->query("COMMIT")
 
+
+PDO_DataObject::factory('Events')
+    ->query("BEGIN")
+    ->load(3523)
+    ->set(['action' => "testing" ])
+    ->save()
+    ->query("ROLLBACK")
