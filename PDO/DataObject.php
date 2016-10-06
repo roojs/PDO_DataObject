@@ -2033,7 +2033,7 @@ class PDO_DataObject
 
             if (!isset($this->$k)) {
                 // it's a  not null field
-                if ($v & self::NOTNULL)) {
+                if ($v & self::NOTNULL) {
                     continue;
                 }
                 // value is not set, and it's not 'defined' as null.....?!?!
@@ -2061,11 +2061,7 @@ class PDO_DataObject
                 continue;
             }
 
-            // at this point if it's not set, then we can really ignore it..
-            if (isset($this->$k)) {
-                continue;
-            }
-
+            
             // DATE is empty... on a col. that can be null.. 
             // note: this may be usefull for time as well..
             if (!$this->$k && 
@@ -2287,6 +2283,18 @@ class PDO_DataObject
                 continue;
             }
             
+            if (!isset($this->$k)) {
+                // it's a  not null field
+                if ($v & self::NOTNULL) {
+                    continue;
+                }
+                // value is not set, and it's not 'defined' as null.....?!?!
+                if (!self::_is_null_member($this,$k)) {
+                    continue;
+                }
+
+                // in theory this is when enable_null_value='full' - and it's notnull - we will insert 'null..
+            }
             
             if ($settings)  {
                 $settings .= ', ';
