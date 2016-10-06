@@ -1357,9 +1357,13 @@ class PDO_DataObject
 
   
         if (($k === false) || is_a($k, "Closure")) {
-             
+            $cl =  is_a($k, "Closure");
             $ret = array();
             while ($this->fetch()) {
+                if ($cl) {
+                    $v->call(clone($this));
+                    continue;
+                }
                 if ($v !== false) {
                     $ret[$this->$v] = clone($this);
                     continue;
