@@ -240,7 +240,7 @@ PDO_DataObject   : query       : 2ee20b35241ab34768d20c8f10e8510d : SELECT *
  FROM   Customers   
  WHERE ( (Customers.CustomerID = 2) ) 
 
-PDO_DataObject   : query       : NO# of results: 0
+PDO_DataObject   : query       : NO# of results: Unknown
 PDO_DataObject   : find       : CHECK autofetched true
 PDO_DataObject   : find       : ABOUT TO AUTOFETCH
 PDO_DataObject   : fetch       : {"CustomerID":"2","CompanyName":"Sagebrush Carpet","ContactName":"Barbara Berber","ContactTitle":"Director of Installations","Address":"10 Industrial Drive","City":"El Paso","State":"TX"}
@@ -256,7 +256,7 @@ Array
     [State] => TX
 )
 PDO_DataObject   : query       : 5be360208e9172d983b550bd69253bd1 : UPDATE  Customers  SET CompanyName = 'test1' , ContactName = 'test2' , ContactTitle = 'Director of Installations' , Address = '10 Industrial Drive' , City = 'El Paso' , State = 'TX'  WHERE (Customers.CustomerID = 2) 
-PDO_DataObject   : query       : NO# of results: 1
+PDO_DataObject   : query       : NO# of results: Unknown
 Array
 (
     [CustomerID] => 2
@@ -283,7 +283,7 @@ PDO_DataObject   : query       : d59a6682883acfa372854db08a88caf2 : SELECT *
  FROM   Customers   
  WHERE ( (Customers.CustomerID = 3) ) 
 
-PDO_DataObject   : query       : NO# of results: 0
+PDO_DataObject   : query       : NO# of results: Unknown
 PDO_DataObject   : find       : CHECK autofetched true
 PDO_DataObject   : find       : ABOUT TO AUTOFETCH
 PDO_DataObject   : fetch       : {"CustomerID":"3","CompanyName":"Floor Co.","ContactName":"Jim Wood","ContactTitle":"Installer","Address":"34218 Private Lane","City":"Monclair","State":"NJ"}
@@ -299,7 +299,7 @@ Array
     [State] => NJ
 )
 PDO_DataObject   : query       : a66b273860037f83132521bbfa541f35 : UPDATE  Customers  SET CompanyName = 'test1' , ContactName = 'test2'  WHERE (Customers.CustomerID = 3) 
-PDO_DataObject   : query       : NO# of results: 1
+PDO_DataObject   : query       : NO# of results: Unknown
 Array
 (
     [CustomerID] => 3
