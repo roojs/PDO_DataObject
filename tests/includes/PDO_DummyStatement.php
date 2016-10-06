@@ -357,7 +357,9 @@ class PDO_DummyStatement {
                { "ca_id":3,"name":"yyy","ex_int":99,"ex_string":"test","ex_date":"2001-01-01","ex_datetime":"2002-02-02 12:12:12","ex_time":"04:04:04"}
             ]',
              'b567807fd5e6679c97dae318060fdb4c' => 1,
-             'b21e50231b6df62832c6c0c76b807d03' => 1,
+             'b21e50231b6df62832c6c0c76b807d03' => '[
+                { "ca_id":5,"name":"yyy","ex_int":99,"ex_string":"test","ex_date":"2001-01-01","ex_datetime":"2002-02-02 12:12:12","ex_time":"04:04:04"}
+             ]',
              
              
         ), 
