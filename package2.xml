@@ -53,7 +53,9 @@ http://pear.php.net/dtd/package-2.0.xsd">
             <file name="createTables.php" role="php" />
             <file name="Exception.php" role="php" />
             <file name="Generator.php" role="php" />
+            <file name="Introspection.php" role="php" />
             <file name="Links.php" role="php" />
+            <file name="Validate.php" role="php" />
             <dir name="Generator">
                 <file name="Column.php" role="php" />
                 <file name="Hooks.php" role="php" />
