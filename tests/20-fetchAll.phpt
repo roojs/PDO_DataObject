@@ -84,6 +84,19 @@ foreach($ar as $k=>$v) {
     echo $k => ' . get_class($a) . " {$a->id}\n";
 }
 
+echo "\n\n--------\n";
+echo "array of objects using closures\n" ;
+PDO_DataObject::factory('Companies')
+    ->set(['comptype' => 'CONSULTANT' ])
+    ->limit(3)
+    ->fetchAll(function($row) {
+          echo "callback" . $this->name ."\n";
+          if ($this->name == 'xxx') {
+                // do an update on it..
+          }
+    
+    });
+
 
 
 
