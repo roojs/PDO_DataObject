@@ -296,7 +296,7 @@ class PDO_DataObject_Links
         $field = $info[2];
         
         
-        if (empty($args)) { // either an empty array or really empty....
+        if (is_null($args)) { // either an empty array or really empty....
             
             if (!isset($this->do->$field)) {
                 return $info[0]; // empty dataobject.
