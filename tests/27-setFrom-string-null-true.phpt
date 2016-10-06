@@ -141,5 +141,7 @@ echo $d->whereToString();
 } catch (PDO_DataObject_Exception_InvalidArgs $e) {
     echo "set got errors as expected: {$e->getMessage()}\n";
 }
+?>
+--EXPECT--
 
  
