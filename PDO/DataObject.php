@@ -1056,9 +1056,9 @@ class PDO_DataObject
         
         
         $ret = $this->N;
-        if (!$ret && !empty( $this->_result)) {     
+        if (!$ret && !empty($this->_result)) {     
             // clear up memory if nothing found!?
-           $this->_query = $query_before;
+            $this->_query = $query_before;
             $this->_result = 0;
             return $ret;
         }
@@ -2744,7 +2744,8 @@ class PDO_DataObject
         
         $no_results =  $result->rowCount();
 
-        case $dbtype  == 'sqlite':
+        switch (true) {
+            case $dbtype  == 'sqlite':
             case $pdo->getAttribute(PDO::MYSQL_ATTR_USE_BUFFERED_QUERY) === false:
                 $no_results = true;
                 break;
