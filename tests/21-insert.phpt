@@ -79,6 +79,7 @@ PDO_DataObject::factory('Dummy')
         
     ])
     ->insert()
+    ->reload()
     ->toArray()
 );
 
