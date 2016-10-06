@@ -46,6 +46,7 @@ while($x->fetch()) {
     
 }
 ?>
+--EXPECT--
 --------
 basic load a big result set
 PDO_DataObject   : PDO       : Checking for database specific ini ('inserttest') : config[databases][inserttest] in options
