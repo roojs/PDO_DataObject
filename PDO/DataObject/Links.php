@@ -155,7 +155,7 @@ class PDO_DataObject_Links
         
         // check to see if we know anything about this table..
         
-      
+        
         if (empty($this->do->$field) || $this->do->$field < 0) {
             return 0; // no record. 
         }
@@ -164,7 +164,7 @@ class PDO_DataObject_Links
             return $cache[$tn.':'. $link .':'. $this->do->$field];    
         }
         
-        $obj = is_string($table) ? $this->do->factory($tn) : $table;;
+        $obj = is_string($table) ? $this->do->factory($table) : $table;
         
         if (!is_a($obj,'PDO_DataObject')) {
             $this->do->raise(
@@ -176,7 +176,7 @@ class PDO_DataObject_Links
        
         $ret = false;
         if ($link) {
-            
+            var_dump($link);
             if ($obj->get($link, $this->do->$field)) {
                 $ret = $obj;
             }
