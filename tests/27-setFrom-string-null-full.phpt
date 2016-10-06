@@ -34,7 +34,7 @@ echo "\nsetting string and int to null: " . PDO_DataObject::factory('Dummy')
 
 
 try {   
-echo "\nsetting string and int to 'NULL' : " . PDO_DataObject::factory('Dummy')
+PDO_DataObject::factory('Dummy')
     ->set([
         'ex_int' => null,
         'ex_string' => null,
@@ -102,7 +102,9 @@ $d->ex_string = null;
 $d->ex_int = null;
 $d->ex_null_string = null;
 $d->ex_null_int = null;
-echo "\nusing null props with FULL - this is a broken situation, which is why removed support for it.: == {$d->whereToString()} == \n";
+$d->whereAdd
+echo "\nusing real null props : == {$d->whereToString()} == \n";
+echo "\nuthat was empty, as properites can not be set to null - it can not be detected, use set() or cast() == \n";
 
  
 
