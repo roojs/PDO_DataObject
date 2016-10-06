@@ -877,17 +877,11 @@ class PDO_DataObject
      *         ->update()
      *         ->reload()
      *
-     * see the fetch example on how to extend this.
+     * It enables you to work on the data after the database has done the update.
      *
-     * if no value is entered, it is assumed that $key is a value
-     * and get will then use the first key in keys()
-     * to obtain the key.
-     *
-     * @param   string  $k column
-     * @param   string  $v value
      * @throws PDO_DataObject_Exception (if not matching row returned)
      * @access  public
-     * @return  PDO_DataObject  self.
+     * @return  PDO_DataObject  fresh copy of the row.
      */
      final function reload()
      {
