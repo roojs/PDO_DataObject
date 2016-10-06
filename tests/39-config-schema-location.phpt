@@ -17,7 +17,7 @@ PDO_DataObject::config(array(
         
         'database' => '',
         'databases' => array(
-            'mysql_somedb' =>  'mysql://username:test@localhost:3344/somedb#',
+            'mysql_anotherdb' =>  'mysql://username:test@localhost:3344/somedb#',
             'inserttest' => 'mysql://user:pass@localhost/inserttest',
         ),
         
