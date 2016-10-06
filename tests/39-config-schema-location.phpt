@@ -130,11 +130,6 @@ print_r(PDO_DataObject::factory('account_transaction')->tableColumns());
 
 
 ?>
---EXPECT--
---------
-Test Mysql 
-
-
 --------
 listed with seperators
 PDO_DataObject   : find       : true
