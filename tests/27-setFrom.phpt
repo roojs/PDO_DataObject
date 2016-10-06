@@ -66,7 +66,7 @@ echo "\n\n----------------------------------------------------------------\n";
 
 PDO_DataObject::debugLevel(1);
 echo "\n\n--------\n";
-echo "enable_null_valus = default = off\n" ;
+echo "enable_null_values = default = off\n" ;
 
  
 echo "\nsetting string and int to null: " . PDO_DataObject::factory('Dummy')
