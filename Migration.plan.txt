@@ -217,7 +217,7 @@ e) PDO_DataObject class
 
   * PDO_DataObject_Exception ( )   DONE - tested most places..
 
-  * config DONE / NEEDS TESTING - of various settings...
+
 
 --- > NULL/cast? values in INSERT/UPDATE 
 --- > databases[] set, but no database - should scan ini to determine which db to use...
@@ -225,7 +225,7 @@ e) PDO_DataObject class
 --- > un-buffered queries?? - results in get failing!?! -- ?? sqlite can it do bufferd?
 --- >  * fetchall(CALLABLE) ???? same as foreach, but runs a method on each object... 
 
-
+  * config DONE / NEEDS TESTING - of various settings...
    
 
 
