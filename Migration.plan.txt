@@ -220,6 +220,7 @@ e) PDO_DataObject class
 
    * link DONE / NEED TESTING
    * applyLinks DONE / NEED TESTING
+   * linkArray DONE / NEED TESTING
       PDO_DataObject_Links ( )  DONE / NEED TESTING
 PDO_DataObject_Exception ( ) ** can call the old PEAR error handler??
 
