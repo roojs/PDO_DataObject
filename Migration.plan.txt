@@ -203,7 +203,7 @@ e) PDO_DataObject class
   * raise  (was raiseError) -- DONE - tests all over the place......
   
 
-  * joinAdd() DONE / NEED TESTING
+  * joinAdd() DONE  
   * autoJoin() DONE / NEED TESTING
   * links() DONE / NEED TESTING
  
@@ -461,7 +461,9 @@ factory() - without arguments will not work (PHP change) - use factorySelf()
 
 staticGet -- removed? - create your own cache layer .. it's pretty trivial.
 fetchRow  -- removed (use PDO()->fetch(...))
- 
+links() - previously calling it with arguments set the global links for that object.
+          It now only set's it for that instance, use  
+
 
 getLink - removed - used link()
 getLinkArray - renamed - linkArray()
