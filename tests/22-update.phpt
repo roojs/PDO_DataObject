@@ -230,7 +230,7 @@ Array
 Test SQLite  update - empty
 PDO_DataObject   : databaseStructure       : CALL:[]
 PDO_DataObject   : PDO       : Checking for database specific ini ('EssentialSQL') : config[databases][EssentialSQL] in options
-PDO_DataObject   : get       : CustomerID 2 Array
+PDO_DataObject   : get       : ('CustomerID', 2) keys= Array
 (
     [0] => CustomerID
 )
@@ -273,7 +273,7 @@ Array
 Test SQLite  update - with old.
 PDO_DataObject   : databaseStructure       : CALL:[]
 PDO_DataObject   : PDO       : Checking for database specific ini ('EssentialSQL') : config[databases][EssentialSQL] in options
-PDO_DataObject   : get       : CustomerID 3 Array
+PDO_DataObject   : get       : ('CustomerID', 3) keys= Array
 (
     [0] => CustomerID
 )
