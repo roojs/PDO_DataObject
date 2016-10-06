@@ -157,17 +157,17 @@ DELETED 10 records
 
 --------
 delete where, without flag....);
-failed as expected : deleting all data from database is disabled by default, use where('1=1') if your really want to do that.
+failed as expected : deleting all data from database is disabled by default, use where('1=1') if you really want to do that.
 
 --------
 delete all?....);
-failed as expected : deleting all data from database is disabled by default, use where('1=1') if your really want to do that.
+failed as expected : deleting all data from database is disabled by default, use where('1=1') if you really want to do that.
 
 --------
 Test SQLite  delete single
 PDO_DataObject   : databaseStructure       : CALL:[]
 PDO_DataObject   : PDO       : Checking for database specific ini ('EssentialSQL') : config[databases][EssentialSQL] in options
-PDO_DataObject   : get       : CustomerID 2 Array
+PDO_DataObject   : get       : ('CustomerID', 2) keys= Array
 (
     [0] => CustomerID
 )
@@ -186,7 +186,7 @@ PDO_DataObject   : query       : b638ac545f0ca96fbbc8ea538f5908b5 : DELETE FROM 
 PDO_DataObject   : query       : NO# of results: 1
 PDO_DataObject   : databaseStructure       : CALL:[]
 PDO_DataObject   : PDO       : Checking for database specific ini ('EssentialSQL') : config[databases][EssentialSQL] in options
-PDO_DataObject   : get       : CustomerID 2 Array
+PDO_DataObject   : get       : ('CustomerID', 2) keys= Array
 (
     [0] => CustomerID
 )
