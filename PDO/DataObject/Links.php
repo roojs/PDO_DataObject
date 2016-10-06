@@ -352,6 +352,7 @@ class PDO_DataObject_Links
     }
     /**
      * load related objects
+     * @depricated
      *
      * Generally not recommended to use this.
      * The generator should support creating getter_setter methods which are better suited.
