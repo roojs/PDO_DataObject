@@ -70,7 +70,7 @@ $company = PDO_DataObject::factory('Companies');
 $company->comptype = 'CONSULTANT';
 $company->limit(3);
 $ar = $company->fetchAll(false,'name');
-foreach($ar as $k=>$v) {
+foreach($ar as $k=>$a) {
     echo $k . '=> ' . get_class($a) . " {$a->id}\n";
 }
 
@@ -91,7 +91,10 @@ PDO_DataObject::factory('Companies')
     ->limit(3)
     ->fetchAll(function($row) {
           echo "callback" . $this->name ."\n";
-          if ($this->name == 'xxx') {
+          if ($this->name == 'HK Domain Registry') {
+                $this->snapshot()
+                    ->set(['code' => 'newcode'])
+                    ->save();
                 // do an update on it..
           }
     
