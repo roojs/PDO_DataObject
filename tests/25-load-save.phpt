@@ -166,7 +166,16 @@ PDO_DataObject::factory('Dummy')
     ])
     ->save();
 
-
+echo "\n\n--------\n";
+echo "Testing null string where non-null column;\n" ;
+try {
+$d = PDO_DataObject::factory('Dummy');
+$d->ex_string = 'null';
+$d->save();
+} catch (PDO_DataObject_Exception_InvalidArgs $e) {
+    echo "\ngot exception as expected : {$e->getMessage()}\n";
+    
+}
 
 
 
