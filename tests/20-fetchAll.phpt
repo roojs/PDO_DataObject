@@ -65,6 +65,34 @@ foreach($ar as $a) {
 }
 
 echo "\n\n--------\n";
+echo "array of objects set key \n" ;
+$company = PDO_DataObject::factory('Companies');
+$company->comptype = 'CONSULTANT';
+$company->limit(3);
+$ar = $company->fetchAll(false,'name');
+foreach($ar as $k=>$v) {
+    echo $k => ' . get_class($a) . " {$a->id}\n";
+}
+
+echo "\n\n--------\n";
+echo "array of objects using primary key\n" ;
+$company = PDO_DataObject::factory('Companies');
+$company->comptype = 'CONSULTANT';
+$company->limit(3);
+$ar = $company->fetchAll(false,true);
+foreach($ar as $k=>$v) {
+    echo $k => ' . get_class($a) . " {$a->id}\n";
+}
+
+
+
+
+
+
+
+
+
+echo "\n\n--------\n";
 echo "array of arrays (faster version - no dataObject created)\n" ;
 $company = PDO_DataObject::factory('Companies');
 $company->comptype = 'CONSULTANT';
