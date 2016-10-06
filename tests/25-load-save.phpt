@@ -206,12 +206,35 @@ $d->save();
     
 }
 
+
+
+// this works, as set has 'null' support?!?
+PDO_DataObject::factory('Dummy')
+    ->load(123)
+    ->set([
+        'ex_null_string' => 'null',
+        'ex_null_int' => null,
+    ])
+    ->save();
+ 
+// this ingores the null_int
+$d = PDO_DataObject::factory('Dummy')
+    ->load(123);
+$d->ex_null_string = 'null';
+$d->ex_null_int = null;
+$d->save();
+    
+
+
+
+
+
 // FULL!!!
 
 
 echo "\n\n--------\n";
 PDO_DataObject::config('enable_null_strings', 'full');
-echo "SET enable_null_strings= TRUE\n" ;
+echo "SET enable_null_strings= FULL\n" ;
 echo "\n\n--------\n";
 echo "Testing null (string null);\n" ;
 
