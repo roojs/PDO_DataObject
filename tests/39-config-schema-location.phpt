@@ -101,6 +101,33 @@ print_r(PDO_DataObject::factory('account_transaction')->tableColumns());
 
 
 
+PDO_DataObject::reset();
+echo "\n\n--------\n";
+echo "array on specific..\n" ;
+
+// we could test array's here...
+PDO_DataObject::config(array(
+    'schema_location' => array(
+        'inserttest' =>    array(__DIR__.'/includes/mysql_somedb.ini' , __DIR__.'/includes/test_ini/mysql_anotherdb.ini')
+    )
+));
+
+
+
+PDO_DataObject::factory('account_code')
+        ->limit(1)
+        ->find(true);
+        
+print_r(PDO_DataObject::factory('account_code')->tableColumns());
+
+PDO_DataObject::factory('account_transaction')
+        ->limit(1)
+        ->find();
+        
+print_r(PDO_DataObject::factory('account_transaction')->tableColumns());
+
+
+
 
 ?>
 --EXPECT--
