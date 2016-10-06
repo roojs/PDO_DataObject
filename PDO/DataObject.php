@@ -3726,20 +3726,8 @@ class PDO_DataObject
     
       /**
      * load related objects
-     *
-     * Generally not recommended to use this.
-     * The generator should support creating getter_setter methods which are better suited.
-     *
-     * Relies on  <dbname>.links.ini
-     *
-     * Sets properties on the calling dataobject  you can change what
-     * object vars the links are stored in by  changeing the format parameter
-     *
-     *
-     * @param  string format (default _%s) where %s is the table name.
-     * @author Tim White <tim@cyface.com>
-     * @access public
-     * @return boolean , true on success
+     * @depricated
+     * This is only in for compatibility ( no supported anymore )
      */
     function applyLinks($format = '_%s')
     {
