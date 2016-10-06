@@ -51,13 +51,25 @@ http://pear.php.net/dtd/package-2.0.xsd">
          <dir name="DataObject">
             <file name="Cast.php" role="php" />
             <file name="createTables.php" role="php" />
-            <file name="Error.php" role="php" />
+            <file name="Exception.php" role="php" />
             <file name="Generator.php" role="php" />
             <file name="Links.php" role="php" />
-      </dir> <!-- /DataObject -->
-     <file name="DataObject.php" role="php">
+            <dir name="Generator">
+                <file name="Column.php" role="php" />
+                <file name="Hooks.php" role="php" />
+                <file name="Table.php" role="php" />
+            </dir>
+            <dir name="Introspection">
+                <file name="mysql.php" role="php" />
+                <file name="oci.php" role="php" />
+                <file name="pgsql.php" role="php" />
+                <file name="sqlite.php" role="php" />
+            </dir>
+            
+        </dir> <!-- /DataObject -->
+        <file name="DataObject.php" role="php">
         <tasks:replace from="@version@" to="version" type="package-info" />
-     </file>
+        </file>
    </dir> <!-- /DB -->
 
    <dir name="docs">
