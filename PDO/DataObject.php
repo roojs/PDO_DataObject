@@ -3603,6 +3603,10 @@ class PDO_DataObject
                 $file[] = sprintf($cl , preg_replace('/[^A-Z0-9]/i','_',ucfirst($table)));
                 continue;
             }
+            if(strpos($cl ,'%2$s') !== false || strpos($cl ,'%1$s')) {
+                $file[] = sprintf($cl , preg_replace('/[^A-Z0-9]/i','_',ucfirst($table)), ucfirst($this->_database_nickname) );
+                continue;
+            }
             if (substr($cl,-1) == '/') {
                 $file[] = $cl .'/'.preg_replace('/[^A-Z0-9]/i','_',ucfirst($table)).".php";
                 continue;
