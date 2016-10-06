@@ -307,9 +307,11 @@ class PDO_DataObject_Links
             return ($ret === 0) ? $info[0] : $ret;
             
         }
+        // otherwise it's a set call..
+
         $assign = is_array($args) ? $args[0] : $args;
          
-        // otherwise it's a set call..
+
         if (!is_a($assign , 'DB_DataObject')) {
             
             if (is_numeric($assign) && is_integer($assign * 1)) {
@@ -335,7 +337,7 @@ class PDO_DataObject_Links
         // otherwise we are assigning it ...
         
         $this->do->$field = $assign->{$info[1]};
-        return true;
+        return $this->do;
         
         
     }
