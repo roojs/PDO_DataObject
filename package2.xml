@@ -4,7 +4,7 @@ http://pear.php.net/dtd/tasks-1.0.xsd
 http://pear.php.net/dtd/package-2.0
 http://pear.php.net/dtd/package-2.0.xsd">
  <name>PDO_DataObject</name>
- <channel>roojs</channel>
+ <channel>roojs.github.com/pear-channel</channel>
  <summary>An SQL Builder, Object Interface to Database Tables</summary>
  <description>DataObject performs 2 tasks:
   1. Builds SQL statements based on the objects vars and the builder methods.
@@ -74,10 +74,9 @@ http://pear.php.net/dtd/package-2.0.xsd">
         </file>
    </dir> <!-- /DB -->
 
-   <dir name="docs">
-    
+     
     <file baseinstalldir="DB_DataObject" name="LICENCE" role="doc" />
-   </dir> <!-- /docs -->
+    <!-- /docs -->
 
    <!-- <dir name="scripts">
     <file baseinstalldir="DB" name="DB_DataObject_createTables.bat" role="script" />
