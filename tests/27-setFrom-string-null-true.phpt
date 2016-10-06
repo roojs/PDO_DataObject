@@ -22,17 +22,23 @@ echo "\n\n----------------------------------------------------------------\n";
 echo "enable_null_strings = true\n" ;
 PDO_DataObject::config('enable_null_strings', true);
 
-PDO_DataObject::debugLevel(1);
+PDO_DataObject::debugLevel(0);
   
- 
 echo "\nsetting string and int to null: " . PDO_DataObject::factory('Dummy')
     ->set([
-       'ex_string' => null,
-        'ex_int' => null,
         'ex_null_string' => null,
         'ex_null_int' => null,
     ])->whereToString(). "\n";
 
+try  {
+PDO_DataObject::factory('Dummy')
+    ->set([    
+        'ex_string' => null
+      ]) ; 
+    
+} catch (PDO_DataObject_Exception_Set $e) {
+    echo "\nset got errors as expected: {$e->getMessage()}\n";
+}   
 
 echo "\n\n--------\n";
 echo "TESTING string NULL -  enable_null_strings = true \n" ;
@@ -61,7 +67,7 @@ echo "\nsetting string and int to 'NULL' : " . PDO_DataObject::factory('Dummy')
 echo "TESTING CAST NULL - enable_null_strings = true\n" ;    
 
 try {
-echo "\nempty where with real null.: " . PDO_DataObject::factory('Dummy')
+PDO_DataObject::factory('Dummy')
     ->set([
        'ex_string' => PDO_DataObject::sqlValue('NULL'),
        'ex_int' => PDO_DataObject::sqlValue('NULL'),
@@ -71,7 +77,7 @@ echo "\nempty where with real null.: " . PDO_DataObject::factory('Dummy')
     echo "set got errors as expected: {$e->getMessage()}\n";
 }
 
-echo "\nempty where with real null.: " . PDO_DataObject::factory('Dummy')
+echo "\ncast values null set: " . PDO_DataObject::factory('Dummy')
     ->set([
        'ex_null_string' => PDO_DataObject::sqlValue('NULL'),
        'ex_null_int' => PDO_DataObject::sqlValue('NULL'),
@@ -143,5 +149,63 @@ echo $d->whereToString();
 }
 ?>
 --EXPECT--
+----------------------------------------------------------------
+enable_null_strings = true
+__construct==["mysql:dbname=inserttest;host=localhost","user","pass",[]]
+setAttribute==[3,2]
+
+setting string and int to null: (Dummy.ex_null_string IS NULL) AND (Dummy.ex_null_int IS NULL)
+
+set got errors as expected: Set Errors Returned Values: 
+Array
+(
+    [ex_string] => Error: ex_string : type is NOTNULL -> value is equal null
+)
+
+
+
+--------
+TESTING string NULL -  enable_null_strings = true 
+
+setting string   to 'NULL' : (Dummy.ex_null_string IS NULL) AND (Dummy.ex_null_int IS NULL)
+
+set got errors as expected: Set Errors Returned Values: 
+Array
+(
+    [ex_int] => setting column ex_int to Null is invalid as it's NOTNULL
+    [ex_string] => setting column ex_string to Null is invalid as it's NOTNULL
+)
+
+TESTING CAST NULL - enable_null_strings = true
+set got errors as expected: Set Errors Returned Values: 
+Array
+(
+    [ex_int] => setting column ex_int to Null is invalid as it's NOTNULL
+    [ex_string] => setting column ex_string to Null is invalid as it's NOTNULL
+)
+
+
+cast values null set: (Dummy.ex_null_string IS NULL) AND (Dummy.ex_null_int IS NULL)
+
+--------
+TESTING props setting
+
+using null props : ==  == 
+
+
+--------
+TESTING props setting (string)
+
+using null props : == (Dummy.ex_null_string  IS NULL) AND (Dummy.ex_null_int  IS NULL) == 
+set got errors as expected: Error setting col 'ex_string' to NULL - column is NOT NULL
+set got errors as expected: Error setting col 'ex_int' to NULL - column is NOT NULL
+
+
+--------
+TESTING props setting cast)
+
+using null props : == (Dummy.ex_null_string IS NULL) AND (Dummy.ex_null_int IS NULL) == 
+set got errors as expected: Error setting col 'ex_string' to NULL - column is NOT NULL
+set got errors as expected: Error setting col 'ex_int' to NULL - column is NOT NULL
 
  
