@@ -875,12 +875,9 @@ class PDO_DataObject
      * $object->load(1234)
      *         ->set([ 'ex_datetime' => PDO_DataObject::sqlValue('sql', 'NOW()') ])
      *         ->update()
-     *         ->reload()
+     *         ->reload(true)
      * 
-     * $object->load(1234)
-     *         ->set([ 'ex_datetime' => PDO_DataObject::sqlValue('sql', 'NOW()') ])
-     *         ->update()
-     *         ->reload()
+    
      *    
      * It enables you to work on the data after the database has done the update.
      *
