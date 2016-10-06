@@ -186,6 +186,35 @@ echo "SET enable_null_strings= TRUE\n" ;
 echo "\n\n--------\n";
 echo "Testing null (string null);\n" ;
 
+// basically all the properties are null at this point.....
+
+try {
+PDO_DataObject::factory('Dummy')
+    ->set([        
+        'ex_string' => 'a test'
+    ])
+    ->save();
+} catch (PDO_DataObject_Exception_InvalidArgs $e) {
+    
+    echo "\ngot exception as expected : {$e->getMessage()}\n";
+    
+}
+
+// we have to set everything
+PDO_DataObject::factory('Dummy')
+    ->set([
+        'ex_int' => 1,
+        'ex_str_bool' => 't',
+        'ex_blob' => PDO_DataObject::sqlValue('blob','a long piece of data'),
+        'ex_string' => PDO_DataObject::sqlValue('string', 123123),
+        'ex_sql' => PDO_DataObject::sqlValue('sql', 'NOW()'),
+        'ex_date' => PDO_DataObject::sqlValue('date', '2000-01-01'),
+        'ex_datetime' => PDO_DataObject::sqlValue('dateTime', '2000-01-01 10:00:00'),
+        'ex_time' => PDO_DataObject::sqlValue('time', '10:00:00'),
+        'ex_null_string' => 'null',
+        'ex_null_int' => null
+    ])
+    ->save();
 
 
 
