@@ -81,7 +81,7 @@ echo "listed associative array with absolute path.\n" ;
 PDO_DataObject::config(array(
     'schema_location' => array(
         'inserttest' =>    __DIR__.'/includes/mysql_somedb.ini' ,
-        'mysql_anotherdb' =>   PATH_SEPARATOR . __DIR__.'/includes/test_ini'
+        'mysql_anotherdb' =>   __DIR__.'/includes/test_ini/mysql_anotherdb.ini'
     )
 ));
 
