@@ -1,5 +1,5 @@
 --TEST--
-tranaction Test 
+portability Test 
 --FILE--
 <?php
 require_once 'includes/init.php';
@@ -15,21 +15,21 @@ PDO_DataObject::config(array(
 PDO_DataObject::debugLevel(1);
  
 // these need the links to calculate the join..
-echo "\n---\nNo portability.n";
+echo "\n---\nNo portability\n";
 
 PDO_DataObject::factory('Events')
     ->load(3523)
     ->set(['action' => "testing" ])
-    ->save()
+    ->save();
     
 PDO_DataObject::config(array(
         'portability' => PDO_DataObject::PORTABILITY_LOWERCASE
 ));
-echo "\n---\nWith lowercase portability.n";
+echo "\n---\nWith lowercase portability\n";
 PDO_DataObject::factory('Events')
     ->load(3523)
     ->set(['action' => "testing" ])
-    ->save()
+    ->save();
     
 
 ?>
