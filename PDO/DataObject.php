@@ -2283,6 +2283,7 @@ class PDO_DataObject
                 continue;
             }
             
+            echo "{$k}:isset=". var_export(isset($this->$k),true) . var_export(isset($this->$k)  ? $this->$k : '--no-set--',true) "\n";
             if (!isset($this->$k)) {
                 // it's a  not null field
                 if ($v & self::NOTNULL) {
