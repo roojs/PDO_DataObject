@@ -1,5 +1,5 @@
 --TEST--
-database settings test Test  - real mysql
+config - databases Test  
 --FILE--
 <?php
 require_once 'includes/init.php';
