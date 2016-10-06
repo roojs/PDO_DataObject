@@ -53,10 +53,24 @@ echo "listed with seperators\n" ;
 
 PDO_DataObject::config(array(
     'schema_location' => array(
-             'inserttest' =>    __DIR__.'/includes' ,
-             'mysql_anotherdb' =>   PATH_SEPARATOR . __DIR__.'/includes/test_ini'
+        'inserttest' =>    __DIR__.'/includes' ,
+        'mysql_anotherdb' =>   PATH_SEPARATOR . __DIR__.'/includes/test_ini'
     )
 ));
+
+
+
+PDO_DataObject::factory('Events')
+        ->limit(1)
+        ->find(true);
+        
+print_r(PDO_DataObject::factory('Events')->tableColumns());
+
+PDO_DataObject::factory('account_transaction')
+        ->limit(1)
+        ->find();
+        
+print_r(PDO_DataObject::factory('account_transaction')->tableColumns());
 
 
 
