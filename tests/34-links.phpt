@@ -1,5 +1,5 @@
 --TEST--
-autoJOin and joinAll Test 
+links Test 
 --FILE--
 <?php
 require_once 'includes/init.php';
