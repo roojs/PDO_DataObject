@@ -283,7 +283,7 @@ class PDO_DataObject_Links
      *  @return mixed true of false on set, the object on getter.
      *
      */
-    function link($field, $args = array())
+    function link($field, $args = null)
     {
         $info = $this->linkInfo($field);
          
