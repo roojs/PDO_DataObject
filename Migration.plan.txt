@@ -172,8 +172,8 @@ e) PDO_DataObject class
   * fetch() DONE   
   * fetchAll() DONE  /  tested by earlier code ?? 
   * fetchall(CALLABLE) same as foreach, but runs a method on each object... DONE 
-  * fetchall(false,true) same as foreach, but runs a method on each object... DONE
-  * fetchall(false,COLNAME) same as foreach, but runs a method on each object... DONE  
+  * fetchall(false,true) associative with key==pid()
+  * fetchall(false,COLNAME) associative with key==COLNAME
 
   * fetchAllAssoc() DONE - alias to fetchAll(false,false,true);
 
