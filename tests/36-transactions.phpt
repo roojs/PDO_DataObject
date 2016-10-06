@@ -69,23 +69,19 @@ print_r(
         ->toArray()
 );
 
-$Customers = PDO_DataObject::factory('Customers');
- 
-$id = $Customers->insert();
-var_dump($id);
-print_r($Customers->toArray());
+PDO_DataObject::factory('Customers')
+    ->query("BEGIN")
+    ->load(1)
+    ->set(['CompanyName' => "test4" ])
+    ->save()
+    ->query("ROLLBACK");
 
-echo "\n\n--------\n";
-echo "Test SQLite  insert with data;\n" ;
+print_r(
+    PDO_DataObject::factory('Customers')
+        ->load(1)
+        ->toArray()
+);
 
- 
-
-$Customers = PDO_DataObject::factory('Customers');
-$Customers->set(array(
-    'CompanyName' => 'test1',
-    'ContactName' => 'test2',
-
-));    
 
 
     
