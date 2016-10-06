@@ -166,6 +166,7 @@ e) PDO_DataObject class
   * toSelectSQL() (was _build_select) ->     DONE (part of all above tests..)
 
   * find() DONE  
+  *   support for un-buffered queries?? DONE 
 
   * fetch() DONE   
   * fetchAll() DONE  /  tested by earlier code ?? 
@@ -216,12 +217,12 @@ e) PDO_DataObject class
       PDO_DataObject_Links ( )  DONE
 
   * PDO_DataObject_Exception ( )   DONE - tested most places..
-
+  * transactions BEGIN/ROLLBACK/COMMIT - DONE 
 
 
 --- > databases[] set, but no database - should scan ini to determine which db to use...
---- > transactions BEGIN/ROLLBACK/COMMIT
---- > un-buffered queries?? - results in get failing!?! -- ?? sqlite can it do bufferd?
+
+
 --- >  * fetchall(CALLABLE) ???? same as foreach, but runs a method on each object... 
 
   * config DONE / NEEDS TESTING - of various settings...
