@@ -809,7 +809,7 @@ class PDO_DataObject
             $k = $keys[0];
         }
         if (self::$debug) {
-            $this->debug("$k $v " .print_r($keys,true), __FUNCTION__);
+            $this->debug(var_export($k) . ', ' . var_export($v) . " .print_r($keys,true), __FUNCTION__);
         }
         
         if ($v === null) {
