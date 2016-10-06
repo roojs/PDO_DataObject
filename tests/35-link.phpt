@@ -22,18 +22,26 @@ print_r(
         ->link('childa_id')
         ->toArray()
 );
-$new_child = PDO_DataObject::factory('childa')->load(3);
 
+
+echo "\n---\nUpdate by assigning child\n";
 PDO_DataObject::factory('joinerb')
         ->load(1)
-        ->link('childa_id', $new_child)
-        ->save()
+        ->link('childa_id', PDO_DataObject::factory('childa')->load(3)  )
+        ->save();
 
+        
+echo "\n---\nUpdate by assigning 0\n";
 PDO_DataObject::factory('joinerb')
         ->load(1)
         ->link('childa_id', 5)
-        ->save()
+        ->save();
  
+echo "\n---\nUpdate by assigning array()\n";
+PDO_DataObject::factory('joinerb')
+        ->load(1)
+        ->link('childa_id', array())
+        ->save();
  
 ?>
 --EXPECT--
