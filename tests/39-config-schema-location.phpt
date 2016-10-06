@@ -30,6 +30,9 @@ PDO_DataObject::debugLevel(1);
 
 echo "\n\n--------\n";
 echo "listed with seperators\n" ;
+PDO_DataObject::config(array(
+    'schema_location' => __DIR__.'/includes' . PATH_SEPARATOR . __DIR__.'/includes/test_ini' 
+
 
 PDO_DataObject::factory('Events')
         ->limit(1)
