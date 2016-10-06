@@ -308,13 +308,13 @@ class PDO_DummyStatement {
                 {"id":"3523","person_name":"Alan","event_when":"2009-04-16 14:05:32","action":"RELOAD","ipaddr":"202.134.82.251","on_id":"0","on_table":"","person_id":"4","remarks":"0","person_table":null}
              ]',
              
-             // lower case version... (for portablitiy test)
-             '3bcfaddd226e85092426f9166593c21f' => '[
+             // lower case +quote idents version... (for portablitiy test)
+             'e454221315a2ae5db9882208fbebc382' => '[
                 {"id":"3523","person_name":"Alan","event_when":"2009-04-16 14:05:32","action":"RELOAD","ipaddr":"202.134.82.251","on_id":"0","on_table":"","person_id":"4","remarks":"0","person_table":null}
              ]',
              
              '9da43100ad8e2d1eee0cfee396c16588' => 1, // update
-             'b6becd48cb3e23ad55b52f84bd8b04cf' => 1, // update with lowercase
+             '7ef5b101329a39e79fac9b4ebeb6b11e' => 1, // update with lowercase + quote idents
              // 
              '30e4e6e9c534f092302558ec8faa1c11' =>'[
                 {"id":"3601","person_name":"Alan","event_when":"2009-04-16 14:05:32","action":"RELOAD","ipaddr":"202.134.82.251","on_id":"0","on_table":"","person_id":"4","remarks":"0","person_table":null}
