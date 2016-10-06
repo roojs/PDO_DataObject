@@ -31,6 +31,7 @@ echo "load standard\n" ;
 
 echo get_class(PDO_DataObject::factory('Events')) . "\n";
 echo get_class(PDO_DataObject::factory('Dummyshort')) . "\n";
+echo get_class(PDO_DataObject::factory('Dummylong')) . "\n";
     
 
 
