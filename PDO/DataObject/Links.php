@@ -318,30 +318,26 @@ class PDO_DataObject_Links
         }
             
 
-            if (!is_numeric($assign)) {
-                $this->do->raise("Assigning foreign key column to a non_numeric value",
-                      PDO_DataObject::ERROR_INVALIDARGS;
-            }
-            $assign *=1;
-            if ($assign  == 0) {           
-                $this->do->$field = 0;
-                return $this->do;
-            }
+        if (!is_numeric($assign)) {
+            $this->do->raise("Assigning foreign key column to a non_numeric value",
+                  PDO_DataObject::ERROR_INVALIDARGS);
+        }
+        $assign *=1;
+        if ($assign  == 0) {           
+            $this->do->$field = 0;
+            return $this->do;
+        }
            
                     // check that record exists..
-                    if (!$info[0]->get($info[1], $assign )) {
-                        return false;
-                    }
-                    
-                }
-                
-                $this->do->$field = $assign ;
-                return true;
-            }
-            
-            return false;
+        if (!$info[0]->get($info[1], $assign )) {
+            $this->do->raise("Assigning foreign key value to point to a non existant element",
+                  PDO_DataObject::ERROR_INVALIDARGS);
+
         }
+                    
+        $this->do->$field = $assign ;
         
+        return $this->do;
         // otherwise we are assigning it ...
         
         
