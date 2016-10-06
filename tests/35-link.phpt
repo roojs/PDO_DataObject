@@ -24,6 +24,19 @@ print_r(
 );
 
 
+echo "\n---\nFetch a related link.n";
+print_r(
+    PDO_DataObject::factory('joiner')
+        ->load(1)
+        ->link(array('childb_id','childb:cb_id')
+        ->toArray()
+);
+
+
+
+
+
+
 echo "\n---\nUpdate by assigning child\n";
 PDO_DataObject::factory('joinerb')
         ->load(1)
@@ -31,17 +44,36 @@ PDO_DataObject::factory('joinerb')
         ->save();
 
         
-echo "\n---\nUpdate by assigning 0\n";
+echo "\n---\nUpdate by assigning 5\n";
 PDO_DataObject::factory('joinerb')
         ->load(1)
         ->link('childa_id', 5)
         ->save();
  
-echo "\n---\nUpdate by assigning array()\n";
+echo "\n---\nUpdate by assigning 0\n";
+PDO_DataObject::factory('joinerb')
+        ->load(1)
+        ->link('childa_id', 0)
+        ->save();
+
+echo "\n---\nUpdate by assigning invalid value\n";
+try{
+PDO_DataObject::factory('joinerb')
+        ->load(1)
+        ->link('childa_id', 99)
+        ->save();
+} catch (PDO_DataObject_Exception_InvalidArgs $e) {
+    echo "\nexception thrown as expected: {$e->getMessage()}\n";
+}
+
+echo "\n---\nUpdate by assigning array() - error condition\n";
+try {
 PDO_DataObject::factory('joinerb')
         ->load(1)
         ->link('childa_id', array())
         ->save();
- 
+ } catch (PDO_DataObject_Exception_InvalidArgs $e) {
+    echo "\nexception thrown as expected: {$e->getMessage()}\n";
+}
 ?>
 --EXPECT--
