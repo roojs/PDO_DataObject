@@ -453,8 +453,12 @@ class PDO_DataObject
         } else if (false !== self::$config['database']) {
             $dsn = self::$config['database'];
         }
-    
+        // if we still do not know the database - look through the available ones, and see if we can find the table..
+        if (!$dsn && !empty(self::$config['databases']) {
 
+
+
+        }
         // if still no database...
         if (!$dsn) {
             return $this->raise(
