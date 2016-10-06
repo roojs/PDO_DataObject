@@ -4,19 +4,18 @@ config - class_prefix Test
 <?php
 require_once 'includes/init.php';
 
-
-
-
+ 
 
 PDO_DataObject::config(array(
-        'class_location' => __DIR__.'/includes/sample_classes/DataObjects_',
-        
-        'class_prefix' => 'DataObjects_',
+        'class_location' =>
+                    __DIR__.'/includes/sample_classes/DataObjects_' .
+                    PATH_SEPERATOR .
+                    __DIR__.'/includes/sample_classes/',
+        'class_prefix' => 'DataObjects_' . PATH_SEPERATOR ,
         
         'database' => '',
         'databases' => array(
-            'mysql_anotherdb' =>  'mysql://username:test@localhost:3344/somedb#',
-            'inserttest' => 'mysql://user:pass@localhost/inserttest',
+             'inserttest' => 'mysql://user:pass@localhost/inserttest',
         ),
         
           
