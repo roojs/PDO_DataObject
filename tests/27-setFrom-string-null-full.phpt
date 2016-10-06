@@ -1,5 +1,5 @@
 --TEST--
-setFrom / set Test (where enable_string_null = true)
+setFrom / set Test (where enable_string_null = full)
 --FILE--
 <?php
 require_once 'includes/init.php';
