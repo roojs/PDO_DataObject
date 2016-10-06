@@ -876,16 +876,24 @@ class PDO_DataObject
      *         ->set([ 'ex_datetime' => PDO_DataObject::sqlValue('sql', 'NOW()') ])
      *         ->update()
      *         ->reload()
-     *
+     * 
+     * $object->load(1234)
+     *         ->set([ 'ex_datetime' => PDO_DataObject::sqlValue('sql', 'NOW()') ])
+     *         ->update()
+     *         ->reload()
+     *    
      * It enables you to work on the data after the database has done the update.
      *
+     * @param  $autojoin  should auto join be done on the 
      * @throws PDO_DataObject_Exception (if not matching row returned)
      * @access  public
      * @return  PDO_DataObject  fresh copy of the row.
      */
-     final function reload()
+     final function reload($autojoin = false)
      {
-          return  $this->factoryself()>load($this->pid());
+          return  $autoJoin ?
+              $this->factoryself()->joinAll()->load($this->pid());
+              : $this->factoryself()->load($this->pid());
      }
     
     /**
