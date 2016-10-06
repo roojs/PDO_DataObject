@@ -3704,8 +3704,8 @@ class PDO_DataObject
      *
      *  example function (you could add to your extended classes - to make the code easy to read...)
      *
-     *  function company() {
-     *     $this->link('company_id', func_get_args());
+     *  function company($set = null) {
+     *     $this->link('company_id', $set);
      *  }
      *
      *
