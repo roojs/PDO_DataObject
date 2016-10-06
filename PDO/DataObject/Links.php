@@ -42,7 +42,7 @@
  *
  * @package DB_DataObject
  */
-class DB_DataObject_Links 
+class PDO_DataObject_Links 
 {
      /**
      * @property {DB_DataObject}      do   DataObject to apply this to.
@@ -166,7 +166,7 @@ class DB_DataObject_Links
         
         $obj = is_string($table) ? $this->do->factory($tn) : $table;;
         
-        if (!is_a($obj,'DB_DataObject')) {
+        if (!is_a($obj,'PDO_DataObject')) {
             $this->do->raise(
                 "getLink:Could not find class for row $field, table $tn", 
                 PDO_DataObject::ERROR_INVALIDCONFIG);
