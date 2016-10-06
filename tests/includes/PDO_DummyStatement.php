@@ -393,6 +393,9 @@ class PDO_DummyStatement {
              '40eb1d8f650d4ed98324e3914ef8d70d' => '[]', // empty result for get?
              
              
+             // config-databases test
+             '196f2986575f749efe84e6134d37fbf7' = > '[]',
+             
         ), 
          'pgsql:dbname=pginsert;host=localhost' => array(  
             // insert....
