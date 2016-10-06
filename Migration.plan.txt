@@ -219,9 +219,7 @@ e) PDO_DataObject class
 
   * PDO_DataObject_Exception ( )   DONE - tested most places..
   * transactions BEGIN/ROLLBACK/COMMIT - DONE 
-
-
---- > 
+ 
 
 
 --- >  * fetchall(CALLABLE) ???? same as foreach, but runs a method on each object... 
