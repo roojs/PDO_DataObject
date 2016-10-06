@@ -3717,7 +3717,7 @@ class PDO_DataObject
      * @throws 
      * @return PDO_DataObject  child on get, self on set
      */
-    function link($field, $set_args = array())
+    function link($field, $set_args = null)
     {
         require_once 'PDO/DataObject/Links.php';
         $l = new PDO_DataObject_Links($this);
