@@ -56,6 +56,19 @@ PDO_DataObject::config(array(
 PDO_DataObject::factory('Customers')->databaseStructure();
 
 PDO_DataObject::debugLevel(1);
+PDO_DataObject::factory('Customers')
+    ->query("BEGIN")
+    ->load(1)
+    ->set(['CompanyName' => "test2" ])
+    ->save()
+    ->query("COMMIT");
+
+print_r(
+    PDO_DataObject::factory('Customers')
+        ->load(1)
+        ->toArray()
+);
+
 $Customers = PDO_DataObject::factory('Customers');
  
 $id = $Customers->insert();
@@ -73,6 +86,8 @@ $Customers->set(array(
     'ContactName' => 'test2',
 
 ));    
+
+
     
 unlink($temp);
 
