@@ -24,11 +24,11 @@ print_r(
 );
 
 
-echo "\n---\nFetch a related link.n";
+echo "\n---\nFetch a related link using link info.n";
 print_r(
     PDO_DataObject::factory('joiner')
         ->load(1)
-        ->link(array('childb_id','childb:cb_id')
+        ->link(array('childb_id','childb:cb_id'))
         ->toArray()
 );
 
