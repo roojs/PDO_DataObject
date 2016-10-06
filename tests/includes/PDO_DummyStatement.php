@@ -343,6 +343,22 @@ class PDO_DummyStatement {
              'a1d40fdfa7c3e183c07d017ffdff67e9' => '[]',
              '155a7e32d3188fa3b596136f3a738a6a' => '[]',
              
+             // link test...
+             
+              '7a50b46e8bf9c1c7ee5aa2e4193b2dcc' => '[
+                {"id":"1","childa_id":"2","childb_id ":"3","childc_id ":"4"}
+                
+             ]',
+            '62a851a3ecaf722d3d2de3b49d639b99'=> '[
+               { "ca_id":2,"name":"x","ex_int":2,"ex_string":"test","ex_date":"2001-01-01","ex_datetime":"2002-02-02 12:12:12","ex_time":"04:04:04"}
+            ]',
+             
+             '0c192ff0f3a2aa7370db30026808f365'=> '[
+               { "ca_id":3,"name":"yyy","ex_int":99,"ex_string":"test","ex_date":"2001-01-01","ex_datetime":"2002-02-02 12:12:12","ex_time":"04:04:04"}
+            ]',
+             'b567807fd5e6679c97dae318060fdb4c' => 1,
+             'b21e50231b6df62832c6c0c76b807d03' => 1,
+             
              
         ), 
          'pgsql:dbname=pginsert;host=localhost' => array(  
