@@ -12,7 +12,7 @@ PDO_DataObject::config(array(
         'class_prefix' => 'DataObjects_',
 ));
 
-PDO_DataObject::debugLevel(0);
+PDO_DataObject::debugLevel(1);
  
 // these need the links to calculate the join..
 echo "\n---\nFetch a related link.n";
@@ -32,10 +32,7 @@ print_r(
         ->toArray()
 );
 
-
-
-
-
+  
 
 echo "\n---\nUpdate by assigning child\n";
 PDO_DataObject::factory('joinerb')
