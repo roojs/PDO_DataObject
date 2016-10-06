@@ -49,7 +49,7 @@ print_r(PDO_DataObject::factory('account_transaction')->tableColumns());
 
 PDO_DataObject::reset();
 echo "\n\n--------\n";
-echo "listed with seperators\n" ;
+echo "listed associative array\n" ;
 
 PDO_DataObject::config(array(
     'schema_location' => array(
