@@ -341,7 +341,10 @@ class PDO_DummyStatement {
              'dc4ce49311092488f2b6ef4f8c69de95' => 3434,
              '3b7ff9bae558b4da7dd1c66bba394523' => 101,
              '95c0c9fb39ff2e1f982dd42609cc40c4' => 12, // full string null test 
-
+             '6b645525eb7211f33f4fc3b5b6dc5662' => 1, // update - null raw and null string (as string)
+             'c98633c24f80f97ffcf852d6a685573a' => 1,   
+                '51f07942c9284421cf98a6ba687c0b06' => 1,
+                
              // to Array tests..
              
              '765668840e5fa133769973c8b3d27bef' => '[
