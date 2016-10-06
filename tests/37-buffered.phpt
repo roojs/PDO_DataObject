@@ -12,10 +12,7 @@ PDO_DataObject::config(array(
         'class_prefix' => 'DataObjects_',
 ));
 
-
-echo "\n\n--------\n";
-echo "Test Mysql \n" ;
-
+ 
 
 
 PDO_DataObject::config(array(
@@ -49,11 +46,6 @@ while($x->fetch()) {
     
 }
 ?>
---EXPECT--
---------
-Test Mysql 
-
-
 --------
 basic load a big result set
 PDO_DataObject   : PDO       : Checking for database specific ini ('inserttest') : config[databases][inserttest] in options
