@@ -5,7 +5,7 @@ class PDO_DummyStatement {
     
     static $results = array(
         // 01 quote ident tests
-        'mysql:dbname=somedb;host=localhost' => array(), 
+        'mysql:dbname=somedb;host=localhost' => array( ), 
         'sybase:dbname=somedb;host=localhost' => array(),
         'pgsql:dbname=somedb;host=localhost' => array(),
         'oci:dbname=mydb' => array(),
@@ -141,6 +141,10 @@ class PDO_DummyStatement {
                     {"tablename":"Groups","name":"type","default_value_raw":"0","type":"int","len":"10","flags":" not_null","fk_table":"","fk_column":""},
                     {"tablename":"Groups","name":"leader","default_value_raw":"0","type":"int","len":"10","flags":" not_null","fk_table":"","fk_column":""}
             ]',
+            
+            'f5a65e29f10636175726b93d83e99ad6' => '[]', // used by config-database
+       
+            
         ),
           
         'oci:dbname=somedb' => array(
@@ -394,7 +398,7 @@ class PDO_DummyStatement {
              
              
              // config-databases test
-             '196f2986575f749efe84e6134d37fbf7' = > '[]',
+             '196f2986575f749efe84e6134d37fbf7' => '[]',
              
         ), 
          'pgsql:dbname=pginsert;host=localhost' => array(  
