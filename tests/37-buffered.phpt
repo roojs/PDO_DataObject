@@ -35,7 +35,7 @@ PDO_DataObject::debugLevel(2);
  
 
 echo "\n\n--------\n";
-echo "basic load/set/save ROLLBACK;\n" ;
+echo "basic load a big result set\n" ;
 
 
 PDO_DataObject::factory('Events')->PDO()->setAttribute(PDO::MYSQL_ATTR_USE_BUFFERED_QUERY, false);
