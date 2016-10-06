@@ -455,7 +455,10 @@ class PDO_DataObject
         }
         // if we still do not know the database - look through the available ones, and see if we can find the table..
         if (!$dsn && !empty(self::$config['databases']) {
+            foreach(self::$config['databases'] as $db=>$connect) {
+                
 
+            }
 
 
         }
