@@ -83,14 +83,11 @@ PDO_DataObject::factory('Events')
 
 
 
-
-
-
-
+ 
 
 
 echo "\n\n--------\n";
-echo "Test SQLite  COMMIT DOES NOT WORK HERE !!!!\n" ;
+echo "Test SQLite  ROLLBACK DOES NOT WORK HERE !!!!\n" ;
 
 $temp  = tempnam(ini_get('session.save-path'), 'sqlite-test');
 copy(__DIR__.'/includes/EssentialSQL.db', $temp);
