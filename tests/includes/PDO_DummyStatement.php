@@ -308,7 +308,7 @@ class PDO_DummyStatement {
                 {"id":"3523","person_name":"Alan","event_when":"2009-04-16 14:05:32","action":"RELOAD","ipaddr":"202.134.82.251","on_id":"0","on_table":"","person_id":"4","remarks":"0","person_table":null}
              ]',
              
-             // lower case version...
+             // lower case version... (for portablitiy test)
              
              '9da43100ad8e2d1eee0cfee396c16588' => 1, // update
              
