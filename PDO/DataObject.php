@@ -1303,7 +1303,14 @@ class PDO_DataObject
      * $x->whereAdd('something = 1');
      * $ar = $x->fetchAll();
      
-     
+     * E) array of objects -- USING property as key (eg. {
+     * $x = PDO_DataObject::factory('mytable');
+     * $ar = $x->fetchAll(false, 'email');
+     *   results in  [ { fred@example.com=> {object} }, {brian@example.com=> {object} }, .... ]
+     *
+
+
+
      * E) array of associative arrays - No child dataobjects created... fetchAllAssoc()
      * $x = PDO_DataObject::factory('mytable');
      * $x->whereAdd('something = 1');
@@ -1335,6 +1342,8 @@ class PDO_DataObject
             
             $this->find();
         }
+
+      
         
         if ($method == true) {
             // ignore's key/value.
@@ -1344,12 +1353,15 @@ class PDO_DataObject
             }
             return $ret;
         }
-        if ($k === false && $v === false ) {
+
+
+  
+        if (($k === false) || is_a($k, "Closure")) {
              
             $ret = array();
             while ($this->fetch()) {
                 if ($v !== false) {
-                    $ret[$this->$k] = $this->$v;
+                    $ret[$this->$v] = clone($this);
                     continue;
                 }
                 $ret[] = $k === false ? 
