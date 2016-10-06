@@ -20,6 +20,7 @@ PDO_DataObject::config(array(
             'mysql_somedb' =>  'mysql://username:test@localhost:3344/somedb#',
             'inserttest' => 'mysql://user:pass@localhost/inserttest',
         ),
+        
           
      
 ));
@@ -28,7 +29,7 @@ PDO_DataObject::debugLevel(1);
  
 
 echo "\n\n--------\n";
-echo "basic load a big result set\n" ;
+echo "listed with seperators\n" ;
 
 PDO_DataObject::factory('Events')
         ->limit(1)
