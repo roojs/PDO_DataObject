@@ -176,7 +176,7 @@ class PDO_DataObject_Links
        
         $ret = false;
         if ($link) {
-            var_dump($link);
+
             if ($obj->get($link, $this->do->$field)) {
                 $ret = $obj;
             }
