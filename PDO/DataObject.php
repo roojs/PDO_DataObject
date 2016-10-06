@@ -462,6 +462,7 @@ class PDO_DataObject
                 var_dump($s);
                 if (isset($s[$this->tableName()])) {
                     $dsn = $connect_dsn;
+                    $this->_database_nickname = $db;
                     break;
                 }
 
