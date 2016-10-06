@@ -136,7 +136,6 @@ print_r($company->fetchAll(false, false, 'toArray'));
 
 
 ?>
---EXPECT--
 --------
 single col - fetchAll('id');
 __construct==["mysql:dbname=gettest;host=localhost","user","pass",[]]
@@ -218,6 +217,63 @@ Close Cursor
 DataObjects_Companies 15
 DataObjects_Companies 16
 DataObjects_Companies 17
+
+
+--------
+array of objects set key 
+QUERY:ebba0af48c52cc567e77a69664b3addb:
+SELECT *
+ FROM   Companies   
+ WHERE ( (Companies.comptype  = 'CONSULTANT') ) 
+ LIMIT  3
+Fetch Row 0 / 3
+Fetch Row 1 / 3
+Fetch Row 2 / 3
+Fetch Row 3 / 3
+Close Cursor
+Vinski Web=> DataObjects_Companies 15
+Modern (INTL) Access & Scaffolding Ltd=> DataObjects_Companies 16
+HK Domain Registry=> DataObjects_Companies 17
+
+
+--------
+array of objects using primary key
+QUERY:ebba0af48c52cc567e77a69664b3addb:
+SELECT *
+ FROM   Companies   
+ WHERE ( (Companies.comptype  = 'CONSULTANT') ) 
+ LIMIT  3
+Fetch Row 0 / 3
+Fetch Row 1 / 3
+Fetch Row 2 / 3
+Fetch Row 3 / 3
+Close Cursor
+15=> DataObjects_Companies 15
+16=> DataObjects_Companies 16
+17=> DataObjects_Companies 17
+
+
+--------
+array of objects using closures
+QUERY:ebba0af48c52cc567e77a69664b3addb:
+SELECT *
+ FROM   Companies   
+ WHERE ( (Companies.comptype  = 'CONSULTANT') ) 
+ LIMIT  3
+Fetch Row 0 / 3
+callbackVinski Web
+QUERY:484572458888176050c44ae140ba1190:
+UPDATE  Companies  SET code = 'vinski-add a bit'  WHERE (Companies.id = 15) 
+Fetch Row 1 / 3
+callbackModern (INTL) Access & Scaffolding Ltd
+QUERY:c5dd2edd3e0b599889c895382284ac70:
+UPDATE  Companies  SET code = 'MASL-add a bit'  WHERE (Companies.id = 16) 
+Fetch Row 2 / 3
+callbackHK Domain Registry
+QUERY:c859fde34ab3312a29b61eb1a7b66148:
+UPDATE  Companies  SET code = 'HKDNR-add a bit'  WHERE (Companies.id = 17) 
+Fetch Row 3 / 3
+Close Cursor
 
 
 --------
