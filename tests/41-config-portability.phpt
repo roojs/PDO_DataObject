@@ -21,7 +21,9 @@ PDO_DataObject::factory('Events')
     ->load(3523)
     ->set(['action' => "testing" ])
     ->save();
-    
+
+
+PDO_DataObject::reset();    
 PDO_DataObject::config(array(
         'portability' => PDO_DataObject::PORTABILITY_LOWERCASE
 ));
@@ -31,6 +33,8 @@ PDO_DataObject::factory('Events')
     ->set(['action' => "testing" ])
     ->save();
     
-
+// it should probably test more....
+    
+    
 ?>
 --EXPECT--
