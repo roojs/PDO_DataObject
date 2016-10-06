@@ -3560,7 +3560,7 @@ class PDO_DataObject
             
         }
         
-        return self::loadClass($class, $table);
+        return self::loadClass($class, $table, $database);
         
         
         
