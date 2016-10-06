@@ -73,6 +73,34 @@ PDO_DataObject::factory('account_transaction')
 print_r(PDO_DataObject::factory('account_transaction')->tableColumns());
 
 
+PDO_DataObject::reset();
+echo "\n\n--------\n";
+echo "listed associative array with absolute path.\n" ;
+
+
+PDO_DataObject::config(array(
+    'schema_location' => array(
+        'inserttest' =>    __DIR__.'/includes' ,
+        'mysql_anotherdb' =>   PATH_SEPARATOR . __DIR__.'/includes/test_ini'
+    )
+));
+
+
+
+PDO_DataObject::factory('Events')
+        ->limit(1)
+        ->find(true);
+        
+print_r(PDO_DataObject::factory('Events')->tableColumns());
+
+PDO_DataObject::factory('account_transaction')
+        ->limit(1)
+        ->find();
+        
+print_r(PDO_DataObject::factory('account_transaction')->tableColumns());
+
+
+
 
 ?>
 --EXPECT--
