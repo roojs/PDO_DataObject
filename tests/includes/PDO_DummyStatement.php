@@ -346,7 +346,7 @@ class PDO_DummyStatement {
              // link test...
              
               '7a50b46e8bf9c1c7ee5aa2e4193b2dcc' => '[
-                {"id":"1","childa_id":"2","childb_id ":"3","childc_id ":"4"}
+                {"id":"1","childa_id":"2","childb_id":"3","childc_id":"4"}
                 
              ]',
             '62a851a3ecaf722d3d2de3b49d639b99'=> '[
@@ -354,9 +354,11 @@ class PDO_DummyStatement {
             ]',
              
             'e0d21de2663b8a6765bb6d5bf8d0e1f8' => '[
-                {"id":"1","childa_id":"2","childb_id ":"3"}
+                {"id":"1","childa_id":"2","childb_id":"3"}
             ]',
-             
+             '5bf162cc002da7e8fdc212453069c410' => '[
+                { "cb_id":3,"name":"yyy","ex_int":99,"ex_string":"test","ex_date":"2001-01-01","ex_datetime":"2002-02-02 12:12:12","ex_time":"04:04:04"}
+             ]',
              
              '0c192ff0f3a2aa7370db30026808f365'=> '[
                { "ca_id":3,"name":"yyy","ex_int":99,"ex_string":"test","ex_date":"2001-01-01","ex_datetime":"2002-02-02 12:12:12","ex_time":"04:04:04"}

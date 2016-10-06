@@ -283,10 +283,10 @@ class PDO_DataObject_Links
      *  @return mixed true of false on set, the object on getter.
      *
      */
-    function link($field, $args = false)
+    function link($field, $assign = false)
     {
         $info = $this->linkInfo($field);
-         
+       
         if (!$info) {
             return $this->do->raise(
                 "getLink:Could not find link for row $field", 
@@ -295,9 +295,16 @@ class PDO_DataObject_Links
         }
         $field = $info[2];
         
+        $cols = $this->do->tableColumns();
+        if (!isset($cols[$field])) {
+            $this->do->raiseError("table {$this->do->tableName()} does not have the column used for the linked field {$field}",
+                PDO_DataObject::ERROR_INVALIDARGS);
+        }
+
         
-        if ($args === false) { // either an empty array or really empty....
+        if ($assign === false) { // either an empty array or really empty....
             
+
             if (!isset($this->do->$field)) {
                 return $info[0]; // empty dataobject.
             }
@@ -311,7 +318,7 @@ class PDO_DataObject_Links
 
         // we used to support array as args.. ?? why!?!
         
-        if (is_a($assign , 'DB_DataObject')) {
+        if (is_a($assign , 'PDO_DataObject')) {
             $this->do->$field = $assign->{$info[1]};
             return $this->do;
         }
