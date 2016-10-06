@@ -146,8 +146,8 @@ PDO_DataObject::factory('Dummy')
         'ex_null_int' => null,
     ])
     ->save();
-    
-
+ 
+// this ingores the null_int
 $d = PDO_DataObject::factory('Dummy')
     ->load(123);
 $d->ex_null_string = 'null';
