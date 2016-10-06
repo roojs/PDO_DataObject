@@ -256,7 +256,7 @@ class PDO_DummyStatement {
             // insert....
             '628879af4d41c471483702443eb35560' => 34343,
             
-            '108a355193fb27d09332bc366bb171bd' => 1,
+            
             
             '5f82f3a2da7afaa78228444fbcba3e37' => 123123,
             // update testing..
@@ -325,7 +325,15 @@ class PDO_DummyStatement {
              ]',
              '86f9b0a9131676c87d66a0cb0264b879' => 1, // insert.
              
+             // reload with casts...
+             '108a355193fb27d09332bc366bb171bd' => 134,
+             '6788f6fdaf20faf6090c919d156389ba' =>  => '[
+                {"id":"134","ex_blob":"a long piece of data","ex_string":"123123","ex_date":"2000-01-01","ex_datetime":"2000-01-01 10:00:00","ex_time":"10:00:00","ex_sql":"2000-01-01 10:00:00","ex_null_string":null,"ex_null_int":null}
+                
+             ]',
              
+             
+
              // to Array tests..
              
              '765668840e5fa133769973c8b3d27bef' => '[
