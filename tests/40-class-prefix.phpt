@@ -36,9 +36,20 @@ echo get_class(PDO_DataObject::factory('Dummylong')) . "\n";
  
 PDO_DataObject::reset();
 PDO_DataObject::config(array(
+        'class_prefix' => 'PercentA_' ,
         'class_location' => __DIR__.'/includes/sample_classes/Percent_%s.php'         
 ));
 echo get_class(PDO_DataObject::factory('Events')) . "\n";
+
+
+
+PDO_DataObject::reset();
+PDO_DataObject::config(array(
+        'class_prefix' => 'PercentB_' ,
+        'class_location' => __DIR__.'/includes/sample_classes/Percent_%2$s_%1$s.php'
+));
+echo get_class(PDO_DataObject::factory('Events')) . "\n";
+
 
 ?>
 --EXPECT--
