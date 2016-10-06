@@ -3701,7 +3701,6 @@ class PDO_DataObject
      *  set:
      *  $do->link('company_id',0);
      *  $do->link('company_id',$obj);
-     *  $do->link('company_id', array($obj));
      *
      *  example function
      *
@@ -3711,7 +3710,7 @@ class PDO_DataObject
      *
      * 
      *
-     * @param  string $column  which column to get or set            
+     * @param  string $column  which column to get or set  (or the link specification)           
      * @param  mixed $set_value (optional)   int, DataObject
      * @author Alan Knowles
      * @access public
