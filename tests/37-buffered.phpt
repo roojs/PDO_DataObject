@@ -1,5 +1,5 @@
 --TEST--
-tranaction Test  - real mysql
+unbuffered query Test  - needs real mysql
 --FILE--
 <?php
 require_once 'includes/init.php';
@@ -31,7 +31,7 @@ PDO_DataObject::config(array(
      
 ));
 
-PDO_DataObject::debugLevel(2);
+PDO_DataObject::debugLevel(1);
  
 
 echo "\n\n--------\n";
@@ -48,4 +48,35 @@ while($x->fetch()) {
     exit;
     
 }
+?>
 --EXPECT--
+--------
+Test Mysql 
+
+
+--------
+basic load a big result set
+PDO_DataObject   : PDO       : Checking for database specific ini ('inserttest') : config[databases][inserttest] in options
+PDO_DataObject   : find       : false
+PDO_DataObject   : PDO       : Checking for database specific ini ('inserttest') : config[databases][inserttest] in options
+PDO_DataObject   : databaseStructure       : CALL:[]
+PDO_DataObject   : query       : 004af7f304aea7717b306884cddc605d : SELECT *
+ FROM   Events 
+
+PDO_DataObject   : query       : NO# of results: Unknown
+PDO_DataObject   : find       : CHECK autofetched false
+PDO_DataObject   : find       : DONE
+PDO_DataObject   : fetch       : {"id":"3523","person_name":"Alan","event_when":"2009-04-16 14:05:32","action":"RELOAD","ipaddr":"202.134.82.251","on_id":"0","on_table":"","person_id":"4","remarks":"0","person_table":null}
+Array
+(
+    [id] => 3523
+    [person_name] => Alan
+    [event_when] => 2009-04-16 14:05:32
+    [action] => RELOAD
+    [ipaddr] => 202.134.82.251
+    [on_id] => 0
+    [on_table] => 
+    [person_id] => 4
+    [remarks] => 0
+    [person_table] => 
+)
