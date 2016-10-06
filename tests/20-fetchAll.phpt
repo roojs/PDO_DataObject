@@ -71,7 +71,7 @@ $company->comptype = 'CONSULTANT';
 $company->limit(3);
 $ar = $company->fetchAll(false,'name');
 foreach($ar as $k=>$v) {
-    echo $k => ' . get_class($a) . " {$a->id}\n";
+    echo $k . '=> ' . get_class($a) . " {$a->id}\n";
 }
 
 echo "\n\n--------\n";
@@ -80,8 +80,8 @@ $company = PDO_DataObject::factory('Companies');
 $company->comptype = 'CONSULTANT';
 $company->limit(3);
 $ar = $company->fetchAll(false,true);
-foreach($ar as $k=>$v) {
-    echo $k => ' . get_class($a) . " {$a->id}\n";
+foreach($ar as $k=>$a) {
+    echo $k . '=> ' . get_class($a) . " {$a->id}\n";
 }
 
 echo "\n\n--------\n";
