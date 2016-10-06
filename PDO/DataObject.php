@@ -5183,12 +5183,10 @@ class PDO_DataObject
         
     	
     }
-     /**
-    * Evaluate whether a simple value is set to null, taking the 'enable_null_strings' option into account.
-    * If the value is a string set to "null" and the "enable_null_strings" option is not set to 
-    * true, then the value is considered to be null.
-    * If the value is actually a PHP NULL value, and "enable_null_strings" has been set to 
-    * the value "full", then it will also be considered null. - this can not differenticate between not set
+    /**
+    * Check a value, to see if it matches our 'null' rules
+    * normally  real null, and CAST('null') will match
+    * if you have enable_null_strings (not recommended) then string 'null' will also return true.
     * 
     * @param  mixed $value to check
     
