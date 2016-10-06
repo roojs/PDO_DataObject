@@ -166,7 +166,7 @@ e) PDO_DataObject class
   * toSelectSQL() (was _build_select) ->     DONE (part of all above tests..)
 
   * find() DONE  
-  *   support for un-buffered queries?? DONE 
+  *   support for un-buffered mysql queries?? DONE 
 
   * fetch() DONE   
   * fetchAll() DONE  /  tested by earlier code ?? 
