@@ -25,7 +25,7 @@ PDO_DataObject::config(array(
         'databases' => array(
             'inserttest' => 'mysql://root:@localhost/pman',
         ),
-         'PDO' => 'PDO',
+          
      
 ));
 
@@ -35,10 +35,10 @@ PDO_DataObject::debugLevel(1);
 echo "\n\n--------\n";
 echo "basic load a big result set\n" ;
 
-$x = PDO_DataObject::factory('Events');
-$x-.limit(1);
-$x->find(true);
-print_r($x);
+PDO_DataObject::factory('Events')
+        ->limit(1)
+        ->find(true);
+
 
 
 
