@@ -889,9 +889,9 @@ class PDO_DataObject
      */
      final function reload($autojoin = false)
      {
-          return  $autoJoin ?
-              $this->factoryself()->joinAll()->load($this->pid());
-              : $this->factoryself()->load($this->pid());
+          return  $autojoin ?
+              $this->factorySelf()->joinAll()->load($this->pid())
+              : $this->factorySelf()->load($this->pid());
      }
     
     /**
@@ -1963,10 +1963,7 @@ class PDO_DataObject
           
         // we need to write to the connection (For nextid) - so us the real
         // one not, a copyied on (as ret-by-ref fails with overload!)
-        
          
-        
-        
         
         $PDO = $this->PDO();;
          
@@ -2034,11 +2031,18 @@ class PDO_DataObject
             
             $leftq .= ($quoteIdentifiers ? ($this->quoteIdentifier($k) . ' ')  : "$k ");
             
+
+            if (($v & self::NOTNULL) && self::_is_null_member($this,$k)) {
+                $this->raise("Trying to set {$k} to null however it's set as NOT NULL", 
+                    self::ERROR_INVALIDARGS);
+            }
+
             if (is_object($this->$k) && is_a($this->$k,'PDO_DataObject_Cast')) {
                 $value = $this->$k->toString($v,$PDO);
                 $rightq .=  $value;
                 continue;
             }
+
             
             
             if (!($v & self::NOTNULL) && self::_is_null_member($this,$k)) {
@@ -3335,7 +3339,7 @@ class PDO_DataObject
     
     function factorySelf()
     {
-        self::factory($this->tableName());
+        return self::factory($this->tableName());
     }
     
     
