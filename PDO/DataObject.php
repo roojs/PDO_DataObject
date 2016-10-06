@@ -2752,7 +2752,7 @@ class PDO_DataObject
                 break;
     
             default:
-              break;
+                break;
         }        
 
 
