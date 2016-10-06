@@ -331,6 +331,12 @@ class PDO_DummyStatement {
                 {"id":"134","ex_blob":"a long piece of data","ex_string":"123123","ex_date":"2000-01-01","ex_datetime":"2000-01-01 10:00:00","ex_time":"10:00:00","ex_sql":"2000-01-01 10:00:00","ex_null_string":null,"ex_null_int":null}
                 
              ]',
+             // update with casts.
+            '1652d7b57c57078e2a9b3b09d3dca169' =>   '[
+                {"id":"123","ex_blob":"a long piece of data","ex_string":"123123","ex_date":"2000-01-01","ex_datetime":"2000-01-01 10:00:00","ex_time":"10:00:00","ex_sql":"2000-01-01 10:00:00","ex_null_string":"atest","ex_null_int":324}
+             ]',
+             'c8d6d4b551d4b67722aca033ffbb0565' => 1, // update
+             
              // testing null.. - insert
              'dc4ce49311092488f2b6ef4f8c69de95' => 3434,
              '3b7ff9bae558b4da7dd1c66bba394523' => 101,
