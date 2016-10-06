@@ -2660,6 +2660,9 @@ class PDO_DataObject
             if (self::$debug) {
                 $this->debug('BEGIN',__FUNCTION__);
             }
+            if (!self::$config['transactions'])) {
+                return $this;
+            }
             $pdo->setAttribute(PDO::ATTR_AUTOCOMMIT, false); // we do not commit by default...
             $pdo->beginTransaction();
             
@@ -2670,6 +2673,9 @@ class PDO_DataObject
             if (self::$debug) {
                 $this->debug('COMMIT',__FUNCTION__);
             }
+            if (!self::$config['transactions'])) {
+                return $this;
+            }
             $pdo->commit();
             $pdo->setAttribute(PDO::ATTR_AUTOCOMMIT, true); // not sure if needed...
             return $this;
@@ -2679,6 +2685,9 @@ class PDO_DataObject
         if (strtoupper($string) == 'ROLLBACK') {
             if (self::$debug) {
                 $this->debug('ROLLBACK',__FUNCTION__);
+            }
+            if (!self::$config['transactions'])) {
+                return $this;
             }
             $pdo->rollBack();
             $pdo->setAttribute(PDO::ATTR_AUTOCOMMIT, true); // not sure if needed...
