@@ -1065,7 +1065,7 @@ class PDO_DataObject
         }
         
         // find(true)
-        if ($n && ($this->N > 0 || $this->N === true) { // technically in sqlite N=true therefore N>0..
+        if ($n && ($this->N > 0 || $this->N === true)) { // technically in sqlite N=true therefore N>0..
             if (self::$debug) {
                 $this->debug("ABOUT TO AUTOFETCH", "find", 1);
             }
@@ -2774,15 +2774,7 @@ class PDO_DataObject
         // previously we used _DB_resultid as a pointer to a result array..
         // hopefully this will result in better memory management???
         $this->_result = $result;
-        switch(true) {
-            case $dbtype  == 'sqlite':
-            case $pdo->getAttribute(PDO::MYSQL_ATTR_USE_BUFFERED_QUERY) === false:
-                $this->N = true;
-                break;
-    
-            default:
-              $this->N = $result->rowCount();
-        }
+        $this->N = $no_results;
         
         return $this; // for chaining...
      
