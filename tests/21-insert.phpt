@@ -203,7 +203,7 @@ Array
 Test SQLite  insert - empty
 PDO_DataObject   : PDO       : Checking for database specific ini ('EssentialSQL') : config[databases][EssentialSQL] in options
 PDO_DataObject   : query       : fb46160d204b8d7f7d32c5dc9f8e8135 : INSERT INTO Customers DEFAULT VALUES
-PDO_DataObject   : query       : NO# of results: 1
+PDO_DataObject   : query       : NO# of results: Unknown
 string(1) "6"
 Array
 (
@@ -222,7 +222,7 @@ Test SQLite  insert with data;
 PDO_DataObject   : databaseStructure       : CALL:[]
 PDO_DataObject   : PDO       : Checking for database specific ini ('EssentialSQL') : config[databases][EssentialSQL] in options
 PDO_DataObject   : query       : 45f2d3ea1493f222b65c8d64a148531c : INSERT INTO Customers (CompanyName , ContactName ) VALUES ('test1' , 'test2' ) 
-PDO_DataObject   : query       : NO# of results: 1
+PDO_DataObject   : query       : NO# of results: Unknown
 string(1) "7"
 Array
 (
