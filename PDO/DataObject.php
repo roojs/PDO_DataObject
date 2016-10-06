@@ -1309,21 +1309,24 @@ class PDO_DataObject
      *   results in  [ { fred@example.com=> {object} }, {brian@example.com=> {object} }, .... ]
      *
 
-     * G) array of objects -- USING property as key (eg. {
+     * G) array of objects -- USING primary as key (eg. {
      * $x = PDO_DataObject::factory('mytable');
-     * $ar = $x->fetchAll(false, 'email');
-     *   results in  [ { fred@example.com=> {object} }, {brian@example.com=> {object} }, .... ]
+     * $ar = $x->fetchAll(false, true);
+     *   results in  [ 23=> {object} }, 24=> {object} }, .... ]
      *
 
 
+     * H) interable via closure  (closure is called with a clone as scope?
+     * $x = PDO_DataObject::factory('mytable');
+     * $ar = $x->fetchAll(function () { print_r($this->toArray()); } );
 
-     * H) array of associative arrays - No child dataobjects created... fetchAllAssoc()
+     * I) array of associative arrays - No child dataobjects created... fetchAllAssoc()
      * $x = PDO_DataObject::factory('mytable');
      * $x->whereAdd('something = 1');
      * $ar = $x->fetchAll(false,false, true);
      *  returns [ { a=>1 }, {a=>2}, .... ]
      *
-     * I) array of associative arrays call by method...
+     * J) array of associative arrays call by method...
      * $x = PDO_DataObject::factory('mytable');
      * $x->whereAdd('something = 1');
      * $ar = $x->fetchAll(false,false,'toArray');
