@@ -454,6 +454,8 @@ class PDO_DataObject
             $dsn = self::$config['database'];
         }
         // if we still do not know the database - look through the available ones, and see if we can find the table..
+        // it ignores the issue that multiple databases may have the same tables in them...!?!?
+
         if (!$dsn && !empty(self::$config['databases']) {
             foreach(self::$config['databases'] as $db=>$connect_dsn) {
                 $s = $this->databaseStructure($db, false);
