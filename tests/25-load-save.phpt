@@ -305,6 +305,8 @@ $d->save();
 --EXPECT--
 __construct==["mysql:dbname=inserttest;host=localhost","user","pass",[]]
 setAttribute==[3,2]
+setAttribute==[0,false]
+PDO_Dummy::beginTransaction
 
 
 --------
