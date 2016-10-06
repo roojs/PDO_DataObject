@@ -1340,9 +1340,10 @@ class PDO_DataObject
      */
     final function fetchAll($k= false, $v = false, $method = false)  
     {
-        // should it even do this!!!?!?
+        $cl =  is_a($k, "Closure"); 
+       
         if (!$this->_result) {
-            if ($k !== false &&   $this->_query['data_select'] === false) {
+            if (!$cl && $k !== false &&    $this->_query['data_select'] === false) {
                 $this->select($k);
                 if ($v !== false) {
                     $this->select($v);
@@ -1366,12 +1367,12 @@ class PDO_DataObject
 
   
         if (($k === false) || is_a($k, "Closure")) {
-            $cl =  is_a($k, "Closure");
+           
             $ret = array();
             $row = 0;
             while ($this->fetch()) {
                 if ($cl) {
-                    $v->call(clone($this,$row));
+                    $k->call(clone($this), $row);
                     $row++;
                     continue;
                 }
@@ -2974,7 +2975,7 @@ class PDO_DataObject
             }
             
             $schemas = is_array(self::$config['schema_location'][$database_nickname]) ?
-                self::$config['schema_location'][$database_nickname]:
+                self::$config['schema_location'][$database_nickname] :
                 explode(PATH_SEPARATOR, self::$config['schema_location'][$database_nickname]);
         } else if (is_string(self::$config['schema_location']) && !empty(self::$config['schema_location'])) {
             $schemas  = explode(PATH_SEPARATOR,self::$config['schema_location']);
@@ -2994,7 +2995,11 @@ class PDO_DataObject
             $fn = $suffix ? rtrim($ini ,'/') . $suffix : $ini;
             $tried[] = $fn;
             if (!file_exists($fn) || !is_file($fn) || !is_readable ($fn)) {
-                continue;
+                $fn =   rtrim($ini ,'/') . '/'. $database_nickname .'.ini';
+                if (!file_exists($fn) || !is_file($fn) || !is_readable ($fn)) {
+                    $tried[] = $fn;
+                    continue;
+                }
             }
             $this->debug("load schema from: ". $fn ,  __FUNCTION__,   3);
             $ini_out = array_merge(

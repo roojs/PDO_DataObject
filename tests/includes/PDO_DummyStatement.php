@@ -144,7 +144,7 @@ class PDO_DummyStatement {
             
             'f5a65e29f10636175726b93d83e99ad6' => '[]', // used by config-database
        
-            
+            '49a4307336aeaeb2e24de305a3d0da30' => '[]', // config-schema
         ),
           
         'oci:dbname=somedb' => array(
@@ -201,7 +201,9 @@ class PDO_DummyStatement {
                  "updated_by":"0","updated_dt":"0000-00-00 00:00:00"}
                 
             ]',
-           
+           'c859fde34ab3312a29b61eb1a7b66148' => 1,
+           '484572458888176050c44ae140ba1190' => 1,
+           'c5dd2edd3e0b599889c895382284ac70' => 1,
             // limit 1...
             '2a1daa39fc1c411b62e53c52ff873eee' => '[
                   {"code":"vinski","name":"Vinski Web","remarks":"","owner_id":"0","address":"",
@@ -260,6 +262,7 @@ class PDO_DummyStatement {
         'mysql:dbname=inserttest;host=localhost' => array(  
             // insert....
             '628879af4d41c471483702443eb35560' => 34343,
+            
             
             
             
@@ -400,7 +403,9 @@ class PDO_DummyStatement {
              
              // config-databases test
              '196f2986575f749efe84e6134d37fbf7' => '[]',
-             
+             // config-schema-location
+             'f5a65e29f10636175726b93d83e99ad6' => '[]',
+             '49a4307336aeaeb2e24de305a3d0da30' => '[]',
         ), 
          'pgsql:dbname=pginsert;host=localhost' => array(  
             // insert....
