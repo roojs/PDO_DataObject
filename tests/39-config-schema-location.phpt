@@ -52,7 +52,10 @@ echo "\n\n--------\n";
 echo "listed with seperators\n" ;
 
 PDO_DataObject::config(array(
-    'schema_location' => __DIR__.'/includes' . PATH_SEPARATOR . __DIR__.'/includes/test_ini'
+    'schema_location' => array(
+             'inserttest' =>    __DIR__.'/includes' ,
+             'mysql_anotherdb' =>   PATH_SEPARATOR . __DIR__.'/includes/test_ini'
+    )
 ));
 
 
