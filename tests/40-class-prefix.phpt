@@ -11,7 +11,7 @@ PDO_DataObject::config(array(
                     __DIR__.'/includes/sample_classes/DataObjects_' .
                     PATH_SEPARATOR .
                     __DIR__.'/includes/sample_classes/',
-        'class_prefix' => 'DataObjects_' . PATH_SEPARATOR . PATH_SEPARATOR . 'LongPrefix_DataObjects_,
+        'class_prefix' => 'DataObjects_' . PATH_SEPARATOR . PATH_SEPARATOR . 'LongPrefix_DataObjects_',
         
         'database' => '',
         'databases' => array(
