@@ -31,7 +31,7 @@ PDO_DataObject::config(array(
      
 ));
 
-PDO_DataObject::debugLevel(1);
+PDO_DataObject::debugLevel(2);
  
 
 echo "\n\n--------\n";
