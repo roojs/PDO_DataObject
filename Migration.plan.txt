@@ -145,7 +145,7 @@ Target:END OF WEEK 6 (est. 4 days) - COMPLETED
 e) PDO_DataObject class
 
   * factory  DONE  
-    * databases[] set, but no database - should scan ini to determine which db to use...
+    * databases[] set, but no database - should scan ini to determine which db to use... DONE
   * loadClass   DONE (private) was _autoloadClass
   * get()  DONE 
   * pid()  DONE  
