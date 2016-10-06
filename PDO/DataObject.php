@@ -2283,7 +2283,7 @@ class PDO_DataObject
                 continue;
             }
             
-            echo "{$k}:isset=". var_export(isset($this->$k),true) . var_export(isset($this->$k)  ? $this->$k : '--no-set--',true) "\n";
+            echo "{$k}:isset=".  var_export(isset($this->$k)  ? $this->$k : '--no-set--',true). "\n";
             if (!isset($this->$k)) {
                 // it's a  not null field
                 if ($v & self::NOTNULL) {
@@ -5129,11 +5129,17 @@ class PDO_DataObject
         
     }
     /**
-    * Evaluate whether or not a value is set to null, taking the 'enable_null_strings' option into account.
-    * If the value is a string set to "null" and the "enable_null_strings" option is not set to 
-    * true, then the value is considered to be null.
-    * If the value is actually a PHP NULL value, and "enable_null_strings" has been set to 
-    * the value "full", then it will also be considered null. - this can not differenticate between not set
+    * Null member testing
+    *
+    * Testing for null is a bit of a nightmare... - the database may have null values in it, but that does not mean 
+    * that properties are actually set to null..!!!
+    *
+    * When updateing / inserting or searching queries need to be built based on the properties.
+    * 
+    * when a column is NOT_NULL - we just ignore any null testing... the value is either set or not-set...
+    *
+    * when a column allows NULL
+    *     then we have to determine was it actually set to NULL by the user, or was it just empty, and never filled in.
     * 
     * 
     * @param  object|array $obj_or_ar 
@@ -5194,6 +5200,9 @@ class PDO_DataObject
         $null_strings =  self::$config['enable_null_strings'] !== false;
         
         if (is_a($value, 'PDO_DataObject_Cast') && $value->isNull()) {
+            return true;
+        }
+        if (is_null($value)) {
             return true;
         }
         
