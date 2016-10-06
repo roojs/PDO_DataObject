@@ -128,7 +128,11 @@ PDO_DataObject::factory('Dummy')
     ->toArray()
 );
 
+echo "\n\n--------\n";
+echo "Testing null (string null);\n" ;
 
+
+PDO_DataObject::config('enable_null_strings', true);
 print_r(
 PDO_DataObject::factory('Dummy')
     ->set([
