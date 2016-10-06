@@ -2283,7 +2283,7 @@ class PDO_DataObject
                 continue;
             }
             
-            echo "{$k}:isset=".  var_export(isset($this->$k)  ? $this->$k : '--no-set--',true). "\n";
+            //echo "{$k}:isset=".  var_export(isset($this->$k)  ? $this->$k : '--no-set--',true). "\n";
             if (!isset($this->$k)) {
                 // it's a  not null field
                 if ($v & self::NOTNULL) {
@@ -5140,7 +5140,8 @@ class PDO_DataObject
     *
     * when a column allows NULL
     *     then we have to determine was it actually set to NULL by the user, or was it just empty, and never filled in.
-    * 
+    *     if you use real null values, not CAST , then we can only really detect it when you use 'set/setFrom'
+    *         in which case we actually set the value to a CAST.. 
     * 
     * @param  object|array $obj_or_ar 
     * @param  string|false $prop prperty
