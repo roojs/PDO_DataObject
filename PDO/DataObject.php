@@ -5143,6 +5143,10 @@ class PDO_DataObject
     *     if you use real null values, not CAST , then we can only really detect it when you use 'set/setFrom'
     *         in which case we actually set the value to a CAST.. 
     * 
+    * enable_null_strings (seriously not recommended) - modifies the behaviour - it's really only for BC code.
+    *     setting it to true = then 'null' as a string works..
+    *     setting it to 'full' - results in $this->XXXX << even if it's not set, then we read it as null!!!
+    *
     * @param  object|array $obj_or_ar 
     * @param  string|false $prop prperty
     
