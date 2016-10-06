@@ -19,28 +19,19 @@ echo "\n---\nDefault Columns\n";
 var_export(PDO_DataObject::factory('joinerb')
     ->links()
 );
-exit;
+
 $a = PDO_DataObject::factory('joinerb');
-$a->tableColumns(
+$a->links(
     array (
-     'id' => '129',
-     'code' => '130',
-     'name' => '130',
-     'remarks' => '162',
-     'owner_id' => '129',
-     'address' => '162',
-     'tel' => '130',
-     'fax' => '130',
-     'email' => '130',
-     
-   )
+        'childb_id' => 'childb:cb_id',  
+    )
 );
 echo "\n---\n After setting this instance\n";
-var_export($a->tableColumns());
+var_export($a->links());
 
 echo "\n---\n new instance\n";
-var_export(PDO_DataObject::factory('Companies')
-    ->tableColumns()
+var_export(PDO_DataObject::factory('joinerb')
+    ->links()
 );
  
 ?>
@@ -50,68 +41,18 @@ Default Columns
 __construct==["mysql:dbname=inserttest;host=localhost","user","pass",[]]
 setAttribute==[3,2]
 array (
-  'id' => '129',
-  'code' => '130',
-  'name' => '130',
-  'remarks' => '162',
-  'owner_id' => '129',
-  'address' => '162',
-  'tel' => '130',
-  'fax' => '130',
-  'email' => '130',
-  'isOwner' => '129',
-  'logo_id' => '129',
-  'background_color' => '130',
-  'comptype' => '130',
-  'url' => '130',
-  'main_office_id' => '129',
-  'created_by' => '129',
-  'created_dt' => '142',
-  'updated_by' => '129',
-  'updated_dt' => '142',
-  'passwd' => '130',
-  'dispatch_port' => '130',
-  'province' => '130',
-  'country' => '130',
+  'childa_id' => 'childa:ca_id',
+  'childc_id' => 'childa:ca_id',
 )
 ---
  After setting this instance
 array (
-  'id' => '129',
-  'code' => '130',
-  'name' => '130',
-  'remarks' => '162',
-  'owner_id' => '129',
-  'address' => '162',
-  'tel' => '130',
-  'fax' => '130',
-  'email' => '130',
+  'childb_id' => 'childb:cb_id',
 )
 ---
  new instance
 array (
-  'id' => '129',
-  'code' => '130',
-  'name' => '130',
-  'remarks' => '162',
-  'owner_id' => '129',
-  'address' => '162',
-  'tel' => '130',
-  'fax' => '130',
-  'email' => '130',
-  'isOwner' => '129',
-  'logo_id' => '129',
-  'background_color' => '130',
-  'comptype' => '130',
-  'url' => '130',
-  'main_office_id' => '129',
-  'created_by' => '129',
-  'created_dt' => '142',
-  'updated_by' => '129',
-  'updated_dt' => '142',
-  'passwd' => '130',
-  'dispatch_port' => '130',
-  'province' => '130',
-  'country' => '130',
+  'childa_id' => 'childa:ca_id',
+  'childc_id' => 'childa:ca_id',
 )
- 
+alan@alandesks
