@@ -286,7 +286,7 @@ PDO_DataObject   : PDO       : Checking for database specific ini ('EssentialSQL
 PDO_DataObject   : PDO       : Checking for database specific ini ('EssentialSQL') : config[databases][EssentialSQL] in options
 PDO_DataObject   : query       : 9d3e7ecc7ac70671316cfe4cfdb42db1 : SELECT count(Customers.CustomerID) as DATAOBJECT_NUM
                 FROM Customers  
-PDO_DataObject   : query       : NO# of results: 0
+PDO_DataObject   : query       : NO# of results: Unknown
 PDO_DataObject   : count       : Count returned 5
 Total rows: 5
 
@@ -297,7 +297,7 @@ PDO_DataObject   : PDO       : Checking for database specific ini ('EssentialSQL
 PDO_DataObject   : PDO       : Checking for database specific ini ('EssentialSQL') : config[databases][EssentialSQL] in options
 PDO_DataObject   : query       : 58201c0ee2b824c542628d084a9b4662 : SELECT count(Customers.CustomerID) as DATAOBJECT_NUM
                 FROM Customers  WHERE (Customers.State  = 'FL')
-PDO_DataObject   : query       : NO# of results: 0
+PDO_DataObject   : query       : NO# of results: Unknown
 PDO_DataObject   : count       : Count returned 1
 Total rows (with state=FL): 1
 
@@ -308,7 +308,7 @@ PDO_DataObject   : PDO       : Checking for database specific ini ('EssentialSQL
 PDO_DataObject   : PDO       : Checking for database specific ini ('EssentialSQL') : config[databases][EssentialSQL] in options
 PDO_DataObject   : query       : 89dd46447e29fc19a6c9062de946e1b0 : SELECT count(Customers.CustomerID) as DATAOBJECT_NUM
                 FROM Customers  WHERE ( state in ('FL', 'TX') ) 
-PDO_DataObject   : query       : NO# of results: 0
+PDO_DataObject   : query       : NO# of results: Unknown
 PDO_DataObject   : count       : Count returned 2
 Total rows (with FL or TX): 2
 
@@ -319,6 +319,6 @@ PDO_DataObject   : PDO       : Checking for database specific ini ('EssentialSQL
 PDO_DataObject   : PDO       : Checking for database specific ini ('EssentialSQL') : config[databases][EssentialSQL] in options
 PDO_DataObject   : query       : b6c610edea2b86c03c56bcfdb19c8656 : SELECT count(distinct state) as DATAOBJECT_NUM
                 FROM Customers  
-PDO_DataObject   : query       : NO# of results: 0
+PDO_DataObject   : query       : NO# of results: Unknown
 PDO_DataObject   : count       : Count returned 5
 Total rows (distinct state): 5

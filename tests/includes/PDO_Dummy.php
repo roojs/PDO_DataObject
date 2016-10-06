@@ -39,6 +39,10 @@ class PDO_Dummy {
                 //echo __FUNCTION__ . '==' .  json_encode(func_get_args()) . " => " . $this->_dbtype  . "\n";
                 return $this->_dbtype;
                 break;
+            
+            case PDO::MYSQL_ATTR_USE_BUFFERED_QUERY:
+                return 1;
+            
             default:
                 echo __FUNCTION__ . '==' .  json_encode(func_get_args()). "\n";
                 throw new Exception("getAttribute - invalid argument");
@@ -50,10 +54,12 @@ class PDO_Dummy {
     {
         echo __FUNCTION__ . '==' .  json_encode(func_get_args()). "\n";
         switch($key) {
-            
+            case PDO::ATTR_AUTOCOMMIT:
             case PDO::ATTR_ERRMODE:
                 return; // all ok..
                 break;
+            
+                
             default:
                 throw new Exception("setAttribute - invalid arguments");
         }
@@ -92,14 +98,14 @@ class PDO_Dummy {
     }
     function beginTransaction()
     {
-        echo __METHOD__ ."\n"
+        echo __METHOD__ ."\n";
     }
     function commit()
     {
-        echo __METHOD__ ."\n"
+        echo __METHOD__ ."\n";
     }
     function rollback()
     {
-        echo __METHOD__ ."\n"
+        echo __METHOD__ ."\n";
     }
 }
