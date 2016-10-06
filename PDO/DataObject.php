@@ -3704,7 +3704,7 @@ class PDO_DataObject
      *
      *  example function (you could add to your extended classes - to make the code easy to read...)
      *
-     *  function company($set = null) {
+     *  function company($set = false) {
      *     $this->link('company_id', $set);
      *  }
      *
@@ -3716,7 +3716,7 @@ class PDO_DataObject
      * @throws 
      * @return PDO_DataObject  child on get, self on set
      */
-    function link($field, $set_args = null)
+    function link($field, $set_args = false)
     {
         require_once 'PDO/DataObject/Links.php';
         $l = new PDO_DataObject_Links($this);
