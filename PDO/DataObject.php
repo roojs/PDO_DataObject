@@ -2743,15 +2743,16 @@ class PDO_DataObject
             return $this->raise("Could not run Query", self::ERROR_QUERY, $result);
         }
         
-        $no_results =  $result->rowCount();
+        
 
         switch (true) {
             case $dbtype  == 'sqlite':
-            case $pdo->getAttribute(PDO::MYSQL_ATTR_USE_BUFFERED_QUERY) === false:
+            case $pdo->getAttribute(PDO::MYSQL_ATTR_USE_BUFFERED_QUERY) == 0:
                 $no_results = true;
                 break;
     
             default:
+                $no_results =  $result->rowCount();
                 break;
         }        
 
