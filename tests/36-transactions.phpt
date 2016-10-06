@@ -12,7 +12,7 @@ PDO_DataObject::config(array(
         'class_prefix' => 'DataObjects_',
 ));
 
-PDO_DataObject::debugLevel(0);
+PDO_DataObject::debugLevel(1);
  
 // these need the links to calculate the join..
 echo "\n---\nFetch a related link.n";
@@ -22,7 +22,7 @@ PDO_DataObject::factory('Events')
     ->load(3523)
     ->set(['action' => "testing" ])
     ->save()
-    ->query("COMMIT")
+    ->query("COMMIT");
 
 
 PDO_DataObject::factory('Events')
@@ -30,4 +30,4 @@ PDO_DataObject::factory('Events')
     ->load(3523)
     ->set(['action' => "testing" ])
     ->save()
-    ->query("ROLLBACK")
+    ->query("ROLLBACK");
