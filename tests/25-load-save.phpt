@@ -137,7 +137,8 @@ PDO_DataObject::factory('Dummy')
     ])
     ->save();
     
-
+echo "\n\n--------\n";
+echo "Testing update with 'null' and null (with set) ;\n" ;
 // this works, as set has 'null' support?!?
 PDO_DataObject::factory('Dummy')
     ->load(123)
@@ -146,6 +147,9 @@ PDO_DataObject::factory('Dummy')
         'ex_null_int' => null,
     ])
     ->save();
+
+echo "\n\n--------\n";
+echo "Testing update with 'null' and null (with properties) ;\n" ;
  
 // this ingores the null_int
 $d = PDO_DataObject::factory('Dummy')
@@ -268,6 +272,24 @@ PDO_DataObject::factory('Dummy')
     ])
     ->save();
 
+
+
+// this works, as set has 'null' support?!?
+PDO_DataObject::factory('Dummy')
+    ->load(123)
+    ->set([
+        'ex_null_string' => 'null',
+        'ex_null_int' => null,
+    ])
+    ->save();
+ 
+// this ingores the null_int
+$d = PDO_DataObject::factory('Dummy')
+    ->load(123);
+$d->ex_null_string = 'null';
+$d->ex_null_int = null;
+$d->save();
+    
 
 
 
