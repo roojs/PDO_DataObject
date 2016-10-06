@@ -159,7 +159,12 @@ class PDO_DataObject
                 // similar to DB's portability setting,
                 // currently it only lowercases the tablename when you call tableName(), and
                 // flatten's ini files ..
-                
+            
+            'transactions' => true,
+                // some databases, like sqlite do not support transactions, so if you have code that
+                // uses transactions, and you want DataObjects to ignore the BEGIN/COMMIT/ROLLBACK etc..
+                // then set this to false, otherwise you will get errors.
+
             'quote_identifiers' => false,
                 // Quote table and column names when building queries 
  
