@@ -38,9 +38,14 @@ echo "\n\n--------\n";
 echo "basic load/set/save ROLLBACK;\n" ;
 
 
-PDO_DataObject::factory('Events')->PDO()->setAttribute(MYSQL_ATTR_USE_BUFFERED_QUERY, false);
+PDO_DataObject::factory('Events')->PDO()->setAttribute(PDO::MYSQL_ATTR_USE_BUFFERED_QUERY, false);
  
-PDO_DataObject::factory('Events')
-    ->find();
+$x = PDO_DataObject::factory('Events');
+$x->find();
+
+while($x->fetch()) {
+    print_r($x->toArray());
+    exit;
     
+}
 --EXPECT--
