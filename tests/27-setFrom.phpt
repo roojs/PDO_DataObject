@@ -71,12 +71,19 @@ echo "enable_null_values = default = off\n" ;
  
 echo "\nsetting string and int to null: " . PDO_DataObject::factory('Dummy')
     ->set([
-       'ex_string' => null,
-        'ex_int' => null,
         'ex_null_string' => null,
         'ex_null_int' => null,
     ])->whereToString(). "\n";
 
+try  {
+PDO_DataObject::factory('Dummy')
+    ->set([    
+        'ex_string' => null
+      ])  
+    
+} catch (PDO_DataObject_Exception_Set $e) {
+    echo "\nset got errors as expected: {$e->getMessage()}\n";
+}   
 
 echo "\n\n--------\n";
 echo "TESTING string NULL - enable_null_valus = default = off\n" ;
