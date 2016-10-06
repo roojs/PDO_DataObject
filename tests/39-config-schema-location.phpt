@@ -77,7 +77,7 @@ PDO_DataObject::reset();
 echo "\n\n--------\n";
 echo "listed associative array with absolute path. \n" ;
 
-
+// we could test array's here...
 PDO_DataObject::config(array(
     'schema_location' => array(
         'inserttest' =>    __DIR__.'/includes/mysql_somedb.ini' ,
