@@ -206,7 +206,7 @@ e) PDO_DataObject class
   * joinAdd() DONE  
   * autoJoin() DONE  
 
-  * links() DONE / NEED TESTING
+  * links() DONE 
   * tableColumns() - was table()   DONE  tested as part of insert/update...
  
   * config DONE / NEEDS TESTING - of various settings...
