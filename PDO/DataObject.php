@@ -3189,7 +3189,7 @@ class PDO_DataObject
      * @access  private
      * @return  string
      */
-    final function whereToString($keys = false, $filter = array(),$negative_filter=array(), $tableName = false)
+    final function whereToString($keys = false, $filter = array(), $negative_filter = array(), $tableName = false)
     {
         
         $keys = $keys === false ? $this->tableColumns() : $keys;
