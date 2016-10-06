@@ -3702,7 +3702,7 @@ class PDO_DataObject
      *  $do->link('company_id',0);
      *  $do->link('company_id',$obj);
      *
-     *  example function
+     *  example function (you could add to your extended classes - to make the code easy to read...)
      *
      *  function company() {
      *     $this->link(array('company_id','company:id'), func_get_args());
