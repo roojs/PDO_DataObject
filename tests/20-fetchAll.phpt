@@ -136,6 +136,7 @@ print_r($company->fetchAll(false, false, 'toArray'));
 
 
 ?>
+--EXPECT--
 --------
 single col - fetchAll('id');
 __construct==["mysql:dbname=gettest;host=localhost","user","pass",[]]
