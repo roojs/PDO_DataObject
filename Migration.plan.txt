@@ -183,7 +183,7 @@ e) PDO_DataObject class
   * load() DONE chainable get
   * save() DONE   generic update/insert
   * snapshot() DONE (this is auto called on load()) ...
-  
+  * NULL/cast? values in INSERT/UPDATE - DONE  
 
  
   * keys()   DONE  tested as part of insert/update...
@@ -219,7 +219,6 @@ e) PDO_DataObject class
 
 
 
---- > NULL/cast? values in INSERT/UPDATE 
 --- > databases[] set, but no database - should scan ini to determine which db to use...
 --- > transactions BEGIN/ROLLBACK/COMMIT
 --- > un-buffered queries?? - results in get failing!?! -- ?? sqlite can it do bufferd?
