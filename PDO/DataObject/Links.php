@@ -309,6 +309,7 @@ class PDO_DataObject_Links
         }
         // otherwise it's a set call..
 
+        // we used to support array as args.. ?? why!?!
         $assign = is_array($args) ? $args[0] : $args;
          
 
