@@ -1,5 +1,5 @@
 --TEST--
-tranaction Test  - real mysql
+tranaction Test  - needs real mysql
 --FILE--
 <?php
 require_once 'includes/init.php';
