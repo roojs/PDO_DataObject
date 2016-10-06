@@ -889,28 +889,9 @@ class PDO_DataObject
      * @access  public
      * @return  PDO_DataObject  self.
      */
-     final function load($k = null, $v = null)
+     final function reload()
      {
-          $res = 0;          
-          if ($k === null && $v === null) {
-
-              $str = $this->whereToString();
-              if (!strlen(trim($str))) {
-                  $this->raise("No condition (property or where) set for loading data.", self::ERROR_INVALIDARGS);
-              }
-              $res = $this->find(true);
-          } else {
-              $res = $this->get($k, $v);
-          }
-          if ($res < 1) {
-              $this->raise("No Data returned from load", self::ERROR_NODATA);
-          }
-          if ($res > 1) {
-              $this->raise("Too many rows returned from load", self::ERROR_INVALIDARGS);
-          }
-          $this->_query['condition'] = '';
-          $this->snapshot();
-          return $this;
+          return  $this->factoryself()>load($this->pid());
      }
     
     /**
