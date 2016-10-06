@@ -3727,7 +3727,7 @@ class PDO_DataObject
     /**
      * load related objects
      * @depricated
-     * This is only in for compatibility ( no supported anymore )
+     * This is only in for compatibility ( not supported anymore )
      */
     function applyLinks($format = '_%s')
     {
@@ -3741,30 +3741,8 @@ class PDO_DataObject
 
     /**
      * linkArray
-     * Fetch an array of related objects. This should be used in conjunction with a <dbname>.links.ini file configuration (see the introduction on linking for details on this).
-     * You may also use this with all parameters to specify, the column and related table.
-     * This is highly dependant on naming columns 'correctly' :)
-     * using colname = xxxxx_yyyyyy
-     * xxxxxx = related table; (yyyyy = user defined..)
-     * looks up table xxxxx, for value id=$this->xxxxx
-     * stores it in $this->_xxxxx_yyyyy
-     *
-     * @access public
-     * @param string $column - either column or column.xxxxx
-     * @param string $table - name of table to look up value in
-     * @return array - array of results (empty array on failure)
-     * 
-     * Example - Getting the related objects
-     * 
-     * $person = new DataObjects_Person;
-     * $person->get(12);
-     * $children = $person->getLinkArray('children');
-     * 
-     * echo 'There are ', count($children), ' descendant(s):<br />';
-     * foreach ($children as $child) {
-     *     echo $child->name, '<br />';
-     * }
-     * 
+     * @depricated
+     * This is only in for compatibility ( not supported anymore )
      */
     function linkArray($row, $table = null)
     {
