@@ -161,5 +161,64 @@ echo $d->whereToString();
 
 ?>
 --EXPECT--
+enable_null_strings = full
+__construct==["mysql:dbname=inserttest;host=localhost","user","pass",[]]
+setAttribute==[3,2]
 
+setting string and int to null: (Dummy.ex_null_string IS NULL) AND (Dummy.ex_null_int IS NULL)
+
+set got errors as expected: Set Errors Returned Values: 
+Array
+(
+    [ex_int] => setting column ex_int to Null is invalid as it's NOTNULL
+    [ex_string] => setting column ex_string to Null is invalid as it's NOTNULL
+)
+
+
+
+--------
+TESTING string NULL -  enable_null_strings = full 
+
+setting string   to 'NULL' : (Dummy.ex_null_string IS NULL) AND (Dummy.ex_null_int IS NULL)
+
+set got errors as expected: Set Errors Returned Values: 
+Array
+(
+    [ex_int] => setting column ex_int to Null is invalid as it's NOTNULL
+    [ex_string] => setting column ex_string to Null is invalid as it's NOTNULL
+)
+
+TESTING CAST NULL - enable_null_strings = true
+set got errors as expected: Set Errors Returned Values: 
+Array
+(
+    [ex_int] => setting column ex_int to Null is invalid as it's NOTNULL
+    [ex_string] => setting column ex_string to Null is invalid as it's NOTNULL
+)
+
+
+empty where with real null.: (Dummy.ex_null_string IS NULL) AND (Dummy.ex_null_int IS NULL)
+
+--------
+TESTING props setting
+
+using real null props : ==  == 
+
+that was empty, as properites can not be set to null - it can not be detected, use set() or cast()  
+
+
+--------
+TESTING props setting (string)
+
+using null props : == (Dummy.ex_null_string  IS NULL) AND (Dummy.ex_null_int  IS NULL) == 
+set got errors as expected: Error setting col 'ex_string' to NULL - column is NOT NULL
+set got errors as expected: Error setting col 'ex_int' to NULL - column is NOT NULL
+
+
+--------
+TESTING props setting cast)
+
+using null props : == (Dummy.ex_null_string IS NULL) AND (Dummy.ex_null_int IS NULL) == 
+set got errors as expected: Error setting col 'ex_string' to NULL - column is NOT NULL
+set got errors as expected: Error setting col 'ex_int' to NULL - column is NOT NULL
  
