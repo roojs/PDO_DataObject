@@ -218,8 +218,9 @@ e) PDO_DataObject class
 --- >  * fetchall(CALLABLE) ???? same as foreach, but runs a method on each object... 
 
 
-
-PDO_DataObject_Links ( )  DONE / NEED TESTING
+   * link DONE / NEED TESTING
+   * applyLinks DONE / NEED TESTING
+      PDO_DataObject_Links ( )  DONE / NEED TESTING
 PDO_DataObject_Exception ( ) ** can call the old PEAR error handler??
 
 Tests:
