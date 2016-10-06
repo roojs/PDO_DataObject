@@ -2023,6 +2023,25 @@ class PDO_DataObject
             if ($v & self::MYSQLTIMESTAMP) {
                 continue;
             }
+
+
+
+            if (($v & self::NOTNULL) && self::_is_null_member($this,$k)) {
+                $this->raise("Trying to set {$k} to null however it's set as NOT NULL", 
+                    self::ERROR_INVALIDARGS);
+            }
+
+            if (!isset($this->$k)) {
+                // it's a  not null field
+                if ($v & self::NOTNULL)) {
+                    continue;
+                }
+                // value is not set, and it's not 'defined' as null.....?!?!
+                if (!self::_is_null_member($this,$k)) {
+                    continue;
+                }
+                // in theory this is when enable_null_value='full' - and it's notnull - we will insert 'null..
+            }
             
             if ($leftq) {
                 $leftq  .= ', ';
@@ -2030,25 +2049,23 @@ class PDO_DataObject
             }
             
             $leftq .= ($quoteIdentifiers ? ($this->quoteIdentifier($k) . ' ')  : "$k ");
-            
 
-            if (($v & self::NOTNULL) && self::_is_null_member($this,$k)) {
-                $this->raise("Trying to set {$k} to null however it's set as NOT NULL", 
-                    self::ERROR_INVALIDARGS);
-            }
-
-            if (is_object($this->$k) && is_a($this->$k,'PDO_DataObject_Cast')) {
+            if (isset($this->$k) && is_object($this->$k) && is_a($this->$k,'PDO_DataObject_Cast')) {
                 $value = $this->$k->toString($v,$PDO);
                 $rightq .=  $value;
                 continue;
             }
-
-            
             
             if (!($v & self::NOTNULL) && self::_is_null_member($this,$k)) {
                 $rightq .= " NULL ";
                 continue;
             }
+
+            // at this point if it's not set, then we can really ignore it..
+            if (isset($this->$k)) {
+                continue;
+            }
+
             // DATE is empty... on a col. that can be null.. 
             // note: this may be usefull for time as well..
             if (!$this->$k && 
