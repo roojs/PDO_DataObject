@@ -128,17 +128,29 @@ PDO_DataObject::factory('Dummy')
     ->toArray()
 );
 
+echo "\n\n--------\n";
+echo "Testing insert null testing;\n" ;
+try {
+$d = PDO_DataObject::factory('Dummy');
+$d->ex_string = PDO_DataObject::sqlValue('null');
+$d->insert();
+} catch (PDO_DataObject_Exception_InvalidArgs $e) {
+    echo "\ngot exception as expected : {$e->getMessage()}\n";
+    
+}
 
-print_r(
+
+echo "\n\n--------\n";
+echo "Testing string null = inserts a string..;\n" ;
+
 PDO_DataObject::factory('Dummy')
     ->set([
-        'ex_null_string' => PDO_DataObject::sqlValue('null'),
-        'ex_null_int' => PDO_DataObject::sqlValue('null'),
+        'ex_null_string' => 'null',
     ])
-    ->save()
-    ->reload()
-    ->toArray()
-);
+    ->save();
+
+
+ 
 
 echo "\n\n--------\n";
 echo "Testing null (string null);\n" ;
