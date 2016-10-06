@@ -256,6 +256,8 @@ class PDO_DummyStatement {
             // insert....
             '628879af4d41c471483702443eb35560' => 34343,
             
+            '108a355193fb27d09332bc366bb171bd' => 1,
+            
             '5f82f3a2da7afaa78228444fbcba3e37' => 123123,
             // update testing..
             '2bdf264b81e628acfbf68368a1175be6' => '[
