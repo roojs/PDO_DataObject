@@ -3705,10 +3705,9 @@ class PDO_DataObject
      *  example function (you could add to your extended classes - to make the code easy to read...)
      *
      *  function company() {
-     *     $this->link(array('company_id','company:id'), func_get_args());
-     *   }
+     *     $this->link('company_id', func_get_args());
+     *  }
      *
-     * 
      *
      * @param  string $column  which column to get or set  (or the link specification)           
      * @param  mixed $set_value (optional)   int or DataObject
