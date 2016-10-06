@@ -2899,8 +2899,9 @@ class PDO_DataObject
             
             // will not get here....
         }
-        $this->PDO();  /// need to connect to assign database nickname...
+          /// need to connect to assign database nickname...
         if (false === $database_nickname) {
+            $this->PDO();
             $database_nickname = $this->_database_nickname;
         }
         
