@@ -16,19 +16,13 @@ PDO_DataObject::debugLevel(0);
  
 
 
-
-echo "\n\n----------------------------------------------------------------\n";
-
-echo "enable_null_strings = true\n" ;
-PDO_DataObject::config('enable_null_strings', 'full');
-
-PDO_DataObject::debugLevel(0);
+ 
   
   
 echo "enable_null_strings = full\n" ;
 PDO_DataObject::config('enable_null_strings', 'full');
 
-PDO_DataObject::debugLevel(1);
+PDO_DataObject::debugLevel(0);
   
  
 echo "\nsetting string and int to null: " . PDO_DataObject::factory('Dummy')
