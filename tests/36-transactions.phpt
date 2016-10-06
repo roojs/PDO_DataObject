@@ -36,57 +36,6 @@ PDO_DataObject::factory('Events')
 
 
 echo "\n\n--------\n";
-echo "Test Mysql - empty\n" ;
-
-
-
-PDO_DataObject::config(array(
-     
-        'database' => '',
-        'tables' => array(
-            'Events'=> 'inserttest',
-        ),
-        'databases' => array(
-            'inserttest' => 'mysql://root:@localhost/pman',
-        ),
-         'PDO' => 'PDO',
-     
-));
-
-PDO_DataObject::debugLevel(1);
- 
-
-echo "\n\n--------\n";
-echo "basic load/set/save ROLLBACK;\n" ;
-
-print_r(
-PDO_DataObject::factory('Events')
-    ->query('BEGIN')
-    ->load(3523)
-    ->set(['action' => "testing" ])
-    ->save()
-    ->query('ROLLBACK')
-    ->reload()
-    ->toArray()
-);
-
-print_r(
-PDO_DataObject::factory('Events')
-    ->query('BEGIN')
-    ->load(3523)
-    ->set(['action' => "testing" ])
-    ->save()
-    ->query('COMMIT')
-    ->reload()
-    ->toArray()
-);
-
-
-
- 
-
-
-echo "\n\n--------\n";
 echo "Test SQLite  ROLLBACK DOES NOT WORK HERE !!!!\n" ;
 
 $temp  = tempnam(ini_get('session.save-path'), 'sqlite-test');
@@ -103,7 +52,7 @@ PDO_DataObject::config(array(
         ),
         'proxy' => 'Full',
         'debug' => 0,
-        'transactions' => false,
+        'transactions' => false,  ///<<< have to add this in otherwise PDO will give us errors 'correctly'
 ));
 
 PDO_DataObject::factory('Customers')->databaseStructure();
