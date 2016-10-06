@@ -2655,7 +2655,7 @@ class PDO_DataObject
             if (self::$debug) {
                 $this->debug('BEGIN',__FUNCTION__);
             }
-            $pdo->setAttribute(PDO::ATTR_AUTOCOMMIT, false)
+            $pdo->setAttribute(PDO::ATTR_AUTOCOMMIT, false); // we do not commit by default...
             $pdo->beginTransaction();
             
             return $this;
