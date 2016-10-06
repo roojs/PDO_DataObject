@@ -3067,11 +3067,21 @@ class PDO_DataObject
         
         $this->databaseStructure();
         
-        if (isset(self::$ini[$this->_database_nickname][$this->tableName() . '__keys'])) {
-            return array_keys(self::$ini[$this->_database_nickname][$this->tableName() . '__keys']);
+         
+
+        if (!isset(self::$ini[$this->_database_nickname][$this->tableName() . '__keys'])) {
+            return array();
         }
-        
-        return array();
+        $keys=  array_keys(self::$ini[$this->_database_nickname][$this->tableName() . '__keys']);
+        // quick bit of validation... - only done on first load...
+        $cols = $this->tableColumns();
+        foreach($keys as $k) {
+            if (!isset($cols[$k])) {
+                $this->raise("Schema for {$this->tableName()} is not valid, key '{$k}' does not exist in the table structure information",
+                    self::ERROR_INVALIDCONFIG);
+            }
+        }
+        return $keys;
     }
     /**
      * get/set an  sequence key
@@ -3202,8 +3212,7 @@ class PDO_DataObject
         
         $ret = empty($this->_query) || empty($this->_query['condition'])  ? '' :
             trim($this->_query['condition']);
-        
-                    
+             
         foreach($keys as $k => $v) {
             // index keys is an indexed array
             /* these filter checks are a bit suspicious..
@@ -3702,12 +3711,12 @@ class PDO_DataObject
      *
      * 
      *
-     * @param  mixed $link_spec              link specification (normally a string)
-     *                                       uses similar rules to  joinAdd() array argument.
-     * @param  mixed $set_value (optional)   int, DataObject, or array('set')
+     * @param  string $column  which column to get or set            
+     * @param  mixed $set_value (optional)   int, DataObject
      * @author Alan Knowles
      * @access public
-     * @return mixed true or false on setting, object on getting
+     * @throws 
+     * @return PDO_DataObject  child on get, self on set
      */
     function link($field, $set_args = array())
     {
