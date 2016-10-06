@@ -459,7 +459,6 @@ class PDO_DataObject
         if (!$dsn && !empty(self::$config['databases'])) {
             foreach(self::$config['databases'] as $db=>$connect_dsn) {
                 $s = $this->databaseStructure($db);
-                var_dump($s);
                 if (isset($s[$this->tableName()])) {
                     $dsn = $connect_dsn;
                     $this->_database_nickname = $db;
