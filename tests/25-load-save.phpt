@@ -180,6 +180,12 @@ $d->save();
 // FULL!!!
 
 
+echo "\n\n--------\n";
+PDO_DataObject::config('enable_null_strings', 'full');
+echo "SET enable_null_strings= TRUE\n" ;
+echo "\n\n--------\n";
+echo "Testing null (string null);\n" ;
+
 
 
 
