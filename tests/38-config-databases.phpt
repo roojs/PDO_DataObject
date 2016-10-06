@@ -36,3 +36,13 @@ echo "\n\n--------\n";
 echo "basic load a big result set\n" ;
 
 $x = PDO_DataObject::factory('Events');
+$x-.limit(1);
+$x->find(true);
+print_r($x);
+
+
+
+
+
+?>
+--EXPECT--
