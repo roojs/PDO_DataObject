@@ -1303,7 +1303,13 @@ class PDO_DataObject
      * $x->whereAdd('something = 1');
      * $ar = $x->fetchAll();
      
-     * E) array of objects -- USING property as key (eg. {
+     * F) array of objects -- USING property as key (eg. {
+     * $x = PDO_DataObject::factory('mytable');
+     * $ar = $x->fetchAll(false, 'email');
+     *   results in  [ { fred@example.com=> {object} }, {brian@example.com=> {object} }, .... ]
+     *
+
+     * G) array of objects -- USING property as key (eg. {
      * $x = PDO_DataObject::factory('mytable');
      * $ar = $x->fetchAll(false, 'email');
      *   results in  [ { fred@example.com=> {object} }, {brian@example.com=> {object} }, .... ]
@@ -1311,13 +1317,13 @@ class PDO_DataObject
 
 
 
-     * E) array of associative arrays - No child dataobjects created... fetchAllAssoc()
+     * H) array of associative arrays - No child dataobjects created... fetchAllAssoc()
      * $x = PDO_DataObject::factory('mytable');
      * $x->whereAdd('something = 1');
      * $ar = $x->fetchAll(false,false, true);
      *  returns [ { a=>1 }, {a=>2}, .... ]
      *
-     * F) array of associative arrays call by method...
+     * I) array of associative arrays call by method...
      * $x = PDO_DataObject::factory('mytable');
      * $x->whereAdd('something = 1');
      * $ar = $x->fetchAll(false,false,'toArray');
