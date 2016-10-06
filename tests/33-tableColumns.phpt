@@ -1,5 +1,5 @@
 --TEST--
-autoJOin and joinAll Test 
+tableColumns Test 
 --FILE--
 <?php
 require_once 'includes/init.php';

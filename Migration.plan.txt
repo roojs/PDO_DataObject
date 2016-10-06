@@ -185,7 +185,7 @@ e) PDO_DataObject class
   * snapshot() DONE (this is auto called on load()) ...
   
 
-  * tableColumns() - was table()   DONE  tested as part of insert/update...
+ 
   * keys()   DONE  tested as part of insert/update...
   * sequenceKey() DONE tested as part of insert/update...
   * whereToString() (was _build_condition) DONE testing as part of select/selectAdd..
@@ -205,8 +205,9 @@ e) PDO_DataObject class
 
   * joinAdd() DONE  
   * autoJoin() DONE  
+
   * links() DONE / NEED TESTING
- 
+  * tableColumns() - was table()   DONE  tested as part of insert/update...
  
   * config DONE / NEEDS TESTING - of various settings...
 
