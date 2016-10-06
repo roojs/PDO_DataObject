@@ -102,9 +102,9 @@ $d->ex_string = null;
 $d->ex_int = null;
 $d->ex_null_string = null;
 $d->ex_null_int = null;
-$d->whereAdd
+
 echo "\nusing real null props : == {$d->whereToString()} == \n";
-echo "\nuthat was empty, as properites can not be set to null - it can not be detected, use set() or cast() == \n";
+echo "\nthat was empty, as properites can not be set to null - it can not be detected, use set() or cast()  \n";
 
  
 
