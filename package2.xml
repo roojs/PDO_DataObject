@@ -97,23 +97,13 @@ http://pear.php.net/dtd/package-2.0.xsd">
     <min>1.4.0b1</min>
    </pearinstaller>
    
- 
-   <package>
-    <name>Date</name>
-    <channel>pear.php.net</channel>
-    <min>1.4.3</min>
-   </package>
+  
   </required>
   
   
   
   <optional>
-  
-   <package>
-    <name>Validate</name>
-    <channel>pear.php.net</channel>
-    <min>0.1.1</min>
-   </package>
+   
   </optional>
  </dependencies>
  <phprelease />
