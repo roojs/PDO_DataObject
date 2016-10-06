@@ -25,7 +25,8 @@ PDO_DataObject::factory('Events')
 
 PDO_DataObject::reset();    
 PDO_DataObject::config(array(
-        'portability' => PDO_DataObject::PORTABILITY_LOWERCASE
+        'portability' => PDO_DataObject::PORTABILITY_LOWERCASE,
+        'quote_identifiers' => true,
 ));
 echo "\n---\nWith lowercase portability\n";
 PDO_DataObject::factory('Events')
