@@ -143,6 +143,7 @@ PDO_DataObject::factory('Dummy')
     ->load(123)
     ->set([
         'ex_null_string' => 'null',
+        'ex_null_int' => null,
     ])
     ->save();
     
