@@ -75,7 +75,7 @@ print_r(PDO_DataObject::factory('account_transaction')->tableColumns());
 
 PDO_DataObject::reset();
 echo "\n\n--------\n";
-echo "listed associative array with absolute path.\n" ;
+echo "listed associative array with absolute path. \n" ;
 
 
 PDO_DataObject::config(array(
@@ -87,11 +87,11 @@ PDO_DataObject::config(array(
 
 
 
-PDO_DataObject::factory('Events')
+PDO_DataObject::factory('account_code')
         ->limit(1)
         ->find(true);
         
-print_r(PDO_DataObject::factory('Events')->tableColumns());
+print_r(PDO_DataObject::factory('account_code')->tableColumns());
 
 PDO_DataObject::factory('account_transaction')
         ->limit(1)
