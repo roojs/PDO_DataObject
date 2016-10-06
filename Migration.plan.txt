@@ -209,10 +209,11 @@ e) PDO_DataObject class
   * links() DONE 
   * tableColumns() - was table()   DONE  tested as part of insert/update...
 
-  * link DONE / NEED TESTING
-  * applyLinks DONE / NEED TESTING
-  * linkArray DONE / NEED TESTING
-      PDO_DataObject_Links ( )  DONE / NEED TESTING
+  * link DONE
+  
+  * applyLinks DONE / DEPRICATED - not testing
+  * linkArray DONE / DEPRICATED - not testing
+      PDO_DataObject_Links ( )  DONE
 
   * PDO_DataObject_Exception ( )   DONE - tested most places..
 
