@@ -1336,7 +1336,7 @@ class PDO_DataObject
      * @param    string|false  $v value
      * @param    string|false  true|$method method to call on each result to get array value (eg. 'toArray')
      * @access  public
-     * @return  array  format dependant on arguments, may be empty
+     * @return  array|PDO_DataObject  format dependant on arguments, may be empty, if using closures, it will return it'self...
      */
     final function fetchAll($k= false, $v = false, $method = false)  
     {
@@ -1385,7 +1385,7 @@ class PDO_DataObject
                     : $this->$k;
             }
      
-            return $ret;
+            return $cl ? $this : $ret;
         }
         
         if ($k === true) { // first column...
@@ -3551,7 +3551,8 @@ class PDO_DataObject
         $class = array();
         foreach($cp as $cpr) {
             $ce =  class_exists($cpr . $tbl,false); //class exists without autoloader..
-            if ($ce) {
+            
+            if ($ce && empty($class)) {
                 $class = $cpr . $tbl;
                 return $class;
             }
