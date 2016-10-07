@@ -3472,10 +3472,10 @@ class PDO_DataObject
         
         
         if (strpos( $in_table,'/') !== false ) {
-            list($database,$table) = explode('.',$in_table, 2);
+            list($database,) = explode('.',$in_table, 2);
           
         }
-        $table = $in_table;
+        
         
         
         if (isset(self::$factory_cache[$in_table])) {
