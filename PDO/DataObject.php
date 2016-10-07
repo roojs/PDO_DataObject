@@ -3526,6 +3526,7 @@ class PDO_DataObject
             self::debug("Setting database to $database",__FUNCTION__,1);
             $ret->database($database);
         }
+        self::$factory_cache[$in_table] = $rclass;
         return $ret;
     }
     /**
