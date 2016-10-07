@@ -5230,7 +5230,7 @@ class PDO_DataObject
         self::$ini = array();
         self::$links = array();
         self::$sequence = array();
-        
+        self::$factory_cache = array();
     }
     /**
     * Null member testing
