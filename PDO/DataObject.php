@@ -226,7 +226,7 @@ class PDO_DataObject
     // cache of sequence keys ??- used by autoincrement?? -- need to check..
     private static $sequence = array(); 
     
-    // factory cache's it's input / output results..
+    // factory cache's it's input / output results.. (can be reset with reset() 
     private static $factory_cache = array();
     /**
      * calling set() may throw an exception.
