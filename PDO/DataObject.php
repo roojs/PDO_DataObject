@@ -3466,20 +3466,20 @@ class PDO_DataObject
     
     
 
-    static function factory($in_table)
+    static function factory($table)
     {
         
         
         
-        if (strpos( $in_table,'/') !== false ) {
-            list($database,) = explode('.',$in_table, 2);
+        if (strpos( $table,'/') !== false ) {
+            list($database,) = explode('.',$table, 2);
           
         }
         
         
         
-        if (isset(self::$factory_cache[$in_table])) {
-            $rclass = self::$factory_cache[$in_table];
+        if (isset(self::$factory_cache[$table])) {
+            $rclass = self::$factory_cache[$table];
             $ret = new $rclass();
         
             if (!empty($database)) {
@@ -3491,7 +3491,7 @@ class PDO_DataObject
         
         // multi-database support.. - experimental.
        
-        $rclass = self::tableToClass($in_table);
+        $rclass = self::tableToClass($table);
         // proxy = full|light
         if (!$rclass && self::$config['proxy']) { 
         
@@ -3528,7 +3528,7 @@ class PDO_DataObject
             self::debug("Setting database to $database",__FUNCTION__,1);
             $ret->database($database);
         }
-        self::$factory_cache[$in_table] = $rclass;
+        self::$factory_cache[$table] = $rclass;
         return $ret;
     }
     /**
