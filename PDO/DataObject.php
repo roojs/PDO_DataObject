@@ -3469,15 +3469,15 @@ class PDO_DataObject
     static function factory($in_table)
     {
         
-        static $cache = array();
+        
         
         if (strpos( $in_table,'/') !== false ) {
             list($database,$table) = explode('.',$in_table, 2);
           
         }
         
-        if (isset($cache[$in_table])) {
-            $rclass = $cache[$in_table];
+        if (isset(self::$factory_cache[$in_table])) {
+            $rclass = self::$factory_cache[$in_table];
             $ret = new $rclass();
         
             if (!empty($database)) {
