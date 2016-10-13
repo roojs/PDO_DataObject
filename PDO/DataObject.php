@@ -3173,6 +3173,7 @@ class PDO_DataObject
     /**
      * get/set an associative array of table columns
      *
+     * @category introspect
      * @access public
      * @param  array key=>type array
      * @return array (associative)
@@ -3217,6 +3218,8 @@ class PDO_DataObject
      *
      * This is defined in the table definition if it gets it wrong,
      * or you do not want to use ini tables, you can override this.
+     *
+     * @category introspect
      * @param  string optional set the key
      * @param  *   optional  set more keys
      * @access public
@@ -3264,7 +3267,8 @@ class PDO_DataObject
      * set usage: $do->sequenceKey('id',true);
      *
      * override this to return array(false,false) if table has no real sequence key.
-     *
+     
+     * @category introspect
      * @param  string  optional the key sequence/autoinc. key
      * @param  boolean optional use native increment. default false 
      * @param  false|string optional native sequence name
