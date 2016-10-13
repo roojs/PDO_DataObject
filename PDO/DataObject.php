@@ -4459,7 +4459,7 @@ class PDO_DataObject
      *   will result in only the columns requested being fetched...
      *
      *
-     *
+     * @category join
      * @param     array     Configuration
      *       + exclude:  Array of columns to exclude from results (eg. modified_by_id)
      *                    Use TABLENAME.* to prevent a join occuring to a specific table.
@@ -4679,6 +4679,7 @@ class PDO_DataObject
      * 
      * @see #autoJoin for more details.
      *
+     * @call join
      * @param     array     Configuration
      *          exclude  Array of columns to exclude from results (eg. modified_by_id)
      *                    Use TABLENAME.* to prevent a join occuring to a specific table.
@@ -4709,7 +4710,8 @@ class PDO_DataObject
      * 
      * 
      * might handle more arguments for escaping later...
-     * 
+     *
+     * @category build
      * @static
      * @param string $value (or type if used with 2 arguments)
      * @param string $callvalue (optional) used with date/null etc..
@@ -4734,6 +4736,7 @@ class PDO_DataObject
      * will not override key values.
      *
      *
+     * @category build
      * @param    array | object  $from
      * @param    string  $format eg. map xxxx_name to $object->name using 'xxxx_%s' (defaults to %s - eg. name -> $object->name
      * @param    boolean  $skipEmpty (dont assign empty values if a column is empty (eg. '' / 0 etc...)
@@ -4829,6 +4832,7 @@ class PDO_DataObject
      *
      * If errors occur on set** methods, then $this->_set_errors will be set to the problem, and an exception is thrown.
      *
+     * @category build
      * @param    array | object  $from
      * @param    string  $format eg. map xxxx_name to $object->name using 'xxxx_%s' (defaults to %s - eg. name -> $object->name
      * @param    boolean  $skipEmpty (dont assign empty values if a column is empty (eg. '' / 0 etc...)
@@ -4858,6 +4862,7 @@ class PDO_DataObject
     * 
     * TODO: add formater:: eg. d/m/Y for date! ???
     *
+    * @category build
     * @param   string       column of database
     * @param   mixed        value to assign
     *
@@ -4987,7 +4992,7 @@ class PDO_DataObject
      * @param   bool||number    [true = elemnts that have a value set],
      *                          [false = table + returned colums] ,
      *                          [0 = returned columsn only]
-     *
+     * @category results
      * @access   public
      * @return   array of key => value for row
      */
@@ -5057,7 +5062,7 @@ class PDO_DataObject
     *  NOTE you will get unexpected results with times like 0000-00-00 !!!
     *
     * 
-    * 
+    * @category results
     * @param   string       column of database
     * @param   format       foramt
     *
@@ -5124,7 +5129,8 @@ class PDO_DataObject
      * validate the values of the object (usually prior to inserting/updating..)
      *
      * Uses PDO_DataObject_Validate
-     *
+     * 
+     * @category build
      * @access  public
      * @return  array of validation results (where key=>value, value=false|object if it failed) or true (if they all succeeded)
      */
@@ -5142,7 +5148,7 @@ class PDO_DataObject
  
     /**
      * Gets the DB result object related to the objects active query
-     *
+     * @category intropect
      * @access public
      * @return PDOStatement|false  
      */
@@ -5165,7 +5171,7 @@ class PDO_DataObject
      *
      *eg. logging into apache error.log 
      *
-     *
+     * @category debug
      * @param    string $message - message to output
      * @param    string $logtype - bold at start
      * @param    string $level   - output level
@@ -5210,7 +5216,8 @@ class PDO_DataObject
      * eg. PDO_DataObject::debugLevel(4);
      * without arguments it just returns the existing debug level
      * It's an alias for PDO_DataObject::config('debug', $value);
-     *
+     
+     * @category debug
      * @param   int     $v  level
      * @access  public
      * @return  none
@@ -5227,6 +5234,7 @@ class PDO_DataObject
     /**
      * wrapper around throw exception.
      *
+     * @category debug
      * @param  string $message    message
      * @param  string $type       type
      * @param  Exception (optional) $previous_exception  Cause of error...
@@ -5250,7 +5258,7 @@ class PDO_DataObject
      * Free the result object.
      * and resets other variables...
      *
-     *
+     * @category debug
      * @access   public
      * @return   none
      */
@@ -5281,6 +5289,7 @@ class PDO_DataObject
      *
      * Note - this is realy only for testing - calling it will likely slow down any future calls to the database
      *
+     * @category @debug
      * @access   public
      * @return   none
      */
@@ -5317,7 +5326,7 @@ class PDO_DataObject
     * @access private
     * @return bool  object
     */
-    static function _is_null_member($obj_or_ar , $prop) 
+    static private function _is_null_member($obj_or_ar , $prop) 
     {
      	
         switch(true) {
