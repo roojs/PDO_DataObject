@@ -1,0 +1,64 @@
+{
+    "name": "reload",
+    "parent": "",
+    "title": "",
+    "permname": "",
+    "modOrder": "001",
+    "items": [
+        {
+            "name": "reload",
+            "purpose": " reload (usually called after update or insert)",
+            "stype": "function",
+            "|xns": "Roo.doc",
+            "xtype": "Entry",
+            "items": [
+                {
+                    "name": "reload",
+                    "is_static": false,
+                    "memberof": "PDO_DataObject",
+                    "returndesc": "fresh copy of the row.",
+                    "returntype": "PDO_DataObject",
+                    "|xns": "Roo.doc",
+                    "xtype": "Synopsis",
+                    "items": [
+                        {
+                            "desc": "should auto join be done on the",
+                            "is_optional": false,
+                            "name": "$autojoin",
+                            "type": "",
+                            "|xns": "Roo.doc",
+                            "xtype": "Param"
+                        }
+                    ]
+                },
+                {
+                    "stype": "desc",
+                    "|xns": "Roo.doc",
+                    "xtype": "Section",
+                    "items": [
+                        {
+                            "html": " Chainable.\n\n for example\n $object->joinAll()\n        ->load(1234)\n        ->set([ 'ex_datetime' => PDO_DataObject::sqlValue('sql', 'NOW()') ])\n        ->update()\n        ->reload(true)\n \n    \n    \n It enables you to work on the data after the database has done the update.\n\n",
+                            "|xns": "Roo.doc",
+                            "xtype": "Para"
+                        }
+                    ]
+                },
+                {
+                    "stype": "parameter",
+                    "|xns": "Roo.doc",
+                    "xtype": "Section"
+                },
+                {
+                    "stype": "return",
+                    "|xns": "Roo.doc",
+                    "xtype": "Section"
+                },
+                {
+                    "stype": "example",
+                    "|xns": "Roo.doc",
+                    "xtype": "Section"
+                }
+            ]
+        }
+    ]
+}

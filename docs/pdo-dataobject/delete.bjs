@@ -1,0 +1,64 @@
+{
+    "name": "delete",
+    "parent": "",
+    "title": "",
+    "permname": "",
+    "modOrder": "001",
+    "items": [
+        {
+            "name": "delete",
+            "purpose": " Deletes items from table which match current objects variables",
+            "stype": "function",
+            "|xns": "Roo.doc",
+            "xtype": "Entry",
+            "items": [
+                {
+                    "name": "delete",
+                    "is_static": false,
+                    "memberof": "PDO_DataObject",
+                    "returndesc": "Int (No. of rows affected) on success, false on failure, 0 on no data affected",
+                    "returntype": "mixed",
+                    "|xns": "Roo.doc",
+                    "xtype": "Synopsis",
+                    "items": [
+                        {
+                            "desc": "$useWhere",
+                            "is_optional": false,
+                            "name": "$useWhere",
+                            "type": "bool",
+                            "|xns": "Roo.doc",
+                            "xtype": "Param"
+                        }
+                    ]
+                },
+                {
+                    "stype": "desc",
+                    "|xns": "Roo.doc",
+                    "xtype": "Section",
+                    "items": [
+                        {
+                            "html": " Returns the true on success\n\n for example\n\n Designed to be extended\n\n $object = new mytable();\n $object->ID=123;\n echo $object->delete(); \/\/ builds a conditon\n\n $object = new mytable();\n $object->whereAdd('age > 12');\n $object->limit(1);\n $object->orderBy('age DESC');\n $object->delete(true); \/\/ dont use object vars, use the conditions, limit and order.\n\n             we will build the condition only using the whereAdd's.  Default is to\n             build the condition only using the object parameters.\n\n",
+                            "|xns": "Roo.doc",
+                            "xtype": "Para"
+                        }
+                    ]
+                },
+                {
+                    "stype": "parameter",
+                    "|xns": "Roo.doc",
+                    "xtype": "Section"
+                },
+                {
+                    "stype": "return",
+                    "|xns": "Roo.doc",
+                    "xtype": "Section"
+                },
+                {
+                    "stype": "example",
+                    "|xns": "Roo.doc",
+                    "xtype": "Section"
+                }
+            ]
+        }
+    ]
+}

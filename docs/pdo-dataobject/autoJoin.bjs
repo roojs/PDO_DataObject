@@ -1,0 +1,64 @@
+{
+    "name": "autoJoin",
+    "parent": "",
+    "title": "",
+    "permname": "",
+    "modOrder": "001",
+    "items": [
+        {
+            "name": "autoJoin",
+            "purpose": " autoJoin - using the links.ini file, it builds a query with all the joins ",
+            "stype": "function",
+            "|xns": "Roo.doc",
+            "xtype": "Entry",
+            "items": [
+                {
+                    "name": "autoJoin",
+                    "is_static": false,
+                    "memberof": "PDO_DataObject",
+                    "returndesc": "info about joins",
+                    "returntype": "array",
+                    "|xns": "Roo.doc",
+                    "xtype": "Synopsis",
+                    "items": [
+                        {
+                            "desc": "Configuration",
+                            "is_optional": false,
+                            "name": "$cfg",
+                            "type": "array",
+                            "|xns": "Roo.doc",
+                            "xtype": "Param"
+                        }
+                    ]
+                },
+                {
+                    "stype": "desc",
+                    "|xns": "Roo.doc",
+                    "xtype": "Section",
+                    "items": [
+                        {
+                            "html": " Note: clears and replaces the existing 'select' arguments.\n usage: \n $x = PDO_DataObject::factory('mytable');\n $x->autoJoin();\n $x->get(123); \n   will result in all of the joined data being added to the fetched object..\n \n $x = PDO_DataObject::factory('mytable');\n $x->autoJoin();\n $ar = $x->fetchAll();\n   will result in an array containing all the data from the table, and any joined tables..\n \n $x = PDO_DataObject::factory('mytable');\n $jdata = $x->autoJoin();\n $x->selectAdd(); \/\/reset..\n foreach($_REQUEST['requested_cols'] as $c) {\n    if (!isset($jdata[$c])) continue; \/\/ ignore columns not available..\n    $x->selectAdd( $jdata[$c] . ' as ' . $c);\n }\n $ar = $x->fetchAll(); \n   will result in only the columns requested being fetched...\n\n\n\n          exclude  Array of columns to exclude from results (eg. modified_by_id)\n                    Use TABLENAME.* to prevent a join occuring to a specific table.\n          include  Array of specific columns to include (none others are added to select, join is still done though)\n          links    The equivilant links.ini data for this table eg.\n                    array( 'person_id' => 'person:id', .... ) - only applied to this instance of the DataObject (used to be applied globally)\n          distinct Array of distinct columns. (note you may need to add GROUP BY for this to work)\n          \n                      cols => map of resulting {joined_tablename}.{joined_table_column_name}\n                      join_names => map of resulting {join_name_as}.{joined_table_column_name}\n                      count => the column to count on.\n",
+                            "|xns": "Roo.doc",
+                            "xtype": "Para"
+                        }
+                    ]
+                },
+                {
+                    "stype": "parameter",
+                    "|xns": "Roo.doc",
+                    "xtype": "Section"
+                },
+                {
+                    "stype": "return",
+                    "|xns": "Roo.doc",
+                    "xtype": "Section"
+                },
+                {
+                    "stype": "example",
+                    "|xns": "Roo.doc",
+                    "xtype": "Section"
+                }
+            ]
+        }
+    ]
+}

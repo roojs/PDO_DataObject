@@ -1,39 +1,55 @@
 {
-    "name": "count",
+    "name": "whereIn",
     "parent": "",
     "title": "",
     "permname": "",
     "modOrder": "001",
     "items": [
         {
-            "name": "count",
-            "purpose": " Find the number of results from a simple query",
+            "name": "whereIn",
+            "purpose": " Adds a 'IN' condition to the WHERE statement",
             "stype": "function",
             "|xns": "Roo.doc",
             "xtype": "Entry",
             "items": [
                 {
-                    "name": "count",
+                    "name": "whereIn",
                     "is_static": false,
                     "memberof": "PDO_DataObject",
-                    "returndesc": "",
-                    "returntype": "int",
+                    "returndesc": "- self",
+                    "returntype": "PDO_DataObject",
                     "|xns": "Roo.doc",
                     "xtype": "Synopsis",
                     "items": [
                         {
-                            "desc": "(optional)",
+                            "desc": "$key",
                             "is_optional": false,
-                            "name": "$countWhat",
+                            "name": "$key",
                             "type": "string",
                             "|xns": "Roo.doc",
                             "xtype": "Param"
                         },
                         {
-                            "desc": "$whereAddOnly",
+                            "desc": "$list",
                             "is_optional": false,
-                            "name": "$whereAddOnly",
-                            "type": "bool",
+                            "name": "$list",
+                            "type": "array",
+                            "|xns": "Roo.doc",
+                            "xtype": "Param"
+                        },
+                        {
+                            "desc": "$type",
+                            "is_optional": false,
+                            "name": "$type",
+                            "type": "string",
+                            "|xns": "Roo.doc",
+                            "xtype": "Param"
+                        },
+                        {
+                            "desc": "$logic",
+                            "is_optional": false,
+                            "name": "$logic",
+                            "type": "string",
                             "|xns": "Roo.doc",
                             "xtype": "Param"
                         }
@@ -45,7 +61,7 @@
                     "xtype": "Section",
                     "items": [
                         {
-                            "html": " for example\n\n $object = new mytable();\n $object->name = \"fred\";\n echo $object->count();\n echo $object->count(PDO_DataObject::WHERE_ONLY);  \/\/ dont use object vars.\n echo $object->count('distinct mycol');   count distinct mycol.\n echo $object->count('distinct mycol',PDO_DataObject::WHERE_ONLY); \/\/ dont use object vars.\n echo $object->count('distinct');      \/\/ count distinct id (eg. the primary key)\n\n\n                  (true|false => see below not on whereAddonly)\n                  (string)\n                      \"DISTINCT\" => does a distinct count on the tables 'key' column\n                      otherwise  => normally it counts primary keys - you can use \n                                    this to do things like $do->count('distinct mycol');\n                  \n                  we will build the condition only using the whereAdd's.  Default is to\n                  build the condition using the object parameters as well.\n                  \n",
+                            "html": " Chained verions of whereAddIn()\n NOTE : ALWAYS ENSURE KEY IS ESCAPED\n\n $object->whereAddIn('id', $array, 'int'); \/\/minimal usage\n $object->whereAddIn('price', $array, 'float', 'OR');  \/\/ cast to float, and call whereAdd with 'OR'\n $object->whereAddIn('name', $array, 'string');  \/\/ quote strings\n\n",
                             "|xns": "Roo.doc",
                             "xtype": "Para"
                         }

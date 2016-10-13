@@ -1,39 +1,39 @@
 {
-    "name": "count",
+    "name": "limit",
     "parent": "",
     "title": "",
     "permname": "",
     "modOrder": "001",
     "items": [
         {
-            "name": "count",
-            "purpose": " Find the number of results from a simple query",
+            "name": "limit",
+            "purpose": " Sets the Limit (Chainable)",
             "stype": "function",
             "|xns": "Roo.doc",
             "xtype": "Entry",
             "items": [
                 {
-                    "name": "count",
+                    "name": "limit",
                     "is_static": false,
                     "memberof": "PDO_DataObject",
-                    "returndesc": "",
-                    "returntype": "int",
+                    "returndesc": "(for chaining) - except 'reset' call",
+                    "returntype": "self",
                     "|xns": "Roo.doc",
                     "xtype": "Synopsis",
                     "items": [
                         {
-                            "desc": "(optional)",
+                            "desc": "$a",
                             "is_optional": false,
-                            "name": "$countWhat",
+                            "name": "$a",
                             "type": "string",
                             "|xns": "Roo.doc",
                             "xtype": "Param"
                         },
                         {
-                            "desc": "$whereAddOnly",
+                            "desc": "$b",
                             "is_optional": false,
-                            "name": "$whereAddOnly",
-                            "type": "bool",
+                            "name": "$b",
+                            "type": "string",
                             "|xns": "Roo.doc",
                             "xtype": "Param"
                         }
@@ -45,7 +45,7 @@
                     "xtype": "Section",
                     "items": [
                         {
-                            "html": " for example\n\n $object = new mytable();\n $object->name = \"fred\";\n echo $object->count();\n echo $object->count(PDO_DataObject::WHERE_ONLY);  \/\/ dont use object vars.\n echo $object->count('distinct mycol');   count distinct mycol.\n echo $object->count('distinct mycol',PDO_DataObject::WHERE_ONLY); \/\/ dont use object vars.\n echo $object->count('distinct');      \/\/ count distinct id (eg. the primary key)\n\n\n                  (true|false => see below not on whereAddonly)\n                  (string)\n                      \"DISTINCT\" => does a distinct count on the tables 'key' column\n                      otherwise  => normally it counts primary keys - you can use \n                                    this to do things like $do->count('distinct mycol');\n                  \n                  we will build the condition only using the whereAdd's.  Default is to\n                  build the condition using the object parameters as well.\n                  \n",
+                            "html": " $boject->limit(); \/\/ clear limit - returns 'previous settings.\n $object->limit(12);\n $object->limit(12,10);\n\n Note may result in an error on databases other than mysql\/postgress\/sqlite\n as there is no 'clean way' to implement it. - you should consider refering to\n your database manual to decide how you want to implement it.\n\n",
                             "|xns": "Roo.doc",
                             "xtype": "Para"
                         }

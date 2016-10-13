@@ -1,0 +1,88 @@
+{
+    "name": "joinAdd",
+    "parent": "",
+    "title": "",
+    "permname": "",
+    "modOrder": "001",
+    "items": [
+        {
+            "name": "joinAdd",
+            "purpose": " joinAdd - adds another dataobject to this, building a joined query.",
+            "stype": "function",
+            "|xns": "Roo.doc",
+            "xtype": "Entry",
+            "items": [
+                {
+                    "name": "joinAdd",
+                    "is_static": false,
+                    "memberof": "PDO_DataObject",
+                    "returndesc": "for chaining",
+                    "returntype": "PDO_DataObject",
+                    "|xns": "Roo.doc",
+                    "xtype": "Synopsis",
+                    "items": [
+                        {
+                            "desc": "$obj",
+                            "is_optional": false,
+                            "name": "$obj",
+                            "type": "optional",
+                            "|xns": "Roo.doc",
+                            "xtype": "Param"
+                        },
+                        {
+                            "desc": "$joinType",
+                            "is_optional": false,
+                            "name": "$joinType",
+                            "type": "optional",
+                            "|xns": "Roo.doc",
+                            "xtype": "Param"
+                        },
+                        {
+                            "desc": "$joinAs",
+                            "is_optional": false,
+                            "name": "$joinAs",
+                            "type": "optional",
+                            "|xns": "Roo.doc",
+                            "xtype": "Param"
+                        },
+                        {
+                            "desc": "$joinCol",
+                            "is_optional": false,
+                            "name": "$joinCol",
+                            "type": "optional",
+                            "|xns": "Roo.doc",
+                            "xtype": "Param"
+                        }
+                    ]
+                },
+                {
+                    "stype": "desc",
+                    "|xns": "Roo.doc",
+                    "xtype": "Section",
+                    "items": [
+                        {
+                            "html": " example (requires links.ini to be set up correctly)\n \/\/ get all the images for product 24\n $i = new DataObject_Image();\n $pi = new DataObjects_Product_image();\n $pi->product_id = 24; \/\/ set the product id to 24\n $i->joinAdd($pi); \/\/ add the product_image connectoin\n $i->find();\n while ($i->fetch()) {\n     \/\/ do stuff\n }\n \/\/ an example with 2 joins\n \/\/ get all the images linked with products or productgroups\n $i = new DataObject_Image();\n $pi = new DataObject_Product_image();\n $pgi = new DataObject_Productgroup_image();\n $i->joinAdd($pi);\n $i->joinAdd($pgi);\n $i->find();\n while ($i->fetch()) {\n     \/\/ do stuff\n }\n\n\n                                          If you use an array here it should be in the format:\n                                          array('local_column','remotetable:remote_column');\n                                             if remotetable does not have a definition, you should\n                                             use @ to hide the include error message..\n                                          array('local_column',  $dataobject , 'remote_column');\n                                             if array has 3 args, then second is assumed to be the linked dataobject.\n\n                                          'LEFT'|'INNER'|'RIGHT'|'' Inner is default, '' indicates \n                                          just select ... from a,b,c with no join and \n                                          links are added as where items.\n                                          \n                                          If second Argument is array, it is assumed to be an associative\n                                          array with arguments matching below = eg.\n                                          'joinType' => 'INNER',\n                                          'joinAs' => '...'\n                                          'joinCol' => ....\n                                          'useWhereAsOn' => false,\n\n                                          useful when you want to select multiple columsn\n                                          from a secondary table.\n     \n                                          if this table links to the child object in \n                                          multiple places eg.\n                                          user->friend (is a link to another user)\n                                          user->mother (is a link to another user..)\n\n           optional 'useWhereAsOn' bool   default false;\n                                          convert the where argments from the object being added\n                                          into ON arguments.\n \n \n",
+                            "|xns": "Roo.doc",
+                            "xtype": "Para"
+                        }
+                    ]
+                },
+                {
+                    "stype": "parameter",
+                    "|xns": "Roo.doc",
+                    "xtype": "Section"
+                },
+                {
+                    "stype": "return",
+                    "|xns": "Roo.doc",
+                    "xtype": "Section"
+                },
+                {
+                    "stype": "example",
+                    "|xns": "Roo.doc",
+                    "xtype": "Section"
+                }
+            ]
+        }
+    ]
+}

@@ -1,0 +1,64 @@
+{
+    "name": "find",
+    "parent": "",
+    "title": "",
+    "permname": "",
+    "modOrder": "001",
+    "items": [
+        {
+            "name": "find",
+            "purpose": " find results, either normal or crosstable",
+            "stype": "function",
+            "|xns": "Roo.doc",
+            "xtype": "Entry",
+            "items": [
+                {
+                    "name": "find",
+                    "is_static": false,
+                    "memberof": "PDO_DataObject",
+                    "returndesc": "(number of rows returned, or true if numRows fetching is not supported)",
+                    "returntype": "mixed",
+                    "|xns": "Roo.doc",
+                    "xtype": "Synopsis",
+                    "items": [
+                        {
+                            "desc": "$n",
+                            "is_optional": false,
+                            "name": "$n",
+                            "type": "boolean",
+                            "|xns": "Roo.doc",
+                            "xtype": "Param"
+                        }
+                    ]
+                },
+                {
+                    "stype": "desc",
+                    "|xns": "Roo.doc",
+                    "xtype": "Section",
+                    "items": [
+                        {
+                            "html": " for example\n\n $object = new mytable();\n $object->ID = 1;\n $object->find();\n\n\n will set $object->N to number of rows, and expects next command to fetch rows\n will return $object->N\n\n if an error occurs $object->N will be set to false and return value will also be false;\n if numRows is not supported it will return true.\n \n",
+                            "|xns": "Roo.doc",
+                            "xtype": "Para"
+                        }
+                    ]
+                },
+                {
+                    "stype": "parameter",
+                    "|xns": "Roo.doc",
+                    "xtype": "Section"
+                },
+                {
+                    "stype": "return",
+                    "|xns": "Roo.doc",
+                    "xtype": "Section"
+                },
+                {
+                    "stype": "example",
+                    "|xns": "Roo.doc",
+                    "xtype": "Section"
+                }
+            ]
+        }
+    ]
+}

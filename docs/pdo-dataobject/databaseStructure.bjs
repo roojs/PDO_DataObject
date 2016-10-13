@@ -1,0 +1,88 @@
+{
+    "name": "databaseStructure",
+    "parent": "",
+    "title": "",
+    "permname": "",
+    "modOrder": "001",
+    "items": [
+        {
+            "name": "databaseStructure",
+            "purpose": " Autoload or manually load the table definitions",
+            "stype": "function",
+            "|xns": "Roo.doc",
+            "xtype": "Entry",
+            "items": [
+                {
+                    "name": "databaseStructure",
+                    "is_static": false,
+                    "memberof": "PDO_DataObject",
+                    "returndesc": "Structure)|PEAR_Error|false     if no file exists",
+                    "returntype": "Array(databse",
+                    "|xns": "Roo.doc",
+                    "xtype": "Synopsis",
+                    "items": [
+                        {
+                            "desc": "string  name of database to assign \/ read",
+                            "is_optional": false,
+                            "name": "$database_nickname",
+                            "type": "optional",
+                            "|xns": "Roo.doc",
+                            "xtype": "Param"
+                        },
+                        {
+                            "desc": "array|false   structure of database, and keys",
+                            "is_optional": false,
+                            "name": "$inidata",
+                            "type": "optional",
+                            "|xns": "Roo.doc",
+                            "xtype": "Param"
+                        },
+                        {
+                            "desc": "array|false  table links",
+                            "is_optional": false,
+                            "name": "$linksdata",
+                            "type": "optional",
+                            "|xns": "Roo.doc",
+                            "xtype": "Param"
+                        },
+                        {
+                            "desc": "bool overwrite - normally the first two will just append",
+                            "is_optional": false,
+                            "name": "$overwrite",
+                            "type": "optional",
+                            "|xns": "Roo.doc",
+                            "xtype": "Param"
+                        }
+                    ]
+                },
+                {
+                    "stype": "desc",
+                    "|xns": "Roo.doc",
+                    "xtype": "Section",
+                    "items": [
+                        {
+                            "html": " usage :\n 1 argument - forces generator run..\n PDO_DataObject::databaseStructure(  'databasename')\n\n 2 argument - just returns the database structure - if any.\n PDO_DataObject::databaseStructure(  'databasename', false)\n \n \n 2 arguments:\n PDO_DataObject::databaseStructure(  'databasename', parse_ini_file('mydb.ini',true))\n  - set's the structure..\n  \n 3 arguments:\n PDO_DataObject::databaseStructure(  'databasename',\n                                    parse_ini_file('mydb.ini',true), \n                                    parse_ini_file('mydb.link.ini',true)); \n    \n obviously you dont have to use ini files.. (just return array similar to ini files..)\n  \n It should append to the table structure array \n\n     \n\n              or the array(tablename => array(column_name=>type)) if called with 1 argument.. (databasename)\n",
+                            "|xns": "Roo.doc",
+                            "xtype": "Para"
+                        }
+                    ]
+                },
+                {
+                    "stype": "parameter",
+                    "|xns": "Roo.doc",
+                    "xtype": "Section"
+                },
+                {
+                    "stype": "return",
+                    "|xns": "Roo.doc",
+                    "xtype": "Section"
+                },
+                {
+                    "stype": "example",
+                    "|xns": "Roo.doc",
+                    "xtype": "Section"
+                }
+            ]
+        }
+    ]
+}

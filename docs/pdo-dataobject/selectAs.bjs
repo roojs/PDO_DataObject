@@ -1,39 +1,47 @@
 {
-    "name": "count",
+    "name": "selectAs",
     "parent": "",
     "title": "",
     "permname": "",
     "modOrder": "001",
     "items": [
         {
-            "name": "count",
-            "purpose": " Find the number of results from a simple query",
+            "name": "selectAs",
+            "purpose": " Adds multiple Columns or objects to select with formating.",
             "stype": "function",
             "|xns": "Roo.doc",
             "xtype": "Entry",
             "items": [
                 {
-                    "name": "count",
+                    "name": "selectAs",
                     "is_static": false,
                     "memberof": "PDO_DataObject",
-                    "returndesc": "",
-                    "returntype": "int",
+                    "returndesc": "self",
+                    "returntype": "PDO_DataObject",
                     "|xns": "Roo.doc",
                     "xtype": "Synopsis",
                     "items": [
                         {
-                            "desc": "(optional)",
+                            "desc": "the array or object, or tablename(for factory) to take column names from.",
                             "is_optional": false,
-                            "name": "$countWhat",
+                            "name": "$from",
+                            "type": "null",
+                            "|xns": "Roo.doc",
+                            "xtype": "Param"
+                        },
+                        {
+                            "desc": "format in sprintf format (use %s for the colname)",
+                            "is_optional": false,
+                            "name": "$format",
                             "type": "string",
                             "|xns": "Roo.doc",
                             "xtype": "Param"
                         },
                         {
-                            "desc": "$whereAddOnly",
+                            "desc": "as an array.",
                             "is_optional": false,
-                            "name": "$whereAddOnly",
-                            "type": "bool",
+                            "name": "$tableName",
+                            "type": "send",
                             "|xns": "Roo.doc",
                             "xtype": "Param"
                         }
@@ -45,7 +53,7 @@
                     "xtype": "Section",
                     "items": [
                         {
-                            "html": " for example\n\n $object = new mytable();\n $object->name = \"fred\";\n echo $object->count();\n echo $object->count(PDO_DataObject::WHERE_ONLY);  \/\/ dont use object vars.\n echo $object->count('distinct mycol');   count distinct mycol.\n echo $object->count('distinct mycol',PDO_DataObject::WHERE_ONLY); \/\/ dont use object vars.\n echo $object->count('distinct');      \/\/ count distinct id (eg. the primary key)\n\n\n                  (true|false => see below not on whereAddonly)\n                  (string)\n                      \"DISTINCT\" => does a distinct count on the tables 'key' column\n                      otherwise  => normally it counts primary keys - you can use \n                                    this to do things like $do->count('distinct mycol');\n                  \n                  we will build the condition only using the whereAdd's.  Default is to\n                  build the condition using the object parameters as well.\n                  \n",
+                            "html": " $object->selectAs(null); \/\/ adds \"table.colnameA as colnameA,table.colnameB as colnameB,......\"\n                      \/\/ note with null it will also clear the '*' default select\n $object->selectAs(array('a','b'),'%s_x'); \/\/ adds \"a as a_x, b as b_x\"\n $object->selectAs(array('a','b'),'ddd_%s','ccc'); \/\/ adds \"ccc.a as ddd_a, ccc.b as ddd_b\"\n $object->selectAdd($object,'prefix_%s'); \/\/ calls $object->get_table and adds it all as\n                  objectTableName.colnameA as prefix_colnameA\n $object->selectAdd('another_table','prefix_%s'); \/\/ calls $object->get_table and adds it all as\n                  objectTableName.colnameA as prefix_colnameA\n\n",
                             "|xns": "Roo.doc",
                             "xtype": "Para"
                         }

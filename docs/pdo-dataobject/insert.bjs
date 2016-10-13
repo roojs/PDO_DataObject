@@ -1,0 +1,55 @@
+{
+    "name": "insert",
+    "parent": "",
+    "title": "",
+    "permname": "",
+    "modOrder": "001",
+    "items": [
+        {
+            "name": "insert",
+            "purpose": " Insert the current objects variables into the database",
+            "stype": "function",
+            "|xns": "Roo.doc",
+            "xtype": "Entry",
+            "items": [
+                {
+                    "name": "insert",
+                    "is_static": false,
+                    "memberof": "PDO_DataObject",
+                    "returndesc": "when auto increment or sequence used, otherwise true on success",
+                    "returntype": "int|boolean",
+                    "|xns": "Roo.doc",
+                    "xtype": "Synopsis",
+                    "items": []
+                },
+                {
+                    "stype": "desc",
+                    "|xns": "Roo.doc",
+                    "xtype": "Section",
+                    "items": [
+                        {
+                            "html": " Returns the ID of the inserted element (if auto increment or sequences are used.)\n\n for example\n\n Designed to be extended\n\n $object = new mytable();\n $object->name = \"fred\";\n echo $object->insert();\n\n",
+                            "|xns": "Roo.doc",
+                            "xtype": "Para"
+                        }
+                    ]
+                },
+                {
+                    "stype": "parameter",
+                    "|xns": "Roo.doc",
+                    "xtype": "Section"
+                },
+                {
+                    "stype": "return",
+                    "|xns": "Roo.doc",
+                    "xtype": "Section"
+                },
+                {
+                    "stype": "example",
+                    "|xns": "Roo.doc",
+                    "xtype": "Section"
+                }
+            ]
+        }
+    ]
+}

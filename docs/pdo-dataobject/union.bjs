@@ -1,39 +1,39 @@
 {
-    "name": "count",
+    "name": "union",
     "parent": "",
     "title": "",
     "permname": "",
     "modOrder": "001",
     "items": [
         {
-            "name": "count",
-            "purpose": " Find the number of results from a simple query",
+            "name": "union",
+            "purpose": " union  - adds another dataobject to this, building a unioned query.",
             "stype": "function",
             "|xns": "Roo.doc",
             "xtype": "Entry",
             "items": [
                 {
-                    "name": "count",
+                    "name": "union",
                     "is_static": false,
                     "memberof": "PDO_DataObject",
                     "returndesc": "",
-                    "returntype": "int",
+                    "returntype": "",
                     "|xns": "Roo.doc",
                     "xtype": "Synopsis",
                     "items": [
                         {
-                            "desc": "(optional)",
+                            "desc": "object   the union object - leave blank to reset.",
                             "is_optional": false,
-                            "name": "$countWhat",
-                            "type": "string",
+                            "name": "$obj",
+                            "type": "",
                             "|xns": "Roo.doc",
                             "xtype": "Param"
                         },
                         {
-                            "desc": "$whereAddOnly",
+                            "desc": "$is_all",
                             "is_optional": false,
-                            "name": "$whereAddOnly",
-                            "type": "bool",
+                            "name": "$is_all",
+                            "type": "optional",
                             "|xns": "Roo.doc",
                             "xtype": "Param"
                         }
@@ -45,7 +45,7 @@
                     "xtype": "Section",
                     "items": [
                         {
-                            "html": " for example\n\n $object = new mytable();\n $object->name = \"fred\";\n echo $object->count();\n echo $object->count(PDO_DataObject::WHERE_ONLY);  \/\/ dont use object vars.\n echo $object->count('distinct mycol');   count distinct mycol.\n echo $object->count('distinct mycol',PDO_DataObject::WHERE_ONLY); \/\/ dont use object vars.\n echo $object->count('distinct');      \/\/ count distinct id (eg. the primary key)\n\n\n                  (true|false => see below not on whereAddonly)\n                  (string)\n                      \"DISTINCT\" => does a distinct count on the tables 'key' column\n                      otherwise  => normally it counts primary keys - you can use \n                                    this to do things like $do->count('distinct mycol');\n                  \n                  we will build the condition only using the whereAdd's.  Default is to\n                  build the condition using the object parameters as well.\n                  \n",
+                            "html": " (Chainable)\n \n usage:  \n $doTable1 = PDO_DataObject::factory(\"table1\");\n $doTable2 = PDO_DataObject::factory(\"table2\");\n \n $doTable1->selectAdd();\n $doTable1->selectAdd(\"col1,col2\");\n $doTable1->whereAdd(\"col1 > 100\");\n $doTable1->orderBy(\"col1\");\n\n $doTable2->selectAdd();\n $doTable2->selectAdd(\"col1, col2\");\n $doTable2->whereAdd(\"col2 = 'v'\");\n \n $doTable1->unionAdd($doTable2);\n $doTable1->find();\n \n Note: this model may be a better way to implement joinAdd?, eg. do the building in find?\n \n \n",
                             "|xns": "Roo.doc",
                             "xtype": "Para"
                         }

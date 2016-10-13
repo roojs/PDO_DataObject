@@ -1,39 +1,39 @@
 {
-    "name": "count",
+    "name": "formatValue",
     "parent": "",
     "title": "",
     "permname": "",
     "modOrder": "001",
     "items": [
         {
-            "name": "count",
-            "purpose": " Find the number of results from a simple query",
+            "name": "formatValue",
+            "purpose": "  standard formated get* implementation.",
             "stype": "function",
             "|xns": "Roo.doc",
             "xtype": "Entry",
             "items": [
                 {
-                    "name": "count",
+                    "name": "formatValue",
                     "is_static": false,
                     "memberof": "PDO_DataObject",
-                    "returndesc": "",
-                    "returntype": "int",
+                    "returndesc": "Description",
+                    "returntype": "true",
                     "|xns": "Roo.doc",
                     "xtype": "Synopsis",
                     "items": [
                         {
-                            "desc": "(optional)",
+                            "desc": "column of database",
                             "is_optional": false,
-                            "name": "$countWhat",
+                            "name": "$col",
                             "type": "string",
                             "|xns": "Roo.doc",
                             "xtype": "Param"
                         },
                         {
-                            "desc": "$whereAddOnly",
+                            "desc": "foramt",
                             "is_optional": false,
-                            "name": "$whereAddOnly",
-                            "type": "bool",
+                            "name": "$format",
+                            "type": "format",
                             "|xns": "Roo.doc",
                             "xtype": "Param"
                         }
@@ -45,7 +45,7 @@
                     "xtype": "Section",
                     "items": [
                         {
-                            "html": " for example\n\n $object = new mytable();\n $object->name = \"fred\";\n echo $object->count();\n echo $object->count(PDO_DataObject::WHERE_ONLY);  \/\/ dont use object vars.\n echo $object->count('distinct mycol');   count distinct mycol.\n echo $object->count('distinct mycol',PDO_DataObject::WHERE_ONLY); \/\/ dont use object vars.\n echo $object->count('distinct');      \/\/ count distinct id (eg. the primary key)\n\n\n                  (true|false => see below not on whereAddonly)\n                  (string)\n                      \"DISTINCT\" => does a distinct count on the tables 'key' column\n                      otherwise  => normally it counts primary keys - you can use \n                                    this to do things like $do->count('distinct mycol');\n                  \n                  we will build the condition only using the whereAdd's.  Default is to\n                  build the condition using the object parameters as well.\n                  \n",
+                            "html": "  BC Break: that the standard date formating is different from DB_DataObject.\n\n   \n\n  with formaters..\n supported formaters:  \n   date\/time : d\/m\/m (eg. php strftime) or pear::Date \n   numbers   : %02d (eg. sprintf)\n  NOTE you will get unexpected results with times like 0000-00-00 !!!\n\n \n \n\n",
                             "|xns": "Roo.doc",
                             "xtype": "Para"
                         }

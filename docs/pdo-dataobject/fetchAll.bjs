@@ -1,0 +1,80 @@
+{
+    "name": "fetchAll",
+    "parent": "",
+    "title": "",
+    "permname": "",
+    "modOrder": "001",
+    "items": [
+        {
+            "name": "fetchAll",
+            "purpose": " fetches all results as an array,",
+            "stype": "function",
+            "|xns": "Roo.doc",
+            "xtype": "Entry",
+            "items": [
+                {
+                    "name": "fetchAll",
+                    "is_static": false,
+                    "memberof": "PDO_DataObject",
+                    "returndesc": "format dependant on arguments, may be empty",
+                    "returntype": "array",
+                    "|xns": "Roo.doc",
+                    "xtype": "Synopsis",
+                    "items": [
+                        {
+                            "desc": "$k",
+                            "is_optional": false,
+                            "name": "$k",
+                            "type": "false",
+                            "|xns": "Roo.doc",
+                            "xtype": "Param"
+                        },
+                        {
+                            "desc": "$v",
+                            "is_optional": false,
+                            "name": "$v",
+                            "type": "false",
+                            "|xns": "Roo.doc",
+                            "xtype": "Param"
+                        },
+                        {
+                            "desc": "method to call on each result to get array value (eg. 'toArray')",
+                            "is_optional": false,
+                            "name": "$method",
+                            "type": "",
+                            "|xns": "Roo.doc",
+                            "xtype": "Param"
+                        }
+                    ]
+                },
+                {
+                    "stype": "desc",
+                    "|xns": "Roo.doc",
+                    "xtype": "Section",
+                    "items": [
+                        {
+                            "html": " return format is dependant on args.\n if selectAdd() has not been called on the object, then it will add the correct columns to the query.\n\n\n A) ONE COLUMN ARRAY - Array of values (eg. a list of 'id')\n\n $x = PDO_DataObject::factory('mytable');\n $x->whereAdd('something = 1')\n $ar = $x->fetchAll('id');\n -- returns array(1,2,3,4,5)\n\n B) ONE COLUMN ARRAY - Fetch the first column (1st argument = true)\n\n $x = PDO_DataObject::factory('mytable');\n $x->select('id')\n $x->whereAdd('something = 1')\n $ar = $x->fetchAll(true);\n -- returns array(1,2,3,4,5)\n    \n C) ONE COLUMN ARRAY - Array of values (using selectAdd)\n\n $x = PDO_DataObject::factory('mytable');\n $x->whereAdd('something = 1');\n $x->select('distinct(group_id) as group_id');\n $ar = $x->fetchAll('group_id');\n -- returns array(1,2,3,4,5)\n\n\n \n D) ASSOCIATIVE ARRAY - A key=>value associative array\n\n $x = PDO_DataObject::factory('mytable');\n $x->whereAdd('something = 1')\n $ar = $x->fetchAll('id','name');\n -- returns array(1=>'fred',2=>'blogs',3=> .......\n\n \n E) array of objects -- NO ARGUMENTS\n $x = PDO_DataObject::factory('mytable');\n $x->whereAdd('something = 1');\n $ar = $x->fetchAll();\n     \n F) array of objects -- USING property as key (eg. {\n $x = PDO_DataObject::factory('mytable');\n $ar = $x->fetchAll(false, 'email');\n   results in  [ { fred@example.com=> {object} }, {brian@example.com=> {object} }, .... ]\n\n\n G) array of objects -- USING primary as key (eg. {\n $x = PDO_DataObject::factory('mytable');\n $ar = $x->fetchAll(false, true);\n   results in  [ 23=> {object} }, 24=> {object} }, .... ]\n\n\n\n H) interable via closure  (closure is called with a clone as scope?)\n $x = PDO_DataObject::factory('mytable');\n $ar = $x->fetchAll(function () { $this->snapshot()->set(['xxx' => 2])->update(); } );\n\n I) array of associative arrays - No child dataobjects created... fetchAllAssoc()\n $x = PDO_DataObject::factory('mytable');\n $x->whereAdd('something = 1');\n $ar = $x->fetchAll(false,false, true);\n  returns [ { a=>1 }, {a=>2}, .... ]\n\n J) array of associative arrays call by method...\n $x = PDO_DataObject::factory('mytable');\n $x->whereAdd('something = 1');\n $ar = $x->fetchAll(false,false,'toArray');\n\n\n",
+                            "|xns": "Roo.doc",
+                            "xtype": "Para"
+                        }
+                    ]
+                },
+                {
+                    "stype": "parameter",
+                    "|xns": "Roo.doc",
+                    "xtype": "Section"
+                },
+                {
+                    "stype": "return",
+                    "|xns": "Roo.doc",
+                    "xtype": "Section"
+                },
+                {
+                    "stype": "example",
+                    "|xns": "Roo.doc",
+                    "xtype": "Section"
+                }
+            ]
+        }
+    ]
+}
