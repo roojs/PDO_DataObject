@@ -3369,7 +3369,8 @@ class PDO_DataObject
  
     /**
      * Builds the WHERE based on the values of of this object (used to be _build_condition)
-     *
+     * 
+     * @category build
      * @param   mixed   $keys (defaults to this->tableColumns())
      * @param   array   $filter (used by update to only uses keys in this filter list).
      * @param   array   $negative_filter (used by delete to prevent deleting using the keys mentioned..)
@@ -3479,6 +3480,7 @@ class PDO_DataObject
      *
      * It's needed, as PHP5 (later versions started enfocing static/calling etc..)
      *
+     * @category create
      * @access public
      * @throws PDO_DataObject_Exception for many reasons... 
      * @return PDO_DataObject
@@ -3501,7 +3503,7 @@ class PDO_DataObject
      *
      * Experimental Support for Multi-Database factory eg. mydatabase.mytable
      * 
-     * 
+     * @category create
      * @param  string  $table  tablename or database_nickname/tablename  
      * @access public
      * @throws PDO_DataObject_Exception for many reasons... 
@@ -3578,6 +3580,7 @@ class PDO_DataObject
     /**
      * table to ClassName
      * 
+     * @access private
      * @param  string  $table  tablename  
      * @throws PDO_DataObject_Exception
      *              database not set or does not exist.
