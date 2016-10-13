@@ -352,7 +352,7 @@ class PDO_DataObject
      * Normally you would extend this class an fill it up with methods that relate to actions on that table
      *
      * @param string|array    either tablename or databasename/tablename or array(database,tablename)
-     *
+     * @category build
      */
     function __construct($cfg = false)
     {
@@ -398,8 +398,8 @@ class PDO_DataObject
      *  Database specific behaviours relating to connect?
      *   * ?????
      * 
-     *
-     * @access private
+     * @category introspect
+     * @access public
      * @return PDO Object the connection
      */
     final function PDO()
@@ -638,7 +638,7 @@ class PDO_DataObject
      * SET multiple values (returns 'old' configuration)
      * $old_array = PDO_DataObject::config( array( 'schema_location' => '' ));
      * 
-     * 
+     * @category config
      * @param   array  key/value 
      * @param   mixed value 
      * @static
@@ -696,7 +696,7 @@ class PDO_DataObject
     /* ---------------- ---------------- database  portability methods -------------------------------- */
     /**
      * Quote identifiers - similar to escape - but for identifiers, like column names.
-     *
+     * @category introspect
      * @param string $identifier
      * @result string wrapped string  
      *
@@ -731,6 +731,7 @@ class PDO_DataObject
      *
      * Note: the original code does determine 
      *
+     * @category introspect
      * @param string $sql the query to modify
      * @param bool $manip - is the query a manipluation?
      * @return string - the modified string
@@ -809,7 +810,8 @@ class PDO_DataObject
      * if no value is entered, it is assumed that $key is a value
      * and get will then use the first key in keys()
      * to obtain the key.
-     *
+     * 
+     * @category fetch
      * @param  mixed  $k column (or primary key value)
      * @param  mixed $v (optional) value
      * @throws PDO_DataObject_Exception
@@ -857,7 +859,8 @@ class PDO_DataObject
      * if no value is entered, it is assumed that $key is a value
      * and get will then use the first key in keys()
      * to obtain the key.
-     *
+     * 
+     * @category fetch
      * @param   string  $k column
      * @param   string  $v value
      * @throws PDO_DataObject_Exception (if not matching row returned)
@@ -903,6 +906,7 @@ class PDO_DataObject
      *    
      * It enables you to work on the data after the database has done the update.
      *
+     * @category fetch
      * @param  $autojoin  should auto join be done on the 
      * @throws PDO_DataObject_Exception (if not matching row returned)
      * @access  public
@@ -923,6 +927,7 @@ class PDO_DataObject
      *
      * To save a bit of typing,
      *
+     * @category results
      * $id = $do->pid();
      * 
      * @throws PDO_DataObject_Exception (if the table does not have a pid or is called before insert.)
@@ -949,7 +954,8 @@ class PDO_DataObject
 
     /**
      * build the basic select query. (was _build_select)
-     * 
+     *
+     * @category introspect
      * @return string the SQL select query built from the properties.
      * @param boolean flag to block recusive calling of unions..
      * @access public
@@ -1021,6 +1027,7 @@ class PDO_DataObject
      * if an error occurs $object->N will be set to false and return value will also be false;
      * if numRows is not supported it will return true.
      * 
+     * @category fetch
      * @throws PDO_DataObject_Exception - if run twice on the same object, or tablename missing in class.
      * @param   boolean $n Fetch first result
      * @access  public
@@ -1118,8 +1125,11 @@ class PDO_DataObject
      * function fetch () {
      *    $ret = parent::fetch();
      *    $this->date_formated = date('dmY',$this->date);
-     *    return $ret;
+     *    retur
+     *    n $ret;
      * }
+     * 
+     * @category fetch
      * @throws PDO_DataObject_Exception called without query being run, 
      * @access  public
      * @return  boolean on success
@@ -1333,7 +1343,7 @@ class PDO_DataObject
      * $x->whereAdd('something = 1');
      * $ar = $x->fetchAll(false,false,'toArray');
      *
-     *
+     * @category fetch
      * @param    string|false  $k key
      * @param    string|false  $v value
      * @param    string|false  true|$method method to call on each result to get array value (eg. 'toArray')
@@ -1440,6 +1450,8 @@ class PDO_DataObject
      * fetches all results as an array of associative  arrays, without creating Child DataObjects
      *
      * It's an alias for fetchAll(false,false, true)
+     * 
+     * @category fetch
      * @access  public
      * @return  array  array of associative arrays (note does note create child dataobjects.
      */
@@ -1458,7 +1470,8 @@ class PDO_DataObject
      * $object->whereAdd(); //reset or cleaer ewhwer
      * $object->whereAdd("ID > 20");
      * $object->whereAdd("age > 20","OR");
-     *
+     * 
+     * @category build
      * @param    string  $cond condition or false to reset.
      * @param    string  $logic optional logic "OR" (defaults to "AND")
      * @throws   PDO_DataObject_Exception running on object with results., or invalid arguments
@@ -1506,6 +1519,7 @@ class PDO_DataObject
      *     ->where("ID > 20");
      *     ->where("age > 20","OR");
      *
+     * @category build
      * @param    string  $cond condition or false to reset.
      * @param    string  $logic optional logic "OR" (defaults to "AND")
      * @access   public
@@ -1526,6 +1540,7 @@ class PDO_DataObject
     * $object->whereAddIn('price', $array, 'float', 'OR');  // cast to float, and call whereAdd with 'OR'
     * $object->whereAddIn('name', $array, 'string');  // quote strings
     *
+    * @category build
     * @param    string  $key  key column to match
     * @param    array  $list  list of values to match
     * @param    string  $type  string|int|integer|float|bool  cast to type. 
@@ -1566,6 +1581,7 @@ class PDO_DataObject
     * $object->whereAddIn('price', $array, 'float', 'OR');  // cast to float, and call whereAdd with 'OR'
     * $object->whereAddIn('name', $array, 'string');  // quote strings
     *
+    * @category build
     * @param    string  $key  key column to match
     * @param    array  $list  list of values to match
     * @param    string  $type  string|int|integer|float|bool  cast to type. 
@@ -1587,6 +1603,7 @@ class PDO_DataObject
      * $object->orderBy("ID");
      * $object->orderBy("ID,age");
      *
+     * @category build
      * @param  string $order  Order
      * @access public
      * @return PDO_DataObject self
@@ -1623,6 +1640,7 @@ class PDO_DataObject
      * $object->groupBy("ID DESC");
      * $object->groupBy("ID,age");
      *
+     * @category build
      * @param  string  $group  Grouping
      * @access public
      * @return PDO_DataObject self
@@ -1659,6 +1677,7 @@ class PDO_DataObject
      * $object->having(); //reset the grouping
      * $object->having("sum(value) > 0 ");
      *
+     * @category build
      * @param  string  $having  condition
      * @access public
      * @return PDO_DataObject self
@@ -1703,7 +1722,8 @@ class PDO_DataObject
      *
      * Note do not put unfiltered user input into theis method.
      * This is mysql specific at present? - might need altering to support other databases.
-     * 
+     *
+     * @category build
      * @param  string|array  $index  index or indexes to use.
      * @access public
      * @return PDO_DataObject self
@@ -1755,7 +1775,7 @@ class PDO_DataObject
       * 
      * Note: this model may be a better way to implement joinAdd?, eg. do the building in find?
      * 
-     * 
+     * @category build
      * @param             $obj       object|false the union object, or false to reset
      * @param    optional $is_all    string 'ALL' to do all.
      * @returns           $obj       object|array the added object, or old list if reset.
@@ -1797,7 +1817,7 @@ class PDO_DataObject
       * 
      * Note: this model may be a better way to implement joinAdd?, eg. do the building in find?
      * 
-     * 
+     * @category build
      * @param             $obj       object   the union object - leave blank to reset.
      * @param    optional $is_all    string 'ALL' to do all.
      * @returns           PDO_DataObject        self
@@ -1819,7 +1839,8 @@ class PDO_DataObject
      * Note may result in an error on databases other than mysql/postgress/sqlite
      * as there is no 'clean way' to implement it. - you should consider refering to
      * your database manual to decide how you want to implement it.
-     *
+     
+     * @category build
      * @param  string $a  limit start (or number), or blank to reset
      * @param  string $b  number
      * @access public
@@ -1864,7 +1885,8 @@ class PDO_DataObject
      *
      * to prepend distict:
      * $object->selectAdd('distinct ' . $object->selectAdd());
-     *
+     * 
+     * @category build
      * @param  string  $k
      * @access public
      * @return mixed null or old string if you reset it.
@@ -1914,6 +1936,7 @@ class PDO_DataObject
      * to prepend distict:
      * $object->selectAdd('distinct ' . $object->selectAdd());
      *
+     * @category build
      * @param  string  $k
      * @access public
      * @return PDO_DataObject self
@@ -1940,6 +1963,7 @@ class PDO_DataObject
      * $object->selectAdd('another_table','prefix_%s'); // calls $object->get_table and adds it all as
      *                  objectTableName.colnameA as prefix_colnameA
      *
+     * @category build
      * @param  array|object|string|null the array or object, or tablename(for factory) to take column names from.
      * @param  string           format in sprintf format (use %s for the colname)
      * @param  string           table name eg. if you have joinAdd'd or send $from as an array.
@@ -2004,6 +2028,7 @@ class PDO_DataObject
      * $object->name = "fred";
      * echo $object->insert();
      *
+     * @category crud
      * @access public
      * @throws PDO_DataObject_Error
      * @return int|boolean  when auto increment or sequence used, otherwise true on success
@@ -2257,7 +2282,7 @@ class PDO_DataObject
      *
      *
      *
-     *
+     * @category crud
      * @param  object|boolean (optional)  dataobject | PDO_DataObject::WHERE_ONLY - used to only update changed items.
      * @access public
      * @throws PDO_DataObject_Error
@@ -2453,8 +2478,9 @@ class PDO_DataObject
     /**
      *  Save data to database (simple wrapper around insert/update)
      *  recommend it is used with snapshot()
-     *  Chainable? 
-     * 
+     *  Chainable
+     *
+     * @category crud
      *  Uses primary id to determine if data should be updated or inserted.
      *  @param  PDO_DAtaObject (optional) original snapshot of object, before it was changed.
      *  @returns PDO_DAtaObject  self  
@@ -2477,13 +2503,15 @@ class PDO_DataObject
     }
     /**
      *  snapshot the objects state (for updating later)
-     *  Chainable? 
+     *  Chainable
+     *
+     *  When you use 'update' or save, this makes a copy, so you do not need to clone/pass arguments to save or
+     *  
+     * @category crud
+     * @returns PDO_DAtaObject  self
      * 
-     *  When you use 'update' or save, this makes a copy, so you do not need to clone/pass arguments to save or  
-     * 
-     *  @returns PDO_DAtaObject  self  
      */
-    function snapshot()
+    final function snapshot()
     {
         $keys = $this->keys();
         if (!$keys) {            
@@ -2520,6 +2548,7 @@ class PDO_DataObject
      * $object->orderBy('age DESC');
      * $object->delete(true); // dont use object vars, use the conditions, limit and order.
      *
+     * @category crud
      * @param bool $useWhere (optional) If PDO_DataObject::WHERE_ONLY is passed in then
      *             we will build the condition only using the whereAdd's.  Default is to
      *             build the condition only using the object parameters.
@@ -2609,7 +2638,8 @@ class PDO_DataObject
      * @param bool      $whereAddOnly (optional) If PDO_DataObject::WHERE_ONLY is passed in then
      *                  we will build the condition only using the whereAdd's.  Default is to
      *                  build the condition using the object parameters as well.
-     *                  
+     *
+     * @category fetch
      * @access public
      * @return int
      */
@@ -2675,7 +2705,8 @@ class PDO_DataObject
      * sends raw query to database - returns 
      *
      * set's $this->_result -available publically using $dataobject->result();
-     *
+     
+     * @category fetch
      * @param  string  $string  SQL Query
      * @access public
      * @throws PDO_Dataobject_Exception
@@ -2834,7 +2865,7 @@ class PDO_DataObject
      *
      * return value excludes the outer quotes - use $do->PDO->quote($string) - if you want to include them.
      * 
-     *
+     * @category build
      * @param  string  $string  value to be escaped 
      * @param  bool $likeEscape  escapes % and _ as well. - so like queries can be protected.
      * @access public
@@ -2888,6 +2919,7 @@ class PDO_DataObject
      * @param optional array|false  table links
      * @param optional bool overwrite - normally the first two will just append
      *
+     * @category introspect
      * @access public
      * @return Array(databse Structure)|PEAR_Error|false     if no file exists
      *              or the array(tablename => array(column_name=>type)) if called with 1 argument.. (databasename)
@@ -3057,7 +3089,8 @@ class PDO_DataObject
      * class can be set by using proxy = {classname}::
      * We do not really care if you have implemented it correctly....????
      * you can modify the class by setting proxy to {YOUR CLASS}::{your method}
-     *
+     * 
+     * @category fetch
      * @return PDO_DataObject_Generator
      */
     
@@ -4379,18 +4412,24 @@ class PDO_DataObject
 
     /**
      * autoJoin - using the links.ini file, it builds a query with all the joins 
-     * Note: clears and replaces the existing 'select' arguments.
-     * usage: 
+     * Note: it will clears and replace the existing settings for 'select' arguments.
+     * 
+     * usage:
+     * ```
      * $x = PDO_DataObject::factory('mytable');
      * $x->autoJoin();
-     * $x->get(123); 
+     * $x->get(123);
+     * ```
      *   will result in all of the joined data being added to the fetched object..
-     * 
+     *   
+     * ```
      * $x = PDO_DataObject::factory('mytable');
      * $x->autoJoin();
      * $ar = $x->fetchAll();
+     * ```
      *   will result in an array containing all the data from the table, and any joined tables..
-     * 
+     *   
+     * ```
      * $x = PDO_DataObject::factory('mytable');
      * $jdata = $x->autoJoin();
      * $x->selectAdd(); //reset..
@@ -4398,23 +4437,24 @@ class PDO_DataObject
      *    if (!isset($jdata[$c])) continue; // ignore columns not available..
      *    $x->selectAdd( $jdata[$c] . ' as ' . $c);
      * }
-     * $ar = $x->fetchAll(); 
+     * $ar = $x->fetchAll();
+     * ```
      *   will result in only the columns requested being fetched...
      *
      *
      *
      * @param     array     Configuration
-     *          exclude  Array of columns to exclude from results (eg. modified_by_id)
+     *       + exclude:  Array of columns to exclude from results (eg. modified_by_id)
      *                    Use TABLENAME.* to prevent a join occuring to a specific table.
-     *          include  Array of specific columns to include (none others are added to select, join is still done though)
-     *          links    The equivilant links.ini data for this table eg.
+     *       + include:  Array of specific columns to include (none others are added to select, join is still done though)
+     *       + links:    The equivilant links.ini data for this table eg.
      *                    array( 'person_id' => 'person:id', .... ) - only applied to this instance of the DataObject (used to be applied globally)
-     *          distinct Array of distinct columns. (note you may need to add GROUP BY for this to work)
+     *       + distinct: Array of distinct columns. (note you may need to add GROUP BY for this to work)
      *          
      * @return   array      info about joins
-     *                      cols => map of resulting {joined_tablename}.{joined_table_column_name}
-     *                      join_names => map of resulting {join_name_as}.{joined_table_column_name}
-     *                      count => the column to count on.
+     *       + cols:        map of resulting {joined_tablename}.{joined_table_column_name}
+     *       + join_names:  map of resulting {join_name_as}.{joined_table_column_name}
+     *       + count:       the column to count on.
      * @access   public
      */
     function autoJoin($cfg = array())
