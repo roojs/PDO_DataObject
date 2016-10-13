@@ -3772,7 +3772,8 @@ class PDO_DataObject
     * Experimental... - 
     * Should look a bit like
     *       [local_col_name] => "related_tablename:related_col_name"
-    * 
+    *
+    * @category join
     * @param    array $new_links optional - if used it will only set it for the current instance, not globally, 
                            use databaseStructure if you need to do that.
     * 
@@ -3918,7 +3919,7 @@ class PDO_DataObject
      *     $this->link('company_id', $set);
      *  }
      *
-     *
+     * @category join
      * @param  string $column  which column to get or set  (or the link specification)           
      * @param  mixed $set_value (optional)   int or DataObject
      * @author Alan Knowles
@@ -3937,6 +3938,7 @@ class PDO_DataObject
     /**
      * load related objects
      * @depricated
+     * @category join
      * This is only in for compatibility ( not supported anymore )
      */
     function applyLinks($format = '_%s')
@@ -3952,6 +3954,7 @@ class PDO_DataObject
     /**
      * linkArray
      * @depricated
+     * @category join
      * This is only in for compatibility ( not supported anymore )
      */
     function linkArray($row, $table = null)
@@ -4024,7 +4027,7 @@ class PDO_DataObject
      *                                          convert the where argments from the object being added
      *                                          into ON arguments.
      * 
-     * 
+     * @category join
      * @return   PDO_DataObject                 for chaining
      * @throws   PDO_DataObject_Exception       if it can not work out how to join...
      * @access   public
