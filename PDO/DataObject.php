@@ -3112,7 +3112,7 @@ class PDO_DataObject
     /**
      * Return or assign the name of the current table
      *
-     *
+     * @category introspect
      * @param   string optinal table name to set
      * @access public
      * @return string The name of the current table
@@ -3136,6 +3136,7 @@ class PDO_DataObject
      * Return or assign the nickname of the current database
      * If you need the real database - use PDO()->dsn['database_name']
      *
+     * @category introspect
      * @param   string optional database name to set
      * @access public
      * @return string The name of the current database
@@ -3151,7 +3152,13 @@ class PDO_DataObject
         
         return $this->_database_nickname;
     }
-    
+    /**
+     * BC for DB_DataObjects
+     * this has been replaced with tableColumns
+     *
+     * @category introspect
+     * @throws an error always..
+     */    
     final function table()
     {
         $this->raise("
