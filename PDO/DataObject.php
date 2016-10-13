@@ -5370,7 +5370,7 @@ class PDO_DataObject
     * @access private
     * @return bool  object
     */
-    static function _is_null($value) 
+    static private function _is_null($value) 
     {
      	
         $null_strings =  self::$config['enable_null_strings'] !== false;
