@@ -7,8 +7,7 @@ create = new Roo.XComponent({
  _strings : {
   '72caaab8039d8b75a86f805743b3716c' :"Creating instances of DataObjects",
   '6ed348e04674567827e341bb5b6d9d82' :"Example of using PDO_DataObjects",
-  'a2a4c78ae5a110e9467fe679033c6d0b' :"<p>\nPDO_DataObjects was designed to be used with the factory method by default.\nWhile you can just create an instance of your child class, factory offers a number of advantages.\n</p>\n<ul>\n<li>Support for modular development, where table references come from multiple locations.\n<li>Different modules can add features to existing tables \n<li>Table aliasing, so you can rename tables, and alias the names\n</ul>\n\n",
-  'd6aa8be6ff38aa217305484e5dd38a88' :"<p>\nWhat that code does should be reasonably clear\n</p>\n<ul>\n<li>Load, and create an instance of the 'events' class\n<li>fetch the record with the primary ID = 3523\n<li>set the value of 'action' to 'testing'\n<li>perform a database update\n</ul>\n\n<p>\nMost methods in PDO_DataObjects support chaining, except on methods which are designed to be\n compatibile with DB_DataObjects.\n</p>\n\n\n"
+  'a2a4c78ae5a110e9467fe679033c6d0b' :"<p>\nPDO_DataObjects was designed to be used with the factory method by default.\nWhile you can just create an instance of your child class, factory offers a number of advantages.\n</p>\n<ul>\n<li>Support for modular development, where table references come from multiple locations.\n<li>Different modules can add features to existing tables \n<li>Table aliasing, so you can rename tables, and alias the names\n</ul>\n\n"
  },
 
   part     :  ["docs", "create" ],
@@ -73,30 +72,6 @@ While you can just create an instance of your child class, factory offers a numb
        ]
       }
      ]
-    },
-    {
-     xtype : 'Element',
-     html : _this._strings['d6aa8be6ff38aa217305484e5dd38a88'] /* 
-     <p>     
-What that code does should be reasonably clear     
-</p>     
-<ul>     
-<li>Load, and create an instance of the 'events' class     
-<li>fetch the record with the primary ID = 3523     
-<li>set the value of 'action' to 'testing'     
-<li>perform a database update     
-</ul>     
-     
-<p>     
-Most methods in PDO_DataObjects support chaining, except on methods which are designed to be     
- compatibile with DB_DataObjects.     
-</p>     
-     
-     
-
-     */ ,
-     xns : Roo.bootstrap,
-     '|xns' : 'Roo.bootstrap'
     }
    ]
   };  }
