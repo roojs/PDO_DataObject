@@ -2,7 +2,7 @@
  "name" : "index",
  "parent" : "",
  "title" : "",
- "path" : "/home/alan/gitlive/PDO_DataObject/docs/pdo-dataobject/index.bjs",
+ "path" : "/home/alan/gitlive/PDO_DataObject/docs/index.bjs",
  "permname" : "",
  "modOrder" : "001",
  "strings" : {
@@ -19,8 +19,8 @@
  "items" : [
   {
    "xtype" : "Body",
-   "String brand" : "PDO_DataObject Documentation",
    "$ xns" : "Roo.bootstrap",
+   "String brand" : "PDO_DataObject Documentation",
    "items" : [
     {
      "xtype" : "NavHeaderbar",

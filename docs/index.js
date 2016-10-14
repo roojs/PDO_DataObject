@@ -16,7 +16,7 @@ index = new Roo.XComponent({
   '254f642527b45bc260048e30704edb39' :"Configuration"
  },
 
-  part     :  ["pdo-dataobject", "index" ],
+  part     :  ["docs", "index" ],
   order    : '001-index',
   region   : 'center',
   parent   : false,
