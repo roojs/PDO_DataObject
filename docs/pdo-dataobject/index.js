@@ -71,7 +71,14 @@ index = new Roo.XComponent({
                name : 'introduction',
                title : _this._strings['0b79795d3efc95b9976c7c5b933afce2'] /* Introduction */,
                xns : Roo.doc,
-               '|xns' : 'Roo.doc'
+               '|xns' : 'Roo.doc',
+               items  : [
+                {
+                 xtype : 'NavGroup',
+                 xns : Roo.bootstrap,
+                 '|xns' : 'Roo.bootstrap'
+                }
+               ]
               },
               {
                xtype : 'NavCategory',

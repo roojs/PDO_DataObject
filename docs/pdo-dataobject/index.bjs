@@ -53,7 +53,13 @@
                "xtype" : "NavCategory",
                "$ xns" : "Roo.doc",
                "string title" : "Introduction",
-               "string name" : "introduction"
+               "string name" : "introduction",
+               "items" : [
+                {
+                 "xtype" : "NavGroup",
+                 "$ xns" : "Roo.bootstrap"
+                }
+               ]
               },
               {
                "xtype" : "NavCategory",
