@@ -4679,7 +4679,7 @@ class PDO_DataObject
      * 
      * @see #autoJoin for more details.
      *
-     * @call join
+     * @category join
      * @param     array     Configuration
      *          exclude  Array of columns to exclude from results (eg. modified_by_id)
      *                    Use TABLENAME.* to prevent a join occuring to a specific table.
