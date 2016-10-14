@@ -36,7 +36,7 @@
        "$ xns" : "Roo.doc",
        "items" : [
         {
-         "String code" : "<?php\n\n$db = new PDO('.....');\n \n\nclass MyPerson\n{\n\n    // gets an array of data about the seleted person\n    function getPerson($id)\n    {\n        global $db;\n        $result = $db->query('SELECT * FROM person WHERE id=' . $db->quote($id));\n        return $result->fetch();\n    }\n\n    // example of checking a password.\n    function checkPassword($username, $password)\n    {\n        global $db;\n\n        $hashed = md5($password);\n        $result = $db->query(\n            'SELECT name FROM person WHERE name=' . $db->quote($username)\n            . ' AND password = ' . $db->quote($hashed)\n        );\n        return $result->fetch();\n    }\n\n}\n\n// get the persons details..\n$a_person = new MyPerson();\n$data = $a_person->getPerson(12);\necho $array['name'] . \"\\n\";\n ",
+         "String code" : "<?php\n\nPDO_DataObject::factory('Events')\n    ->load(3523)\n    ->set(['action' => \"testing\" ])\n    ->save();\n",
          "xtype" : "Example",
          "$ xns" : "Roo.doc",
          "String title" : "Example of using PDO_DataObjects"
