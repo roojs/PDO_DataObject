@@ -140,8 +140,7 @@ XXXX=1|YYY=2
        items  : [
         {
          xtype : 'Example',
-         code : '// Postgres\nPDO_DataObject::config(\'database\', \'pgsql://nobody:change_me@localhost:3434/example\');\n(new PDO_DataObject())->PDO();\n// postgres (with user/pass in dsn..\nPDO_DataObject::config(\'database\', \'pgsql://localhost:3434/example?user=nobody&password=change_me\');\n(new PDO_DataObject())->PDO();\n',
-         output : 'Results in these calls to PDO\n\nnew PDO(\"pgsql:dbname=example;host=localhost;port=3434\",\"nobody\",\"change_me\");\n\nnew PDO(\"pgsql:dbname=example;host=localhost;port=3434;user=nobody;password=change_me\",\"\",\"\");\n',
+         code : '\nPDO_DataObject::config(\'database\', \'sqlite:/opt/databases/mydb.sq3\');\n(new PDO_DataObject())->PDO();\nPDO_DataObject::config(\'database\', \'sqlite::memory:\');\n(new PDO_DataObject())->PDO();\nPDO_DataObject::config(\'database\', \'sqlite2:/opt/databases/mydb.sq2#ATTR_PERSISTENT=1\');\n(new PDO_DataObject())->PDO();\nPDO_DataObject::config(\'database\', \'sqlite2::memory:\');\n(new PDO_DataObject())->PDO();',
          outputlang : 'php',
          title : _this._strings['5a74df583978a5eff924d7231d726b2c'] /* Sqlite Connection examples */,
          xns : Roo.doc,
