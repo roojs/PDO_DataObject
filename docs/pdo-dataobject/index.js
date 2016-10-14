@@ -203,6 +203,7 @@ index = new Roo.XComponent({
            load : function(path) { 
            
                var el = this;
+               this.el.dom.innerHTML = '';
                
                var walk = function(node) {
                    if (node['|xns'] == 'Roo.doc') {
