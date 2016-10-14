@@ -212,7 +212,7 @@ Rather than using the standard createTables, code, you can easily create your ow
        items  : [
         {
          xtype : 'Example',
-         code : 'require_once \'PDO/DataObject.php\';\n\n\nPDO_DataObject::config(array(\n\n        \'database\' =>  \'sqlite:\'.__DIR__.\'/includes/EssentialSQL.db\'\n        \n        \'proxy\' => true,\n        \'debug\' => 0,\n));\n\n// settings for the generator.\nPDO_DataObject_Generator::config(array(\n         \n            \'embed_schema\' => true,\n            \n));        \n$tables = $gen->readTableList() ;\n\nforeach($tables as $table) {\n    file_put_contents(\'your/path/DataObjects/\'. $table. \'.php\', $gen->toPhp($table));\n}',
+         code : 'require_once \'PDO/DataObject.php\';\n\n\nPDO_DataObject::config(array(\n\n        \'database\' =>  \'sqlite:\'.__DIR__.\'/includes/EssentialSQL.db\'\n        \n        \'proxy\' => true,\n        \'debug\' => 0,\n));\n\n// settings for the generator.\nPDO_DataObject_Generator::config(array(\n         \n            \'embed_schema\' => true,\n            \n));        \n\n$gen = (new PDO_DataObject(\'Customers\'))->generator();\n\n$tables = $gen->readTableList() ;\n\nforeach($tables as $table) {\n    file_put_contents(\'your/path/DataObjects/\'. $table. \'.php\', $gen->toPhp($table));\n}',
          title : _this._strings['d1f77c976080e0cc64bdc0c53ccd649e'] /* Example of create Database code */,
          xns : Roo.doc,
          '|xns' : 'Roo.doc'
