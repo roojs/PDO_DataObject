@@ -57,6 +57,7 @@ index = new Roo.XComponent({
          items  : [
           {
            xtype : 'Column',
+           resize : function() { },
            sm : 3,
            style : 'height: 500px;\n    overflow-y: scroll; overflow-x:hidden;',
            listeners : {
