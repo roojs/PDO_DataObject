@@ -4,6 +4,15 @@ PDO replacement for PEAR's DB_DataObject
 
 Work has been funded by CentralNic Group plc 
 
+---------------------
+Manual :
+
+https://roojs.github.io/PDO_DataObject/docs/index.html
+
+---------------------
+
+
+
 In General, this should be API compatible with DB_DataObject, except for
 * getDatabaseConnection(), which is replaced with PDOConnection() - and returns a PDO object, rather than a PEAR DB object.
 * staticGet() - has been removed
