@@ -39,6 +39,7 @@
         {
          "String code" : "\n\n$company = PDO_DataObject::factory('Companies');\n$company->comptype = 'CONSULTANT';\n$company->limit(1);\n$company->find(true);\n\nprint_r($company->toArray());\n",
          "String output" : "\nWill run the following Query\n\nSELECT *\n FROM   Companies   \n WHERE ( (Companies.comptype  = 'CONSULTANT') ) \n LIMIT  1\n \n \n",
+         "string outputlang" : "sql",
          "xtype" : "Example",
          "$ xns" : "Roo.doc",
          "String title" : "Setting Properties to generate a query"
