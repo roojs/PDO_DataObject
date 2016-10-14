@@ -202,6 +202,13 @@ index = new Roo.XComponent({
                title : _this._strings['5e434159c315edc6ae8d816255bffaec'] /* Debugging & Error Handling */,
                xns : Roo.doc,
                '|xns' : 'Roo.doc'
+              },
+              {
+               xtype : 'NavCategory',
+               name : 'introduction',
+               title : _this._strings['0b79795d3efc95b9976c7c5b933afce2'] /* Introduction */,
+               xns : Roo.doc,
+               '|xns' : 'Roo.doc'
               }
              ]
             }

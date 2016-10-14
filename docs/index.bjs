@@ -19,8 +19,8 @@
  "items" : [
   {
    "xtype" : "Body",
-   "String brand" : "PDO_DataObject Documentation",
    "$ xns" : "Roo.bootstrap",
+   "String brand" : "PDO_DataObject Documentation",
    "items" : [
     {
      "xtype" : "NavHeaderbar",
@@ -107,6 +107,12 @@
                "$ xns" : "Roo.doc",
                "string title" : "Debugging & Error Handling",
                "string name" : "debug"
+              },
+              {
+               "xtype" : "NavCategory",
+               "$ xns" : "Roo.doc",
+               "string title" : "Introduction",
+               "string name" : "introduction"
               }
              ]
             }
