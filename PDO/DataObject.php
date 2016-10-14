@@ -398,7 +398,7 @@ class PDO_DataObject
      *  Database specific behaviours relating to connect?
      *   * ?????
      * 
-     * @category introspect
+     * @category results
      * @access public
      * @return PDO Object the connection
      */
