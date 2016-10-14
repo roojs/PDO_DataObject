@@ -231,7 +231,7 @@ index = new Roo.XComponent({
                            }
                        }
                    }
-                   
+                   Roo.log(node);
                    Roo.each(node.items || [],walk);
                
                }
@@ -241,7 +241,7 @@ index = new Roo.XComponent({
                    walk(node);
                    var items = typeof(node.items) == 'undefined' ? false : node.items;
                    delete node.items;
-                   Roo.log(items);
+            
                    node._tree = (function(){
                        var _this = this;
                        var MODULE = this;
