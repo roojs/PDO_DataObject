@@ -250,19 +250,6 @@ index = new Roo.XComponent({
                    });
            },
            sm : 9,
-           listeners : {
-            render : function (_self)
-             {
-             
-                 // let's try and load some content.
-                 
-                 return;
-                 // what to load -- use window.location.hash ??
-                 
-                
-             
-             }
-           },
            xns : Roo.bootstrap,
            '|xns' : 'Roo.bootstrap'
           }
