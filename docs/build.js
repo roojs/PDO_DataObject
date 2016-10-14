@@ -94,6 +94,30 @@ Most of the method names match the SQL standard names, and build up query.
      */ ,
      xns : Roo.bootstrap,
      '|xns' : 'Roo.bootstrap'
+    },
+    {
+     xtype : 'Entry',
+     xns : Roo.doc,
+     '|xns' : 'Roo.doc',
+     items  : [
+      {
+       xtype : 'Section',
+       lang : 'php',
+       xns : Roo.doc,
+       '|xns' : 'Roo.doc',
+       items  : [
+        {
+         xtype : 'Example',
+         code : '\n\n$company = PDO_DataObject::factory(\'Companies\');\n$company->comptype = \'CONSULTANT\';\n$company->limit(1);\n$company->find(true);\n\n ',
+         output : '\nWill run the following Query\n\nSELECT *\n FROM   Companies   \n WHERE ( (Companies.comptype  = \'CONSULTANT\') ) \n LIMIT  1\n \n \n',
+         outputlang : 'sql',
+         title : _this._strings['9bf38a80987bf15dce35ca41b3a34f35'] /* Setting Properties to generate a query */,
+         xns : Roo.doc,
+         '|xns' : 'Roo.doc'
+        }
+       ]
+      }
+     ]
     }
    ]
   };  }
