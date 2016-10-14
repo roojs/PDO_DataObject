@@ -58,8 +58,10 @@
                "String html" : "test",
                "items" : [
                 {
+                 "String href" : "test",
                  "xtype" : "NavItem",
-                 "$ xns" : "Roo.bootstrap"
+                 "$ xns" : "Roo.bootstrap",
+                 "String html" : "test"
                 }
                ]
               },
