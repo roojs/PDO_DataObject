@@ -141,7 +141,28 @@ XXXX=1|YYY=2
         {
          xtype : 'Example',
          code : '\nPDO_DataObject::config(\'database\', \'sqlite:/opt/databases/mydb.sq3\');\n(new PDO_DataObject())->PDO();\nPDO_DataObject::config(\'database\', \'sqlite::memory:\');\n(new PDO_DataObject())->PDO();\nPDO_DataObject::config(\'database\', \'sqlite2:/opt/databases/mydb.sq2#ATTR_PERSISTENT=1\');\n(new PDO_DataObject())->PDO();\nPDO_DataObject::config(\'database\', \'sqlite2::memory:\');\n(new PDO_DataObject())->PDO();',
-         outputlang : 'php',
+         title : _this._strings['5a74df583978a5eff924d7231d726b2c'] /* Sqlite Connection examples */,
+         xns : Roo.doc,
+         '|xns' : 'Roo.doc'
+        }
+       ]
+      }
+     ]
+    },
+    {
+     xtype : 'Entry',
+     xns : Roo.doc,
+     '|xns' : 'Roo.doc',
+     items  : [
+      {
+       xtype : 'Section',
+       lang : 'php',
+       xns : Roo.doc,
+       '|xns' : 'Roo.doc',
+       items  : [
+        {
+         xtype : 'Example',
+         code : '\nPDO_DataObject::config(\'database\', \'sqlite:/opt/databases/mydb.sq3\');\n(new PDO_DataObject())->PDO();\nPDO_DataObject::config(\'database\', \'sqlite::memory:\');\n(new PDO_DataObject())->PDO();\nPDO_DataObject::config(\'database\', \'sqlite2:/opt/databases/mydb.sq2#ATTR_PERSISTENT=1\');\n(new PDO_DataObject())->PDO();\nPDO_DataObject::config(\'database\', \'sqlite2::memory:\');\n(new PDO_DataObject())->PDO();',
          title : _this._strings['5a74df583978a5eff924d7231d726b2c'] /* Sqlite Connection examples */,
          xns : Roo.doc,
          '|xns' : 'Roo.doc'
