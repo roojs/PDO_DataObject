@@ -207,7 +207,7 @@ index = new Roo.XComponent({
               },
               {
                xtype : 'NavCategory',
-               name : 'introspection',
+               name : 'introspect',
                title : _this._strings['150e558f4884668e5a5b45a8410b5d2f'] /* Introspection - Database and table schema information */,
                xns : Roo.doc,
                '|xns' : 'Roo.doc'

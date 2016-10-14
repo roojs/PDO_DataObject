@@ -114,7 +114,7 @@
                "xtype" : "NavCategory",
                "$ xns" : "Roo.doc",
                "string title" : "Introspection - Database and table schema information",
-               "string name" : "introspection"
+               "string name" : "introspect"
               },
               {
                "xtype" : "NavCategory",
