@@ -141,6 +141,13 @@ $do->_lastError - removed - ?? Not sure if this is every used anymore..
      '|xns' : 'Roo.bootstrap'
     },
     {
+     xtype : 'Header',
+     html : _this._strings['1677feef3f32a6ce37a3f18947514ce5'] /* DB_DataObject Compatibility */,
+     level : 3,
+     xns : Roo.bootstrap,
+     '|xns' : 'Roo.bootstrap'
+    },
+    {
      xtype : 'Element',
      html : _this._strings['9e8884d617ed6dc7ccb6a50e3ddef252'] /* 
      <p>     
