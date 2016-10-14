@@ -6,8 +6,8 @@ db-dataobject-compatibility = new Roo.XComponent({
 
  _strings : {
   '1677feef3f32a6ce37a3f18947514ce5' :"DB_DataObject Compatibility",
-  '00175fb9f3d007d29118b6f794384cee' :"<p>\nPDO_DataObject is based on the original codebase from DB_DataObjects, however some changes have been made \nsince DB_DataObject was originally used on PHP4, and many features and practices have changed since then.\n</p>\n<ul>\n<li>using PDO rather than native drivers and the PEAR DB wrapper\n<li>more strict static methods\n<li>removal of PEAR dependancies, including error handling\n<li>addition of chained methods\n<li>simpler configuration (again not using PEAR getStaticProperty\n<li>some features - that where not a great idea have been removed, or depricated\n<li>some methods that where very badly named have been renamed.\n</ul>\n\n<h3>Detail incompatibilities</h3>\n\n<p>\nPDO_DataObject is based on PEAR's <a href=\"https://pear.php.net/manual/en/package.database.db-dataobject.php\">DB_DataObject</a> and for most purposes is \nfunctionally compatibly (see <a href=\"#db-dataobject-compatibility\">DB_DataObject Compatibility</a>)\n</p>\n\n<p>\nSo what does that mean in English? Well, if you look around at some of the better written PHP applications and frameworks\n out there, you will notice a common approach to using classes to wrap access to database tables or groups.\n</p>\n<p>\nPDO_DataObjects follows this pattern, In normal usage, you define one Class for each table that you use \n(you can use the genreator tools to automate this process), \n\nonce you have created the classes, and configured PDO_DataObjects you can the access the database  like this\n\n",
   '6ed348e04674567827e341bb5b6d9d82' :"Example of using PDO_DataObjects",
+  'f4c6fffda0810b1404b0524828d2a9a7' :"<p>\nPDO_DataObject is based on the original codebase from DB_DataObjects, however some changes have been made \nsince DB_DataObject was originally used on PHP4, and many features and practices have changed since then.\n</p>\n<ul>\n<li>using PDO rather than native drivers and the PEAR DB wrapper\n<li>more strict static methods\n<li>removal of PEAR dependancies, including error handling\n<li>addition of chained methods\n<li>simpler configuration (again not using PEAR getStaticProperty\n<li>some features - that where not a great idea have been removed, or depricated\n<li>some methods that where very badly named have been renamed.\n</ul>\n\n<h3>Detail incompatibilities</h3>\n\n<h5>Configuration</h5>\n<p>\nPDO_DataObjects uses PDO_DataObjects::config(), rather than PEAR::getStaticProperty()\n</p>\n<p>\nThese configuration items have been removed\n</p>\n<ul>\n<li>debug_ignore_updates  - remove, you can use the PDO configuration to use a fake PDO class\n<li>sequence_**** - used to enable listing sequence keys for a specific table, just overide sequenceKey in the class\n<li>ignore_sequence_keys  - stoped sequence keys working for a specific table, just overide sequenceKey in the class\n<li>dont_use_pear_sequences - as we do not use pear sequences, this is not relivant\n<li>links_****  - manually list the links for a specific tables -just override the links() method\n<li>ini_**** - enabled setting the location for ini file   - use ::config( [schema_location => [ 'database'  => location ]])\n<li>keep_query_after_fetch - removed - behaviour was inconsistant - and unpredictable... \n<li>disable_null_strings - changed to enable_null_strings and disbled by default\n</ul>\n\n\n\n<h5>Null strings</h5>\n\n\n<h5>Debug levels</h5>\n<p>\nThese have been changed slightly - timer information was removed from level(1) - so that tests can work.\n</p>\n<p>",
   'd6aa8be6ff38aa217305484e5dd38a88' :"<p>\nWhat that code does should be reasonably clear\n</p>\n<ul>\n<li>Load, and create an instance of the 'events' class\n<li>fetch the record with the primary ID = 3523\n<li>set the value of 'action' to 'testing'\n<li>perform a database update\n</ul>\n\n<p>\nMost methods in PDO_DataObjects support chaining, except on methods which are designed to be\n compatibile with DB_DataObjects.\n</p>\n\n\n"
  },
 
@@ -36,7 +36,7 @@ db-dataobject-compatibility = new Roo.XComponent({
     },
     {
      xtype : 'Element',
-     html : _this._strings['00175fb9f3d007d29118b6f794384cee'] /* 
+     html : _this._strings['f4c6fffda0810b1404b0524828d2a9a7'] /* 
      <p>     
 PDO_DataObject is based on the original codebase from DB_DataObjects, however some changes have been made      
 since DB_DataObject was originally used on PHP4, and many features and practices have changed since then.     
@@ -53,22 +53,34 @@ since DB_DataObject was originally used on PHP4, and many features and practices
      
 <h3>Detail incompatibilities</h3>     
      
+<h5>Configuration</h5>     
 <p>     
-PDO_DataObject is based on PEAR's <a href="https://pear.php.net/manual/en/package.database.db-dataobject.php">DB_DataObject</a> and for most purposes is      
-functionally compatibly (see <a href="#db-dataobject-compatibility">DB_DataObject Compatibility</a>)     
-</p>     
-     
-<p>     
-So what does that mean in English? Well, if you look around at some of the better written PHP applications and frameworks     
- out there, you will notice a common approach to using classes to wrap access to database tables or groups.     
+PDO_DataObjects uses PDO_DataObjects::config(), rather than PEAR::getStaticProperty()     
 </p>     
 <p>     
-PDO_DataObjects follows this pattern, In normal usage, you define one Class for each table that you use      
-(you can use the genreator tools to automate this process),      
+These configuration items have been removed     
+</p>     
+<ul>     
+<li>debug_ignore_updates  - remove, you can use the PDO configuration to use a fake PDO class     
+<li>sequence_**** - used to enable listing sequence keys for a specific table, just overide sequenceKey in the class     
+<li>ignore_sequence_keys  - stoped sequence keys working for a specific table, just overide sequenceKey in the class     
+<li>dont_use_pear_sequences - as we do not use pear sequences, this is not relivant     
+<li>links_****  - manually list the links for a specific tables -just override the links() method     
+<li>ini_**** - enabled setting the location for ini file   - use ::config( [schema_location => [ 'database'  => location ]])     
+<li>keep_query_after_fetch - removed - behaviour was inconsistant - and unpredictable...      
+<li>disable_null_strings - changed to enable_null_strings and disbled by default     
+</ul>     
      
-once you have created the classes, and configured PDO_DataObjects you can the access the database  like this     
      
-
+     
+<h5>Null strings</h5>     
+     
+     
+<h5>Debug levels</h5>     
+<p>     
+These have been changed slightly - timer information was removed from level(1) - so that tests can work.     
+</p>     
+<p>
      */ ,
      xns : Roo.bootstrap,
      '|xns' : 'Roo.bootstrap'
