@@ -62,7 +62,7 @@ index = new Roo.XComponent({
            listeners : {
             render : function (_self)
              {
-              var el = this;
+                 var el = this;
                  
                  var walk = function(node) {
                      if (node['|xns'] == 'Roo.doc') {
@@ -77,6 +77,11 @@ index = new Roo.XComponent({
                  
                  var build = function(cat, tnode)
                  {
+                     if (typeof(Roo.doc.NavCategory.registry[cat]) == 'undefined') {
+                         Roo.log("skip category - no navcategory item : " + cat );
+                         return;
+                     }
+                     
                      walk(tnode);
              
                      var node = {
