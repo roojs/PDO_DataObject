@@ -55,6 +55,11 @@ So what does that mean in English? Well, if you look around at some of the bette
      */ ,
      xns : Roo.bootstrap,
      '|xns' : 'Roo.bootstrap'
+    },
+    {
+     xtype : 'Entry',
+     xns : Roo.doc,
+     '|xns' : 'Roo.doc'
     }
    ]
   };  }

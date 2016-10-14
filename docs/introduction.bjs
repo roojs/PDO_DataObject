@@ -24,6 +24,10 @@
      "xtype" : "Container",
      "$ xns" : "Roo.bootstrap",
      "String html" : "<p>\nPDO_DataObject is a SQL Builder and Data Modeling Layer built on top of PHP's PDO library. Its main purpose is to\n</p>\n<ul>\n<li>Build SQL and execute statements based on the objects variables.\n<li>Group source code around the data that they relate to.\n<li>Provide a simple consistent API to access and manipulate that data.\n</ul>\n\n<p>\nPDO_DataObject is based on PEAR's <a href=\"https://pear.php.net/manual/en/package.database.db-dataobject.php\">DB_DataObject</a> and for most purposes is \nfunctionally compatibly (see <a href=\"db-dataobject-compatibility\">DB_DataObject Compatibility</a>)\n</p>\n\nSo what does that mean in English? Well, if you look around at some of the better written PHP applications and frameworks out there, you will notice a common approach to using classes to wrap access to database tables or groups. The prime example of this is the person object, which would frequently look something like this.\n\n"
+    },
+    {
+     "xtype" : "Entry",
+     "$ xns" : "Roo.doc"
     }
    ]
   }
