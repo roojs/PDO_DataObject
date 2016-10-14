@@ -5,10 +5,9 @@
 introduction = new Roo.XComponent({
 
  _strings : {
+  'efb07d8fb9f0f9705e4c81374a5a64ad' :"A Classic Data Object or Container",
   '0b79795d3efc95b9976c7c5b933afce2' :"Introduction",
-  '6ed348e04674567827e341bb5b6d9d82' :"Example of using PDO_DataObjects",
-  'cca65c5b03db8ac0d31402bef3188f65' :"<p>\nPDO_DataObject is a SQL Builder and Data Modeling Layer built on top of PHP's PDO library. Its main purpose is to\n</p>\n<ul>\n<li>Build SQL and execute statements based on the objects variables.\n<li>Group source code around the data that they relate to.\n<li>Provide a simple consistent API to access and manipulate that data.\n</ul>\n\n<p>\nPDO_DataObject is based on PEAR's <a href=\"https://pear.php.net/manual/en/package.database.db-dataobject.php\">DB_DataObject</a> and for most purposes is \nfunctionally compatibly (see <a href=\"db-dataobject-compatibility\">DB_DataObject Compatibility</a>)\n</p>\n\n<p>\nSo what does that mean in English? Well, if you look around at some of the better written PHP applications and frameworks\n out there, you will notice a common approach to using classes to wrap access to database tables or groups.\n</p>\n<p>\nPDO_DataObjects follows this pattern, In normal usage, you define one Class for each table that you use \n(you can use the genreator tools to automate this process), \n\nonce you have created the classes, and configured PDO_DataObjects you can the access the database  like this\n\n",
-  'd6aa8be6ff38aa217305484e5dd38a88' :"<p>\nWhat that code does should be reasonably clear\n</p>\n<ul>\n<li>Load, and create an instance of the 'events' class\n<li>fetch the record with the primary ID = 3523\n<li>set the value of 'action' to 'testing'\n<li>perform a database update\n</ul>\n\n<p>\nMost methods in PDO_DataObjects support chaining, except on methods which are designed to be\n compatibile with DB_DataObjects.\n</p>\n\n\n"
+  '0bc697cb5fdd2bcbc55179802b8160cd' :"<p>\nPDO_DataObject is a SQL Builder and Data Modeling Layer built on top of PHP's PDO library. Its main purpose is to\n</p>\n<ul>\n<li>Build SQL and execute statements based on the objects variables.\n<li>Group source code around the data that they relate to.\n<li>Provide a simple consistent API to access and manipulate that data.\n</ul>\n\n<p>\nPDO_DataObject is based on PEAR's <a href=\"https://pear.php.net/manual/en/package.database.db-dataobject.php\">DB_DataObject</a> and for most purposes is \nfunctionally compatibly (see <a href=\"db-dataobject-compatibility\">DB_DataObject Compatibility</a>)\n</p>\n\nSo what does that mean in English? Well, if you look around at some of the better written PHP applications and frameworks out there, you will notice a common approach to using classes to wrap access to database tables or groups. The prime example of this is the person object, which would frequently look something like this.\n\n"
  },
 
   part     :  ["docs", "introduction" ],
@@ -35,8 +34,8 @@ introduction = new Roo.XComponent({
      '|xns' : 'Roo.bootstrap'
     },
     {
-     xtype : 'Element',
-     html : _this._strings['cca65c5b03db8ac0d31402bef3188f65'] /* 
+     xtype : 'Container',
+     html : _this._strings['0bc697cb5fdd2bcbc55179802b8160cd'] /* 
      <p>     
 PDO_DataObject is a SQL Builder and Data Modeling Layer built on top of PHP's PDO library. Its main purpose is to     
 </p>     
@@ -51,15 +50,7 @@ PDO_DataObject is based on PEAR's <a href="https://pear.php.net/manual/en/packag
 functionally compatibly (see <a href="db-dataobject-compatibility">DB_DataObject Compatibility</a>)     
 </p>     
      
-<p>     
-So what does that mean in English? Well, if you look around at some of the better written PHP applications and frameworks     
- out there, you will notice a common approach to using classes to wrap access to database tables or groups.     
-</p>     
-<p>     
-PDO_DataObjects follows this pattern, In normal usage, you define one Class for each table that you use      
-(you can use the genreator tools to automate this process),      
-     
-once you have created the classes, and configured PDO_DataObjects you can the access the database  like this     
+So what does that mean in English? Well, if you look around at some of the better written PHP applications and frameworks out there, you will notice a common approach to using classes to wrap access to database tables or groups. The prime example of this is the person object, which would frequently look something like this.     
      
 
      */ ,
@@ -73,44 +64,20 @@ once you have created the classes, and configured PDO_DataObjects you can the ac
      items  : [
       {
        xtype : 'Section',
+       code : '<?php\n\n$db = new PDO(\'.....\');\n \n\nclass MyPerson\n{\n\n    // gets an array of data about the seleted person\n    function getPerson($id)\n    {\n        global $db;\n        $result = $db->query(\'SELECT * FROM person WHERE id=\' . $db->quote($id));\n        return $result->fetch();\n    }\n\n    // example of checking a password.\n    function checkPassword($username, $password)\n    {\n        global $db;\n\n        $hashed = md5($password);\n        $result = $db->query(\n            \'SELECT name FROM person WHERE name=\' . $db->quote($username)\n            . \' AND password = \' . $db->quote($hashed)\n        );\n        return $result->fetch();\n    }\n\n}\n\n// get the persons details..\n$a_person = new MyPerson();\n$data = $a_person->getPerson(12);\necho $array[\'name\'] . \"\\n\";\n ',
        lang : 'php',
+       title : _this._strings['efb07d8fb9f0f9705e4c81374a5a64ad'] /* A Classic Data Object or Container */,
        xns : Roo.doc,
        '|xns' : 'Roo.doc',
        items  : [
         {
          xtype : 'Example',
-         code : 'PDO_DataObject::factory(\'Events\')\n    ->load(3523)\n    ->set([\'action\' => \"testing\" ])\n    ->save();\n',
-         title : _this._strings['6ed348e04674567827e341bb5b6d9d82'] /* Example of using PDO_DataObjects */,
          xns : Roo.doc,
          '|xns' : 'Roo.doc'
         }
        ]
       }
      ]
-    },
-    {
-     xtype : 'Element',
-     html : _this._strings['d6aa8be6ff38aa217305484e5dd38a88'] /* 
-     <p>     
-What that code does should be reasonably clear     
-</p>     
-<ul>     
-<li>Load, and create an instance of the 'events' class     
-<li>fetch the record with the primary ID = 3523     
-<li>set the value of 'action' to 'testing'     
-<li>perform a database update     
-</ul>     
-     
-<p>     
-Most methods in PDO_DataObjects support chaining, except on methods which are designed to be     
- compatibile with DB_DataObjects.     
-</p>     
-     
-     
-
-     */ ,
-     xns : Roo.bootstrap,
-     '|xns' : 'Roo.bootstrap'
     }
    ]
   };  }
