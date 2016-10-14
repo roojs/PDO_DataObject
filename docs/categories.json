@@ -65,66 +65,6 @@
             }
         ]
     },
-    "introspect": {
-        "|xns": "Roo.bootstrap",
-        "xtype": "NavGroup",
-        "items": [
-            {
-                "|xns": "Roo.bootstrap",
-                "xtype": "NavItem",
-                "href": "#pdo-dataobject\/databaseNickname",
-                "html": "databaseNickname"
-            },
-            {
-                "|xns": "Roo.bootstrap",
-                "xtype": "NavItem",
-                "href": "#pdo-dataobject\/databaseStructure",
-                "html": "databaseStructure"
-            },
-            {
-                "|xns": "Roo.bootstrap",
-                "xtype": "NavItem",
-                "href": "#pdo-dataobject\/generator",
-                "html": "generator"
-            },
-            {
-                "|xns": "Roo.bootstrap",
-                "xtype": "NavItem",
-                "href": "#pdo-dataobject\/keys",
-                "html": "keys"
-            },
-            {
-                "|xns": "Roo.bootstrap",
-                "xtype": "NavItem",
-                "href": "#pdo-dataobject\/quoteIdentifier",
-                "html": "quoteIdentifier"
-            },
-            {
-                "|xns": "Roo.bootstrap",
-                "xtype": "NavItem",
-                "href": "#pdo-dataobject\/sequenceKey",
-                "html": "sequenceKey"
-            },
-            {
-                "|xns": "Roo.bootstrap",
-                "xtype": "NavItem",
-                "href": "#pdo-dataobject\/table",
-                "html": "table"
-            },
-            {
-                "|xns": "Roo.bootstrap",
-                "xtype": "NavItem",
-                "href": "#pdo-dataobject\/tableColumns",
-                "html": "tableColumns"
-            },
-            {
-                "|xns": "Roo.bootstrap",
-                "xtype": "NavItem",
-                "href": "#pdo-dataobject\/tableName",
-                "html": "tableName"
-            }
-        ]
-    },
     "build": {
         "|xns": "Roo.bootstrap",
         "xtype": "NavGroup",
@@ -170,6 +110,12 @@
                 "xtype": "NavItem",
                 "href": "#pdo-dataobject\/orderBy",
                 "html": "orderBy"
+            },
+            {
+                "|xns": "Roo.bootstrap",
+                "xtype": "NavItem",
+                "href": "#pdo-dataobject\/quoteIdentifier",
+                "html": "quoteIdentifier"
             },
             {
                 "|xns": "Roo.bootstrap",
@@ -362,6 +308,60 @@
                 "xtype": "NavItem",
                 "href": "#pdo-dataobject\/update",
                 "html": "update"
+            }
+        ]
+    },
+    "introspect": {
+        "|xns": "Roo.bootstrap",
+        "xtype": "NavGroup",
+        "items": [
+            {
+                "|xns": "Roo.bootstrap",
+                "xtype": "NavItem",
+                "href": "#pdo-dataobject\/databaseNickname",
+                "html": "databaseNickname"
+            },
+            {
+                "|xns": "Roo.bootstrap",
+                "xtype": "NavItem",
+                "href": "#pdo-dataobject\/databaseStructure",
+                "html": "databaseStructure"
+            },
+            {
+                "|xns": "Roo.bootstrap",
+                "xtype": "NavItem",
+                "href": "#pdo-dataobject\/generator",
+                "html": "generator"
+            },
+            {
+                "|xns": "Roo.bootstrap",
+                "xtype": "NavItem",
+                "href": "#pdo-dataobject\/keys",
+                "html": "keys"
+            },
+            {
+                "|xns": "Roo.bootstrap",
+                "xtype": "NavItem",
+                "href": "#pdo-dataobject\/sequenceKey",
+                "html": "sequenceKey"
+            },
+            {
+                "|xns": "Roo.bootstrap",
+                "xtype": "NavItem",
+                "href": "#pdo-dataobject\/table",
+                "html": "table"
+            },
+            {
+                "|xns": "Roo.bootstrap",
+                "xtype": "NavItem",
+                "href": "#pdo-dataobject\/tableColumns",
+                "html": "tableColumns"
+            },
+            {
+                "|xns": "Roo.bootstrap",
+                "xtype": "NavItem",
+                "href": "#pdo-dataobject\/tableName",
+                "html": "tableName"
             }
         ]
     },

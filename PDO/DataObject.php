@@ -696,7 +696,7 @@ class PDO_DataObject
     /* ---------------- ---------------- database  portability methods -------------------------------- */
     /**
      * Quote identifiers - similar to escape - but for identifiers, like column names.
-     * @category introspect
+     * @category build
      * @param string $identifier
      * @result string wrapped string  
      *
