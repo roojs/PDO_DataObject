@@ -18,24 +18,8 @@ introduction = new Roo.XComponent({
    var _this = this;
    var MODULE = this;
    return {
-   xtype : 'Entry',
-   purpose : 'Introduction',
-   xns : Roo.doc,
-   '|xns' : 'Roo.doc',
-   items  : [
-    {
-     xtype : 'Section',
-     stype : 'note',
-     xns : Roo.doc,
-     '|xns' : 'Roo.doc',
-     items  : [
-      {
-       xtype : 'Para',
-       xns : Roo.doc,
-       '|xns' : 'Roo.doc'
-      }
-     ]
-    }
-   ]
+   xtype : 'Body',
+   xns : Roo.bootstrap,
+   '|xns' : 'Roo.bootstrap'
   };  }
 });
