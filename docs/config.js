@@ -5,8 +5,8 @@
 config = new Roo.XComponent({
 
  _strings : {
+  'c73e1063642e4b100f0d27e1bf13213a' :"<p>\nPDO_DataObject can be configured in many ways, the exact properties are listed\n in the <a href=\"#pdo-dataobject/config\">config</a> method\n</p>\n\n<p>\nDatabase DSNs are based around the classic PEAR DB, format (URL), and are mapped to PDO DSN for connecting.\nA DSN consists of\n<dl>\n\n<dt>database type://</dt>\n<dd>currently supported are mysql, pgsql, sqlite and to some degree oracle and mssql</dd>\n\n\n\n<dt>user:pass@</dt>\n<dd>before the host, you can put the user and password combination,<br/>\n for postgresql the user pass will be set as the arguments on the PDO constructor\n</dd>\n\n<dt>hostname/</dt>\n<dd>normally  localhost, or an IP or server. if you are using sqlite the format is slightly different, see below.\n</dd>\n\n<dt>databasename</dt>\n<dd>the database name.</dd>\n\n<dt>?some=params</dt>\n<dd>if the PDO connections needs other information it can go here.\n</dd>\n\n<dt>#ATTR_PERSISENT</dt>\n<dd>you can set PDO connection properties using the pipe character as a seperator after the hash, eg.\nXXXX=1|YYY=2\n</dd>\n\n</dl>",
   '6ed348e04674567827e341bb5b6d9d82' :"Example of using PDO_DataObjects",
-  '59971902e4c63ab2ef0f7e59ed0b448c' :"<p>\nPDO_DataObject can be configured in many ways, the exact properties are listed in the <a href=\"#pdo-dataobject/config\">config</a> method\n</p>\n<ul>\n<li>Build SQL and execute statements based on the objects variables.\n<li>Group source code around the data that they relate to.\n<li>Provide a simple consistent API to access and manipulate that data.\n</ul>\n\n<p>\nPDO_DataObject is based on PEAR's <a href=\"https://pear.php.net/manual/en/package.database.db-dataobject.php\">DB_DataObject</a> and for most purposes is \nfunctionally compatibly (see <a href=\"db-dataobject-compatibility\">DB_DataObject Compatibility</a>)\n</p>\n\n<p>\nSo what does that mean in English? Well, if you look around at some of the better written PHP applications and frameworks\n out there, you will notice a common approach to using classes to wrap access to database tables or groups.\n</p>\n<p>\nPDO_DataObjects follows this pattern, In normal usage, you define one Class for each table that you use \n(you can use the genreator tools to automate this process), \n\nonce you have created the classes, and configured PDO_DataObjects you can the access the database  like this\n\n",
   '254f642527b45bc260048e30704edb39' :"Configuration",
   'd6aa8be6ff38aa217305484e5dd38a88' :"<p>\nWhat that code does should be reasonably clear\n</p>\n<ul>\n<li>Load, and create an instance of the 'events' class\n<li>fetch the record with the primary ID = 3523\n<li>set the value of 'action' to 'testing'\n<li>perform a database update\n</ul>\n\n<p>\nMost methods in PDO_DataObjects support chaining, except on methods which are designed to be\n compatibile with DB_DataObjects.\n</p>\n\n\n"
  },
@@ -36,32 +36,44 @@ config = new Roo.XComponent({
     },
     {
      xtype : 'Element',
-     html : _this._strings['59971902e4c63ab2ef0f7e59ed0b448c'] /* 
+     html : _this._strings['c73e1063642e4b100f0d27e1bf13213a'] /* 
      <p>     
-PDO_DataObject can be configured in many ways, the exact properties are listed in the <a href="#pdo-dataobject/config">config</a> method     
-</p>     
-<ul>     
-<li>Build SQL and execute statements based on the objects variables.     
-<li>Group source code around the data that they relate to.     
-<li>Provide a simple consistent API to access and manipulate that data.     
-</ul>     
-     
-<p>     
-PDO_DataObject is based on PEAR's <a href="https://pear.php.net/manual/en/package.database.db-dataobject.php">DB_DataObject</a> and for most purposes is      
-functionally compatibly (see <a href="db-dataobject-compatibility">DB_DataObject Compatibility</a>)     
+PDO_DataObject can be configured in many ways, the exact properties are listed     
+ in the <a href="#pdo-dataobject/config">config</a> method     
 </p>     
      
 <p>     
-So what does that mean in English? Well, if you look around at some of the better written PHP applications and frameworks     
- out there, you will notice a common approach to using classes to wrap access to database tables or groups.     
-</p>     
-<p>     
-PDO_DataObjects follows this pattern, In normal usage, you define one Class for each table that you use      
-(you can use the genreator tools to automate this process),      
+Database DSNs are based around the classic PEAR DB, format (URL), and are mapped to PDO DSN for connecting.     
+A DSN consists of     
+<dl>     
      
-once you have created the classes, and configured PDO_DataObjects you can the access the database  like this     
+<dt>database type://</dt>     
+<dd>currently supported are mysql, pgsql, sqlite and to some degree oracle and mssql</dd>     
      
-
+     
+     
+<dt>user:pass@</dt>     
+<dd>before the host, you can put the user and password combination,<br/>     
+ for postgresql the user pass will be set as the arguments on the PDO constructor     
+</dd>     
+     
+<dt>hostname/</dt>     
+<dd>normally  localhost, or an IP or server. if you are using sqlite the format is slightly different, see below.     
+</dd>     
+     
+<dt>databasename</dt>     
+<dd>the database name.</dd>     
+     
+<dt>?some=params</dt>     
+<dd>if the PDO connections needs other information it can go here.     
+</dd>     
+     
+<dt>#ATTR_PERSISENT</dt>     
+<dd>you can set PDO connection properties using the pipe character as a seperator after the hash, eg.     
+XXXX=1|YYY=2     
+</dd>     
+     
+</dl>
      */ ,
      xns : Roo.bootstrap,
      '|xns' : 'Roo.bootstrap'
