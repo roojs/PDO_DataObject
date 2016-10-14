@@ -250,6 +250,14 @@ index = new Roo.XComponent({
                    });
            },
            sm : 9,
+           listeners : {
+            render : function (_self)
+             {
+                     Roo.get(window).on('hashchange', function(
+                         Roo.log('hashchange?');
+                     });
+             }
+           },
            xns : Roo.bootstrap,
            '|xns' : 'Roo.bootstrap'
           }
