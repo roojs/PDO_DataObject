@@ -19,6 +19,7 @@ introduction = new Roo.XComponent({
    var MODULE = this;
    return {
    xtype : 'Entry',
+   purpose : 'Introduction',
    xns : Roo.doc,
    '|xns' : 'Roo.doc',
    items  : [

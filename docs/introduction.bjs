@@ -8,6 +8,7 @@
  "items" : [
   {
    "xtype" : "Entry",
+   "purpose" : "Introduction",
    "$ xns" : "Roo.doc",
    "items" : [
     {
