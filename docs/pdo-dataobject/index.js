@@ -69,6 +69,11 @@ index = new Roo.XComponent({
                '|xns' : 'Roo.bootstrap'
               },
               {
+               xtype : 'NavGroup',
+               xns : Roo.bootstrap,
+               '|xns' : 'Roo.bootstrap'
+              },
+              {
                xtype : 'Container',
                xns : Roo.bootstrap,
                '|xns' : 'Roo.bootstrap',
