@@ -9,6 +9,7 @@ index = new Roo.XComponent({
   'c2b942b501dc222d608980c0ed40b07c' :"Fetching Results",
   '0b79795d3efc95b9976c7c5b933afce2' :"Introduction",
   '53e61336bb49ec978968786b07dea50b' :"results",
+  '2dc714e7e4d090ea2577a71e6147f1f8' :"crud",
   '8413aa2e38fdd078a3d96e34592d286a' :"Building Queries",
   '254f642527b45bc260048e30704edb39' :"Configuration"
  },
@@ -108,7 +109,7 @@ index = new Roo.XComponent({
               {
                xtype : 'NavCategory',
                name : 'Working with Results',
-               title : _this._strings['53e61336bb49ec978968786b07dea50b'] /* results */,
+               title : _this._strings['2dc714e7e4d090ea2577a71e6147f1f8'] /* crud */,
                xns : Roo.doc,
                '|xns' : 'Roo.doc'
               }
