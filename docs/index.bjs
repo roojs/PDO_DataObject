@@ -127,7 +127,7 @@
                "xtype" : "NavCategory",
                "$ xns" : "Roo.doc",
                "string title" : "DB_DataObject compatibility",
-               "string name" : "debug"
+               "string name" : "db-dataobject-compatibility"
               }
              ]
             }

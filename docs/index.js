@@ -222,7 +222,7 @@ index = new Roo.XComponent({
               },
               {
                xtype : 'NavCategory',
-               name : 'debug',
+               name : 'db-dataobject-compatibility',
                title : _this._strings['b73ec9912d761600946fab487e0de1cc'] /* DB_DataObject compatibility */,
                xns : Roo.doc,
                '|xns' : 'Roo.doc'
