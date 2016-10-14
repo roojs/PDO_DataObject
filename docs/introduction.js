@@ -24,6 +24,7 @@ introduction = new Roo.XComponent({
    items  : [
     {
      xtype : 'Header',
+     level : 3,
      xns : Roo.bootstrap,
      '|xns' : 'Roo.bootstrap'
     }
