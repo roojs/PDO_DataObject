@@ -5149,7 +5149,7 @@ class PDO_DataObject
     /**
      * Gets the DB result object related to the objects active query
      * 
-     * @category result
+     * @category results
      * @access public
      * @return PDOStatement|false  
      */
