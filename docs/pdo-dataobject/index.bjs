@@ -54,6 +54,30 @@
                "$ xns" : "Roo.doc",
                "string title" : "Introduction",
                "string name" : "introduction"
+              },
+              {
+               "xtype" : "NavCategory",
+               "$ xns" : "Roo.doc",
+               "string title" : "Introduction",
+               "string name" : "introduction"
+              },
+              {
+               "xtype" : "NavCategory",
+               "$ xns" : "Roo.doc",
+               "string title" : "Introduction",
+               "string name" : "introduction"
+              },
+              {
+               "xtype" : "NavCategory",
+               "$ xns" : "Roo.doc",
+               "string title" : "Introduction",
+               "string name" : "introduction"
+              },
+              {
+               "xtype" : "NavCategory",
+               "$ xns" : "Roo.doc",
+               "string title" : "Introduction",
+               "string name" : "introduction"
               }
              ]
             }
