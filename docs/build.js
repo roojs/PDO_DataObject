@@ -110,7 +110,7 @@ Most of the method names match the SQL standard names, and build up query.
         {
          xtype : 'Example',
          code : '$numbers = array(1,2,3,4,5);\n$company = PDO_DataObject::factory(\'Companies\');\n$company->whereIn(\'id\', $numbers, \'int\');\necho \"resulting query: \" . $company->toSelectSQL();\n',
-         output : '\nWill run the following Query\n\nSELECT *\n FROM   Companies   \n WHERE ( (Companies.comptype  = \'CONSULTANT\') ) \n LIMIT  1\n \n \n',
+         output : '\nWill run the following Query\n\nSELECT *\n FROM   Companies   \n WHERE ( id  IN (1,2,3,4,5) ) \n \n \n',
          outputlang : 'sql',
          title : _this._strings['2c467f8736007d8896a042cab645373c'] /* Using where conditions to build queries */,
          xns : Roo.doc,

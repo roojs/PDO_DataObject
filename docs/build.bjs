@@ -65,7 +65,7 @@
        "items" : [
         {
          "String code" : "$numbers = array(1,2,3,4,5);\n$company = PDO_DataObject::factory('Companies');\n$company->whereIn('id', $numbers, 'int');\necho \"resulting query: \" . $company->toSelectSQL();\n",
-         "String output" : "\nWill run the following Query\n\nSELECT *\n FROM   Companies   \n WHERE ( (Companies.comptype  = 'CONSULTANT') ) \n LIMIT  1\n \n \n",
+         "String output" : "\nWill run the following Query\n\nSELECT *\n FROM   Companies   \n WHERE ( id  IN (1,2,3,4,5) ) \n \n \n",
          "string outputlang" : "sql",
          "xtype" : "Example",
          "$ xns" : "Roo.doc",
