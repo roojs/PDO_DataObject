@@ -115,7 +115,7 @@ XXXX=1|YYY=2
        items  : [
         {
          xtype : 'Example',
-         code : 'PDO_DataObject::config(\'database\', \'mysql://username:test@localhost:3344/somedb#\' . implode( \'|\',\n    array(\n        \'MYSQL_ATTR_SSL_KEY=/path/to/client-key.pem\',\n        \'MYSQL_ATTR_SSL_CERT=/path/to/client-cert.pem\',\n        \'MYSQL_ATTR_SSL_CA=/path/to/ca-cert.pem\',\n        \n        \'MYSQL_ATTR_LOCAL_INFILE=1\',\n        \'MYSQL_ATTR_INIT_COMMAND=2\',\n       // \'MYSQL_ATTR_READ_DEFAULT_FILE=3\',\n       //  \'MYSQL_ATTR_READ_DEFAULT_GROUP=4\',\n        \'MYSQL_ATTR_MAX_BUFFER_SIZE=5\',\n        \'MYSQL_ATTR_DIRECT_QUERY=6\',\n        \'MYSQL_ATTR_FOUND_ROWS=7\',\n        \'MYSQL_ATTR_IGNORE_SPACE=8\',\n        \'MYSQL_ATTR_COMPRESS=9\',\n        \'MYSQL_ATTR_SSL_CIPHER=10\',\n        \'MYSQL_ATTR_SSL_KEY=11\',\n        \'MYSQL_ATTR_MULTI_STATEMENTS=12\',\n        \n    )));\n(new PDO_DataObject())->PDO();\n',
+         code : '// Postgres\nPDO_DataObject::config(\'database\', \'pgsql://nobody:change_me@localhost:3434/example\');\n(new PDO_DataObject())->PDO();\n// postgres (with user/pass in dsn..\nPDO_DataObject::config(\'database\', \'pgsql://localhost:3434/example?user=nobody&password=change_me\');\n(new PDO_DataObject())->PDO();\n',
          title : _this._strings['1a0042954f1d5836710c84459618f095'] /* Postgresql Connection examples */,
          xns : Roo.doc,
          '|xns' : 'Roo.doc'
