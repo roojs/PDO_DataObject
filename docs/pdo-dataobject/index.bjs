@@ -5,6 +5,11 @@
  "path" : "/home/alan/gitlive/PDO_DataObject/docs/pdo-dataobject/index.bjs",
  "permname" : "",
  "modOrder" : "001",
+ "strings" : {
+  "a7b88b18306dbc331c80ecb6c978dba1" : "endlink",
+  "37235a56865c43e9decef816c22d8614" : "Section block",
+  "9f6e6800cfae7749eb6c486619254b9c" : "sss"
+ },
  "items" : [
   {
    "xtype" : "Body",
@@ -30,12 +35,42 @@
          "$ xns" : "Roo.bootstrap",
          "items" : [
           {
-           "listeners" : {
-            "render" : "function (_self)\n{\n    Roo.log('render index');\n}"
-           },
            "xtype" : "Column",
            "$ xns" : "Roo.bootstrap",
-           "Number sm" : 2
+           "Number sm" : 2,
+           "items" : [
+            {
+             "xtype" : "NavSidebar",
+             "$ xns" : "Roo.bootstrap",
+             "String html" : "sss",
+             "items" : [
+              {
+               "String href" : "#autoJoin",
+               "xtype" : "Link",
+               "$ xns" : "Roo.bootstrap",
+               "String html" : "Section block"
+              },
+              {
+               "xtype" : "Container",
+               "$ xns" : "Roo.bootstrap",
+               "items" : [
+                {
+                 "String href" : "#autoJoin",
+                 "xtype" : "Link",
+                 "$ xns" : "Roo.bootstrap",
+                 "String html" : "endlink"
+                },
+                {
+                 "String href" : "#autoJoin",
+                 "xtype" : "Link",
+                 "$ xns" : "Roo.bootstrap",
+                 "String html" : "endlink"
+                }
+               ]
+              }
+             ]
+            }
+           ]
           },
           {
            "listeners" : {

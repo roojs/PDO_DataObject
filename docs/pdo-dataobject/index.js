@@ -4,7 +4,11 @@
 
 index = new Roo.XComponent({
 
-
+ _strings : {
+  'a7b88b18306dbc331c80ecb6c978dba1' :"endlink",
+  '37235a56865c43e9decef816c22d8614' :"Section block",
+  '9f6e6800cfae7749eb6c486619254b9c' :"sss"
+ },
 
   part     :  ["pdo-dataobject", "index" ],
   order    : '001-index',
@@ -48,14 +52,46 @@ index = new Roo.XComponent({
           {
            xtype : 'Column',
            sm : 2,
-           listeners : {
-            render : function (_self)
-             {
-                 Roo.log('render index');
-             }
-           },
            xns : Roo.bootstrap,
-           '|xns' : 'Roo.bootstrap'
+           '|xns' : 'Roo.bootstrap',
+           items  : [
+            {
+             xtype : 'NavSidebar',
+             html : _this._strings['9f6e6800cfae7749eb6c486619254b9c'] /* sss */,
+             xns : Roo.bootstrap,
+             '|xns' : 'Roo.bootstrap',
+             items  : [
+              {
+               xtype : 'Link',
+               href : '#autoJoin',
+               html : _this._strings['37235a56865c43e9decef816c22d8614'] /* Section block */,
+               xns : Roo.bootstrap,
+               '|xns' : 'Roo.bootstrap'
+              },
+              {
+               xtype : 'Container',
+               xns : Roo.bootstrap,
+               '|xns' : 'Roo.bootstrap',
+               items  : [
+                {
+                 xtype : 'Link',
+                 href : '#autoJoin',
+                 html : _this._strings['a7b88b18306dbc331c80ecb6c978dba1'] /* endlink */,
+                 xns : Roo.bootstrap,
+                 '|xns' : 'Roo.bootstrap'
+                },
+                {
+                 xtype : 'Link',
+                 href : '#autoJoin',
+                 html : _this._strings['a7b88b18306dbc331c80ecb6c978dba1'] /* endlink */,
+                 xns : Roo.bootstrap,
+                 '|xns' : 'Roo.bootstrap'
+                }
+               ]
+              }
+             ]
+            }
+           ]
           },
           {
            xtype : 'Column',
