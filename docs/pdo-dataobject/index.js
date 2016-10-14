@@ -5,8 +5,6 @@
 index = new Roo.XComponent({
 
  _strings : {
-  '098f6bcd4621d373cade4e832627b4f6' :"test",
-  'a38e81a846f1ea114b5343f88d970272' :"testasdf asdf asdf asdf asdf",
   '0b79795d3efc95b9976c7c5b933afce2' :"Introduction",
   '9f6e6800cfae7749eb6c486619254b9c' :"sss"
  },
@@ -70,35 +68,11 @@ index = new Roo.XComponent({
                '|xns' : 'Roo.doc'
               },
               {
-               xtype : 'Container',
-               xns : Roo.bootstrap,
-               '|xns' : 'Roo.bootstrap',
-               items  : [
-                {
-                 xtype : 'NavGroup',
-                 cls : 'sidebar-nav',
-                 href : 'test',
-                 html : _this._strings['098f6bcd4621d373cade4e832627b4f6'] /* test */,
-                 xns : Roo.bootstrap,
-                 '|xns' : 'Roo.bootstrap',
-                 items  : [
-                  {
-                   xtype : 'NavItem',
-                   href : 'test',
-                   html : _this._strings['a38e81a846f1ea114b5343f88d970272'] /* testasdf asdf asdf asdf asdf */,
-                   xns : Roo.bootstrap,
-                   '|xns' : 'Roo.bootstrap'
-                  },
-                  {
-                   xtype : 'NavItem',
-                   href : 'test',
-                   html : _this._strings['098f6bcd4621d373cade4e832627b4f6'] /* test */,
-                   xns : Roo.bootstrap,
-                   '|xns' : 'Roo.bootstrap'
-                  }
-                 ]
-                }
-               ]
+               xtype : 'NavCategory',
+               name : 'introduction',
+               title : _this._strings['0b79795d3efc95b9976c7c5b933afce2'] /* Introduction */,
+               xns : Roo.doc,
+               '|xns' : 'Roo.doc'
               }
              ]
             }
