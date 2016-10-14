@@ -8,6 +8,7 @@ index = new Roo.XComponent({
   'aca0253c82fea77fa2c8cbe60cd619f2' :"Joins and referenced Tables",
   'c2b942b501dc222d608980c0ed40b07c' :"Fetching Results",
   '0b79795d3efc95b9976c7c5b933afce2' :"Introduction",
+  '53e61336bb49ec978968786b07dea50b' :"results",
   '9f6e6800cfae7749eb6c486619254b9c' :"sss",
   '254f642527b45bc260048e30704edb39' :"Configuration",
   '8413aa2e38fdd078a3d96e34592d286a' :"Building Queries"
@@ -102,7 +103,7 @@ index = new Roo.XComponent({
               {
                xtype : 'NavCategory',
                name : 'introduction',
-               title : _this._strings['0b79795d3efc95b9976c7c5b933afce2'] /* Introduction */,
+               title : _this._strings['53e61336bb49ec978968786b07dea50b'] /* results */,
                xns : Roo.doc,
                '|xns' : 'Roo.doc'
               }
