@@ -114,7 +114,7 @@
        "$ xns" : "Roo.doc",
        "items" : [
         {
-         "String code" : "[PDO_DataObject]\n\ndatabase = mysql://user:pass@localhost/testdb\nschema_location = /path/to/my/DataObjects\n\n    \n));",
+         "String code" : "[PDO_DataObject]\n\ndatabase = mysql://user:pass@localhost/testdb\nschema_location = /path/to/my/DataObjects\n\n  ",
          "xtype" : "Example",
          "$ xns" : "Roo.doc",
          "String title" : "An example ini file for use with createTables.php"

@@ -178,7 +178,7 @@ The Generator contains many features to alter what is generated at this stage.
        items  : [
         {
          xtype : 'Example',
-         code : '[PDO_DataObject]\n\ndatabase = mysql://user:pass@localhost/testdb\nschema_location = /path/to/my/DataObjects\n\n    \n));',
+         code : '[PDO_DataObject]\n\ndatabase = mysql://user:pass@localhost/testdb\nschema_location = /path/to/my/DataObjects\n\n  ',
          title : _this._strings['27acce31dc1956874cd77b52da134506'] /* An example ini file for use with createTables.php */,
          xns : Roo.doc,
          '|xns' : 'Roo.doc'
