@@ -139,6 +139,114 @@ $do->_lastError - removed - ?? Not sure if this is every used anymore..
      */ ,
      xns : Roo.bootstrap,
      '|xns' : 'Roo.bootstrap'
+    },
+    {
+     xtype : 'Element',
+     html : _this._strings['9e8884d617ed6dc7ccb6a50e3ddef252'] /* 
+     <p>     
+PDO_DataObject is based on the original codebase from DB_DataObjects, however some changes have been made      
+since DB_DataObject was originally used on PHP4, and many features and practices have changed since then.     
+</p>     
+<ul>     
+<li>using PDO rather than native drivers and the PEAR DB wrapper     
+<li>more strict static methods     
+<li>removal of PEAR dependancies, including error handling     
+<li>addition of chained methods     
+<li>simpler configuration (again not using PEAR getStaticProperty     
+<li>some features - that where not a great idea have been removed, or depricated     
+<li>some methods that where very badly named have been renamed.     
+</ul>     
+     
+<h3>Detail incompatibilities</h3>     
+     
+<h5>Configuration</h5>     
+<p>     
+PDO_DataObjects uses PDO_DataObjects::config(), rather than PEAR::getStaticProperty()     
+</p>     
+<p>     
+These configuration items have been removed     
+</p>     
+<ul>     
+<li>debug_ignore_updates  - remove, you can use the PDO configuration to use a fake PDO class     
+<li>sequence_**** - used to enable listing sequence keys for a specific table, just overide sequenceKey in the class     
+<li>ignore_sequence_keys  - stoped sequence keys working for a specific table, just overide sequenceKey in the class     
+<li>dont_use_pear_sequences - as we do not use pear sequences, this is not relivant     
+<li>links_****  - manually list the links for a specific tables -just override the links() method     
+<li>ini_**** - enabled setting the location for ini file   - use ::config( [schema_location => [ 'database'  => location ]])     
+<li>keep_query_after_fetch - removed - behaviour was inconsistant - and unpredictable...      
+<li>disable_null_strings - changed to enable_null_strings and disbled by default     
+</ul>     
+     
+     
+     
+<h5>PDO related changes</h5>     
+<p>     
+As PEAR DB is not used, methods relating to that have been removed, on the assumption that it would be easier to solve a method      
+not found issue, than try and work out why the returned objects are different.     
+</p>     
+<ul>     
+<li>getDatabaseConnection - is now called PDO() - and returns the PDO object.     
+<li>getDatabaseResult - is now result() - and returns a PDO_Statement object      
+<li>_connect - the internal connector now replaced by PDO()     
+</ul>     
+     
+     
+<h5>Badly named methods -  renamed or removed</h5>     
+<p>     
+These methods where never well named, and have been changed     
+<ul>     
+<li>database - has now been renamed as databaseNickname - as it may not actually be the name of the database,      
+    (the real database name should be available from ) <code>$do->result()->database_name     
+<li>table - has been renamed as tableColumns - as that better describes what it returns.     
+<li>staticGet - was a dumb idea... it's easy to implement, and using chaining and  load() makes it trivial anyway now     
+<li>fetchRow - I've never used this....  just access PDO directly if you need to get this clever     
+</ul>     
+     
+<h5>PHP5 strict rules</h5>     
+<p>     
+factory without arguments... used to create a new object of the same type as the caller, but since factory is now static, it      
+can not determine what the caller is.     
+<ul>     
+     
+     
+<h5>Null strings</h5>     
+<p>     
+Previously assigining a object property to the string 'NULL' would result in NULL being used in the built query. This had      
+very unpredictable side effects.  The new standard behaviour is only to treat PHP's null value as database NULL when using the      
+set method (it actually set's the property to a PDO_DataObject_Cast value.     
+</p>     
+     
+<h5>Links</h5>     
+     
+     
+links() - previously calling it with arguments set the global links for that object.     
+          It now only set's it for that instance, use       
+     
+link() - second argument can not be an array (not sure why that was ever supported - it just read the first item in the array?!?     
+     
+getLink - removed - used link()     
+getLinkArray - renamed - linkArray()     
+getLinks - renamed - applyLinks()     
+     
+     
+     
+<h5>Debug levels</h5>     
+<p>     
+These have been changed slightly - timer information was removed from level(1) - so that tests can work.     
+</p>     
+<p>     
+     
+     
+     
+     
+$do->_database_dsn - removed - this was a security hole wating to fail... (Accidental print_r's etc...)     
+$do->_DB_resultid removed     
+$do->_lastError - removed - ?? Not sure if this is every used anymore..     
+     
+
+     */ ,
+     xns : Roo.bootstrap,
+     '|xns' : 'Roo.bootstrap'
     }
    ]
   };  }
