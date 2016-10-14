@@ -159,7 +159,6 @@ index = new Roo.XComponent({
              
                  // let's try and load some content.
                  
-                 var baseURL = window.location.pathname.replace(/index\.html$/, '');
                  
                  // what to load -- use window.location.hash ??
                  
