@@ -79,7 +79,7 @@ once you have created the classes, and configured PDO_DataObjects you can the ac
        items  : [
         {
          xtype : 'Example',
-         code : ' \nPDO_DataObject::factory(\'Events\')\n    ->load(3523)\n    ->set([\'action\' => \"testing\" ])\n    ->save();\n',
+         code : 'PDO_DataObject::factory(\'Events\')\n    ->load(3523)\n    ->set([\'action\' => \"testing\" ])\n    ->save();\n',
          title : _this._strings['6ed348e04674567827e341bb5b6d9d82'] /* Example of using PDO_DataObjects */,
          xns : Roo.doc,
          '|xns' : 'Roo.doc'
