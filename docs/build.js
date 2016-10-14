@@ -68,7 +68,7 @@ based on the values you set.
        items  : [
         {
          xtype : 'Example',
-         code : 'PDO_DataObject::factory(\'Events\')\n    ->load(3523)\n    ->set([\'action\' => \"testing\" ])\n    ->save();\n',
+         code : '\n$company = PDO_DataObject::factory(\'Companies\');\n$company->comptype = \'CONSULTANT\';\n$company->limit(3);\n$rows = $company->find();\necho \"Got $rows rows from find\\n\";\nwhile ($company->fetch()) {\n    print_r($company->toArray());\n}',
          title : _this._strings['9bf38a80987bf15dce35ca41b3a34f35'] /* Setting Properties to generate a query */,
          xns : Roo.doc,
          '|xns' : 'Roo.doc'
