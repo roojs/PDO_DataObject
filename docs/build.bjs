@@ -37,7 +37,7 @@
        "$ xns" : "Roo.doc",
        "items" : [
         {
-         "String code" : "\n$company = PDO_DataObject::factory('Companies');\n$company->comptype = 'CONSULTANT';\n$company->limit(3);\n$rows = $company->find();\necho \"Got $rows rows from find\\n\";\nwhile ($company->fetch()) {\n    print_r($company->toArray());\n}",
+         "String code" : "\n\n$company = PDO_DataObject::factory('Companies');\n$company->comptype = 'CONSULTANT';\n$company->limit(1);\n$company->find(true);\n\nprint_r($company->toArray());\n",
          "xtype" : "Example",
          "$ xns" : "Roo.doc",
          "String title" : "Setting Properties to generate a query"
