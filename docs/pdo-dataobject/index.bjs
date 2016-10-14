@@ -20,8 +20,8 @@
  "items" : [
   {
    "xtype" : "Body",
-   "$ xns" : "Roo.bootstrap",
    "String brand" : "PDO_DataObject Documentation",
+   "$ xns" : "Roo.bootstrap",
    "items" : [
     {
      "xtype" : "NavHeaderbar",
