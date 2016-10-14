@@ -7,6 +7,7 @@
  "modOrder" : "001",
  "strings" : {
   "27acce31dc1956874cd77b52da134506" : "An example ini file for use with createTables.php",
+  "ff2469a7973af3013351239b0ec94efe" : "<p>\nRather than using the standard createTables, code, you can easily create your own\n</p>",
   "2ee868dc71d76b74e5af6c689ef9ffe0" : "Creating DataObjects",
   "2314287293fbe38854242eac7f34855a" : "<p>\nThis will result in the creation of an 'ini' file containing the database structure.\n</p>\n",
   "ce0ef332536ddbe0f2d91179a923b3b0" : "<p>\nIt will also create skeleton DataObjects. \n</p>\n<p>\nThese files can be updated to match any changes you make to the database schema,\n if you run the command again and leave the comments in place.\n</p>",
@@ -126,7 +127,26 @@
     {
      "xtype" : "Element",
      "$ xns" : "Roo.bootstrap",
-     "String html" : "<p>\nOnce the classes have been created, you can add methods below the ###END_AUTOCODE that \nare relivant for your project.\n</p>\n<p>\nThe Generator contains many features to alter what is generated at this stage.\n</p>"
+     "String html" : "<p>\nRather than using the standard createTables, code, you can easily create your own\n</p>"
+    },
+    {
+     "xtype" : "Entry",
+     "$ xns" : "Roo.doc",
+     "items" : [
+      {
+       "String lang" : "php",
+       "xtype" : "Section",
+       "$ xns" : "Roo.doc",
+       "items" : [
+        {
+         "String code" : "[PDO_DataObject]\n\ndatabase = mysql://user:pass@localhost/testdb\nschema_location = /path/to/my/DataObjects\n\n ",
+         "xtype" : "Example",
+         "$ xns" : "Roo.doc",
+         "String title" : "An example ini file for use with createTables.php"
+        }
+       ]
+      }
+     ]
     }
    ]
   }

@@ -6,6 +6,7 @@ creating-dataobjects = new Roo.XComponent({
 
  _strings : {
   '27acce31dc1956874cd77b52da134506' :"An example ini file for use with createTables.php",
+  'ff2469a7973af3013351239b0ec94efe' :"<p>\nRather than using the standard createTables, code, you can easily create your own\n</p>",
   '2ee868dc71d76b74e5af6c689ef9ffe0' :"Creating DataObjects",
   '2314287293fbe38854242eac7f34855a' :"<p>\nThis will result in the creation of an 'ini' file containing the database structure.\n</p>\n",
   'ce0ef332536ddbe0f2d91179a923b3b0' :"<p>\nIt will also create skeleton DataObjects. \n</p>\n<p>\nThese files can be updated to match any changes you make to the database schema,\n if you run the command again and leave the comments in place.\n</p>",
@@ -189,17 +190,35 @@ The Generator contains many features to alter what is generated at this stage.
     },
     {
      xtype : 'Element',
-     html : _this._strings['6edce050ce6cb982c46e228782dbd8ed'] /* 
+     html : _this._strings['ff2469a7973af3013351239b0ec94efe'] /* 
      <p>     
-Once the classes have been created, you can add methods below the ###END_AUTOCODE that      
-are relivant for your project.     
-</p>     
-<p>     
-The Generator contains many features to alter what is generated at this stage.     
+Rather than using the standard createTables, code, you can easily create your own     
 </p>
      */ ,
      xns : Roo.bootstrap,
      '|xns' : 'Roo.bootstrap'
+    },
+    {
+     xtype : 'Entry',
+     xns : Roo.doc,
+     '|xns' : 'Roo.doc',
+     items  : [
+      {
+       xtype : 'Section',
+       lang : 'php',
+       xns : Roo.doc,
+       '|xns' : 'Roo.doc',
+       items  : [
+        {
+         xtype : 'Example',
+         code : '[PDO_DataObject]\n\ndatabase = mysql://user:pass@localhost/testdb\nschema_location = /path/to/my/DataObjects\n\n ',
+         title : _this._strings['27acce31dc1956874cd77b52da134506'] /* An example ini file for use with createTables.php */,
+         xns : Roo.doc,
+         '|xns' : 'Roo.doc'
+        }
+       ]
+      }
+     ]
     }
    ]
   };  }
