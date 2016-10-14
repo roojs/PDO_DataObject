@@ -55,6 +55,7 @@
                "$ xns" : "Roo.bootstrap",
                "items" : [
                 {
+                 "String cls" : "sidebar-nav",
                  "String href" : "test",
                  "xtype" : "NavGroup",
                  "$ xns" : "Roo.bootstrap",

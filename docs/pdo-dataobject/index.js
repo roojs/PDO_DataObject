@@ -75,6 +75,7 @@ index = new Roo.XComponent({
                items  : [
                 {
                  xtype : 'NavGroup',
+                 cls : 'sidebar-nav',
                  href : 'test',
                  html : _this._strings['098f6bcd4621d373cade4e832627b4f6'] /* test */,
                  xns : Roo.bootstrap,
