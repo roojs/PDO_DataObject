@@ -57,14 +57,14 @@
                "string name" : "introduction",
                "items" : [
                 {
-                 "String href" : "xxx",
                  "xtype" : "NavGroup",
                  "$ xns" : "Roo.bootstrap",
-                 "String html" : "test",
                  "items" : [
                   {
+                   "String href" : "test",
                    "xtype" : "NavItem",
-                   "$ xns" : "Roo.bootstrap"
+                   "$ xns" : "Roo.bootstrap",
+                   "String html" : "test"
                   }
                  ]
                 }
