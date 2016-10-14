@@ -16,7 +16,8 @@
   "556315ce9fbee2dfda70f8a91138d2b3" : "Create, Update and Delete",
   "5e434159c315edc6ae8d816255bffaec" : "Debugging & Error Handling",
   "2c918a06bae30fdcf78f8810894a67af" : "Working with Results",
-  "8413aa2e38fdd078a3d96e34592d286a" : "Building Queries"
+  "8413aa2e38fdd078a3d96e34592d286a" : "Building Queries",
+  "b73ec9912d761600946fab487e0de1cc" : "DB_DataObject compatibility"
  },
  "items" : [
   {
@@ -125,7 +126,7 @@
               {
                "xtype" : "NavCategory",
                "$ xns" : "Roo.doc",
-               "string title" : "Debugging & Error Handling",
+               "string title" : "DB_DataObject compatibility",
                "string name" : "debug"
               }
              ]

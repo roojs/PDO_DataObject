@@ -15,7 +15,8 @@ index = new Roo.XComponent({
   '556315ce9fbee2dfda70f8a91138d2b3' :"Create, Update and Delete",
   '5e434159c315edc6ae8d816255bffaec' :"Debugging & Error Handling",
   '2c918a06bae30fdcf78f8810894a67af' :"Working with Results",
-  '8413aa2e38fdd078a3d96e34592d286a' :"Building Queries"
+  '8413aa2e38fdd078a3d96e34592d286a' :"Building Queries",
+  'b73ec9912d761600946fab487e0de1cc' :"DB_DataObject compatibility"
  },
 
   part     :  ["docs", "index" ],
@@ -222,7 +223,7 @@ index = new Roo.XComponent({
               {
                xtype : 'NavCategory',
                name : 'debug',
-               title : _this._strings['5e434159c315edc6ae8d816255bffaec'] /* Debugging & Error Handling */,
+               title : _this._strings['b73ec9912d761600946fab487e0de1cc'] /* DB_DataObject compatibility */,
                xns : Roo.doc,
                '|xns' : 'Roo.doc'
               }
