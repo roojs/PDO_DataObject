@@ -254,7 +254,8 @@ index = new Roo.XComponent({
             render : function (_self)
              {
                      window.onhashchange = function() {
-                         Roo.log('hashchange?');
+                         //Roo.log('hashchange?');
+                         _self.load(window.location.hash.substring(1));
                      };
              }
            },
