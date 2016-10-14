@@ -731,7 +731,7 @@ class PDO_DataObject
      *
      * Note: the original code does determine 
      *
-     * @category introspect
+     * @category build
      * @param string $sql the query to modify
      * @param bool $manip - is the query a manipluation?
      * @return string - the modified string
