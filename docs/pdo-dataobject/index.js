@@ -86,7 +86,7 @@ index = new Roo.XComponent({
              
                      var node = {
                          name: 'category-' + cat,
-                         parent: {el : el},
+                         parent: {el : Roo.doc.NavCategory.registry[cat]},
                          title: "",
                          permname: "",
                          modOrder: "001",
@@ -97,8 +97,8 @@ index = new Roo.XComponent({
                          return tnode
                      }).createDelegate(node);
              
-                     new_comp = new Roo.XComponent(node);
-                     Roo.log(new_comp);
+                     var new_comp = new Roo.XComponent(node);
+              
                      new_comp.render();
                      
                  
