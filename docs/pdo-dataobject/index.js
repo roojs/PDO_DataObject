@@ -224,7 +224,7 @@ index = new Roo.XComponent({
              
                  // let's try and load some content.
                  
-                 
+                 return;
                  // what to load -- use window.location.hash ??
                  
                  var el = this;
