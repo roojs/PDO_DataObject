@@ -73,20 +73,6 @@
                    "String html" : "test"
                   }
                  ]
-                },
-                {
-                 "String href" : "test",
-                 "xtype" : "NavGroup",
-                 "$ xns" : "Roo.bootstrap",
-                 "String html" : "test",
-                 "items" : [
-                  {
-                   "String href" : "test",
-                   "xtype" : "NavItem",
-                   "$ xns" : "Roo.bootstrap",
-                   "String html" : "test"
-                  }
-                 ]
                 }
                ]
               }
