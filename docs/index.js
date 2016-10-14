@@ -214,7 +214,7 @@ index = new Roo.XComponent({
                var el = this;
                this.el.dom.innerHTML = '';
                
-                   var walk = function(node) {
+               var walk = function(node) {
                    if (node['|xns'] == 'Roo.doc' || node['$ xns'] == 'Roo.doc') {
                        node.xns = Roo.doc;
                    }
