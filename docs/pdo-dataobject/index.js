@@ -68,6 +68,9 @@ index = new Roo.XComponent({
                      if (node['|xns'] == 'Roo.doc') {
                          node.xns = Roo.doc;
                      }
+                      if (node['|xns'] == 'Roo.boostrap') {
+                         node.xns = Roo.bootstrap;
+                     }
                      Roo.each(node.items || [],walk);
                  
                  }
