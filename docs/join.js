@@ -5,7 +5,7 @@
 join = new Roo.XComponent({
 
  _strings : {
-  '0b79795d3efc95b9976c7c5b933afce2' :"Introduction",
+  'aca0253c82fea77fa2c8cbe60cd619f2' :"Joins and referenced Tables",
   '6ed348e04674567827e341bb5b6d9d82' :"Example of using PDO_DataObjects",
   'cca65c5b03db8ac0d31402bef3188f65' :"<p>\nPDO_DataObject is a SQL Builder and Data Modeling Layer built on top of PHP's PDO library. Its main purpose is to\n</p>\n<ul>\n<li>Build SQL and execute statements based on the objects variables.\n<li>Group source code around the data that they relate to.\n<li>Provide a simple consistent API to access and manipulate that data.\n</ul>\n\n<p>\nPDO_DataObject is based on PEAR's <a href=\"https://pear.php.net/manual/en/package.database.db-dataobject.php\">DB_DataObject</a> and for most purposes is \nfunctionally compatibly (see <a href=\"db-dataobject-compatibility\">DB_DataObject Compatibility</a>)\n</p>\n\n<p>\nSo what does that mean in English? Well, if you look around at some of the better written PHP applications and frameworks\n out there, you will notice a common approach to using classes to wrap access to database tables or groups.\n</p>\n<p>\nPDO_DataObjects follows this pattern, In normal usage, you define one Class for each table that you use \n(you can use the genreator tools to automate this process), \n\nonce you have created the classes, and configured PDO_DataObjects you can the access the database  like this\n\n",
   'd6aa8be6ff38aa217305484e5dd38a88' :"<p>\nWhat that code does should be reasonably clear\n</p>\n<ul>\n<li>Load, and create an instance of the 'events' class\n<li>fetch the record with the primary ID = 3523\n<li>set the value of 'action' to 'testing'\n<li>perform a database update\n</ul>\n\n<p>\nMost methods in PDO_DataObjects support chaining, except on methods which are designed to be\n compatibile with DB_DataObjects.\n</p>\n\n\n"
@@ -29,7 +29,7 @@ join = new Roo.XComponent({
    items  : [
     {
      xtype : 'Header',
-     html : _this._strings['0b79795d3efc95b9976c7c5b933afce2'] /* Introduction */,
+     html : _this._strings['aca0253c82fea77fa2c8cbe60cd619f2'] /* Joins and referenced Tables */,
      level : 1,
      xns : Roo.bootstrap,
      '|xns' : 'Roo.bootstrap'
