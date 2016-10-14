@@ -8,7 +8,7 @@ Docs = {
         
         baseURL = window.location.pathname.replace(/index\.html$/, '');
     
-        
+         
     }
 }
 
