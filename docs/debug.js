@@ -6,9 +6,7 @@ debug = new Roo.XComponent({
 
  _strings : {
   '5bd34b0eae1fda09128a49aac0b54b95' :"Debugging and error handling",
-  '78822f52f1081854d2d1235070e2f57b' :"<p>\nOne of the big problems with automatically building all your SQL, is not knowing exactly what is going on. PDO_DataObjects solves this by\nhaving a simple method to turn on, and adjust how much debugging information is shown. It will show you exactly what queries are being built,\nenabling you to either copy and overide them or just see any typos.\n</p>\n\n<p>\nOne of the key issues is that at a basic level, PDO_DataObjects tries not to exposes sensitive information,\n like database passwords or settings - the default debug Level does not show any of this information.\n</p>\n\n<p>\nCalling <a href=\"#pdo-dataobject/debugLevel\">debugLevel</a> turns on and off the debugging, it also can be called with a closure which is called with all the debug information, \ntechnically it just set's the configuration value of debug, so you can actually set the debug level using the a href=\"#pdo-dataobject/config\">config</a> method \n</p>\n\n<h3>Debugging methods</h3>\n\n<ul>\n<li><a href=\"#pdo-dataobject/debugLevel\">debugLevel</a> - sets the level of debugging to show\n<li><a href=\"#pdo-dataobject/debug\">debug</a> - enables you to add debug output to your own code\n</ul>\n\n\n<h3>Error handling</h3>\n<p>\nPDO uses Exceptions throughout, It is recommended that you either catch them, or implement a global exception handler to log failure. \n</p>\n<ul>\n<li><a href=\"#pdo-dataobject/free\">raise</a> - raises an excpetion\n</ul>\n\n\n\n<h3>Memory related methods</h3>\n<p>\nin DB_DataObject, these actually had an effect on memory usage, however since result objects are no cached seperatly in PDO_DataObject,\nthese have little effect now.\n</p>\n<ul>\n<li><a href=\"#pdo-dataobject/free\">free</a> - clears the query settings, result, and removes any links (not needed any more normally)\n<li><a href=\"#pdo-dataobject/reset\">reset</a> - clears all the database schema information \n</ul>\n",
-  '6ed348e04674567827e341bb5b6d9d82' :"Example of using PDO_DataObjects",
-  'd6aa8be6ff38aa217305484e5dd38a88' :"<p>\nWhat that code does should be reasonably clear\n</p>\n<ul>\n<li>Load, and create an instance of the 'events' class\n<li>fetch the record with the primary ID = 3523\n<li>set the value of 'action' to 'testing'\n<li>perform a database update\n</ul>\n\n<p>\nMost methods in PDO_DataObjects support chaining, except on methods which are designed to be\n compatibile with DB_DataObjects.\n</p>\n\n\n"
+  '78822f52f1081854d2d1235070e2f57b' :"<p>\nOne of the big problems with automatically building all your SQL, is not knowing exactly what is going on. PDO_DataObjects solves this by\nhaving a simple method to turn on, and adjust how much debugging information is shown. It will show you exactly what queries are being built,\nenabling you to either copy and overide them or just see any typos.\n</p>\n\n<p>\nOne of the key issues is that at a basic level, PDO_DataObjects tries not to exposes sensitive information,\n like database passwords or settings - the default debug Level does not show any of this information.\n</p>\n\n<p>\nCalling <a href=\"#pdo-dataobject/debugLevel\">debugLevel</a> turns on and off the debugging, it also can be called with a closure which is called with all the debug information, \ntechnically it just set's the configuration value of debug, so you can actually set the debug level using the a href=\"#pdo-dataobject/config\">config</a> method \n</p>\n\n<h3>Debugging methods</h3>\n\n<ul>\n<li><a href=\"#pdo-dataobject/debugLevel\">debugLevel</a> - sets the level of debugging to show\n<li><a href=\"#pdo-dataobject/debug\">debug</a> - enables you to add debug output to your own code\n</ul>\n\n\n<h3>Error handling</h3>\n<p>\nPDO uses Exceptions throughout, It is recommended that you either catch them, or implement a global exception handler to log failure. \n</p>\n<ul>\n<li><a href=\"#pdo-dataobject/free\">raise</a> - raises an excpetion\n</ul>\n\n\n\n<h3>Memory related methods</h3>\n<p>\nin DB_DataObject, these actually had an effect on memory usage, however since result objects are no cached seperatly in PDO_DataObject,\nthese have little effect now.\n</p>\n<ul>\n<li><a href=\"#pdo-dataobject/free\">free</a> - clears the query settings, result, and removes any links (not needed any more normally)\n<li><a href=\"#pdo-dataobject/reset\">reset</a> - clears all the database schema information \n</ul>\n"
  },
 
   part     :  ["docs", "debug" ],
@@ -80,52 +78,6 @@ these have little effect now.
 <li><a href="#pdo-dataobject/free">free</a> - clears the query settings, result, and removes any links (not needed any more normally)     
 <li><a href="#pdo-dataobject/reset">reset</a> - clears all the database schema information      
 </ul>     
-
-     */ ,
-     xns : Roo.bootstrap,
-     '|xns' : 'Roo.bootstrap'
-    },
-    {
-     xtype : 'Entry',
-     xns : Roo.doc,
-     '|xns' : 'Roo.doc',
-     items  : [
-      {
-       xtype : 'Section',
-       lang : 'php',
-       xns : Roo.doc,
-       '|xns' : 'Roo.doc',
-       items  : [
-        {
-         xtype : 'Example',
-         code : 'PDO_DataObject::factory(\'Events\')\n    ->load(3523)\n    ->set([\'action\' => \"testing\" ])\n    ->save();\n',
-         title : _this._strings['6ed348e04674567827e341bb5b6d9d82'] /* Example of using PDO_DataObjects */,
-         xns : Roo.doc,
-         '|xns' : 'Roo.doc'
-        }
-       ]
-      }
-     ]
-    },
-    {
-     xtype : 'Element',
-     html : _this._strings['d6aa8be6ff38aa217305484e5dd38a88'] /* 
-     <p>     
-What that code does should be reasonably clear     
-</p>     
-<ul>     
-<li>Load, and create an instance of the 'events' class     
-<li>fetch the record with the primary ID = 3523     
-<li>set the value of 'action' to 'testing'     
-<li>perform a database update     
-</ul>     
-     
-<p>     
-Most methods in PDO_DataObjects support chaining, except on methods which are designed to be     
- compatibile with DB_DataObjects.     
-</p>     
-     
-     
 
      */ ,
      xns : Roo.bootstrap,
