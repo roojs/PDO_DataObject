@@ -200,8 +200,8 @@ index = new Roo.XComponent({
           },
           {
            xtype : 'Column',
+           load : function() { },
            sm : 9,
-           XXXX : function() { },
            listeners : {
             render : function (_self)
              {
