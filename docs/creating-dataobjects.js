@@ -6,9 +6,9 @@ creating-dataobjects = new Roo.XComponent({
 
  _strings : {
   '2ee868dc71d76b74e5af6c689ef9ffe0' :"Creating DataObjects",
+  '2314287293fbe38854242eac7f34855a' :"<p>\nThis will result in the creation of an 'ini' file containing the database structure.\n</p>\n",
   'd06bda29ade3b12c79092ea8e173dbc0' :"Creating schema and Base DataObjects",
-  'd438a0af0c2a3eb34111e45e615fe4a7' :"<p>\nThere are two components that are needed before you can start using DataObjects in your code\n\n<ul>\n<li>a schema file describing the database\n<li>PHP classes representing each of the tables\n</ul>\n<p>\nBoth of these can be created using the tools included with PDO_DataObjects, or you can use the code in \nthe Generator to write the schema files when a page is requested, and cache the results.\n\n<p>\nFor basic usage, use the file PDO/DataObject/createTables.php to create your schema file\n ",
-  'd6aa8be6ff38aa217305484e5dd38a88' :"<p>\nWhat that code does should be reasonably clear\n</p>\n<ul>\n<li>Load, and create an instance of the 'events' class\n<li>fetch the record with the primary ID = 3523\n<li>set the value of 'action' to 'testing'\n<li>perform a database update\n</ul>\n\n<p>\nMost methods in PDO_DataObjects support chaining, except on methods which are designed to be\n compatibile with DB_DataObjects.\n</p>\n\n\n"
+  'd438a0af0c2a3eb34111e45e615fe4a7' :"<p>\nThere are two components that are needed before you can start using DataObjects in your code\n\n<ul>\n<li>a schema file describing the database\n<li>PHP classes representing each of the tables\n</ul>\n<p>\nBoth of these can be created using the tools included with PDO_DataObjects, or you can use the code in \nthe Generator to write the schema files when a page is requested, and cache the results.\n\n<p>\nFor basic usage, use the file PDO/DataObject/createTables.php to create your schema file\n "
  },
 
   part     :  ["docs", "creating-dataobjects" ],
@@ -79,23 +79,10 @@ For basic usage, use the file PDO/DataObject/createTables.php to create your sch
     },
     {
      xtype : 'Element',
-     html : _this._strings['d6aa8be6ff38aa217305484e5dd38a88'] /* 
+     html : _this._strings['2314287293fbe38854242eac7f34855a'] /* 
      <p>     
-What that code does should be reasonably clear     
+This will result in the creation of an 'ini' file containing the database structure.     
 </p>     
-<ul>     
-<li>Load, and create an instance of the 'events' class     
-<li>fetch the record with the primary ID = 3523     
-<li>set the value of 'action' to 'testing'     
-<li>perform a database update     
-</ul>     
-     
-<p>     
-Most methods in PDO_DataObjects support chaining, except on methods which are designed to be     
- compatibile with DB_DataObjects.     
-</p>     
-     
-     
 
      */ ,
      xns : Roo.bootstrap,
