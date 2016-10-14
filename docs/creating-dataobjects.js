@@ -140,7 +140,7 @@ These files can be updated to match any changes you make to the database schema,
        items  : [
         {
          xtype : 'Example',
-         code : '[group]\nid = 129\nname = 130 \ngrp_owner = 129 \nofficial = 130 \nstreet = 130 \npostcode = 130\ncity = 130 \nhomepage = 130 \nemail = 130 \nextra = 130 \n\n[group__keys]\nid = N',
+         code : '/*\n* Table Definition for group\n*/\n\nrequire_once \'PDO/DataObject.php\';\n\nclass DataObjects_Group extends PDO_DataObject {\n\n    ###START_AUTOCODE\n    /* the code below is auto generated do not remove the above tag */\n\n    var $__table=\'group\';                             // table name\n    var $id;                              // int primary_key\n    var $name;                            // string\n    var $grp_owner;                       // int\n    var $official;                        // string\n    var $street;                          // string\n    var $postcode;                        // string\n    var $city;                            // string\n    var $homepage;                        // string\n    var $email;                           // string\n    var $extra;                           // blob\n\n    /* Static get */\n    function staticGet($k,$v=NULL) { return DB_DataObject::staticGet(\'DataObjects_Grp\',$k,$v); }\n\n\n    /* the code above is auto generated do not remove the tag below */\n    ###END_AUTOCODE\n}',
          title : _this._strings['5f31614f3d53f25fd4adadc06738bf59'] /* Example Generated DataObject */,
          xns : Roo.doc,
          '|xns' : 'Roo.doc'
