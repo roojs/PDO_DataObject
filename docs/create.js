@@ -64,7 +64,7 @@ While you can just create an instance of your child class, factory offers a numb
        items  : [
         {
          xtype : 'Example',
-         code : 'PDO_DataObject::factory(\'Events\')\n    ->load(3523)\n    ->set([\'action\' => \"testing\" ])\n    ->save();\n',
+         code : '\n\n\n$e = PDO_DataObject::factory(\'Events\')\n\n// create a new instance (or call it from a method in your events object.\n$e->factorySelf()\n\n// create a \n',
          title : _this._strings['6ed348e04674567827e341bb5b6d9d82'] /* Example of using PDO_DataObjects */,
          xns : Roo.doc,
          '|xns' : 'Roo.doc'
