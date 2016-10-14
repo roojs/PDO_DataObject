@@ -214,9 +214,12 @@ index = new Roo.XComponent({
                var el = this;
                this.el.dom.innerHTML = '';
                
-               var walk = function(node) {
+                   var walk = function(node) {
                    if (node['|xns'] == 'Roo.doc') {
                        node.xns = Roo.doc;
+                   }
+                    if (node['|xns'] == 'Roo.bootstrap') {
+                       node.xns = Roo.bootstrap;
                    }
                    Roo.each(node.items || [],walk);
                
@@ -234,7 +237,7 @@ index = new Roo.XComponent({
                        return items[0]
                    }).createDelegate(node);
                    node.parent = { el : el };
-                   new_comp = new Roo.XComponent(node);
+                   var new_comp = new Roo.XComponent(node);
                    Roo.log(new_comp);
                    new_comp.render();
                    
