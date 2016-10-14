@@ -10,6 +10,7 @@ config = new Roo.XComponent({
   '694ce9694362ab071d46ae7dda42a0f7' :"MS SQL server connection examples",
   '35be5669049f8fb369c7654567b1d1ab' :"Mysql Connection examples",
   '5a74df583978a5eff924d7231d726b2c' :"Sqlite Connection examples",
+  '8d029c3f3751d2ca224271f75ab606c7' :"oracle server connection examples",
   '254f642527b45bc260048e30704edb39' :"Configuration"
  },
 
@@ -165,6 +166,28 @@ XXXX=1|YYY=2
          xtype : 'Example',
          code : 'PDO_DataObject::config(\'database\', \'sqlsrv://test@localhost/somedb\');\n(new PDO_DataObject())->PDO();\nPDO_DataObject::config(\'database\', \'sqlsrv://UserName%4012345abcde:Password@12345abcde.database.windows.net/somedb\');\n(new PDO_DataObject())->PDO();\nPDO_DataObject::config(\'database\', \'sqlsrv://UserName%4012345abcde:Password@(localdb)\\\\v11.0/somedb?AttachDBFilename=C:\\Users\\user\\my_db.mdf\');\n(new PDO_DataObject())->PDO();\n',
          title : _this._strings['694ce9694362ab071d46ae7dda42a0f7'] /* MS SQL server connection examples */,
+         xns : Roo.doc,
+         '|xns' : 'Roo.doc'
+        }
+       ]
+      }
+     ]
+    },
+    {
+     xtype : 'Entry',
+     xns : Roo.doc,
+     '|xns' : 'Roo.doc',
+     items  : [
+      {
+       xtype : 'Section',
+       lang : 'php',
+       xns : Roo.doc,
+       '|xns' : 'Roo.doc',
+       items  : [
+        {
+         xtype : 'Example',
+         code : 'PDO_DataObject::config(\'database\', \'sqlsrv://test@localhost/somedb\');\n(new PDO_DataObject())->PDO();\nPDO_DataObject::config(\'database\', \'sqlsrv://UserName%4012345abcde:Password@12345abcde.database.windows.net/somedb\');\n(new PDO_DataObject())->PDO();\nPDO_DataObject::config(\'database\', \'sqlsrv://UserName%4012345abcde:Password@(localdb)\\\\v11.0/somedb?AttachDBFilename=C:\\Users\\user\\my_db.mdf\');\n(new PDO_DataObject())->PDO();\n',
+         title : _this._strings['8d029c3f3751d2ca224271f75ab606c7'] /* oracle server connection examples */,
          xns : Roo.doc,
          '|xns' : 'Roo.doc'
         }
