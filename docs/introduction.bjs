@@ -6,23 +6,5 @@
  "permname" : "",
  "modOrder" : "001",
  "items" : [
-  {
-   "xtype" : "Entry",
-   "purpose" : "Introduction",
-   "$ xns" : "Roo.doc",
-   "items" : [
-    {
-     "xtype" : "Section",
-     "$ xns" : "Roo.doc",
-     "String stype" : "note",
-     "items" : [
-      {
-       "xtype" : "Para",
-       "$ xns" : "Roo.doc"
-      }
-     ]
-    }
-   ]
-  }
  ]
 }
