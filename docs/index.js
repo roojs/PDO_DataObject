@@ -224,6 +224,7 @@ index = new Roo.XComponent({
                    // builder uses very different format now..
                    for(var k in node) {
                        if (k.match(/\s+/)) { 
+                       Roo.log('set : ' + k.split(/\s+/).pop());
                            node[k.split(/\s+/).pop()] = node[k];
                        }
                    }
