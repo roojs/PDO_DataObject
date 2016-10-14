@@ -215,10 +215,10 @@ index = new Roo.XComponent({
                this.el.dom.innerHTML = '';
                
                    var walk = function(node) {
-                   if (node['|xns'] == 'Roo.doc') {
+                   if (node['|xns'] == 'Roo.doc' || node['$ xns'] == 'Roo.doc') {
                        node.xns = Roo.doc;
                    }
-                    if (node['|xns'] == 'Roo.bootstrap') {
+                    if (node['|xns'] == 'Roo.bootstrap' || node['$ xns'] == 'Roo.bootstrap' ) {
                        node.xns = Roo.bootstrap;
                    }
                    Roo.each(node.items || [],walk);
