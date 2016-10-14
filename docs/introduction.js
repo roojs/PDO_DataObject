@@ -34,7 +34,7 @@ introduction = new Roo.XComponent({
      '|xns' : 'Roo.bootstrap'
     },
     {
-     xtype : 'Container',
+     xtype : 'Element',
      html : _this._strings['0bc697cb5fdd2bcbc55179802b8160cd'] /* 
      <p>     
 PDO_DataObject is a SQL Builder and Data Modeling Layer built on top of PHP's PDO library. Its main purpose is to     
