@@ -18,6 +18,10 @@
      "Number level" : 3,
      "$ xns" : "Roo.bootstrap",
      "String html" : "Introduction"
+    },
+    {
+     "xtype" : "Container",
+     "$ xns" : "Roo.bootstrap"
     }
    ]
   }

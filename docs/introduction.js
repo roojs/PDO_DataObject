@@ -30,6 +30,11 @@ introduction = new Roo.XComponent({
      level : 3,
      xns : Roo.bootstrap,
      '|xns' : 'Roo.bootstrap'
+    },
+    {
+     xtype : 'Container',
+     xns : Roo.bootstrap,
+     '|xns' : 'Roo.bootstrap'
     }
    ]
   };  }
