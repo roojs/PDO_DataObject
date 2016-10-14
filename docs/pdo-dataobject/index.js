@@ -6,6 +6,7 @@ index = new Roo.XComponent({
 
  _strings : {
   '098f6bcd4621d373cade4e832627b4f6' :"test",
+  'a38e81a846f1ea114b5343f88d970272' :"testasdf asdf asdf asdf asdf",
   '37235a56865c43e9decef816c22d8614' :"Section block",
   '9f6e6800cfae7749eb6c486619254b9c' :"sss"
  },
@@ -84,7 +85,7 @@ index = new Roo.XComponent({
                   {
                    xtype : 'NavItem',
                    href : 'test',
-                   html : _this._strings['098f6bcd4621d373cade4e832627b4f6'] /* test */,
+                   html : _this._strings['a38e81a846f1ea114b5343f88d970272'] /* testasdf asdf asdf asdf asdf */,
                    xns : Roo.bootstrap,
                    '|xns' : 'Roo.bootstrap'
                   },
