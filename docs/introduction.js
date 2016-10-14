@@ -20,6 +20,20 @@ introduction = new Roo.XComponent({
    return {
    xtype : 'Entry',
    xns : Roo.doc,
-   '|xns' : 'Roo.doc'
+   '|xns' : 'Roo.doc',
+   items  : [
+    {
+     xtype : 'Section',
+     xns : Roo.doc,
+     '|xns' : 'Roo.doc',
+     items  : [
+      {
+       xtype : 'Para',
+       xns : Roo.doc,
+       '|xns' : 'Roo.doc'
+      }
+     ]
+    }
+   ]
   };  }
 });
