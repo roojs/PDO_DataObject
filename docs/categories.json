@@ -48,6 +48,12 @@
             {
                 "|xns": "Roo.bootstrap",
                 "xtype": "NavItem",
+                "href": "#pdo-dataobject\/result",
+                "html": "result"
+            },
+            {
+                "|xns": "Roo.bootstrap",
+                "xtype": "NavItem",
                 "href": "#pdo-dataobject\/toArray",
                 "html": "toArray"
             }
@@ -410,18 +416,6 @@
                 "xtype": "NavItem",
                 "href": "#pdo-dataobject\/links",
                 "html": "links"
-            }
-        ]
-    },
-    "result": {
-        "|xns": "Roo.bootstrap",
-        "xtype": "NavGroup",
-        "items": [
-            {
-                "|xns": "Roo.bootstrap",
-                "xtype": "NavItem",
-                "href": "#pdo-dataobject\/result",
-                "html": "result"
             }
         ]
     },
