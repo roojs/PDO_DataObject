@@ -5148,7 +5148,7 @@ class PDO_DataObject
  
     /**
      * Gets the DB result object related to the objects active query
-     * @category introspect
+     * @category result
      * @access public
      * @return PDOStatement|false  
      */
