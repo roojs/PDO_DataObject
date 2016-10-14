@@ -28,7 +28,7 @@ introduction = new Roo.XComponent({
     {
      xtype : 'Header',
      html : _this._strings['0b79795d3efc95b9976c7c5b933afce2'] /* Introduction */,
-     level : 3,
+     level : 1,
      xns : Roo.bootstrap,
      '|xns' : 'Roo.bootstrap'
     },

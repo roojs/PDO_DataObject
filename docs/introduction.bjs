@@ -17,7 +17,7 @@
     {
      "xtype" : "Header",
      "$ xns" : "Roo.bootstrap",
-     "Number level" : 3,
+     "Number level" : 1,
      "String html" : "Introduction"
     },
     {
