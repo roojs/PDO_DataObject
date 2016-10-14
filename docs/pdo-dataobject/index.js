@@ -7,7 +7,8 @@ index = new Roo.XComponent({
  _strings : {
   '0b79795d3efc95b9976c7c5b933afce2' :"Introduction",
   '9f6e6800cfae7749eb6c486619254b9c' :"sss",
-  '254f642527b45bc260048e30704edb39' :"Configuration"
+  '254f642527b45bc260048e30704edb39' :"Configuration",
+  '8413aa2e38fdd078a3d96e34592d286a' :"Building Queries"
  },
 
   part     :  ["pdo-dataobject", "index" ],
@@ -77,14 +78,14 @@ index = new Roo.XComponent({
               },
               {
                xtype : 'NavCategory',
-               name : 'introduction',
-               title : _this._strings['0b79795d3efc95b9976c7c5b933afce2'] /* Introduction */,
+               name : 'build',
+               title : _this._strings['8413aa2e38fdd078a3d96e34592d286a'] /* Building Queries */,
                xns : Roo.doc,
                '|xns' : 'Roo.doc'
               },
               {
                xtype : 'NavCategory',
-               name : 'introduction',
+               name : 'fetch',
                title : _this._strings['0b79795d3efc95b9976c7c5b933afce2'] /* Introduction */,
                xns : Roo.doc,
                '|xns' : 'Roo.doc'
