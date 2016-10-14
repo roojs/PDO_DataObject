@@ -5,8 +5,8 @@
 introduction = new Roo.XComponent({
 
  _strings : {
-  'f80164b9680b7593444415dfe2113bbd' :"<p>\nPDO_DataObject is a SQL Builder and Data Modeling Layer built on top of PHP's PDO library. Its main purpose is to\n</p>\n<ul>\n<li>Build SQL and execute statements based on the objects variables.\n<li>Group source code around the data that they relate to.\n<li>Provide a simple consistent API to access and manipulate that data.\n<ul>\n\n<p>\nPDO_DataObject is based on PEAR's <a href=\"https://pear.php.net/manual/en/package.database.db-dataobject.php\">DB_DataObject</a> and for most purposes is \nfunctionally compatibly (see <a href=\"db-dataobject-compatibility\">DB_DataObject Compatibility</a>)\n</p>\n\nSo what does that mean in English? Well, if you look around at some of the better written PHP applications and frameworks out there, you will notice a common approach to using classes to wrap access to database tables or groups. The prime example of this is the person object, which would frequently look something like this.\n\n",
-  '0b79795d3efc95b9976c7c5b933afce2' :"Introduction"
+  '0b79795d3efc95b9976c7c5b933afce2' :"Introduction",
+  '0bc697cb5fdd2bcbc55179802b8160cd' :"<p>\nPDO_DataObject is a SQL Builder and Data Modeling Layer built on top of PHP's PDO library. Its main purpose is to\n</p>\n<ul>\n<li>Build SQL and execute statements based on the objects variables.\n<li>Group source code around the data that they relate to.\n<li>Provide a simple consistent API to access and manipulate that data.\n</ul>\n\n<p>\nPDO_DataObject is based on PEAR's <a href=\"https://pear.php.net/manual/en/package.database.db-dataobject.php\">DB_DataObject</a> and for most purposes is \nfunctionally compatibly (see <a href=\"db-dataobject-compatibility\">DB_DataObject Compatibility</a>)\n</p>\n\nSo what does that mean in English? Well, if you look around at some of the better written PHP applications and frameworks out there, you will notice a common approach to using classes to wrap access to database tables or groups. The prime example of this is the person object, which would frequently look something like this.\n\n"
  },
 
   part     :  ["docs", "introduction" ],
@@ -34,7 +34,7 @@ introduction = new Roo.XComponent({
     },
     {
      xtype : 'Container',
-     html : _this._strings['f80164b9680b7593444415dfe2113bbd'] /* 
+     html : _this._strings['0bc697cb5fdd2bcbc55179802b8160cd'] /* 
      <p>     
 PDO_DataObject is a SQL Builder and Data Modeling Layer built on top of PHP's PDO library. Its main purpose is to     
 </p>     
@@ -42,7 +42,7 @@ PDO_DataObject is a SQL Builder and Data Modeling Layer built on top of PHP's PD
 <li>Build SQL and execute statements based on the objects variables.     
 <li>Group source code around the data that they relate to.     
 <li>Provide a simple consistent API to access and manipulate that data.     
-<ul>     
+</ul>     
      
 <p>     
 PDO_DataObject is based on PEAR's <a href="https://pear.php.net/manual/en/package.database.db-dataobject.php">DB_DataObject</a> and for most purposes is      
