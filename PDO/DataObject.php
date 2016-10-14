@@ -3090,7 +3090,7 @@ class PDO_DataObject
      * We do not really care if you have implemented it correctly....????
      * you can modify the class by setting proxy to {YOUR CLASS}::{your method}
      * 
-     * @category fetch
+     * @category introspect
      * @return PDO_DataObject_Generator
      */
     
