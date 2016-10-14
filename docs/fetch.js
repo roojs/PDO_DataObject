@@ -6,8 +6,8 @@ fetch = new Roo.XComponent({
 
  _strings : {
   'c2b942b501dc222d608980c0ed40b07c' :"Fetching Results",
+  'dd3017609e5cbd3c6782241364790151' :"<p>\nTo actually fetch data from the database, one of the fetch commands must be run.\n</p>\n\n<p>\nFor loading single rows\n</p>\n<ul>\n<li><a href=\"#pdo-dataobject/load\">load</a> - this loads a single row (Chainable)\n<li><a href=\"#pdo-dataobject/reload\">reload</a> - this reloads the existing object from the database (Chainable)\n<li><a href=\"#pdo-dataobject/get\">get</a> - this loads a single row\n<li><a href=\"#pdo-dataobject/count\">count</a> - counts the number of a results a query will return.\n</ul>\n\n\n<p>\nFor sending queries\n</p>\n<ul>\n<li><a href=\"#pdo-dataobject/find\">find</a> - builds the query from the properties and called methods\n<li><a href=\"#pdo-dataobject/query\">query</a> - sends a raw query\n<li><a href=\"#pdo-dataobject/get\">get</a> - this loads a single row\n</ul>\n\n<p>\nFor fetching results\n</p>\n<ul>\n<li><a href=\"#pdo-dataobject/fetch\">fetch</a> - loads the object's propeties with the values from the database\n<li><a href=\"#pdo-dataobject/query\">fetchAll</a> - retrieves all the results in various formats\n<li><a href=\"#pdo-dataobject/get\">get</a> - this loads a single row\n</ul>\n\n\n\nBuffered results.",
   '6ed348e04674567827e341bb5b6d9d82' :"Example of using PDO_DataObjects",
-  'cca65c5b03db8ac0d31402bef3188f65' :"<p>\nPDO_DataObject is a SQL Builder and Data Modeling Layer built on top of PHP's PDO library. Its main purpose is to\n</p>\n<ul>\n<li>Build SQL and execute statements based on the objects variables.\n<li>Group source code around the data that they relate to.\n<li>Provide a simple consistent API to access and manipulate that data.\n</ul>\n\n<p>\nPDO_DataObject is based on PEAR's <a href=\"https://pear.php.net/manual/en/package.database.db-dataobject.php\">DB_DataObject</a> and for most purposes is \nfunctionally compatibly (see <a href=\"db-dataobject-compatibility\">DB_DataObject Compatibility</a>)\n</p>\n\n<p>\nSo what does that mean in English? Well, if you look around at some of the better written PHP applications and frameworks\n out there, you will notice a common approach to using classes to wrap access to database tables or groups.\n</p>\n<p>\nPDO_DataObjects follows this pattern, In normal usage, you define one Class for each table that you use \n(you can use the genreator tools to automate this process), \n\nonce you have created the classes, and configured PDO_DataObjects you can the access the database  like this\n\n",
   'd6aa8be6ff38aa217305484e5dd38a88' :"<p>\nWhat that code does should be reasonably clear\n</p>\n<ul>\n<li>Load, and create an instance of the 'events' class\n<li>fetch the record with the primary ID = 3523\n<li>set the value of 'action' to 'testing'\n<li>perform a database update\n</ul>\n\n<p>\nMost methods in PDO_DataObjects support chaining, except on methods which are designed to be\n compatibile with DB_DataObjects.\n</p>\n\n\n"
  },
 
@@ -36,32 +36,43 @@ fetch = new Roo.XComponent({
     },
     {
      xtype : 'Element',
-     html : _this._strings['cca65c5b03db8ac0d31402bef3188f65'] /* 
+     html : _this._strings['dd3017609e5cbd3c6782241364790151'] /* 
      <p>     
-PDO_DataObject is a SQL Builder and Data Modeling Layer built on top of PHP's PDO library. Its main purpose is to     
+To actually fetch data from the database, one of the fetch commands must be run.     
+</p>     
+     
+<p>     
+For loading single rows     
 </p>     
 <ul>     
-<li>Build SQL and execute statements based on the objects variables.     
-<li>Group source code around the data that they relate to.     
-<li>Provide a simple consistent API to access and manipulate that data.     
+<li><a href="#pdo-dataobject/load">load</a> - this loads a single row (Chainable)     
+<li><a href="#pdo-dataobject/reload">reload</a> - this reloads the existing object from the database (Chainable)     
+<li><a href="#pdo-dataobject/get">get</a> - this loads a single row     
+<li><a href="#pdo-dataobject/count">count</a> - counts the number of a results a query will return.     
+</ul>     
+     
+     
+<p>     
+For sending queries     
+</p>     
+<ul>     
+<li><a href="#pdo-dataobject/find">find</a> - builds the query from the properties and called methods     
+<li><a href="#pdo-dataobject/query">query</a> - sends a raw query     
+<li><a href="#pdo-dataobject/get">get</a> - this loads a single row     
 </ul>     
      
 <p>     
-PDO_DataObject is based on PEAR's <a href="https://pear.php.net/manual/en/package.database.db-dataobject.php">DB_DataObject</a> and for most purposes is      
-functionally compatibly (see <a href="db-dataobject-compatibility">DB_DataObject Compatibility</a>)     
+For fetching results     
 </p>     
+<ul>     
+<li><a href="#pdo-dataobject/fetch">fetch</a> - loads the object's propeties with the values from the database     
+<li><a href="#pdo-dataobject/query">fetchAll</a> - retrieves all the results in various formats     
+<li><a href="#pdo-dataobject/get">get</a> - this loads a single row     
+</ul>     
      
-<p>     
-So what does that mean in English? Well, if you look around at some of the better written PHP applications and frameworks     
- out there, you will notice a common approach to using classes to wrap access to database tables or groups.     
-</p>     
-<p>     
-PDO_DataObjects follows this pattern, In normal usage, you define one Class for each table that you use      
-(you can use the genreator tools to automate this process),      
      
-once you have created the classes, and configured PDO_DataObjects you can the access the database  like this     
      
-
+Buffered results.
      */ ,
      xns : Roo.bootstrap,
      '|xns' : 'Roo.bootstrap'
