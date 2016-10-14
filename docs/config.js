@@ -186,7 +186,7 @@ XXXX=1|YYY=2
        items  : [
         {
          xtype : 'Example',
-         code : 'PDO_DataObject::config(\'database\', \'sqlsrv://test@localhost/somedb\');\n(new PDO_DataObject())->PDO();\nPDO_DataObject::config(\'database\', \'sqlsrv://UserName%4012345abcde:Password@12345abcde.database.windows.net/somedb\');\n(new PDO_DataObject())->PDO();\nPDO_DataObject::config(\'database\', \'sqlsrv://UserName%4012345abcde:Password@(localdb)\\\\v11.0/somedb?AttachDBFilename=C:\\Users\\user\\my_db.mdf\');\n(new PDO_DataObject())->PDO();\n',
+         code : 'PDO_DataObject::config(\'database\', \'oci://mydb\'); // oci:dbname=mydb\n(new PDO_DataObject())->PDO();\n \nPDO_DataObject::config(\'database\', \'oci://localhost:1521/mydb\'); // oci:dbname=//localhost:1521/mydb\n(new PDO_DataObject())->PDO();\nPDO_DataObject::config(\'database\', \'oci://user:pass@192.168.10.145/orcl?charset=CL8MSWIN1251\'); // oci:dbname=192.168.10.145/orcl;charset=CL8MSWIN1251\n(new PDO_DataObject())->PDO();',
          title : _this._strings['8d029c3f3751d2ca224271f75ab606c7'] /* oracle server connection examples */,
          xns : Roo.doc,
          '|xns' : 'Roo.doc'
