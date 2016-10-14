@@ -178,7 +178,7 @@ The Generator contains many features to alter what is generated at this stage.
        items  : [
         {
          xtype : 'Example',
-         code : '[PDO_DataObject]\n\ndatabase = mysql://user:pass@localhost/testdb\nschema_location = /path/to/my/DataObjects\n\n  ',
+         code : '[PDO_DataObject]\n\ndatabase = mysql://user:pass@localhost/testdb\nschema_location = /path/to/my/DataObjects\n\n ',
          title : _this._strings['27acce31dc1956874cd77b52da134506'] /* An example ini file for use with createTables.php */,
          xns : Roo.doc,
          '|xns' : 'Roo.doc'
@@ -186,6 +186,20 @@ The Generator contains many features to alter what is generated at this stage.
        ]
       }
      ]
+    },
+    {
+     xtype : 'Element',
+     html : _this._strings['6edce050ce6cb982c46e228782dbd8ed'] /* 
+     <p>     
+Once the classes have been created, you can add methods below the ###END_AUTOCODE that      
+are relivant for your project.     
+</p>     
+<p>     
+The Generator contains many features to alter what is generated at this stage.     
+</p>
+     */ ,
+     xns : Roo.bootstrap,
+     '|xns' : 'Roo.bootstrap'
     }
    ]
   };  }
