@@ -5,7 +5,7 @@
 index = new Roo.XComponent({
 
  _strings : {
-  '82ab8156d18c04c14d59def3acc8b514' :"Joins and referenced TAbles",
+  'aca0253c82fea77fa2c8cbe60cd619f2' :"Joins and referenced Tables",
   'c2b942b501dc222d608980c0ed40b07c' :"Fetching Results",
   '0b79795d3efc95b9976c7c5b933afce2' :"Introduction",
   '9f6e6800cfae7749eb6c486619254b9c' :"sss",
@@ -95,7 +95,7 @@ index = new Roo.XComponent({
               {
                xtype : 'NavCategory',
                name : 'join',
-               title : _this._strings['82ab8156d18c04c14d59def3acc8b514'] /* Joins and referenced TAbles */,
+               title : _this._strings['aca0253c82fea77fa2c8cbe60cd619f2'] /* Joins and referenced Tables */,
                xns : Roo.doc,
                '|xns' : 'Roo.doc'
               },
