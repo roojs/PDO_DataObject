@@ -59,7 +59,14 @@ So what does that mean in English? Well, if you look around at some of the bette
     {
      xtype : 'Entry',
      xns : Roo.doc,
-     '|xns' : 'Roo.doc'
+     '|xns' : 'Roo.doc',
+     items  : [
+      {
+       xtype : 'Section',
+       xns : Roo.doc,
+       '|xns' : 'Roo.doc'
+      }
+     ]
     }
    ]
   };  }
