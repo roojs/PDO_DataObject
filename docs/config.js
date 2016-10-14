@@ -163,7 +163,7 @@ XXXX=1|YYY=2
        items  : [
         {
          xtype : 'Example',
-         code : '\nPDO_DataObject::config(\'database\', \'sqlite:/opt/databases/mydb.sq3\');\n(new PDO_DataObject())->PDO();\nPDO_DataObject::config(\'database\', \'sqlite::memory:\');\n(new PDO_DataObject())->PDO();\nPDO_DataObject::config(\'database\', \'sqlite2:/opt/databases/mydb.sq2#ATTR_PERSISTENT=1\');\n(new PDO_DataObject())->PDO();\nPDO_DataObject::config(\'database\', \'sqlite2::memory:\');\n(new PDO_DataObject())->PDO();',
+         code : 'PDO_DataObject::config(\'database\', \'sqlsrv://test@localhost/somedb\');\n(new PDO_DataObject())->PDO();\nPDO_DataObject::config(\'database\', \'sqlsrv://UserName%4012345abcde:Password@12345abcde.database.windows.net/somedb\');\n(new PDO_DataObject())->PDO();\nPDO_DataObject::config(\'database\', \'sqlsrv://UserName%4012345abcde:Password@(localdb)\\\\v11.0/somedb?AttachDBFilename=C:\\Users\\user\\my_db.mdf\');\n(new PDO_DataObject())->PDO();\n',
          title : _this._strings['694ce9694362ab071d46ae7dda42a0f7'] /* MS SQL server connection examples */,
          xns : Roo.doc,
          '|xns' : 'Roo.doc'
