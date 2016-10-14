@@ -5,8 +5,8 @@
 introspect = new Roo.XComponent({
 
  _strings : {
-  'cf17795495857404498a13ae7c2cd0e0' :"<p>\nFor PDO_DataObject to work, it has to know a considerable amount about the database it is working with.\nMost of this is done once, and cached in a file. These methods allow you to retrieve that information\n</p>\n\n<p>\nSome of these methods can be overridden so that you can use DataObjects without ini files.\n<ul>\n<li><a href=\"#pdo-dataobject/databaseNickname\">databaseNickname</a> - set or retrieve the nickname for the database\n<li><a href=\"#pdo-dataobject/databaseStructure\">databaseStructure</a> - get information about the database or table structure\n\n<li><a href=\"#pdo-dataobject/keys\">keys</a> - returns a list of the primary and unique keys in the database\n<li><a href=\"#pdo-dataobject/sequenceKey\">sequenceKey</a> - returns a list of the primary and unique keys in the database\n<li><a href=\"#pdo-dataobject/generator\">generator</a> - create an instance of the generator - used with proxy to query the databases structure\n\n<li>Provide a simple consistent API to access and manipulate that data.\n</ul>\n ",
-  '3160871894589120db13fb8399c16735' :"Introspecting the database and table schema Information"
+  '3160871894589120db13fb8399c16735' :"Introspecting the database and table schema Information",
+  '6b7d7e9b6419e280252901e392ae102d' :"<p>\nFor PDO_DataObject to work, it has to know a considerable amount about the database it is working with.\nMost of this is done once, and cached in a file. These methods allow you to retrieve that information\n</p>\n\n<p>\nSome of these methods can be overridden so that you can use DataObjects without ini files.\n<ul>\n<li><a href=\"#pdo-dataobject/databaseNickname\">databaseNickname</a> - set or retrieve the nickname for the database\n<li><a href=\"#pdo-dataobject/databaseStructure\">databaseStructure</a> - get information about the database or table structure\n\n<li><a href=\"#pdo-dataobject/keys\">keys</a> - returns a list of the primary and unique keys in the database\n<li><a href=\"#pdo-dataobject/sequenceKey\">sequenceKey</a> - returns information on the primary key (and sequence method)\n\n\n<li><a href=\"#pdo-dataobject/generator\">generator</a> - create an instance of the generator - used with proxy to query the databases structure\n<li><a href=\"#pdo-dataobject/table\">table</a> - table - depricated just throws an error. (there for compatibility)\n\n<li>Provide a simple consistent API to access and manipulate that data.\n</ul>\n "
  },
 
   part     :  ["docs", "introspect" ],
@@ -34,7 +34,7 @@ introspect = new Roo.XComponent({
     },
     {
      xtype : 'Element',
-     html : _this._strings['cf17795495857404498a13ae7c2cd0e0'] /* 
+     html : _this._strings['6b7d7e9b6419e280252901e392ae102d'] /* 
      <p>     
 For PDO_DataObject to work, it has to know a considerable amount about the database it is working with.     
 Most of this is done once, and cached in a file. These methods allow you to retrieve that information     
@@ -47,8 +47,11 @@ Some of these methods can be overridden so that you can use DataObjects without 
 <li><a href="#pdo-dataobject/databaseStructure">databaseStructure</a> - get information about the database or table structure     
      
 <li><a href="#pdo-dataobject/keys">keys</a> - returns a list of the primary and unique keys in the database     
-<li><a href="#pdo-dataobject/sequenceKey">sequenceKey</a> - returns a list of the primary and unique keys in the database     
+<li><a href="#pdo-dataobject/sequenceKey">sequenceKey</a> - returns information on the primary key (and sequence method)     
+     
+     
 <li><a href="#pdo-dataobject/generator">generator</a> - create an instance of the generator - used with proxy to query the databases structure     
+<li><a href="#pdo-dataobject/table">table</a> - table - depricated just throws an error. (there for compatibility)     
      
 <li>Provide a simple consistent API to access and manipulate that data.     
 </ul>     
