@@ -6,6 +6,7 @@
  "permname" : "",
  "modOrder" : "001",
  "strings" : {
+  "150e558f4884668e5a5b45a8410b5d2f" : "Introspection - Database and table schema information",
   "aca0253c82fea77fa2c8cbe60cd619f2" : "Joins and referenced Tables",
   "c2b942b501dc222d608980c0ed40b07c" : "Fetching Results",
   "0b79795d3efc95b9976c7c5b933afce2" : "Introduction",
@@ -92,7 +93,7 @@
               {
                "xtype" : "NavCategory",
                "$ xns" : "Roo.doc",
-               "string title" : "Create, Update and Delete",
+               "string title" : "Introspection - Database and table schema information",
                "string name" : "crud"
               },
               {
