@@ -39,7 +39,7 @@
           {
            "xtype" : "Column",
            "$ xns" : "Roo.bootstrap",
-           "Number sm" : 2,
+           "Number sm" : 3,
            "items" : [
             {
              "xtype" : "NavSidebar",
@@ -92,7 +92,7 @@
            },
            "xtype" : "Column",
            "$ xns" : "Roo.bootstrap",
-           "Number sm" : 10
+           "Number sm" : 9
           }
          ]
         }

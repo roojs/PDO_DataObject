@@ -53,7 +53,7 @@ index = new Roo.XComponent({
          items  : [
           {
            xtype : 'Column',
-           sm : 2,
+           sm : 3,
            xns : Roo.bootstrap,
            '|xns' : 'Roo.bootstrap',
            items  : [
@@ -111,7 +111,7 @@ index = new Roo.XComponent({
           },
           {
            xtype : 'Column',
-           sm : 10,
+           sm : 9,
            listeners : {
             render : function (_self)
              {
