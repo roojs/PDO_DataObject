@@ -96,6 +96,11 @@
        ]
       }
      ]
+    },
+    {
+     "xtype" : "Element",
+     "$ xns" : "Roo.bootstrap",
+     "String html" : "<p>\nIt will also create skeleton DataObjects. \n</p>\n<p>\nThese files can be updated to match any changes you make to the database schema,\n if you run the command again and leave the comments in place.\n</p>"
     }
    ]
   }

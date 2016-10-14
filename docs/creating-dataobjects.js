@@ -148,6 +148,20 @@ These files can be updated to match any changes you make to the database schema,
        ]
       }
      ]
+    },
+    {
+     xtype : 'Element',
+     html : _this._strings['ce0ef332536ddbe0f2d91179a923b3b0'] /* 
+     <p>     
+It will also create skeleton DataObjects.      
+</p>     
+<p>     
+These files can be updated to match any changes you make to the database schema,     
+ if you run the command again and leave the comments in place.     
+</p>
+     */ ,
+     xns : Roo.bootstrap,
+     '|xns' : 'Roo.bootstrap'
     }
    ]
   };  }
