@@ -94,13 +94,13 @@
                "xtype" : "NavCategory",
                "$ xns" : "Roo.doc",
                "string title" : "Introspection - Database and table schema information",
-               "string name" : "crud"
+               "string name" : "introspection"
               },
               {
                "xtype" : "NavCategory",
                "$ xns" : "Roo.doc",
                "string title" : "Create, Update and Delete",
-               "string name" : "crud"
+               "string name" : "debug"
               }
              ]
             }

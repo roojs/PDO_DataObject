@@ -116,14 +116,14 @@ index = new Roo.XComponent({
               },
               {
                xtype : 'NavCategory',
-               name : 'crud',
+               name : 'introspection',
                title : _this._strings['150e558f4884668e5a5b45a8410b5d2f'] /* Introspection - Database and table schema information */,
                xns : Roo.doc,
                '|xns' : 'Roo.doc'
               },
               {
                xtype : 'NavCategory',
-               name : 'crud',
+               name : 'debug',
                title : _this._strings['556315ce9fbee2dfda70f8a91138d2b3'] /* Create, Update and Delete */,
                xns : Roo.doc,
                '|xns' : 'Roo.doc'
