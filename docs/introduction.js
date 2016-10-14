@@ -7,7 +7,7 @@ introduction = new Roo.XComponent({
  _strings : {
   'efb07d8fb9f0f9705e4c81374a5a64ad' :"A Classic Data Object or Container",
   '0b79795d3efc95b9976c7c5b933afce2' :"Introduction",
-  '0bc697cb5fdd2bcbc55179802b8160cd' :"<p>\nPDO_DataObject is a SQL Builder and Data Modeling Layer built on top of PHP's PDO library. Its main purpose is to\n</p>\n<ul>\n<li>Build SQL and execute statements based on the objects variables.\n<li>Group source code around the data that they relate to.\n<li>Provide a simple consistent API to access and manipulate that data.\n</ul>\n\n<p>\nPDO_DataObject is based on PEAR's <a href=\"https://pear.php.net/manual/en/package.database.db-dataobject.php\">DB_DataObject</a> and for most purposes is \nfunctionally compatibly (see <a href=\"db-dataobject-compatibility\">DB_DataObject Compatibility</a>)\n</p>\n\nSo what does that mean in English? Well, if you look around at some of the better written PHP applications and frameworks out there, you will notice a common approach to using classes to wrap access to database tables or groups. The prime example of this is the person object, which would frequently look something like this.\n\n"
+  '9954b604316367d52a9446e9f81a91ed' :"<p>\nPDO_DataObject is a SQL Builder and Data Modeling Layer built on top of PHP's PDO library. Its main purpose is to\n</p>\n<ul>\n<li>Build SQL and execute statements based on the objects variables.\n<li>Group source code around the data that they relate to.\n<li>Provide a simple consistent API to access and manipulate that data.\n</ul>\n\n<p>\nPDO_DataObject is based on PEAR's <a href=\"https://pear.php.net/manual/en/package.database.db-dataobject.php\">DB_DataObject</a> and for most purposes is \nfunctionally compatibly (see <a href=\"db-dataobject-compatibility\">DB_DataObject Compatibility</a>)\n</p>\n\n<p>\nSo what does that mean in English? Well, if you look around at some of the better written PHP applications and frameworks\n out there, you will notice a common approach to using classes to wrap access to database tables or groups.\n</p>\n<p>\nPDO_DataObjects follows this pattern, In normal usage, you define one Class for each table that you use \n(you can use the genreator tools to automate this process)\n\n"
  },
 
   part     :  ["docs", "introduction" ],
@@ -35,7 +35,7 @@ introduction = new Roo.XComponent({
     },
     {
      xtype : 'Element',
-     html : _this._strings['0bc697cb5fdd2bcbc55179802b8160cd'] /* 
+     html : _this._strings['9954b604316367d52a9446e9f81a91ed'] /* 
      <p>     
 PDO_DataObject is a SQL Builder and Data Modeling Layer built on top of PHP's PDO library. Its main purpose is to     
 </p>     
@@ -50,7 +50,13 @@ PDO_DataObject is based on PEAR's <a href="https://pear.php.net/manual/en/packag
 functionally compatibly (see <a href="db-dataobject-compatibility">DB_DataObject Compatibility</a>)     
 </p>     
      
-So what does that mean in English? Well, if you look around at some of the better written PHP applications and frameworks out there, you will notice a common approach to using classes to wrap access to database tables or groups. The prime example of this is the person object, which would frequently look something like this.     
+<p>     
+So what does that mean in English? Well, if you look around at some of the better written PHP applications and frameworks     
+ out there, you will notice a common approach to using classes to wrap access to database tables or groups.     
+</p>     
+<p>     
+PDO_DataObjects follows this pattern, In normal usage, you define one Class for each table that you use      
+(you can use the genreator tools to automate this process)     
      
 
      */ ,
