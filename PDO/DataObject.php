@@ -5218,10 +5218,10 @@ class PDO_DataObject
      * It's an alias for PDO_DataObject::config('debug', $value);
      * 
      * Debug Levels
-     * + 1: basic QUERY and results.
-     * + 2: Timers
-     * + 3: Detail returned data
-     * + 5: Full connection details (including DSN with password)
+     *     + 1: basic QUERY and results.
+     *     + 2: Timers
+     *     + 3: Detail returned data
+     *     + 5: Full connection details (including DSN with password)
      *
      * @category debug
      * @param   int     $v  level
