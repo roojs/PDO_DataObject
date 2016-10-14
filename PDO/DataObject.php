@@ -955,7 +955,7 @@ class PDO_DataObject
     /**
      * build the basic select query. (was _build_select)
      *
-     * @category introspect
+     * @category build
      * @return string the SQL select query built from the properties.
      * @param boolean flag to block recusive calling of unions..
      * @access public
