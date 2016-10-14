@@ -121,6 +121,12 @@
                "$ xns" : "Roo.doc",
                "string title" : "Debugging & Error Handling",
                "string name" : "debug"
+              },
+              {
+               "xtype" : "NavCategory",
+               "$ xns" : "Roo.doc",
+               "string title" : "Debugging & Error Handling",
+               "string name" : "debug"
               }
              ]
             }
