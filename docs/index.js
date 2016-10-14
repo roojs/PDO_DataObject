@@ -284,7 +284,7 @@ index = new Roo.XComponent({
                      
                      if (window.location.hash == '') {
                          window.location.hash = '#introduction';
-                         this.load('introduction');
+                         
                      } else {
                          _self.load(window.location.hash.substring(1));
                      }
