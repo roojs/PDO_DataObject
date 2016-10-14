@@ -114,7 +114,7 @@ index = new Roo.XComponent({
                              Roo.log(res);
                              for(var k in res) {
                                  build(k, res[k]);
-                             
+                             }
                              
                          },
                          failure : function() {
