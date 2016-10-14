@@ -24,6 +24,7 @@ introduction = new Roo.XComponent({
    items  : [
     {
      xtype : 'Section',
+     stype : 'desc',
      xns : Roo.doc,
      '|xns' : 'Roo.doc',
      items  : [
