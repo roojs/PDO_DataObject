@@ -7,12 +7,12 @@ creating-dataobjects = new Roo.XComponent({
  _strings : {
   '27acce31dc1956874cd77b52da134506' :"An example ini file for use with createTables.php",
   'ff2469a7973af3013351239b0ec94efe' :"<p>\nRather than using the standard createTables, code, you can easily create your own\n</p>",
+  'c1d9ba9f91404de4da5877258f0019bd' :"Example of custom code creation",
   '2ee868dc71d76b74e5af6c689ef9ffe0' :"Creating DataObjects",
   '2314287293fbe38854242eac7f34855a' :"<p>\nThis will result in the creation of an 'ini' file containing the database structure.\n</p>\n",
   'ce0ef332536ddbe0f2d91179a923b3b0' :"<p>\nIt will also create skeleton DataObjects. \n</p>\n<p>\nThese files can be updated to match any changes you make to the database schema,\n if you run the command again and leave the comments in place.\n</p>",
   'd06bda29ade3b12c79092ea8e173dbc0' :"Creating schema and Base DataObjects",
   '6edce050ce6cb982c46e228782dbd8ed' :"<p>\nOnce the classes have been created, you can add methods below the ###END_AUTOCODE that \nare relivant for your project.\n</p>\n<p>\nThe Generator contains many features to alter what is generated at this stage.\n</p>",
-  'd1f77c976080e0cc64bdc0c53ccd649e' :"Example of create Database code",
   'd438a0af0c2a3eb34111e45e615fe4a7' :"<p>\nThere are two components that are needed before you can start using DataObjects in your code\n\n<ul>\n<li>a schema file describing the database\n<li>PHP classes representing each of the tables\n</ul>\n<p>\nBoth of these can be created using the tools included with PDO_DataObjects, or you can use the code in \nthe Generator to write the schema files when a page is requested, and cache the results.\n\n<p>\nFor basic usage, use the file PDO/DataObject/createTables.php to create your schema file\n ",
   '789953c34df03c98c141ec54e226becd' :"Example .ini file",
   '5f31614f3d53f25fd4adadc06738bf59' :"Example Generated DataObject"
@@ -213,7 +213,7 @@ Rather than using the standard createTables, code, you can easily create your ow
         {
          xtype : 'Example',
          code : 'require_once \'PDO/DataObject.php\';\n\n\nPDO_DataObject::config(array(\n\n        \'database\' =>  \'sqlite:\'.__DIR__.\'/includes/EssentialSQL.db\'\n        \n        \'proxy\' => true,\n        \'debug\' => 0,\n));\n\n// settings for the generator.\nPDO_DataObject_Generator::config(array(\n         \n            \'embed_schema\' => true,\n            \n));        \n\n$gen = (new PDO_DataObject(\'Customers\'))->generator();\n\n$tables = $gen->readTableList() ;\n\nforeach($tables as $table) {\n    file_put_contents(\'your/path/DataObjects/\'. $table. \'.php\', $gen->toPhp($table));\n}',
-         title : _this._strings['d1f77c976080e0cc64bdc0c53ccd649e'] /* Example of create Database code */,
+         title : _this._strings['c1d9ba9f91404de4da5877258f0019bd'] /* Example of custom code creation */,
          xns : Roo.doc,
          '|xns' : 'Roo.doc'
         }
