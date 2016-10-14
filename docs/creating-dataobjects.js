@@ -163,6 +163,28 @@ The Generator contains many features to alter what is generated at this stage.
      */ ,
      xns : Roo.bootstrap,
      '|xns' : 'Roo.bootstrap'
+    },
+    {
+     xtype : 'Entry',
+     xns : Roo.doc,
+     '|xns' : 'Roo.doc',
+     items  : [
+      {
+       xtype : 'Section',
+       lang : 'php',
+       xns : Roo.doc,
+       '|xns' : 'Roo.doc',
+       items  : [
+        {
+         xtype : 'Example',
+         code : '/*\n* Table Definition for group\n*/\n\nrequire_once \'PDO/DataObject.php\';\n\nclass DataObjects_Group extends PDO_DataObject {\n\n    ###START_AUTOCODE\n    /* the code below is auto generated do not remove the above tag */\n\n    var $__table=\'group\';                             // table name\n    var $id;                              // int primary_key\n    var $name;                            // string\n    var $grp_owner;                       // int\n    var $official;                        // string\n    var $street;                          // string\n    var $postcode;                        // string\n    var $city;                            // string\n    var $homepage;                        // string\n    var $email;                           // string\n    var $extra;                           // blob\n\n\n    /* the code above is auto generated do not remove the tag below */\n    ###END_AUTOCODE\n}',
+         title : _this._strings['5f31614f3d53f25fd4adadc06738bf59'] /* Example Generated DataObject */,
+         xns : Roo.doc,
+         '|xns' : 'Roo.doc'
+        }
+       ]
+      }
+     ]
     }
    ]
   };  }

@@ -102,6 +102,25 @@
      "xtype" : "Element",
      "$ xns" : "Roo.bootstrap",
      "String html" : "<p>\nOnce the classes have been created, you can add methods below the ###END_AUTOCODE that \nare relivant for your project.\n</p>\n<p>\nThe Generator contains many features to alter what is generated at this stage.\n</p>"
+    },
+    {
+     "xtype" : "Entry",
+     "$ xns" : "Roo.doc",
+     "items" : [
+      {
+       "String lang" : "php",
+       "xtype" : "Section",
+       "$ xns" : "Roo.doc",
+       "items" : [
+        {
+         "String code" : "/*\n* Table Definition for group\n*/\n\nrequire_once 'PDO/DataObject.php';\n\nclass DataObjects_Group extends PDO_DataObject {\n\n    ###START_AUTOCODE\n    /* the code below is auto generated do not remove the above tag */\n\n    var $__table='group';                             // table name\n    var $id;                              // int primary_key\n    var $name;                            // string\n    var $grp_owner;                       // int\n    var $official;                        // string\n    var $street;                          // string\n    var $postcode;                        // string\n    var $city;                            // string\n    var $homepage;                        // string\n    var $email;                           // string\n    var $extra;                           // blob\n\n\n    /* the code above is auto generated do not remove the tag below */\n    ###END_AUTOCODE\n}",
+         "xtype" : "Example",
+         "$ xns" : "Roo.doc",
+         "String title" : "Example Generated DataObject"
+        }
+       ]
+      }
+     ]
     }
    ]
   }
