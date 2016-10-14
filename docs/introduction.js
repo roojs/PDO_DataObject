@@ -65,7 +65,7 @@ So what does that mean in English? Well, if you look around at some of the bette
       {
        xtype : 'Section',
        code : '<?php\n\n$db = new PDO(\'.....\');\n \n\nclass MyPerson\n{\n\n    // gets an array of data about the seleted person\n    function getPerson($id)\n    {\n        global $db;\n        $result = $db->query(\'SELECT * FROM person WHERE id=\' . $db->quote($id));\n        return $result->fetch();\n    }\n\n    // example of checking a password.\n    function checkPassword($username, $password)\n    {\n        global $db;\n\n        $hashed = md5($password);\n        $result = $db->query(\n            \'SELECT name FROM person WHERE name=\' . $db->quote($username)\n            . \' AND password = \' . $db->quote($hashed)\n        );\n        return $result->fetch();\n    }\n\n}\n\n// get the persons details..\n$a_person = new MyPerson();\n$data = $a_person->getPerson(12);\necho $array[\'name\'] . \"\\n\";\n ',
-       lang : 'PHP',
+       lang : 'php',
        title : _this._strings['efb07d8fb9f0f9705e4c81374a5a64ad'] /* A Classic Data Object or Container */,
        xns : Roo.doc,
        '|xns' : 'Roo.doc',
