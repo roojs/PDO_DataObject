@@ -10,6 +10,7 @@
   "2314287293fbe38854242eac7f34855a" : "<p>\nThis will result in the creation of an 'ini' file containing the database structure.\n</p>\n",
   "ce0ef332536ddbe0f2d91179a923b3b0" : "<p>\nIt will also create skeleton DataObjects. \n</p>\n<p>\nThese files can be updated to match any changes you make to the database schema,\n if you run the command again and leave the comments in place.\n</p>",
   "d06bda29ade3b12c79092ea8e173dbc0" : "Creating schema and Base DataObjects",
+  "6edce050ce6cb982c46e228782dbd8ed" : "<p>\nOnce the classes have been created, you can add methods below the ###END_AUTOCODE that \nare relivant for your project.\n</p>\n<p>\nThe Generator contains many features to alter what is generated at this stage.\n</p>",
   "d438a0af0c2a3eb34111e45e615fe4a7" : "<p>\nThere are two components that are needed before you can start using DataObjects in your code\n\n<ul>\n<li>a schema file describing the database\n<li>PHP classes representing each of the tables\n</ul>\n<p>\nBoth of these can be created using the tools included with PDO_DataObjects, or you can use the code in \nthe Generator to write the schema files when a page is requested, and cache the results.\n\n<p>\nFor basic usage, use the file PDO/DataObject/createTables.php to create your schema file\n ",
   "765ecf0efc7aa64d38c808cb91d33077" : "Example in file",
   "5f31614f3d53f25fd4adadc06738bf59" : "Example Generated DataObject"
@@ -100,7 +101,7 @@
     {
      "xtype" : "Element",
      "$ xns" : "Roo.bootstrap",
-     "String html" : "<p>\nIt will also create skeleton DataObjects. \n</p>\n<p>\nThese files can be updated to match any changes you make to the database schema,\n if you run the command again and leave the comments in place.\n</p>"
+     "String html" : "<p>\nOnce the classes have been created, you can add methods below the ###END_AUTOCODE that \nare relivant for your project.\n</p>\n<p>\nThe Generator contains many features to alter what is generated at this stage.\n</p>"
     }
    ]
   }
