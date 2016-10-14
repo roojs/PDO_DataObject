@@ -11,6 +11,7 @@ index = new Roo.XComponent({
   'c2b942b501dc222d608980c0ed40b07c' :"Fetching Results",
   '0b79795d3efc95b9976c7c5b933afce2' :"Introduction",
   '2ee868dc71d76b74e5af6c689ef9ffe0' :"Creating DataObjects",
+  '1d866b2915d91065ba174a39994bab6f' :"Creating an instance",
   '556315ce9fbee2dfda70f8a91138d2b3' :"Create, Update and Delete",
   '5e434159c315edc6ae8d816255bffaec' :"Debugging & Error Handling",
   '2c918a06bae30fdcf78f8810894a67af' :"Working with Results",
@@ -164,8 +165,8 @@ index = new Roo.XComponent({
               },
               {
                xtype : 'NavCategory',
-               name : 'config',
-               title : _this._strings['7c83fdebb29c28504c91870e03666cd8'] /* Configuration and Database DSN */,
+               name : 'create',
+               title : _this._strings['1d866b2915d91065ba174a39994bab6f'] /* Creating an instance */,
                xns : Roo.doc,
                '|xns' : 'Roo.doc'
               },
