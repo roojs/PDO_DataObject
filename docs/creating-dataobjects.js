@@ -68,7 +68,7 @@ For basic usage, use the file PDO/DataObject/createTables.php to create your sch
        items  : [
         {
          xtype : 'Example',
-         code : 'PDO_DataObject::factory(\'Events\')\n    ->load(3523)\n    ->set([\'action\' => \"testing\" ])\n    ->save();\n',
+         code : '#/usr/bin/php  PDO/DataObjects/createTables.php  your_ini_file.ini',
          title : _this._strings['d06bda29ade3b12c79092ea8e173dbc0'] /* Creating schema and Base DataObjects */,
          xns : Roo.doc,
          '|xns' : 'Roo.doc'
