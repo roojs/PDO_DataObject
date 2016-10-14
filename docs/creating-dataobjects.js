@@ -5,6 +5,7 @@
 creating-dataobjects = new Roo.XComponent({
 
  _strings : {
+  '27acce31dc1956874cd77b52da134506' :"An example ini file for use with createTables.php",
   '2ee868dc71d76b74e5af6c689ef9ffe0' :"Creating DataObjects",
   '2314287293fbe38854242eac7f34855a' :"<p>\nThis will result in the creation of an 'ini' file containing the database structure.\n</p>\n",
   'ce0ef332536ddbe0f2d91179a923b3b0' :"<p>\nIt will also create skeleton DataObjects. \n</p>\n<p>\nThese files can be updated to match any changes you make to the database schema,\n if you run the command again and leave the comments in place.\n</p>",
@@ -178,7 +179,7 @@ The Generator contains many features to alter what is generated at this stage.
         {
          xtype : 'Example',
          code : '/*\n* Table Definition for group\n*/\n\nrequire_once \'PDO/DataObject.php\';\n\nclass DataObjects_Group extends PDO_DataObject {\n\n    ###START_AUTOCODE\n    /* the code below is auto generated do not remove the above tag */\n\n    var $__table=\'group\';                             // table name\n    var $id;                              // int primary_key\n    var $name;                            // string\n    var $grp_owner;                       // int\n    var $official;                        // string\n    var $street;                          // string\n    var $postcode;                        // string\n    var $city;                            // string\n    var $homepage;                        // string\n    var $email;                           // string\n    var $extra;                           // blob\n\n\n    /* the code above is auto generated do not remove the tag below */\n    ###END_AUTOCODE\n}',
-         title : _this._strings['5f31614f3d53f25fd4adadc06738bf59'] /* Example Generated DataObject */,
+         title : _this._strings['27acce31dc1956874cd77b52da134506'] /* An example ini file for use with createTables.php */,
          xns : Roo.doc,
          '|xns' : 'Roo.doc'
         }
