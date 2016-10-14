@@ -7,6 +7,7 @@ index = new Roo.XComponent({
  _strings : {
   '150e558f4884668e5a5b45a8410b5d2f' :"Introspection - Database and table schema information",
   'aca0253c82fea77fa2c8cbe60cd619f2' :"Joins and referenced Tables",
+  'da7d763aac39b294c7453c77c10d8239' :"Debugging",
   'c2b942b501dc222d608980c0ed40b07c' :"Fetching Results",
   '0b79795d3efc95b9976c7c5b933afce2' :"Introduction",
   '556315ce9fbee2dfda70f8a91138d2b3' :"Create, Update and Delete",
@@ -124,7 +125,7 @@ index = new Roo.XComponent({
               {
                xtype : 'NavCategory',
                name : 'debug',
-               title : _this._strings['556315ce9fbee2dfda70f8a91138d2b3'] /* Create, Update and Delete */,
+               title : _this._strings['da7d763aac39b294c7453c77c10d8239'] /* Debugging */,
                xns : Roo.doc,
                '|xns' : 'Roo.doc'
               }
