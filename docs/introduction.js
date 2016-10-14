@@ -20,6 +20,13 @@ introduction = new Roo.XComponent({
    return {
    xtype : 'Body',
    xns : Roo.bootstrap,
-   '|xns' : 'Roo.bootstrap'
+   '|xns' : 'Roo.bootstrap',
+   items  : [
+    {
+     xtype : 'Header',
+     xns : Roo.bootstrap,
+     '|xns' : 'Roo.bootstrap'
+    }
+   ]
   };  }
 });
