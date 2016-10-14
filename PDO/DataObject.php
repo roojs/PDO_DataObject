@@ -5289,7 +5289,7 @@ class PDO_DataObject
      *
      * Note - this is realy only for testing - calling it will likely slow down any future calls to the database
      *
-     * @category @debug
+     * @category debug
      * @access   public
      * @return   none
      */
