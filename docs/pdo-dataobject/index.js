@@ -75,19 +75,23 @@ index = new Roo.XComponent({
                  
                  }
                  
-                 var build = function(node)
+                 var build = function(cat, tnode)
                  {
-                     walk(node);
-                     var items = typeof(node.items) == 'undefined' ? false : node.items;
-                     delete node.items;
+                     walk(tnode);
              
+                     node = {
+                         
+                     }
                      node._tree = (function(){
                          var _this = this;
                          var MODULE = this;
-                         return items[0]
+                         return tnode
                      }).createDelegate(node);
                      node.parent = { el : el };
-                     new_comp = new Roo.XComponent(node);
+                     new_comp = new Roo.XComponent({
+                     
+                     
+                     });
                      Roo.log(new_comp);
                      new_comp.render();
                      
@@ -102,7 +106,8 @@ index = new Roo.XComponent({
                          success: function(response, opts) { 
                              var res = Roo.decode(response.responseText); // needs error checking
                              Roo.log(res);
-                             build(res);
+                             for(var k in res) {
+                                 build(k, res[k]);
                              
                              
                          },
