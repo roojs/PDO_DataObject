@@ -1,0 +1,64 @@
+{
+    "name": "toPhpGetter",
+    "parent": "",
+    "title": "",
+    "permname": "",
+    "modOrder": "001",
+    "items": [
+        {
+            "name": "toPhpGetter",
+            "purpose": " Generate getter methods for class definition",
+            "stype": "function",
+            "|xns": "Roo.doc",
+            "xtype": "Entry",
+            "items": [
+                {
+                    "name": "toPhpGetter",
+                    "is_static": false,
+                    "memberof": "PDO_DataObject_Generator_Column",
+                    "returndesc": "",
+                    "returntype": "string",
+                    "|xns": "Roo.doc",
+                    "xtype": "Synopsis",
+                    "items": [
+                        {
+                            "desc": "$input",
+                            "is_optional": false,
+                            "name": "$user_code",
+                            "type": "string",
+                            "|xns": "Roo.doc",
+                            "xtype": "Param"
+                        }
+                    ]
+                },
+                {
+                    "stype": "desc",
+                    "|xns": "Roo.doc",
+                    "xtype": "Section",
+                    "items": [
+                        {
+                            "html": "<p><\/p>",
+                            "|xns": "Roo.doc",
+                            "xtype": "Para"
+                        }
+                    ]
+                },
+                {
+                    "stype": "parameter",
+                    "|xns": "Roo.doc",
+                    "xtype": "Section"
+                },
+                {
+                    "stype": "return",
+                    "|xns": "Roo.doc",
+                    "xtype": "Section"
+                },
+                {
+                    "stype": "example",
+                    "|xns": "Roo.doc",
+                    "xtype": "Section"
+                }
+            ]
+        }
+    ]
+}

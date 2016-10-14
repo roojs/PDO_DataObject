@@ -30,7 +30,7 @@
                             "xtype": "Param"
                         },
                         {
-                            "desc": "[true = elemnts that have a value set],",
+                            "desc": "[true = elemnts that have a value set],<br\/>                          [false = table + returned colums] ,<br\/>                          [0 = returned columsn only]",
                             "is_optional": false,
                             "name": "$hideEmpty",
                             "type": "number",
@@ -45,7 +45,7 @@
                     "xtype": "Section",
                     "items": [
                         {
-                            "html": " (kind of oblivates the idea behind DataObjects, but\n is usefull if you use it with things like QuickForms.\n\n you can use the format to return things like user[key]\n by sending it $object->toArray('user[%s]')\n\n will also return links converted to arrays.\n\n                          [false = table + returned colums] ,\n                          [0 = returned columsn only]\n\n",
+                            "html": "<p> (kind of oblivates the idea behind DataObjects, but\n is usefull if you use it with things like QuickForms.\n\n you can use the format to return things like user[key]\n by sending it $object->toArray('user[%s]')\n\n will also return links converted to arrays.\n\n<\/p>",
                             "|xns": "Roo.doc",
                             "xtype": "Para"
                         }

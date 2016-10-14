@@ -1,0 +1,72 @@
+{
+    "name": "toStringFromString",
+    "parent": "",
+    "title": "",
+    "permname": "",
+    "modOrder": "001",
+    "items": [
+        {
+            "name": "toStringFromString",
+            "purpose": " get the string to use in the SQL statement for a blob from a string!",
+            "stype": "function",
+            "|xns": "Roo.doc",
+            "xtype": "Entry",
+            "items": [
+                {
+                    "name": "toStringFromString",
+                    "is_static": false,
+                    "memberof": "PDO_DataObject_Cast",
+                    "returndesc": "",
+                    "returntype": "string",
+                    "|xns": "Roo.doc",
+                    "xtype": "Synopsis",
+                    "items": [
+                        {
+                            "desc": "$to",
+                            "is_optional": false,
+                            "name": "$to",
+                            "type": "int",
+                            "|xns": "Roo.doc",
+                            "xtype": "Param"
+                        },
+                        {
+                            "desc": "$db",
+                            "is_optional": false,
+                            "name": "$PDO",
+                            "type": "object",
+                            "|xns": "Roo.doc",
+                            "xtype": "Param"
+                        }
+                    ]
+                },
+                {
+                    "stype": "desc",
+                    "|xns": "Roo.doc",
+                    "xtype": "Section",
+                    "items": [
+                        {
+                            "html": "<p>   ** Suppots only string->postgres::bytea<\/p><p><\/p>",
+                            "|xns": "Roo.doc",
+                            "xtype": "Para"
+                        }
+                    ]
+                },
+                {
+                    "stype": "parameter",
+                    "|xns": "Roo.doc",
+                    "xtype": "Section"
+                },
+                {
+                    "stype": "return",
+                    "|xns": "Roo.doc",
+                    "xtype": "Section"
+                },
+                {
+                    "stype": "example",
+                    "|xns": "Roo.doc",
+                    "xtype": "Section"
+                }
+            ]
+        }
+    ]
+}

@@ -53,7 +53,7 @@
                     "xtype": "Section",
                     "items": [
                         {
-                            "html": " Uses PDO_DataObject::DebugLevel(x) to turn it on\n\neg. logging into apache error.log \n\n\n",
+                            "html": "<p> Uses PDO_DataObject::DebugLevel(x) to turn it on\n\neg. logging into apache error.log \n\n<\/p>",
                             "|xns": "Roo.doc",
                             "xtype": "Para"
                         }

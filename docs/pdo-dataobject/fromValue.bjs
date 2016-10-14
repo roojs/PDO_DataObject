@@ -45,7 +45,7 @@
                     "xtype": "Section",
                     "items": [
                         {
-                            "html": " Current supports\n   date      = using (standard time format, or unixtimestamp).... so you could create a method :\n               function setLastread($string) { $this->fromValue('lastread',strtotime($string)); }\n\n   time      = using strtotime \n   datetime  = using  same as date - accepts iso standard or unixtimestamp.\n   string    = typecast only..\n \n TODO: add formater:: eg. d\/m\/Y for date! ???\n\n\n",
+                            "html": "<p> Current supports\n   date      = using (standard time format, or unixtimestamp).... so you could create a method :\n               function setLastread($string) { $this->fromValue('lastread',strtotime($string)); }\n\n   time      = using strtotime \n   datetime  = using  same as date - accepts iso standard or unixtimestamp.\n   string    = typecast only..<\/p><p> TODO: add formater:: eg. d\/m\/Y for date! ???<\/p><p><\/p>",
                             "|xns": "Roo.doc",
                             "xtype": "Para"
                         }

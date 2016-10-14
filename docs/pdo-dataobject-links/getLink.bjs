@@ -1,0 +1,80 @@
+{
+    "name": "getLink",
+    "parent": "",
+    "title": "",
+    "permname": "",
+    "modOrder": "001",
+    "items": [
+        {
+            "name": "getLink",
+            "purpose": " return name from related object",
+            "stype": "function",
+            "|xns": "Roo.doc",
+            "xtype": "Entry",
+            "items": [
+                {
+                    "name": "getLink",
+                    "is_static": false,
+                    "memberof": "PDO_DataObject_Links",
+                    "returndesc": "object on success false on failure or '0' when not linked",
+                    "returntype": "mixed",
+                    "|xns": "Roo.doc",
+                    "xtype": "Synopsis",
+                    "items": [
+                        {
+                            "desc": "$field|array    either row or row.xxxxx or links spec.",
+                            "is_optional": false,
+                            "name": "$field",
+                            "type": "string",
+                            "|xns": "Roo.doc",
+                            "xtype": "Param"
+                        },
+                        {
+                            "desc": "$table",
+                            "is_optional": false,
+                            "name": "$table",
+                            "type": "DB_DataObject",
+                            "|xns": "Roo.doc",
+                            "xtype": "Param"
+                        },
+                        {
+                            "desc": "$link",
+                            "is_optional": false,
+                            "name": "$link",
+                            "type": "string",
+                            "|xns": "Roo.doc",
+                            "xtype": "Param"
+                        }
+                    ]
+                },
+                {
+                    "stype": "desc",
+                    "|xns": "Roo.doc",
+                    "xtype": "Section",
+                    "items": [
+                        {
+                            "html": "<p> The relies on  a <dbname>.links.ini file, unless you specify the arguments.<\/p><p> you can also use $this->getLink('thisColumnName','otherTable','otherTableColumnName')<\/p><p><\/p>",
+                            "|xns": "Roo.doc",
+                            "xtype": "Para"
+                        }
+                    ]
+                },
+                {
+                    "stype": "parameter",
+                    "|xns": "Roo.doc",
+                    "xtype": "Section"
+                },
+                {
+                    "stype": "return",
+                    "|xns": "Roo.doc",
+                    "xtype": "Section"
+                },
+                {
+                    "stype": "example",
+                    "|xns": "Roo.doc",
+                    "xtype": "Section"
+                }
+            ]
+        }
+    ]
+}

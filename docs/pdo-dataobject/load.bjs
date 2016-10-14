@@ -45,7 +45,7 @@
                     "xtype": "Section",
                     "items": [
                         {
-                            "html": " Chainable.\n\n for example\n $object->load(\"ID\",1234);\n\n and puts all the table columns into this classes variables\n Note: this also snapshot's the object, ready for update.., and clears any 'where condition'\n\n see the fetch example on how to extend this.\n\n if no value is entered, it is assumed that $key is a value\n and get will then use the first key in keys()\n to obtain the key.\n\n",
+                            "html": "<p> Chainable.\n\n for example\n $object->load(\"ID\",1234);\n\n and puts all the table columns into this classes variables\n Note: this also snapshot's the object, ready for update.., and clears any 'where condition'\n\n see the fetch example on how to extend this.\n\n if no value is entered, it is assumed that $key is a value\n and get will then use the first key in keys()\n to obtain the key.<\/p><p><\/p>",
                             "|xns": "Roo.doc",
                             "xtype": "Para"
                         }

@@ -1,0 +1,55 @@
+{
+    "name": "isNull",
+    "parent": "",
+    "title": "",
+    "permname": "",
+    "modOrder": "001",
+    "items": [
+        {
+            "name": "isNull",
+            "purpose": " does this object representing a 'null' value...",
+            "stype": "function",
+            "|xns": "Roo.doc",
+            "xtype": "Entry",
+            "items": [
+                {
+                    "name": "isNull",
+                    "is_static": false,
+                    "memberof": "PDO_DataObject_Cast",
+                    "returndesc": "",
+                    "returntype": "bool",
+                    "|xns": "Roo.doc",
+                    "xtype": "Synopsis",
+                    "items": []
+                },
+                {
+                    "stype": "desc",
+                    "|xns": "Roo.doc",
+                    "xtype": "Section",
+                    "items": [
+                        {
+                            "html": "<p> \n<\/p>",
+                            "|xns": "Roo.doc",
+                            "xtype": "Para"
+                        }
+                    ]
+                },
+                {
+                    "stype": "parameter",
+                    "|xns": "Roo.doc",
+                    "xtype": "Section"
+                },
+                {
+                    "stype": "return",
+                    "|xns": "Roo.doc",
+                    "xtype": "Section"
+                },
+                {
+                    "stype": "example",
+                    "|xns": "Roo.doc",
+                    "xtype": "Section"
+                }
+            ]
+        }
+    ]
+}

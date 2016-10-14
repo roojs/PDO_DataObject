@@ -22,7 +22,7 @@
                     "xtype": "Synopsis",
                     "items": [
                         {
-                            "desc": "$useWhere",
+                            "desc": "$useWhere<br\/>             we will build the condition only using the whereAdd's.  Default is to<br\/>             build the condition only using the object parameters.",
                             "is_optional": false,
                             "name": "$useWhere",
                             "type": "bool",
@@ -37,7 +37,7 @@
                     "xtype": "Section",
                     "items": [
                         {
-                            "html": " Returns the true on success\n\n for example\n\n Designed to be extended\n\n $object = new mytable();\n $object->ID=123;\n echo $object->delete(); \/\/ builds a conditon\n\n $object = new mytable();\n $object->whereAdd('age > 12');\n $object->limit(1);\n $object->orderBy('age DESC');\n $object->delete(true); \/\/ dont use object vars, use the conditions, limit and order.\n\n             we will build the condition only using the whereAdd's.  Default is to\n             build the condition only using the object parameters.\n\n",
+                            "html": "<p> Returns the true on success\n\n for example\n\n Designed to be extended\n\n $object = new mytable();\n $object->ID=123;\n echo $object->delete(); \/\/ builds a conditon\n\n $object = new mytable();\n $object->whereAdd('age > 12');\n $object->limit(1);\n $object->orderBy('age DESC');\n $object->delete(true); \/\/ dont use object vars, use the conditions, limit and order.<\/p><p><\/p>",
                             "|xns": "Roo.doc",
                             "xtype": "Para"
                         }

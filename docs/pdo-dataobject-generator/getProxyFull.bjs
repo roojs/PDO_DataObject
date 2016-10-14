@@ -1,0 +1,72 @@
+{
+    "name": "getProxyFull",
+    "parent": "",
+    "title": "",
+    "permname": "",
+    "modOrder": "001",
+    "items": [
+        {
+            "name": "getProxyFull",
+            "purpose": " getProxyFull - create a class definition on the fly and instantate it..",
+            "stype": "function",
+            "|xns": "Roo.doc",
+            "xtype": "Entry",
+            "items": [
+                {
+                    "name": "getProxyFull",
+                    "is_static": false,
+                    "memberof": "PDO_DataObject_Generator",
+                    "returndesc": "Instance of class. or PEAR Error",
+                    "returntype": "",
+                    "|xns": "Roo.doc",
+                    "xtype": "Synopsis",
+                    "items": [
+                        {
+                            "desc": "database name",
+                            "is_optional": false,
+                            "name": "$database",
+                            "type": "string",
+                            "|xns": "Roo.doc",
+                            "xtype": "Param"
+                        },
+                        {
+                            "desc": "table   name of table to create proxy for.",
+                            "is_optional": false,
+                            "name": "$table",
+                            "type": "string",
+                            "|xns": "Roo.doc",
+                            "xtype": "Param"
+                        }
+                    ]
+                },
+                {
+                    "stype": "desc",
+                    "|xns": "Roo.doc",
+                    "xtype": "Section",
+                    "items": [
+                        {
+                            "html": "<p> similar to generated files - but also evals the class definitoin code.<\/p><p><\/p>",
+                            "|xns": "Roo.doc",
+                            "xtype": "Para"
+                        }
+                    ]
+                },
+                {
+                    "stype": "parameter",
+                    "|xns": "Roo.doc",
+                    "xtype": "Section"
+                },
+                {
+                    "stype": "return",
+                    "|xns": "Roo.doc",
+                    "xtype": "Section"
+                },
+                {
+                    "stype": "example",
+                    "|xns": "Roo.doc",
+                    "xtype": "Section"
+                }
+            ]
+        }
+    ]
+}

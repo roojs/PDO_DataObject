@@ -28,7 +28,7 @@
                     "xtype": "Section",
                     "items": [
                         {
-                            "html": "  Chainable? \n \n  When you use 'update' or save, this makes a copy, so you do not need to clone\/pass arguments to save or  \n \n",
+                            "html": "<p>  Chainable\n\n  When you use 'update' or save, this makes a copy, so you do not need to clone\/pass arguments to save or<\/p><p><\/p>",
                             "|xns": "Roo.doc",
                             "xtype": "Para"
                         }

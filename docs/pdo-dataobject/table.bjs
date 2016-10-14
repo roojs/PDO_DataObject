@@ -7,7 +7,7 @@
     "items": [
         {
             "name": "table",
-            "purpose": "",
+            "purpose": " BC for DB_DataObjects",
             "stype": "function",
             "|xns": "Roo.doc",
             "xtype": "Entry",
@@ -28,7 +28,7 @@
                     "xtype": "Section",
                     "items": [
                         {
-                            "html": "",
+                            "html": "<p> this has been replaced with tableColumns\n\n<\/p>",
                             "|xns": "Roo.doc",
                             "xtype": "Para"
                         }

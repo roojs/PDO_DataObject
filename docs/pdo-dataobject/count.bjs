@@ -22,7 +22,7 @@
                     "xtype": "Synopsis",
                     "items": [
                         {
-                            "desc": "(optional)",
+                            "desc": "(optional)<br\/>                  (true|false => see below not on whereAddonly)<br\/>                  (string)<br\/>                      \"DISTINCT\" => does a distinct count on the tables 'key' column<br\/>                      otherwise  => normally it counts primary keys - you can use <br\/>                                    this to do things like $do->count('distinct mycol');<br\/>                  ",
                             "is_optional": false,
                             "name": "$countWhat",
                             "type": "string",
@@ -30,7 +30,7 @@
                             "xtype": "Param"
                         },
                         {
-                            "desc": "$whereAddOnly",
+                            "desc": "$whereAddOnly<br\/>                  we will build the condition only using the whereAdd's.  Default is to<br\/>                  build the condition using the object parameters as well.",
                             "is_optional": false,
                             "name": "$whereAddOnly",
                             "type": "bool",
@@ -45,7 +45,7 @@
                     "xtype": "Section",
                     "items": [
                         {
-                            "html": " for example\n\n $object = new mytable();\n $object->name = \"fred\";\n echo $object->count();\n echo $object->count(PDO_DataObject::WHERE_ONLY);  \/\/ dont use object vars.\n echo $object->count('distinct mycol');   count distinct mycol.\n echo $object->count('distinct mycol',PDO_DataObject::WHERE_ONLY); \/\/ dont use object vars.\n echo $object->count('distinct');      \/\/ count distinct id (eg. the primary key)\n\n\n                  (true|false => see below not on whereAddonly)\n                  (string)\n                      \"DISTINCT\" => does a distinct count on the tables 'key' column\n                      otherwise  => normally it counts primary keys - you can use \n                                    this to do things like $do->count('distinct mycol');\n                  \n                  we will build the condition only using the whereAdd's.  Default is to\n                  build the condition using the object parameters as well.\n                  \n",
+                            "html": "<p> for example\n\n $object = new mytable();\n $object->name = \"fred\";\n echo $object->count();\n echo $object->count(PDO_DataObject::WHERE_ONLY);  \/\/ dont use object vars.\n echo $object->count('distinct mycol');   count distinct mycol.\n echo $object->count('distinct mycol',PDO_DataObject::WHERE_ONLY); \/\/ dont use object vars.\n echo $object->count('distinct');      \/\/ count distinct id (eg. the primary key)<\/p><p><\/p>",
                             "|xns": "Roo.doc",
                             "xtype": "Para"
                         }

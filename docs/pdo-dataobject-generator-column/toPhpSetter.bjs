@@ -1,0 +1,64 @@
+{
+    "name": "toPhpSetter",
+    "parent": "",
+    "title": "",
+    "permname": "",
+    "modOrder": "001",
+    "items": [
+        {
+            "name": "toPhpSetter",
+            "purpose": " Generate setter methods for class definition",
+            "stype": "function",
+            "|xns": "Roo.doc",
+            "xtype": "Entry",
+            "items": [
+                {
+                    "name": "toPhpSetter",
+                    "is_static": false,
+                    "memberof": "PDO_DataObject_Generator_Column",
+                    "returndesc": "",
+                    "returntype": "string",
+                    "|xns": "Roo.doc",
+                    "xtype": "Synopsis",
+                    "items": [
+                        {
+                            "desc": "Existing class contents",
+                            "is_optional": false,
+                            "name": "$user_code",
+                            "type": "string",
+                            "|xns": "Roo.doc",
+                            "xtype": "Param"
+                        }
+                    ]
+                },
+                {
+                    "stype": "desc",
+                    "|xns": "Roo.doc",
+                    "xtype": "Section",
+                    "items": [
+                        {
+                            "html": "<p><\/p>",
+                            "|xns": "Roo.doc",
+                            "xtype": "Para"
+                        }
+                    ]
+                },
+                {
+                    "stype": "parameter",
+                    "|xns": "Roo.doc",
+                    "xtype": "Section"
+                },
+                {
+                    "stype": "return",
+                    "|xns": "Roo.doc",
+                    "xtype": "Section"
+                },
+                {
+                    "stype": "example",
+                    "|xns": "Roo.doc",
+                    "xtype": "Section"
+                }
+            ]
+        }
+    ]
+}

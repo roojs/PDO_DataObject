@@ -45,7 +45,7 @@
                     "xtype": "Section",
                     "items": [
                         {
-                            "html": " Note: the original code does determine \n\n \n",
+                            "html": "<p> Note: the original code does determine <\/p><p><\/p>",
                             "|xns": "Roo.doc",
                             "xtype": "Para"
                         }

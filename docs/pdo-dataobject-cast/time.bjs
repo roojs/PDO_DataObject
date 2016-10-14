@@ -1,0 +1,55 @@
+{
+    "name": "time",
+    "parent": "",
+    "title": "",
+    "permname": "",
+    "modOrder": "001",
+    "items": [
+        {
+            "name": "time",
+            "purpose": " time Constructor",
+            "stype": "function",
+            "|xns": "Roo.doc",
+            "xtype": "Entry",
+            "items": [
+                {
+                    "name": "time",
+                    "is_static": true,
+                    "memberof": "PDO_DataObject_Cast",
+                    "returndesc": "",
+                    "returntype": "PDO_DataObject_Cast",
+                    "|xns": "Roo.doc",
+                    "xtype": "Synopsis",
+                    "items": []
+                },
+                {
+                    "stype": "desc",
+                    "|xns": "Roo.doc",
+                    "xtype": "Section",
+                    "items": [
+                        {
+                            "html": "<p> create a Cast object from a Date\/Time\n Maybe should accept a Date object.!\n NO VALIDATION DONE, and no-recalcing done!<\/p><p><\/p>",
+                            "|xns": "Roo.doc",
+                            "xtype": "Para"
+                        }
+                    ]
+                },
+                {
+                    "stype": "parameter",
+                    "|xns": "Roo.doc",
+                    "xtype": "Section"
+                },
+                {
+                    "stype": "return",
+                    "|xns": "Roo.doc",
+                    "xtype": "Section"
+                },
+                {
+                    "stype": "example",
+                    "|xns": "Roo.doc",
+                    "xtype": "Section"
+                }
+            ]
+        }
+    ]
+}

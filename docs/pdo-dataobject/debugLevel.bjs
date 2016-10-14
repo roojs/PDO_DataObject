@@ -37,7 +37,7 @@
                     "xtype": "Section",
                     "items": [
                         {
-                            "html": " eg. PDO_DataObject::debugLevel(4);\n without arguments it just returns the existing debug level\n It's an alias for PDO_DataObject::config('debug', $value);\n\n",
+                            "html": "<p> eg. PDO_DataObject::debugLevel(4);\n without arguments it just returns the existing debug level\n It's an alias for PDO_DataObject::config('debug', $value);<\/p><p><\/p>",
                             "|xns": "Roo.doc",
                             "xtype": "Para"
                         }

@@ -28,7 +28,7 @@
                     "xtype": "Section",
                     "items": [
                         {
-                            "html": " and resets other variables...\n\n\n",
+                            "html": "<p> and resets other variables...\n\n<\/p>",
                             "|xns": "Roo.doc",
                             "xtype": "Para"
                         }

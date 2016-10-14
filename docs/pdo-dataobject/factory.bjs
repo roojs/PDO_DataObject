@@ -37,7 +37,7 @@
                     "xtype": "Section",
                     "items": [
                         {
-                            "html": " usage: $do = PDO_DataObject::factory('person')\n\n table name can bedatabasename\/table\n - and allow modular dataobjects to be written..\n (this also helps proxy creation)\n\n Experimental Support for Multi-Database factory eg. mydatabase.mytable\n \n \n",
+                            "html": "<p> usage: $do = PDO_DataObject::factory('person')\n\n table name can bedatabasename\/table\n - and allow modular dataobjects to be written..\n (this also helps proxy creation)\n\n Experimental Support for Multi-Database factory eg. mydatabase.mytable<\/p><p><\/p>",
                             "|xns": "Roo.doc",
                             "xtype": "Para"
                         }

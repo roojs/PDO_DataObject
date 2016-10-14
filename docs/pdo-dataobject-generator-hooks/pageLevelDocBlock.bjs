@@ -1,0 +1,64 @@
+{
+    "name": "pageLevelDocBlock",
+    "parent": "",
+    "title": "",
+    "permname": "",
+    "modOrder": "001",
+    "items": [
+        {
+            "name": "pageLevelDocBlock",
+            "purpose": " hook to add extra page-level (in terms of phpDocumentor) DocBlock",
+            "stype": "function",
+            "|xns": "Roo.doc",
+            "xtype": "Entry",
+            "items": [
+                {
+                    "name": "pageLevelDocBlock",
+                    "is_static": false,
+                    "memberof": "PDO_DataObject_Generator_Hooks",
+                    "returndesc": "added to class eg. functions.",
+                    "returntype": "string",
+                    "|xns": "Roo.doc",
+                    "xtype": "Synopsis",
+                    "items": [
+                        {
+                            "desc": "",
+                            "is_optional": false,
+                            "name": "$original",
+                            "type": "",
+                            "|xns": "Roo.doc",
+                            "xtype": "Param"
+                        }
+                    ]
+                },
+                {
+                    "stype": "desc",
+                    "|xns": "Roo.doc",
+                    "xtype": "Section",
+                    "items": [
+                        {
+                            "html": "<p> called once for each class, use it add extra page-level docs\n<\/p>",
+                            "|xns": "Roo.doc",
+                            "xtype": "Para"
+                        }
+                    ]
+                },
+                {
+                    "stype": "parameter",
+                    "|xns": "Roo.doc",
+                    "xtype": "Section"
+                },
+                {
+                    "stype": "return",
+                    "|xns": "Roo.doc",
+                    "xtype": "Section"
+                },
+                {
+                    "stype": "example",
+                    "|xns": "Roo.doc",
+                    "xtype": "Section"
+                }
+            ]
+        }
+    ]
+}

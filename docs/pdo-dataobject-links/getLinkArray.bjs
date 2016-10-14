@@ -1,0 +1,96 @@
+{
+    "name": "getLinkArray",
+    "parent": "",
+    "title": "",
+    "permname": "",
+    "modOrder": "001",
+    "items": [
+        {
+            "name": "getLinkArray",
+            "purpose": " getLinkArray",
+            "stype": "function",
+            "|xns": "Roo.doc",
+            "xtype": "Entry",
+            "items": [
+                {
+                    "name": "getLinkArray",
+                    "is_static": false,
+                    "memberof": "PDO_DataObject_Links",
+                    "returndesc": "- array of results (empty array on failure)",
+                    "returntype": "array",
+                    "|xns": "Roo.doc",
+                    "xtype": "Synopsis",
+                    "items": [
+                        {
+                            "desc": "$field- either column or column.xxxxx",
+                            "is_optional": false,
+                            "name": "$field",
+                            "type": "string",
+                            "|xns": "Roo.doc",
+                            "xtype": "Param"
+                        },
+                        {
+                            "desc": "$table",
+                            "is_optional": false,
+                            "name": "$table",
+                            "type": "string",
+                            "|xns": "Roo.doc",
+                            "xtype": "Param"
+                        },
+                        {
+                            "desc": "$fkey",
+                            "is_optional": false,
+                            "name": "$fkey",
+                            "type": "string",
+                            "|xns": "Roo.doc",
+                            "xtype": "Param"
+                        },
+                        {
+                            "desc": "$fval",
+                            "is_optional": false,
+                            "name": "$fval",
+                            "type": "string",
+                            "|xns": "Roo.doc",
+                            "xtype": "Param"
+                        },
+                        {
+                            "desc": "$fval",
+                            "is_optional": false,
+                            "name": "$fmethod",
+                            "type": "string",
+                            "|xns": "Roo.doc",
+                            "xtype": "Param"
+                        }
+                    ]
+                },
+                {
+                    "stype": "desc",
+                    "|xns": "Roo.doc",
+                    "xtype": "Section",
+                    "items": [
+                        {
+                            "html": "<p> \n I think the original idea was to load reverse foriegn keys... \n it would be far more usefull, if this used a cross reference table to load and save related items.\n as that is a far more common pattern.\n\n This code has not been tested with PDO_DataObjects\n\n Fetch an array of related objects. This should be used in conjunction with a\n <dbname>.links.ini file configuration (see the introduction on linking for details on this).\n\n You may also use this with all parameters to specify, the column and related table.<\/p><p> Example - Getting the related objects<\/p><p> $person = new DataObjects_Person;\n $person->get(12);\n $children = $person->getLinkArray('children');<\/p><p> echo 'There are ', count($children), ' descendant(s):<br \/>';\n foreach ($children as $child) {\n     echo $child->name, '<br \/>';\n }<\/p><p><\/p>",
+                            "|xns": "Roo.doc",
+                            "xtype": "Para"
+                        }
+                    ]
+                },
+                {
+                    "stype": "parameter",
+                    "|xns": "Roo.doc",
+                    "xtype": "Section"
+                },
+                {
+                    "stype": "return",
+                    "|xns": "Roo.doc",
+                    "xtype": "Section"
+                },
+                {
+                    "stype": "example",
+                    "|xns": "Roo.doc",
+                    "xtype": "Section"
+                }
+            ]
+        }
+    ]
+}

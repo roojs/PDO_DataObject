@@ -37,7 +37,7 @@
                     "xtype": "Section",
                     "items": [
                         {
-                            "html": "  recommend it is used with snapshot()\n  Chainable? \n \n  Uses primary id to determine if data should be updated or inserted.\n",
+                            "html": "<p>  recommend it is used with snapshot()\n  Chainable\n\n  Uses primary id to determine if data should be updated or inserted.\n<\/p>",
                             "|xns": "Roo.doc",
                             "xtype": "Para"
                         }

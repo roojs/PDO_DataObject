@@ -45,7 +45,7 @@
                     "xtype": "Section",
                     "items": [
                         {
-                            "html": "  BC Break: that the standard date formating is different from DB_DataObject.\n\n   \n\n  with formaters..\n supported formaters:  \n   date\/time : d\/m\/m (eg. php strftime) or pear::Date \n   numbers   : %02d (eg. sprintf)\n  NOTE you will get unexpected results with times like 0000-00-00 !!!\n\n \n \n\n",
+                            "html": "<p>  BC Break: that the standard date formating is different from DB_DataObject.<\/p><p>  with formaters..\n supported formaters:  \n   date\/time : d\/m\/m (eg. php strftime) or pear::Date \n   numbers   : %02d (eg. sprintf)\n  NOTE you will get unexpected results with times like 0000-00-00 !!!<\/p><p><\/p>",
                             "|xns": "Roo.doc",
                             "xtype": "Para"
                         }

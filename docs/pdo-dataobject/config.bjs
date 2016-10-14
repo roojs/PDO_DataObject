@@ -45,7 +45,7 @@
                     "xtype": "Section",
                     "items": [
                         {
-                            "html": " Used to be via PEAR::getStaticProperty() - now removed\n\n Usage:\n\n Fetch the current config.\n $cfg = PDO_DataObject::config(); \n\n SET a configuration value. (returns old value.)\n $old = PDO_DataObject::config('schema_location', '');  \n\n GET a specific value ** does not do this directly to stop errors...\n somevar = PDO_DataObject::config()['schema_location'];  \n\n SET multiple values (returns 'old' configuration)\n $old_array = PDO_DataObject::config( array( 'schema_location' => '' ));\n \n \n",
+                            "html": "<p> Used to be via PEAR::getStaticProperty() - now removed\n\n Usage:\n\n Fetch the current config.\n $cfg = PDO_DataObject::config(); \n\n SET a configuration value. (returns old value.)\n $old = PDO_DataObject::config('schema_location', '');  \n\n GET a specific value ** does not do this directly to stop errors...\n somevar = PDO_DataObject::config()['schema_location'];  \n\n SET multiple values (returns 'old' configuration)\n $old_array = PDO_DataObject::config( array( 'schema_location' => '' ));<\/p><p><\/p>",
                             "|xns": "Roo.doc",
                             "xtype": "Para"
                         }

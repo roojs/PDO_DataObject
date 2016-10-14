@@ -1,0 +1,64 @@
+{
+    "name": "linkInfo",
+    "parent": "",
+    "title": "",
+    "permname": "",
+    "modOrder": "001",
+    "items": [
+        {
+            "name": "linkInfo",
+            "purpose": " get link information for a field or field specification",
+            "stype": "function",
+            "|xns": "Roo.doc",
+            "xtype": "Entry",
+            "items": [
+                {
+                    "name": "linkInfo",
+                    "is_static": false,
+                    "memberof": "PDO_DataObject_Links",
+                    "returndesc": "array of dataobject and linked field or false.",
+                    "returntype": "(false|array)",
+                    "|xns": "Roo.doc",
+                    "xtype": "Synopsis",
+                    "items": [
+                        {
+                            "desc": "$field",
+                            "is_optional": false,
+                            "name": "$field",
+                            "type": "array",
+                            "|xns": "Roo.doc",
+                            "xtype": "Param"
+                        }
+                    ]
+                },
+                {
+                    "stype": "desc",
+                    "|xns": "Roo.doc",
+                    "xtype": "Section",
+                    "items": [
+                        {
+                            "html": "<p> alll link (and join methods accept the 'link' info ) in various ways\n string : 'field' = which field to get (uses ???.links.ini to work out what)\n array(2) : 'field', 'table:remote_col' << just like the links.ini def.\n array(3) : 'field', $dataobject, 'remote_col'  (handy for joinAdd to do nested joins.)<\/p><p><\/p>",
+                            "|xns": "Roo.doc",
+                            "xtype": "Para"
+                        }
+                    ]
+                },
+                {
+                    "stype": "parameter",
+                    "|xns": "Roo.doc",
+                    "xtype": "Section"
+                },
+                {
+                    "stype": "return",
+                    "|xns": "Roo.doc",
+                    "xtype": "Section"
+                },
+                {
+                    "stype": "example",
+                    "|xns": "Roo.doc",
+                    "xtype": "Section"
+                }
+            ]
+        }
+    ]
+}

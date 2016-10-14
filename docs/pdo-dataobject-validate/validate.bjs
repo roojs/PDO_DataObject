@@ -1,0 +1,55 @@
+{
+    "name": "validate",
+    "parent": "",
+    "title": "",
+    "permname": "",
+    "modOrder": "001",
+    "items": [
+        {
+            "name": "validate",
+            "purpose": " validate the values of the object (can be used prior to inserting\/updating..)",
+            "stype": "function",
+            "|xns": "Roo.doc",
+            "xtype": "Entry",
+            "items": [
+                {
+                    "name": "validate",
+                    "is_static": false,
+                    "memberof": "PDO_DataObject_Validate",
+                    "returndesc": "of validation results (where key=>value, value=false|object if it failed) or true (if they all succeeded)",
+                    "returntype": "array",
+                    "|xns": "Roo.doc",
+                    "xtype": "Synopsis",
+                    "items": []
+                },
+                {
+                    "stype": "desc",
+                    "|xns": "Roo.doc",
+                    "xtype": "Section",
+                    "items": [
+                        {
+                            "html": "<p> Note: This was always intended as a simple validation routine.\n It lacks understanding of field length, whether you are inserting or updating (and hence null key values)\n\n Usage:\n if (is_array($ret = $obj->validate())) { ... there are problems with the data ... }\n\n Logic:\n   - defaults to only testing strings\/numbers if numbers or strings are the correct type and null values are correct\n   - validate Column methods : \"validate{ROWNAME}()\"  are called if they are defined.\n            These methods should return \n                  true = everything ok\n                  false|object = something is wrong!<\/p><p>   - This method loads and uses the PEAR Validate Class.<\/p><p><\/p>",
+                            "|xns": "Roo.doc",
+                            "xtype": "Para"
+                        }
+                    ]
+                },
+                {
+                    "stype": "parameter",
+                    "|xns": "Roo.doc",
+                    "xtype": "Section"
+                },
+                {
+                    "stype": "return",
+                    "|xns": "Roo.doc",
+                    "xtype": "Section"
+                },
+                {
+                    "stype": "example",
+                    "|xns": "Roo.doc",
+                    "xtype": "Section"
+                }
+            ]
+        }
+    ]
+}

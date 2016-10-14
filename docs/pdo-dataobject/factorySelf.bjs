@@ -28,7 +28,7 @@
                     "xtype": "Section",
                     "items": [
                         {
-                            "html": " object to create a clean new instance.\n \n usage:\n $do = PDO_DataObject::factory('person');\n $person = $do->factorySelf();\n\n It's needed, as PHP5 (later versions started enfocing static\/calling etc..)\n\n",
+                            "html": "<p> object to create a clean new instance.<\/p><p> usage:\n $do = PDO_DataObject::factory('person');\n $person = $do->factorySelf();\n\n It's needed, as PHP5 (later versions started enfocing static\/calling etc..)\n\n<\/p>",
                             "|xns": "Roo.doc",
                             "xtype": "Para"
                         }

@@ -28,7 +28,7 @@
                     "xtype": "Section",
                     "items": [
                         {
-                            "html": " and resets other variables...\n\n Note - this is realy only for testing - calling it will likely slow down any future calls to the database\n\n",
+                            "html": "<p> and resets other variables...\n\n Note - this is realy only for testing - calling it will likely slow down any future calls to the database\n\n<\/p>",
                             "|xns": "Roo.doc",
                             "xtype": "Para"
                         }

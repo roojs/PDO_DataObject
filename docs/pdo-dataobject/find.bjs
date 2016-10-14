@@ -37,7 +37,7 @@
                     "xtype": "Section",
                     "items": [
                         {
-                            "html": " for example\n\n $object = new mytable();\n $object->ID = 1;\n $object->find();\n\n\n will set $object->N to number of rows, and expects next command to fetch rows\n will return $object->N\n\n if an error occurs $object->N will be set to false and return value will also be false;\n if numRows is not supported it will return true.\n \n",
+                            "html": "<p> for example\n\n $object = new mytable();\n $object->ID = 1;\n $object->find();<\/p><p> will set $object->N to number of rows, and expects next command to fetch rows\n will return $object->N\n\n if an error occurs $object->N will be set to false and return value will also be false;\n if numRows is not supported it will return true.<\/p><p><\/p>",
                             "|xns": "Roo.doc",
                             "xtype": "Para"
                         }

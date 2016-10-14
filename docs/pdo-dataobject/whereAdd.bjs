@@ -45,7 +45,7 @@
                     "xtype": "Section",
                     "items": [
                         {
-                            "html": " NOTE : ALWAYS ENSURE ARGUMENTS ARE ESCAPED\n \n\n $object->whereAdd(); \/\/reset or cleaer ewhwer\n $object->whereAdd(\"ID > 20\");\n $object->whereAdd(\"age > 20\",\"OR\");\n\n",
+                            "html": "<p> NOTE : ALWAYS ENSURE ARGUMENTS ARE ESCAPED<\/p><p> $object->whereAdd(); \/\/reset or cleaer ewhwer\n $object->whereAdd(\"ID > 20\");\n $object->whereAdd(\"age > 20\",\"OR\");<\/p><p><\/p>",
                             "|xns": "Roo.doc",
                             "xtype": "Para"
                         }

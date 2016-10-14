@@ -37,7 +37,7 @@
                     "xtype": "Section",
                     "items": [
                         {
-                            "html": " Chainable Version\n NOTE : ALWAYS ENSURE ARGUMENTS ARE ESCAPED \n\n Initial behaviour is slightly different to selectAdd()\n when you call select() with an argument the first time, it will remove the default '*' \n\n $object->selectAdd(); \/\/ resets select to nothing!\n $object->selectAdd(\"*\"); \/\/ default select\n $object->selectAdd(\"unixtime(DATE) as udate\");\n $object->selectAdd(\"DATE\");\n\n to prepend distict:\n $object->selectAdd('distinct ' . $object->selectAdd());\n\n",
+                            "html": "<p> Chainable Version\n NOTE : ALWAYS ENSURE ARGUMENTS ARE ESCAPED \n\n Initial behaviour is slightly different to selectAdd()\n when you call select() with an argument the first time, it will remove the default '*' \n\n $object->selectAdd(); \/\/ resets select to nothing!\n $object->selectAdd(\"*\"); \/\/ default select\n $object->selectAdd(\"unixtime(DATE) as udate\");\n $object->selectAdd(\"DATE\");\n\n to prepend distict:\n $object->selectAdd('distinct ' . $object->selectAdd());\n\n<\/p>",
                             "|xns": "Roo.doc",
                             "xtype": "Para"
                         }

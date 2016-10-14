@@ -45,7 +45,7 @@
                     "xtype": "Section",
                     "items": [
                         {
-                            "html": " for example\n $object->get(\"ID\",1234);\n Returns Number of rows located (usually 1) for success,\n and puts all the table columns into this classes variables\n\n see the fetch example on how to extend this.\n\n if no value is entered, it is assumed that $key is a value\n and get will then use the first key in keys()\n to obtain the key.\n\n",
+                            "html": "<p> for example\n $object->get(\"ID\",1234);\n Returns Number of rows located (usually 1) for success,\n and puts all the table columns into this classes variables\n\n see the fetch example on how to extend this.\n\n if no value is entered, it is assumed that $key is a value\n and get will then use the first key in keys()\n to obtain the key.<\/p><p><\/p>",
                             "|xns": "Roo.doc",
                             "xtype": "Para"
                         }

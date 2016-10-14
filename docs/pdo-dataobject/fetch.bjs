@@ -28,7 +28,7 @@
                     "xtype": "Section",
                     "items": [
                         {
-                            "html": " returns 1 on success 0 on failure\n\n\n\n Example\n $object = new mytable();\n $object->name = \"fred\";\n $object->find();\n $store = array();\n while ($object->fetch()) {\n   echo $this->ID;\n   $store[] = $object; \/\/ builds an array of object lines.\n }\n\n to add features to a fetch\n function fetch () {\n    $ret = parent::fetch();\n    $this->date_formated = date('dmY',$this->date);\n    return $ret;\n }\n",
+                            "html": "<p> returns 1 on success 0 on failure<\/p><p> Example\n $object = new mytable();\n $object->name = \"fred\";\n $object->find();\n $store = array();\n while ($object->fetch()) {\n   echo $this->ID;\n   $store[] = $object; \/\/ builds an array of object lines.\n }\n\n to add features to a fetch\n function fetch () {\n    $ret = parent::fetch();\n    $this->date_formated = date('dmY',$this->date);\n    retur\n    n $ret;\n }<\/p><p><\/p>",
                             "|xns": "Roo.doc",
                             "xtype": "Para"
                         }

@@ -28,7 +28,7 @@
                     "xtype": "Section",
                     "items": [
                         {
-                            "html": " Returns the ID of the inserted element (if auto increment or sequences are used.)\n\n for example\n\n Designed to be extended\n\n $object = new mytable();\n $object->name = \"fred\";\n echo $object->insert();\n\n",
+                            "html": "<p> Returns the ID of the inserted element (if auto increment or sequences are used.)\n\n for example\n\n Designed to be extended\n\n $object = new mytable();\n $object->name = \"fred\";\n echo $object->insert();\n\n<\/p>",
                             "|xns": "Roo.doc",
                             "xtype": "Para"
                         }

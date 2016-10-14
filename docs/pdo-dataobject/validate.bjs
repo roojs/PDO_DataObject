@@ -28,7 +28,7 @@
                     "xtype": "Section",
                     "items": [
                         {
-                            "html": " Uses PDO_DataObject_Validate\n\n",
+                            "html": "<p> Uses PDO_DataObject_Validate<\/p><p><\/p>",
                             "|xns": "Roo.doc",
                             "xtype": "Para"
                         }

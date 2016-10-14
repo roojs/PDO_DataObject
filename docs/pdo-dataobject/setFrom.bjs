@@ -53,7 +53,7 @@
                     "xtype": "Section",
                     "items": [
                         {
-                            "html": " array or object into the current object\n will not override key values.\n\n\n",
+                            "html": "<p> array or object into the current object\n will not override key values.<\/p><p><\/p>",
                             "|xns": "Roo.doc",
                             "xtype": "Para"
                         }

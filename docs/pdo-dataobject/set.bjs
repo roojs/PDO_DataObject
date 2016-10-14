@@ -53,7 +53,7 @@
                     "xtype": "Section",
                     "items": [
                         {
-                            "html": " If errors occur on set** methods, then $this->_set_errors will be set to the problem, and an exception is thrown.\n\n",
+                            "html": "<p> If errors occur on set** methods, then $this->_set_errors will be set to the problem, and an exception is thrown.\n\n<\/p>",
                             "|xns": "Roo.doc",
                             "xtype": "Para"
                         }

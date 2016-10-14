@@ -45,7 +45,7 @@
                     "xtype": "Section",
                     "items": [
                         {
-                            "html": " set usage: $do->keys('id','code');\n\n This is defined in the table definition if it gets it wrong,\n or you do not want to use ini tables, you can override this.\n",
+                            "html": "<p> set usage: $do->keys('id','code');\n\n This is defined in the table definition if it gets it wrong,\n or you do not want to use ini tables, you can override this.\n\n<\/p>",
                             "|xns": "Roo.doc",
                             "xtype": "Para"
                         }
