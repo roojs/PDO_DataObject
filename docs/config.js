@@ -93,7 +93,7 @@ XXXX=1|YYY=2
          xtype : 'Example',
          code : 'PDO_DataObject::config(\'database\', \'mysql://username:test@localhost:3344/somedb#\' . implode( \'|\',\n    array(\n        \'MYSQL_ATTR_SSL_KEY=/path/to/client-key.pem\',\n        \'MYSQL_ATTR_SSL_CERT=/path/to/client-cert.pem\',\n        \'MYSQL_ATTR_SSL_CA=/path/to/ca-cert.pem\',\n        \n        \'MYSQL_ATTR_LOCAL_INFILE=1\',\n        \'MYSQL_ATTR_INIT_COMMAND=2\',\n       // \'MYSQL_ATTR_READ_DEFAULT_FILE=3\',\n       //  \'MYSQL_ATTR_READ_DEFAULT_GROUP=4\',\n        \'MYSQL_ATTR_MAX_BUFFER_SIZE=5\',\n        \'MYSQL_ATTR_DIRECT_QUERY=6\',\n        \'MYSQL_ATTR_FOUND_ROWS=7\',\n        \'MYSQL_ATTR_IGNORE_SPACE=8\',\n        \'MYSQL_ATTR_COMPRESS=9\',\n        \'MYSQL_ATTR_SSL_CIPHER=10\',\n        \'MYSQL_ATTR_SSL_KEY=11\',\n        \'MYSQL_ATTR_MULTI_STATEMENTS=12\',\n        \n    )));\n(new PDO_DataObject())->PDO();\n',
          output : 'new PDO(\n    \"mysql:dbname=somedb;host=localhost;port=3344\",\n    \"username\",\n    \"test\",\n    array(\n        \"1007\" => \"11\",\n        \"1008\"=> \"/path/to/client-cert.pem\",\n        \"1009\"=> \"/path/to/ca-cert.pem\",\n        \"1001\"=> \"1\",\n        \"1002\"=> \"2\",\n        \"0\"=> \"5\",\n        \"1004\"=> \"6\",\n        \"1005\"=> \"7\",\n        \"1006\"=> \"8\",\n        \"1003\"=> \"9\",\n        \"1011\"=> \"10\",\n        \"1013\"=> \"12\"\n    )\n);\n',
-         outputlang : 'txt',
+         outputlang : 'php',
          title : _this._strings['35be5669049f8fb369c7654567b1d1ab'] /* Mysql Connection examples */,
          xns : Roo.doc,
          '|xns' : 'Roo.doc'
