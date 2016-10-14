@@ -218,9 +218,16 @@ index = new Roo.XComponent({
                    if (node['|xns'] == 'Roo.doc' || node['$ xns'] == 'Roo.doc') {
                        node.xns = Roo.doc;
                    }
-                    if (node['|xns'] == 'Roo.bootstrap' || node['$ xns'] == 'Roo.bootstrap' ) {
+                   if (node['|xns'] == 'Roo.bootstrap' || node['$ xns'] == 'Roo.bootstrap' ) {
                        node.xns = Roo.bootstrap;
                    }
+                   // builder uses very different format now..
+                   for(var k in node) {
+                       if (k.match(/\s+/)) { 
+                           node[k.split(' ').pop()] = node[k];
+                       }
+                   }
+                   
                    Roo.each(node.items || [],walk);
                
                }
