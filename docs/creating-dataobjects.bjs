@@ -70,6 +70,11 @@
        ]
       }
      ]
+    },
+    {
+     "xtype" : "Element",
+     "$ xns" : "Roo.bootstrap",
+     "String html" : "<p>\nThis will result in the creation of an 'ini' file containing the database structure.\n</p>\n"
     }
    ]
   }

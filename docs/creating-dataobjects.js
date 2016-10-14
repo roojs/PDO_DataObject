@@ -110,6 +110,17 @@ This will result in the creation of an 'ini' file containing the database struct
        ]
       }
      ]
+    },
+    {
+     xtype : 'Element',
+     html : _this._strings['2314287293fbe38854242eac7f34855a'] /* 
+     <p>     
+This will result in the creation of an 'ini' file containing the database structure.     
+</p>     
+
+     */ ,
+     xns : Roo.bootstrap,
+     '|xns' : 'Roo.bootstrap'
     }
    ]
   };  }
