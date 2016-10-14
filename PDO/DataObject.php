@@ -352,7 +352,7 @@ class PDO_DataObject
      * Normally you would extend this class an fill it up with methods that relate to actions on that table
      *
      * @param string|array    either tablename or databasename/tablename or array(database,tablename)
-     * @category build
+     * @category create
      */
     function __construct($cfg = false)
     {
