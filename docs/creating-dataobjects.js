@@ -212,7 +212,7 @@ Rather than using the standard createTables, code, you can easily create your ow
        items  : [
         {
          xtype : 'Example',
-         code : 'require_once \'PDO/DataObject.php\';\n\n\n',
+         code : 'require_once \'PDO/DataObject.php\';\n\n\nPDO_DataObject::config(array(\n\n        \'database\' =>  \'sqlite:\'.__DIR__.\'/includes/EssentialSQL.db\'\n        \n        \'proxy\' => true,\n        \'debug\' => 0,\n));\n \n',
          title : _this._strings['d1f77c976080e0cc64bdc0c53ccd649e'] /* Example of create Database code */,
          xns : Roo.doc,
          '|xns' : 'Roo.doc'

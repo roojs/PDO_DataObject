@@ -140,7 +140,7 @@
        "$ xns" : "Roo.doc",
        "items" : [
         {
-         "String code" : "require_once 'PDO/DataObject.php';\n\n\n",
+         "String code" : "require_once 'PDO/DataObject.php';\n\n\nPDO_DataObject::config(array(\n\n        'database' =>  'sqlite:'.__DIR__.'/includes/EssentialSQL.db'\n        \n        'proxy' => true,\n        'debug' => 0,\n));\n \n",
          "xtype" : "Example",
          "$ xns" : "Roo.doc",
          "String title" : "Example of create Database code"
