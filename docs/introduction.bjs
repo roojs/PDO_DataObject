@@ -5,6 +5,9 @@
  "path" : "/home/alan/gitlive/PDO_DataObject/docs/introduction.bjs",
  "permname" : "",
  "modOrder" : "001",
+ "strings" : {
+  "0b79795d3efc95b9976c7c5b933afce2" : "Introduction"
+ },
  "items" : [
   {
    "xtype" : "Body",
@@ -13,7 +16,8 @@
     {
      "xtype" : "Header",
      "Number level" : 3,
-     "$ xns" : "Roo.bootstrap"
+     "$ xns" : "Roo.bootstrap",
+     "String html" : "Introduction"
     }
    ]
   }
