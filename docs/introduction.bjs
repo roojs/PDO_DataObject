@@ -6,9 +6,5 @@
  "permname" : "",
  "modOrder" : "001",
  "items" : [
-  {
-   "xtype" : "Body",
-   "$ xns" : "Roo.bootstrap"
-  }
  ]
 }
