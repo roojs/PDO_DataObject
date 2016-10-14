@@ -46,6 +46,7 @@
            },
            "xtype" : "Column",
            "$ xns" : "Roo.bootstrap",
+           "String style" : "height: 500px;\n    overflow: scroll",
            "Number sm" : 3,
            "items" : [
             {
