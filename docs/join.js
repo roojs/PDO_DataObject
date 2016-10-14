@@ -7,8 +7,8 @@ join = new Roo.XComponent({
  _strings : {
   'aca0253c82fea77fa2c8cbe60cd619f2' :"Joins and referenced Tables",
   'e663c4f830fd6401ebec75faaab19a65' :"Example of a links.ini with one table",
-  '15bcef4620646f469603a75168da6b10' :"<p>\nWhen designing a database, often some tables are related to others - a membership table would\n contain a reference to a person's id and the group id that they are a member of. \n</p> \n<p>\nUsing the Join and Link methods, you can fetch related information easily.\n</p>\n\n\n<p>\nThe relationship information is supported using by a \"links.ini\" file. which stores the \nrelations ship between tables, maping one tables column to anothers.\n</p>\n\n<p>This \"links.ini\" file is used by the <a href=\"#pdo-dataobject/link\">link</a>,\n<a href=\"#pdo-dataobject/joinAll\">joinAll</a>, <a href=\"#pdo-dataobject/join\">join</a> and\n<a href=\"#pdo-dataobject/joinAdd\">joinAdd</a> methods\n</p>\n\n<p>Used with methods like <a href=\"#pdo-dataobject/selectAs\">selectAs</a> it is possible to very quickly\nbuild complex requests and fetch data from the database without having to type long queries.\n</p>\n",
-  'd6aa8be6ff38aa217305484e5dd38a88' :"<p>\nWhat that code does should be reasonably clear\n</p>\n<ul>\n<li>Load, and create an instance of the 'events' class\n<li>fetch the record with the primary ID = 3523\n<li>set the value of 'action' to 'testing'\n<li>perform a database update\n</ul>\n\n<p>\nMost methods in PDO_DataObjects support chaining, except on methods which are designed to be\n compatibile with DB_DataObjects.\n</p>\n\n\n"
+  '09ab75b637f08b93be3b8a05dbd2da9c' :"<p>\nIn the above example\n</p>\n<ul>\n<li>The column company_id points to the table company using column id\n<li>The column photo_id points to the table images using the column id.\n</ul>\n\n<p>\nUsing JoinAll would modify the select query to join both these tables in the query, and select the relivant information\n</p>\n\n\n",
+  '15bcef4620646f469603a75168da6b10' :"<p>\nWhen designing a database, often some tables are related to others - a membership table would\n contain a reference to a person's id and the group id that they are a member of. \n</p> \n<p>\nUsing the Join and Link methods, you can fetch related information easily.\n</p>\n\n\n<p>\nThe relationship information is supported using by a \"links.ini\" file. which stores the \nrelations ship between tables, maping one tables column to anothers.\n</p>\n\n<p>This \"links.ini\" file is used by the <a href=\"#pdo-dataobject/link\">link</a>,\n<a href=\"#pdo-dataobject/joinAll\">joinAll</a>, <a href=\"#pdo-dataobject/join\">join</a> and\n<a href=\"#pdo-dataobject/joinAdd\">joinAdd</a> methods\n</p>\n\n<p>Used with methods like <a href=\"#pdo-dataobject/selectAs\">selectAs</a> it is possible to very quickly\nbuild complex requests and fetch data from the database without having to type long queries.\n</p>\n"
  },
 
   part     :  ["docs", "join" ],
@@ -88,20 +88,17 @@ build complex requests and fetch data from the database without having to type l
     },
     {
      xtype : 'Element',
-     html : _this._strings['d6aa8be6ff38aa217305484e5dd38a88'] /* 
+     html : _this._strings['09ab75b637f08b93be3b8a05dbd2da9c'] /* 
      <p>     
-What that code does should be reasonably clear     
+In the above example     
 </p>     
 <ul>     
-<li>Load, and create an instance of the 'events' class     
-<li>fetch the record with the primary ID = 3523     
-<li>set the value of 'action' to 'testing'     
-<li>perform a database update     
+<li>The column company_id points to the table company using column id     
+<li>The column photo_id points to the table images using the column id.     
 </ul>     
      
 <p>     
-Most methods in PDO_DataObjects support chaining, except on methods which are designed to be     
- compatibile with DB_DataObjects.     
+Using JoinAll would modify the select query to join both these tables in the query, and select the relivant information     
 </p>     
      
      
