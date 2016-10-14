@@ -88,6 +88,18 @@
                "$ xns" : "Roo.doc",
                "string title" : "Create, Update and Delete",
                "string name" : "crud"
+              },
+              {
+               "xtype" : "NavCategory",
+               "$ xns" : "Roo.doc",
+               "string title" : "Create, Update and Delete",
+               "string name" : "crud"
+              },
+              {
+               "xtype" : "NavCategory",
+               "$ xns" : "Roo.doc",
+               "string title" : "Create, Update and Delete",
+               "string name" : "crud"
               }
              ]
             }

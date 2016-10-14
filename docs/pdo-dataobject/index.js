@@ -112,6 +112,20 @@ index = new Roo.XComponent({
                title : _this._strings['556315ce9fbee2dfda70f8a91138d2b3'] /* Create, Update and Delete */,
                xns : Roo.doc,
                '|xns' : 'Roo.doc'
+              },
+              {
+               xtype : 'NavCategory',
+               name : 'crud',
+               title : _this._strings['556315ce9fbee2dfda70f8a91138d2b3'] /* Create, Update and Delete */,
+               xns : Roo.doc,
+               '|xns' : 'Roo.doc'
+              },
+              {
+               xtype : 'NavCategory',
+               name : 'crud',
+               title : _this._strings['556315ce9fbee2dfda70f8a91138d2b3'] /* Create, Update and Delete */,
+               xns : Roo.doc,
+               '|xns' : 'Roo.doc'
               }
              ]
             }
