@@ -67,10 +67,14 @@
                    "String html" : "ters"
                   },
                   {
-                   "String href" : "test",
-                   "xtype" : "NavItem",
+                   "xtype" : "NavSidebarItem",
                    "$ xns" : "Roo.bootstrap",
-                   "String html" : "test"
+                   "String html" : "ters"
+                  },
+                  {
+                   "xtype" : "NavSidebarItem",
+                   "$ xns" : "Roo.bootstrap",
+                   "String html" : "ters"
                   }
                  ]
                 },

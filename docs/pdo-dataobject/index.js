@@ -88,9 +88,14 @@ index = new Roo.XComponent({
                    '|xns' : 'Roo.bootstrap'
                   },
                   {
-                   xtype : 'NavItem',
-                   href : 'test',
-                   html : _this._strings['098f6bcd4621d373cade4e832627b4f6'] /* test */,
+                   xtype : 'NavSidebarItem',
+                   html : _this._strings['054dcd5305268637ad83a5c55808e173'] /* ters */,
+                   xns : Roo.bootstrap,
+                   '|xns' : 'Roo.bootstrap'
+                  },
+                  {
+                   xtype : 'NavSidebarItem',
+                   html : _this._strings['054dcd5305268637ad83a5c55808e173'] /* ters */,
                    xns : Roo.bootstrap,
                    '|xns' : 'Roo.bootstrap'
                   }
