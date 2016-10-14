@@ -6,9 +6,9 @@ build = new Roo.XComponent({
 
  _strings : {
   '9bf38a80987bf15dce35ca41b3a34f35' :"Setting Properties to generate a query",
+  'af8a4bf8e4b692982022a39295f4b176' :"<p>\nUsing the 'set' method will also do some basic validation.\n</p>\n<p>\nMost of the method names match the SQL standard names, and build up query.\n</p>\n\n\n",
   '7dd6d86a2c8648fe541335db76a0cabb' :"<p>\nThere are two ways that queries are built in PDO_DataObjects\n</p>\n<ul>\n<li>Properties of the object, that match the column names in the table\n<li>Calling the query modification methods.\n</ul>\n\n<p>\nBy just assigning values to the DataObject, then running fetchAll() or find/fetch() the query will be built \nbased on the values you set.\n</p>\n\n",
-  '8413aa2e38fdd078a3d96e34592d286a' :"Building Queries",
-  'd6aa8be6ff38aa217305484e5dd38a88' :"<p>\nWhat that code does should be reasonably clear\n</p>\n<ul>\n<li>Load, and create an instance of the 'events' class\n<li>fetch the record with the primary ID = 3523\n<li>set the value of 'action' to 'testing'\n<li>perform a database update\n</ul>\n\n<p>\nMost methods in PDO_DataObjects support chaining, except on methods which are designed to be\n compatibile with DB_DataObjects.\n</p>\n\n\n"
+  '8413aa2e38fdd078a3d96e34592d286a' :"Building Queries"
  },
 
   part     :  ["docs", "build" ],
@@ -81,20 +81,12 @@ based on the values you set.
     },
     {
      xtype : 'Element',
-     html : _this._strings['d6aa8be6ff38aa217305484e5dd38a88'] /* 
+     html : _this._strings['af8a4bf8e4b692982022a39295f4b176'] /* 
      <p>     
-What that code does should be reasonably clear     
+Using the 'set' method will also do some basic validation.     
 </p>     
-<ul>     
-<li>Load, and create an instance of the 'events' class     
-<li>fetch the record with the primary ID = 3523     
-<li>set the value of 'action' to 'testing'     
-<li>perform a database update     
-</ul>     
-     
 <p>     
-Most methods in PDO_DataObjects support chaining, except on methods which are designed to be     
- compatibile with DB_DataObjects.     
+Most of the method names match the SQL standard names, and build up query.     
 </p>     
      
      
