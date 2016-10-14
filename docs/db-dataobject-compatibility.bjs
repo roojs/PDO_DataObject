@@ -30,7 +30,7 @@
     {
      "xtype" : "Header",
      "$ xns" : "Roo.bootstrap",
-     "Number level" : 3,
+     "Number level" : 2,
      "String html" : "Detail incompatibilities"
     },
     {

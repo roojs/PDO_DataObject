@@ -58,7 +58,7 @@ since DB_DataObject was originally used on PHP4, and many features and practices
     {
      xtype : 'Header',
      html : _this._strings['7ca2773ac777c886ffeeb73f8d6930d2'] /* Detail incompatibilities */,
-     level : 3,
+     level : 2,
      xns : Roo.bootstrap,
      '|xns' : 'Roo.bootstrap'
     },
