@@ -51,20 +51,6 @@
                "String html" : "Section block"
               },
               {
-               "String href" : "test",
-               "xtype" : "NavGroup",
-               "$ xns" : "Roo.bootstrap",
-               "String html" : "test",
-               "items" : [
-                {
-                 "String href" : "test",
-                 "xtype" : "NavItem",
-                 "$ xns" : "Roo.bootstrap",
-                 "String html" : "test"
-                }
-               ]
-              },
-              {
                "xtype" : "Container",
                "$ xns" : "Roo.bootstrap",
                "items" : [
