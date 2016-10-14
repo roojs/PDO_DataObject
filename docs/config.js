@@ -117,7 +117,7 @@ XXXX=1|YYY=2
          xtype : 'Example',
          code : '// Postgres\nPDO_DataObject::config(\'database\', \'pgsql://nobody:change_me@localhost:3434/example\');\n(new PDO_DataObject())->PDO();\n// postgres (with user/pass in dsn..\nPDO_DataObject::config(\'database\', \'pgsql://localhost:3434/example?user=nobody&password=change_me\');\n(new PDO_DataObject())->PDO();\n',
          output : 'Results in these calls to PDO\n\nnew PDO(\"pgsql:dbname=example;host=localhost;port=3434\",\"nobody\",\"change_me\");\n\nnew PDO(\"pgsql:dbname=example;host=localhost;port=3434;user=nobody;password=change_me\",\"\",\"\");\n',
-         outputlang : '',
+         outputlang : 'php',
          title : _this._strings['1a0042954f1d5836710c84459618f095'] /* Postgresql Connection examples */,
          xns : Roo.doc,
          '|xns' : 'Roo.doc'
