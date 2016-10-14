@@ -77,7 +77,7 @@ build complex requests and fetch data from the database without having to type l
        items  : [
         {
          xtype : 'Example',
-         code : 'PDO_DataObject::factory(\'Events\')\n    ->load(3523)\n    ->set([\'action\' => \"testing\" ])\n    ->save();\n',
+         code : 'person]\ncompany_id = company:id\nphoto_id = images:id\n\n\n',
          title : _this._strings['6ed348e04674567827e341bb5b6d9d82'] /* Example of using PDO_DataObjects */,
          xns : Roo.doc,
          '|xns' : 'Roo.doc'
