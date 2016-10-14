@@ -5,6 +5,7 @@
 index = new Roo.XComponent({
 
  _strings : {
+  '054dcd5305268637ad83a5c55808e173' :"ters",
   '098f6bcd4621d373cade4e832627b4f6' :"test",
   '37235a56865c43e9decef816c22d8614' :"Section block",
   '9f6e6800cfae7749eb6c486619254b9c' :"sss"
@@ -82,6 +83,7 @@ index = new Roo.XComponent({
                  items  : [
                   {
                    xtype : 'NavSidebarItem',
+                   html : _this._strings['054dcd5305268637ad83a5c55808e173'] /* ters */,
                    xns : Roo.bootstrap,
                    '|xns' : 'Roo.bootstrap'
                   },
