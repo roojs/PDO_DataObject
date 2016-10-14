@@ -47,8 +47,8 @@
              "items" : [
               {
                "String href" : "#autoJoin",
-               "xtype" : "Link",
-               "$ xns" : "Roo.bootstrap",
+               "xtype" : "NavCategory",
+               "$ xns" : "Roo.doc",
                "String html" : "Section block"
               },
               {

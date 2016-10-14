@@ -63,11 +63,11 @@ index = new Roo.XComponent({
              '|xns' : 'Roo.bootstrap',
              items  : [
               {
-               xtype : 'Link',
+               xtype : 'NavCategory',
                href : '#autoJoin',
                html : _this._strings['37235a56865c43e9decef816c22d8614'] /* Section block */,
-               xns : Roo.bootstrap,
-               '|xns' : 'Roo.bootstrap'
+               xns : Roo.doc,
+               '|xns' : 'Roo.doc'
               },
               {
                xtype : 'Container',
