@@ -12,6 +12,7 @@ creating-dataobjects = new Roo.XComponent({
   'ce0ef332536ddbe0f2d91179a923b3b0' :"<p>\nIt will also create skeleton DataObjects. \n</p>\n<p>\nThese files can be updated to match any changes you make to the database schema,\n if you run the command again and leave the comments in place.\n</p>",
   'd06bda29ade3b12c79092ea8e173dbc0' :"Creating schema and Base DataObjects",
   '6edce050ce6cb982c46e228782dbd8ed' :"<p>\nOnce the classes have been created, you can add methods below the ###END_AUTOCODE that \nare relivant for your project.\n</p>\n<p>\nThe Generator contains many features to alter what is generated at this stage.\n</p>",
+  '2915cf91ce55a8b2d2c69feae5215e06' :"An example ini file for use with createTables.phpExamp",
   'd438a0af0c2a3eb34111e45e615fe4a7' :"<p>\nThere are two components that are needed before you can start using DataObjects in your code\n\n<ul>\n<li>a schema file describing the database\n<li>PHP classes representing each of the tables\n</ul>\n<p>\nBoth of these can be created using the tools included with PDO_DataObjects, or you can use the code in \nthe Generator to write the schema files when a page is requested, and cache the results.\n\n<p>\nFor basic usage, use the file PDO/DataObject/createTables.php to create your schema file\n ",
   '789953c34df03c98c141ec54e226becd' :"Example .ini file",
   '5f31614f3d53f25fd4adadc06738bf59' :"Example Generated DataObject"
@@ -212,7 +213,7 @@ Rather than using the standard createTables, code, you can easily create your ow
         {
          xtype : 'Example',
          code : '[PDO_DataObject]\n\ndatabase = mysql://user:pass@localhost/testdb\nschema_location = /path/to/my/DataObjects\n\n ',
-         title : _this._strings['27acce31dc1956874cd77b52da134506'] /* An example ini file for use with createTables.php */,
+         title : _this._strings['2915cf91ce55a8b2d2c69feae5215e06'] /* An example ini file for use with createTables.phpExamp */,
          xns : Roo.doc,
          '|xns' : 'Roo.doc'
         }
