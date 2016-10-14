@@ -13,7 +13,7 @@
   "d06bda29ade3b12c79092ea8e173dbc0" : "Creating schema and Base DataObjects",
   "6edce050ce6cb982c46e228782dbd8ed" : "<p>\nOnce the classes have been created, you can add methods below the ###END_AUTOCODE that \nare relivant for your project.\n</p>\n<p>\nThe Generator contains many features to alter what is generated at this stage.\n</p>",
   "d438a0af0c2a3eb34111e45e615fe4a7" : "<p>\nThere are two components that are needed before you can start using DataObjects in your code\n\n<ul>\n<li>a schema file describing the database\n<li>PHP classes representing each of the tables\n</ul>\n<p>\nBoth of these can be created using the tools included with PDO_DataObjects, or you can use the code in \nthe Generator to write the schema files when a page is requested, and cache the results.\n\n<p>\nFor basic usage, use the file PDO/DataObject/createTables.php to create your schema file\n ",
-  "765ecf0efc7aa64d38c808cb91d33077" : "Example in file",
+  "789953c34df03c98c141ec54e226becd" : "Example .ini file",
   "5f31614f3d53f25fd4adadc06738bf59" : "Example Generated DataObject"
  },
  "items" : [
@@ -69,7 +69,7 @@
          "String code" : "[group]\nid = 129\nname = 130 \ngrp_owner = 129 \nofficial = 130 \nstreet = 130 \npostcode = 130\ncity = 130 \nhomepage = 130 \nemail = 130 \nextra = 130 \n\n[group__keys]\nid = N",
          "xtype" : "Example",
          "$ xns" : "Roo.doc",
-         "String title" : "Example in file"
+         "String title" : "Example .ini file"
         }
        ]
       }
@@ -114,7 +114,7 @@
        "$ xns" : "Roo.doc",
        "items" : [
         {
-         "String code" : "/*\n* Table Definition for group\n*/\n\nrequire_once 'PDO/DataObject.php';\n\nclass DataObjects_Group extends PDO_DataObject {\n\n    ###START_AUTOCODE\n    /* the code below is auto generated do not remove the above tag */\n\n    var $__table='group';                             // table name\n    var $id;                              // int primary_key\n    var $name;                            // string\n    var $grp_owner;                       // int\n    var $official;                        // string\n    var $street;                          // string\n    var $postcode;                        // string\n    var $city;                            // string\n    var $homepage;                        // string\n    var $email;                           // string\n    var $extra;                           // blob\n\n\n    /* the code above is auto generated do not remove the tag below */\n    ###END_AUTOCODE\n}",
+         "String code" : "[PDO_DataObject]\n\ndatabase = mysql://user:pass@localhost/testdb\nschema_location = /path/to/my/DataObjects\n\n    \n));",
          "xtype" : "Example",
          "$ xns" : "Roo.doc",
          "String title" : "An example ini file for use with createTables.php"
