@@ -8,8 +8,8 @@ index = new Roo.XComponent({
   'aca0253c82fea77fa2c8cbe60cd619f2' :"Joins and referenced Tables",
   'c2b942b501dc222d608980c0ed40b07c' :"Fetching Results",
   '0b79795d3efc95b9976c7c5b933afce2' :"Introduction",
-  '53e61336bb49ec978968786b07dea50b' :"results",
-  '2dc714e7e4d090ea2577a71e6147f1f8' :"crud",
+  '556315ce9fbee2dfda70f8a91138d2b3' :"Create, Update and Delete",
+  '2c918a06bae30fdcf78f8810894a67af' :"Working with Results",
   '8413aa2e38fdd078a3d96e34592d286a' :"Building Queries",
   '254f642527b45bc260048e30704edb39' :"Configuration"
  },
@@ -101,15 +101,15 @@ index = new Roo.XComponent({
               },
               {
                xtype : 'NavCategory',
-               name : 'Working with Results',
-               title : _this._strings['53e61336bb49ec978968786b07dea50b'] /* results */,
+               name : 'results',
+               title : _this._strings['2c918a06bae30fdcf78f8810894a67af'] /* Working with Results */,
                xns : Roo.doc,
                '|xns' : 'Roo.doc'
               },
               {
                xtype : 'NavCategory',
-               name : 'Working with Results',
-               title : _this._strings['2dc714e7e4d090ea2577a71e6147f1f8'] /* crud */,
+               name : 'crud',
+               title : _this._strings['556315ce9fbee2dfda70f8a91138d2b3'] /* Create, Update and Delete */,
                xns : Roo.doc,
                '|xns' : 'Roo.doc'
               }
