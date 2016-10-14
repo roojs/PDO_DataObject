@@ -200,7 +200,55 @@ index = new Roo.XComponent({
           },
           {
            xtype : 'Column',
-           load : function() { },
+           load : function(path) { 
+           
+               var el = this;
+               
+               var walk = function(node) {
+                   if (node['|xns'] == 'Roo.doc') {
+                       node.xns = Roo.doc;
+                   }
+                   Roo.each(node.items || [],walk);
+               
+               }
+               
+               var build = function(node)
+               {
+                   walk(node);
+                   var items = typeof(node.items) == 'undefined' ? false : node.items;
+                   delete node.items;
+           
+                   node._tree = (function(){
+                       var _this = this;
+                       var MODULE = this;
+                       return items[0]
+                   }).createDelegate(node);
+                   node.parent = { el : el };
+                   new_comp = new Roo.XComponent(node);
+                   Roo.log(new_comp);
+                   new_comp.render();
+                   
+               
+               }
+               
+               
+           
+               Roo.Ajax.request({ 
+                       url: baseURL + path + '.bjs',
+                       method: 'GET', 
+                       success: function(response, opts) { 
+                           var res = Roo.decode(response.responseText); // needs error checking
+                           Roo.log(res);
+                           build(res);
+                           
+                           
+                       },
+                       failure : function() {
+                           // show error.
+                       },
+                       scope : this
+                   });
+           },
            sm : 9,
            listeners : {
             render : function (_self)
