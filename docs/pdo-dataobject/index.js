@@ -69,7 +69,7 @@ index = new Roo.XComponent({
              {
                  
                  this.resize();
-                 window.addEventListener("resize", function() { this.resize()  } );
+                 window.addEventListener("resize", function() { _self.resize()  } );
                  var el = this;
                  
                  var walk = function(node) {
