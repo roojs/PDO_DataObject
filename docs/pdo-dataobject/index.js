@@ -7,6 +7,7 @@ index = new Roo.XComponent({
  _strings : {
   '098f6bcd4621d373cade4e832627b4f6' :"test",
   'a38e81a846f1ea114b5343f88d970272' :"testasdf asdf asdf asdf asdf",
+  '3adbdb3ac060038aa0e6e6c138ef9873' :"Category",
   '37235a56865c43e9decef816c22d8614' :"Section block",
   '9f6e6800cfae7749eb6c486619254b9c' :"sss"
  },
@@ -66,6 +67,7 @@ index = new Roo.XComponent({
                xtype : 'NavCategory',
                href : '#autoJoin',
                html : _this._strings['37235a56865c43e9decef816c22d8614'] /* Section block */,
+               title : _this._strings['3adbdb3ac060038aa0e6e6c138ef9873'] /* Category */,
                xns : Roo.doc,
                '|xns' : 'Roo.doc'
               },
