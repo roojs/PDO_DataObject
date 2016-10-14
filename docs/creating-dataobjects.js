@@ -87,6 +87,28 @@ This will result in the creation of an 'ini' file containing the database struct
      */ ,
      xns : Roo.bootstrap,
      '|xns' : 'Roo.bootstrap'
+    },
+    {
+     xtype : 'Entry',
+     xns : Roo.doc,
+     '|xns' : 'Roo.doc',
+     items  : [
+      {
+       xtype : 'Section',
+       lang : 'php',
+       xns : Roo.doc,
+       '|xns' : 'Roo.doc',
+       items  : [
+        {
+         xtype : 'Example',
+         code : '#/usr/bin/php  PDO/DataObjects/createTables.php  your_ini_file.ini',
+         title : _this._strings['d06bda29ade3b12c79092ea8e173dbc0'] /* Creating schema and Base DataObjects */,
+         xns : Roo.doc,
+         '|xns' : 'Roo.doc'
+        }
+       ]
+      }
+     ]
     }
    ]
   };  }

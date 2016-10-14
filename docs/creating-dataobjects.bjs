@@ -50,6 +50,25 @@
      "xtype" : "Element",
      "$ xns" : "Roo.bootstrap",
      "String html" : "<p>\nThis will result in the creation of an 'ini' file containing the database structure.\n</p>\n"
+    },
+    {
+     "xtype" : "Entry",
+     "$ xns" : "Roo.doc",
+     "items" : [
+      {
+       "String lang" : "php",
+       "xtype" : "Section",
+       "$ xns" : "Roo.doc",
+       "items" : [
+        {
+         "String code" : "#/usr/bin/php  PDO/DataObjects/createTables.php  your_ini_file.ini",
+         "xtype" : "Example",
+         "$ xns" : "Roo.doc",
+         "String title" : "Creating schema and Base DataObjects"
+        }
+       ]
+      }
+     ]
     }
    ]
   }
