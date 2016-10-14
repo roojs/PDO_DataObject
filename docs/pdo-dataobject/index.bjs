@@ -7,7 +7,8 @@
  "modOrder" : "001",
  "strings" : {
   "0b79795d3efc95b9976c7c5b933afce2" : "Introduction",
-  "9f6e6800cfae7749eb6c486619254b9c" : "sss"
+  "9f6e6800cfae7749eb6c486619254b9c" : "sss",
+  "254f642527b45bc260048e30704edb39" : "Configuration"
  },
  "items" : [
   {
@@ -52,8 +53,8 @@
               {
                "xtype" : "NavCategory",
                "$ xns" : "Roo.doc",
-               "string title" : "Introduction",
-               "string name" : "introduction"
+               "string title" : "Configuration",
+               "string name" : "config"
               },
               {
                "xtype" : "NavCategory",
