@@ -36,7 +36,7 @@
        "$ xns" : "Roo.doc",
        "items" : [
         {
-         "String code" : "PDO_DataObject::factory('Events')->PDO()->setAttribute(PDO::MYSQL_ATTR_USE_BUFFERED_QUERY, false);\n \n$x = PDO_DataObject::factory('Events');\n$x->find();\n\nwhile($x->fetch()) {\n    print_r($x->toArray());\n    exit;\n    \n}",
+         "String code" : "PDO_DataObject::factory('Events')\n    ->PDO()\n    ->setAttribute(PDO::MYSQL_ATTR_USE_BUFFERED_QUERY, false);\n \n$x = PDO_DataObject::factory('Events');\n$x->find();\n\nwhile($x->fetch()) {\n    print_r($x->toArray());\n    exit;\n    \n}",
          "xtype" : "Example",
          "$ xns" : "Roo.doc",
          "String title" : "Fetching with buffering turned off"

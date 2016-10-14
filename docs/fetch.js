@@ -93,7 +93,7 @@ a unbuffered, find() will return true, even if there are no results.
        items  : [
         {
          xtype : 'Example',
-         code : 'PDO_DataObject::factory(\'Events\')->PDO()->setAttribute(PDO::MYSQL_ATTR_USE_BUFFERED_QUERY, false);\n \n$x = PDO_DataObject::factory(\'Events\');\n$x->find();\n\nwhile($x->fetch()) {\n    print_r($x->toArray());\n    exit;\n    \n}',
+         code : 'PDO_DataObject::factory(\'Events\')\n    ->PDO()\n    ->setAttribute(PDO::MYSQL_ATTR_USE_BUFFERED_QUERY, false);\n \n$x = PDO_DataObject::factory(\'Events\');\n$x->find();\n\nwhile($x->fetch()) {\n    print_r($x->toArray());\n    exit;\n    \n}',
          title : _this._strings['aed714b47bb8cb9c375ef026e478f1b4'] /* Fetching with buffering turned off */,
          xns : Roo.doc,
          '|xns' : 'Roo.doc'
