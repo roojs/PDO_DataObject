@@ -280,6 +280,11 @@ index = new Roo.XComponent({
                          //Roo.log('hashchange?');
                          _self.load(window.location.hash.substring(1));
                      };
+                     
+                     
+                     if (window.location.hash == '') {
+                         window.location.hash = '#introduction';
+                     }
              }
            },
            xns : Roo.bootstrap,
