@@ -79,19 +79,20 @@ index = new Roo.XComponent({
                  {
                      walk(tnode);
              
-                     node = {
-                         
-                     }
+                     var node = {
+                         name: 'category-' + cat,
+                         parent: {el : el},
+                         title: "",
+                         permname: "",
+                         modOrder: "001",
+                     };
                      node._tree = (function(){
                          var _this = this;
                          var MODULE = this;
                          return tnode
                      }).createDelegate(node);
-                     node.parent = { el : el };
-                     new_comp = new Roo.XComponent({
-                     
-                     
-                     });
+             
+                     new_comp = new Roo.XComponent(node);
                      Roo.log(new_comp);
                      new_comp.render();
                      
