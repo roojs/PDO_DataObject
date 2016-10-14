@@ -62,7 +62,7 @@
        "$ xns" : "Roo.doc",
        "items" : [
         {
-         "String code" : "#/usr/bin/php  PDO/DataObjects/createTables.php  your_ini_file.ini",
+         "String code" : "[group]\nid = 129\nname = 130 \ngrp_owner = 129 \nofficial = 130 \nstreet = 130 \npostcode = 130\ncity = 130 \nhomepage = 130 \nemail = 130 \nextra = 130 \n\n[group__keys]\nid = N",
          "xtype" : "Example",
          "$ xns" : "Roo.doc",
          "String title" : "Example in file"

@@ -102,7 +102,7 @@ This will result in the creation of an 'ini' file containing the database struct
        items  : [
         {
          xtype : 'Example',
-         code : '#/usr/bin/php  PDO/DataObjects/createTables.php  your_ini_file.ini',
+         code : '[group]\nid = 129\nname = 130 \ngrp_owner = 129 \nofficial = 130 \nstreet = 130 \npostcode = 130\ncity = 130 \nhomepage = 130 \nemail = 130 \nextra = 130 \n\n[group__keys]\nid = N',
          title : _this._strings['765ecf0efc7aa64d38c808cb91d33077'] /* Example in file */,
          xns : Roo.doc,
          '|xns' : 'Roo.doc'
