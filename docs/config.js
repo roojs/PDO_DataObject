@@ -5,7 +5,7 @@
 config = new Roo.XComponent({
 
  _strings : {
-  'c73e1063642e4b100f0d27e1bf13213a' :"<p>\nPDO_DataObject can be configured in many ways, the exact properties are listed\n in the <a href=\"#pdo-dataobject/config\">config</a> method\n</p>\n\n<p>\nDatabase DSNs are based around the classic PEAR DB, format (URL), and are mapped to PDO DSN for connecting.\nA DSN consists of\n<dl>\n\n<dt>database type://</dt>\n<dd>currently supported are mysql, pgsql, sqlite and to some degree oracle and mssql</dd>\n\n\n\n<dt>user:pass@</dt>\n<dd>before the host, you can put the user and password combination,<br/>\n for postgresql the user pass will be set as the arguments on the PDO constructor\n</dd>\n\n<dt>hostname/</dt>\n<dd>normally  localhost, or an IP or server. if you are using sqlite the format is slightly different, see below.\n</dd>\n\n<dt>databasename</dt>\n<dd>the database name.</dd>\n\n<dt>?some=params</dt>\n<dd>if the PDO connections needs other information it can go here.\n</dd>\n\n<dt>#ATTR_PERSISENT</dt>\n<dd>you can set PDO connection properties using the pipe character as a seperator after the hash, eg.\nXXXX=1|YYY=2\n</dd>\n\n</dl>",
+  '3e4adb4c6ef9f878792e92cb4a3c92a4' :"<p>\nPDO_DataObject can be configured in many ways, the exact properties are listed\n in the <a href=\"#pdo-dataobject/config\">config</a> method\n</p>\n\n<p>\nsetting up the connection to a database is normally done with the 'database' configuration options, \nhowever, you can use multiple database with the 'databases' option.\n\n<p>\nDatabase DSNs are based around the classic PEAR DB, format (URL), and are mapped to PDO DSN for connecting.\nA DSN consists of\n<dl>\n\n<dt>database type://</dt>\n<dd>currently supported are mysql, pgsql, sqlite and to some degree oracle and mssql</dd>\n\n\n\n<dt>user:pass@</dt>\n<dd>before the host, you can put the user and password combination,<br/>\n for postgresql the user pass will be set as the arguments on the PDO constructor\n</dd>\n\n<dt>hostname/</dt>\n<dd>normally  localhost, or an IP or server. if you are using sqlite the format is slightly different, see below.\n</dd>\n\n<dt>databasename</dt>\n<dd>the database name.</dd>\n\n<dt>?some=params</dt>\n<dd>if the PDO connections needs other information it can go here.\n</dd>\n\n<dt>#ATTR_PERSISENT</dt>\n<dd>you can set PDO connection properties using the pipe character as a seperator after the hash, eg.\nXXXX=1|YYY=2\n</dd>\n\n</dl>",
   '1a0042954f1d5836710c84459618f095' :"Postgresql Connection examples",
   '694ce9694362ab071d46ae7dda42a0f7' :"MS SQL server connection examples",
   '35be5669049f8fb369c7654567b1d1ab' :"Mysql Connection examples",
@@ -39,11 +39,15 @@ config = new Roo.XComponent({
     },
     {
      xtype : 'Element',
-     html : _this._strings['c73e1063642e4b100f0d27e1bf13213a'] /* 
+     html : _this._strings['3e4adb4c6ef9f878792e92cb4a3c92a4'] /* 
      <p>     
 PDO_DataObject can be configured in many ways, the exact properties are listed     
  in the <a href="#pdo-dataobject/config">config</a> method     
 </p>     
+     
+<p>     
+setting up the connection to a database is normally done with the 'database' configuration options,      
+however, you can use multiple database with the 'databases' option.     
      
 <p>     
 Database DSNs are based around the classic PEAR DB, format (URL), and are mapped to PDO DSN for connecting.     
