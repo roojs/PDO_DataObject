@@ -5,7 +5,6 @@
 index = new Roo.XComponent({
 
  _strings : {
-  'a7b88b18306dbc331c80ecb6c978dba1' :"endlink",
   '098f6bcd4621d373cade4e832627b4f6' :"test",
   '37235a56865c43e9decef816c22d8614' :"Section block",
   '9f6e6800cfae7749eb6c486619254b9c' :"sss"
@@ -70,39 +69,25 @@ index = new Roo.XComponent({
                '|xns' : 'Roo.bootstrap'
               },
               {
-               xtype : 'NavGroup',
-               href : 'test',
-               html : _this._strings['098f6bcd4621d373cade4e832627b4f6'] /* test */,
-               xns : Roo.bootstrap,
-               '|xns' : 'Roo.bootstrap',
-               items  : [
-                {
-                 xtype : 'NavItem',
-                 href : 'test',
-                 html : _this._strings['098f6bcd4621d373cade4e832627b4f6'] /* test */,
-                 xns : Roo.bootstrap,
-                 '|xns' : 'Roo.bootstrap'
-                }
-               ]
-              },
-              {
                xtype : 'Container',
                xns : Roo.bootstrap,
                '|xns' : 'Roo.bootstrap',
                items  : [
                 {
-                 xtype : 'Link',
-                 href : '#autoJoin',
-                 html : _this._strings['a7b88b18306dbc331c80ecb6c978dba1'] /* endlink */,
+                 xtype : 'NavGroup',
+                 href : 'test',
+                 html : _this._strings['098f6bcd4621d373cade4e832627b4f6'] /* test */,
                  xns : Roo.bootstrap,
-                 '|xns' : 'Roo.bootstrap'
-                },
-                {
-                 xtype : 'Link',
-                 href : '#autoJoin',
-                 html : _this._strings['a7b88b18306dbc331c80ecb6c978dba1'] /* endlink */,
-                 xns : Roo.bootstrap,
-                 '|xns' : 'Roo.bootstrap'
+                 '|xns' : 'Roo.bootstrap',
+                 items  : [
+                  {
+                   xtype : 'NavItem',
+                   href : 'test',
+                   html : _this._strings['098f6bcd4621d373cade4e832627b4f6'] /* test */,
+                   xns : Roo.bootstrap,
+                   '|xns' : 'Roo.bootstrap'
+                  }
+                 ]
                 }
                ]
               }
