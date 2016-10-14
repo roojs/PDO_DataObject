@@ -101,7 +101,7 @@
        "$ xns" : "Roo.doc",
        "items" : [
         {
-         "String code" : "PDO_DataObject::config('database', 'sqlsrv://test@localhost/somedb');\n(new PDO_DataObject())->PDO();\nPDO_DataObject::config('database', 'sqlsrv://UserName%4012345abcde:Password@12345abcde.database.windows.net/somedb');\n(new PDO_DataObject())->PDO();\nPDO_DataObject::config('database', 'sqlsrv://UserName%4012345abcde:Password@(localdb)\\\\v11.0/somedb?AttachDBFilename=C:\\Users\\user\\my_db.mdf');\n(new PDO_DataObject())->PDO();\n",
+         "String code" : "PDO_DataObject::config('database', 'sqlsrv://test@localhost/somedb');\n(new PDO_DataObject())->PDO();\n\nPDO_DataObject::config('database',\n     'sqlsrv://UserName%4012345abcde:Password@12345abcde.database.windows.net/somedb');\n(new PDO_DataObject())->PDO();\n\nPDO_DataObject::config('database',\n     'sqlsrv://UserName%4012345abcde:Password@(localdb)\\\\v11.0/somedb' . \n        '?AttachDBFilename=C:\\Users\\user\\my_db.mdf');\n(new PDO_DataObject())->PDO();\n",
          "xtype" : "Example",
          "$ xns" : "Roo.doc",
          "String title" : "MS SQL server connection examples"

@@ -164,7 +164,7 @@ XXXX=1|YYY=2
        items  : [
         {
          xtype : 'Example',
-         code : 'PDO_DataObject::config(\'database\', \'sqlsrv://test@localhost/somedb\');\n(new PDO_DataObject())->PDO();\nPDO_DataObject::config(\'database\', \'sqlsrv://UserName%4012345abcde:Password@12345abcde.database.windows.net/somedb\');\n(new PDO_DataObject())->PDO();\nPDO_DataObject::config(\'database\', \'sqlsrv://UserName%4012345abcde:Password@(localdb)\\\\v11.0/somedb?AttachDBFilename=C:\\Users\\user\\my_db.mdf\');\n(new PDO_DataObject())->PDO();\n',
+         code : 'PDO_DataObject::config(\'database\', \'sqlsrv://test@localhost/somedb\');\n(new PDO_DataObject())->PDO();\n\nPDO_DataObject::config(\'database\',\n     \'sqlsrv://UserName%4012345abcde:Password@12345abcde.database.windows.net/somedb\');\n(new PDO_DataObject())->PDO();\n\nPDO_DataObject::config(\'database\',\n     \'sqlsrv://UserName%4012345abcde:Password@(localdb)\\\\v11.0/somedb\' . \n        \'?AttachDBFilename=C:\\Users\\user\\my_db.mdf\');\n(new PDO_DataObject())->PDO();\n',
          title : _this._strings['694ce9694362ab071d46ae7dda42a0f7'] /* MS SQL server connection examples */,
          xns : Roo.doc,
          '|xns' : 'Roo.doc'
