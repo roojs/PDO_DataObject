@@ -17,8 +17,8 @@
    "items" : [
     {
      "xtype" : "Header",
-     "$ xns" : "Roo.bootstrap",
      "Number level" : 1,
+     "$ xns" : "Roo.bootstrap",
      "String html" : "Introduction"
     },
     {
