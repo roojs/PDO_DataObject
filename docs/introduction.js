@@ -86,6 +86,38 @@ once you have created the classes, and configured PDO_DataObjects you can the ac
        ]
       }
      ]
+    },
+    {
+     xtype : 'Element',
+     html : _this._strings['cca65c5b03db8ac0d31402bef3188f65'] /* 
+     <p>     
+PDO_DataObject is a SQL Builder and Data Modeling Layer built on top of PHP's PDO library. Its main purpose is to     
+</p>     
+<ul>     
+<li>Build SQL and execute statements based on the objects variables.     
+<li>Group source code around the data that they relate to.     
+<li>Provide a simple consistent API to access and manipulate that data.     
+</ul>     
+     
+<p>     
+PDO_DataObject is based on PEAR's <a href="https://pear.php.net/manual/en/package.database.db-dataobject.php">DB_DataObject</a> and for most purposes is      
+functionally compatibly (see <a href="db-dataobject-compatibility">DB_DataObject Compatibility</a>)     
+</p>     
+     
+<p>     
+So what does that mean in English? Well, if you look around at some of the better written PHP applications and frameworks     
+ out there, you will notice a common approach to using classes to wrap access to database tables or groups.     
+</p>     
+<p>     
+PDO_DataObjects follows this pattern, In normal usage, you define one Class for each table that you use      
+(you can use the genreator tools to automate this process),      
+     
+once you have created the classes, and configured PDO_DataObjects you can the access the database  like this     
+     
+
+     */ ,
+     xns : Roo.bootstrap,
+     '|xns' : 'Roo.bootstrap'
     }
    ]
   };  }
