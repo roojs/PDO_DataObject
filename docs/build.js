@@ -8,6 +8,7 @@ build = new Roo.XComponent({
   '9bf38a80987bf15dce35ca41b3a34f35' :"Setting Properties to generate a query",
   'af8a4bf8e4b692982022a39295f4b176' :"<p>\nUsing the 'set' method will also do some basic validation.\n</p>\n<p>\nMost of the method names match the SQL standard names, and build up query.\n</p>\n\n\n",
   '7dd6d86a2c8648fe541335db76a0cabb' :"<p>\nThere are two ways that queries are built in PDO_DataObjects\n</p>\n<ul>\n<li>Properties of the object, that match the column names in the table\n<li>Calling the query modification methods.\n</ul>\n\n<p>\nBy just assigning values to the DataObject, then running fetchAll() or find/fetch() the query will be built \nbased on the values you set.\n</p>\n\n",
+  '2c467f8736007d8896a042cab645373c' :"Using where conditions to build queries",
   '8413aa2e38fdd078a3d96e34592d286a' :"Building Queries"
  },
 
@@ -111,7 +112,7 @@ Most of the method names match the SQL standard names, and build up query.
          code : '$numbers = array(1,2,3,4,5);\n$company = PDO_DataObject::factory(\'Companies\');\n$company->whereIn(\'id\', $numbers, \'int\');\necho \"resulting query: \" . $company->toSelectSQL();\n',
          output : '\nWill run the following Query\n\nSELECT *\n FROM   Companies   \n WHERE ( (Companies.comptype  = \'CONSULTANT\') ) \n LIMIT  1\n \n \n',
          outputlang : 'sql',
-         title : _this._strings['9bf38a80987bf15dce35ca41b3a34f35'] /* Setting Properties to generate a query */,
+         title : _this._strings['2c467f8736007d8896a042cab645373c'] /* Using where conditions to build queries */,
          xns : Roo.doc,
          '|xns' : 'Roo.doc'
         }
