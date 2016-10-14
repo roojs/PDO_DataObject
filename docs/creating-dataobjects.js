@@ -212,7 +212,7 @@ Rather than using the standard createTables, code, you can easily create your ow
        items  : [
         {
          xtype : 'Example',
-         code : '[PDO_DataObject]\n\ndatabase = mysql://user:pass@localhost/testdb\nschema_location = /path/to/my/DataObjects\n\n ',
+         code : 'require_once \'PDO/DataObject.php\';\n\n\n',
          title : _this._strings['d1f77c976080e0cc64bdc0c53ccd649e'] /* Example of create Database code */,
          xns : Roo.doc,
          '|xns' : 'Roo.doc'

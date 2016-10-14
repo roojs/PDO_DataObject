@@ -140,7 +140,7 @@
        "$ xns" : "Roo.doc",
        "items" : [
         {
-         "String code" : "[PDO_DataObject]\n\ndatabase = mysql://user:pass@localhost/testdb\nschema_location = /path/to/my/DataObjects\n\n ",
+         "String code" : "require_once 'PDO/DataObject.php';\n\n\n",
          "xtype" : "Example",
          "$ xns" : "Roo.doc",
          "String title" : "Example of create Database code"
