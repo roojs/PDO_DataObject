@@ -7,6 +7,7 @@
  "modOrder" : "001",
  "strings" : {
   "c73e1063642e4b100f0d27e1bf13213a" : "<p>\nPDO_DataObject can be configured in many ways, the exact properties are listed\n in the <a href=\"#pdo-dataobject/config\">config</a> method\n</p>\n\n<p>\nDatabase DSNs are based around the classic PEAR DB, format (URL), and are mapped to PDO DSN for connecting.\nA DSN consists of\n<dl>\n\n<dt>database type://</dt>\n<dd>currently supported are mysql, pgsql, sqlite and to some degree oracle and mssql</dd>\n\n\n\n<dt>user:pass@</dt>\n<dd>before the host, you can put the user and password combination,<br/>\n for postgresql the user pass will be set as the arguments on the PDO constructor\n</dd>\n\n<dt>hostname/</dt>\n<dd>normally  localhost, or an IP or server. if you are using sqlite the format is slightly different, see below.\n</dd>\n\n<dt>databasename</dt>\n<dd>the database name.</dd>\n\n<dt>?some=params</dt>\n<dd>if the PDO connections needs other information it can go here.\n</dd>\n\n<dt>#ATTR_PERSISENT</dt>\n<dd>you can set PDO connection properties using the pipe character as a seperator after the hash, eg.\nXXXX=1|YYY=2\n</dd>\n\n</dl>",
+  "1a0042954f1d5836710c84459618f095" : "Postgresql Connection examples",
   "35be5669049f8fb369c7654567b1d1ab" : "Mysql Connection examples",
   "254f642527b45bc260048e30704edb39" : "Configuration"
  },
@@ -60,7 +61,7 @@
          "String code" : "PDO_DataObject::config('database', 'mysql://username:test@localhost:3344/somedb#' . implode( '|',\n    array(\n        'MYSQL_ATTR_SSL_KEY=/path/to/client-key.pem',\n        'MYSQL_ATTR_SSL_CERT=/path/to/client-cert.pem',\n        'MYSQL_ATTR_SSL_CA=/path/to/ca-cert.pem',\n        \n        'MYSQL_ATTR_LOCAL_INFILE=1',\n        'MYSQL_ATTR_INIT_COMMAND=2',\n       // 'MYSQL_ATTR_READ_DEFAULT_FILE=3',\n       //  'MYSQL_ATTR_READ_DEFAULT_GROUP=4',\n        'MYSQL_ATTR_MAX_BUFFER_SIZE=5',\n        'MYSQL_ATTR_DIRECT_QUERY=6',\n        'MYSQL_ATTR_FOUND_ROWS=7',\n        'MYSQL_ATTR_IGNORE_SPACE=8',\n        'MYSQL_ATTR_COMPRESS=9',\n        'MYSQL_ATTR_SSL_CIPHER=10',\n        'MYSQL_ATTR_SSL_KEY=11',\n        'MYSQL_ATTR_MULTI_STATEMENTS=12',\n        \n    )));\n(new PDO_DataObject())->PDO();\n",
          "xtype" : "Example",
          "$ xns" : "Roo.doc",
-         "String title" : "Mysql Connection examples"
+         "String title" : "Postgresql Connection examples"
         }
        ]
       }
