@@ -164,6 +164,13 @@ index = new Roo.XComponent({
               },
               {
                xtype : 'NavCategory',
+               name : 'config',
+               title : _this._strings['7c83fdebb29c28504c91870e03666cd8'] /* Configuration and Database DSN */,
+               xns : Roo.doc,
+               '|xns' : 'Roo.doc'
+              },
+              {
+               xtype : 'NavCategory',
                name : 'build',
                title : _this._strings['8413aa2e38fdd078a3d96e34592d286a'] /* Building Queries */,
                xns : Roo.doc,

@@ -76,6 +76,12 @@
               {
                "xtype" : "NavCategory",
                "$ xns" : "Roo.doc",
+               "string title" : "Configuration and Database DSN",
+               "string name" : "config"
+              },
+              {
+               "xtype" : "NavCategory",
+               "$ xns" : "Roo.doc",
                "string title" : "Building Queries",
                "string name" : "build"
               },
