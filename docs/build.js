@@ -108,7 +108,7 @@ Most of the method names match the SQL standard names, and build up query.
        items  : [
         {
          xtype : 'Example',
-         code : '\n\n$company = PDO_DataObject::factory(\'Companies\');\n$company->comptype = \'CONSULTANT\';\n$company->limit(1);\n$company->find(true);\n\n ',
+         code : '$numbers = array(1,2,3,4,5);\n$company = PDO_DataObject::factory(\'Companies\');\n$company->whereIn(\'id\', $numbers, \'int\');\necho \"resulting query: \" . $company->toSelectSQL();\n',
          output : '\nWill run the following Query\n\nSELECT *\n FROM   Companies   \n WHERE ( (Companies.comptype  = \'CONSULTANT\') ) \n LIMIT  1\n \n \n',
          outputlang : 'sql',
          title : _this._strings['9bf38a80987bf15dce35ca41b3a34f35'] /* Setting Properties to generate a query */,
