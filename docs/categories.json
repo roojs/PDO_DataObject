@@ -6,8 +6,8 @@
             {
                 "|xns": "Roo.bootstrap",
                 "xtype": "NavItem",
-                "href": "#pdo-dataobject\/__construct",
-                "html": "__construct"
+                "href": "#pdo-dataobject\/new",
+                "html": "new PDO_DataObject"
             },
             {
                 "|xns": "Roo.bootstrap",
