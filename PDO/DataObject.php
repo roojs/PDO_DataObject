@@ -4120,6 +4120,9 @@ class PDO_DataObject
                     if (strpos($k, ',') !== false) {
                         $k = explode(',', $k);
                     }
+                    if (!isset($ar[1])) {
+                        return $this->raiseError("invalid join for [{$this->tableName()}] key = $k", self::ERROR_INVALIDCONFIG);
+                    }
                     if (strpos($ar[1], ',') !== false) {
                         $ar[1] = explode(',', $ar[1]);
                     }
