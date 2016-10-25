@@ -648,7 +648,7 @@ class PDO_DataObject
      * | Option | Type | Default | Description |
      * | --- | --- | --- | ---  |
      * | database |  string\|boolean | false |  the default database dsn (not PDO standard = see #$_database for details) |
-     * | | |  |     // it's similar format to PEAR::DB.. |
+     * |   |   |    |     it's similar format to PEAR::DB.. |
      * | --- | --- | --- | ---  |
      * | databases | array | array() |  map of database nick-names to connection dsn's
      * | --- | --- | --- | ---  |
