@@ -28,7 +28,7 @@
                     "xtype": "Section",
                     "items": [
                         {
-                            "html": "<p> - manual set\n - proxy\n - ini_****\n<\/p>",
+                            "html": " - manual set\n - proxy\n - ini_****\n",
                             "|xns": "Roo.doc",
                             "xtype": "Para"
                         }

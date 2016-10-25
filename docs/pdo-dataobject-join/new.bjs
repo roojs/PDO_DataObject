@@ -37,7 +37,7 @@
                     "xtype": "Section",
                     "items": [
                         {
-                            "html": "<p> The primary dataObject to work on..\n<\/p>",
+                            "html": " The primary dataObject to work on..\n",
                             "|xns": "Roo.doc",
                             "xtype": "Para"
                         }

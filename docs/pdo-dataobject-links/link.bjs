@@ -45,7 +45,7 @@
                     "xtype": "Section",
                     "items": [
                         {
-                            "html": "<p>  provides a generic getter setter for the referenced object\n  eg.\n  $link->link('company_id') returns getLink for the object\n  if nothing is linked (it will return an empty dataObject)\n  $link->link('company_id', array(1)) - just sets the \n\n  also array as the field speck supports\n      $link->link(array('company_id', 'company:id'))<\/p><p><\/p>",
+                            "html": "  provides a generic getter setter for the referenced object\n  eg.\n  $link->link('company_id') returns getLink for the object\n  if nothing is linked (it will return an empty dataObject)\n  $link->link('company_id', array(1)) - just sets the \n\n  also array as the field speck supports\n      $link->link(array('company_id', 'company:id'))\n  \n\n\n",
                             "|xns": "Roo.doc",
                             "xtype": "Para"
                         }

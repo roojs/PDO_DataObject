@@ -37,7 +37,7 @@
                     "xtype": "Section",
                     "items": [
                         {
-                            "html": "<p> called once for each class, use it add extra page-level docs\n<\/p>",
+                            "html": " called once for each class, use it add extra page-level docs\n",
                             "|xns": "Roo.doc",
                             "xtype": "Para"
                         }

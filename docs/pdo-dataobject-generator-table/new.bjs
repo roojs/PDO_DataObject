@@ -45,7 +45,7 @@
                     "xtype": "Section",
                     "items": [
                         {
-                            "html": "<p> Calls database introspection to fill information in.<\/p><p><\/p>",
+                            "html": " Calls database introspection to fill information in.\n \n",
                             "|xns": "Roo.doc",
                             "xtype": "Para"
                         }

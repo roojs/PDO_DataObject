@@ -28,7 +28,7 @@
                     "xtype": "Section",
                     "items": [
                         {
-                            "html": "<p> this has been replaced with tableColumns\n\n<\/p>",
+                            "html": " this has been replaced with tableColumns\n\n",
                             "|xns": "Roo.doc",
                             "xtype": "Para"
                         }

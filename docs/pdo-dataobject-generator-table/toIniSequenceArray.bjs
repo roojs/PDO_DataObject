@@ -28,7 +28,7 @@
                     "xtype": "Section",
                     "items": [
                         {
-                            "html": "<p>   in the ini file, we output the key column, and the type of sequence (N|nextval_sequence_name)\n   it can also have 'U' = unquie and 'K' = just a key...\n<\/p>",
+                            "html": "   in the ini file, we output the key column, and the type of sequence (N|nextval_sequence_name)\n   it can also have 'U' = unquie and 'K' = just a key...\n",
                             "|xns": "Roo.doc",
                             "xtype": "Para"
                         }

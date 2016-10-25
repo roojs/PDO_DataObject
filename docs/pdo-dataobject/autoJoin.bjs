@@ -16,13 +16,13 @@
                     "name": "autoJoin",
                     "is_static": false,
                     "memberof": "PDO_DataObject",
-                    "returndesc": "info about joins<br\/><dl><dt>cols<\/dt><dd>map of resulting {joined_tablename}.{joined_table_column_name}<\/dd><dt>join_names<\/dt><dd>map of resulting {join_name_as}.{joined_table_column_name}<\/dd><dt>count<\/dt><dd>the column to count on.<\/dd>",
+                    "returndesc": "info about joins\n       + cols:        map of resulting {joined_tablename}.{joined_table_column_name}\n       + join_names:  map of resulting {join_name_as}.{joined_table_column_name}\n       + count:       the column to count on.",
                     "returntype": "array",
                     "|xns": "Roo.doc",
                     "xtype": "Synopsis",
                     "items": [
                         {
-                            "desc": "Configuration<br\/><dl><dt>exclude<\/dt><dd>Array of columns to exclude from results (eg. modified_by_id)\n                    Use TABLENAME.* to prevent a join occuring to a specific table.<\/dd><dt>include<\/dt><dd>Array of specific columns to include (none others are added to select, join is still done though)<\/dd><dt>links<\/dt><dd>The equivilant links.ini data for this table eg.\n                    array( 'person_id' =&gt; 'person:id', .... ) - only applied to this instance of the DataObject (used to be applied globally)<\/dd><dt>distinct<\/dt><dd>Array of distinct columns. (note you may need to add GROUP BY for this to work)\n          <\/dd>",
+                            "desc": "Configuration\n       + exclude:  Array of columns to exclude from results (eg. modified_by_id)\n                    Use TABLENAME.* to prevent a join occuring to a specific table.\n       + include:  Array of specific columns to include (none others are added to select, join is still done though)\n       + links:    The equivilant links.ini data for this table eg.\n                    array( 'person_id' => 'person:id', .... ) - only applied to this instance of the DataObject (used to be applied globally)\n       + distinct: Array of distinct columns. (note you may need to add GROUP BY for this to work)\n          ",
                             "is_optional": false,
                             "name": "$cfg",
                             "type": "array",
@@ -37,7 +37,7 @@
                     "xtype": "Section",
                     "items": [
                         {
-                            "html": "<p> Note: it will clears and replace the existing settings for 'select' arguments.<\/p><p> usage:\n <br\/><code style=\"white-space: pre\">\n $x = PDO_DataObject::factory('mytable');\n $x->autoJoin();\n $x->get(123);\n <\/code><br\/>\n   will result in all of the joined data being added to the fetched object..<\/p><p> <br\/><code style=\"white-space: pre\">\n $x = PDO_DataObject::factory('mytable');\n $x->autoJoin();\n $ar = $x->fetchAll();\n <\/code><br\/>\n   will result in an array containing all the data from the table, and any joined tables..<\/p><p> <br\/><code style=\"white-space: pre\">\n $x = PDO_DataObject::factory('mytable');\n $jdata = $x->autoJoin();\n $x->selectAdd(); \/\/reset..\n foreach($_REQUEST['requested_cols'] as $c) {\n    if (!isset($jdata[$c])) continue; \/\/ ignore columns not available..\n    $x->selectAdd( $jdata[$c] . ' as ' . $c);\n }\n $ar = $x->fetchAll();\n <\/code><br\/>\n   will result in only the columns requested being fetched...<\/p><p><\/p><br\/><code style=\"white-space: pre\">",
+                            "html": " Note: it will clears and replace the existing settings for 'select' arguments.\n \n usage:\n ```\n $x = PDO_DataObject::factory('mytable');\n $x->autoJoin();\n $x->get(123);\n ```\n   will result in all of the joined data being added to the fetched object..\n   \n ```\n $x = PDO_DataObject::factory('mytable');\n $x->autoJoin();\n $ar = $x->fetchAll();\n ```\n   will result in an array containing all the data from the table, and any joined tables..\n   \n ```\n $x = PDO_DataObject::factory('mytable');\n $jdata = $x->autoJoin();\n $x->selectAdd(); \/\/reset..\n foreach($_REQUEST['requested_cols'] as $c) {\n    if (!isset($jdata[$c])) continue; \/\/ ignore columns not available..\n    $x->selectAdd( $jdata[$c] . ' as ' . $c);\n }\n $ar = $x->fetchAll();\n ```\n   will result in only the columns requested being fetched...\n\n\n",
                             "|xns": "Roo.doc",
                             "xtype": "Para"
                         }

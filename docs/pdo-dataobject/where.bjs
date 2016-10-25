@@ -45,7 +45,7 @@
                     "xtype": "Section",
                     "items": [
                         {
-                            "html": "<p> Chained verions of whereAdd()\n NOTE : ALWAYS ENSURE ARGUMENTS ARE ESCAPED\n\n $object->where()\n     ->where(\"ID > 20\");\n     ->where(\"age > 20\",\"OR\");\n\n<\/p>",
+                            "html": " Chained verions of whereAdd()\n NOTE : ALWAYS ENSURE ARGUMENTS ARE ESCAPED\n\n $object->where()\n     ->where(\"ID > 20\");\n     ->where(\"age > 20\",\"OR\");\n\n",
                             "|xns": "Roo.doc",
                             "xtype": "Para"
                         }

@@ -28,7 +28,7 @@
                     "xtype": "Section",
                     "items": [
                         {
-                            "html": "<p> While I normally use 'id' as the PRIMARY KEY value, some database use\n {table}_id as the column name.\n\n To save a bit of typing,\n\n $id = $do->pid();<\/p><p><\/p>",
+                            "html": " While I normally use 'id' as the PRIMARY KEY value, some database use\n {table}_id as the column name.\n\n To save a bit of typing,\n\n $id = $do->pid();\n \n",
                             "|xns": "Roo.doc",
                             "xtype": "Para"
                         }

@@ -37,7 +37,7 @@
                     "xtype": "Section",
                     "items": [
                         {
-                            "html": "<p> Designed to be overidden if you really think it's a good idea?\n\n<\/p>",
+                            "html": " Designed to be overidden if you really think it's a good idea?\n\n",
                             "|xns": "Roo.doc",
                             "xtype": "Para"
                         }

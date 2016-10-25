@@ -28,7 +28,7 @@
                     "xtype": "Section",
                     "items": [
                         {
-                            "html": "<p> Currenly only works with mysql \/ mysqli\n to use, you must set option: generate_links=true<\/p><p><\/p>",
+                            "html": " Currenly only works with mysql \/ mysqli\n to use, you must set option: generate_links=true\n \n",
                             "|xns": "Roo.doc",
                             "xtype": "Para"
                         }

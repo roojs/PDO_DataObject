@@ -28,7 +28,7 @@
                     "xtype": "Section",
                     "items": [
                         {
-                            "html": "<p> and store it in $this->tables and $this->_definitions[tablename];\n\n<\/p>",
+                            "html": " and store it in $this->tables and $this->_definitions[tablename];\n\n",
                             "|xns": "Roo.doc",
                             "xtype": "Para"
                         }

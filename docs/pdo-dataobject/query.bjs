@@ -37,7 +37,7 @@
                     "xtype": "Section",
                     "items": [
                         {
-                            "html": "<p> set's $this->_result -available publically using $dataobject->result();<\/p><p><\/p>",
+                            "html": " set's $this->_result -available publically using $dataobject->result();\n     \n",
                             "|xns": "Roo.doc",
                             "xtype": "Para"
                         }

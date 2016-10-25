@@ -37,7 +37,7 @@
                     "xtype": "Section",
                     "items": [
                         {
-                            "html": "<p> NOTE : ALWAYS ENSURE ARGUMENTS ARE ESCAPED\n\n $object->selectAdd(); \/\/ resets select to nothing!\n $object->selectAdd(\"*\"); \/\/ default select\n $object->selectAdd(\"unixtime(DATE) as udate\");\n $object->selectAdd(\"DATE\");\n\n to prepend distict:\n $object->selectAdd('distinct ' . $object->selectAdd());<\/p><p><\/p>",
+                            "html": " NOTE : ALWAYS ENSURE ARGUMENTS ARE ESCAPED\n\n $object->selectAdd(); \/\/ resets select to nothing!\n $object->selectAdd(\"*\"); \/\/ default select\n $object->selectAdd(\"unixtime(DATE) as udate\");\n $object->selectAdd(\"DATE\");\n\n to prepend distict:\n $object->selectAdd('distinct ' . $object->selectAdd());\n \n",
                             "|xns": "Roo.doc",
                             "xtype": "Para"
                         }

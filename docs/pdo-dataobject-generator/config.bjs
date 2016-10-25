@@ -45,7 +45,7 @@
                     "xtype": "Section",
                     "items": [
                         {
-                            "html": "<p> \n Usage:\n\n Fetch the current config.\n $cfg = PDO_DataObject_Generator::config(); \n\n SET a configuration value. (returns old value.)\n $old = PDO_DataObject_Generator::config('schema_location', '');  \n\n GET a specific value ** does not do this directly to stop errors...\n somevar = PDO_DataObject_Generator::config()['schema_location'];  \n\n SET multiple values (returns 'old' configuration)\n $old_array = PDO_DataObject_Generator::config( array( 'schema_location' => '' ));<\/p><p><\/p>",
+                            "html": " \n Usage:\n\n Fetch the current config.\n $cfg = PDO_DataObject_Generator::config(); \n\n SET a configuration value. (returns old value.)\n $old = PDO_DataObject_Generator::config('schema_location', '');  \n\n GET a specific value ** does not do this directly to stop errors...\n somevar = PDO_DataObject_Generator::config()['schema_location'];  \n\n SET multiple values (returns 'old' configuration)\n $old_array = PDO_DataObject_Generator::config( array( 'schema_location' => '' ));\n \n \n",
                             "|xns": "Roo.doc",
                             "xtype": "Para"
                         }

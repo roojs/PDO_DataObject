@@ -37,7 +37,7 @@
                     "xtype": "Section",
                     "items": [
                         {
-                            "html": "<p> create a Cast object from some raw data.. (binary)<\/p><p><\/p>",
+                            "html": " create a Cast object from some raw data.. (binary)\n \n \n\n",
                             "|xns": "Roo.doc",
                             "xtype": "Para"
                         }

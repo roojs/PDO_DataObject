@@ -61,7 +61,7 @@
                     "xtype": "Section",
                     "items": [
                         {
-                            "html": "<p> \n<\/p>",
+                            "html": " \n",
                             "|xns": "Roo.doc",
                             "xtype": "Para"
                         }

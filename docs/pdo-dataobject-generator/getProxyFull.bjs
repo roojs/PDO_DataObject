@@ -45,7 +45,7 @@
                     "xtype": "Section",
                     "items": [
                         {
-                            "html": "<p> similar to generated files - but also evals the class definitoin code.<\/p><p><\/p>",
+                            "html": " similar to generated files - but also evals the class definitoin code.\n \n \n \n\n",
                             "|xns": "Roo.doc",
                             "xtype": "Para"
                         }

@@ -28,7 +28,7 @@
                     "xtype": "Section",
                     "items": [
                         {
-                            "html": "<p> create a Cast object from a Date\/Time\n Maybe should accept a Date object.!\n NO VALIDATION DONE, and no-recalcing done!<\/p><p><\/p>",
+                            "html": " create a Cast object from a Date\/Time\n Maybe should accept a Date object.!\n NO VALIDATION DONE, and no-recalcing done!\n\n\n\n",
                             "|xns": "Roo.doc",
                             "xtype": "Para"
                         }

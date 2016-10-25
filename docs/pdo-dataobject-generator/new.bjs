@@ -37,7 +37,7 @@
                     "xtype": "Section",
                     "items": [
                         {
-                            "html": "<p>  - although it extends PDO_DataObject, the ctor behavior is slightly different\n    it expects a database nickname (optiontally)\n<\/p>",
+                            "html": "  - although it extends PDO_DataObject, the ctor behavior is slightly different\n    it expects a database nickname (optiontally)\n",
                             "|xns": "Roo.doc",
                             "xtype": "Para"
                         }

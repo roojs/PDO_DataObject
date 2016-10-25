@@ -28,7 +28,7 @@
                     "xtype": "Section",
                     "items": [
                         {
-                            "html": "<p> for each of the tables output a file!\n<\/p>",
+                            "html": " for each of the tables output a file!\n",
                             "|xns": "Roo.doc",
                             "xtype": "Para"
                         }

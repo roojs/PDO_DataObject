@@ -61,7 +61,7 @@
                     "xtype": "Section",
                     "items": [
                         {
-                            "html": "<p> Chained verions of whereAddIn()\n NOTE : ALWAYS ENSURE KEY IS ESCAPED\n\n $object->whereAddIn('id', $array, 'int'); \/\/minimal usage\n $object->whereAddIn('price', $array, 'float', 'OR');  \/\/ cast to float, and call whereAdd with 'OR'\n $object->whereAddIn('name', $array, 'string');  \/\/ quote strings\n\n<\/p>",
+                            "html": " Chained verions of whereAddIn()\n NOTE : ALWAYS ENSURE KEY IS ESCAPED\n\n $object->whereAddIn('id', $array, 'int'); \/\/minimal usage\n $object->whereAddIn('price', $array, 'float', 'OR');  \/\/ cast to float, and call whereAdd with 'OR'\n $object->whereAddIn('name', $array, 'string');  \/\/ quote strings\n\n",
                             "|xns": "Roo.doc",
                             "xtype": "Para"
                         }

@@ -28,7 +28,7 @@
                     "xtype": "Section",
                     "items": [
                         {
-                            "html": "<p> [table] => array ( col => type, col, type)\n [table_keys] => array ( col => sequencetype|name )\n<\/p>",
+                            "html": " [table] => array ( col => type, col, type)\n [table_keys] => array ( col => sequencetype|name )\n",
                             "|xns": "Roo.doc",
                             "xtype": "Para"
                         }

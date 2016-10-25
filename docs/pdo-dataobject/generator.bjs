@@ -28,7 +28,7 @@
                     "xtype": "Section",
                     "items": [
                         {
-                            "html": "<p> class can be set by using proxy = {classname}::\n We do not really care if you have implemented it correctly....????\n you can modify the class by setting proxy to {YOUR CLASS}::{your method}<\/p><p><\/p>",
+                            "html": " class can be set by using proxy = {classname}::\n We do not really care if you have implemented it correctly....????\n you can modify the class by setting proxy to {YOUR CLASS}::{your method}\n \n",
                             "|xns": "Roo.doc",
                             "xtype": "Para"
                         }

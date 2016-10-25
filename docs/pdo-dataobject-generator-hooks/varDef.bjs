@@ -45,7 +45,7 @@
                     "xtype": "Section",
                     "items": [
                         {
-                            "html": "<p> called each time a var line is generated, override to add extra var\n lines\n\n<\/p>",
+                            "html": " called each time a var line is generated, override to add extra var\n lines\n\n",
                             "|xns": "Roo.doc",
                             "xtype": "Para"
                         }

@@ -37,7 +37,7 @@
                     "xtype": "Section",
                     "items": [
                         {
-                            "html": "<p> create a Cast object from some sql<\/p><p><\/p>",
+                            "html": " create a Cast object from some sql\n \n\n",
                             "|xns": "Roo.doc",
                             "xtype": "Para"
                         }

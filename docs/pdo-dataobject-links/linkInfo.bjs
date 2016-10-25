@@ -37,7 +37,7 @@
                     "xtype": "Section",
                     "items": [
                         {
-                            "html": "<p> alll link (and join methods accept the 'link' info ) in various ways\n string : 'field' = which field to get (uses ???.links.ini to work out what)\n array(2) : 'field', 'table:remote_col' << just like the links.ini def.\n array(3) : 'field', $dataobject, 'remote_col'  (handy for joinAdd to do nested joins.)<\/p><p><\/p>",
+                            "html": " alll link (and join methods accept the 'link' info ) in various ways\n string : 'field' = which field to get (uses ???.links.ini to work out what)\n array(2) : 'field', 'table:remote_col' << just like the links.ini def.\n array(3) : 'field', $dataobject, 'remote_col'  (handy for joinAdd to do nested joins.)\n\n\n\n",
                             "|xns": "Roo.doc",
                             "xtype": "Para"
                         }

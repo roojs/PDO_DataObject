@@ -37,7 +37,7 @@
                     "xtype": "Section",
                     "items": [
                         {
-                            "html": "<p> called once for each class, use with $this->table and\n $this->_definitions[$this->table], to get data out of the current table,\n use it to add extra methods to the default classes.\n\n<\/p>",
+                            "html": " called once for each class, use with $this->table and\n $this->_definitions[$this->table], to get data out of the current table,\n use it to add extra methods to the default classes.\n\n",
                             "|xns": "Roo.doc",
                             "xtype": "Para"
                         }

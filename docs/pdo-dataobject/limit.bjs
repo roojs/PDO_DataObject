@@ -45,7 +45,7 @@
                     "xtype": "Section",
                     "items": [
                         {
-                            "html": "<p> $boject->limit(); \/\/ clear limit - returns 'previous settings.\n $object->limit(12);\n $object->limit(12,10);\n\n Note may result in an error on databases other than mysql\/postgress\/sqlite\n as there is no 'clean way' to implement it. - you should consider refering to\n your database manual to decide how you want to implement it.<\/p><p><\/p>",
+                            "html": " $boject->limit(); \/\/ clear limit - returns 'previous settings.\n $object->limit(12);\n $object->limit(12,10);\n\n Note may result in an error on databases other than mysql\/postgress\/sqlite\n as there is no 'clean way' to implement it. - you should consider refering to\n your database manual to decide how you want to implement it.\n     \n",
                             "|xns": "Roo.doc",
                             "xtype": "Para"
                         }

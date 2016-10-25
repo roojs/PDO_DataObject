@@ -53,7 +53,7 @@
                     "xtype": "Section",
                     "items": [
                         {
-                            "html": "<p> 'proxy' version of databaseStructure - this is not so 'speed sensitive'\n only used when\n b) proxy is set..<\/p><p>  - set's the structure.. and the links data..<\/p><p> obviously you dont have to use ini files.. (just return array similar to ini files..)<\/p><p> It should append to the table structure array <\/p><p><\/p>",
+                            "html": " 'proxy' version of databaseStructure - this is not so 'speed sensitive'\n only used when\n b) proxy is set..\n     \n\n  - set's the structure.. and the links data..\n          \n\n obviously you dont have to use ini files.. (just return array similar to ini files..)\n  \n It should append to the table structure array \n\n     \n",
                             "|xns": "Roo.doc",
                             "xtype": "Para"
                         }

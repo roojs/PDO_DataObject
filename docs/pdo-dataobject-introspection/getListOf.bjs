@@ -16,13 +16,13 @@
                     "name": "getListOf",
                     "is_static": false,
                     "memberof": "PDO_DataObject_Introspection",
-                    "returndesc": "an array listing the items sought.<br\/>                Or throws an error..",
+                    "returndesc": "an array listing the items sought.\n                Or throws an error..",
                     "returntype": "array",
                     "|xns": "Roo.doc",
                     "xtype": "Synopsis",
                     "items": [
                         {
-                            "desc": "$type<br\/>                       Common items being sought are:<br\/>                       tables, databases, users, views, functions<br\/>                       Each DBMS's has its own capabilities.",
+                            "desc": "$type\n                       Common items being sought are:\n                       tables, databases, users, views, functions\n                       Each DBMS's has its own capabilities.",
                             "is_optional": false,
                             "name": "$type",
                             "type": "string",
@@ -37,7 +37,7 @@
                     "xtype": "Section",
                     "items": [
                         {
-                            "html": "<p><\/p>",
+                            "html": "",
                             "|xns": "Roo.doc",
                             "xtype": "Para"
                         }

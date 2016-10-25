@@ -45,7 +45,7 @@
                     "xtype": "Section",
                     "items": [
                         {
-                            "html": "<p> can be used when adding manual queries or clauses\n eg.\n $object->query(\"select * from xyz where abc like '\". $object->escape($_GET['name']) . \"'\");\n\n return value excludes the outer quotes - use $do->PDO->quote($string) - if you want to include them.<\/p><p><\/p>",
+                            "html": " can be used when adding manual queries or clauses\n eg.\n $object->query(\"select * from xyz where abc like '\". $object->escape($_GET['name']) . \"'\");\n\n return value excludes the outer quotes - use $do->PDO->quote($string) - if you want to include them.\n \n",
                             "|xns": "Roo.doc",
                             "xtype": "Para"
                         }

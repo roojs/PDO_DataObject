@@ -45,7 +45,7 @@
                     "xtype": "Section",
                     "items": [
                         {
-                            "html": "<p>    name\n    default_value\n    default_value_raw (not used at present, but contains methods in pgsql etc..\n    type\n    len\n    fk_table,\n    fk_column\n    autoincrement ???<< where from??<\/p><p><\/p>",
+                            "html": "    name\n    default_value\n    default_value_raw (not used at present, but contains methods in pgsql etc..\n    type\n    len\n    fk_table,\n    fk_column\n    autoincrement ???<< where from??\n \n",
                             "|xns": "Roo.doc",
                             "xtype": "Para"
                         }

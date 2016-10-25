@@ -45,7 +45,7 @@
                     "xtype": "Section",
                     "items": [
                         {
-                            "html": "<p>   ** Suppots only string->postgres::bytea<\/p><p><\/p>",
+                            "html": "   ** Suppots only string->postgres::bytea\n \n\n \n\n",
                             "|xns": "Roo.doc",
                             "xtype": "Para"
                         }

@@ -37,7 +37,7 @@
                     "xtype": "Section",
                     "items": [
                         {
-                            "html": "<p> This code has not been tested with PDO_DataObjects\n\n Generally not recommended to use this.\n The generator should support creating getter_setter methods which are better suited.\n\n Relies on  <dbname>.links.ini\n\n Sets properties on the calling dataobject  you can change what\n object vars the links are stored in by  changeing the format parameter<\/p><p><\/p>",
+                            "html": " This code has not been tested with PDO_DataObjects\n\n Generally not recommended to use this.\n The generator should support creating getter_setter methods which are better suited.\n\n Relies on  <dbname>.links.ini\n\n Sets properties on the calling dataobject  you can change what\n object vars the links are stored in by  changeing the format parameter\n\n\n",
                             "|xns": "Roo.doc",
                             "xtype": "Para"
                         }

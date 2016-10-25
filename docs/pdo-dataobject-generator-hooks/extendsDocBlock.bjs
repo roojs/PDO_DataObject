@@ -37,7 +37,7 @@
                     "xtype": "Section",
                     "items": [
                         {
-                            "html": "<p> called once for each class, use it add extra comments to extends\n string (require_once...)\n<\/p>",
+                            "html": " called once for each class, use it add extra comments to extends\n string (require_once...)\n",
                             "|xns": "Roo.doc",
                             "xtype": "Para"
                         }

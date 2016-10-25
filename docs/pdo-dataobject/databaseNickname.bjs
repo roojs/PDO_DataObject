@@ -37,7 +37,7 @@
                     "xtype": "Section",
                     "items": [
                         {
-                            "html": "<p> If you need the real database - use PDO()->dsn['database_name']\n\n<\/p>",
+                            "html": " If you need the real database - use PDO()->dsn['database_name']\n\n",
                             "|xns": "Roo.doc",
                             "xtype": "Para"
                         }

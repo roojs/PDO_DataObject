@@ -45,7 +45,7 @@
                     "xtype": "Section",
                     "items": [
                         {
-                            "html": "<p> if used with 1 argument PDO_DataObject_Cast::sql($value) is called<\/p><p> if used with 2 arguments PDO_DataObject_Cast::$value($callvalue) is called\n valid first arguments are: blob, string, date, sql<\/p><p> eg. $member->updated = $member->sqlValue('NOW()');<\/p><p> might handle more arguments for escaping later...\n\n<\/p>",
+                            "html": " if used with 1 argument PDO_DataObject_Cast::sql($value) is called\n \n if used with 2 arguments PDO_DataObject_Cast::$value($callvalue) is called\n valid first arguments are: blob, string, date, sql\n \n eg. $member->updated = $member->sqlValue('NOW()');\n \n \n might handle more arguments for escaping later...\n\n",
                             "|xns": "Roo.doc",
                             "xtype": "Para"
                         }

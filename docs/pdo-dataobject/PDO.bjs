@@ -28,7 +28,7 @@
                     "xtype": "Section",
                     "items": [
                         {
-                            "html": "<p>  Uses database DSN to connect\n\n  Database specific behaviours relating to connect?\n   * ?????<\/p><p><\/p>",
+                            "html": "  Uses database DSN to connect\n\n  Database specific behaviours relating to connect?\n   * ?????\n \n",
                             "|xns": "Roo.doc",
                             "xtype": "Para"
                         }

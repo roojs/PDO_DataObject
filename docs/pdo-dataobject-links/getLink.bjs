@@ -53,7 +53,7 @@
                     "xtype": "Section",
                     "items": [
                         {
-                            "html": "<p> The relies on  a <dbname>.links.ini file, unless you specify the arguments.<\/p><p> you can also use $this->getLink('thisColumnName','otherTable','otherTableColumnName')<\/p><p><\/p>",
+                            "html": " The relies on  a <dbname>.links.ini file, unless you specify the arguments.\n \n you can also use $this->getLink('thisColumnName','otherTable','otherTableColumnName')\n\n\n",
                             "|xns": "Roo.doc",
                             "xtype": "Para"
                         }

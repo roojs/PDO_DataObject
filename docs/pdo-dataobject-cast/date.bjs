@@ -28,7 +28,7 @@
                     "xtype": "Section",
                     "items": [
                         {
-                            "html": "<p> create a Cast object from some string (not binary)\n NO VALIDATION DONE, although some crappy re-calcing done!<\/p><p><\/p>",
+                            "html": " create a Cast object from some string (not binary)\n NO VALIDATION DONE, although some crappy re-calcing done!\n \n\n\n\n",
                             "|xns": "Roo.doc",
                             "xtype": "Para"
                         }
