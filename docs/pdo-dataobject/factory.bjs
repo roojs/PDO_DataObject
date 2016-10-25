@@ -23,7 +23,7 @@
                     "xtype": "Synopsis",
                     "items": [
                         {
-                            "desc": "$table",
+                            "desc": "tablename or database_nickname\/tablename",
                             "is_optional": false,
                             "name": "$table",
                             "type": "string",
