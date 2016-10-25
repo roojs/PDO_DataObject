@@ -730,8 +730,8 @@ class PDO_DataObject
      *
      *
      * @category config
-     * @param   array  key/value 
-     * @param   mixed value 
+     * @param   array|string  either a key value array, or the key to set.
+     * @param   mixed  the value to set when using key/value format
      * @static
      * @access  public
      * @return - the current config..
