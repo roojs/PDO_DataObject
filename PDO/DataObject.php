@@ -637,7 +637,112 @@ class PDO_DataObject
      *
      * SET multiple values (returns 'old' configuration)
      * $old_array = PDO_DataObject::config( array( 'schema_location' => '' ));
+     *
+     *
+     *
+     *
+     * # Configuration Options:
+     *
+     * ### Connection related
+     *
+     * | Option | Type | Default | Description |
+     * | --- | --- | --- | ---  |
+     * | database |  string\|boolean | false |  the default database dsn (not PDO standard = see #$_database for details) |
+     * | | |  |     // it's similar format to PEAR::DB.. |
+     * | --- | --- | --- | ---  |
+     * | databases | array | array() |  map of database nick-names to connection dsn's
+     * | --- | --- | --- | ---  |
+     * | tables |  array | array() |  map of tables names to database 'nick-names'
+     * | --- | --- | --- | ---  |
      * 
+     *         // schema (INI files)   
+     *             'schema_location' => false,
+     *                 // unless you are using 'proxy' then schema_location is required.
+     *                 
+     *                 // possible values:
+     *                 
+     *                 // String = directory, or list of directories (with path Seperator..)
+     *                 //         eg. if your database schema is in /var/www/mysite/Myproejct/DataObject/mydb.ini
+     *                 //         then schema_location = /var/www/mysite/Myproejct/DataObject/
+     *                 //              you can use path seperator if there are multiple paths. and combined           
+     *                 
+     *                 // Array = map of database names to exact location(s).
+     *                 //         eg.
+     *                 //         mydb => /var/www/mysite/Myproejct/DataObject/mydb.ini
+     *                 //              value can be an array of absolute paths, or PATH_SEPERATED
+     *     
+     *                 
+     *     
+     *         // class - factory + load derived classes
+     *             'class_prefix' => 'DataObjects_',
+     *                 // Prefix Mapping of table name to PHP Class
+     *                 //    to use multiple prefixes seperate them with PATH_SEPERATOR
+     *                 //    for 'loading' it will try them all in sequence.. - first found wins.
+     *                 //    for the generator it will only use the first..
+     * 
+     *             'class_location' => '',
+     *                 // directory where the Table classes are..
+     *                 // you can also use the format
+     *                 // /home/me/Projects/myapplication/DataObjects_%s.php  (%s==table)
+     *                 // /home/me/Projects/myapplication/DataObjects_%2$s%1$s.php  (%1$s==table) (%2$s==database nickname)
+     *                 // and %s gets replaced with the tablename.
+     *                 // to use multiple search paths use the PATH_SEPERATOR
+     * 
+     *             
+     *             'proxy' => false,
+     *                 // NOT RECOMMENDED - it's very slow!!!!
+     *                 // normally we use pre-created 'ini' files, but if you use proxy, it will generate the
+     *                 // the database schema on the fly..
+     *                 // true - calls PDO_DataObject_Generator-> ???
+     *                 // full - generates dataobjects when you call factory...
+     *                 // YourClass::somemethod... --- calls some other method to generate proxy..
+     *             
+     *             
+     *             
+     *             'portability' => 0,
+     *                 // similar to DB's portability setting,
+     *                 // currently it only lowercases the tablename when you call tableName(), and
+     *                 // flatten's ini files ..
+     *             
+     *             'transactions' => true,
+     *                 // some databases, like sqlite do not support transactions, so if you have code that
+     *                 // uses transactions, and you want DataObjects to ignore the BEGIN/COMMIT/ROLLBACK etc..
+     *                 // then set this to false, otherwise you will get errors.
+     * 
+     *             'quote_identifiers' => false,
+     *                 // Quote table and column names when building queries 
+     *  
+     *             'enable_null_strings' => false,
+     *                 // This is only for BC support - 
+     *                 // previously you could use 'null' as a string to represent a NULL, or even null 
+     *                 // however this behaviour is very problematic.
+     *                 // 
+     *                 // if you want or needto use NULL in your database:
+     *                 // use PDO_DataObject::sqlValue('NULL');
+     * 
+     * 		            // BC - not recommended for new code...
+     *                 // values true  means  'NULL' as a string is supported      
+     *                 // values 'full' means both 'NULL' and guessing with isset() is supported
+     *                 
+     *                 
+     *         //  NEW ------------   peformance 
+     *              
+     *             'fetch_into' => false,
+     *                 // use PDO's fetch_INTO for performance... - not sure what other effects this may have..
+     *             
+     *             // -----   behavior
+     *  
+     *                 
+     *             'debug' => 0,
+     *                 // debuging - only relivant on initialization - modifying it after, may be ignored.
+     *                 
+     *             'PDO' => 'PDO',  
+     *                 // what class to use as PDO - we use PDO_Dummy for the unittests
+     * 
+     *      
+        
+     
+     
      * @category config
      * @param   array  key/value 
      * @param   mixed value 
