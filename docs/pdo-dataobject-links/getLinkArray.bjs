@@ -85,11 +85,6 @@
                     "stype": "return",
                     "|xns": "Roo.doc",
                     "xtype": "Section"
-                },
-                {
-                    "stype": "example",
-                    "|xns": "Roo.doc",
-                    "xtype": "Section"
                 }
             ]
         }
