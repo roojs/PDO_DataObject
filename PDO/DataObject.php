@@ -682,7 +682,7 @@ class PDO_DataObject
      *                  /home/me/Projects/myapplication/DataObjects_%s.php  (%s==table) <br/>\
      *                  /home/me/Projects/myapplication/DataObjects_%2$s%1$s.php  (%1$s==table) (%2$s==database nickname) <br/>\
      *                  and %s gets replaced with the tablename. <br/>\
-     *                  to use multiple search paths use the PATH_SEPERATOR <br/>\
+     *                  to use multiple search paths use the PATH_SEPERATOR <br/>
      * | proxy | mixed |  false | \
      *                  NOT RECOMMENDED for normal usage, it's very slow!!!! <br/>\
      *                  normally we use pre-created 'ini' files, but if you use proxy, it will generate the the database schema on the fly.. |
