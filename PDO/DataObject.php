@@ -4862,6 +4862,10 @@ class PDO_DataObject
     /**
      * Factory method for calling PDO_DataObject_Cast
      *
+     * Cast Objects represent database values, that can not be represented using simple PHP types,
+     *
+     * For example RAW sql calls like NOW() or database methods or database 'NULL'
+     *
      * if used with 1 argument PDO_DataObject_Cast::sql($value) is called
      * 
      * if used with 2 arguments PDO_DataObject_Cast::$value($callvalue) is called
