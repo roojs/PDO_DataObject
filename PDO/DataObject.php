@@ -3593,19 +3593,21 @@ class PDO_DataObject
     
      /**
      * classic factory method for loading a table class
-     * usage: $do = PDO_DataObject::factory('person')
+     * usage:
+     * ```
+     * $do = PDO_DataObject::factory('person')
+     * ```
      *
-     * table name can bedatabasename/table
-     * - and allow modular dataobjects to be written..
+     * table name can be "databasename/table"
+     * and allow modular dataobjects to be written..
      * (this also helps proxy creation)
      *
-     * Experimental Support for Multi-Database factory eg. mydatabase.mytable
      * 
      * @category create
      * @param  string  $table  tablename or database_nickname/tablename  
      * @access public
      * @throws PDO_DataObject_Exception for many reasons... 
-     * @return PDO_DataObject
+     * @return PDO_DataObject An instance of the extended class wrapping the table
      */
     
     
