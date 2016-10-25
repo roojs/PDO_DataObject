@@ -1,5 +1,5 @@
 {
-    "name": "__construct",
+    "name": "new PDO_DataObject",
     "parent": "",
     "title": "",
     "permname": "",
@@ -13,7 +13,7 @@
             "xtype": "Entry",
             "items": [
                 {
-                    "name": "__construct",
+                    "name": "new PDO_DataObject",
                     "is_static": false,
                     "memberof": "PDO_DataObject",
                     "returndesc": "",
