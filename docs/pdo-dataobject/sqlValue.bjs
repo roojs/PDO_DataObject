@@ -23,7 +23,7 @@
                     "xtype": "Synopsis",
                     "items": [
                         {
-                            "desc": "$value",
+                            "desc": "(or type if used with 2 arguments)",
                             "is_optional": false,
                             "name": "$value",
                             "type": "string",
@@ -31,7 +31,7 @@
                             "xtype": "Param"
                         },
                         {
-                            "desc": "$callvalue",
+                            "desc": "(optional) used with date\/null etc..",
                             "is_optional": false,
                             "name": "",
                             "type": "string",

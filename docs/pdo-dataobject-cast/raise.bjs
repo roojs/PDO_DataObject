@@ -23,7 +23,7 @@
                     "xtype": "Synopsis",
                     "items": [
                         {
-                            "desc": "$message",
+                            "desc": "message",
                             "is_optional": false,
                             "name": "$message",
                             "type": "int",
@@ -31,7 +31,7 @@
                             "xtype": "Param"
                         },
                         {
-                            "desc": "$type",
+                            "desc": "type",
                             "is_optional": false,
                             "name": "$type",
                             "type": "int",
@@ -39,7 +39,7 @@
                             "xtype": "Param"
                         },
                         {
-                            "desc": "$previous_exception",
+                            "desc": "Cause of error...",
                             "is_optional": false,
                             "name": "$previous_exception",
                             "type": "Exception",

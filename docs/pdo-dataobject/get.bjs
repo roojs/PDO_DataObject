@@ -23,7 +23,7 @@
                     "xtype": "Synopsis",
                     "items": [
                         {
-                            "desc": "$k",
+                            "desc": "column (or primary key value)",
                             "is_optional": false,
                             "name": "$k",
                             "type": "mixed",
@@ -31,7 +31,7 @@
                             "xtype": "Param"
                         },
                         {
-                            "desc": "$v",
+                            "desc": "(optional) value",
                             "is_optional": false,
                             "name": "$v",
                             "type": "mixed",

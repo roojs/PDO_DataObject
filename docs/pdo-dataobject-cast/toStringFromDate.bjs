@@ -23,7 +23,7 @@
                     "xtype": "Synopsis",
                     "items": [
                         {
-                            "desc": "$to",
+                            "desc": "Type (PDO_DataObject::*",
                             "is_optional": false,
                             "name": "$to",
                             "type": "int",
@@ -31,7 +31,7 @@
                             "xtype": "Param"
                         },
                         {
-                            "desc": "$db",
+                            "desc": "DB Connection Object",
                             "is_optional": false,
                             "name": "$db",
                             "type": "object",

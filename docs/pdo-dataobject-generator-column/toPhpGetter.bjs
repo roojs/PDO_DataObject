@@ -23,7 +23,7 @@
                     "xtype": "Synopsis",
                     "items": [
                         {
-                            "desc": "$input",
+                            "desc": "Existing class contents",
                             "is_optional": false,
                             "name": "$user_code",
                             "type": "string",

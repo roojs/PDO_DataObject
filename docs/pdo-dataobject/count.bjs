@@ -31,7 +31,7 @@
                             "xtype": "Param"
                         },
                         {
-                            "desc": "$whereAddOnly\n                  we will build the condition only using the whereAdd's.  Default is to\n                  build the condition using the object parameters as well.",
+                            "desc": "(optional) If PDO_DataObject::WHERE_ONLY is passed in then\n                  we will build the condition only using the whereAdd's.  Default is to\n                  build the condition using the object parameters as well.",
                             "is_optional": false,
                             "name": "$whereAddOnly",
                             "type": "bool",

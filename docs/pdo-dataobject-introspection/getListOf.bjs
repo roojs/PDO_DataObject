@@ -23,7 +23,7 @@
                     "xtype": "Synopsis",
                     "items": [
                         {
-                            "desc": "$type\n                       Common items being sought are:\n                       tables, databases, users, views, functions\n                       Each DBMS's has its own capabilities.",
+                            "desc": "type of information being sought.\n                       Common items being sought are:\n                       tables, databases, users, views, functions\n                       Each DBMS's has its own capabilities.",
                             "is_optional": false,
                             "name": "$type",
                             "type": "string",

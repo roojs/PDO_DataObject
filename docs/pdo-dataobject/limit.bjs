@@ -23,7 +23,7 @@
                     "xtype": "Synopsis",
                     "items": [
                         {
-                            "desc": "$a",
+                            "desc": "limit start (or number), or blank to reset",
                             "is_optional": false,
                             "name": "$a",
                             "type": "string",
@@ -31,7 +31,7 @@
                             "xtype": "Param"
                         },
                         {
-                            "desc": "$b",
+                            "desc": "number",
                             "is_optional": false,
                             "name": "$b",
                             "type": "string",

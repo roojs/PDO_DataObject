@@ -23,7 +23,7 @@
                     "xtype": "Synopsis",
                     "items": [
                         {
-                            "desc": "$group",
+                            "desc": "Grouping",
                             "is_optional": false,
                             "name": "$group",
                             "type": "string",

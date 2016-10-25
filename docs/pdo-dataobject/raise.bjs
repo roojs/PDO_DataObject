@@ -23,7 +23,7 @@
                     "xtype": "Synopsis",
                     "items": [
                         {
-                            "desc": "$message",
+                            "desc": "message",
                             "is_optional": false,
                             "name": "$message",
                             "type": "string",
@@ -31,7 +31,7 @@
                             "xtype": "Param"
                         },
                         {
-                            "desc": "$type",
+                            "desc": "type",
                             "is_optional": false,
                             "name": "$type",
                             "type": "string",

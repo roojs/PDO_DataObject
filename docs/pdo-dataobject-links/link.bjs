@@ -23,7 +23,7 @@
                     "xtype": "Synopsis",
                     "items": [
                         {
-                            "desc": "$field",
+                            "desc": "the field to fetch or link spec.",
                             "is_optional": false,
                             "name": "$field",
                             "type": "array",

@@ -23,7 +23,7 @@
                     "xtype": "Synopsis",
                     "items": [
                         {
-                            "desc": "$obj\n                                          If you use an array here it should be in the format:\n                                          array('local_column','remotetable:remote_column');\n                                             if remotetable does not have a definition, you should\n                                             use @ to hide the include error message..\n                                          array('local_column',  $dataobject , 'remote_column');\n                                             if array has 3 args, then second is assumed to be the linked dataobject.",
+                            "desc": "string | object |array    the joining object (no value resets the join)\n                                          If you use an array here it should be in the format:\n                                          array('local_column','remotetable:remote_column');\n                                             if remotetable does not have a definition, you should\n                                             use @ to hide the include error message..\n                                          array('local_column',  $dataobject , 'remote_column');\n                                             if array has 3 args, then second is assumed to be the linked dataobject.",
                             "is_optional": false,
                             "name": "$obj",
                             "type": "optional",
@@ -31,7 +31,7 @@
                             "xtype": "Param"
                         },
                         {
-                            "desc": "$joinType\n                                          'LEFT'|'INNER'|'RIGHT'|'' Inner is default, '' indicates \n                                          just select ... from a,b,c with no join and \n                                          links are added as where items.\n                                          \n                                          If second Argument is array, it is assumed to be an associative\n                                          array with arguments matching below = eg.\n                                          'joinType' => 'INNER',\n                                          'joinAs' => '...'\n                                          'joinCol' => ....\n                                          'useWhereAsOn' => false,",
+                            "desc": "string | array\n                                          'LEFT'|'INNER'|'RIGHT'|'' Inner is default, '' indicates \n                                          just select ... from a,b,c with no join and \n                                          links are added as where items.\n                                          \n                                          If second Argument is array, it is assumed to be an associative\n                                          array with arguments matching below = eg.\n                                          'joinType' => 'INNER',\n                                          'joinAs' => '...'\n                                          'joinCol' => ....\n                                          'useWhereAsOn' => false,",
                             "is_optional": false,
                             "name": "$joinType",
                             "type": "optional",
@@ -39,7 +39,7 @@
                             "xtype": "Param"
                         },
                         {
-                            "desc": "$joinAs\n                                          useful when you want to select multiple columsn\n                                          from a secondary table.\n     ",
+                            "desc": "string     if you want to select the table as anther name\n                                          useful when you want to select multiple columsn\n                                          from a secondary table.\n     ",
                             "is_optional": false,
                             "name": "$joinAs",
                             "type": "optional",
@@ -47,7 +47,7 @@
                             "xtype": "Param"
                         },
                         {
-                            "desc": "$joinCol\n                                          if this table links to the child object in \n                                          multiple places eg.\n                                          user->friend (is a link to another user)\n                                          user->mother (is a link to another user..)",
+                            "desc": "string     The column on This objects table to match (needed\n                                          if this table links to the child object in \n                                          multiple places eg.\n                                          user->friend (is a link to another user)\n                                          user->mother (is a link to another user..)",
                             "is_optional": false,
                             "name": "$joinCol",
                             "type": "optional",

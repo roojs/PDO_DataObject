@@ -23,7 +23,7 @@
                     "xtype": "Synopsis",
                     "items": [
                         {
-                            "desc": "$string",
+                            "desc": "value to be escaped",
                             "is_optional": false,
                             "name": "$string",
                             "type": "string",
@@ -31,7 +31,7 @@
                             "xtype": "Param"
                         },
                         {
-                            "desc": "$likeEscape",
+                            "desc": "escapes % and _ as well. - so LIKE queries can be protected.",
                             "is_optional": false,
                             "name": "$likeEscape",
                             "type": "bool",

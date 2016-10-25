@@ -23,7 +23,7 @@
                     "xtype": "Synopsis",
                     "items": [
                         {
-                            "desc": "$n",
+                            "desc": "Fetch first result",
                             "is_optional": false,
                             "name": "$n",
                             "type": "boolean",

@@ -31,7 +31,7 @@
                             "xtype": "Param"
                         },
                         {
-                            "desc": "$table",
+                            "desc": "(optional) name of table to look up value in",
                             "is_optional": false,
                             "name": "$table",
                             "type": "string",
@@ -39,7 +39,7 @@
                             "xtype": "Param"
                         },
                         {
-                            "desc": "$fkey",
+                            "desc": "(optional) fetchall key see DB_DataObject::fetchAll()",
                             "is_optional": false,
                             "name": "$fkey",
                             "type": "string",
@@ -47,7 +47,7 @@
                             "xtype": "Param"
                         },
                         {
-                            "desc": "$fval",
+                            "desc": "(optional)fetchall val DB_DataObject::fetchAll()",
                             "is_optional": false,
                             "name": "$fval",
                             "type": "string",
@@ -55,7 +55,7 @@
                             "xtype": "Param"
                         },
                         {
-                            "desc": "$fval",
+                            "desc": "(optional) fetchall method DB_DataObject::fetchAll()",
                             "is_optional": false,
                             "name": "$fmethod",
                             "type": "string",

@@ -23,7 +23,7 @@
                     "xtype": "Synopsis",
                     "items": [
                         {
-                            "desc": "$k",
+                            "desc": "column",
                             "is_optional": false,
                             "name": "$k",
                             "type": "string",
@@ -31,7 +31,7 @@
                             "xtype": "Param"
                         },
                         {
-                            "desc": "$v",
+                            "desc": "value",
                             "is_optional": false,
                             "name": "$v",
                             "type": "string",

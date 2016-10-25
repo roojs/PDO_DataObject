@@ -31,7 +31,7 @@
                             "xtype": "Param"
                         },
                         {
-                            "desc": "$table",
+                            "desc": "(optional) name of table to look up value in",
                             "is_optional": false,
                             "name": "$table",
                             "type": "DB_DataObject",
@@ -39,7 +39,7 @@
                             "xtype": "Param"
                         },
                         {
-                            "desc": "$link",
+                            "desc": "(optional)  name of column in other table to match",
                             "is_optional": false,
                             "name": "$link",
                             "type": "string",

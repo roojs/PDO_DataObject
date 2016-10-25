@@ -23,7 +23,7 @@
                     "xtype": "Synopsis",
                     "items": [
                         {
-                            "desc": "$message",
+                            "desc": "- message to output",
                             "is_optional": false,
                             "name": "$message",
                             "type": "string",
@@ -31,7 +31,7 @@
                             "xtype": "Param"
                         },
                         {
-                            "desc": "$logtype",
+                            "desc": "- bold at start",
                             "is_optional": false,
                             "name": "$logtype",
                             "type": "string",
@@ -39,7 +39,7 @@
                             "xtype": "Param"
                         },
                         {
-                            "desc": "$level",
+                            "desc": "- output level",
                             "is_optional": false,
                             "name": "$level",
                             "type": "string",

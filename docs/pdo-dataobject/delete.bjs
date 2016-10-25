@@ -23,7 +23,7 @@
                     "xtype": "Synopsis",
                     "items": [
                         {
-                            "desc": "$useWhere\n             we will build the condition only using the whereAdd's.  Default is to\n             build the condition only using the object parameters.",
+                            "desc": "(optional) If PDO_DataObject::WHERE_ONLY is passed in then\n             we will build the condition only using the whereAdd's.  Default is to\n             build the condition only using the object parameters.",
                             "is_optional": false,
                             "name": "$useWhere",
                             "type": "bool",

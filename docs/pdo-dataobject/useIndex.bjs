@@ -23,7 +23,7 @@
                     "xtype": "Synopsis",
                     "items": [
                         {
-                            "desc": "$index",
+                            "desc": "index or indexes to use.",
                             "is_optional": false,
                             "name": "$index",
                             "type": "array",

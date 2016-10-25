@@ -23,7 +23,7 @@
                     "xtype": "Synopsis",
                     "items": [
                         {
-                            "desc": "$order",
+                            "desc": "Order",
                             "is_optional": false,
                             "name": "$order",
                             "type": "string",

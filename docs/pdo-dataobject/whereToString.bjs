@@ -23,7 +23,7 @@
                     "xtype": "Synopsis",
                     "items": [
                         {
-                            "desc": "$keys",
+                            "desc": "(defaults to this->tableColumns())",
                             "is_optional": false,
                             "name": "$keys",
                             "type": "mixed",
@@ -31,7 +31,7 @@
                             "xtype": "Param"
                         },
                         {
-                            "desc": "$filter",
+                            "desc": "(used by update to only uses keys in this filter list).",
                             "is_optional": false,
                             "name": "$filter",
                             "type": "array",
@@ -39,7 +39,7 @@
                             "xtype": "Param"
                         },
                         {
-                            "desc": "$negative_filter",
+                            "desc": "(used by delete to prevent deleting using the keys mentioned..)",
                             "is_optional": false,
                             "name": "$negative_filter",
                             "type": "array",
@@ -47,7 +47,7 @@
                             "xtype": "Param"
                         },
                         {
-                            "desc": "$tablename",
+                            "desc": "(used by join to override tablename...)",
                             "is_optional": false,
                             "name": "$tableName",
                             "type": "string",

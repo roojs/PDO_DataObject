@@ -23,7 +23,7 @@
                     "xtype": "Synopsis",
                     "items": [
                         {
-                            "desc": "$column",
+                            "desc": "which column to get or set  (or the link specification)",
                             "is_optional": false,
                             "name": "$field",
                             "type": "string",
@@ -31,7 +31,7 @@
                             "xtype": "Param"
                         },
                         {
-                            "desc": "$set_value",
+                            "desc": "(optional)   int or DataObject",
                             "is_optional": false,
                             "name": "$set_args",
                             "type": "mixed",

@@ -23,7 +23,7 @@
                     "xtype": "Synopsis",
                     "items": [
                         {
-                            "desc": "$table",
+                            "desc": "- table that this column belongs to..",
                             "is_optional": false,
                             "name": "$table",
                             "type": "PDO_DataObject_Generator_Table",

@@ -23,7 +23,7 @@
                     "xtype": "Synopsis",
                     "items": [
                         {
-                            "desc": "$string",
+                            "desc": "SQL Query",
                             "is_optional": false,
                             "name": "$string",
                             "type": "string",

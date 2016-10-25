@@ -23,7 +23,7 @@
                     "xtype": "Synopsis",
                     "items": [
                         {
-                            "desc": "$v",
+                            "desc": "level",
                             "is_optional": false,
                             "name": "$v",
                             "type": "int",

@@ -23,7 +23,7 @@
                     "xtype": "Synopsis",
                     "items": [
                         {
-                            "desc": "$having",
+                            "desc": "condition",
                             "is_optional": false,
                             "name": "$having",
                             "type": "string",

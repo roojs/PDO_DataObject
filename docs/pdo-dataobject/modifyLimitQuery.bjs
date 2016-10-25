@@ -23,7 +23,7 @@
                     "xtype": "Synopsis",
                     "items": [
                         {
-                            "desc": "$sql",
+                            "desc": "the query to modify",
                             "is_optional": false,
                             "name": "$sql",
                             "type": "string",
@@ -31,7 +31,7 @@
                             "xtype": "Param"
                         },
                         {
-                            "desc": "$manip",
+                            "desc": "- is the query a manipluation?",
                             "is_optional": false,
                             "name": "$manip",
                             "type": "bool",

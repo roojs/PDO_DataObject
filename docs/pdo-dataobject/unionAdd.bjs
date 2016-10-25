@@ -31,7 +31,7 @@
                             "xtype": "Param"
                         },
                         {
-                            "desc": "$is_all",
+                            "desc": "string 'ALL' to do all.",
                             "is_optional": false,
                             "name": "$is_all",
                             "type": "optional",

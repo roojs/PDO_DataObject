@@ -23,7 +23,7 @@
                     "xtype": "Synopsis",
                     "items": [
                         {
-                            "desc": "$key",
+                            "desc": "key column to match",
                             "is_optional": false,
                             "name": "$key",
                             "type": "string",
@@ -31,7 +31,7 @@
                             "xtype": "Param"
                         },
                         {
-                            "desc": "$list",
+                            "desc": "list of values to match",
                             "is_optional": false,
                             "name": "$list",
                             "type": "array",
@@ -39,7 +39,7 @@
                             "xtype": "Param"
                         },
                         {
-                            "desc": "$type",
+                            "desc": "string|int|integer|float|bool  cast to type.",
                             "is_optional": false,
                             "name": "$type",
                             "type": "string",
@@ -47,7 +47,7 @@
                             "xtype": "Param"
                         },
                         {
-                            "desc": "$logic",
+                            "desc": "optional logic to call whereAdd with eg. \"OR\" (defaults to \"AND\")",
                             "is_optional": false,
                             "name": "$logic",
                             "type": "string",

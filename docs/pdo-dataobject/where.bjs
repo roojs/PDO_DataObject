@@ -23,7 +23,7 @@
                     "xtype": "Synopsis",
                     "items": [
                         {
-                            "desc": "$cond",
+                            "desc": "condition or false to reset.",
                             "is_optional": false,
                             "name": "$cond",
                             "type": "string",
@@ -31,7 +31,7 @@
                             "xtype": "Param"
                         },
                         {
-                            "desc": "$logic",
+                            "desc": "optional logic \"OR\" (defaults to \"AND\")",
                             "is_optional": false,
                             "name": "$logic",
                             "type": "string",

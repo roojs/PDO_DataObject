@@ -31,7 +31,7 @@
                             "xtype": "Param"
                         },
                         {
-                            "desc": "$format",
+                            "desc": "eg. map xxxx_name to $object->name using 'xxxx_%s' (defaults to %s - eg. name -> $object->name",
                             "is_optional": false,
                             "name": "$format",
                             "type": "string",
@@ -39,7 +39,7 @@
                             "xtype": "Param"
                         },
                         {
-                            "desc": "$skipEmpty",
+                            "desc": "(dont assign empty values if a column is empty (eg. '' \/ 0 etc...)",
                             "is_optional": false,
                             "name": "$skipEmpty",
                             "type": "boolean",
