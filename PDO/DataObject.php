@@ -831,7 +831,7 @@ class PDO_DataObject
      *
      * @category build
      * @param string $sql the query to modify
-     * @param bool $manip - is the query a manipluation?
+     * @param bool $manip  is the query a manipluation?
      * @return string  the modified string
      * 
      */
