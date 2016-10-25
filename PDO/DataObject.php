@@ -656,18 +656,14 @@ class PDO_DataObject
      * 
      * | Option | Type | Default | Description |
      * | --- | --- | --- | ---  |
-     * |  schema_location  | string or false | false | \
-     *               ```
+     * |  schema_location  | mixed| false | \
      *                 unless you are using 'proxy' then schema_location is required.
-     *                 
-     *                 // possible values:
-     *                 
-     *                 // String = directory, or list of directories (with path Seperator..)
-     *                 //         eg. if your database schema is in /var/www/mysite/Myproejct/DataObject/mydb.ini
-     *                 //         then schema_location = /var/www/mysite/Myproejct/DataObject/
-     *                 //              you can use path seperator if there are multiple paths. and combined           
-     *                 
-     *                 // Array = map of database names to exact location(s).
+     * |   | string |   | directory, or list of directories (with path Seperator..) \
+     *                  eg. if your database schema is in /var/www/mysite/Myproejct/DataObject/mydb.ini <BR/>\
+     *                  then schema_location = /var/www/mysite/Myproejct/DataObject/ <BR/>\
+     *   you can use path seperator if there are multiple paths. and combined  |
+     * |   | array |    |             
+     *                  map of database names to exact location(s).
      *                 //         eg.
      *                 //         mydb => /var/www/mysite/Myproejct/DataObject/mydb.ini
      *                 //              value can be an array of absolute paths, or PATH_SEPERATED
