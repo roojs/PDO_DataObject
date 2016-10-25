@@ -4965,8 +4965,8 @@ class PDO_DataObject
     *
     *
     * Current supports
-    * | Database Type | validation |
-    * | ------------- | -----------|
+    * | Database Type | validation  |
+    * | ------------- | ----------- |
     * | date       | using (standard time format, or unixtimestamp).... so you could create a method : |
     * | time       | using standard time format |
     * | datetime   | using  same as date - accepts iso standard or unixtimestamp. |
