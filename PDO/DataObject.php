@@ -356,7 +356,7 @@ class PDO_DataObject
      * $a =  new PDO_DataObject('person');
      * $a =  new PDO_DataObject('mydatabase/person');
      * $a =  new PDO_DataObject(['mydatabase','person']);
-     * 
+     * ```
      * 
      * @param string|array    either tablename or databasename/tablename or array(database,tablename)
      * @category create
