@@ -1774,11 +1774,15 @@ class PDO_DataObject
 
     /**
      * Adds a having clause (Chainable)
+     *
      * NOTE : ALWAYS ENSURE ARGUMENTS ARE ESCAPED
      *
+     * Usage:
+     * ```
      * $object->having(); //reset the grouping
      * $object->having("sum(value) > 0 ");
-     *
+     * ```
+     * 
      * @category build
      * @param  string  $having  condition
      * @access public
