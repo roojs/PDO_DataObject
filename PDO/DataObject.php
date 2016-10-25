@@ -1784,7 +1784,8 @@ class PDO_DataObject
      * ```
      * 
      * @category build
-     * @param  string  $having  condition
+     * @param  string  $having  condition to add
+     * @param  string  $having  (optional) how to add to existing data default is 'AND' - can be 'OR'
      * @access public
      * @return PDO_DataObject self
      */
