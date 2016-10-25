@@ -802,7 +802,7 @@ class PDO_DataObject
      * this setting, and call this method if you are building the where conditions manually.
      *
      * @category build
-     * @param string $identifier
+     * @param string $identifier identifier to wrap
      * @result string wrapped string  
      *
      */
