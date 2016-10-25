@@ -1732,11 +1732,14 @@ class PDO_DataObject
 
     /**
      * Adds a group by condition (Chainable)
+     *
      * NOTE : ALWAYS ENSURE ARGUMENTS ARE ESCAPED
-     * 
+     *
+     * ```
      * $object->groupBy(); //reset the grouping
      * $object->groupBy("ID DESC");
      * $object->groupBy("ID,age");
+     *```
      *
      * @category build
      * @param  string  $group  Grouping
