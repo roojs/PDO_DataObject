@@ -1,12 +1,12 @@
 {
-    "name": "new PDO_DataObject_Introspection",
+    "name": "__construct",
     "parent": "",
     "title": "",
     "permname": "",
     "modOrder": "001",
     "items": [
         {
-            "name": "__construct",
+            "name": "new PDO_DataObject_Introspection",
             "purpose": " Constructor",
             "stype": "function",
             "|xns": "Roo.doc",

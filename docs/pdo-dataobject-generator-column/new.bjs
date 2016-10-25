@@ -1,12 +1,12 @@
 {
-    "name": "new PDO_DataObject_Generator_Column",
+    "name": "__construct",
     "parent": "",
     "title": "",
     "permname": "",
     "modOrder": "001",
     "items": [
         {
-            "name": "__construct",
+            "name": "new PDO_DataObject_Generator_Column",
             "purpose": " ",
             "stype": "function",
             "|xns": "Roo.doc",
