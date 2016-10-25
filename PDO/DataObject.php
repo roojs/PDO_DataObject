@@ -647,7 +647,7 @@ class PDO_DataObject
      *
      * | Option | Type | Default | Description |
      * | --- | --- | --- | ---  |
-     * | database |  string or boolean | false |  <span>the default database dsn (not PDO standard = see #$_database for details) \
+     * | database |  string | false |  <span>the default database dsn (not PDO standard = see #$_database for details) \
      *                                             it's similar format to PEAR::DB.. </span> |
      * | databases | array | array() |  map of database nick-names to connection dsn's
      * | tables |  array | array() |  map of tables names to database 'nick-names'
@@ -656,7 +656,7 @@ class PDO_DataObject
      * 
      * | Option | Type | Default | Description |
      * | --- | --- | --- | ---  |
-     * |  schema_location  | mixed| false | \
+     * |  schema_location  | mixed | false | \
      *                 unless you are using 'proxy' then schema_location is required.
      * |   | string |   | directory, or list of directories (with path Seperator..) \
      *                  eg. if your database schema is in /var/www/mysite/Myproejct/DataObject/mydb.ini <BR/>\
@@ -668,24 +668,22 @@ class PDO_DataObject
      *                           value can be an array of absolute paths, or PATH_SEPERATED  <BR/> |
      *             
      *                 
-     *     
-     *         // class - factory + load derived classes
-     *             'class_prefix' => 'DataObjects_',
-     *                 // Prefix Mapping of table name to PHP Class
-     *                 //    to use multiple prefixes seperate them with PATH_SEPERATOR
-     *                 //    for 'loading' it will try them all in sequence.. - first found wins.
-     *                 //    for the generator it will only use the first..
-     * 
-     *             'class_location' => '',
-     *                 // directory where the Table classes are..
-     *                 // you can also use the format
-     *                 // /home/me/Projects/myapplication/DataObjects_%s.php  (%s==table)
-     *                 // /home/me/Projects/myapplication/DataObjects_%2$s%1$s.php  (%1$s==table) (%2$s==database nickname)
-     *                 // and %s gets replaced with the tablename.
-     *                 // to use multiple search paths use the PATH_SEPERATOR
-     * 
-     *             
-     *             'proxy' => false,
+     *  ### Class factory loading  and extended class naming
+     * | Option | Type | Default | Description |
+     * | --- | --- | --- | ---  |
+     * | class_prefix | string | 'DataObjects_' | \
+     *                 Prefix Mapping of table name to PHP Class <br/>\
+     *                    to use multiple prefixes seperate them with PATH_SEPERATOR <br/>\
+     *                    for 'loading' it will try them all in sequence.. - first found wins. <br/>\
+     *                     for the generator it will only use the first.. |
+     * | class_location | string | '' | \
+     *                  directory where the Table classes are.. <br/>\
+     *                  you can also use formating <br/>\
+     *                  /home/me/Projects/myapplication/DataObjects_%s.php  (%s==table) <br/>\
+     *                  /home/me/Projects/myapplication/DataObjects_%2$s%1$s.php  (%1$s==table) (%2$s==database nickname) <br/>\
+     *                  and %s gets replaced with the tablename. <br/>\
+     *                  to use multiple search paths use the PATH_SEPERATOR <br/>\
+     * | proxy | string |  false | 
      *                 // NOT RECOMMENDED - it's very slow!!!!
      *                 // normally we use pre-created 'ini' files, but if you use proxy, it will generate the
      *                 // the database schema on the fly..
