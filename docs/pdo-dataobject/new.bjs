@@ -37,7 +37,7 @@
                     "xtype": "Section",
                     "items": [
                         {
-                            "html": " -- not normally used. - use factory to load extended dataObjects.\n\n Can be used to create on-the fly DataObjects. not heavily tested yet though...\n Should be used with config[proxy] = true  \n\n Normally you would extend this class an fill it up with methods that relate to actions on that table\n\n",
+                            "html": " This is not normally used. it's better to use factory to load extended dataObjects.\n\n Can be used to create on-the fly DataObjects. not heavily tested yet though...\n Should be used with config[proxy] = true  \n\n Normally you would extend this class an fill it up with methods that relate to actions on that table\n see [Config](#pdo-dataobject\/config) for values of config\n \n",
                             "|xns": "Roo.doc",
                             "xtype": "Para"
                         }

@@ -16,21 +16,21 @@
                     "name": "config",
                     "is_static": true,
                     "memberof": "PDO_DataObject",
-                    "returndesc": "the current config..",
-                    "returntype": "-",
+                    "returndesc": "current config array",
+                    "returntype": "the",
                     "|xns": "Roo.doc",
                     "xtype": "Synopsis",
                     "items": [
                         {
-                            "desc": "key\/value",
+                            "desc": "(optional) either a key value array, or the key to set.",
                             "is_optional": false,
                             "name": "$cfg_in",
-                            "type": "array",
+                            "type": "string",
                             "|xns": "Roo.doc",
                             "xtype": "Param"
                         },
                         {
-                            "desc": "value",
+                            "desc": "(optional) the value to set when using key\/value format",
                             "is_optional": false,
                             "name": "$value",
                             "type": "mixed",

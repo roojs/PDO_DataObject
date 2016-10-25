@@ -350,7 +350,7 @@ class PDO_DataObject
      * Should be used with config[proxy] = true  
      *
      * Normally you would extend this class an fill it up with methods that relate to actions on that table
-     * see [Config](#pdo-dataobject/config)
+     * see [Config](#pdo-dataobject/config) for values of config
      * 
      * @param string|array    either tablename or databasename/tablename or array(database,tablename)
      * @category create
