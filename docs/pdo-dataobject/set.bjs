@@ -77,7 +77,7 @@
                     "items": [
                         {
                             "|xns": "Roo.doc",
-                            "xtype": "para",
+                            "xtype": "Para",
                             "html": "PDO_DataObject_Exception_Set if properties are not valid. see [fromValue](#pdo-dataobject\/fromValue)"
                         }
                     ]

@@ -52,7 +52,7 @@
                     "items": [
                         {
                             "|xns": "Roo.doc",
-                            "xtype": "para",
+                            "xtype": "Para",
                             "html": "an error always.."
                         }
                     ]

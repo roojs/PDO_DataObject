@@ -52,7 +52,7 @@
                     "items": [
                         {
                             "|xns": "Roo.doc",
-                            "xtype": "para",
+                            "xtype": "Para",
                             "html": "PDO_DataObject_Exception (if the table does not have a pid or is called before insert.)"
                         }
                     ]

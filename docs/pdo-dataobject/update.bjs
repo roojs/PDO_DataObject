@@ -61,7 +61,7 @@
                     "items": [
                         {
                             "|xns": "Roo.doc",
-                            "xtype": "para",
+                            "xtype": "Para",
                             "html": "PDO_DataObject_Error"
                         }
                     ]
