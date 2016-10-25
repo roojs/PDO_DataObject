@@ -344,13 +344,14 @@ class PDO_DataObject
     
     /**
      * Constructor
-     * -- not normally used. - use factory to load extended dataObjects.
+     * This is not normally used. it's better to use factory to load extended dataObjects.
      *
      * Can be used to create on-the fly DataObjects. not heavily tested yet though...
      * Should be used with config[proxy] = true  
      *
      * Normally you would extend this class an fill it up with methods that relate to actions on that table
-     *
+     * see [Config](#pdo-dataobject/config)
+     * 
      * @param string|array    either tablename or databasename/tablename or array(database,tablename)
      * @category create
      */
