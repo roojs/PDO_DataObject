@@ -1954,7 +1954,7 @@ class PDO_DataObject
      * @param  string $a  limit start (or number of results), or blank to reset
      * @param  string $b  number or results
      * @access public
-     * @return self  (for chaining) - except 'reset' call
+     * @return self  (for chaining) - except when it's being used to 'reset' the settings, where it returns the 'old' values
      */
     final function limit($a = null, $b = null)
     {
