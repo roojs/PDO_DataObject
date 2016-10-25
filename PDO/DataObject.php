@@ -647,17 +647,18 @@ class PDO_DataObject
      *
      * | Option | Type | Default | Description |
      * | --- | --- | --- | ---  |
-     * | database |  string or boolean | false |  <span>the default database dsn (not PDO standard = see #$_database for details) 
+     * | database |  string or boolean | false |  <span>the default database dsn (not PDO standard = see #$_database for details) \
      *                                             it's similar format to PEAR::DB.. </span> |
-     * |     |      |     |      |
      * | databases | array | array() |  map of database nick-names to connection dsn's
-     * | --- | --- | --- | ---  |
      * | tables |  array | array() |  map of tables names to database 'nick-names'
-     * | --- | --- | --- | ---  |
+     *
+     * ### Schema location
      * 
-     *         // schema (INI files)   
-     *             'schema_location' => false,
-     *                 // unless you are using 'proxy' then schema_location is required.
+     * | Option | Type | Default | Description |
+     * | --- | --- | --- | ---  |
+     * |  schema_location  | string or false | false | \
+     *               ```
+     *                 unless you are using 'proxy' then schema_location is required.
      *                 
      *                 // possible values:
      *                 
@@ -670,7 +671,7 @@ class PDO_DataObject
      *                 //         eg.
      *                 //         mydb => /var/www/mysite/Myproejct/DataObject/mydb.ini
      *                 //              value can be an array of absolute paths, or PATH_SEPERATED
-     *     
+     *             ```
      *                 
      *     
      *         // class - factory + load derived classes
