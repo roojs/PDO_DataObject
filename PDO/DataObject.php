@@ -2956,18 +2956,18 @@ class PDO_DataObject
 
 
     /**
-     * an escape string wrapper
+     * escape a string so it can be used safely in SQL
      * 
      * can be used when adding manual queries or clauses
      * eg.
      * ```
      * $object->query("select * from xyz where abc like '". $object->escape($_GET['name']) . "'");
      * ```
-     *
+     *      *
      * return value excludes the outer quotes - use `$do->PDO->quote($string)` - if you want to include them.
      * 
      * @category build
-     * @param  string  $string  value to be escaped 
+     * @param  string $string  value to be escaped 
      * @param  bool $likeEscape  escapes % and _ as well. - so LIKE queries can be protected.
      * @access public
      * @return string the escaped string
