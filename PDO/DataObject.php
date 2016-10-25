@@ -1695,14 +1695,18 @@ class PDO_DataObject
     
     /**
      * Adds a order by condition (Chainable)
+     * 
      * NOTE : ALWAYS ENSURE ARGUMENTS ARE ESCAPED
      *
+     * Usage:
+     * ```
      * $object->orderBy(); //clears order by
      * $object->orderBy("ID");
      * $object->orderBy("ID,age");
+     * ```
      *
      * @category build
-     * @param  string $order  Order
+     * @param  string $order  Order by string value
      * @access public
      * @return PDO_DataObject self
      */
