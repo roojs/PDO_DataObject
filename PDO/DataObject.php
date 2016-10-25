@@ -1998,18 +1998,23 @@ class PDO_DataObject
 
     /**
      * Adds a select columns
+     * 
      * NOTE : ALWAYS ENSURE ARGUMENTS ARE ESCAPED
      *
+     * By default if the select is empty, and you start adding arguments, then the resulting query will include a '*' star
+     * This can be cleared by calling without arguments - this differs to the chainable [select](#pdo-dataobject/select) version of
+     * this method.
+     *
+     * Usage:
+     * ```
      * $object->selectAdd(); // resets select to nothing!
      * $object->selectAdd("*"); // default select
      * $object->selectAdd("unixtime(DATE) as udate");
      * $object->selectAdd("DATE");
-     *
-     * to prepend distict:
-     * $object->selectAdd('distinct ' . $object->selectAdd());
+     * ```
      * 
      * @category build
-     * @param  string  $k
+     * @param  string  $k the arugment to add
      * @access public
      * @return mixed null or old string if you reset it.
      */
