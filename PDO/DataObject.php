@@ -3585,7 +3585,7 @@ class PDO_DataObject
      */
     
     
-    function factorySelf()
+    final function factorySelf()
     {
         return self::factory($this->tableName());
     }
