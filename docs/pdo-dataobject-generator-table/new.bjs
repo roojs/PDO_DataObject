@@ -1,19 +1,20 @@
 {
-    "name": "__construct",
+    "name": "new PDO_DataObject_Generator_Table",
     "parent": "",
     "title": "",
     "permname": "",
     "modOrder": "001",
     "items": [
         {
-            "name": "new PDO_DataObject_Generator_Table",
+            "name": "__construct",
             "purpose": " Constructor",
             "stype": "function",
             "|xns": "Roo.doc",
             "xtype": "Entry",
+            "isConstructor": true,
             "items": [
                 {
-                    "name": "new PDO_DataObject_Generator_Table",
+                    "name": "__construct",
                     "is_static": false,
                     "memberof": "PDO_DataObject_Generator_Table",
                     "returndesc": "",

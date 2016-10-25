@@ -1,19 +1,20 @@
 {
-    "name": "__construct",
+    "name": "new PDO_DataObject_Generator_Hooks",
     "parent": "",
     "title": "",
     "permname": "",
     "modOrder": "001",
     "items": [
         {
-            "name": "new PDO_DataObject_Generator_Hooks",
+            "name": "__construct",
             "purpose": "",
             "stype": "function",
             "|xns": "Roo.doc",
             "xtype": "Entry",
+            "isConstructor": true,
             "items": [
                 {
-                    "name": "new PDO_DataObject_Generator_Hooks",
+                    "name": "__construct",
                     "is_static": false,
                     "memberof": "PDO_DataObject_Generator_Hooks",
                     "returndesc": "",

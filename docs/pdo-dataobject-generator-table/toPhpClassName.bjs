@@ -11,6 +11,7 @@
             "stype": "function",
             "|xns": "Roo.doc",
             "xtype": "Entry",
+            "isConstructor": false,
             "items": [
                 {
                     "name": "toPhpClassName",
