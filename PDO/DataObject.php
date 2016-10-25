@@ -2084,12 +2084,14 @@ class PDO_DataObject
     /**
      * Adds multiple Columns or objects to select with formating.
      *
+     * note it will clear the '*' default select
+     * 
      * Usage:
      * ```
      * $object->selectAs( );
      * ```
      * adds "table.colnameA as colnameA,table.colnameB as colnameB,......"
-     * note it will also clear the '*' default select
+     * n
      *
      * ```
      * $object->selectAs(array('a','b'),'%s_x');
