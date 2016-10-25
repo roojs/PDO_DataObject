@@ -2084,6 +2084,8 @@ class PDO_DataObject
     /**
      * Adds multiple Columns or objects to select with formating.
      *
+     * Usage:
+     * ```
      * $object->selectAs(null); // adds "table.colnameA as colnameA,table.colnameB as colnameB,......"
      *                      // note with null it will also clear the '*' default select
      * $object->selectAs(array('a','b'),'%s_x'); // adds "a as a_x, b as b_x"
@@ -2092,7 +2094,9 @@ class PDO_DataObject
      *                  objectTableName.colnameA as prefix_colnameA
      * $object->selectAdd('another_table','prefix_%s'); // calls $object->get_table and adds it all as
      *                  objectTableName.colnameA as prefix_colnameA
+     * ```
      *
+     * 
      * @category build
      * @param  array|object|string|null the array or object, or tablename(for factory) to take column names from.
      * @param  string           format in sprintf format (use %s for the colname)
