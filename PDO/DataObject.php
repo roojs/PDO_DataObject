@@ -793,7 +793,14 @@ class PDO_DataObject
     
     /* ---------------- ---------------- database  portability methods -------------------------------- */
     /**
-     * Quote identifiers - similar to escape - but for identifiers, like column names.
+     * similar to escape - but for identifiers, like column names.
+     *
+     * When use use the [configuration option](#pdo-dataobject/config) 'quote_identifiers' = true, then
+     * This is called when building the query to ensure the database columns are quoted.
+     *
+     * If you are using a database that uses keywords like 'where' as a column name, then you should use
+     * this setting, and call this method if you are building the where conditions manually.
+     *
      * @category build
      * @param string $identifier
      * @result string wrapped string  
