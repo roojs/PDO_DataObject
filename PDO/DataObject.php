@@ -3606,7 +3606,7 @@ class PDO_DataObject
      *
      * 
      * @category create
-     * @param  string  $table  tablename or database_nickname/tablename  
+     * @param  string  tablename or database_nickname/tablename  
      * @access public
      * @throws PDO_DataObject_Exception for many reasons... 
      * @return PDO_DataObject An instance of the extended class wrapping the table
