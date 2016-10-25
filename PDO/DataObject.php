@@ -662,12 +662,11 @@ class PDO_DataObject
      *                  eg. if your database schema is in /var/www/mysite/Myproejct/DataObject/mydb.ini <BR/>\
      *                  then schema_location = /var/www/mysite/Myproejct/DataObject/ <BR/>\
      *   you can use path seperator if there are multiple paths. and combined  |
-     * |   | array |    |             
-     *                  map of database names to exact location(s).
-     *                 //         eg.
-     *                 //         mydb => /var/www/mysite/Myproejct/DataObject/mydb.ini
-     *                 //              value can be an array of absolute paths, or PATH_SEPERATED
-     *             ```
+     * |   | array |    |   map of database names to exact location(s).  <BR/>\
+     *                         eg.  <BR/>\
+     *                             mydb => /var/www/mysite/Myproejct/DataObject/mydb.ini  <BR/>\
+     *                           value can be an array of absolute paths, or PATH_SEPERATED  <BR/> |
+     *             
      *                 
      *     
      *         // class - factory + load derived classes
