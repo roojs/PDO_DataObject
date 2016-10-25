@@ -3569,19 +3569,21 @@ class PDO_DataObject
     }
     
     /**
-     * convience version of factory, can be called on an existing
+     * convience version of factory, can be called on an existing \
      * object to create a clean new instance.
      * 
      * usage:
+     * ```
      * $do = PDO_DataObject::factory('person');
      * $person = $do->factorySelf();
-     *
+     * ```
+     * 
      * It's needed, as PHP5 (later versions started enfocing static/calling etc..)
      *
      * @category create
      * @access public
      * @throws PDO_DataObject_Exception for many reasons... 
-     * @return PDO_DataObject
+     * @return PDO_DataObject An instance of the extended class wrapping the same table
      */
     
     
