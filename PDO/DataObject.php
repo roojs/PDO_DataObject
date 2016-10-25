@@ -824,15 +824,15 @@ class PDO_DataObject
     }
     
     /**
+     * modifies an sql query, filling in the limit's as defined in _query[limit_start / limit_count]
      *
-     * modifyLimitQuery - modifies an sql query, filling in the limit's as defined in _query[limit_start / limit_count]
-     *
-     * Note: the original code does determine 
+     * This is used internally to modify the SELECT query to apply rules about limiting the resultsets.
+     * You should not need to use this normally - it's just publicly available as it's pretty harmless...
      *
      * @category build
      * @param string $sql the query to modify
      * @param bool $manip - is the query a manipluation?
-     * @return string - the modified string
+     * @return string  the modified string
      * 
      */
     final function modifyLimitQuery($sql, $manip=false)
