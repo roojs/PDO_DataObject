@@ -38,7 +38,7 @@
                     "xtype": "Section",
                     "items": [
                         {
-                            "html": " NOTE : ALWAYS ENSURE ARGUMENTS ARE ESCAPED\n \n $object->groupBy(); \/\/reset the grouping\n $object->groupBy(\"ID DESC\");\n $object->groupBy(\"ID,age\");\n\n",
+                            "html": " NOTE : ALWAYS ENSURE ARGUMENTS ARE ESCAPED\n\n Usage:\n ```\n $object->groupBy(); \/\/reset the grouping\n $object->groupBy(\"ID DESC\");\n $object->groupBy(\"ID,age\");\n```\n\n",
                             "|xns": "Roo.doc",
                             "xtype": "Para"
                         }

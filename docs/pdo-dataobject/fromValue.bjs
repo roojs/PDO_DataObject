@@ -17,7 +17,7 @@
                     "is_static": false,
                     "is_constructor": false,
                     "memberof": "PDO_DataObject",
-                    "returndesc": "(String on error)",
+                    "returndesc": "String on error, true on success",
                     "returntype": "string|bool",
                     "|xns": "Roo.doc",
                     "xtype": "Synopsis",

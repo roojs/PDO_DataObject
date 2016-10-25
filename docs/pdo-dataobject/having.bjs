@@ -23,7 +23,7 @@
                     "xtype": "Synopsis",
                     "items": [
                         {
-                            "desc": "condition",
+                            "desc": "condition to add",
                             "is_optional": false,
                             "name": "$having",
                             "type": "string",
@@ -31,10 +31,10 @@
                             "xtype": "Param"
                         },
                         {
-                            "desc": "",
+                            "desc": "(optional) how to add to existing data default is 'AND' - can be 'OR'",
                             "is_optional": false,
                             "name": "$logic",
-                            "type": "",
+                            "type": "string",
                             "|xns": "Roo.doc",
                             "xtype": "Param"
                         }
@@ -46,7 +46,7 @@
                     "xtype": "Section",
                     "items": [
                         {
-                            "html": " NOTE : ALWAYS ENSURE ARGUMENTS ARE ESCAPED\n\n $object->having(); \/\/reset the grouping\n $object->having(\"sum(value) > 0 \");\n\n",
+                            "html": " NOTE : ALWAYS ENSURE ARGUMENTS ARE ESCAPED\n\n Usage:\n ```\n $object->having(); \/\/reset the grouping\n $object->having(\"sum(value) > 0 \");\n ```\n \n",
                             "|xns": "Roo.doc",
                             "xtype": "Para"
                         }
