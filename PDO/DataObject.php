@@ -4964,7 +4964,8 @@ class PDO_DataObject
     * method to set the property of the object
     *
     *
-    * Current supports
+    * Currently  supports these types
+    * 
     * | Database Type | validation  |
     * | ------------- | ----------- |
     * | date       | using (standard time format, or unixtimestamp).... so you could create a method : |
