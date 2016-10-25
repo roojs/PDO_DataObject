@@ -5006,7 +5006,7 @@ class PDO_DataObject
      * @param    boolean  $skipEmpty (dont assign empty values if a column is empty (eg. '' / 0 etc...)
      * @access   public
      * @throws   PDO_DataObject_Exception_Set if properties are not valid. see [fromValue](#pdo-dataobject/fromValue)
-     * @return   PDO_DataObject
+     * @return   PDO_DataObject self
      */
     final function set($from, $format = '%s', $skipEmpty=false)
     {
