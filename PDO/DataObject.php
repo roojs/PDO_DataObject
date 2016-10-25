@@ -4958,23 +4958,27 @@ class PDO_DataObject
     }
  
     /**
-    * standard set* implementation. - used by set()/setFrom()
+    * a simple verification and typecasting for setting values
+    *
+    * When you call [set](#pdo-dataObjects/set)()/[setFrom](#pdo-dataObjects/setFrom)() it uses this
+    * method to set the property of the object
+    *
     *
     * Current supports
-    *   date      = using (standard time format, or unixtimestamp).... so you could create a method :
-    *               function setLastread($string) { $this->fromValue('lastread',strtotime($string)); }
-    *
-    *   time      = using strtotime 
-    *   datetime  = using  same as date - accepts iso standard or unixtimestamp.
-    *   string    = typecast only..
+    * | Database Type | validation |
+    * | ------------- | -----------|
+    * | date       | using (standard time format, or unixtimestamp).... so you could create a method : |
+    * | time       | using standard time format |
+    * | datetime   | using  same as date - accepts iso standard or unixtimestamp. |
+    * | string     | typecast only..
+    * | int        | cast to integers
+    * | NULL/NOTNULL | verifies not null can not be set to null see [sqlValue](#pdo-dataobject/sqlValue])() |
     * 
-    * TODO: add formater:: eg. d/m/Y for date! ???
     *
     * @category build
     * @param   string       column of database
     * @param   mixed        value to assign
-    *
-    * @return   string|true     (String on error)
+    * @return   string|bool     (String on error)
     * @access   public
     */
   

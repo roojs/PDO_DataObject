@@ -7,7 +7,7 @@
     "items": [
         {
             "name": "fromValue",
-            "purpose": " standard set* implementation. - used by set()\/setFrom()",
+            "purpose": " a simple verification and typecasting for setting values",
             "stype": "function",
             "|xns": "Roo.doc",
             "xtype": "Entry",
@@ -18,7 +18,7 @@
                     "is_constructor": false,
                     "memberof": "PDO_DataObject",
                     "returndesc": "(String on error)",
-                    "returntype": "string|true",
+                    "returntype": "string|bool",
                     "|xns": "Roo.doc",
                     "xtype": "Synopsis",
                     "items": [
@@ -46,7 +46,7 @@
                     "xtype": "Section",
                     "items": [
                         {
-                            "html": " Current supports\n   date      = using (standard time format, or unixtimestamp).... so you could create a method :\n               function setLastread($string) { $this->fromValue('lastread',strtotime($string)); }\n\n   time      = using strtotime \n   datetime  = using  same as date - accepts iso standard or unixtimestamp.\n   string    = typecast only..\n \n TODO: add formater:: eg. d\/m\/Y for date! ???\n\n\n",
+                            "html": " When you call [set](#pdo-dataObjects\/set)()\/[setFrom](#pdo-dataObjects\/setFrom)() it uses this\n method to set the property of the object\n\n\n Current supports\n | Database Type | validation |\n | ------------- | -----------|\n | date       | using (standard time format, or unixtimestamp).... so you could create a method : |\n | time       | using standard time format |\n | datetime   | using  same as date - accepts iso standard or unixtimestamp. |\n | string     | typecast only..\n | int        | cast to integers\n | NULL\/NOTNULL | verifies not null can not be set to null see [sqlValue](#pdo-dataobject\/sqlValue])() |\n \n\n",
                             "|xns": "Roo.doc",
                             "xtype": "Para"
                         }
