@@ -1735,6 +1735,7 @@ class PDO_DataObject
      *
      * NOTE : ALWAYS ENSURE ARGUMENTS ARE ESCAPED
      *
+     * Usage:
      * ```
      * $object->groupBy(); //reset the grouping
      * $object->groupBy("ID DESC");
