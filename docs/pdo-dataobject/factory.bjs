@@ -17,7 +17,7 @@
                     "is_static": true,
                     "is_constructor": false,
                     "memberof": "PDO_DataObject",
-                    "returndesc": "",
+                    "returndesc": "An instance of the extended class wrapping the table",
                     "returntype": "PDO_DataObject",
                     "|xns": "Roo.doc",
                     "xtype": "Synopsis",
@@ -38,7 +38,7 @@
                     "xtype": "Section",
                     "items": [
                         {
-                            "html": " usage: $do = PDO_DataObject::factory('person')\n\n table name can bedatabasename\/table\n - and allow modular dataobjects to be written..\n (this also helps proxy creation)\n\n Experimental Support for Multi-Database factory eg. mydatabase.mytable\n \n",
+                            "html": " usage:\n ```\n $do = PDO_DataObject::factory('person')\n ```\n\n table name can be \"databasename\/table\"\n and allow modular dataobjects to be written..\n (this also helps proxy creation)\n\n \n",
                             "|xns": "Roo.doc",
                             "xtype": "Para"
                         }

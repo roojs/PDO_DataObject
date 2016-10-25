@@ -7,7 +7,7 @@
     "items": [
         {
             "name": "factorySelf",
-            "purpose": " convience version of factory, can be called on an existing",
+            "purpose": " convience version of factory, can be called on an existing \\",
             "stype": "function",
             "|xns": "Roo.doc",
             "xtype": "Entry",
@@ -17,7 +17,7 @@
                     "is_static": false,
                     "is_constructor": false,
                     "memberof": "PDO_DataObject",
-                    "returndesc": "",
+                    "returndesc": "An instance of the extended class wrapping the same table",
                     "returntype": "PDO_DataObject",
                     "|xns": "Roo.doc",
                     "xtype": "Synopsis",
@@ -29,7 +29,7 @@
                     "xtype": "Section",
                     "items": [
                         {
-                            "html": " object to create a clean new instance.\n \n usage:\n $do = PDO_DataObject::factory('person');\n $person = $do->factorySelf();\n\n It's needed, as PHP5 (later versions started enfocing static\/calling etc..)\n\n",
+                            "html": " object to create a clean new instance.\n \n usage:\n ```\n $do = PDO_DataObject::factory('person');\n $person = $do->factorySelf();\n ```\n \n It's needed, as PHP5 (later versions started enfocing static\/calling etc..)\n\n",
                             "|xns": "Roo.doc",
                             "xtype": "Para"
                         }
