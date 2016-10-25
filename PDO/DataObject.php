@@ -730,11 +730,11 @@ class PDO_DataObject
      *
      *
      * @category config
-     * @param   array|string  either a key value array, or the key to set.
-     * @param   mixed  the value to set when using key/value format
+     * @param   array|string (optional) either a key value array, or the key to set.
+     * @param   mixed  (optional) the value to set when using key/value format
      * @static
      * @access  public
-     * @return - the current config..
+     * @return the current config array 
      */
      
     static function config($cfg_in = array(), $value=false) 
