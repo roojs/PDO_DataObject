@@ -4998,7 +4998,7 @@ class PDO_DataObject
      * @param    string  $format eg. map xxxx_name to $object->name using 'xxxx_%s' (defaults to %s - eg. name -> $object->name
      * @param    boolean  $skipEmpty (dont assign empty values if a column is empty (eg. '' / 0 etc...)
      * @access   public
-     * @throws   PDO_DataObject_Exception_Set if properties are not valid.
+     * @throws   PDO_DataObject_Exception_Set if properties are not valid. see [fromValue](#pdo-dataobject/fromValue)
      * @return   PDO_DataObject
      */
     final function set($from, $format = '%s', $skipEmpty=false)
