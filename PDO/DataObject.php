@@ -1701,8 +1701,8 @@ class PDO_DataObject
      * Usage:
      * ```
      * $object->orderBy(); //clears order by
-     * $object->orderBy("ID");
-     * $object->orderBy("ID,age");
+     * $object->orderBy("ID ASC");
+     * $object->orderBy("ID DESC ,age ASC");
      * ```
      *
      * @category build
