@@ -2043,23 +2043,26 @@ class PDO_DataObject
     
     
     /**
-     * Adds a select columns
-     * Chainable Version
+     * Adds a select columns (Chainable Version)
+     * 
      * NOTE : ALWAYS ENSURE ARGUMENTS ARE ESCAPED 
      *
-     * Initial behaviour is slightly different to selectAdd()
-     * when you call select() with an argument the first time, it will remove the default '*' 
+     * the behaviour is slightly different to selectAdd()
+     * when you call select() with an argument the first time, it will remove the default '*',
+     * if you need to include '*', then call it first with `select('*')`
      *
+     * If called multiple times, it will add the 'commas' between the arguments
+     *
+     * Usage:
+     * ```
      * $object->selectAdd(); // resets select to nothing!
      * $object->selectAdd("*"); // default select
      * $object->selectAdd("unixtime(DATE) as udate");
      * $object->selectAdd("DATE");
-     *
-     * to prepend distict:
-     * $object->selectAdd('distinct ' . $object->selectAdd());
+     * ```
      *
      * @category build
-     * @param  string  $k
+     * @param  string  $k the select arguments
      * @access public
      * @return PDO_DataObject self
      */
