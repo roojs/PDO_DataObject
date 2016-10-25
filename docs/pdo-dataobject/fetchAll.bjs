@@ -11,11 +11,11 @@
             "stype": "function",
             "|xns": "Roo.doc",
             "xtype": "Entry",
-            "isConstructor": false,
             "items": [
                 {
                     "name": "fetchAll",
                     "is_static": false,
+                    "is_constructor": false,
                     "memberof": "PDO_DataObject",
                     "returndesc": "format dependant on arguments, may be empty, if using closures, it will return it'self...",
                     "returntype": "array|PDO_DataObject",

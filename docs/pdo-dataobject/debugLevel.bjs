@@ -11,11 +11,11 @@
             "stype": "function",
             "|xns": "Roo.doc",
             "xtype": "Entry",
-            "isConstructor": false,
             "items": [
                 {
                     "name": "debugLevel",
                     "is_static": true,
+                    "is_constructor": false,
                     "memberof": "PDO_DataObject",
                     "returndesc": "",
                     "returntype": "none",

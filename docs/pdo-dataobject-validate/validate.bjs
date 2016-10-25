@@ -11,11 +11,11 @@
             "stype": "function",
             "|xns": "Roo.doc",
             "xtype": "Entry",
-            "isConstructor": false,
             "items": [
                 {
                     "name": "validate",
                     "is_static": false,
+                    "is_constructor": false,
                     "memberof": "PDO_DataObject_Validate",
                     "returndesc": "of validation results (where key=>value, value=false|object if it failed) or true (if they all succeeded)",
                     "returntype": "array",

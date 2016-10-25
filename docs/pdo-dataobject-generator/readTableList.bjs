@@ -11,11 +11,11 @@
             "stype": "function",
             "|xns": "Roo.doc",
             "xtype": "Entry",
-            "isConstructor": false,
             "items": [
                 {
                     "name": "readTableList",
                     "is_static": false,
+                    "is_constructor": false,
                     "memberof": "PDO_DataObject_Generator",
                     "returndesc": "of tables",
                     "returntype": "Array",

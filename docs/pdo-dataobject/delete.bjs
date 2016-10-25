@@ -11,11 +11,11 @@
             "stype": "function",
             "|xns": "Roo.doc",
             "xtype": "Entry",
-            "isConstructor": false,
             "items": [
                 {
                     "name": "delete",
                     "is_static": false,
+                    "is_constructor": false,
                     "memberof": "PDO_DataObject",
                     "returndesc": "Int (No. of rows affected) on success, false on failure, 0 on no data affected",
                     "returntype": "mixed",

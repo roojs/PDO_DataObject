@@ -11,11 +11,11 @@
             "stype": "function",
             "|xns": "Roo.doc",
             "xtype": "Entry",
-            "isConstructor": false,
             "items": [
                 {
                     "name": "query",
                     "is_static": false,
+                    "is_constructor": false,
                     "memberof": "PDO_DataObject",
                     "returndesc": "it'self, or the number of rows affected (insert|update|delete)",
                     "returntype": "PDO_DataObject|int",

@@ -11,11 +11,11 @@
             "stype": "function",
             "|xns": "Roo.doc",
             "xtype": "Entry",
-            "isConstructor": false,
             "items": [
                 {
                     "name": "autoJoin",
                     "is_static": false,
+                    "is_constructor": false,
                     "memberof": "PDO_DataObject",
                     "returndesc": "info about joins\n       + cols:        map of resulting {joined_tablename}.{joined_table_column_name}\n       + join_names:  map of resulting {join_name_as}.{joined_table_column_name}\n       + count:       the column to count on.",
                     "returntype": "array",

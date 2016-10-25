@@ -11,11 +11,11 @@
             "stype": "function",
             "|xns": "Roo.doc",
             "xtype": "Entry",
-            "isConstructor": false,
             "items": [
                 {
                     "name": "update",
                     "is_static": false,
+                    "is_constructor": false,
                     "memberof": "PDO_DataObject",
                     "returndesc": "Number rows affected (may be 0), true (if no difference between old\/new), false",
                     "returntype": "int|true",

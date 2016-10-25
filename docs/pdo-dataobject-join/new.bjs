@@ -11,11 +11,11 @@
             "stype": "function",
             "|xns": "Roo.doc",
             "xtype": "Entry",
-            "isConstructor": true,
             "items": [
                 {
                     "name": "__construct",
                     "is_static": false,
+                    "is_constructor": true,
                     "memberof": "PDO_DataObject_Join",
                     "returndesc": "",
                     "returntype": "",

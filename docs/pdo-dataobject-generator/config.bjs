@@ -11,11 +11,11 @@
             "stype": "function",
             "|xns": "Roo.doc",
             "xtype": "Entry",
-            "isConstructor": false,
             "items": [
                 {
                     "name": "config",
                     "is_static": true,
+                    "is_constructor": false,
                     "memberof": "PDO_DataObject_Generator",
                     "returndesc": "the current config (or previous value\/config)",
                     "returntype": "-",

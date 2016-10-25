@@ -11,11 +11,11 @@
             "stype": "function",
             "|xns": "Roo.doc",
             "xtype": "Entry",
-            "isConstructor": false,
             "items": [
                 {
                     "name": "getLink",
                     "is_static": false,
+                    "is_constructor": false,
                     "memberof": "PDO_DataObject_Links",
                     "returndesc": "object on success false on failure or '0' when not linked",
                     "returntype": "mixed",

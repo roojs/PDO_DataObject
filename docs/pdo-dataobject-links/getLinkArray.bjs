@@ -11,11 +11,11 @@
             "stype": "function",
             "|xns": "Roo.doc",
             "xtype": "Entry",
-            "isConstructor": false,
             "items": [
                 {
                     "name": "getLinkArray",
                     "is_static": false,
+                    "is_constructor": false,
                     "memberof": "PDO_DataObject_Links",
                     "returndesc": "- array of results (empty array on failure)",
                     "returntype": "array",
