@@ -7,7 +7,7 @@
     "items": [
         {
             "name": "select",
-            "purpose": " Adds a select columns",
+            "purpose": " Adds a select columns (Chainable Version)",
             "stype": "function",
             "|xns": "Roo.doc",
             "xtype": "Entry",
@@ -23,7 +23,7 @@
                     "xtype": "Synopsis",
                     "items": [
                         {
-                            "desc": "$k",
+                            "desc": "the select arguments",
                             "is_optional": false,
                             "name": "$k",
                             "type": "string",
@@ -38,7 +38,7 @@
                     "xtype": "Section",
                     "items": [
                         {
-                            "html": " Chainable Version\n NOTE : ALWAYS ENSURE ARGUMENTS ARE ESCAPED \n\n Initial behaviour is slightly different to selectAdd()\n when you call select() with an argument the first time, it will remove the default '*' \n\n $object->selectAdd(); \/\/ resets select to nothing!\n $object->selectAdd(\"*\"); \/\/ default select\n $object->selectAdd(\"unixtime(DATE) as udate\");\n $object->selectAdd(\"DATE\");\n\n to prepend distict:\n $object->selectAdd('distinct ' . $object->selectAdd());\n\n",
+                            "html": " \n NOTE : ALWAYS ENSURE ARGUMENTS ARE ESCAPED \n\n the behaviour is slightly different to selectAdd()\n when you call select() with an argument the first time, it will remove the default '*',\n if you need to include '*', then call it first with `select('*')`\n\n If called multiple times, it will add the 'commas' between the arguments\n\n Usage:\n ```\n $object->selectAdd(); \/\/ resets select to nothing!\n $object->selectAdd(\"*\"); \/\/ default select\n $object->selectAdd(\"unixtime(DATE) as udate\");\n $object->selectAdd(\"DATE\");\n ```\n\n",
                             "|xns": "Roo.doc",
                             "xtype": "Para"
                         }

@@ -7,7 +7,7 @@
     "items": [
         {
             "name": "modifyLimitQuery",
-            "purpose": " modifyLimitQuery - modifies an sql query, filling in the limit's as defined in _query[limit_start \/ limit_count]",
+            "purpose": " modifies an sql query, filling in the limit's as defined in _query[limit_start \/ limit_count]",
             "stype": "function",
             "|xns": "Roo.doc",
             "xtype": "Entry",
@@ -17,7 +17,7 @@
                     "is_static": false,
                     "is_constructor": false,
                     "memberof": "PDO_DataObject",
-                    "returndesc": "- the modified string",
+                    "returndesc": "the modified string",
                     "returntype": "string",
                     "|xns": "Roo.doc",
                     "xtype": "Synopsis",
@@ -31,7 +31,7 @@
                             "xtype": "Param"
                         },
                         {
-                            "desc": "- is the query a manipluation?",
+                            "desc": "is the query a manipluation?",
                             "is_optional": false,
                             "name": "$manip",
                             "type": "bool",
@@ -46,7 +46,7 @@
                     "xtype": "Section",
                     "items": [
                         {
-                            "html": " Note: the original code does determine \n\n \n",
+                            "html": " This is used internally to modify the SELECT query to apply rules about limiting the resultsets.\n You should not need to use this normally - it's just publicly available as it's pretty harmless...\n\n \n",
                             "|xns": "Roo.doc",
                             "xtype": "Para"
                         }
