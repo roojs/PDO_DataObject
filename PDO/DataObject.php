@@ -4902,8 +4902,8 @@ class PDO_DataObject
      * @param    string  $format eg. map xxxx_name to $object->name using 'xxxx_%s' (defaults to %s - eg. name -> $object->name
      * @param    boolean  $skipEmpty (dont assign empty values if a column is empty (eg. '' / 0 etc...)
      * @access   public
-     * @throws  PDO_DataObject_Exception if tableColumns return empty..
-     * @return   true on success or array of key=>setValue error message retured from 
+     * @throws   PDO_DataObject_Exception if tableColumns return empty..
+     * @return   mixed true on success or array of key=>setValue error message retured from 
      */
     final function setFrom($from, $format = '%s', $skipEmpty=false)
     {
