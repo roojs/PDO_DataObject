@@ -2014,7 +2014,7 @@ class PDO_DataObject
      * ```
      * 
      * @category build
-     * @param  string  $k the arugment to add
+     * @param  string  $k the argument to add
      * @access public
      * @return mixed null or old string if you reset it.
      */
