@@ -4979,7 +4979,7 @@ class PDO_DataObject
     * @category build
     * @param   string       column of database
     * @param   mixed        value to assign
-    * @return   string|bool     (String on error)
+    * @return   string|bool     String on error, true on success
     * @access   public
     */
   
