@@ -54,7 +54,7 @@
                     "xtype": "Section",
                     "items": [
                         {
-                            "html": " If errors occur on set** methods, then $this->_set_errors will be set to the problem, and an exception is thrown.\n\n",
+                            "html": " If errors occur on set** methods, then $this->_set_errors will be set to the problem, and an exception is thrown.\n\n Usage:\n ```\n $do->set([ name => 'fred', age => 12]);\n $do->set([ xxx_name => 'fred', xxx_age => 12], 'xxx_%s');\n ```\n \n\n",
                             "|xns": "Roo.doc",
                             "xtype": "Para"
                         }
@@ -69,6 +69,18 @@
                     "stype": "return",
                     "|xns": "Roo.doc",
                     "xtype": "Section"
+                },
+                {
+                    "stype": "throws",
+                    "|xns": "Roo.doc",
+                    "xtype": "Section",
+                    "items": [
+                        {
+                            "|xns": "Roo.doc",
+                            "xtype": "para",
+                            "html": "PDO_DataObject_Exception_Set if properties are not valid. see [fromValue](#pdo-dataobject\/fromValue)"
+                        }
+                    ]
                 }
             ]
         }

@@ -23,7 +23,7 @@
                     "xtype": "Synopsis",
                     "items": [
                         {
-                            "desc": "the arugment to add",
+                            "desc": "the argument to add",
                             "is_optional": false,
                             "name": "$k",
                             "type": "string",

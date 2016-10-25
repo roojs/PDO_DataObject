@@ -53,6 +53,18 @@
                     "stype": "return",
                     "|xns": "Roo.doc",
                     "xtype": "Section"
+                },
+                {
+                    "stype": "throws",
+                    "|xns": "Roo.doc",
+                    "xtype": "Section",
+                    "items": [
+                        {
+                            "|xns": "Roo.doc",
+                            "xtype": "para",
+                            "html": "PDO_Dataobject_Exception"
+                        }
+                    ]
                 }
             ]
         }
