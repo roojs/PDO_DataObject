@@ -2968,7 +2968,7 @@ class PDO_DataObject
      * 
      * @category build
      * @param  string  $string  value to be escaped 
-     * @param  bool $likeEscape  escapes % and _ as well. - so like queries can be protected.
+     * @param  bool $likeEscape  escapes % and _ as well. - so LIKE queries can be protected.
      * @access public
      * @return string
      */
