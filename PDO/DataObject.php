@@ -4993,6 +4993,13 @@ class PDO_DataObject
      *
      * If errors occur on set** methods, then $this->_set_errors will be set to the problem, and an exception is thrown.
      *
+     * Usage:
+     * ```
+     * $do->set([ name => 'fred', age => 12]);
+     * $do->set([ xxx_name => 'fred', xxx_age => 12], 'xxx_%s');
+     * ```
+     * 
+     *
      * @category build
      * @param    array | object  $from
      * @param    string  $format eg. map xxxx_name to $object->name using 'xxxx_%s' (defaults to %s - eg. name -> $object->name
