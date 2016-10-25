@@ -48,11 +48,6 @@
                     "stype": "parameter",
                     "|xns": "Roo.doc",
                     "xtype": "Section"
-                },
-                {
-                    "stype": "return",
-                    "|xns": "Roo.doc",
-                    "xtype": "Section"
                 }
             ]
         }
