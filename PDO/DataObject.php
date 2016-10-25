@@ -1939,17 +1939,20 @@ class PDO_DataObject
     /**
      * Sets the Limit (Chainable)
      *
-     * $boject->limit(); // clear limit - returns 'previous settings.
+     * Usage:
+     * ```
+     * $object->limit(); // clear limit - returns 'previous settings.
      * $object->limit(12);
      * $object->limit(12,10);
-     *
-     * Note may result in an error on databases other than mysql/postgress/sqlite
+     * ```
+     * 
+     * Note may result in an error on databases other than mysql/postgresql/sqlite
      * as there is no 'clean way' to implement it. - you should consider refering to
      * your database manual to decide how you want to implement it.
      
      * @category build
-     * @param  string $a  limit start (or number), or blank to reset
-     * @param  string $b  number
+     * @param  string $a  limit start (or number of results), or blank to reset
+     * @param  string $b  number or results
      * @access public
      * @return self  (for chaining) - except 'reset' call
      */
