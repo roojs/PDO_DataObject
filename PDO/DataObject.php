@@ -2963,7 +2963,7 @@ class PDO_DataObject
      * ```
      * $object->query("select * from xyz where abc like '". $object->escape($_GET['name']) . "'");
      * ```
-     *      *
+     *      
      * return value excludes the outer quotes - use `$do->PDO->quote($string)` - if you want to include them.
      * 
      * @category build
