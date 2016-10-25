@@ -683,60 +683,46 @@ class PDO_DataObject
      *                  /home/me/Projects/myapplication/DataObjects_%2$s%1$s.php  (%1$s==table) (%2$s==database nickname) <br/>\
      *                  and %s gets replaced with the tablename. <br/>\
      *                  to use multiple search paths use the PATH_SEPERATOR <br/>\
-     * | proxy | string |  false | 
-     *                 // NOT RECOMMENDED - it's very slow!!!!
-     *                 // normally we use pre-created 'ini' files, but if you use proxy, it will generate the
-     *                 // the database schema on the fly..
-     *                 // true - calls PDO_DataObject_Generator-> ???
-     *                 // full - generates dataobjects when you call factory...
-     *                 // YourClass::somemethod... --- calls some other method to generate proxy..
+     * | proxy | mixed |  false | \
+     *                  NOT RECOMMENDED for normal usage, it's very slow!!!! <br/>\
+     *                  normally we use pre-created 'ini' files, but if you use proxy, it will generate the the database schema on the fly.. |
+     * |       |       | true  | calls PDO_DataObject_Generator for schema |
+     * |       |       | 'full'|  generates dataobjects when you call factory... |
+     * |       |       | 'YourClass::somemethod' |  calls some other method to generate proxy.. |
      *             
      *             
-     *             
-     *             'portability' => 0,
-     *                 // similar to DB's portability setting,
-     *                 // currently it only lowercases the tablename when you call tableName(), and
-     *                 // flatten's ini files ..
-     *             
-     *             'transactions' => true,
-     *                 // some databases, like sqlite do not support transactions, so if you have code that
-     *                 // uses transactions, and you want DataObjects to ignore the BEGIN/COMMIT/ROLLBACK etc..
-     *                 // then set this to false, otherwise you will get errors.
+     *  ### SQL Generation
+     * | Option | Type | Default | Description |
+     * | --- | --- | --- | ---  |
+     * | portability | Number | 0 |  similar to DB's portability setting <br/>\
+     *                  currently it only lowercases the tablename when you call tableName(), and \
+     *                 flatten's ini files .. |
+     * | transactions | boolean |  true |  \
+     *               some databases, like sqlite do not support transactions, so if you have code that \ 
+     *               uses transactions, and you want DataObjects to ignore the BEGIN/COMMIT/ROLLBACK etc.. \
+     *               then set this to false, otherwise you will get errors. |
+     * | quote_identifiers | boolean | false | Quote table and column names when building queries  |
+     * | enable_null_strings | mixed | false |  This is only for BC support - <br/>\
+     *                  previously you could use 'null' as a string to represent a NULL, or even null  <br/>\
+     *                  however this behaviour is very problematic. <br/>\
+     *                 <br/>\
+     *                 if you want or needto use NULL in your database: <br/>\
+     *                  use PDO_DataObject::sqlValue('NULL'); <br/>\
+     *                 <br/>\
+     * 		            BC - not recommended for new code... <br/>\
+     *                  values true  means  'NULL' as a string is supported      <br/>\
+     *                  values 'full' means both 'NULL' and guessing with isset() is supported |
+     *                 
+     *                 
+     * ### Performance and debugging
+     * | Option     | Type | Default | Description |
+     * | --- | ---  | ---      | ---  |
+     * | fetch_into | boolean | false |  use PDO's fetch_INTO for performance... - not sure what other effects this may have.. |
+     * | debug      | mixed | 0 |  debuging see #pdo-dataobject-debugLevel |
+     * | PDO        | string | 'PDO' | what class to use as PDO - PDO_Dummy is used for the unittests |
      * 
-     *             'quote_identifiers' => false,
-     *                 // Quote table and column names when building queries 
-     *  
-     *             'enable_null_strings' => false,
-     *                 // This is only for BC support - 
-     *                 // previously you could use 'null' as a string to represent a NULL, or even null 
-     *                 // however this behaviour is very problematic.
-     *                 // 
-     *                 // if you want or needto use NULL in your database:
-     *                 // use PDO_DataObject::sqlValue('NULL');
-     * 
-     * 		            // BC - not recommended for new code...
-     *                 // values true  means  'NULL' as a string is supported      
-     *                 // values 'full' means both 'NULL' and guessing with isset() is supported
-     *                 
-     *                 
-     *         //  NEW ------------   peformance 
-     *              
-     *             'fetch_into' => false,
-     *                 // use PDO's fetch_INTO for performance... - not sure what other effects this may have..
-     *             
-     *             // -----   behavior
-     *  
-     *                 
-     *             'debug' => 0,
-     *                 // debuging - only relivant on initialization - modifying it after, may be ignored.
-     *                 
-     *             'PDO' => 'PDO',  
-     *                 // what class to use as PDO - we use PDO_Dummy for the unittests
-     * 
-     *      
-        
-     
-     
+     *
+     *
      * @category config
      * @param   array  key/value 
      * @param   mixed value 
