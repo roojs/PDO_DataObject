@@ -2086,10 +2086,10 @@ class PDO_DataObject
      *
      * Usage:
      * ```
-     * $object->selectAs(null);
+     * $object->selectAs( );
      * ```
      * adds "table.colnameA as colnameA,table.colnameB as colnameB,......"
-     * note with null it will also clear the '*' default select
+     * note it will also clear the '*' default select
      *
      * ```
      * $object->selectAs(array('a','b'),'%s_x');
