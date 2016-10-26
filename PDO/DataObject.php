@@ -4219,7 +4219,8 @@ class PDO_DataObject
     /**
      * joinAdd - adds another dataobject to this, building a joined query.
      *
-     * example (requires links.ini to be set up correctly)
+     * Usage: (requires links.ini to be set up correctly)
+     * ```
      * // get all the images for product 24
      * $i = new DataObject_Image();
      * $pi = new DataObjects_Product_image();
@@ -4229,6 +4230,7 @@ class PDO_DataObject
      * while ($i->fetch()) {
      *     // do stuff
      * }
+     * 
      * // an example with 2 joins
      * // get all the images linked with products or productgroups
      * $i = new DataObject_Image();
@@ -4240,7 +4242,7 @@ class PDO_DataObject
      * while ($i->fetch()) {
      *     // do stuff
      * }
-     *
+    * ```
      *
      * @param    optional $obj       string | object |array    the joining object (no value resets the join)
      *                                          If you use an array here it should be in the format:
