@@ -5302,7 +5302,7 @@ class PDO_DataObject
      * is usefull if you use it with things like QuickForms.
      *
      * you can use the format to return things like user[key]
-     * by sending it $object->toArray('user[%s]')
+     * by sending it `$object->toArray('user[%s]')`
      *
      * will also return links converted to arrays.
      *
