@@ -3464,6 +3464,8 @@ class PDO_DataObject
      *     'name' => 130
      *     ....
      * ]
+     * Keys are the column names, values are the types
+     * see PDO_DataObject constants
      *
      * @category introspect
      * @access public
