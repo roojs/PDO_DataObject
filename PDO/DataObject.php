@@ -4024,6 +4024,7 @@ class PDO_DataObject
     * 'local_col_name'=> 'related_tablename:related_col_name',
     * 'local_col_name'=> 'related_tablename:related_col_name'
     * ]
+    * ```
     * 
     * @category join
     * @param    array $new_links optional - if used it will only set it for the current instance, not globally, 
