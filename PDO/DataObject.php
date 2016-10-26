@@ -3503,13 +3503,14 @@ class PDO_DataObject
      * Set the keys on the table
      * ```
      * $mytable->keys('mytable_id');
+     * ```
      *
      * This is defined in the table definition if it gets it wrong,
      * or you do not want to use ini tables, you can override this.
      *
      * @category introspect
      * @param  string optional set the key
-     * @param  *   optional  set more keys
+     * @param  ...   optional  set more keys
      * @access public
      * @return array
      */
