@@ -2722,6 +2722,7 @@ class PDO_DataObject
      *      ->save()
      * ```  
      * This will only update the changed column.  as load() calls snapshot on the loaded data.
+     * 
      *
      * @category crud
      *  Uses primary id to determine if data should be updated or inserted.
@@ -2745,11 +2746,24 @@ class PDO_DataObject
         return $this;
     }
     /**
-     *  snapshot the objects state (for updating later)
-     *  Chainable
+     *  snapshot the objects state (for updating later) (Chainable)
      *
      *  When you use 'update' or save, this makes a copy, so you do not need to clone/pass arguments to save or
-     *  
+     *
+     *  It is automatically called when you use `load()`
+     *
+     *  Looping through results, and updating each row..
+     *  ```
+     *  foreach(PDO_DataObject::factory('mytable');
+     *      ->fetchAll(23)
+     *      as $obj) {
+     *      
+     *        $obj->snapshot()
+     *          ->set([age => $obj->age + 1])
+     *          ->save(); 
+     *   }
+     * ```
+     *   
      * @category crud
      * @returns PDO_DAtaObject  self
      * 
