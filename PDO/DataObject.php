@@ -1235,7 +1235,7 @@ class PDO_DataObject
      * @category fetch
      * @throws PDO_DataObject_Exception called without query being run 
      * @access  public
-     * @return  boolean on success
+     * @return  boolean true on success, false on falure (usually no more data..)
      */
     final function fetch()
     {
