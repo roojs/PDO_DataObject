@@ -1039,12 +1039,15 @@ class PDO_DataObject
      * {table}_id as the column name.
      *
      * To save a bit of typing,
+     * ```
+     * $id = $do->pid();
+     * ```
      *
      * @category results
-     * $id = $do->pid();
+     * 
      * 
      * @throws PDO_DataObject_Exception (if the table does not have a pid or is called before insert.)
-     * @return the value of the column that is the primary id
+     * @return integer the value of the column that is the primary id
      */
     final function pid()
     {
