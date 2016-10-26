@@ -3411,7 +3411,8 @@ class PDO_DataObject
     
     /**
      * Return or assign the nickname of the current database
-     * If you need the real database - use PDO()->dsn['database_name']
+     *
+     * If you need the real database - use `$do->PDO()->dsn['database_name']`
      *
      * @category introspect
      * @param   string optional database name to set
