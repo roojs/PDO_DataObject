@@ -4244,7 +4244,7 @@ class PDO_DataObject
      * }
      * ```
      *
-     * if the first argement is an associative array, then the keys can be the argument names,
+     * if the second argement is an associative array, then the keys can be the argument names,
      * and you can also use `'useWhereAsOn' => true` to convert the where argments from the object being added \
      *                                          into ON arguments.
      *
@@ -4264,12 +4264,12 @@ class PDO_DataObject
      *                                          <br/>
      *                                          If second Argument is array, it is assumed to be an associative
      *                                          array with arguments matching below = eg.
-     *                                          ```
+     *                                          
      *                                          'joinType' => 'INNER',
      *                                          'joinAs' => '...'
      *                                          'joinCol' => ....
      *                                          'useWhereAsOn' => false,
-     *                                          ```
+     *                                          
      *
      * @param    string$joinAs         (optional ) if you want to select the table as anther name
      *                                          useful when you want to select multiple columsn
