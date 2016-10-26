@@ -1058,7 +1058,11 @@ class PDO_DataObject
 
 
     /**
-     * build the basic select query. (was _build_select)
+     * build the basic select query.
+     *
+     * Used to be called _build_select.
+     *
+     * Can be used to test the SQL generation, or build nested queries using multiple objects.
      *
      * @category build
      * @return string the SQL select query built from the properties.
@@ -4864,7 +4868,7 @@ class PDO_DataObject
      *
      * Cast Objects represent database values, that can not be represented using simple PHP types,
      *
-     * For example RAW sql calls like NOW() or database methods or database 'NULL'
+     * For example RAW sql calls like `NOW()` or database methods or database `'NULL'`
      *
      * if used with 1 argument `PDO_DataObject_Cast::sql($value)` is called
      * 
@@ -4875,10 +4879,8 @@ class PDO_DataObject
      * ```
      * $member->updated = $member->sqlValue('NOW()');
      * $member->blob_data = $member->sqlValue('some_file_location', 'blob');
-     * 
      * ```
      * 
-     * might handle more arguments for escaping later...
      *
      * @category build
      * @static
