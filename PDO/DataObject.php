@@ -4011,15 +4011,20 @@ class PDO_DataObject
     
     /**
     * Get the links associate array  as defined by the links.ini file.
+    * 
     * mapping the foreign key relationships (which MAY NOT be enforced by the database)
     *
-    * Will attempt to load the file
+    * Will attempt to load the ini file (if not done already)
     *   This can be over-ridden rather than using links.ini files...
     *
-    * Experimental... - 
-    * Should look a bit like
-    *       [local_col_name] => "related_tablename:related_col_name"
-    *
+    
+    * returns data like this.
+    * ```
+    * [
+    * 'local_col_name'=> 'related_tablename:related_col_name',
+    * 'local_col_name'=> 'related_tablename:related_col_name'
+    * ]
+    * 
     * @category join
     * @param    array $new_links optional - if used it will only set it for the current instance, not globally, 
                            use databaseStructure if you need to do that.
