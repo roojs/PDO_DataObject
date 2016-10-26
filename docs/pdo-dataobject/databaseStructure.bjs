@@ -23,34 +23,34 @@
                     "xtype": "Synopsis",
                     "items": [
                         {
-                            "desc": "string  name of database to assign \/ read",
+                            "desc": "(optional) name of database to assign \/ read",
                             "is_optional": false,
                             "name": "$database_nickname",
-                            "type": "optional",
+                            "type": "string",
                             "|xns": "Roo.doc",
                             "xtype": "Param"
                         },
                         {
-                            "desc": "array|false   structure of database, and keys",
+                            "desc": "(optional) structure of database, and keys",
                             "is_optional": false,
                             "name": "$inidata",
-                            "type": "optional",
+                            "type": "false",
                             "|xns": "Roo.doc",
                             "xtype": "Param"
                         },
                         {
-                            "desc": "array|false  table links",
+                            "desc": "(optional) table links",
                             "is_optional": false,
                             "name": "$linksdata",
-                            "type": "optional",
+                            "type": "false",
                             "|xns": "Roo.doc",
                             "xtype": "Param"
                         },
                         {
-                            "desc": "bool overwrite - normally the first two will just append",
+                            "desc": "(optional)  normally the first two will just append",
                             "is_optional": false,
                             "name": "$overwrite",
-                            "type": "optional",
+                            "type": "bool",
                             "|xns": "Roo.doc",
                             "xtype": "Param"
                         }
@@ -62,7 +62,7 @@
                     "xtype": "Section",
                     "items": [
                         {
-                            "html": " usage :\n 1 argument - forces generator run..\n PDO_DataObject::databaseStructure(  'databasename')\n\n 2 argument - just returns the database structure - if any.\n PDO_DataObject::databaseStructure(  'databasename', false)\n \n \n 2 arguments:\n PDO_DataObject::databaseStructure(  'databasename', parse_ini_file('mydb.ini',true))\n  - set's the structure..\n  \n 3 arguments:\n PDO_DataObject::databaseStructure(  'databasename',\n                                    parse_ini_file('mydb.ini',true), \n                                    parse_ini_file('mydb.link.ini',true)); \n    \n obviously you dont have to use ini files.. (just return array similar to ini files..)\n  \n It should append to the table structure array \n\n     \n\n",
+                            "html": " usage :\n 1 argument - forces generator run..\n ```\n PDO_DataObject::databaseStructure(  'databasename')\n ```\n \n 2 argument - just returns the database structure - if any.\n```\n PDO_DataObject::databaseStructure(  'databasename', false)\n ```\n \n 2 arguments - set's the structure..\n ```\n PDO_DataObject::databaseStructure(  'databasename', parse_ini_file('mydb.ini',true))\n ```\n  \n 3 arguments:\n ```\n PDO_DataObject::databaseStructure(  'databasename',\n                                    parse_ini_file('mydb.ini',true), \n                                    parse_ini_file('mydb.link.ini',true)); \n ```\n obviously you dont have to use ini files.. (just return array similar to ini files..)\n  \n It should append to the table structure array \n\n     \n\n",
                             "|xns": "Roo.doc",
                             "xtype": "Para"
                         }
