@@ -1901,9 +1901,9 @@ class PDO_DataObject
      * 
      * 
      * @category build
-     * @param             $obj       object|false the union object, or false to reset
-     * @param    optional $is_all    string 'ALL' to do all.
-     * @returns           $obj       object|array the added object, or old list if reset.
+     * @param     object|false         $obj        the union object, or false to reset
+     * @param   string  $is_all  (optional)   'ALL' to do all.
+     * @returns   object|array        $obj        the added object, or old list if reset.
      */
     
     final function unionAdd($obj,$is_all= '')
