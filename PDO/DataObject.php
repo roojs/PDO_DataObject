@@ -2781,7 +2781,7 @@ class PDO_DataObject
      *             Default is to build the condition only using the object parameters.
      *
      * @access public
-     * @return mixed Int (No. of rows affected) on success, false on failure, 0 on no data affected
+     * @return mixed Number of rows affected on success, false on failure, 0 on no data affected
      */
     final function delete($useWhere = false)
     {
