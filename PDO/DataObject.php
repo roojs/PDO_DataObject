@@ -3191,10 +3191,8 @@ class PDO_DataObject
      *                                    parse_ini_file('mydb.ini',true), 
      *                                    parse_ini_file('mydb.link.ini',true)); 
      * ```
-     * obviously you dont have to use ini files.. (just return array similar to ini files..)
+     * if you dont have to use ini files.. (just return array similar to ini files..)
      *  
-     * It should append to the table structure array 
-     *
      *     
      * @param string       $database_nickname (optional) name of database to assign / read
      * @param array|false  $inidata (optional) structure of database, and keys
