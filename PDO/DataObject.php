@@ -1377,75 +1377,93 @@ class PDO_DataObject
      * fetches all results as an array,
      *
      * return format is dependant on args.
+     * 
      * if selectAdd() has not been called on the object, then it will add the correct columns to the query.
      *
      *
      * A) ONE COLUMN ARRAY - Array of values (eg. a list of 'id')
-     *
+     * ```
      * $x = PDO_DataObject::factory('mytable');
      * $x->whereAdd('something = 1')
      * $ar = $x->fetchAll('id');
-     * -- returns array(1,2,3,4,5)
-     *
+     * 
+     * // returns array(1,2,3,4,5)
+     * ```
+     * 
      * B) ONE COLUMN ARRAY - Fetch the first column (1st argument = true)
-     *
+     * ```
      * $x = PDO_DataObject::factory('mytable');
      * $x->select('id')
      * $x->whereAdd('something = 1')
      * $ar = $x->fetchAll(true);
-     * -- returns array(1,2,3,4,5)
-    
+     * 
+     * // returns array(1,2,3,4,5)
+     * ```
      * C) ONE COLUMN ARRAY - Array of values (using selectAdd)
-     *
+     * ```
      * $x = PDO_DataObject::factory('mytable');
      * $x->whereAdd('something = 1');
      * $x->select('distinct(group_id) as group_id');
      * $ar = $x->fetchAll('group_id');
-     * -- returns array(1,2,3,4,5)
-     *
+     * 
+     * // returns array(1,2,3,4,5)
+     * ```
      *
      * 
      * D) ASSOCIATIVE ARRAY - A key=>value associative array
-     *
+     * ```
      * $x = PDO_DataObject::factory('mytable');
      * $x->whereAdd('something = 1')
      * $ar = $x->fetchAll('id','name');
-     * -- returns array(1=>'fred',2=>'blogs',3=> .......
-     *
+     * 
+     * // returns array(1=>'fred',2=>'blogs',3=> .......
+     * ```
      * 
      * E) array of objects -- NO ARGUMENTS
+     * ```
      * $x = PDO_DataObject::factory('mytable');
      * $x->whereAdd('something = 1');
      * $ar = $x->fetchAll();
-     
-     * F) array of objects -- USING property as key (eg. {
+     * ```
+     *      
+     * F) array of objects -- USING property as key 
+     * ```
      * $x = PDO_DataObject::factory('mytable');
      * $ar = $x->fetchAll(false, 'email');
-     *   results in  [ { fred@example.com=> {object} }, {brian@example.com=> {object} }, .... ]
-     *
-
-     * G) array of objects -- USING primary as key (eg. {
+     * 
+     * //  results in  [ { fred@example.com=> {object} }, {brian@example.com=> {object} }, .... ]
+     * ```
+     * 
+     * G) array of objects -- USING primary as key 
+     * ```
      * $x = PDO_DataObject::factory('mytable');
      * $ar = $x->fetchAll(false, true);
-     *   results in  [ 23=> {object} }, 24=> {object} }, .... ]
+     * 
+     * //  results in  [ 23=> {object} }, 24=> {object} }, .... ]
+     *```
      *
-
-
      * H) interable via closure  (closure is called with a clone as scope?)
+     * ```
      * $x = PDO_DataObject::factory('mytable');
      * $ar = $x->fetchAll(function () { $this->snapshot()->set(['xxx' => 2])->update(); } );
+     * ```
 
      * I) array of associative arrays - No child dataobjects created... fetchAllAssoc()
+     * ```
      * $x = PDO_DataObject::factory('mytable');
      * $x->whereAdd('something = 1');
      * $ar = $x->fetchAll(false,false, true);
-     *  returns [ { a=>1 }, {a=>2}, .... ]
+     *
+     * // returns [ { a=>1 }, {a=>2}, .... ]
+     * ```
      *
      * J) array of associative arrays call by method...
+     * ```
      * $x = PDO_DataObject::factory('mytable');
      * $x->whereAdd('something = 1');
      * $ar = $x->fetchAll(false,false,'toArray');
-     *
+     * ```
+     * 
      * @category fetch
      * @param    string|false  $k key
      * @param    string|false  $v value
