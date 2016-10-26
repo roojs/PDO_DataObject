@@ -1005,19 +1005,18 @@ class PDO_DataObject
      }
     
    /**
-     * reload (usually called after update or insert)
-     * Chainable.
+     * reload the data into the object, usually called after update or insert (Chainable)
      *
-     * for example
+     * Usage:
+     * ```
      * $object->joinAll()
      *        ->load(1234)
      *        ->set([ 'ex_datetime' => PDO_DataObject::sqlValue('sql', 'NOW()') ])
      *        ->update()
      *        ->reload(true)
-     * 
-    
-     *    
+     * ```
      * It enables you to work on the data after the database has done the update.
+     * And have the object reflect the current state of the object in the database.
      *
      * @category fetch
      * @param  $autojoin  should auto join be done on the 
