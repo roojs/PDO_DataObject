@@ -4952,14 +4952,18 @@ class PDO_DataObject
      * 
      * see [autoJoin](#pdo-dataobject/autoJoin) for more details.
      *
+     *  * | Key | Description |
+     * | --- | ------------|
+     * | exclude |  Array of columns to exclude from results (eg. modified_by_id) <br/>\
+     *                    Use TABLENAME.* to prevent a join occuring to a specific table. |
+     * | include |  Array of specific columns to include (none others are added to select, join is still done though) |
+     * | links |   The equivilant links.ini data for this table eg. <br/>\
+     *                    `array( 'person_id' => 'person:id', .... )` <br/>\
+     *                      only applied to this instance of the DataObject (used to be applied globally)
+     *  | distinct | Array of distinct columns. (note you may need to add GROUP BY for this to work) |
+     *
      * @category join
-     * @param     array     Configuration
-     *          exclude  Array of columns to exclude from results (eg. modified_by_id)
-     *                    Use TABLENAME.* to prevent a join occuring to a specific table.
-     *          links    The equivilant links.ini data for this table eg.
-     *                    array( 'person_id' => 'person:id', .... )
-     *          include  Array of columns to include
-     *          distinct Array of distinct columns.
+     * @param     array     Configuration (see aboe)
      *          
      * @return   PDO_DataObject self
      * @access   public
