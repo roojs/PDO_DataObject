@@ -18,7 +18,7 @@
                     "is_constructor": false,
                     "memberof": "PDO_DataObject",
                     "returndesc": "",
-                    "returntype": "none",
+                    "returntype": "",
                     "|xns": "Roo.doc",
                     "xtype": "Synopsis",
                     "items": []

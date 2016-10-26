@@ -38,7 +38,7 @@
                     "xtype": "Section",
                     "items": [
                         {
-                            "html": "",
+                            "html": " Example:\n ```\n returns [\n     'id' => 129\n     'name' => 130\n     ....\n ]\n Keys are the column names, values are the types\n see PDO_DataObject constants\n\n",
                             "|xns": "Roo.doc",
                             "xtype": "Para"
                         }

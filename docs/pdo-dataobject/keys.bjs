@@ -46,7 +46,7 @@
                     "xtype": "Section",
                     "items": [
                         {
-                            "html": " set usage: $do->keys('id','code');\n\n This is defined in the table definition if it gets it wrong,\n or you do not want to use ini tables, you can override this.\n\n",
+                            "html": " Query the keys (usually primary keys) in table:\n ```\n $do->keys();\n ```\n\n Set the keys on the table\n ```\n $mytable->keys('mytable_id');\n ```\n\n This is defined in the table definition if it gets it wrong,\n or you do not want to use ini tables, you can override this.\n\n",
                             "|xns": "Roo.doc",
                             "xtype": "Para"
                         }

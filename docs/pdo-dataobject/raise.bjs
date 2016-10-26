@@ -17,8 +17,8 @@
                     "is_static": false,
                     "is_constructor": false,
                     "memberof": "PDO_DataObject",
-                    "returndesc": "object",
-                    "returntype": "error",
+                    "returndesc": "",
+                    "returntype": "",
                     "|xns": "Roo.doc",
                     "xtype": "Synopsis",
                     "items": [
@@ -31,7 +31,7 @@
                             "xtype": "Param"
                         },
                         {
-                            "desc": "type",
+                            "desc": "type (See ERROR constants)",
                             "is_optional": false,
                             "name": "$type",
                             "type": "string",
@@ -69,6 +69,18 @@
                     "stype": "return",
                     "|xns": "Roo.doc",
                     "xtype": "Section"
+                },
+                {
+                    "stype": "throws",
+                    "|xns": "Roo.doc",
+                    "xtype": "Section",
+                    "items": [
+                        {
+                            "|xns": "Roo.doc",
+                            "xtype": "Para",
+                            "html": "PDO_DataObject_Exception"
+                        }
+                    ]
                 }
             ]
         }
