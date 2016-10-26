@@ -1123,21 +1123,33 @@ class PDO_DataObject
     /**
      * find results, either normal or crosstable
      *
-     * for example
-     *
-     * $object = new mytable();
+     * Usage:
+     * ``
+     * $object = PDO_DataObject::Factory('mytable');
      * $object->ID = 1;
      * $object->find();
+     * while($object->fetch() {
+     *    // do stuff..
+     * }
      *
+     * // or
+     * $object = PDO_DataObject::Factory('mytable');
+     * $object->ID = 1;
+     * if($object->find(true)) { // this fetches it as well.
+     *    print $ojbect->email
+     * }
+     * ``
      *
      * will set $object->N to number of rows, and expects next command to fetch rows
+     * 
      * will return $object->N
      *
      * if an error occurs $object->N will be set to false and return value will also be false;
+     *
      * if numRows is not supported it will return true.
      * 
      * @category fetch
-     * @throws PDO_DataObject_Exception - if run twice on the same object, or tablename missing in class.
+     * @throws PDO_DataObject_Exception  if run twice on the same object, or tablename missing in class.
      * @param   boolean $n Fetch first result
      * @access  public
      * @return  mixed (number of rows returned, or true if numRows fetching is not supported)
