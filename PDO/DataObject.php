@@ -1737,6 +1737,7 @@ class PDO_DataObject
     * Adds a 'IN' condition to the WHERE statement (chainable)
     * 
     * NOTE : ALWAYS ENSURE KEY IS ESCAPED
+    * 
     * Usage:
     * ```
     * //minimal usage
