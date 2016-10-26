@@ -5630,7 +5630,7 @@ class PDO_DataObject
      *
      * @category debug
      * @param  string $message    message
-     * @param  string $type       type
+     * @param  string $type       type (See ERROR constants)
      * @param  Exception (optional) $previous_exception  Cause of error...
      * @access public
      * @return error object
