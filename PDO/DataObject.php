@@ -4952,6 +4952,8 @@ class PDO_DataObject
      * 
      * see [autoJoin](#pdo-dataobject/autoJoin) for more details.
      *
+     * ### Configuration (First Argument array)
+     *
      * | Key | Description |
      * | --- | ------------|
      * | exclude |  Array of columns to exclude from results (eg. modified_by_id) <br/>\
