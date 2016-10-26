@@ -4999,8 +4999,8 @@ class PDO_DataObject
      *
      * Usage:
      * ```
-     * $do->set([ name => 'fred', age => 12]);
-     * $do->set([ xxx_name => 'fred', xxx_age => 12], 'xxx_%s');
+     * $do->set([ 'name' => 'fred', age => 12]);
+     * $do->set([ 'xxx_name' => 'fred', 'xxx_age' => 12], 'xxx_%s');
      * ```
      * 
      *
