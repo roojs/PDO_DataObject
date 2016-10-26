@@ -1747,7 +1747,7 @@ class PDO_DataObject
     *
     * // quote strings
     * $object->whereAddIn('name', $array, 'string');  
-    *` ``
+    * ```
     *
     * @category build
     * @param    string  $key  key column to match
