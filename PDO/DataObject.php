@@ -1570,7 +1570,7 @@ class PDO_DataObject
      /**
      * fetches all results as an array of associative  arrays, without creating Child DataObjects
      *
-     * It's an alias for fetchAll(false,false, true)
+     * It's an alias for `fetchAll(false,false, true)`
      * 
      * @category fetch
      * @access  public
