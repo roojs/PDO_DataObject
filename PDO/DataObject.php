@@ -5368,15 +5368,16 @@ class PDO_DataObject
     *  standard formated get* implementation.
     *  
     *  BC Break: the standard date formating is different from DB_DataObject.
-    *
     *  
-    *
+    *  Should better support Pre-1970 dates as it uses DateTime now, rather than strtotime
+    *  
     *  with formaters..
-    * supported formaters:  
+    * supported formaters:
+    * ``
     *   date/time : d/m/m (eg. php strftime) or pear::Date 
     *   numbers   : %02d (eg. sprintf)
-    *  NOTE you will get unexpected results with times like 0000-00-00 !!!
-    *
+    * ```
+    *  
     * 
     * @category results
     * @param   string       column of database
