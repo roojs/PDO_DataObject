@@ -5509,7 +5509,7 @@ class PDO_DataObject
     /**
      * validate the values of the object (usually prior to inserting/updating..)
      *
-     * Uses[PDO_DataObject_Validate](#pdo-dataobject-valadate/new)
+     * Uses [PDO_DataObject_Validate](#pdo-dataobject-valadate/new)
      * 
      * @category build
      * @access  public
