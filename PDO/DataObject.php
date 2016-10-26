@@ -2253,7 +2253,7 @@ class PDO_DataObject
      * ```
      * @category crud
      * @access public
-     * @throws PDO_DataObject_Error
+     * @throws PDO_DataObject_Exception
      * @return int|boolean  when auto increment or sequence used, otherwise true on success
      */
     final function insert()
