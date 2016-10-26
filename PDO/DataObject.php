@@ -3457,6 +3457,14 @@ class PDO_DataObject
     /**
      * get/set an associative array of table columns
      *
+     * Example:
+     * ```
+     * returns [
+     *     'id' => 129
+     *     'name' => 130
+     *     ....
+     * ]
+     *
      * @category introspect
      * @access public
      * @param  array key=>type array
