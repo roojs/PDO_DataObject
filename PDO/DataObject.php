@@ -398,12 +398,13 @@ class PDO_DataObject
     
     
      /**
-     * connects to the database
+     * connects to the database and returns the [PDO](//www.php.net/PDO) object
+     * 
+     * Basedon the objects table and database settings it will connect to the database
+     * as set by the configuratino, and return the PDO object.
      *
-     *  Uses database DSN to connect
-     *
-     *  Database specific behaviours relating to connect?
-     *   * ?????
+     * the PDO object has `$PDO->dsn` set to and array, of which
+     * `$PDO->dsn['database_name']` should contain the real database name.
      * 
      * @category results
      * @access public
