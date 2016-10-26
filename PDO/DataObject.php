@@ -4680,10 +4680,11 @@ class PDO_DataObject
     }
 
     /**
-     * autoJoin - using the links.ini file, it builds a query with all the joins 
+     * using the links.ini file, it builds a query with all the joins
+     * 
      * Note: it will clears and replace the existing settings for 'select' arguments.
      * 
-     * usage:
+     * Usage:
      * ```
      * $x = PDO_DataObject::factory('mytable');
      * $x->autoJoin();
@@ -4711,14 +4712,22 @@ class PDO_DataObject
      *   will result in only the columns requested being fetched...
      *
      *
+     * ### configuration using an array
+     *
+     * | Key | Description |
+     * | --- | ------------|
+     * | exclude |  Array of columns to exclude from results (eg. modified_by_id) <br/>\
+     *                    Use TABLENAME.* to prevent a join occuring to a specific table. |
+     * | include |  Array of specific columns to include (none others are added to select, join is still done though) |
+     * | links |   The equivilant links.ini data for this table eg. <br/>\
+     *                    `array( 'person_id' => 'person:id', .... )` <br/>\
+     *                      only applied to this instance of the DataObject (used to be applied globally)
+     *  | distinct | Array of distinct columns. (note you may need to add GROUP BY for this to work) |
+     *
+     *
      * @category join
      * @param     array     Configuration
-     *       + exclude:  Array of columns to exclude from results (eg. modified_by_id)
-     *                    Use TABLENAME.* to prevent a join occuring to a specific table.
-     *       + include:  Array of specific columns to include (none others are added to select, join is still done though)
-     *       + links:    The equivilant links.ini data for this table eg.
-     *                    array( 'person_id' => 'person:id', .... ) - only applied to this instance of the DataObject (used to be applied globally)
-     *       + distinct: Array of distinct columns. (note you may need to add GROUP BY for this to work)
+   
      *          
      * @return   array      info about joins
      *       + cols:        map of resulting {joined_tablename}.{joined_table_column_name}
