@@ -4965,7 +4965,7 @@ class PDO_DataObject
      *  | distinct | Array of distinct columns. (note you may need to add GROUP BY for this to work) |
      *
      * @category join
-     * @param     array     Configuration (see aboe)
+     * @param     array     Configuration (see above)
      *          
      * @return   PDO_DataObject self
      * @access   public
