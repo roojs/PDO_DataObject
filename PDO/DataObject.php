@@ -4217,7 +4217,7 @@ class PDO_DataObject
     
  
     /**
-     * joinAdd - adds another dataobject to this, building a joined query.
+     * adds another dataobject to this, building a joined query.
      *
      * Usage: (requires links.ini to be set up correctly)
      * ```
