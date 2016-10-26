@@ -3553,9 +3553,12 @@ class PDO_DataObject
      * get/set an  sequence key
      *
      * by default it returns the first key from keys()
-     * set usage: $do->sequenceKey('id',true);
+     * set usage:
+     * ```
+     * $do->sequenceKey('id',true);
+     * ```
      *
-     * override this to return array(false,false) if table has no real sequence key.
+     * override this to return `array(false,false)` if table has no real sequence key.
      
      * @category introspect
      * @param  string  optional the key sequence/autoinc. key
