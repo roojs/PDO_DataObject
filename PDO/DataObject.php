@@ -3434,8 +3434,11 @@ class PDO_DataObject
         return $this->_database_nickname;
     }
     /**
-     * BC for DB_DataObjects
-     * this has been replaced with tableColumns
+     * Warning Method if using old DB_DataObjects code
+     *
+     * It just throws an error...
+     * 
+     * this has been replaced with [tableColumns](#pdo-dataobject/tableColumns)
      *
      * @category introspect
      * @throws an error always..
