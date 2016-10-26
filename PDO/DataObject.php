@@ -1220,7 +1220,8 @@ class PDO_DataObject
      *
      *
      *
-     * Example
+     * Usage:
+     * ```
      * $object = new mytable();
      * $object->name = "fred";
      * $object->find();
@@ -1229,17 +1230,10 @@ class PDO_DataObject
      *   echo $this->ID;
      *   $store[] = $object; // builds an array of object lines.
      * }
-     *
-     * to add features to a fetch
-     * function fetch () {
-     *    $ret = parent::fetch();
-     *    $this->date_formated = date('dmY',$this->date);
-     *    retur
-     *    n $ret;
-     * }
+     * ```
      * 
      * @category fetch
-     * @throws PDO_DataObject_Exception called without query being run, 
+     * @throws PDO_DataObject_Exception called without query being run 
      * @access  public
      * @return  boolean on success
      */
