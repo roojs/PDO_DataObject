@@ -1943,12 +1943,12 @@ class PDO_DataObject
      * ```
      * 
      * @category build
-     * @param             $obj       object   the union object - leave blank to reset.
-     * @param    optional $is_all    string 'ALL' to do all.
+     * @param  object           $obj          the union object - leave blank to reset.
+     * @param string    $is_all    (optional ) 'ALL' to do all.
      * @returns           PDO_DataObject        self
      */
     
-    final function union($obj='',$is_all= '')
+    final function union($obj='', $is_all= '')
     {
         $this->unionAdd(func_num_args() ? $obj : false ,$is_all);
         return $this;
