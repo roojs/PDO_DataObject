@@ -2941,7 +2941,7 @@ class PDO_DataObject
      * ```
      *
      * The method is chainable for except for INSERT, UPDATE or DELETE calls.
-     * 
+     *        
      * @category fetch
      * @param  string  $string  SQL Query
      * @access public
