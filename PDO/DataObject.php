@@ -1047,7 +1047,7 @@ class PDO_DataObject
      * 
      * 
      * @throws PDO_DataObject_Exception (if the table does not have a pid or is called before insert.)
-     * @return integer the value of the column that is the primary id
+     * @return mixed  normally an integer, the value of the column that is the primary id
      */
     final function pid()
     {
