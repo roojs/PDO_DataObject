@@ -4735,7 +4735,7 @@ class PDO_DataObject
      * @category join
      * @param     array     Configuration (see above)
      *          
-     * @return   array      info about joins
+     * @return   array      info about joins (see above)
      * 
      * @access   public
      */
