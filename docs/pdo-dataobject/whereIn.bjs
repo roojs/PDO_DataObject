@@ -7,7 +7,7 @@
     "items": [
         {
             "name": "whereIn",
-            "purpose": " Adds a 'IN' condition to the WHERE statement",
+            "purpose": " Adds a 'IN' condition to the WHERE statement (chainable)",
             "stype": "function",
             "|xns": "Roo.doc",
             "xtype": "Entry",
@@ -17,7 +17,7 @@
                     "is_static": false,
                     "is_constructor": false,
                     "memberof": "PDO_DataObject",
-                    "returndesc": "- self",
+                    "returndesc": "self",
                     "returntype": "PDO_DataObject",
                     "|xns": "Roo.doc",
                     "xtype": "Synopsis",
@@ -62,7 +62,7 @@
                     "xtype": "Section",
                     "items": [
                         {
-                            "html": " Chained verions of whereAddIn()\n NOTE : ALWAYS ENSURE KEY IS ESCAPED\n\n $object->whereAddIn('id', $array, 'int'); \/\/minimal usage\n $object->whereAddIn('price', $array, 'float', 'OR');  \/\/ cast to float, and call whereAdd with 'OR'\n $object->whereAddIn('name', $array, 'string');  \/\/ quote strings\n\n",
+                            "html": " \n NOTE : ALWAYS ENSURE KEY IS ESCAPED\n Usage:\n ```\n \/\/minimal usage\n $object->whereAddIn('id', $array, 'int');\n\n \/\/ cast to float, and call whereAdd with 'OR'\n $object->whereAddIn('price', $array, 'float', 'OR');\n\n \/\/ quote strings\n $object->whereAddIn('name', $array, 'string');  \n` ``\n\n",
                             "|xns": "Roo.doc",
                             "xtype": "Para"
                         }

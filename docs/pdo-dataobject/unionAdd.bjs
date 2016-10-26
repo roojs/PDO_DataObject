@@ -7,7 +7,7 @@
     "items": [
         {
             "name": "unionAdd",
-            "purpose": " unionAdd - adds another dataobject to this, building a unioned query.",
+            "purpose": " adds another dataobject to this, for building a unioned query.",
             "stype": "function",
             "|xns": "Roo.doc",
             "xtype": "Entry",
@@ -23,18 +23,18 @@
                     "xtype": "Synopsis",
                     "items": [
                         {
-                            "desc": "object|false the union object, or false to reset",
+                            "desc": "the union object, or false to reset",
                             "is_optional": false,
                             "name": "$obj",
-                            "type": "",
+                            "type": "false",
                             "|xns": "Roo.doc",
                             "xtype": "Param"
                         },
                         {
-                            "desc": "string 'ALL' to do all.",
+                            "desc": "(optional)   'ALL' to do all.",
                             "is_optional": false,
                             "name": "$is_all",
-                            "type": "optional",
+                            "type": "string",
                             "|xns": "Roo.doc",
                             "xtype": "Param"
                         }
@@ -46,7 +46,7 @@
                     "xtype": "Section",
                     "items": [
                         {
-                            "html": " usage:  \n $doTable1 = PDO_DataObject::factory(\"table1\");\n $doTable2 = PDO_DataObject::factory(\"table2\");\n \n $doTable1->selectAdd();\n $doTable1->selectAdd(\"col1,col2\");\n $doTable1->whereAdd(\"col1 > 100\");\n $doTable1->orderBy(\"col1\");\n\n $doTable2->selectAdd();\n $doTable2->selectAdd(\"col1, col2\");\n $doTable2->whereAdd(\"col2 = 'v'\");\n \n $doTable1->unionAdd($doTable2);\n $doTable1->find();\n \n Note: this model may be a better way to implement joinAdd?, eg. do the building in find?\n \n",
+                            "html": " (not chainable)\n\n ```\n usage:  \n $doTable1 = PDO_DataObject::factory(\"table1\");\n $doTable2 = PDO_DataObject::factory(\"table2\");\n \n $doTable1->selectAdd();\n $doTable1->selectAdd(\"col1,col2\");\n $doTable1->whereAdd(\"col1 > 100\");\n $doTable1->orderBy(\"col1\");\n\n $doTable2->selectAdd();\n $doTable2->selectAdd(\"col1, col2\");\n $doTable2->whereAdd(\"col2 = 'v'\");\n \n $doTable1->unionAdd($doTable2);\n $doTable1->find();\n ```\n \n \n",
                             "|xns": "Roo.doc",
                             "xtype": "Para"
                         }

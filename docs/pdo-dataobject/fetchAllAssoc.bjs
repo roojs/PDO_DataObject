@@ -29,7 +29,7 @@
                     "xtype": "Section",
                     "items": [
                         {
-                            "html": " It's an alias for fetchAll(false,false, true)\n \n",
+                            "html": " It's an alias for `fetchAll(false,false, true)`\n \n",
                             "|xns": "Roo.doc",
                             "xtype": "Para"
                         }

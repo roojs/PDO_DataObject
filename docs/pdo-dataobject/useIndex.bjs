@@ -38,7 +38,7 @@
                     "xtype": "Section",
                     "items": [
                         {
-                            "html": " NOTE : ALWAYS ENSURE ARGUMENTS ARE ESCAPED\n\n $object->useIndex(); \/\/reset the use Index \n $object->useIndex(\"some_index\");\n\n Note do not put unfiltered user input into theis method.\n This is mysql specific at present? - might need altering to support other databases.\n\n",
+                            "html": " \n NOTE : ALWAYS ENSURE ARGUMENTS ARE ESCAPED\n\n Usage:\n ```\n $object->useIndex(); \/\/reset the use Index \n $object->useIndex(\"some_index\");\n ```\n\n This may be mysql specific at present? - might need altering to support other databases.\n\n",
                             "|xns": "Roo.doc",
                             "xtype": "Para"
                         }

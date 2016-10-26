@@ -7,7 +7,7 @@
     "items": [
         {
             "name": "where",
-            "purpose": " Adds a condition to the WHERE statement, defaults to AND,",
+            "purpose": " Adds a condition to the WHERE statement, defaults to AND, (chainable)",
             "stype": "function",
             "|xns": "Roo.doc",
             "xtype": "Entry",
@@ -17,7 +17,7 @@
                     "is_static": false,
                     "is_constructor": false,
                     "memberof": "PDO_DataObject",
-                    "returndesc": "- self",
+                    "returndesc": "self",
                     "returntype": "PDO_DataObject",
                     "|xns": "Roo.doc",
                     "xtype": "Synopsis",
@@ -46,7 +46,7 @@
                     "xtype": "Section",
                     "items": [
                         {
-                            "html": " Chained verions of whereAdd()\n NOTE : ALWAYS ENSURE ARGUMENTS ARE ESCAPED\n\n $object->where()\n     ->where(\"ID > 20\");\n     ->where(\"age > 20\",\"OR\");\n\n",
+                            "html": " Chained verion of whereAdd()\n\n NOTE : ALWAYS ENSURE ARGUMENTS ARE ESCAPED\n\n Usage:\n ```\n $object->where()\n     ->where(\"ID > 20\");\n     ->where(\"age > 20\",\"OR\");\n```\n\n",
                             "|xns": "Roo.doc",
                             "xtype": "Para"
                         }

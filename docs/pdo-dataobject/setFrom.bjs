@@ -7,7 +7,7 @@
     "items": [
         {
             "name": "setFrom",
-            "purpose": " Copies items that are in the table definitions from an",
+            "purpose": " Copies items that are in the table definitions from an \\",
             "stype": "function",
             "|xns": "Roo.doc",
             "xtype": "Entry",
@@ -17,16 +17,16 @@
                     "is_static": false,
                     "is_constructor": false,
                     "memberof": "PDO_DataObject",
-                    "returndesc": "on success or array of key=>setValue error message retured from",
-                    "returntype": "true",
+                    "returndesc": "true on success or array of key=>setValue error message retured from",
+                    "returntype": "mixed",
                     "|xns": "Roo.doc",
                     "xtype": "Synopsis",
                     "items": [
                         {
-                            "desc": "| object  $from",
+                            "desc": "use the values from this to set the instance properties",
                             "is_optional": false,
                             "name": "$from",
-                            "type": "array",
+                            "type": "object",
                             "|xns": "Roo.doc",
                             "xtype": "Param"
                         },
@@ -54,7 +54,7 @@
                     "xtype": "Section",
                     "items": [
                         {
-                            "html": " array or object into the current object\n will not override key values.\n\n\n",
+                            "html": " array or object into the current object\n \n it will not override primary key values.\n\n\n",
                             "|xns": "Roo.doc",
                             "xtype": "Para"
                         }

@@ -7,7 +7,7 @@
     "items": [
         {
             "name": "reload",
-            "purpose": " reload (usually called after update or insert)",
+            "purpose": " reload the data into the object, usually called after update or insert (Chainable)",
             "stype": "function",
             "|xns": "Roo.doc",
             "xtype": "Entry",
@@ -38,7 +38,7 @@
                     "xtype": "Section",
                     "items": [
                         {
-                            "html": " Chainable.\n\n for example\n $object->joinAll()\n        ->load(1234)\n        ->set([ 'ex_datetime' => PDO_DataObject::sqlValue('sql', 'NOW()') ])\n        ->update()\n        ->reload(true)\n \n    \n    \n It enables you to work on the data after the database has done the update.\n\n",
+                            "html": " Usage:\n ```\n $object->joinAll()\n        ->load(1234)\n        ->set([ 'ex_datetime' => PDO_DataObject::sqlValue('sql', 'NOW()') ])\n        ->update()\n        ->reload(true)\n ```\n It enables you to work on the data after the database has done the update.\n And have the object reflect the current state of the object in the database.\n\n",
                             "|xns": "Roo.doc",
                             "xtype": "Para"
                         }

@@ -17,7 +17,7 @@
                     "is_static": false,
                     "is_constructor": false,
                     "memberof": "PDO_DataObject",
-                    "returndesc": "- previous condition",
+                    "returndesc": "previous condition",
                     "returntype": "string",
                     "|xns": "Roo.doc",
                     "xtype": "Synopsis",
@@ -46,7 +46,7 @@
                     "xtype": "Section",
                     "items": [
                         {
-                            "html": " NOTE : ALWAYS ENSURE ARGUMENTS ARE ESCAPED\n \n\n $object->whereAdd(); \/\/reset or cleaer ewhwer\n $object->whereAdd(\"ID > 20\");\n $object->whereAdd(\"age > 20\",\"OR\");\n \n",
+                            "html": " Not chainable\n \n NOTE : ALWAYS ENSURE ARGUMENTS ARE ESCAPED\n\n Usage:\n ```\n $object->whereAdd(); \/\/reset or cleaer ewhwer\n $object->whereAdd(\"ID > 20\");\n $object->whereAdd(\"age > 20\",\"OR\");\n ```\n \n",
                             "|xns": "Roo.doc",
                             "xtype": "Para"
                         }

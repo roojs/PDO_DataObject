@@ -7,7 +7,7 @@
     "items": [
         {
             "name": "whereToString",
-            "purpose": " Builds the WHERE based on the values of of this object (used to be _build_condition)",
+            "purpose": " Builds the WHERE based on the values of of this object ",
             "stype": "function",
             "|xns": "Roo.doc",
             "xtype": "Entry",
@@ -23,7 +23,7 @@
                     "xtype": "Synopsis",
                     "items": [
                         {
-                            "desc": "(defaults to this->tableColumns())",
+                            "desc": "defaults to this->tableColumns()",
                             "is_optional": false,
                             "name": "$keys",
                             "type": "mixed",
@@ -31,7 +31,7 @@
                             "xtype": "Param"
                         },
                         {
-                            "desc": "(used by update to only uses keys in this filter list).",
+                            "desc": "used by update to only uses keys in this filter list.",
                             "is_optional": false,
                             "name": "$filter",
                             "type": "array",
@@ -39,7 +39,7 @@
                             "xtype": "Param"
                         },
                         {
-                            "desc": "(used by delete to prevent deleting using the keys mentioned..)",
+                            "desc": "used by delete to prevent deleting using the keys mentioned..",
                             "is_optional": false,
                             "name": "$negative_filter",
                             "type": "array",
@@ -47,7 +47,7 @@
                             "xtype": "Param"
                         },
                         {
-                            "desc": "(used by join to override tablename...)",
+                            "desc": "used by join to override tablename...",
                             "is_optional": false,
                             "name": "$tableName",
                             "type": "string",
@@ -62,7 +62,7 @@
                     "xtype": "Section",
                     "items": [
                         {
-                            "html": " \n",
+                            "html": " (used to be _build_condition)\n\n Can be used to save a where condition for building, mostly used in unit tests though.\n \n",
                             "|xns": "Roo.doc",
                             "xtype": "Para"
                         }
