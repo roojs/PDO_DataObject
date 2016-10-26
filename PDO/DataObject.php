@@ -5649,8 +5649,15 @@ class PDO_DataObject
 
     
      /**
-     * Free the result object.
-     * and resets other variables...
+     * Deletes the result object, and resets other variables...
+     *
+     * Generally it's not really needed, as result objects are stored with the
+     * DataObject, when the DataObject is not referenced, PHP will free the results object
+     * for you.
+     *
+     * Previously in DB_DataObjects this was required, as we kept a store of the resultsets seperate to
+     * the classes. - so when a large number of results where used, you would have to clear them up.
+     * This is not the case now.
      *
      * @category debug
      * @access   public
