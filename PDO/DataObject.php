@@ -4866,13 +4866,17 @@ class PDO_DataObject
      *
      * For example RAW sql calls like NOW() or database methods or database 'NULL'
      *
-     * if used with 1 argument PDO_DataObject_Cast::sql($value) is called
+     * if used with 1 argument `PDO_DataObject_Cast::sql($value)` is called
      * 
-     * if used with 2 arguments PDO_DataObject_Cast::$value($callvalue) is called
+     * if used with 2 arguments `PDO_DataObject_Cast::$value($callvalue)` is called
      * valid first arguments are: blob, string, date, sql
      * 
-     * eg. $member->updated = $member->sqlValue('NOW()');
+     * usage:
+     * ```
+     * $member->updated = $member->sqlValue('NOW()');
+     * $member->blob_data = $member->sqlValue('some_file_location', 'blob');
      * 
+     * ```
      * 
      * might handle more arguments for escaping later...
      *
