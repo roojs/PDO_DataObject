@@ -2765,7 +2765,7 @@ class PDO_DataObject
      * ```
      *   
      * @category crud
-     * @returns PDO_DAtaObject  self
+     * @return PDO_DataObject  self
      * 
      */
     final function snapshot()
