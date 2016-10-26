@@ -4952,7 +4952,7 @@ class PDO_DataObject
      * 
      * see [autoJoin](#pdo-dataobject/autoJoin) for more details.
      *
-     *  * | Key | Description |
+     * | Key | Description |
      * | --- | ------------|
      * | exclude |  Array of columns to exclude from results (eg. modified_by_id) <br/>\
      *                    Use TABLENAME.* to prevent a join occuring to a specific table. |
