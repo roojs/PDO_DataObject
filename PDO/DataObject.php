@@ -3495,7 +3495,14 @@ class PDO_DataObject
     /**
      * get/set an  array of table primary keys
      *
-     * set usage: $do->keys('id','code');
+     * Query the keys (usually primary keys) in table:
+     * ```
+     * $do->keys();
+     * ```
+     *
+     * Set the keys on the table
+     * ```
+     * $mytable->keys('mytable_id');
      *
      * This is defined in the table definition if it gets it wrong,
      * or you do not want to use ini tables, you can override this.
