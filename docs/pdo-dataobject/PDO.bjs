@@ -7,7 +7,7 @@
     "items": [
         {
             "name": "PDO",
-            "purpose": " connects to the database",
+            "purpose": " connects to the database and returns the [PDO](\/\/www.php.net\/PDO) object",
             "stype": "function",
             "|xns": "Roo.doc",
             "xtype": "Entry",
@@ -29,7 +29,7 @@
                     "xtype": "Section",
                     "items": [
                         {
-                            "html": "  Uses database DSN to connect\n\n  Database specific behaviours relating to connect?\n   * ?????\n \n",
+                            "html": " \n Basedon the objects table and database settings it will connect to the database\n as set by the configuratino, and return the PDO object.\n\n the PDO object has `$PDO->dsn` set to and array, of which\n `$PDO->dsn['database_name']` should contain the real database name.\n \n",
                             "|xns": "Roo.doc",
                             "xtype": "Para"
                         }

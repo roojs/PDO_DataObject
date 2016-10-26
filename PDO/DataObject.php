@@ -2470,39 +2470,51 @@ class PDO_DataObject
 
     /**
      * Updates  current objects variables into the database
+     * 
      * uses the keys() to decide how to update
-     * Returns the  true on success
+     * 
+     * Returns the true on success
      *
-     * for example
-     *
+     * Usage:
+     * ```
      * $object = PDO_DataObject::factory('mytable');
      * $object->get("ID",234);
      * $object->email="testing@test.com";
      * if(!$object->update())
      *   echo "UPDATE FAILED";
+     * ```
+     * 
+     * to only update changed items (using snapshot):
+     * ```
+     * $dataobject->get(132);
+     * $dataobject->snapshot(); // clone/copy it..
+     * $dataobject->setFrom($_POST);
+     * $dataobject->update();
+     * ```
      *
      * to only update changed items :
+     * ```
      * $dataobject->get(132);
      * $original = $dataobject; // clone/copy it..
      * $dataobject->setFrom($_POST);
-     * if ($dataobject->validate()) {
-     *    $dataobject->update($original);
-     * } // otherwise an error...
-     *
+     * $dataobject->update($original);
+     * ```
+     * 
      * performing global updates:
+     * ```
      * $object = PDO_DataObject::factory('mytable');
      * $object->status = "dead";
      * $object->where('age > 150')
      *      ->update(PDO_DataObject::WHERE_ONLY);
+     * ```
      * 
-     * NEW in PDO DataObjects 
-     *
+     * NEW in PDO DataObjects chainable uses save, and load 
+     * ```
      * PDO_DataObject::factory('mytable');
      *      ->load(23)
-     *      ->snapshot()
      *      ->set(['email' => "test@testing.com"]),
      *      ->save()
-     *
+     * ```
      *
      *
      *

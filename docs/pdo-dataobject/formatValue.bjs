@@ -17,8 +17,8 @@
                     "is_static": false,
                     "is_constructor": false,
                     "memberof": "PDO_DataObject",
-                    "returndesc": "Description",
-                    "returntype": "true",
+                    "returndesc": "the foramted result",
+                    "returntype": "string",
                     "|xns": "Roo.doc",
                     "xtype": "Synopsis",
                     "items": [
@@ -31,10 +31,10 @@
                             "xtype": "Param"
                         },
                         {
-                            "desc": "foramt",
+                            "desc": "format (optional)",
                             "is_optional": false,
                             "name": "$format",
-                            "type": "format",
+                            "type": "string",
                             "|xns": "Roo.doc",
                             "xtype": "Param"
                         }
@@ -46,7 +46,7 @@
                     "xtype": "Section",
                     "items": [
                         {
-                            "html": "  BC Break: that the standard date formating is different from DB_DataObject.\n\n   \n\n  with formaters..\n supported formaters:  \n   date\/time : d\/m\/m (eg. php strftime) or pear::Date \n   numbers   : %02d (eg. sprintf)\n  NOTE you will get unexpected results with times like 0000-00-00 !!!\n\n \n\n",
+                            "html": "  \n  BC Break: the standard date formating is different from DB_DataObject.\n  \n  Should better support Pre-1970 dates as it uses DateTime now, rather than strtotime\n  \n  with formaters..\n supported formaters:\n ``\n   date\/time : d\/m\/m (eg. php strftime) or pear::Date \n   numbers   : %02d (eg. sprintf)\n ```\n  \n \n",
                             "|xns": "Roo.doc",
                             "xtype": "Para"
                         }
