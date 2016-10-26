@@ -1620,19 +1620,24 @@ class PDO_DataObject
     }
     
      /**
-     * Adds a condition to the WHERE statement, defaults to AND,
-     * Chained verions of whereAdd()
+     * Adds a condition to the WHERE statement, defaults to AND, (chainable)
+     *
+     * Chained verion of whereAdd()
+     *
      * NOTE : ALWAYS ENSURE ARGUMENTS ARE ESCAPED
      *
+     * Usage:
+     * ```
      * $object->where()
      *     ->where("ID > 20");
      *     ->where("age > 20","OR");
+     *```
      *
      * @category build
      * @param    string  $cond condition or false to reset.
      * @param    string  $logic optional logic "OR" (defaults to "AND")
      * @access   public
-     * @return   PDO_DataObject - self
+     * @return   PDO_DataObject  self
      */
     
     final function where($cond = false, $logic = 'AND')
@@ -1643,8 +1648,9 @@ class PDO_DataObject
 
     /**
     * Adds a 'IN' condition to the WHERE statement
-    * NOTE : ALWAYS ENSURE KEY IS ESCAPED
     *
+    * NOTE : ALWAYS ENSURE KEY IS ESCAPED
+    * 
     * $object->whereAddIn('id', $array, 'int'); //minimal usage
     * $object->whereAddIn('price', $array, 'float', 'OR');  // cast to float, and call whereAdd with 'OR'
     * $object->whereAddIn('name', $array, 'string');  // quote strings
