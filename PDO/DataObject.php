@@ -5601,7 +5601,7 @@ class PDO_DataObject
      * ```
      * 
      * without arguments it just returns the existing debug level
-     * It's an alias for PDO_DataObject::config('debug', $value);
+     * It's an alias for `PDO_DataObject::config('debug', $value);`
      * 
      * Debug Levels
      * | Level | Output |
