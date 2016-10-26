@@ -5366,9 +5366,10 @@ class PDO_DataObject
     
      /**
     *  standard formated get* implementation.
-    *  BC Break: that the standard date formating is different from DB_DataObject.
+    *  
+    *  BC Break: the standard date formating is different from DB_DataObject.
     *
-    *   
+    *  
     *
     *  with formaters..
     * supported formaters:  
@@ -5379,9 +5380,8 @@ class PDO_DataObject
     * 
     * @category results
     * @param   string       column of database
-    * @param   format       foramt
-    *
-    * @return   true     Description
+    * @param   string  format (optional)
+    * @return   string  the foramted result
     * @access   public 
     */
     function formatValue($col,$format = null) 
