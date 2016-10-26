@@ -5549,9 +5549,8 @@ class PDO_DataObject
     /**
      * Debugger. - use this in your extended classes to output debugging information.
      *
-     * Uses PDO_DataObject::DebugLevel(x) to turn it on
+     * Use `PDO_DataObject::debugLevel(x)` to turn it on
      *
-     *eg. logging into apache error.log 
      *
      * @category debug
      * @param    string $message - message to output
@@ -5600,10 +5599,12 @@ class PDO_DataObject
      * It's an alias for PDO_DataObject::config('debug', $value);
      * 
      * Debug Levels
-     *     + 1: basic QUERY and results.
-     *     + 2: Timers
-     *     + 3: Detail returned data
-     *     + 5: Full connection details (including DSN with password)
+     * | Level | Output |
+     * | ----- | ----- |
+     * | 1 | basic QUERY and results. | 
+     * | 2 | Timers | 
+     * | 3 | Detail returned data | 
+     * | 5 | Full connection details (including DSN with password) | 
      *
      * @category debug
      * @param   int     $v  level
