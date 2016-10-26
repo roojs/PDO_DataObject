@@ -2712,9 +2712,16 @@ class PDO_DataObject
     private $_snapshot = false;
 
     /**
-     *  Save data to database (simple wrapper around insert/update)
-     *  recommend it is used with snapshot()
-     *  Chainable
+     *  Save data to database (simple wrapper around insert/update) Chainable
+     *
+     *  Usage
+     * ```
+     * PDO_DataObject::factory('mytable');
+     *      ->load(23)
+     *      ->set(['email' => "test@testing.com"]),
+     *      ->save()
+     * ```  
+     * This will only update the changed column.  as load() calls snapshot on the loaded data.
      *
      * @category crud
      *  Uses primary id to determine if data should be updated or inserted.
