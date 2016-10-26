@@ -1877,8 +1877,11 @@ class PDO_DataObject
     
     
      /**
-     * unionAdd - adds another dataobject to this, building a unioned query.
+     * adds another dataobject to this, for building a unioned query.
      *
+     * (not chainable)
+     *
+     * ```
      * usage:  
      * $doTable1 = PDO_DataObject::factory("table1");
      * $doTable2 = PDO_DataObject::factory("table2");
@@ -1894,8 +1897,8 @@ class PDO_DataObject
      * 
      * $doTable1->unionAdd($doTable2);
      * $doTable1->find();
-      * 
-     * Note: this model may be a better way to implement joinAdd?, eg. do the building in find?
+     * ```
+     * 
      * 
      * @category build
      * @param             $obj       object|false the union object, or false to reset
@@ -1918,10 +1921,11 @@ class PDO_DataObject
     }
 
       /**
-     * union  - adds another dataobject to this, building a unioned query.
-     * (Chainable)
+     * adds another dataobject to this, for building a unioned query. (Chainable)
      * 
-     * usage:  
+     * 
+     * usage:
+     * ```
      * $doTable1 = PDO_DataObject::factory("table1");
      * $doTable2 = PDO_DataObject::factory("table2");
      * 
@@ -1936,8 +1940,7 @@ class PDO_DataObject
      * 
      * $doTable1->unionAdd($doTable2);
      * $doTable1->find();
-      * 
-     * Note: this model may be a better way to implement joinAdd?, eg. do the building in find?
+     * ```
      * 
      * @category build
      * @param             $obj       object   the union object - leave blank to reset.
