@@ -4244,25 +4244,27 @@ class PDO_DataObject
      * }
     * ```
      *
-     * @param    optional $obj       string | object |array    the joining object (no value resets the join)
-     *                                          If you use an array here it should be in the format:
-     *                                          array('local_column','remotetable:remote_column');
+     * @param    string|object|array $obj       (optional)    the joining object (no value resets the join) <br/>
+     *                                          If you use an array here it should be in the format: <br/>
+     *                                          `array('local_column','remotetable:remote_column');` <br/>
      *                                             if remotetable does not have a definition, you should
-     *                                             use @ to hide the include error message..
-     *                                          array('local_column',  $dataobject , 'remote_column');
+     *                                             use @ to hide the include error message..<br/>
+     *                                          `array('local_column',  $dataobject , 'remote_column');` <br/>
      *                                             if array has 3 args, then second is assumed to be the linked dataobject.
      *
-     * @param    optional $joinType  string | array
-     *                                          'LEFT'|'INNER'|'RIGHT'|'' Inner is default, '' indicates 
-     *                                          just select ... from a,b,c with no join and 
+     * @param    string|array  $joinType   (optional) `'LEFT'|'INNER'|'RIGHT'|''`<br/>
+     *                                           Inner is default,
+     *                                           '' indicates just select ... from a,b,c with no join and 
      *                                          links are added as where items.
-     *                                          
+     *                                          <br/>
      *                                          If second Argument is array, it is assumed to be an associative
      *                                          array with arguments matching below = eg.
+     *                                          ```
      *                                          'joinType' => 'INNER',
      *                                          'joinAs' => '...'
      *                                          'joinCol' => ....
      *                                          'useWhereAsOn' => false,
+     *                                          ```
      *
      * @param    optional $joinAs    string     if you want to select the table as anther name
      *                                          useful when you want to select multiple columsn
