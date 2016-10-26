@@ -5594,7 +5594,12 @@ class PDO_DataObject
 
     /**
      * sets and returns debug level
-     * eg. PDO_DataObject::debugLevel(4);
+     * 
+     * Usage:
+     * ```
+     * PDO_DataObject::debugLevel(4);
+     * ```
+     * 
      * without arguments it just returns the existing debug level
      * It's an alias for PDO_DataObject::config('debug', $value);
      * 
