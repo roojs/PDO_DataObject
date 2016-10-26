@@ -914,7 +914,6 @@ class PDO_DataObject
      * Returns Number of rows located (usually 1) for success,
      * and puts all the table columns into this classes variables
      *
-     * see the fetch example on how to extend this.
      *
      * if no `$value` is entered, it is assumed that `$key` is a value
      * and get will then use the first key in keys()
@@ -954,16 +953,21 @@ class PDO_DataObject
         return $this->find(true);
     }
       /**
-     * Get a result using key, value.
-     * Chainable.
+     * Get a result using key, value. (Chainable)
      *
-     * for example
-     * $object->load("ID",1234);
-     *
-     * and puts all the table columns into this classes variables
+     * Example
+     * ```
+     * $object->load(1234)
+     *    ->set(['email' => 'fred@fred.com'])
+     *    ->save()
+     *    
+     * $object->load("email",'fred@fred.com');
+     * ```
+     * 
+     * selects a row from the database based on the key/value and puts all the table columns into this classes instance
+     * values
+     * 
      * Note: this also snapshot's the object, ready for update.., and clears any 'where condition'
-     *
-     * see the fetch example on how to extend this.
      *
      * if no value is entered, it is assumed that $key is a value
      * and get will then use the first key in keys()
