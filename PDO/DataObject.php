@@ -2773,14 +2773,12 @@ class PDO_DataObject
      *      ->orderBy('age DESC')
      *      ->delete(PDO_DataObject::WHERE_ONLY)
      *
-     * 
-     *
      * ```
      * 
      * @category crud
      * @param bool $useWhere (optional) If PDO_DataObject::WHERE_ONLY is passed in then
-     *             we will build the condition only using the whereAdd's.  Default is to
-     *             build the condition only using the object parameters.
+     *             we will build the condition only using the whereAdd's. <br/>
+     *             Default is to build the condition only using the object parameters.
      *
      * @access public
      * @return mixed Int (No. of rows affected) on success, false on failure, 0 on no data affected
