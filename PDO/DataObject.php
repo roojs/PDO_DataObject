@@ -902,17 +902,21 @@ class PDO_DataObject
 
 
   
- /**
+    /**
      * Get a result using key, value.
      *
-     * for example
-     * $object->get("ID",1234);
+     * Usage:
+     * ```
+     * $object->get(1234);
+     * 
+     * $object->get("email",'fred@fred.com');
+     * ```
      * Returns Number of rows located (usually 1) for success,
      * and puts all the table columns into this classes variables
      *
      * see the fetch example on how to extend this.
      *
-     * if no value is entered, it is assumed that $key is a value
+     * if no `$value` is entered, it is assumed that `$key` is a value
      * and get will then use the first key in keys()
      * to obtain the key.
      * 
