@@ -4896,9 +4896,10 @@ class PDO_DataObject
     }
     
      /**
-     * Copies items that are in the table definitions from an
+     * Copies items that are in the table definitions from an \
      * array or object into the current object
-     * will not override key values.
+     * 
+     * it will not override primary key values.
      *
      *
      * @category build
@@ -4995,7 +4996,12 @@ class PDO_DataObject
     /**
      * Chainable versoin of setFrom()
      *
-     * If errors occur on set** methods, then $this->_set_errors will be set to the problem, and an exception is thrown.
+     * Copies items that are in the table definitions from an \
+     * array or object into the current object
+     * 
+     * If errors occur on set** methods, then `$this->_set_errors` will be set to the problem, and an exception is thrown.
+     *
+     * It will not override primary key values.
      *
      * Usage:
      * ```
