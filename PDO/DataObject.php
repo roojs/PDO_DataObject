@@ -4725,14 +4725,18 @@ class PDO_DataObject
      *  | distinct | Array of distinct columns. (note you may need to add GROUP BY for this to work) |
      *
      *
+     * ### Return format:
+     * | Key | Description |
+     * | --- | ------------|
+     * | cols |        map of resulting `{joined_tablename}.{joined_table_column_name}` |
+     * | join_names |map of resulting `{join_name_as}.{joined_table_column_name}` |
+     * | count |       the column to count on. |
+     *
      * @category join
-     * @param     array     Configuration
-   
+     * @param     array     Configuration (see above)
      *          
      * @return   array      info about joins
-     *       + cols:        map of resulting {joined_tablename}.{joined_table_column_name}
-     *       + join_names:  map of resulting {join_name_as}.{joined_table_column_name}
-     *       + count:       the column to count on.
+     * 
      * @access   public
      */
     function autoJoin($cfg = array())
