@@ -4151,21 +4151,25 @@ class PDO_DataObject
      * This is the new 'recommended' way to get get/set linked objects.
      * must be used with links.ini
      *
-     * usage:
-     *  get:
+     * Usage Getting data:
+     *  ```
      *  $obj = $do->link('company_id');
      *  $obj = $do->link(array('local_col', 'linktable:linked_col'));
+     *  ```
      *  
-     *  set:
+     * Usage Setting data:
+     * ```
      *  $do->link('company_id',0);
      *  $do->link('company_id',$obj);
+     * ```
      *
-     *  example function (you could add to your extended classes - to make the code easy to read...)
-     *
+     * Example function (you could add to your extended classes - to make the code easy to read...)
+     * ```
      *  function company($set = false) {
      *     $this->link('company_id', $set);
      *  }
-     *
+     * ```
+     * 
      * @category join
      * @param  string $column  which column to get or set  (or the link specification)           
      * @param  mixed $set_value (optional)   int or DataObject

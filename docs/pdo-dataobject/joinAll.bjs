@@ -23,7 +23,7 @@
                     "xtype": "Synopsis",
                     "items": [
                         {
-                            "desc": "Configuration (see aboe)\n          ",
+                            "desc": "Configuration (see above)\n          ",
                             "is_optional": false,
                             "name": "$cfg",
                             "type": "array",
