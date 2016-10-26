@@ -4183,7 +4183,8 @@ class PDO_DataObject
     }
     
     /**
-     * load related objects
+     * load related objects DEPRICATED
+     *
      * @depricated
      * @category join
      * This is only in for compatibility ( not supported anymore )
@@ -4199,7 +4200,8 @@ class PDO_DataObject
  
 
     /**
-     * linkArray
+     * linkArray DEPRICATED
+     * 
      * @depricated
      * @category join
      * This is only in for compatibility ( not supported anymore )
