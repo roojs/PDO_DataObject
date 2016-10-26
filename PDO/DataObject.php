@@ -4242,7 +4242,12 @@ class PDO_DataObject
      * while ($i->fetch()) {
      *     // do stuff
      * }
-    * ```
+     * ```
+     *
+     * if the first argement is an associative array, then the keys can be the argument names,
+     * and you can also use `'useWhereAsOn' => true` to convert the where argments from the object being added \
+     *                                          into ON arguments.
+     *
      *
      * @param    string|object|array $obj       (optional)    the joining object (no value resets the join) <br/>
      *                                          If you use an array here it should be in the format: <br/>
@@ -4266,19 +4271,15 @@ class PDO_DataObject
      *                                          'useWhereAsOn' => false,
      *                                          ```
      *
-     * @param    optional $joinAs    string     if you want to select the table as anther name
+     * @param    string$joinAs         (optional ) if you want to select the table as anther name
      *                                          useful when you want to select multiple columsn
      *                                          from a secondary table.
      
-     * @param    optional $joinCol   string     The column on This objects table to match (needed
+     * @param    string$joinCol       (optional) The column on This objects table to match (needed
      *                                          if this table links to the child object in 
-     *                                          multiple places eg.
-     *                                          user->friend (is a link to another user)
-     *                                          user->mother (is a link to another user..)
-     *
-     *           optional 'useWhereAsOn' bool   default false;
-     *                                          convert the where argments from the object being added
-     *                                          into ON arguments.
+     *                                          multiple places eg.<br/>
+     *                                          `user->friend` (is a link to another user) <br/>
+     *                                          `user->mother` (is a link to another user..) 
      * 
      * @category join
      * @return   PDO_DataObject                 for chaining

@@ -7,7 +7,7 @@
     "items": [
         {
             "name": "linkArray",
-            "purpose": " linkArray",
+            "purpose": " linkArray DEPRICATED",
             "stype": "function",
             "|xns": "Roo.doc",
             "xtype": "Entry",
@@ -46,7 +46,7 @@
                     "xtype": "Section",
                     "items": [
                         {
-                            "html": " This is only in for compatibility ( not supported anymore )\n",
+                            "html": " \n This is only in for compatibility ( not supported anymore )\n",
                             "|xns": "Roo.doc",
                             "xtype": "Para"
                         }

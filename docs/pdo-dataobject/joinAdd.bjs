@@ -7,7 +7,7 @@
     "items": [
         {
             "name": "joinAdd",
-            "purpose": " joinAdd - adds another dataobject to this, building a joined query.",
+            "purpose": " adds another dataobject to this, building a joined query.",
             "stype": "function",
             "|xns": "Roo.doc",
             "xtype": "Entry",
@@ -23,34 +23,34 @@
                     "xtype": "Synopsis",
                     "items": [
                         {
-                            "desc": "string | object |array    the joining object (no value resets the join)\n                                          If you use an array here it should be in the format:\n                                          array('local_column','remotetable:remote_column');\n                                             if remotetable does not have a definition, you should\n                                             use @ to hide the include error message..\n                                          array('local_column',  $dataobject , 'remote_column');\n                                             if array has 3 args, then second is assumed to be the linked dataobject.",
+                            "desc": "(optional)    the joining object (no value resets the join) <br\/>\n                                          If you use an array here it should be in the format: <br\/>\n                                          `array('local_column','remotetable:remote_column');` <br\/>\n                                             if remotetable does not have a definition, you should\n                                             use @ to hide the include error message..<br\/>\n                                          `array('local_column',  $dataobject , 'remote_column');` <br\/>\n                                             if array has 3 args, then second is assumed to be the linked dataobject.",
                             "is_optional": false,
                             "name": "$obj",
-                            "type": "optional",
+                            "type": "array",
                             "|xns": "Roo.doc",
                             "xtype": "Param"
                         },
                         {
-                            "desc": "string | array\n                                          'LEFT'|'INNER'|'RIGHT'|'' Inner is default, '' indicates \n                                          just select ... from a,b,c with no join and \n                                          links are added as where items.\n                                          \n                                          If second Argument is array, it is assumed to be an associative\n                                          array with arguments matching below = eg.\n                                          'joinType' => 'INNER',\n                                          'joinAs' => '...'\n                                          'joinCol' => ....\n                                          'useWhereAsOn' => false,",
+                            "desc": "(optional) `'LEFT'|'INNER'|'RIGHT'|''`<br\/>\n                                           Inner is default,\n                                           '' indicates just select ... from a,b,c with no join and \n                                          links are added as where items.\n                                          <br\/>\n                                          If second Argument is array, it is assumed to be an associative\n                                          array with arguments matching below = eg.\n                                          ```\n                                          'joinType' => 'INNER',\n                                          'joinAs' => '...'\n                                          'joinCol' => ....\n                                          'useWhereAsOn' => false,\n                                          ```",
                             "is_optional": false,
                             "name": "$joinType",
-                            "type": "optional",
+                            "type": "array",
                             "|xns": "Roo.doc",
                             "xtype": "Param"
                         },
                         {
-                            "desc": "string     if you want to select the table as anther name\n                                          useful when you want to select multiple columsn\n                                          from a secondary table.\n     ",
+                            "desc": "(optional ) if you want to select the table as anther name\n                                          useful when you want to select multiple columsn\n                                          from a secondary table.\n     ",
                             "is_optional": false,
                             "name": "$joinAs",
-                            "type": "optional",
+                            "type": "",
                             "|xns": "Roo.doc",
                             "xtype": "Param"
                         },
                         {
-                            "desc": "string     The column on This objects table to match (needed\n                                          if this table links to the child object in \n                                          multiple places eg.\n                                          user->friend (is a link to another user)\n                                          user->mother (is a link to another user..)",
+                            "desc": "(optional) The column on This objects table to match (needed\n                                          if this table links to the child object in \n                                          multiple places eg.<br\/>\n                                          `user->friend` (is a link to another user) <br\/>\n                                          `user->mother` (is a link to another user..) ",
                             "is_optional": false,
                             "name": "$joinCol",
-                            "type": "optional",
+                            "type": "",
                             "|xns": "Roo.doc",
                             "xtype": "Param"
                         }
@@ -62,7 +62,7 @@
                     "xtype": "Section",
                     "items": [
                         {
-                            "html": " example (requires links.ini to be set up correctly)\n \/\/ get all the images for product 24\n $i = new DataObject_Image();\n $pi = new DataObjects_Product_image();\n $pi->product_id = 24; \/\/ set the product id to 24\n $i->joinAdd($pi); \/\/ add the product_image connectoin\n $i->find();\n while ($i->fetch()) {\n     \/\/ do stuff\n }\n \/\/ an example with 2 joins\n \/\/ get all the images linked with products or productgroups\n $i = new DataObject_Image();\n $pi = new DataObject_Product_image();\n $pgi = new DataObject_Productgroup_image();\n $i->joinAdd($pi);\n $i->joinAdd($pgi);\n $i->find();\n while ($i->fetch()) {\n     \/\/ do stuff\n }\n\n\n\n\n\n           optional 'useWhereAsOn' bool   default false;\n                                          convert the where argments from the object being added\n                                          into ON arguments.\n \n",
+                            "html": " Usage: (requires links.ini to be set up correctly)\n ```\n \/\/ get all the images for product 24\n $i = new DataObject_Image();\n $pi = new DataObjects_Product_image();\n $pi->product_id = 24; \/\/ set the product id to 24\n $i->joinAdd($pi); \/\/ add the product_image connectoin\n $i->find();\n while ($i->fetch()) {\n     \/\/ do stuff\n }\n \n \/\/ an example with 2 joins\n \/\/ get all the images linked with products or productgroups\n $i = new DataObject_Image();\n $pi = new DataObject_Product_image();\n $pgi = new DataObject_Productgroup_image();\n $i->joinAdd($pi);\n $i->joinAdd($pgi);\n $i->find();\n while ($i->fetch()) {\n     \/\/ do stuff\n }\n ```\n\n if the first argement is an associative array, then the keys can be the argument names,\n and you can also use `'useWhereAsOn' => true` to convert the where argments from the object being added \\\n                                          into ON arguments.\n\n\n\n\n \n",
                             "|xns": "Roo.doc",
                             "xtype": "Para"
                         }

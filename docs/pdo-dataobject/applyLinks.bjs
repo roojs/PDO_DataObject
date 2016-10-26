@@ -7,7 +7,7 @@
     "items": [
         {
             "name": "applyLinks",
-            "purpose": " load related objects",
+            "purpose": " load related objects DEPRICATED",
             "stype": "function",
             "|xns": "Roo.doc",
             "xtype": "Entry",

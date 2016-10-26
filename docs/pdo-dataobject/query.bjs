@@ -7,7 +7,7 @@
     "items": [
         {
             "name": "query",
-            "purpose": " sends raw query to database - returns ",
+            "purpose": " sends raw query to database (chainable - mostly)",
             "stype": "function",
             "|xns": "Roo.doc",
             "xtype": "Entry",
@@ -38,7 +38,7 @@
                     "xtype": "Section",
                     "items": [
                         {
-                            "html": " set's $this->_result -available publically using $dataobject->result();\n     \n",
+                            "html": " set's `$this->_result` available publically using `$dataobject->result();`\n \n Usage:\n ```\n  $do->query(\"UPDATE sometable SET value=NOW() where id > 123\");\n ```\n\n The method is chainable for except for INSERT, UPDATE or DELETE calls.\n        \n",
                             "|xns": "Roo.doc",
                             "xtype": "Para"
                         }
