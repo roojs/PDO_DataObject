@@ -5661,7 +5661,6 @@ class PDO_DataObject
      *
      * @category debug
      * @access   public
-     * @return   none
      */
     function free() 
     {
@@ -5692,7 +5691,6 @@ class PDO_DataObject
      *
      * @category debug
      * @access   public
-     * @return   none
      */
     static function reset()
     {
