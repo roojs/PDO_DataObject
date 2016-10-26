@@ -2759,20 +2759,24 @@ class PDO_DataObject
      *
      * Returns the true on success
      *
-     * for example
+     * Usage:
+     * ```
+     * 
+     * $object = PDO_DataObject::factory('mytable')
+     *    ->get(123)
+     *    ->delete();
      *
-     * Designed to be extended
+     * // using where condition, rather than primary key
+     * $object = PDO_DataObject::factory('mytable')
+     *      ->where('age > 12');
+     *      ->limit(1)
+     *      ->orderBy('age DESC')
+     *      ->delete(PDO_DataObject::WHERE_ONLY)
      *
-     * $object = new mytable();
-     * $object->ID=123;
-     * echo $object->delete(); // builds a conditon
+     * 
      *
-     * $object = new mytable();
-     * $object->whereAdd('age > 12');
-     * $object->limit(1);
-     * $object->orderBy('age DESC');
-     * $object->delete(true); // dont use object vars, use the conditions, limit and order.
-     *
+     * ```
+     * 
      * @category crud
      * @param bool $useWhere (optional) If PDO_DataObject::WHERE_ONLY is passed in then
      *             we will build the condition only using the whereAdd's.  Default is to
