@@ -5633,7 +5633,7 @@ class PDO_DataObject
      * @param  string $type       type (See ERROR constants)
      * @param  Exception (optional) $previous_exception  Cause of error...
      * @access public
-     * @return error object
+     * @throws PDO_DataObject_Exception
      */
     function raise($message, $type  , $previous_exception = null)
     {
