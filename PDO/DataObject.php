@@ -2931,10 +2931,17 @@ class PDO_DataObject
     }
 
     /**
-     * sends raw query to database - returns 
+     * sends raw query to database (chainable - mostly)
      *
-     * set's $this->_result -available publically using $dataobject->result();
-     
+     * set's `$this->_result` available publically using `$dataobject->result();`
+     * 
+     * Usage:
+     * ```
+     *  $do->query("UPDATE sometable SET value=NOW() where id > 123");
+     * ```
+     *
+     * The method is chainable for except for INSERT, UPDATE or DELETE calls.
+     * 
      * @category fetch
      * @param  string  $string  SQL Query
      * @access public
