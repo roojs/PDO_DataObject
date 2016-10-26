@@ -4271,11 +4271,11 @@ class PDO_DataObject
      *                                          'useWhereAsOn' => false,
      *                                          
      *
-     * @param    string$joinAs         (optional ) if you want to select the table as anther name
+     * @param    string $joinAs         (optional ) if you want to select the table as anther name
      *                                          useful when you want to select multiple columsn
      *                                          from a secondary table.
      
-     * @param    string$joinCol       (optional) The column on This objects table to match (needed
+     * @param    string $joinCol       (optional) The column on This objects table to match (needed
      *                                          if this table links to the child object in 
      *                                          multiple places eg.<br/>
      *                                          `user->friend` (is a link to another user) <br/>
