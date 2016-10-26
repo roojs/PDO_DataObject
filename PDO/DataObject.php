@@ -2779,7 +2779,7 @@ class PDO_DataObject
      * @param bool $useWhere (optional) If PDO_DataObject::WHERE_ONLY is passed in then
      *             we will build the condition only using the whereAdd's. <br/>
      *             Default is to build the condition only using the object parameters.
-     *
+     * @throws PDO_DataObject_Exception on SQL errors etc.
      * @access public
      * @return mixed Number of rows affected on success, false on failure, 0 on no data affected
      */
