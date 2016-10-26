@@ -5307,8 +5307,8 @@ class PDO_DataObject
      * will also return links converted to arrays.
      *
      * @param   string  sprintf format for array
-     * @param   bool||number    [true = elemnts that have a value set],
-     *                          [false = table + returned colums] ,
+     * @param   bool||number    [true = elemnts that have a value set], <br/>
+     *                          [false = table + returned colums] , <br/>
      *                          [0 = returned columsn only]
      * @category results
      * @access   public
