@@ -3560,13 +3560,17 @@ class PDO_DataObject
     
  
     /**
-     * Builds the WHERE based on the values of of this object (used to be _build_condition)
+     * Builds the WHERE based on the values of of this object 
+     *
+     * (used to be _build_condition)
+     *
+     * Can be used to save a where condition for building, mostly used in unit tests though.
      * 
      * @category build
-     * @param   mixed   $keys (defaults to this->tableColumns())
-     * @param   array   $filter (used by update to only uses keys in this filter list).
-     * @param   array   $negative_filter (used by delete to prevent deleting using the keys mentioned..)
-     * @param   string $tablename (used by join to override tablename...)
+     * @param   mixed   $keys defaults to this->tableColumns()
+     * @param   array   $filter used by update to only uses keys in this filter list.
+     * @param   array   $negative_filter used by delete to prevent deleting using the keys mentioned..
+     * @param   string $tablename used by join to override tablename...
      * @access  private
      * @return  string
      */
