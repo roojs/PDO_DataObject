@@ -1573,19 +1573,24 @@ class PDO_DataObject
     
     /**
      * Adds a condition to the WHERE statement, defaults to AND
-     * NOTE : ALWAYS ENSURE ARGUMENTS ARE ESCAPED
- 
      *
+     * Not chainable
+     * 
+     * NOTE : ALWAYS ENSURE ARGUMENTS ARE ESCAPED
+     *
+     * Usage:
+     * ```
      * $object->whereAdd(); //reset or cleaer ewhwer
      * $object->whereAdd("ID > 20");
      * $object->whereAdd("age > 20","OR");
+     * ```
      * 
      * @category build
      * @param    string  $cond condition or false to reset.
      * @param    string  $logic optional logic "OR" (defaults to "AND")
      * @throws   PDO_DataObject_Exception running on object with results., or invalid arguments
      * @access   public
-     * @return   string - previous condition
+     * @return   string  previous condition
      */
     final function whereAdd($cond = false, $logic = 'AND')
     {
