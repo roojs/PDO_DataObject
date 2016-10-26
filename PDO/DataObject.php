@@ -2245,12 +2245,13 @@ class PDO_DataObject
      *
      * Returns the ID of the inserted element (if auto increment or sequences are used.)
      *
-     * for example
+     * Usage:
      * ```
      * PDO_DataObject::Factory('mytable')
      *   ->set([ 'name' => 'test'])
      *   ->insert();
      * ```
+     * 
      * @category crud
      * @access public
      * @throws PDO_DataObject_Exception
