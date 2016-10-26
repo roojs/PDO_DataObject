@@ -1837,13 +1837,16 @@ class PDO_DataObject
 
     /**
      * Adds a using Index (Chainable)
+     * 
      * NOTE : ALWAYS ENSURE ARGUMENTS ARE ESCAPED
      *
+     * Usage:
+     * ```
      * $object->useIndex(); //reset the use Index 
      * $object->useIndex("some_index");
+     * ```
      *
-     * Note do not put unfiltered user input into theis method.
-     * This is mysql specific at present? - might need altering to support other databases.
+     * This may be mysql specific at present? - might need altering to support other databases.
      *
      * @category build
      * @param  string|array  $index  index or indexes to use.
