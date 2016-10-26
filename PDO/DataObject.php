@@ -1947,9 +1947,9 @@ class PDO_DataObject
      * adds another dataobject to this, for building a unioned query.
      *
      * (not chainable)
-     *
+     * 
+     * Usage:
      * ```
-     * usage:  
      * $doTable1 = PDO_DataObject::factory("table1");
      * $doTable2 = PDO_DataObject::factory("table2");
      * 
