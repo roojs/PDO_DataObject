@@ -1654,11 +1654,21 @@ class PDO_DataObject
     /**
     * Adds a 'IN' condition to the WHERE statement
     *
-    * NOTE : ALWAYS ENSURE KEY IS ESCAPED
+    * Not Chainable
     * 
-    * $object->whereAddIn('id', $array, 'int'); //minimal usage
-    * $object->whereAddIn('price', $array, 'float', 'OR');  // cast to float, and call whereAdd with 'OR'
-    * $object->whereAddIn('name', $array, 'string');  // quote strings
+    * NOTE : ALWAYS ENSURE KEY IS ESCAPED
+    *
+    * Usage:
+    * ```
+    * //minimal usage
+    * $object->whereAddIn('id', $array, 'int');
+    *
+    * // cast to float, and call whereAdd with 'OR'
+    * $object->whereAddIn('price', $array, 'float', 'OR');
+    *
+    * // quote strings
+    * $object->whereAddIn('name', $array, 'string');
+    * ```
     *
     * @category build
     * @param    string  $key  key column to match
@@ -1693,13 +1703,20 @@ class PDO_DataObject
     }
 
     /**
-    * Adds a 'IN' condition to the WHERE statement
-    * Chained verions of whereAddIn()
-     * NOTE : ALWAYS ENSURE KEY IS ESCAPED
-
-    * $object->whereAddIn('id', $array, 'int'); //minimal usage
-    * $object->whereAddIn('price', $array, 'float', 'OR');  // cast to float, and call whereAdd with 'OR'
-    * $object->whereAddIn('name', $array, 'string');  // quote strings
+    * Adds a 'IN' condition to the WHERE statement (chainable)
+    * 
+    * NOTE : ALWAYS ENSURE KEY IS ESCAPED
+    * Usage:
+    * ```
+    * //minimal usage
+    * $object->whereAddIn('id', $array, 'int');
+    *
+    * // cast to float, and call whereAdd with 'OR'
+    * $object->whereAddIn('price', $array, 'float', 'OR');
+    *
+    * // quote strings
+    * $object->whereAddIn('name', $array, 'string');  
+    *` ``
     *
     * @category build
     * @param    string  $key  key column to match
@@ -1707,7 +1724,7 @@ class PDO_DataObject
     * @param    string  $type  string|int|integer|float|bool  cast to type. 
     * @param    string  $logic optional logic to call whereAdd with eg. "OR" (defaults to "AND")
     * @access   public
-    * @return   PDO_DataObject - self
+    * @return   PDO_DataObject self
     */
     final function whereIn($key, $list, $type, $logic = 'AND') 
     {
