@@ -1131,7 +1131,7 @@ class PDO_DataObject
      * find results, either normal or crosstable
      *
      * Usage:
-     * ``
+     * ```
      * $object = PDO_DataObject::Factory('mytable');
      * $object->ID = 1;
      * $object->find();
@@ -1145,7 +1145,7 @@ class PDO_DataObject
      * if($object->find(true)) { // this fetches it as well.
      *    print $ojbect->email
      * }
-     * ``
+     * ```
      *
      * will set $object->N to number of rows, and expects next command to fetch rows
      * 
