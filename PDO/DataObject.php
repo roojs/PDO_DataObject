@@ -2806,26 +2806,34 @@ class PDO_DataObject
     /**
      * Find the number of results from a simple query
      *
-     * for example
-     *
+     * Usage:
+     * ```
      * $object = new mytable();
      * $object->name = "fred";
      * echo $object->count();
-     * echo $object->count(PDO_DataObject::WHERE_ONLY);  // dont use object vars.
-     * echo $object->count('distinct mycol');   count distinct mycol.
-     * echo $object->count('distinct mycol',PDO_DataObject::WHERE_ONLY); // dont use object vars.
-     * echo $object->count('distinct');      // count distinct id (eg. the primary key)
      *
+     * // dont use object vars.
+     * echo $object->count(PDO_DataObject::WHERE_ONLY);
      *
-     * @param bool|string  (optional)
-     *                  (true|false => see below not on whereAddonly)
-     *                  (string)
-     *                      "DISTINCT" => does a distinct count on the tables 'key' column
-     *                      otherwise  => normally it counts primary keys - you can use 
-     *                                    this to do things like $do->count('distinct mycol');
+     * //count distinct mycol.
+     * echo $object->count('distinct mycol');
+     *
+     * // dont use object vars.
+     * echo $object->count('distinct mycol',PDO_DataObject::WHERE_ONLY);
+     *
+     * // count distinct id (eg. the primary key)
+     * echo $object->count('distinct');      
+     * ```
+     *
+     * @param bool|string  (optional) <br/>\
+     *                  (true|false => see below not on whereAddonly) <br/>\
+     *                  (string) <br/>\
+     *                      "DISTINCT" => does a distinct count on the tables 'key' column <br/>\
+     *                      otherwise  => normally it counts primary keys - you can use  <br/>\
+     *                                    this to do things like $do->count('distinct mycol'); 
      *                  
-     * @param bool      $whereAddOnly (optional) If PDO_DataObject::WHERE_ONLY is passed in then
-     *                  we will build the condition only using the whereAdd's.  Default is to
+     * @param bool      $whereAddOnly (optional) If PDO_DataObject::WHERE_ONLY is passed in then \
+     *                  we will build the condition only using the whereAdd's.  Default is to \
      *                  build the condition using the object parameters as well.
      *
      * @category fetch
