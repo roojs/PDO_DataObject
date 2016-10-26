@@ -3201,8 +3201,8 @@ class PDO_DataObject
      *
      * @category introspect
      * @access public
-     * @return Array(databse Structure)|PEAR_Error|false     if no file exists
-     *              or the array(tablename => array(column_name=>type)) if called with 1 argument.. (databasename)
+     * @return Array|false   see notes above
+     * @throws PDO_DataObject_Exception when there is a problem loading or locating the files..
      */
     final function databaseStructure($database_nickname = false, $inidata = false, $linksdata=false, $overwrite = false)
     {
