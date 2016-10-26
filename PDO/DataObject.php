@@ -3171,30 +3171,35 @@ class PDO_DataObject
      *
      * usage :
      * 1 argument - forces generator run..
+     * ```
      * PDO_DataObject::databaseStructure(  'databasename')
-     *
+     * ```
+     * 
      * 2 argument - just returns the database structure - if any.
+     *```
      * PDO_DataObject::databaseStructure(  'databasename', false)
+     * ```
      * 
-     * 
-     * 2 arguments:
+     * 2 arguments - set's the structure..
+     * ```
      * PDO_DataObject::databaseStructure(  'databasename', parse_ini_file('mydb.ini',true))
-     *  - set's the structure..
+     * ```
      *  
      * 3 arguments:
+     * ```
      * PDO_DataObject::databaseStructure(  'databasename',
      *                                    parse_ini_file('mydb.ini',true), 
      *                                    parse_ini_file('mydb.link.ini',true)); 
-    
+     * ```
      * obviously you dont have to use ini files.. (just return array similar to ini files..)
      *  
      * It should append to the table structure array 
      *
      *     
-     * @param optional string  name of database to assign / read
-     * @param optional array|false   structure of database, and keys
-     * @param optional array|false  table links
-     * @param optional bool overwrite - normally the first two will just append
+     * @param string       $database_nickname (optional) name of database to assign / read
+     * @param array|false  $inidata (optional) structure of database, and keys
+     * @param array|false  $linksdata (optional) table links
+     * @param bool         $overwrite (optional)  normally the first two will just append
      *
      * @category introspect
      * @access public
