@@ -27,6 +27,7 @@
    "items" : [
     {
      "Boolean autohide" : true,
+     "String position" : "fixed-top",
      "xtype" : "NavHeaderbar",
      "Boolean desktopCenter" : true,
      "String brand" : "PDO_DataObject manual",

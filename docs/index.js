@@ -42,6 +42,7 @@ index = new Roo.XComponent({
      brand : 'PDO_DataObject manual',
      desktopCenter : true,
      main : true,
+     position : 'fixed-top',
      xns : Roo.bootstrap,
      '|xns' : 'Roo.bootstrap'
     },
