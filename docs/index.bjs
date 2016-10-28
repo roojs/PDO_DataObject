@@ -30,7 +30,8 @@
      "xtype" : "NavHeaderbar",
      "Boolean desktopCenter" : true,
      "String brand" : "PDO_DataObject manual",
-     "$ xns" : "Roo.bootstrap"
+     "$ xns" : "Roo.bootstrap",
+     "Boolean main" : true
     },
     {
      "xtype" : "Row",

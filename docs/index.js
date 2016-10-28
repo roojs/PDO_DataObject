@@ -41,6 +41,7 @@ index = new Roo.XComponent({
      autohide : true,
      brand : 'PDO_DataObject manual',
      desktopCenter : true,
+     main : true,
      xns : Roo.bootstrap,
      '|xns' : 'Roo.bootstrap'
     },
