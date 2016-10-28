@@ -133,6 +133,7 @@ index = new Roo.XComponent({
        items  : [
         {
          xtype : 'NavSidebar',
+         style : 'margin:10px;',
          xns : Roo.bootstrap,
          '|xns' : 'Roo.bootstrap',
          items  : [

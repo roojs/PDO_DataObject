@@ -51,6 +51,7 @@
         {
          "xtype" : "NavSidebar",
          "$ xns" : "Roo.bootstrap",
+         "String style" : "margin:10px;",
          "items" : [
           {
            "xtype" : "NavCategory",
