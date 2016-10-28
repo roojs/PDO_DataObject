@@ -55,7 +55,7 @@ index = new Roo.XComponent({
        xtype : 'Column',
        resize : function() { 
        
-           this.el.setHeight(Roo.lib.Dom.getViewHeight()- 100);
+           this.el.setHeight(Roo.lib.Dom.getViewHeight()- 60);
            
        },
        sm : 3,
