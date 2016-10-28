@@ -742,7 +742,7 @@ class PDO_DataObject
      * @param   mixed  (optional) the value to set when using key/value format
      * @static
      * @access  public
-     * @return the current config array 
+     * @return array the current config array 
      */
      
     static function config($cfg_in = array(), $value=false) 

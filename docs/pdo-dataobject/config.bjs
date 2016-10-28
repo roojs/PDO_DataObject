@@ -17,8 +17,8 @@
                     "is_static": true,
                     "is_constructor": false,
                     "memberof": "PDO_DataObject",
-                    "returndesc": "current config array",
-                    "returntype": "the",
+                    "returndesc": "the current config array",
+                    "returntype": "array",
                     "|xns": "Roo.doc",
                     "xtype": "Synopsis",
                     "items": [
