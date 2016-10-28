@@ -2134,10 +2134,10 @@ class PDO_DataObject
      *
      * Usage:
      * ```
-     * $object->selectAdd(); // resets select to nothing!
-     * $object->selectAdd("*"); // default select
-     * $object->selectAdd("unixtime(DATE) as udate");
-     * $object->selectAdd("DATE");
+     * $object->select(); // resets select to nothing!
+     * $object->select("*"); // default select
+     * $object->select("unixtime(DATE) as udate");
+     * $object->select("DATE");
      * ```
      *
      * @category build
