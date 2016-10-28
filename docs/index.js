@@ -55,7 +55,11 @@ index = new Roo.XComponent({
        xtype : 'Column',
        resize : function() { 
        
-           this.el.setHeight(Roo.lib.Dom.getViewHeight()- 60);
+           if (Roo.lib.Dom.getViewWidth() < 600) {
+               this.el.setHeight(Roo.lib.Dom.getViewHeight() /2);
+           } else {
+               this.el.setHeight(Roo.lib.Dom.getViewHeight()- 60);
+           }
            
        },
        sm : 3,
