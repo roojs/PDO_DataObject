@@ -45,7 +45,7 @@
        "| function resize" : "function() { \n\n    this.el.setHeight(Roo.lib.Dom.getViewHeight()- 100);\n    \n}",
        "xtype" : "Column",
        "$ xns" : "Roo.bootstrap",
-       "String style" : "height: 500px;\n    overflow-y: scroll; overflow-x:hidden;",
+       "String style" : "height: 500px;\n    overflow-y: scroll; overflow-x:hidden;\n    margin:top:40px;",
        "Number sm" : 3,
        "items" : [
         {
