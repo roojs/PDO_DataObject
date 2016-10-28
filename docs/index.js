@@ -59,7 +59,7 @@ index = new Roo.XComponent({
            
        },
        sm : 3,
-       style : 'height: 500px;\n    overflow-y: scroll; overflow-x:hidden;\n    margin-top:80px;',
+       style : 'height: 500px;\n    overflow-y: scroll; overflow-x:hidden;\n    margin-top:60px;',
        listeners : {
         render : function (_self)
          {
