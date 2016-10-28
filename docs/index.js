@@ -38,6 +38,7 @@ index = new Roo.XComponent({
    items  : [
     {
      xtype : 'NavHeaderbar',
+     autohide : true,
      brand : 'PDO_DataObject manual',
      desktopCenter : true,
      xns : Roo.bootstrap,

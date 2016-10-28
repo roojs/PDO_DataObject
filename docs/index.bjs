@@ -26,6 +26,7 @@
    "$ xns" : "Roo.bootstrap",
    "items" : [
     {
+     "Boolean autohide" : true,
      "xtype" : "NavHeaderbar",
      "Boolean desktopCenter" : true,
      "String brand" : "PDO_DataObject manual",
