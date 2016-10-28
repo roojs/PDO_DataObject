@@ -40,6 +40,7 @@ index = new Roo.XComponent({
      xtype : 'NavHeaderbar',
      autohide : true,
      brand : 'PDO_DataObject manual',
+     brand_href : '#introduction',
      desktopCenter : true,
      main : true,
      position : 'fixed-top',
@@ -48,6 +49,7 @@ index = new Roo.XComponent({
     },
     {
      xtype : 'Row',
+     style : 'margin:0;',
      xns : Roo.bootstrap,
      '|xns' : 'Roo.bootstrap',
      items  : [
@@ -55,20 +57,26 @@ index = new Roo.XComponent({
        xtype : 'Column',
        resize : function() { 
        
-           if (Roo.lib.Dom.getViewWidth() < 600) {
-               this.el.setHeight(Roo.lib.Dom.getViewHeight() /2);
+           if (Roo.lib.Dom.getViewWidth() < 768) {
+           
+           // mobile...
+               this.el.setHeight((Roo.lib.Dom.getViewHeight() /2)-60);
+               this.el.dom.style.position = 'relative';
+               _this.right_col.el.dom.style.marginTop = '0px';
            } else {
                this.el.setHeight(Roo.lib.Dom.getViewHeight()- 60);
+               this.el.dom.style.position = 'fixed';
+               _this.right_col.el.dom.style.marginTop = '60px';        
            }
            
        },
        sm : 3,
-       style : 'height: 500px;\n    overflow-y: scroll; overflow-x:hidden;\n    margin-top:60px;',
+       style : 'height: 500px;\n    overflow-y: scroll; overflow-x:hidden;\n    margin-top:60px;\n    position:fixed;',
        listeners : {
         render : function (_self)
          {
-             
-             this.resize();
+              
+             this.resize.defer(100,this);;
              window.addEventListener("resize", function() { _self.resize()  } );
              var el = this;
              
@@ -231,102 +239,105 @@ index = new Roo.XComponent({
       },
       {
        xtype : 'Column',
-       load : function(path) { 
-       
-           var el = this;
-           this.el.dom.innerHTML = '';
-           
-           var walk = function(node) {
-               if (node['|xns'] == 'Roo.doc' || node['$ xns'] == 'Roo.doc') {
-                   node.xns = Roo.doc;
-               }
-               if (node['|xns'] == 'Roo.bootstrap' || node['$ xns'] == 'Roo.bootstrap' ) {
-                   node.xns = Roo.bootstrap;
-               }
-               // builder uses very different format now..
-               for(var k in node) {
-                   if (k.match(/\s+/)) { 
-                       var kk = k.split(/\s+/).pop();
-                       if (kk !='xns' && kk != k) {
-                           Roo.log('set : ' + kk);
-                           node[kk] = node[k];
-                       }
-                   }
-               }
-               Roo.log(node);
-               Roo.each(node.items || [],walk);
-           
-           }
-           
-           var build = function(node)
-           {
-               walk(node);
-               var items = typeof(node.items) == 'undefined' ? false : node.items;
-               delete node.items;
-        
-               node._tree = (function(){
-                   var _this = this;
-                   var MODULE = this;
-                   return items[0]
-               }).createDelegate(node);
-               node.parent = { el : el };
-               var new_comp = new Roo.XComponent(node);
-               Roo.log(new_comp);
-               new_comp.render();
-               
-           
-           }
-           
-           
-       
-           Roo.Ajax.request({ 
-                   url: baseURL + path + '.bjs',
-                   method: 'GET', 
-                   success: function(response, opts) { 
-                       var res = Roo.decode(response.responseText); // needs error checking
-                       Roo.log(res);
-                       build(res);
-                       
-                       
-                   },
-                   failure : function() {
-                       // show error.
-                   },
-                   scope : this
-               });
-       },
        sm : 9,
+       smoff : 3,
+       style : 'margin-top:60px',
        listeners : {
         render : function (_self)
          {
-                 window.onhashchange = function() {
-                     //Roo.log('hashchange?');
-                     _self.load(window.location.hash.substring(1));
-                 };
-                 
-                 
-                 if (window.location.hash == '') {
-                     window.location.hash = '#introduction';
-                     
-                 } else {
-                     _self.load(window.location.hash.substring(1));
-                 }
+             _this.right_col = this;
          }
        },
        xns : Roo.bootstrap,
-       '|xns' : 'Roo.bootstrap'
-      }
-     ]
-    },
-    {
-     xtype : 'Container',
-     xns : Roo.bootstrap,
-     '|xns' : 'Roo.bootstrap',
-     items  : [
-      {
-       xtype : 'Container',
-       xns : Roo.bootstrap,
-       '|xns' : 'Roo.bootstrap'
+       '|xns' : 'Roo.bootstrap',
+       items  : [
+        {
+         xtype : 'Element',
+         load : function(path) { 
+         
+             var el = this;
+             this.el.dom.innerHTML = '';
+             
+             var walk = function(node) {
+                 if (node['|xns'] == 'Roo.doc' || node['$ xns'] == 'Roo.doc') {
+                     node.xns = Roo.doc;
+                 }
+                 if (node['|xns'] == 'Roo.bootstrap' || node['$ xns'] == 'Roo.bootstrap' ) {
+                     node.xns = Roo.bootstrap;
+                 }
+                 // builder uses very different format now..
+                 for(var k in node) {
+                     if (k.match(/\s+/)) { 
+                         var kk = k.split(/\s+/).pop();
+                         if (kk !='xns' && kk != k) {
+                             Roo.log('set : ' + kk);
+                             node[kk] = node[k];
+                         }
+                     }
+                 }
+                 Roo.log(node);
+                 Roo.each(node.items || [],walk);
+             
+             }
+             
+             var build = function(node)
+             {
+                 walk(node);
+                 var items = typeof(node.items) == 'undefined' ? false : node.items;
+                 delete node.items;
+          
+                 node._tree = (function(){
+                     var _this = this;
+                     var MODULE = this;
+                     return items[0]
+                 }).createDelegate(node);
+                 node.parent = { el : el };
+                 var new_comp = new Roo.XComponent(node);
+                 Roo.log(new_comp);
+                 new_comp.render();
+                 
+             
+             }
+             
+             
+         
+             Roo.Ajax.request({ 
+                     url: baseURL + path + '.bjs',
+                     method: 'GET', 
+                     success: function(response, opts) { 
+                         var res = Roo.decode(response.responseText); // needs error checking
+                         Roo.log(res);
+                         build(res);
+                         
+                         
+                     },
+                     failure : function() {
+                         // show error.
+                     },
+                     scope : this
+                 });
+         },
+         listeners : {
+          render : function (_self)
+           {
+                   window.onhashchange = function() {
+                       //Roo.log('hashchange?');
+                       _self.load(window.location.hash.substring(1));
+                   };
+                   
+                   
+                   if (window.location.hash == '') {
+                       window.location.hash = '#introduction';
+                       
+                   } else {
+                       _self.load(window.location.hash.substring(1));
+                   }
+           }
+         },
+         xns : Roo.bootstrap,
+         '|xns' : 'Roo.bootstrap'
+        }
+       ]
       }
      ]
     }

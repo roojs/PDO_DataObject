@@ -37,7 +37,7 @@
                     "xtype": "Section",
                     "items": [
                         {
-                            "html": " normally  real null, and CAST('null') will match\n if you have enable_null_strings (not recommended) then string 'null' will also return true.\n \n    \n",
+                            "html": "<p> normally  real null, and CAST('null') will match\n if you have enable_null_strings (not recommended) then string 'null' will also return true.<\/p><p><\/p>",
                             "|xns": "Roo.doc",
                             "xtype": "Para"
                         }
