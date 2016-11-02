@@ -3941,7 +3941,6 @@ class PDO_DataObject
             }
             
             $class[]  =  $cpr . $tbl;
-            
         }
         
         return self::loadClass($class, $table, $database);
