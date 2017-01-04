@@ -1043,10 +1043,11 @@ class PDO_DataObject
      * 
      * @throws PDO_DataObject_Exception - if run twice on the same object, or tablename missing in class.
      * @param   boolean $n Fetch first result
+     * @param   integer $mode
      * @access  public
      * @return  mixed (number of rows returned, or true if numRows fetching is not supported)
      */
-    final function find($n = false)
+    final function find($n = false, $mode=0)
     {
         
         if ($this->_query === false) {
@@ -1077,8 +1078,14 @@ class PDO_DataObject
         
        
         $DB = $this->PDO();
-        
-        $sql = $this->toSelectSQL();
+
+	if (!in_array($mode, array(0, self::FOR_UPDATE, self::LOCK_IN_SHARE_MODE))) {
+		return $this->raise(
+			"Invalid mode passed to find()",
+			self::ERROR_INVALIDARGS);
+	}
+
+        $sql = $this->toSelectSQL(false, $mode);
         
      
         
