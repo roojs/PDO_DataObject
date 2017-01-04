@@ -958,10 +958,11 @@ class PDO_DataObject
      * 
      * @return string the SQL select query built from the properties.
      * @param boolean flag to block recusive calling of unions..
+     * @param integer select mode
      * @access public
      */
     
-    final function toSelectSQL($unions = true)
+    final function toSelectSQL($unions = true, $mode=0)
     {
         $quoteIdentifiers = self::$config['quote_identifiers'];
         
@@ -981,7 +982,20 @@ class PDO_DataObject
             ($this->_query['having']    == '' ? '' : $this->_query['having'] . " \n")
         );
 
-        
+
+	if (!in_array($mode, array(0, self::FOR_UPDATE, self::LOCK_IN_SHARE_MODE))) {
+		return $this->raise(
+			"Invalid mode passed to toSelectSQL()",
+			self::ERROR_INVALIDARGS);
+
+	} elseif ($mode == self::FOR_UPDATE) {
+		$sql .= ' FOR UPDATE';
+
+	} elseif ($mode == self::LOCK_IN_SHARE_MODE) {
+		$sql .= ' LOCK IN SHARE MODE';
+
+	}
+
         // derive table.. not sure how well this is really supported...??
         if (!empty($this->_query['derive_table']) && !empty($this->_query['derive_select']) ) {
             
