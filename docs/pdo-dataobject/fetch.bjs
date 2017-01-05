@@ -1,0 +1,63 @@
+{
+    "name": "fetch",
+    "parent": "",
+    "title": "",
+    "permname": "",
+    "modOrder": "001",
+    "items": [
+        {
+            "name": "fetch",
+            "purpose": " fetches next row into this objects var's",
+            "stype": "function",
+            "|xns": "Roo.doc",
+            "xtype": "Entry",
+            "items": [
+                {
+                    "name": "fetch",
+                    "is_static": false,
+                    "is_constructor": false,
+                    "memberof": "PDO_DataObject",
+                    "returndesc": "true on success, false on falure (usually no more data..)",
+                    "returntype": "boolean",
+                    "|xns": "Roo.doc",
+                    "xtype": "Synopsis",
+                    "items": []
+                },
+                {
+                    "stype": "desc",
+                    "|xns": "Roo.doc",
+                    "xtype": "Section",
+                    "items": [
+                        {
+                            "html": " returns 1 on success 0 on failure\n\n\n\n Usage:\n ```\n $object = new mytable();\n $object->name = \"fred\";\n $object->find();\n $store = array();\n while ($object->fetch()) {\n   echo $this->ID;\n   $store[] = $object; \/\/ builds an array of object lines.\n }\n ```\n \n",
+                            "|xns": "Roo.doc",
+                            "xtype": "Para"
+                        }
+                    ]
+                },
+                {
+                    "stype": "parameter",
+                    "|xns": "Roo.doc",
+                    "xtype": "Section"
+                },
+                {
+                    "stype": "return",
+                    "|xns": "Roo.doc",
+                    "xtype": "Section"
+                },
+                {
+                    "stype": "throws",
+                    "|xns": "Roo.doc",
+                    "xtype": "Section",
+                    "items": [
+                        {
+                            "|xns": "Roo.doc",
+                            "xtype": "Para",
+                            "html": "PDO_DataObject_Exception called without query being run"
+                        }
+                    ]
+                }
+            ]
+        }
+    ]
+}

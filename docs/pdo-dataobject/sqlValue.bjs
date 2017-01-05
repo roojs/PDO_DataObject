@@ -1,40 +1,40 @@
 {
-    "name": "count",
+    "name": "sqlValue",
     "parent": "",
     "title": "",
     "permname": "",
     "modOrder": "001",
     "items": [
         {
-            "name": "count",
-            "purpose": " Find the number of results from a simple query",
+            "name": "sqlValue",
+            "purpose": " Factory method for calling PDO_DataObject_Cast",
             "stype": "function",
             "|xns": "Roo.doc",
             "xtype": "Entry",
             "items": [
                 {
-                    "name": "count",
-                    "is_static": false,
+                    "name": "sqlValue",
+                    "is_static": true,
                     "is_constructor": false,
                     "memberof": "PDO_DataObject",
                     "returndesc": "",
-                    "returntype": "int",
+                    "returntype": "PDO_DataObject_Cast",
                     "|xns": "Roo.doc",
                     "xtype": "Synopsis",
                     "items": [
                         {
-                            "desc": "(optional) <br\/>\\\n                  (true|false => see below not on whereAddonly) <br\/>\\\n                  (string) <br\/>\\\n                      \"DISTINCT\" => does a distinct count on the tables 'key' column <br\/>\\\n                      otherwise  => normally it counts primary keys - you can use  <br\/>\\\n                                    this to do things like $do->count('distinct mycol'); \n                  ",
+                            "desc": "(or type if used with 2 arguments)",
                             "is_optional": false,
-                            "name": "$countWhat",
+                            "name": "$value",
                             "type": "string",
                             "|xns": "Roo.doc",
                             "xtype": "Param"
                         },
                         {
-                            "desc": "(optional) If PDO_DataObject::WHERE_ONLY is passed in then \\\n                  we will build the condition only using the whereAdd's.  Default is to \\\n                  build the condition using the object parameters as well.",
+                            "desc": "(optional) used with date\/null etc..",
                             "is_optional": false,
-                            "name": "$whereAddOnly",
-                            "type": "bool",
+                            "name": "",
+                            "type": "string",
                             "|xns": "Roo.doc",
                             "xtype": "Param"
                         }
@@ -46,7 +46,7 @@
                     "xtype": "Section",
                     "items": [
                         {
-                            "html": " Usage:\n ```\n $object = new mytable();\n $object->name = \"fred\";\n echo $object->count();\n\n \/\/ dont use object vars.\n echo $object->count(PDO_DataObject::WHERE_ONLY);\n\n \/\/count distinct mycol.\n echo $object->count('distinct mycol');\n\n \/\/ dont use object vars.\n echo $object->count('distinct mycol',PDO_DataObject::WHERE_ONLY);\n\n \/\/ count distinct id (eg. the primary key)\n echo $object->count('distinct');      \n ```\n\n\n",
+                            "html": " Cast Objects represent database values, that can not be represented using simple PHP types,\n\n For example RAW sql calls like `NOW()` or database methods or database `'NULL'`\n\n if used with 1 argument `PDO_DataObject_Cast::sql($value)` is called\n \n if used with 2 arguments `PDO_DataObject_Cast::$value($callvalue)` is called\n valid first arguments are: blob, string, date, sql\n \n usage:\n ```\n $member->updated = $member->sqlValue('NOW()');\n $member->blob_data = $member->sqlValue('some_file_location', 'blob');\n ```\n \n\n",
                             "|xns": "Roo.doc",
                             "xtype": "Para"
                         }

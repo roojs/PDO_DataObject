@@ -1,40 +1,56 @@
 {
-    "name": "count",
+    "name": "whereIn",
     "parent": "",
     "title": "",
     "permname": "",
     "modOrder": "001",
     "items": [
         {
-            "name": "count",
-            "purpose": " Find the number of results from a simple query",
+            "name": "whereIn",
+            "purpose": " Adds a 'IN' condition to the WHERE statement (chainable)",
             "stype": "function",
             "|xns": "Roo.doc",
             "xtype": "Entry",
             "items": [
                 {
-                    "name": "count",
+                    "name": "whereIn",
                     "is_static": false,
                     "is_constructor": false,
                     "memberof": "PDO_DataObject",
-                    "returndesc": "",
-                    "returntype": "int",
+                    "returndesc": "self",
+                    "returntype": "PDO_DataObject",
                     "|xns": "Roo.doc",
                     "xtype": "Synopsis",
                     "items": [
                         {
-                            "desc": "(optional) <br\/>\\\n                  (true|false => see below not on whereAddonly) <br\/>\\\n                  (string) <br\/>\\\n                      \"DISTINCT\" => does a distinct count on the tables 'key' column <br\/>\\\n                      otherwise  => normally it counts primary keys - you can use  <br\/>\\\n                                    this to do things like $do->count('distinct mycol'); \n                  ",
+                            "desc": "key column to match",
                             "is_optional": false,
-                            "name": "$countWhat",
+                            "name": "$key",
                             "type": "string",
                             "|xns": "Roo.doc",
                             "xtype": "Param"
                         },
                         {
-                            "desc": "(optional) If PDO_DataObject::WHERE_ONLY is passed in then \\\n                  we will build the condition only using the whereAdd's.  Default is to \\\n                  build the condition using the object parameters as well.",
+                            "desc": "list of values to match",
                             "is_optional": false,
-                            "name": "$whereAddOnly",
-                            "type": "bool",
+                            "name": "$list",
+                            "type": "array",
+                            "|xns": "Roo.doc",
+                            "xtype": "Param"
+                        },
+                        {
+                            "desc": "string|int|integer|float|bool  cast to type.",
+                            "is_optional": false,
+                            "name": "$type",
+                            "type": "string",
+                            "|xns": "Roo.doc",
+                            "xtype": "Param"
+                        },
+                        {
+                            "desc": "optional logic to call whereAdd with eg. \"OR\" (defaults to \"AND\")",
+                            "is_optional": false,
+                            "name": "$logic",
+                            "type": "string",
                             "|xns": "Roo.doc",
                             "xtype": "Param"
                         }
@@ -46,7 +62,7 @@
                     "xtype": "Section",
                     "items": [
                         {
-                            "html": " Usage:\n ```\n $object = new mytable();\n $object->name = \"fred\";\n echo $object->count();\n\n \/\/ dont use object vars.\n echo $object->count(PDO_DataObject::WHERE_ONLY);\n\n \/\/count distinct mycol.\n echo $object->count('distinct mycol');\n\n \/\/ dont use object vars.\n echo $object->count('distinct mycol',PDO_DataObject::WHERE_ONLY);\n\n \/\/ count distinct id (eg. the primary key)\n echo $object->count('distinct');      \n ```\n\n\n",
+                            "html": " \n NOTE : ALWAYS ENSURE KEY IS ESCAPED\n \n Usage:\n ```\n \/\/minimal usage\n $object->whereAddIn('id', $array, 'int');\n\n \/\/ cast to float, and call whereAdd with 'OR'\n $object->whereAddIn('price', $array, 'float', 'OR');\n\n \/\/ quote strings\n $object->whereAddIn('name', $array, 'string');  \n ```\n\n",
                             "|xns": "Roo.doc",
                             "xtype": "Para"
                         }

@@ -1,0 +1,159 @@
+{
+ "name" : "index",
+ "parent" : "",
+ "title" : "",
+ "path" : "/home/alan/gitlive/PDO_DataObject/docs/index.bjs",
+ "permname" : "",
+ "modOrder" : "001",
+ "strings" : {
+  "150e558f4884668e5a5b45a8410b5d2f" : "Introspection - Database and table schema information",
+  "aca0253c82fea77fa2c8cbe60cd619f2" : "Joins and referenced Tables",
+  "7c83fdebb29c28504c91870e03666cd8" : "Configuration and Database DSN",
+  "c2b942b501dc222d608980c0ed40b07c" : "Fetching Results",
+  "0b79795d3efc95b9976c7c5b933afce2" : "Introduction",
+  "2ee868dc71d76b74e5af6c689ef9ffe0" : "Creating DataObjects",
+  "1d866b2915d91065ba174a39994bab6f" : "Creating an instance",
+  "556315ce9fbee2dfda70f8a91138d2b3" : "Create, Update and Delete",
+  "5e434159c315edc6ae8d816255bffaec" : "Debugging & Error Handling",
+  "2c918a06bae30fdcf78f8810894a67af" : "Working with Results",
+  "8413aa2e38fdd078a3d96e34592d286a" : "Building Queries",
+  "b73ec9912d761600946fab487e0de1cc" : "DB_DataObject compatibility"
+ },
+ "items" : [
+  {
+   "xtype" : "Body",
+   "String brand" : "PDO_DataObject Documentation",
+   "$ xns" : "Roo.bootstrap",
+   "items" : [
+    {
+     "Boolean autohide" : true,
+     "String position" : "fixed-top",
+     "xtype" : "NavHeaderbar",
+     "Boolean desktopCenter" : true,
+     "String brand_href" : "#introduction",
+     "String brand" : "PDO_DataObject manual",
+     "$ xns" : "Roo.bootstrap",
+     "Boolean main" : true
+    },
+    {
+     "xtype" : "Row",
+     "$ xns" : "Roo.bootstrap",
+     "String style" : "margin:0;",
+     "items" : [
+      {
+       "listeners" : {
+        "render" : "function (_self)\n{\n     \n    this.resize.defer(100,this);;\n    window.addEventListener(\"resize\", function() { _self.resize()  } );\n    var el = this;\n    \n    var walk = function(node) {\n        if (node['|xns'] == 'Roo.doc') {\n            node.xns = Roo.doc;\n        }\n         if (node['|xns'] == 'Roo.bootstrap') {\n            node.xns = Roo.bootstrap;\n        }\n        Roo.each(node.items || [],walk);\n    \n    }\n    \n    var build = function(cat, tnode)\n    {\n        if (typeof(Roo.doc.NavCategory.registry[cat]) == 'undefined') {\n            Roo.log(\"skip category - no navcategory item : \" + cat );\n            return;\n        }\n        \n        walk(tnode);\n\n        var node = {\n            name: 'category-' + cat,\n            parent: {el : Roo.doc.NavCategory.registry[cat]},\n            title: \"\",\n            permname: \"\",\n            modOrder: \"001\",\n        };\n        node._tree = (function(){\n            var _this = this;\n            var MODULE = this;\n            return tnode\n        }).createDelegate(node);\n\n        var new_comp = new Roo.XComponent(node);\n \n        new_comp.render();\n        \n    \n    }\n    \n    \n\n    Roo.Ajax.request({ \n            url: baseURL + 'categories.json',\n            method: 'GET', \n            success: function(response, opts) { \n                var res = Roo.decode(response.responseText); // needs error checking\n                Roo.log(res);\n                for(var k in res) {\n                    build(k, res[k]);\n                }\n                \n            },\n            failure : function() {\n                // show error.\n            },\n            scope : this\n        });\n}"
+       },
+       "| function resize" : "function() { \n\n    if (Roo.lib.Dom.getViewWidth() < 768) {\n    \n    // mobile...\n        this.el.setHeight((Roo.lib.Dom.getViewHeight() /2)-60);\n        this.el.dom.style.position = 'relative';\n        _this.right_col.el.dom.style.marginTop = '0px';\n    } else {\n        this.el.setHeight(Roo.lib.Dom.getViewHeight()- 60);\n        this.el.dom.style.position = 'fixed';\n        _this.right_col.el.dom.style.marginTop = '60px';        \n    }\n    \n}",
+       "xtype" : "Column",
+       "$ xns" : "Roo.bootstrap",
+       "String style" : "height: 500px;\n    overflow-y: scroll; overflow-x:hidden;\n    margin-top:60px;\n    position:fixed;",
+       "Number sm" : 3,
+       "items" : [
+        {
+         "xtype" : "NavSidebar",
+         "$ xns" : "Roo.bootstrap",
+         "String style" : "margin:10px;",
+         "items" : [
+          {
+           "xtype" : "NavCategory",
+           "$ xns" : "Roo.doc",
+           "string title" : "Introduction",
+           "string name" : "introduction"
+          },
+          {
+           "xtype" : "NavCategory",
+           "$ xns" : "Roo.doc",
+           "string title" : "Creating DataObjects",
+           "string name" : "creating-dataobjects"
+          },
+          {
+           "xtype" : "NavCategory",
+           "$ xns" : "Roo.doc",
+           "string title" : "Configuration and Database DSN",
+           "string name" : "config"
+          },
+          {
+           "xtype" : "NavCategory",
+           "$ xns" : "Roo.doc",
+           "string title" : "Creating an instance",
+           "string name" : "create"
+          },
+          {
+           "xtype" : "NavCategory",
+           "$ xns" : "Roo.doc",
+           "string title" : "Building Queries",
+           "string name" : "build"
+          },
+          {
+           "xtype" : "NavCategory",
+           "$ xns" : "Roo.doc",
+           "string title" : "Fetching Results",
+           "string name" : "fetch"
+          },
+          {
+           "xtype" : "NavCategory",
+           "$ xns" : "Roo.doc",
+           "string title" : "Joins and referenced Tables",
+           "string name" : "join"
+          },
+          {
+           "xtype" : "NavCategory",
+           "$ xns" : "Roo.doc",
+           "string title" : "Working with Results",
+           "string name" : "results"
+          },
+          {
+           "xtype" : "NavCategory",
+           "$ xns" : "Roo.doc",
+           "string title" : "Create, Update and Delete",
+           "string name" : "crud"
+          },
+          {
+           "xtype" : "NavCategory",
+           "$ xns" : "Roo.doc",
+           "string title" : "Introspection - Database and table schema information",
+           "string name" : "introspect"
+          },
+          {
+           "xtype" : "NavCategory",
+           "$ xns" : "Roo.doc",
+           "string title" : "Debugging & Error Handling",
+           "string name" : "debug"
+          },
+          {
+           "xtype" : "NavCategory",
+           "$ xns" : "Roo.doc",
+           "string title" : "DB_DataObject compatibility",
+           "string name" : "db-dataobject-compatibility"
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "listeners" : {
+        "render" : "function (_self)\n{\n    _this.right_col = this;\n}"
+       },
+       "Number smoff" : 3,
+       "xtype" : "Column",
+       "$ xns" : "Roo.bootstrap",
+       "String style" : "margin-top:60px",
+       "Number sm" : 9,
+       "items" : [
+        {
+         "listeners" : {
+          "render" : "function (_self)\n{\n        window.onhashchange = function() {\n            //Roo.log('hashchange?');\n            _self.load(window.location.hash.substring(1));\n        };\n        \n        \n        if (window.location.hash == '') {\n            window.location.hash = '#introduction';\n            \n        } else {\n            _self.load(window.location.hash.substring(1));\n        }\n}"
+         },
+         "| function load" : "function(path) { \n\n    var el = this;\n    this.el.dom.innerHTML = '';\n    \n    var walk = function(node) {\n        if (node['|xns'] == 'Roo.doc' || node['$ xns'] == 'Roo.doc') {\n            node.xns = Roo.doc;\n        }\n        if (node['|xns'] == 'Roo.bootstrap' || node['$ xns'] == 'Roo.bootstrap' ) {\n            node.xns = Roo.bootstrap;\n        }\n        // builder uses very different format now..\n        for(var k in node) {\n            if (k.match(/\\s+/)) { \n                var kk = k.split(/\\s+/).pop();\n                if (kk !='xns' && kk != k) {\n                    Roo.log('set : ' + kk);\n                    node[kk] = node[k];\n                }\n            }\n        }\n        Roo.log(node);\n        Roo.each(node.items || [],walk);\n    \n    }\n    \n    var build = function(node)\n    {\n        walk(node);\n        var items = typeof(node.items) == 'undefined' ? false : node.items;\n        delete node.items;\n \n        node._tree = (function(){\n            var _this = this;\n            var MODULE = this;\n            return items[0]\n        }).createDelegate(node);\n        node.parent = { el : el };\n        var new_comp = new Roo.XComponent(node);\n        Roo.log(new_comp);\n        new_comp.render();\n        \n    \n    }\n    \n    \n\n    Roo.Ajax.request({ \n            url: baseURL + path + '.bjs',\n            method: 'GET', \n            success: function(response, opts) { \n                var res = Roo.decode(response.responseText); // needs error checking\n                Roo.log(res);\n                build(res);\n                \n                \n            },\n            failure : function() {\n                // show error.\n            },\n            scope : this\n        });\n}",
+         "xtype" : "Element",
+         "$ xns" : "Roo.bootstrap"
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  }
+ ]
+}

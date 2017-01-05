@@ -1,0 +1,63 @@
+{
+    "name": "__construct",
+    "parent": "",
+    "title": "",
+    "permname": "",
+    "modOrder": "001",
+    "items": [
+        {
+            "name": "new PDO_DataObject_Generator_Table",
+            "purpose": " Constructor",
+            "stype": "function",
+            "|xns": "Roo.doc",
+            "xtype": "Entry",
+            "items": [
+                {
+                    "name": "__construct",
+                    "is_static": false,
+                    "is_constructor": true,
+                    "memberof": "PDO_DataObject_Generator_Table",
+                    "returndesc": "",
+                    "returntype": "",
+                    "|xns": "Roo.doc",
+                    "xtype": "Synopsis",
+                    "items": [
+                        {
+                            "desc": "- The calling geneator",
+                            "is_optional": false,
+                            "name": "$gen",
+                            "type": "PDO_DataObject_Generator",
+                            "|xns": "Roo.doc",
+                            "xtype": "Param"
+                        },
+                        {
+                            "desc": "tablename to introspect and build.",
+                            "is_optional": false,
+                            "name": "$table",
+                            "type": "string",
+                            "|xns": "Roo.doc",
+                            "xtype": "Param"
+                        }
+                    ]
+                },
+                {
+                    "stype": "desc",
+                    "|xns": "Roo.doc",
+                    "xtype": "Section",
+                    "items": [
+                        {
+                            "html": " Calls database introspection to fill information in.\n \n",
+                            "|xns": "Roo.doc",
+                            "xtype": "Para"
+                        }
+                    ]
+                },
+                {
+                    "stype": "parameter",
+                    "|xns": "Roo.doc",
+                    "xtype": "Section"
+                }
+            ]
+        }
+    ]
+}

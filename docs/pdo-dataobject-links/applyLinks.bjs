@@ -1,0 +1,60 @@
+{
+    "name": "applyLinks",
+    "parent": "",
+    "title": "",
+    "permname": "",
+    "modOrder": "001",
+    "items": [
+        {
+            "name": "applyLinks",
+            "purpose": " load related objects",
+            "stype": "function",
+            "|xns": "Roo.doc",
+            "xtype": "Entry",
+            "items": [
+                {
+                    "name": "applyLinks",
+                    "is_static": false,
+                    "is_constructor": false,
+                    "memberof": "PDO_DataObject_Links",
+                    "returndesc": ", true on success",
+                    "returntype": "boolean",
+                    "|xns": "Roo.doc",
+                    "xtype": "Synopsis",
+                    "items": [
+                        {
+                            "desc": "format (default _%s) where %s is the table name.",
+                            "is_optional": false,
+                            "name": "$format",
+                            "type": "string",
+                            "|xns": "Roo.doc",
+                            "xtype": "Param"
+                        }
+                    ]
+                },
+                {
+                    "stype": "desc",
+                    "|xns": "Roo.doc",
+                    "xtype": "Section",
+                    "items": [
+                        {
+                            "html": " This code has not been tested with PDO_DataObjects\n\n Generally not recommended to use this.\n The generator should support creating getter_setter methods which are better suited.\n\n Relies on  <dbname>.links.ini\n\n Sets properties on the calling dataobject  you can change what\n object vars the links are stored in by  changeing the format parameter\n\n\n",
+                            "|xns": "Roo.doc",
+                            "xtype": "Para"
+                        }
+                    ]
+                },
+                {
+                    "stype": "parameter",
+                    "|xns": "Roo.doc",
+                    "xtype": "Section"
+                },
+                {
+                    "stype": "return",
+                    "|xns": "Roo.doc",
+                    "xtype": "Section"
+                }
+            ]
+        }
+    ]
+}

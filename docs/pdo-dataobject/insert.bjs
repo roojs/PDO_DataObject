@@ -1,0 +1,63 @@
+{
+    "name": "insert",
+    "parent": "",
+    "title": "",
+    "permname": "",
+    "modOrder": "001",
+    "items": [
+        {
+            "name": "insert",
+            "purpose": " Insert the current objects variables into the database",
+            "stype": "function",
+            "|xns": "Roo.doc",
+            "xtype": "Entry",
+            "items": [
+                {
+                    "name": "insert",
+                    "is_static": false,
+                    "is_constructor": false,
+                    "memberof": "PDO_DataObject",
+                    "returndesc": "when auto increment or sequence used, otherwise true on success",
+                    "returntype": "int|boolean",
+                    "|xns": "Roo.doc",
+                    "xtype": "Synopsis",
+                    "items": []
+                },
+                {
+                    "stype": "desc",
+                    "|xns": "Roo.doc",
+                    "xtype": "Section",
+                    "items": [
+                        {
+                            "html": " Returns the ID of the inserted element (if auto increment or sequences are used.)\n\n Usage:\n ```\n PDO_DataObject::Factory('mytable')\n   ->set([ 'name' => 'test'])\n   ->insert();\n ```\n \n",
+                            "|xns": "Roo.doc",
+                            "xtype": "Para"
+                        }
+                    ]
+                },
+                {
+                    "stype": "parameter",
+                    "|xns": "Roo.doc",
+                    "xtype": "Section"
+                },
+                {
+                    "stype": "return",
+                    "|xns": "Roo.doc",
+                    "xtype": "Section"
+                },
+                {
+                    "stype": "throws",
+                    "|xns": "Roo.doc",
+                    "xtype": "Section",
+                    "items": [
+                        {
+                            "|xns": "Roo.doc",
+                            "xtype": "Para",
+                            "html": "PDO_DataObject_Exception"
+                        }
+                    ]
+                }
+            ]
+        }
+    ]
+}

@@ -1,0 +1,60 @@
+{
+    "name": "tableColumns",
+    "parent": "",
+    "title": "",
+    "permname": "",
+    "modOrder": "001",
+    "items": [
+        {
+            "name": "tableColumns",
+            "purpose": " get\/set an associative array of table columns",
+            "stype": "function",
+            "|xns": "Roo.doc",
+            "xtype": "Entry",
+            "items": [
+                {
+                    "name": "tableColumns",
+                    "is_static": false,
+                    "is_constructor": false,
+                    "memberof": "PDO_DataObject",
+                    "returndesc": "(associative)",
+                    "returntype": "array",
+                    "|xns": "Roo.doc",
+                    "xtype": "Synopsis",
+                    "items": [
+                        {
+                            "desc": "key=>type array",
+                            "is_optional": false,
+                            "name": "",
+                            "type": "array",
+                            "|xns": "Roo.doc",
+                            "xtype": "Param"
+                        }
+                    ]
+                },
+                {
+                    "stype": "desc",
+                    "|xns": "Roo.doc",
+                    "xtype": "Section",
+                    "items": [
+                        {
+                            "html": " Example:\n ```\n returns [\n     'id' => 129\n     'name' => 130\n     ....\n ]\n Keys are the column names, values are the types\n see PDO_DataObject constants\n\n",
+                            "|xns": "Roo.doc",
+                            "xtype": "Para"
+                        }
+                    ]
+                },
+                {
+                    "stype": "parameter",
+                    "|xns": "Roo.doc",
+                    "xtype": "Section"
+                },
+                {
+                    "stype": "return",
+                    "|xns": "Roo.doc",
+                    "xtype": "Section"
+                }
+            ]
+        }
+    ]
+}

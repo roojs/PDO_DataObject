@@ -1,0 +1,88 @@
+{
+    "name": "setFrom",
+    "parent": "",
+    "title": "",
+    "permname": "",
+    "modOrder": "001",
+    "items": [
+        {
+            "name": "setFrom",
+            "purpose": " Copies items that are in the table definitions from an \\",
+            "stype": "function",
+            "|xns": "Roo.doc",
+            "xtype": "Entry",
+            "items": [
+                {
+                    "name": "setFrom",
+                    "is_static": false,
+                    "is_constructor": false,
+                    "memberof": "PDO_DataObject",
+                    "returndesc": "true on success or array of key=>setValue error message retured from",
+                    "returntype": "mixed",
+                    "|xns": "Roo.doc",
+                    "xtype": "Synopsis",
+                    "items": [
+                        {
+                            "desc": "use the values from this to set the instance properties",
+                            "is_optional": false,
+                            "name": "$from",
+                            "type": "object",
+                            "|xns": "Roo.doc",
+                            "xtype": "Param"
+                        },
+                        {
+                            "desc": "eg. map xxxx_name to $object->name using 'xxxx_%s' (defaults to %s - eg. name -> $object->name",
+                            "is_optional": false,
+                            "name": "$format",
+                            "type": "string",
+                            "|xns": "Roo.doc",
+                            "xtype": "Param"
+                        },
+                        {
+                            "desc": "(dont assign empty values if a column is empty (eg. '' \/ 0 etc...)",
+                            "is_optional": false,
+                            "name": "$skipEmpty",
+                            "type": "boolean",
+                            "|xns": "Roo.doc",
+                            "xtype": "Param"
+                        }
+                    ]
+                },
+                {
+                    "stype": "desc",
+                    "|xns": "Roo.doc",
+                    "xtype": "Section",
+                    "items": [
+                        {
+                            "html": " array or object into the current object\n \n it will not override primary key values.\n\n\n",
+                            "|xns": "Roo.doc",
+                            "xtype": "Para"
+                        }
+                    ]
+                },
+                {
+                    "stype": "parameter",
+                    "|xns": "Roo.doc",
+                    "xtype": "Section"
+                },
+                {
+                    "stype": "return",
+                    "|xns": "Roo.doc",
+                    "xtype": "Section"
+                },
+                {
+                    "stype": "throws",
+                    "|xns": "Roo.doc",
+                    "xtype": "Section",
+                    "items": [
+                        {
+                            "|xns": "Roo.doc",
+                            "xtype": "Para",
+                            "html": "PDO_DataObject_Exception if tableColumns return empty.."
+                        }
+                    ]
+                }
+            ]
+        }
+    ]
+}

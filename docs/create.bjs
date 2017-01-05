@@ -1,0 +1,51 @@
+{
+ "name" : "create",
+ "parent" : "",
+ "title" : "",
+ "path" : "/home/alan/gitlive/PDO_DataObject/docs/create.bjs",
+ "permname" : "",
+ "modOrder" : "001",
+ "strings" : {
+  "72caaab8039d8b75a86f805743b3716c" : "Creating instances of DataObjects",
+  "6ed348e04674567827e341bb5b6d9d82" : "Example of using PDO_DataObjects",
+  "a2a4c78ae5a110e9467fe679033c6d0b" : "<p>\nPDO_DataObjects was designed to be used with the factory method by default.\nWhile you can just create an instance of your child class, factory offers a number of advantages.\n</p>\n<ul>\n<li>Support for modular development, where table references come from multiple locations.\n<li>Different modules can add features to existing tables \n<li>Table aliasing, so you can rename tables, and alias the names\n</ul>\n\n"
+ },
+ "items" : [
+  {
+   "xtype" : "Body",
+   "$ xns" : "Roo.bootstrap",
+   "items" : [
+    {
+     "xtype" : "Header",
+     "Number level" : 1,
+     "$ xns" : "Roo.bootstrap",
+     "String html" : "Creating instances of DataObjects"
+    },
+    {
+     "xtype" : "Element",
+     "$ xns" : "Roo.bootstrap",
+     "String html" : "<p>\nPDO_DataObjects was designed to be used with the factory method by default.\nWhile you can just create an instance of your child class, factory offers a number of advantages.\n</p>\n<ul>\n<li>Support for modular development, where table references come from multiple locations.\n<li>Different modules can add features to existing tables \n<li>Table aliasing, so you can rename tables, and alias the names\n</ul>\n\n"
+    },
+    {
+     "xtype" : "Entry",
+     "$ xns" : "Roo.doc",
+     "items" : [
+      {
+       "String lang" : "php",
+       "xtype" : "Section",
+       "$ xns" : "Roo.doc",
+       "items" : [
+        {
+         "String code" : "\n\n\n$e = PDO_DataObject::factory('Events')\n\n// create a new instance (or call it from a method in your events object.\n$e->factorySelf()\n\n// create a \n\n$e = new DataObject_Events();\n",
+         "xtype" : "Example",
+         "$ xns" : "Roo.doc",
+         "String title" : "Example of using PDO_DataObjects"
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  }
+ ]
+}

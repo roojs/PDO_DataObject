@@ -1,40 +1,48 @@
 {
-    "name": "count",
+    "name": "debug",
     "parent": "",
     "title": "",
     "permname": "",
     "modOrder": "001",
     "items": [
         {
-            "name": "count",
-            "purpose": " Find the number of results from a simple query",
+            "name": "debug",
+            "purpose": " Debugger. - use this in your extended classes to output debugging information.",
             "stype": "function",
             "|xns": "Roo.doc",
             "xtype": "Entry",
             "items": [
                 {
-                    "name": "count",
-                    "is_static": false,
+                    "name": "debug",
+                    "is_static": true,
                     "is_constructor": false,
                     "memberof": "PDO_DataObject",
                     "returndesc": "",
-                    "returntype": "int",
+                    "returntype": "none",
                     "|xns": "Roo.doc",
                     "xtype": "Synopsis",
                     "items": [
                         {
-                            "desc": "(optional) <br\/>\\\n                  (true|false => see below not on whereAddonly) <br\/>\\\n                  (string) <br\/>\\\n                      \"DISTINCT\" => does a distinct count on the tables 'key' column <br\/>\\\n                      otherwise  => normally it counts primary keys - you can use  <br\/>\\\n                                    this to do things like $do->count('distinct mycol'); \n                  ",
+                            "desc": "- message to output",
                             "is_optional": false,
-                            "name": "$countWhat",
+                            "name": "$message",
                             "type": "string",
                             "|xns": "Roo.doc",
                             "xtype": "Param"
                         },
                         {
-                            "desc": "(optional) If PDO_DataObject::WHERE_ONLY is passed in then \\\n                  we will build the condition only using the whereAdd's.  Default is to \\\n                  build the condition using the object parameters as well.",
+                            "desc": "- bold at start",
                             "is_optional": false,
-                            "name": "$whereAddOnly",
-                            "type": "bool",
+                            "name": "$logtype",
+                            "type": "string",
+                            "|xns": "Roo.doc",
+                            "xtype": "Param"
+                        },
+                        {
+                            "desc": "- output level",
+                            "is_optional": false,
+                            "name": "$level",
+                            "type": "string",
                             "|xns": "Roo.doc",
                             "xtype": "Param"
                         }
@@ -46,7 +54,7 @@
                     "xtype": "Section",
                     "items": [
                         {
-                            "html": " Usage:\n ```\n $object = new mytable();\n $object->name = \"fred\";\n echo $object->count();\n\n \/\/ dont use object vars.\n echo $object->count(PDO_DataObject::WHERE_ONLY);\n\n \/\/count distinct mycol.\n echo $object->count('distinct mycol');\n\n \/\/ dont use object vars.\n echo $object->count('distinct mycol',PDO_DataObject::WHERE_ONLY);\n\n \/\/ count distinct id (eg. the primary key)\n echo $object->count('distinct');      \n ```\n\n\n",
+                            "html": " Use `PDO_DataObject::debugLevel(x)` to turn it on\n\n\n",
                             "|xns": "Roo.doc",
                             "xtype": "Para"
                         }

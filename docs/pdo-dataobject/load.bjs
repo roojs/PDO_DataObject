@@ -1,40 +1,40 @@
 {
-    "name": "count",
+    "name": "load",
     "parent": "",
     "title": "",
     "permname": "",
     "modOrder": "001",
     "items": [
         {
-            "name": "count",
-            "purpose": " Find the number of results from a simple query",
+            "name": "load",
+            "purpose": " Get a result using key, value. (Chainable)",
             "stype": "function",
             "|xns": "Roo.doc",
             "xtype": "Entry",
             "items": [
                 {
-                    "name": "count",
+                    "name": "load",
                     "is_static": false,
                     "is_constructor": false,
                     "memberof": "PDO_DataObject",
-                    "returndesc": "",
-                    "returntype": "int",
+                    "returndesc": "self.",
+                    "returntype": "PDO_DataObject",
                     "|xns": "Roo.doc",
                     "xtype": "Synopsis",
                     "items": [
                         {
-                            "desc": "(optional) <br\/>\\\n                  (true|false => see below not on whereAddonly) <br\/>\\\n                  (string) <br\/>\\\n                      \"DISTINCT\" => does a distinct count on the tables 'key' column <br\/>\\\n                      otherwise  => normally it counts primary keys - you can use  <br\/>\\\n                                    this to do things like $do->count('distinct mycol'); \n                  ",
+                            "desc": "column",
                             "is_optional": false,
-                            "name": "$countWhat",
+                            "name": "$k",
                             "type": "string",
                             "|xns": "Roo.doc",
                             "xtype": "Param"
                         },
                         {
-                            "desc": "(optional) If PDO_DataObject::WHERE_ONLY is passed in then \\\n                  we will build the condition only using the whereAdd's.  Default is to \\\n                  build the condition using the object parameters as well.",
+                            "desc": "value",
                             "is_optional": false,
-                            "name": "$whereAddOnly",
-                            "type": "bool",
+                            "name": "$v",
+                            "type": "string",
                             "|xns": "Roo.doc",
                             "xtype": "Param"
                         }
@@ -46,7 +46,7 @@
                     "xtype": "Section",
                     "items": [
                         {
-                            "html": " Usage:\n ```\n $object = new mytable();\n $object->name = \"fred\";\n echo $object->count();\n\n \/\/ dont use object vars.\n echo $object->count(PDO_DataObject::WHERE_ONLY);\n\n \/\/count distinct mycol.\n echo $object->count('distinct mycol');\n\n \/\/ dont use object vars.\n echo $object->count('distinct mycol',PDO_DataObject::WHERE_ONLY);\n\n \/\/ count distinct id (eg. the primary key)\n echo $object->count('distinct');      \n ```\n\n\n",
+                            "html": " Example\n ```\n $object->load(1234)\n    ->set(['email' => 'fred@fred.com'])\n    ->save()\n    \n $object->load(\"email\",'fred@fred.com');\n ```\n \n selects a row from the database based on the key\/value and puts all the table columns into this classes instance\n values\n \n Note: this also snapshot's the object, ready for update.., and clears any 'where condition'\n\n if no value is entered, it is assumed that $key is a value\n and get will then use the first key in keys()\n to obtain the key.\n \n",
                             "|xns": "Roo.doc",
                             "xtype": "Para"
                         }
@@ -61,6 +61,18 @@
                     "stype": "return",
                     "|xns": "Roo.doc",
                     "xtype": "Section"
+                },
+                {
+                    "stype": "throws",
+                    "|xns": "Roo.doc",
+                    "xtype": "Section",
+                    "items": [
+                        {
+                            "|xns": "Roo.doc",
+                            "xtype": "Para",
+                            "html": "PDO_DataObject_Exception (if not matching row returned)"
+                        }
+                    ]
                 }
             ]
         }

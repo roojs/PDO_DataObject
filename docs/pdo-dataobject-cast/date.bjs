@@ -1,0 +1,51 @@
+{
+    "name": "date",
+    "parent": "",
+    "title": "",
+    "permname": "",
+    "modOrder": "001",
+    "items": [
+        {
+            "name": "date",
+            "purpose": " Date Constructor",
+            "stype": "function",
+            "|xns": "Roo.doc",
+            "xtype": "Entry",
+            "items": [
+                {
+                    "name": "date",
+                    "is_static": true,
+                    "is_constructor": false,
+                    "memberof": "PDO_DataObject_Cast",
+                    "returndesc": "",
+                    "returntype": "PDO_DataObject_Cast",
+                    "|xns": "Roo.doc",
+                    "xtype": "Synopsis",
+                    "items": []
+                },
+                {
+                    "stype": "desc",
+                    "|xns": "Roo.doc",
+                    "xtype": "Section",
+                    "items": [
+                        {
+                            "html": " create a Cast object from some string (not binary)\n NO VALIDATION DONE, although some crappy re-calcing done!\n \n\n\n\n",
+                            "|xns": "Roo.doc",
+                            "xtype": "Para"
+                        }
+                    ]
+                },
+                {
+                    "stype": "parameter",
+                    "|xns": "Roo.doc",
+                    "xtype": "Section"
+                },
+                {
+                    "stype": "return",
+                    "|xns": "Roo.doc",
+                    "xtype": "Section"
+                }
+            ]
+        }
+    ]
+}

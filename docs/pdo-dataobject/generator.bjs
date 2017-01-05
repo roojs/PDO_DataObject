@@ -1,0 +1,51 @@
+{
+    "name": "generator",
+    "parent": "",
+    "title": "",
+    "permname": "",
+    "modOrder": "001",
+    "items": [
+        {
+            "name": "generator",
+            "purpose": " create an instance of the generator.",
+            "stype": "function",
+            "|xns": "Roo.doc",
+            "xtype": "Entry",
+            "items": [
+                {
+                    "name": "generator",
+                    "is_static": false,
+                    "is_constructor": false,
+                    "memberof": "PDO_DataObject",
+                    "returndesc": "",
+                    "returntype": "PDO_DataObject_Generator",
+                    "|xns": "Roo.doc",
+                    "xtype": "Synopsis",
+                    "items": []
+                },
+                {
+                    "stype": "desc",
+                    "|xns": "Roo.doc",
+                    "xtype": "Section",
+                    "items": [
+                        {
+                            "html": " class can be set by using proxy = {classname}::\n We do not really care if you have implemented it correctly....????\n you can modify the class by setting proxy to {YOUR CLASS}::{your method}\n \n",
+                            "|xns": "Roo.doc",
+                            "xtype": "Para"
+                        }
+                    ]
+                },
+                {
+                    "stype": "parameter",
+                    "|xns": "Roo.doc",
+                    "xtype": "Section"
+                },
+                {
+                    "stype": "return",
+                    "|xns": "Roo.doc",
+                    "xtype": "Section"
+                }
+            ]
+        }
+    ]
+}

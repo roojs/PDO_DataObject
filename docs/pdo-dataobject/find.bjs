@@ -1,0 +1,72 @@
+{
+    "name": "find",
+    "parent": "",
+    "title": "",
+    "permname": "",
+    "modOrder": "001",
+    "items": [
+        {
+            "name": "find",
+            "purpose": " find results, either normal or crosstable",
+            "stype": "function",
+            "|xns": "Roo.doc",
+            "xtype": "Entry",
+            "items": [
+                {
+                    "name": "find",
+                    "is_static": false,
+                    "is_constructor": false,
+                    "memberof": "PDO_DataObject",
+                    "returndesc": "(number of rows returned, or true if numRows fetching is not supported)",
+                    "returntype": "mixed",
+                    "|xns": "Roo.doc",
+                    "xtype": "Synopsis",
+                    "items": [
+                        {
+                            "desc": "Fetch first result",
+                            "is_optional": false,
+                            "name": "$n",
+                            "type": "boolean",
+                            "|xns": "Roo.doc",
+                            "xtype": "Param"
+                        }
+                    ]
+                },
+                {
+                    "stype": "desc",
+                    "|xns": "Roo.doc",
+                    "xtype": "Section",
+                    "items": [
+                        {
+                            "html": " Usage:\n ```\n $object = PDO_DataObject::Factory('mytable');\n $object->ID = 1;\n $object->find();\n while($object->fetch() {\n    \/\/ do stuff..\n }\n\n \/\/ or\n $object = PDO_DataObject::Factory('mytable');\n $object->ID = 1;\n if($object->find(true)) { \/\/ this fetches it as well.\n    print $ojbect->email\n }\n ```\n\n will set $object->N to number of rows, and expects next command to fetch rows\n \n will return $object->N\n\n if an error occurs $object->N will be set to false and return value will also be false;\n\n if numRows is not supported it will return true.\n \n",
+                            "|xns": "Roo.doc",
+                            "xtype": "Para"
+                        }
+                    ]
+                },
+                {
+                    "stype": "parameter",
+                    "|xns": "Roo.doc",
+                    "xtype": "Section"
+                },
+                {
+                    "stype": "return",
+                    "|xns": "Roo.doc",
+                    "xtype": "Section"
+                },
+                {
+                    "stype": "throws",
+                    "|xns": "Roo.doc",
+                    "xtype": "Section",
+                    "items": [
+                        {
+                            "|xns": "Roo.doc",
+                            "xtype": "Para",
+                            "html": "PDO_DataObject_Exception  if run twice on the same object, or tablename missing in class."
+                        }
+                    ]
+                }
+            ]
+        }
+    ]
+}

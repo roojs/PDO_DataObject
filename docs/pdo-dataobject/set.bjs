@@ -1,0 +1,88 @@
+{
+    "name": "set",
+    "parent": "",
+    "title": "",
+    "permname": "",
+    "modOrder": "001",
+    "items": [
+        {
+            "name": "set",
+            "purpose": " Chainable versoin of setFrom()",
+            "stype": "function",
+            "|xns": "Roo.doc",
+            "xtype": "Entry",
+            "items": [
+                {
+                    "name": "set",
+                    "is_static": false,
+                    "is_constructor": false,
+                    "memberof": "PDO_DataObject",
+                    "returndesc": "self",
+                    "returntype": "PDO_DataObject",
+                    "|xns": "Roo.doc",
+                    "xtype": "Synopsis",
+                    "items": [
+                        {
+                            "desc": "use the values from this to set the instance properties",
+                            "is_optional": false,
+                            "name": "$from",
+                            "type": "object",
+                            "|xns": "Roo.doc",
+                            "xtype": "Param"
+                        },
+                        {
+                            "desc": "eg. map xxxx_name to $object->name using 'xxxx_%s' (defaults to %s - eg. name -> $object->name",
+                            "is_optional": false,
+                            "name": "$format",
+                            "type": "string",
+                            "|xns": "Roo.doc",
+                            "xtype": "Param"
+                        },
+                        {
+                            "desc": "(dont assign empty values if a column is empty (eg. '' \/ 0 etc...)",
+                            "is_optional": false,
+                            "name": "$skipEmpty",
+                            "type": "boolean",
+                            "|xns": "Roo.doc",
+                            "xtype": "Param"
+                        }
+                    ]
+                },
+                {
+                    "stype": "desc",
+                    "|xns": "Roo.doc",
+                    "xtype": "Section",
+                    "items": [
+                        {
+                            "html": " Copies items that are in the table definitions from an \\\n array or object into the current object\n \n If errors occur on set** methods, then `$this->_set_errors` will be set to the problem, and an exception is thrown.\n\n It will not override primary key values.\n\n Usage:\n ```\n $do->set([ 'name' => 'fred', age => 12]);\n $do->set([ 'xxx_name' => 'fred', 'xxx_age' => 12], 'xxx_%s');\n ```\n \n\n",
+                            "|xns": "Roo.doc",
+                            "xtype": "Para"
+                        }
+                    ]
+                },
+                {
+                    "stype": "parameter",
+                    "|xns": "Roo.doc",
+                    "xtype": "Section"
+                },
+                {
+                    "stype": "return",
+                    "|xns": "Roo.doc",
+                    "xtype": "Section"
+                },
+                {
+                    "stype": "throws",
+                    "|xns": "Roo.doc",
+                    "xtype": "Section",
+                    "items": [
+                        {
+                            "|xns": "Roo.doc",
+                            "xtype": "Para",
+                            "html": "PDO_DataObject_Exception_Set if properties are not valid. see [fromValue](#pdo-dataobject\/fromValue)"
+                        }
+                    ]
+                }
+            ]
+        }
+    ]
+}

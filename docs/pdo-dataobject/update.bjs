@@ -1,0 +1,72 @@
+{
+    "name": "update",
+    "parent": "",
+    "title": "",
+    "permname": "",
+    "modOrder": "001",
+    "items": [
+        {
+            "name": "update",
+            "purpose": " Updates  current objects variables into the database",
+            "stype": "function",
+            "|xns": "Roo.doc",
+            "xtype": "Entry",
+            "items": [
+                {
+                    "name": "update",
+                    "is_static": false,
+                    "is_constructor": false,
+                    "memberof": "PDO_DataObject",
+                    "returndesc": "Number rows affected (may be 0), true (if no difference between old\/new), false",
+                    "returntype": "int|true",
+                    "|xns": "Roo.doc",
+                    "xtype": "Synopsis",
+                    "items": [
+                        {
+                            "desc": "(optional)  dataobject | PDO_DataObject::WHERE_ONLY - used to only update changed items.",
+                            "is_optional": false,
+                            "name": "$dataObject",
+                            "type": "boolean",
+                            "|xns": "Roo.doc",
+                            "xtype": "Param"
+                        }
+                    ]
+                },
+                {
+                    "stype": "desc",
+                    "|xns": "Roo.doc",
+                    "xtype": "Section",
+                    "items": [
+                        {
+                            "html": " \n uses the keys() to decide how to update\n \n Returns the true on success\n\n Usage:\n ```\n $object = PDO_DataObject::factory('mytable');\n $object->get(\"ID\",234);\n $object->email=\"testing@test.com\";\n if(!$object->update())\n   echo \"UPDATE FAILED\";\n ```\n \n to only update changed items (using snapshot):\n ```\n $dataobject->get(132);\n $dataobject->snapshot(); \/\/ clone\/copy it..\n $dataobject->setFrom($_POST);\n $dataobject->update();\n ```\n\n to only update changed items :\n ```\n $dataobject->get(132);\n $original = $dataobject; \/\/ clone\/copy it..\n $dataobject->setFrom($_POST);\n $dataobject->update($original);\n ```\n \n performing global updates:\n ```\n $object = PDO_DataObject::factory('mytable');\n $object->status = \"dead\";\n $object->where('age > 150')\n      ->update(PDO_DataObject::WHERE_ONLY);\n ```\n \n NEW in PDO DataObjects chainable uses save, and load \n ```\n PDO_DataObject::factory('mytable');\n      ->load(23)\n      ->set(['email' => \"test@testing.com\"]),\n      ->save()\n ```\n\n\n\n",
+                            "|xns": "Roo.doc",
+                            "xtype": "Para"
+                        }
+                    ]
+                },
+                {
+                    "stype": "parameter",
+                    "|xns": "Roo.doc",
+                    "xtype": "Section"
+                },
+                {
+                    "stype": "return",
+                    "|xns": "Roo.doc",
+                    "xtype": "Section"
+                },
+                {
+                    "stype": "throws",
+                    "|xns": "Roo.doc",
+                    "xtype": "Section",
+                    "items": [
+                        {
+                            "|xns": "Roo.doc",
+                            "xtype": "Para",
+                            "html": "PDO_DataObject_Error"
+                        }
+                    ]
+                }
+            ]
+        }
+    ]
+}

@@ -1,0 +1,60 @@
+{
+    "name": "functions",
+    "parent": "",
+    "title": "",
+    "permname": "",
+    "modOrder": "001",
+    "items": [
+        {
+            "name": "functions",
+            "purpose": " hook to add extra methods to all classes",
+            "stype": "function",
+            "|xns": "Roo.doc",
+            "xtype": "Entry",
+            "items": [
+                {
+                    "name": "functions",
+                    "is_static": false,
+                    "is_constructor": false,
+                    "memberof": "PDO_DataObject_Generator_Hooks",
+                    "returndesc": "added to class eg. functions.",
+                    "returntype": "string",
+                    "|xns": "Roo.doc",
+                    "xtype": "Synopsis",
+                    "items": [
+                        {
+                            "desc": "",
+                            "is_optional": false,
+                            "name": "$original",
+                            "type": "",
+                            "|xns": "Roo.doc",
+                            "xtype": "Param"
+                        }
+                    ]
+                },
+                {
+                    "stype": "desc",
+                    "|xns": "Roo.doc",
+                    "xtype": "Section",
+                    "items": [
+                        {
+                            "html": " called once for each class, use with $this->table and\n $this->_definitions[$this->table], to get data out of the current table,\n use it to add extra methods to the default classes.\n\n",
+                            "|xns": "Roo.doc",
+                            "xtype": "Para"
+                        }
+                    ]
+                },
+                {
+                    "stype": "parameter",
+                    "|xns": "Roo.doc",
+                    "xtype": "Section"
+                },
+                {
+                    "stype": "return",
+                    "|xns": "Roo.doc",
+                    "xtype": "Section"
+                }
+            ]
+        }
+    ]
+}

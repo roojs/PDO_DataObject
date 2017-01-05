@@ -1,0 +1,72 @@
+{
+    "name": "query",
+    "parent": "",
+    "title": "",
+    "permname": "",
+    "modOrder": "001",
+    "items": [
+        {
+            "name": "query",
+            "purpose": " sends raw query to database (chainable - mostly)",
+            "stype": "function",
+            "|xns": "Roo.doc",
+            "xtype": "Entry",
+            "items": [
+                {
+                    "name": "query",
+                    "is_static": false,
+                    "is_constructor": false,
+                    "memberof": "PDO_DataObject",
+                    "returndesc": "it'self, or the number of rows affected (insert|update|delete)",
+                    "returntype": "PDO_DataObject|int",
+                    "|xns": "Roo.doc",
+                    "xtype": "Synopsis",
+                    "items": [
+                        {
+                            "desc": "SQL Query",
+                            "is_optional": false,
+                            "name": "$string",
+                            "type": "string",
+                            "|xns": "Roo.doc",
+                            "xtype": "Param"
+                        }
+                    ]
+                },
+                {
+                    "stype": "desc",
+                    "|xns": "Roo.doc",
+                    "xtype": "Section",
+                    "items": [
+                        {
+                            "html": " set's `$this->_result` available publically using `$dataobject->result();`\n \n Usage:\n ```\n  $do->query(\"UPDATE sometable SET value=NOW() where id > 123\");\n ```\n\n The method is chainable for except for INSERT, UPDATE or DELETE calls.\n        \n",
+                            "|xns": "Roo.doc",
+                            "xtype": "Para"
+                        }
+                    ]
+                },
+                {
+                    "stype": "parameter",
+                    "|xns": "Roo.doc",
+                    "xtype": "Section"
+                },
+                {
+                    "stype": "return",
+                    "|xns": "Roo.doc",
+                    "xtype": "Section"
+                },
+                {
+                    "stype": "throws",
+                    "|xns": "Roo.doc",
+                    "xtype": "Section",
+                    "items": [
+                        {
+                            "|xns": "Roo.doc",
+                            "xtype": "Para",
+                            "html": "PDO_Dataobject_Exception"
+                        }
+                    ]
+                }
+            ]
+        }
+    ]
+}

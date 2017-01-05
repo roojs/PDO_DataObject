@@ -1,0 +1,76 @@
+{
+    "name": "raise",
+    "parent": "",
+    "title": "",
+    "permname": "",
+    "modOrder": "001",
+    "items": [
+        {
+            "name": "raise",
+            "purpose": " Wrapper around throw Exception..., ",
+            "stype": "function",
+            "|xns": "Roo.doc",
+            "xtype": "Entry",
+            "items": [
+                {
+                    "name": "raise",
+                    "is_static": true,
+                    "is_constructor": false,
+                    "memberof": "PDO_DataObject_Cast",
+                    "returndesc": "object",
+                    "returntype": "error",
+                    "|xns": "Roo.doc",
+                    "xtype": "Synopsis",
+                    "items": [
+                        {
+                            "desc": "message",
+                            "is_optional": false,
+                            "name": "$message",
+                            "type": "int",
+                            "|xns": "Roo.doc",
+                            "xtype": "Param"
+                        },
+                        {
+                            "desc": "type",
+                            "is_optional": false,
+                            "name": "$type",
+                            "type": "int",
+                            "|xns": "Roo.doc",
+                            "xtype": "Param"
+                        },
+                        {
+                            "desc": "Cause of error...",
+                            "is_optional": false,
+                            "name": "$previous_exception",
+                            "type": "Exception",
+                            "|xns": "Roo.doc",
+                            "xtype": "Param"
+                        }
+                    ]
+                },
+                {
+                    "stype": "desc",
+                    "|xns": "Roo.doc",
+                    "xtype": "Section",
+                    "items": [
+                        {
+                            "html": "",
+                            "|xns": "Roo.doc",
+                            "xtype": "Para"
+                        }
+                    ]
+                },
+                {
+                    "stype": "parameter",
+                    "|xns": "Roo.doc",
+                    "xtype": "Section"
+                },
+                {
+                    "stype": "return",
+                    "|xns": "Roo.doc",
+                    "xtype": "Section"
+                }
+            ]
+        }
+    ]
+}

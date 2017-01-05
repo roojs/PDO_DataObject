@@ -1,0 +1,68 @@
+{
+    "name": "varDef",
+    "parent": "",
+    "title": "",
+    "permname": "",
+    "modOrder": "001",
+    "items": [
+        {
+            "name": "varDef",
+            "purpose": " hook for var lines",
+            "stype": "function",
+            "|xns": "Roo.doc",
+            "xtype": "Entry",
+            "items": [
+                {
+                    "name": "varDef",
+                    "is_static": false,
+                    "is_constructor": false,
+                    "memberof": "PDO_DataObject_Generator_Hooks",
+                    "returndesc": "added to class eg. functions.",
+                    "returntype": "string",
+                    "|xns": "Roo.doc",
+                    "xtype": "Synopsis",
+                    "items": [
+                        {
+                            "desc": "t containing type,len,flags etc. from tableInfo call",
+                            "is_optional": false,
+                            "name": "$column",
+                            "type": "object",
+                            "|xns": "Roo.doc",
+                            "xtype": "Param"
+                        },
+                        {
+                            "desc": "padding number of spaces",
+                            "is_optional": false,
+                            "name": "$padding",
+                            "type": "int",
+                            "|xns": "Roo.doc",
+                            "xtype": "Param"
+                        }
+                    ]
+                },
+                {
+                    "stype": "desc",
+                    "|xns": "Roo.doc",
+                    "xtype": "Section",
+                    "items": [
+                        {
+                            "html": " called each time a var line is generated, override to add extra var\n lines\n\n",
+                            "|xns": "Roo.doc",
+                            "xtype": "Para"
+                        }
+                    ]
+                },
+                {
+                    "stype": "parameter",
+                    "|xns": "Roo.doc",
+                    "xtype": "Section"
+                },
+                {
+                    "stype": "return",
+                    "|xns": "Roo.doc",
+                    "xtype": "Section"
+                }
+            ]
+        }
+    ]
+}

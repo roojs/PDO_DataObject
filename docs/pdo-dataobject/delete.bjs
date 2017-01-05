@@ -1,0 +1,72 @@
+{
+    "name": "delete",
+    "parent": "",
+    "title": "",
+    "permname": "",
+    "modOrder": "001",
+    "items": [
+        {
+            "name": "delete",
+            "purpose": " Deletes items from table which match current objects variables",
+            "stype": "function",
+            "|xns": "Roo.doc",
+            "xtype": "Entry",
+            "items": [
+                {
+                    "name": "delete",
+                    "is_static": false,
+                    "is_constructor": false,
+                    "memberof": "PDO_DataObject",
+                    "returndesc": "Number of rows affected on success, false on failure, 0 on no data affected",
+                    "returntype": "mixed",
+                    "|xns": "Roo.doc",
+                    "xtype": "Synopsis",
+                    "items": [
+                        {
+                            "desc": "(optional) If PDO_DataObject::WHERE_ONLY is passed in then\n             we will build the condition only using the whereAdd's. <br\/>\n             Default is to build the condition only using the object parameters.",
+                            "is_optional": false,
+                            "name": "$useWhere",
+                            "type": "bool",
+                            "|xns": "Roo.doc",
+                            "xtype": "Param"
+                        }
+                    ]
+                },
+                {
+                    "stype": "desc",
+                    "|xns": "Roo.doc",
+                    "xtype": "Section",
+                    "items": [
+                        {
+                            "html": " Returns the true on success\n\n Usage:\n ```\n \n $object = PDO_DataObject::factory('mytable')\n    ->get(123)\n    ->delete();\n\n \/\/ using where condition, rather than primary key\n $object = PDO_DataObject::factory('mytable')\n      ->where('age > 12');\n      ->limit(1)\n      ->orderBy('age DESC')\n      ->delete(PDO_DataObject::WHERE_ONLY)\n\n ```\n \n",
+                            "|xns": "Roo.doc",
+                            "xtype": "Para"
+                        }
+                    ]
+                },
+                {
+                    "stype": "parameter",
+                    "|xns": "Roo.doc",
+                    "xtype": "Section"
+                },
+                {
+                    "stype": "return",
+                    "|xns": "Roo.doc",
+                    "xtype": "Section"
+                },
+                {
+                    "stype": "throws",
+                    "|xns": "Roo.doc",
+                    "xtype": "Section",
+                    "items": [
+                        {
+                            "|xns": "Roo.doc",
+                            "xtype": "Para",
+                            "html": "PDO_DataObject_Exception on SQL errors etc."
+                        }
+                    ]
+                }
+            ]
+        }
+    ]
+}

@@ -1,0 +1,51 @@
+{
+    "name": "toDatabaseStructureArray",
+    "parent": "",
+    "title": "",
+    "permname": "",
+    "modOrder": "001",
+    "items": [
+        {
+            "name": "toDatabaseStructureArray",
+            "purpose": " return in a format suitable for databaseStructure",
+            "stype": "function",
+            "|xns": "Roo.doc",
+            "xtype": "Entry",
+            "items": [
+                {
+                    "name": "toDatabaseStructureArray",
+                    "is_static": false,
+                    "is_constructor": false,
+                    "memberof": "PDO_DataObject_Generator_Table",
+                    "returndesc": "",
+                    "returntype": "",
+                    "|xns": "Roo.doc",
+                    "xtype": "Synopsis",
+                    "items": []
+                },
+                {
+                    "stype": "desc",
+                    "|xns": "Roo.doc",
+                    "xtype": "Section",
+                    "items": [
+                        {
+                            "html": " [table] => array ( col => type, col, type)\n [table_keys] => array ( col => sequencetype|name )\n",
+                            "|xns": "Roo.doc",
+                            "xtype": "Para"
+                        }
+                    ]
+                },
+                {
+                    "stype": "parameter",
+                    "|xns": "Roo.doc",
+                    "xtype": "Section"
+                },
+                {
+                    "stype": "return",
+                    "|xns": "Roo.doc",
+                    "xtype": "Section"
+                }
+            ]
+        }
+    ]
+}

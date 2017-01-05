@@ -1,0 +1,72 @@
+{
+    "name": "reload",
+    "parent": "",
+    "title": "",
+    "permname": "",
+    "modOrder": "001",
+    "items": [
+        {
+            "name": "reload",
+            "purpose": " reload the data into the object, usually called after update or insert (Chainable)",
+            "stype": "function",
+            "|xns": "Roo.doc",
+            "xtype": "Entry",
+            "items": [
+                {
+                    "name": "reload",
+                    "is_static": false,
+                    "is_constructor": false,
+                    "memberof": "PDO_DataObject",
+                    "returndesc": "fresh copy of the row.",
+                    "returntype": "PDO_DataObject",
+                    "|xns": "Roo.doc",
+                    "xtype": "Synopsis",
+                    "items": [
+                        {
+                            "desc": "should auto join be done on the",
+                            "is_optional": false,
+                            "name": "$autojoin",
+                            "type": "",
+                            "|xns": "Roo.doc",
+                            "xtype": "Param"
+                        }
+                    ]
+                },
+                {
+                    "stype": "desc",
+                    "|xns": "Roo.doc",
+                    "xtype": "Section",
+                    "items": [
+                        {
+                            "html": " Usage:\n ```\n $object->joinAll()\n        ->load(1234)\n        ->set([ 'ex_datetime' => PDO_DataObject::sqlValue('sql', 'NOW()') ])\n        ->update()\n        ->reload(true)\n ```\n It enables you to work on the data after the database has done the update.\n And have the object reflect the current state of the object in the database.\n\n",
+                            "|xns": "Roo.doc",
+                            "xtype": "Para"
+                        }
+                    ]
+                },
+                {
+                    "stype": "parameter",
+                    "|xns": "Roo.doc",
+                    "xtype": "Section"
+                },
+                {
+                    "stype": "return",
+                    "|xns": "Roo.doc",
+                    "xtype": "Section"
+                },
+                {
+                    "stype": "throws",
+                    "|xns": "Roo.doc",
+                    "xtype": "Section",
+                    "items": [
+                        {
+                            "|xns": "Roo.doc",
+                            "xtype": "Para",
+                            "html": "PDO_DataObject_Exception (if not matching row returned)"
+                        }
+                    ]
+                }
+            ]
+        }
+    ]
+}

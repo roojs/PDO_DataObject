@@ -1,40 +1,40 @@
 {
-    "name": "count",
+    "name": "toArray",
     "parent": "",
     "title": "",
     "permname": "",
     "modOrder": "001",
     "items": [
         {
-            "name": "count",
-            "purpose": " Find the number of results from a simple query",
+            "name": "toArray",
+            "purpose": " Returns an associative array from the current data",
             "stype": "function",
             "|xns": "Roo.doc",
             "xtype": "Entry",
             "items": [
                 {
-                    "name": "count",
+                    "name": "toArray",
                     "is_static": false,
                     "is_constructor": false,
                     "memberof": "PDO_DataObject",
-                    "returndesc": "",
-                    "returntype": "int",
+                    "returndesc": "of key => value for row",
+                    "returntype": "array",
                     "|xns": "Roo.doc",
                     "xtype": "Synopsis",
                     "items": [
                         {
-                            "desc": "(optional) <br\/>\\\n                  (true|false => see below not on whereAddonly) <br\/>\\\n                  (string) <br\/>\\\n                      \"DISTINCT\" => does a distinct count on the tables 'key' column <br\/>\\\n                      otherwise  => normally it counts primary keys - you can use  <br\/>\\\n                                    this to do things like $do->count('distinct mycol'); \n                  ",
+                            "desc": "sprintf format for array",
                             "is_optional": false,
-                            "name": "$countWhat",
+                            "name": "$format",
                             "type": "string",
                             "|xns": "Roo.doc",
                             "xtype": "Param"
                         },
                         {
-                            "desc": "(optional) If PDO_DataObject::WHERE_ONLY is passed in then \\\n                  we will build the condition only using the whereAdd's.  Default is to \\\n                  build the condition using the object parameters as well.",
+                            "desc": "[true = elemnts that have a value set], <br\/>\n                          [false = table + returned colums] , <br\/>\n                          [0 = returned columsn only]",
                             "is_optional": false,
-                            "name": "$whereAddOnly",
-                            "type": "bool",
+                            "name": "$hideEmpty",
+                            "type": "number",
                             "|xns": "Roo.doc",
                             "xtype": "Param"
                         }
@@ -46,7 +46,7 @@
                     "xtype": "Section",
                     "items": [
                         {
-                            "html": " Usage:\n ```\n $object = new mytable();\n $object->name = \"fred\";\n echo $object->count();\n\n \/\/ dont use object vars.\n echo $object->count(PDO_DataObject::WHERE_ONLY);\n\n \/\/count distinct mycol.\n echo $object->count('distinct mycol');\n\n \/\/ dont use object vars.\n echo $object->count('distinct mycol',PDO_DataObject::WHERE_ONLY);\n\n \/\/ count distinct id (eg. the primary key)\n echo $object->count('distinct');      \n ```\n\n\n",
+                            "html": " (kind of oblivates the idea behind DataObjects, but\n is usefull if you use it with things like QuickForms.\n\n you can use the format to return things like user[key]\n by sending it `$object->toArray('user[%s]')`\n\n will also return links converted to arrays.\n\n",
                             "|xns": "Roo.doc",
                             "xtype": "Para"
                         }

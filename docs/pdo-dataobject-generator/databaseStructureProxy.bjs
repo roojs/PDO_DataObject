@@ -1,0 +1,76 @@
+{
+    "name": "databaseStructureProxy",
+    "parent": "",
+    "title": "",
+    "permname": "",
+    "modOrder": "001",
+    "items": [
+        {
+            "name": "databaseStructureProxy",
+            "purpose": "  ",
+            "stype": "function",
+            "|xns": "Roo.doc",
+            "xtype": "Entry",
+            "items": [
+                {
+                    "name": "databaseStructureProxy",
+                    "is_static": false,
+                    "is_constructor": false,
+                    "memberof": "PDO_DataObject_Generator",
+                    "returndesc": "- depends if you are setting or getting...",
+                    "returntype": "(varies)",
+                    "|xns": "Roo.doc",
+                    "xtype": "Synopsis",
+                    "items": [
+                        {
+                            "desc": "string  name of database to assign \/ read",
+                            "is_optional": false,
+                            "name": "$database",
+                            "type": "optional",
+                            "|xns": "Roo.doc",
+                            "xtype": "Param"
+                        },
+                        {
+                            "desc": "array   structure of database, and keys",
+                            "is_optional": false,
+                            "name": "$table",
+                            "type": "optional",
+                            "|xns": "Roo.doc",
+                            "xtype": "Param"
+                        },
+                        {
+                            "desc": "array  table links",
+                            "is_optional": false,
+                            "name": "",
+                            "type": "optional",
+                            "|xns": "Roo.doc",
+                            "xtype": "Param"
+                        }
+                    ]
+                },
+                {
+                    "stype": "desc",
+                    "|xns": "Roo.doc",
+                    "xtype": "Section",
+                    "items": [
+                        {
+                            "html": " 'proxy' version of databaseStructure - this is not so 'speed sensitive'\n only used when\n b) proxy is set..\n     \n\n  - set's the structure.. and the links data..\n          \n\n obviously you dont have to use ini files.. (just return array similar to ini files..)\n  \n It should append to the table structure array \n\n     \n",
+                            "|xns": "Roo.doc",
+                            "xtype": "Para"
+                        }
+                    ]
+                },
+                {
+                    "stype": "parameter",
+                    "|xns": "Roo.doc",
+                    "xtype": "Section"
+                },
+                {
+                    "stype": "return",
+                    "|xns": "Roo.doc",
+                    "xtype": "Section"
+                }
+            ]
+        }
+    ]
+}

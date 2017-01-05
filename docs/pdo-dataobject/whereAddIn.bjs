@@ -1,0 +1,84 @@
+{
+    "name": "whereAddIn",
+    "parent": "",
+    "title": "",
+    "permname": "",
+    "modOrder": "001",
+    "items": [
+        {
+            "name": "whereAddIn",
+            "purpose": " Adds a 'IN' condition to the WHERE statement",
+            "stype": "function",
+            "|xns": "Roo.doc",
+            "xtype": "Entry",
+            "items": [
+                {
+                    "name": "whereAddIn",
+                    "is_static": false,
+                    "is_constructor": false,
+                    "memberof": "PDO_DataObject",
+                    "returndesc": "previous condition or Error when invalid args found",
+                    "returntype": "string",
+                    "|xns": "Roo.doc",
+                    "xtype": "Synopsis",
+                    "items": [
+                        {
+                            "desc": "key column to match",
+                            "is_optional": false,
+                            "name": "$key",
+                            "type": "string",
+                            "|xns": "Roo.doc",
+                            "xtype": "Param"
+                        },
+                        {
+                            "desc": "list of values to match",
+                            "is_optional": false,
+                            "name": "$list",
+                            "type": "array",
+                            "|xns": "Roo.doc",
+                            "xtype": "Param"
+                        },
+                        {
+                            "desc": "string|int|integer|float|bool  cast to type.",
+                            "is_optional": false,
+                            "name": "$type",
+                            "type": "string",
+                            "|xns": "Roo.doc",
+                            "xtype": "Param"
+                        },
+                        {
+                            "desc": "optional logic to call whereAdd with eg. \"OR\" (defaults to \"AND\")",
+                            "is_optional": false,
+                            "name": "$logic",
+                            "type": "string",
+                            "|xns": "Roo.doc",
+                            "xtype": "Param"
+                        }
+                    ]
+                },
+                {
+                    "stype": "desc",
+                    "|xns": "Roo.doc",
+                    "xtype": "Section",
+                    "items": [
+                        {
+                            "html": " Not Chainable\n \n NOTE : ALWAYS ENSURE KEY IS ESCAPED\n\n Usage:\n ```\n \/\/minimal usage\n $object->whereAddIn('id', $array, 'int');\n\n \/\/ cast to float, and call whereAdd with 'OR'\n $object->whereAddIn('price', $array, 'float', 'OR');\n\n \/\/ quote strings\n $object->whereAddIn('name', $array, 'string');\n ```\n\n",
+                            "|xns": "Roo.doc",
+                            "xtype": "Para"
+                        }
+                    ]
+                },
+                {
+                    "stype": "parameter",
+                    "|xns": "Roo.doc",
+                    "xtype": "Section"
+                },
+                {
+                    "stype": "return",
+                    "|xns": "Roo.doc",
+                    "xtype": "Section"
+                }
+            ]
+        }
+    ]
+}

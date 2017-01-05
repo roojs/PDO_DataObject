@@ -1,0 +1,68 @@
+{
+    "name": "link",
+    "parent": "",
+    "title": "",
+    "permname": "",
+    "modOrder": "001",
+    "items": [
+        {
+            "name": "link",
+            "purpose": "  a generic geter\/setter provider..",
+            "stype": "function",
+            "|xns": "Roo.doc",
+            "xtype": "Entry",
+            "items": [
+                {
+                    "name": "link",
+                    "is_static": false,
+                    "is_constructor": false,
+                    "memberof": "PDO_DataObject_Links",
+                    "returndesc": "true of false on set, the object on getter.",
+                    "returntype": "mixed",
+                    "|xns": "Roo.doc",
+                    "xtype": "Synopsis",
+                    "items": [
+                        {
+                            "desc": "the field to fetch or link spec.",
+                            "is_optional": false,
+                            "name": "$field",
+                            "type": "array",
+                            "|xns": "Roo.doc",
+                            "xtype": "Param"
+                        },
+                        {
+                            "desc": "",
+                            "is_optional": false,
+                            "name": "$assign",
+                            "type": "",
+                            "|xns": "Roo.doc",
+                            "xtype": "Param"
+                        }
+                    ]
+                },
+                {
+                    "stype": "desc",
+                    "|xns": "Roo.doc",
+                    "xtype": "Section",
+                    "items": [
+                        {
+                            "html": "  provides a generic getter setter for the referenced object\n  eg.\n  $link->link('company_id') returns getLink for the object\n  if nothing is linked (it will return an empty dataObject)\n  $link->link('company_id', array(1)) - just sets the \n\n  also array as the field speck supports\n      $link->link(array('company_id', 'company:id'))\n  \n\n\n",
+                            "|xns": "Roo.doc",
+                            "xtype": "Para"
+                        }
+                    ]
+                },
+                {
+                    "stype": "parameter",
+                    "|xns": "Roo.doc",
+                    "xtype": "Section"
+                },
+                {
+                    "stype": "return",
+                    "|xns": "Roo.doc",
+                    "xtype": "Section"
+                }
+            ]
+        }
+    ]
+}

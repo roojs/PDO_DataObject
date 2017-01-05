@@ -1,39 +1,39 @@
 {
-    "name": "count",
+    "name": "escape",
     "parent": "",
     "title": "",
     "permname": "",
     "modOrder": "001",
     "items": [
         {
-            "name": "count",
-            "purpose": " Find the number of results from a simple query",
+            "name": "escape",
+            "purpose": " escape a string so it can be used safely in SQL",
             "stype": "function",
             "|xns": "Roo.doc",
             "xtype": "Entry",
             "items": [
                 {
-                    "name": "count",
+                    "name": "escape",
                     "is_static": false,
                     "is_constructor": false,
                     "memberof": "PDO_DataObject",
-                    "returndesc": "",
-                    "returntype": "int",
+                    "returndesc": "the escaped string",
+                    "returntype": "string",
                     "|xns": "Roo.doc",
                     "xtype": "Synopsis",
                     "items": [
                         {
-                            "desc": "(optional) <br\/>\\\n                  (true|false => see below not on whereAddonly) <br\/>\\\n                  (string) <br\/>\\\n                      \"DISTINCT\" => does a distinct count on the tables 'key' column <br\/>\\\n                      otherwise  => normally it counts primary keys - you can use  <br\/>\\\n                                    this to do things like $do->count('distinct mycol'); \n                  ",
+                            "desc": "value to be escaped",
                             "is_optional": false,
-                            "name": "$countWhat",
+                            "name": "$string",
                             "type": "string",
                             "|xns": "Roo.doc",
                             "xtype": "Param"
                         },
                         {
-                            "desc": "(optional) If PDO_DataObject::WHERE_ONLY is passed in then \\\n                  we will build the condition only using the whereAdd's.  Default is to \\\n                  build the condition using the object parameters as well.",
+                            "desc": "escapes % and _ as well. - so LIKE queries can be protected.",
                             "is_optional": false,
-                            "name": "$whereAddOnly",
+                            "name": "$likeEscape",
                             "type": "bool",
                             "|xns": "Roo.doc",
                             "xtype": "Param"
@@ -46,7 +46,7 @@
                     "xtype": "Section",
                     "items": [
                         {
-                            "html": " Usage:\n ```\n $object = new mytable();\n $object->name = \"fred\";\n echo $object->count();\n\n \/\/ dont use object vars.\n echo $object->count(PDO_DataObject::WHERE_ONLY);\n\n \/\/count distinct mycol.\n echo $object->count('distinct mycol');\n\n \/\/ dont use object vars.\n echo $object->count('distinct mycol',PDO_DataObject::WHERE_ONLY);\n\n \/\/ count distinct id (eg. the primary key)\n echo $object->count('distinct');      \n ```\n\n\n",
+                            "html": " \n can be used when adding manual queries or clauses\n eg.\n ```\n $object->query(\"select * from xyz where abc like '\". $object->escape($_GET['name']) . \"'\");\n ```\n      \n return value excludes the outer quotes - use `$do->PDO->quote($string)` - if you want to include them.\n \n",
                             "|xns": "Roo.doc",
                             "xtype": "Para"
                         }

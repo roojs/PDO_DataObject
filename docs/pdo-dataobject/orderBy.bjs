@@ -1,0 +1,60 @@
+{
+    "name": "orderBy",
+    "parent": "",
+    "title": "",
+    "permname": "",
+    "modOrder": "001",
+    "items": [
+        {
+            "name": "orderBy",
+            "purpose": " Adds a order by condition (Chainable)",
+            "stype": "function",
+            "|xns": "Roo.doc",
+            "xtype": "Entry",
+            "items": [
+                {
+                    "name": "orderBy",
+                    "is_static": false,
+                    "is_constructor": false,
+                    "memberof": "PDO_DataObject",
+                    "returndesc": "self",
+                    "returntype": "PDO_DataObject",
+                    "|xns": "Roo.doc",
+                    "xtype": "Synopsis",
+                    "items": [
+                        {
+                            "desc": "Order by string value",
+                            "is_optional": false,
+                            "name": "$order",
+                            "type": "string",
+                            "|xns": "Roo.doc",
+                            "xtype": "Param"
+                        }
+                    ]
+                },
+                {
+                    "stype": "desc",
+                    "|xns": "Roo.doc",
+                    "xtype": "Section",
+                    "items": [
+                        {
+                            "html": " \n NOTE : ALWAYS ENSURE ARGUMENTS ARE ESCAPED\n\n Usage:\n ```\n $object->orderBy(); \/\/clears order by\n $object->orderBy(\"ID ASC\");\n $object->orderBy(\"ID DESC ,age ASC\");\n ```\n\n",
+                            "|xns": "Roo.doc",
+                            "xtype": "Para"
+                        }
+                    ]
+                },
+                {
+                    "stype": "parameter",
+                    "|xns": "Roo.doc",
+                    "xtype": "Section"
+                },
+                {
+                    "stype": "return",
+                    "|xns": "Roo.doc",
+                    "xtype": "Section"
+                }
+            ]
+        }
+    ]
+}

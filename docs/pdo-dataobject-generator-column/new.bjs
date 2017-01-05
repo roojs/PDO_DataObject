@@ -1,0 +1,63 @@
+{
+    "name": "__construct",
+    "parent": "",
+    "title": "",
+    "permname": "",
+    "modOrder": "001",
+    "items": [
+        {
+            "name": "new PDO_DataObject_Generator_Column",
+            "purpose": " ",
+            "stype": "function",
+            "|xns": "Roo.doc",
+            "xtype": "Entry",
+            "items": [
+                {
+                    "name": "__construct",
+                    "is_static": false,
+                    "is_constructor": true,
+                    "memberof": "PDO_DataObject_Generator_Column",
+                    "returndesc": "",
+                    "returntype": "",
+                    "|xns": "Roo.doc",
+                    "xtype": "Synopsis",
+                    "items": [
+                        {
+                            "desc": "- table that this column belongs to..",
+                            "is_optional": false,
+                            "name": "$table",
+                            "type": "PDO_DataObject_Generator_Table",
+                            "|xns": "Roo.doc",
+                            "xtype": "Param"
+                        },
+                        {
+                            "desc": "definition array --inludes",
+                            "is_optional": false,
+                            "name": "$def_ar",
+                            "type": "Array",
+                            "|xns": "Roo.doc",
+                            "xtype": "Param"
+                        }
+                    ]
+                },
+                {
+                    "stype": "desc",
+                    "|xns": "Roo.doc",
+                    "xtype": "Section",
+                    "items": [
+                        {
+                            "html": "    name\n    default_value\n    default_value_raw (not used at present, but contains methods in pgsql etc..\n    type\n    len\n    fk_table,\n    fk_column\n    autoincrement ???<< where from??\n \n",
+                            "|xns": "Roo.doc",
+                            "xtype": "Para"
+                        }
+                    ]
+                },
+                {
+                    "stype": "parameter",
+                    "|xns": "Roo.doc",
+                    "xtype": "Section"
+                }
+            ]
+        }
+    ]
+}

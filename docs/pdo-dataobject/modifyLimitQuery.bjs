@@ -1,39 +1,39 @@
 {
-    "name": "count",
+    "name": "modifyLimitQuery",
     "parent": "",
     "title": "",
     "permname": "",
     "modOrder": "001",
     "items": [
         {
-            "name": "count",
-            "purpose": " Find the number of results from a simple query",
+            "name": "modifyLimitQuery",
+            "purpose": " modifies an sql query, filling in the limit's as defined in _query[limit_start \/ limit_count]",
             "stype": "function",
             "|xns": "Roo.doc",
             "xtype": "Entry",
             "items": [
                 {
-                    "name": "count",
+                    "name": "modifyLimitQuery",
                     "is_static": false,
                     "is_constructor": false,
                     "memberof": "PDO_DataObject",
-                    "returndesc": "",
-                    "returntype": "int",
+                    "returndesc": "the modified string",
+                    "returntype": "string",
                     "|xns": "Roo.doc",
                     "xtype": "Synopsis",
                     "items": [
                         {
-                            "desc": "(optional) <br\/>\\\n                  (true|false => see below not on whereAddonly) <br\/>\\\n                  (string) <br\/>\\\n                      \"DISTINCT\" => does a distinct count on the tables 'key' column <br\/>\\\n                      otherwise  => normally it counts primary keys - you can use  <br\/>\\\n                                    this to do things like $do->count('distinct mycol'); \n                  ",
+                            "desc": "the query to modify",
                             "is_optional": false,
-                            "name": "$countWhat",
+                            "name": "$sql",
                             "type": "string",
                             "|xns": "Roo.doc",
                             "xtype": "Param"
                         },
                         {
-                            "desc": "(optional) If PDO_DataObject::WHERE_ONLY is passed in then \\\n                  we will build the condition only using the whereAdd's.  Default is to \\\n                  build the condition using the object parameters as well.",
+                            "desc": "is the query a manipluation?",
                             "is_optional": false,
-                            "name": "$whereAddOnly",
+                            "name": "$manip",
                             "type": "bool",
                             "|xns": "Roo.doc",
                             "xtype": "Param"
@@ -46,7 +46,7 @@
                     "xtype": "Section",
                     "items": [
                         {
-                            "html": " Usage:\n ```\n $object = new mytable();\n $object->name = \"fred\";\n echo $object->count();\n\n \/\/ dont use object vars.\n echo $object->count(PDO_DataObject::WHERE_ONLY);\n\n \/\/count distinct mycol.\n echo $object->count('distinct mycol');\n\n \/\/ dont use object vars.\n echo $object->count('distinct mycol',PDO_DataObject::WHERE_ONLY);\n\n \/\/ count distinct id (eg. the primary key)\n echo $object->count('distinct');      \n ```\n\n\n",
+                            "html": " This is used internally to modify the SELECT query to apply rules about limiting the resultsets.\n You should not need to use this normally - it's just publicly available as it's pretty harmless...\n\n \n",
                             "|xns": "Roo.doc",
                             "xtype": "Para"
                         }

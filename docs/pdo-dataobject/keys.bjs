@@ -1,40 +1,40 @@
 {
-    "name": "count",
+    "name": "keys",
     "parent": "",
     "title": "",
     "permname": "",
     "modOrder": "001",
     "items": [
         {
-            "name": "count",
-            "purpose": " Find the number of results from a simple query",
+            "name": "keys",
+            "purpose": " get\/set an  array of table primary keys",
             "stype": "function",
             "|xns": "Roo.doc",
             "xtype": "Entry",
             "items": [
                 {
-                    "name": "count",
+                    "name": "keys",
                     "is_static": false,
                     "is_constructor": false,
                     "memberof": "PDO_DataObject",
                     "returndesc": "",
-                    "returntype": "int",
+                    "returntype": "array",
                     "|xns": "Roo.doc",
                     "xtype": "Synopsis",
                     "items": [
                         {
-                            "desc": "(optional) <br\/>\\\n                  (true|false => see below not on whereAddonly) <br\/>\\\n                  (string) <br\/>\\\n                      \"DISTINCT\" => does a distinct count on the tables 'key' column <br\/>\\\n                      otherwise  => normally it counts primary keys - you can use  <br\/>\\\n                                    this to do things like $do->count('distinct mycol'); \n                  ",
+                            "desc": "optional set the key",
                             "is_optional": false,
-                            "name": "$countWhat",
+                            "name": "",
                             "type": "string",
                             "|xns": "Roo.doc",
                             "xtype": "Param"
                         },
                         {
-                            "desc": "(optional) If PDO_DataObject::WHERE_ONLY is passed in then \\\n                  we will build the condition only using the whereAdd's.  Default is to \\\n                  build the condition using the object parameters as well.",
+                            "desc": "set more keys",
                             "is_optional": false,
-                            "name": "$whereAddOnly",
-                            "type": "bool",
+                            "name": "",
+                            "type": "optional",
                             "|xns": "Roo.doc",
                             "xtype": "Param"
                         }
@@ -46,7 +46,7 @@
                     "xtype": "Section",
                     "items": [
                         {
-                            "html": " Usage:\n ```\n $object = new mytable();\n $object->name = \"fred\";\n echo $object->count();\n\n \/\/ dont use object vars.\n echo $object->count(PDO_DataObject::WHERE_ONLY);\n\n \/\/count distinct mycol.\n echo $object->count('distinct mycol');\n\n \/\/ dont use object vars.\n echo $object->count('distinct mycol',PDO_DataObject::WHERE_ONLY);\n\n \/\/ count distinct id (eg. the primary key)\n echo $object->count('distinct');      \n ```\n\n\n",
+                            "html": " Query the keys (usually primary keys) in table:\n ```\n $do->keys();\n ```\n\n Set the keys on the table\n ```\n $mytable->keys('mytable_id');\n ```\n\n This is defined in the table definition if it gets it wrong,\n or you do not want to use ini tables, you can override this.\n\n",
                             "|xns": "Roo.doc",
                             "xtype": "Para"
                         }

@@ -1,0 +1,60 @@
+{
+    "name": "select",
+    "parent": "",
+    "title": "",
+    "permname": "",
+    "modOrder": "001",
+    "items": [
+        {
+            "name": "select",
+            "purpose": " Adds a select columns (Chainable Version)",
+            "stype": "function",
+            "|xns": "Roo.doc",
+            "xtype": "Entry",
+            "items": [
+                {
+                    "name": "select",
+                    "is_static": false,
+                    "is_constructor": false,
+                    "memberof": "PDO_DataObject",
+                    "returndesc": "self",
+                    "returntype": "PDO_DataObject",
+                    "|xns": "Roo.doc",
+                    "xtype": "Synopsis",
+                    "items": [
+                        {
+                            "desc": "the select arguments",
+                            "is_optional": false,
+                            "name": "$k",
+                            "type": "string",
+                            "|xns": "Roo.doc",
+                            "xtype": "Param"
+                        }
+                    ]
+                },
+                {
+                    "stype": "desc",
+                    "|xns": "Roo.doc",
+                    "xtype": "Section",
+                    "items": [
+                        {
+                            "html": " \n NOTE : ALWAYS ENSURE ARGUMENTS ARE ESCAPED \n\n the behaviour is slightly different to selectAdd()\n when you call select() with an argument the first time, it will remove the default '*',\n if you need to include '*', then call it first with `select('*')`\n\n If called multiple times, it will add the 'commas' between the arguments\n\n Usage:\n ```\n $object->select(); \/\/ resets select to nothing!\n $object->select(\"*\"); \/\/ default select\n $object->select(\"unixtime(DATE) as udate\");\n $object->select(\"DATE\");\n ```\n\n",
+                            "|xns": "Roo.doc",
+                            "xtype": "Para"
+                        }
+                    ]
+                },
+                {
+                    "stype": "parameter",
+                    "|xns": "Roo.doc",
+                    "xtype": "Section"
+                },
+                {
+                    "stype": "return",
+                    "|xns": "Roo.doc",
+                    "xtype": "Section"
+                }
+            ]
+        }
+    ]
+}

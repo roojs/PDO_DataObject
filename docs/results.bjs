@@ -1,0 +1,31 @@
+{
+ "name" : "results",
+ "parent" : "",
+ "title" : "",
+ "path" : "/home/alan/gitlive/PDO_DataObject/docs/results.bjs",
+ "permname" : "",
+ "modOrder" : "001",
+ "strings" : {
+  "ad8039cac05af85153c8618b5a0bbb35" : "<p>\nafter using <a href=\"#pdo-dataobject/fetch\">fetch</a> or <a href=\"#pdo-dataobject/fetchAll\">fetchAll</a>\nyour dataobject will contiain all the values returned from the database. Other than performing an update\nor outputing the properties of the object, you can also call a number of methods\n</p>\n<ul>\n<li><a href=\"#pdo-dataobject/toArray\">toArray</a> can be used to output the data into various formats.\n<li><a href=\"#pdo-dataobject/pid\">pid</a> will fetch the value of the primary id\n<li><a href=\"#pdo-dataobject/formatValue\">formatValue</a> can be used to output the data of a single column in a specific format.\n\n",
+  "9270d88c256afb00e822a804ee566ffa" : "Working with results"
+ },
+ "items" : [
+  {
+   "xtype" : "Body",
+   "$ xns" : "Roo.bootstrap",
+   "items" : [
+    {
+     "xtype" : "Header",
+     "Number level" : 1,
+     "$ xns" : "Roo.bootstrap",
+     "String html" : "Working with results"
+    },
+    {
+     "xtype" : "Element",
+     "$ xns" : "Roo.bootstrap",
+     "String html" : "<p>\nafter using <a href=\"#pdo-dataobject/fetch\">fetch</a> or <a href=\"#pdo-dataobject/fetchAll\">fetchAll</a>\nyour dataobject will contiain all the values returned from the database. Other than performing an update\nor outputing the properties of the object, you can also call a number of methods\n</p>\n<ul>\n<li><a href=\"#pdo-dataobject/toArray\">toArray</a> can be used to output the data into various formats.\n<li><a href=\"#pdo-dataobject/pid\">pid</a> will fetch the value of the primary id\n<li><a href=\"#pdo-dataobject/formatValue\">formatValue</a> can be used to output the data of a single column in a specific format.\n\n"
+    }
+   ]
+  }
+ ]
+}

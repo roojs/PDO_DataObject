@@ -1,0 +1,9 @@
+.roo-child-ctr .nav>li {
+    display: list-item;
+    float: initial;
+}
+.roo-child-ctr .navbar-nav>li>a
+{
+    padding-top: 2px; 
+     padding-bottom: 2px; 
+}

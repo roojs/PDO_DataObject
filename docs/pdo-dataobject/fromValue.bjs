@@ -1,40 +1,40 @@
 {
-    "name": "count",
+    "name": "fromValue",
     "parent": "",
     "title": "",
     "permname": "",
     "modOrder": "001",
     "items": [
         {
-            "name": "count",
-            "purpose": " Find the number of results from a simple query",
+            "name": "fromValue",
+            "purpose": " a simple verification and typecasting for setting values",
             "stype": "function",
             "|xns": "Roo.doc",
             "xtype": "Entry",
             "items": [
                 {
-                    "name": "count",
+                    "name": "fromValue",
                     "is_static": false,
                     "is_constructor": false,
                     "memberof": "PDO_DataObject",
-                    "returndesc": "",
-                    "returntype": "int",
+                    "returndesc": "String on error, true on success",
+                    "returntype": "string|bool",
                     "|xns": "Roo.doc",
                     "xtype": "Synopsis",
                     "items": [
                         {
-                            "desc": "(optional) <br\/>\\\n                  (true|false => see below not on whereAddonly) <br\/>\\\n                  (string) <br\/>\\\n                      \"DISTINCT\" => does a distinct count on the tables 'key' column <br\/>\\\n                      otherwise  => normally it counts primary keys - you can use  <br\/>\\\n                                    this to do things like $do->count('distinct mycol'); \n                  ",
+                            "desc": "column of database",
                             "is_optional": false,
-                            "name": "$countWhat",
+                            "name": "$col",
                             "type": "string",
                             "|xns": "Roo.doc",
                             "xtype": "Param"
                         },
                         {
-                            "desc": "(optional) If PDO_DataObject::WHERE_ONLY is passed in then \\\n                  we will build the condition only using the whereAdd's.  Default is to \\\n                  build the condition using the object parameters as well.",
+                            "desc": "value to assign",
                             "is_optional": false,
-                            "name": "$whereAddOnly",
-                            "type": "bool",
+                            "name": "$value",
+                            "type": "mixed",
                             "|xns": "Roo.doc",
                             "xtype": "Param"
                         }
@@ -46,7 +46,7 @@
                     "xtype": "Section",
                     "items": [
                         {
-                            "html": " Usage:\n ```\n $object = new mytable();\n $object->name = \"fred\";\n echo $object->count();\n\n \/\/ dont use object vars.\n echo $object->count(PDO_DataObject::WHERE_ONLY);\n\n \/\/count distinct mycol.\n echo $object->count('distinct mycol');\n\n \/\/ dont use object vars.\n echo $object->count('distinct mycol',PDO_DataObject::WHERE_ONLY);\n\n \/\/ count distinct id (eg. the primary key)\n echo $object->count('distinct');      \n ```\n\n\n",
+                            "html": " When you call [set](#pdo-dataObjects\/set)()\/[setFrom](#pdo-dataObjects\/setFrom)() it uses this\n method to set the property of the object\n\n\n Currently  supports these types\n \n | Database Type | validation  |\n | ------------- | ----------- |\n | date       | using (standard time format, or unixtimestamp).... so you could create a method : |\n | time       | using standard time format |\n | datetime   | using  same as date - accepts iso standard or unixtimestamp. |\n | string     | typecast only..\n | int        | cast to integers\n | NULL\/NOTNULL | verifies not null can not be set to null see [sqlValue](#pdo-dataobject\/sqlValue])() |\n \n\n",
                             "|xns": "Roo.doc",
                             "xtype": "Para"
                         }

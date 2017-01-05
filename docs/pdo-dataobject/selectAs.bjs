@@ -1,0 +1,76 @@
+{
+    "name": "selectAs",
+    "parent": "",
+    "title": "",
+    "permname": "",
+    "modOrder": "001",
+    "items": [
+        {
+            "name": "selectAs",
+            "purpose": " Adds multiple Columns or objects to select with formating.",
+            "stype": "function",
+            "|xns": "Roo.doc",
+            "xtype": "Entry",
+            "items": [
+                {
+                    "name": "selectAs",
+                    "is_static": false,
+                    "is_constructor": false,
+                    "memberof": "PDO_DataObject",
+                    "returndesc": "self",
+                    "returntype": "PDO_DataObject",
+                    "|xns": "Roo.doc",
+                    "xtype": "Synopsis",
+                    "items": [
+                        {
+                            "desc": "the array or object, or tablename(for factory) to take column names from.",
+                            "is_optional": false,
+                            "name": "$from",
+                            "type": "null",
+                            "|xns": "Roo.doc",
+                            "xtype": "Param"
+                        },
+                        {
+                            "desc": "format in sprintf format (use %s for the colname)",
+                            "is_optional": false,
+                            "name": "$format",
+                            "type": "string",
+                            "|xns": "Roo.doc",
+                            "xtype": "Param"
+                        },
+                        {
+                            "desc": "as an array.",
+                            "is_optional": false,
+                            "name": "$tableName",
+                            "type": "send",
+                            "|xns": "Roo.doc",
+                            "xtype": "Param"
+                        }
+                    ]
+                },
+                {
+                    "stype": "desc",
+                    "|xns": "Roo.doc",
+                    "xtype": "Section",
+                    "items": [
+                        {
+                            "html": " note it will clear the '*' default select\n \n Usage:\n ```\n $object->selectAs( );\n ```\n adds \"table.colnameA as colnameA,table.colnameB as colnameB,......\"\n n\n\n ```\n $object->selectAs(array('a','b'),'%s_x');\n ```\n adds \"a as a_x, b as b_x\"\n\n ```\n $object->selectAs(array('a','b'),'ddd_%s','ccc');\n ```\n adds \"ccc.a as ddd_a, ccc.b as ddd_b\"\n\n ```\n $object->selectAdd($object,'prefix_%s');\n ```\n calls $object->get_table and adds it all as objectTableName.colnameA as prefix_colnameA\n\n ```\n $object->selectAdd('another_table','prefix_%s');\n ```\n calls $object->get_table and adds it all as objectTableName.colnameA as prefix_colnameA\n \n\n",
+                            "|xns": "Roo.doc",
+                            "xtype": "Para"
+                        }
+                    ]
+                },
+                {
+                    "stype": "parameter",
+                    "|xns": "Roo.doc",
+                    "xtype": "Section"
+                },
+                {
+                    "stype": "return",
+                    "|xns": "Roo.doc",
+                    "xtype": "Section"
+                }
+            ]
+        }
+    ]
+}

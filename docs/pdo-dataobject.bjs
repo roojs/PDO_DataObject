@@ -1,0 +1,90 @@
+{
+    "build": [
+        "__construct",
+        "whereAdd",
+        "where",
+        "whereAddIn",
+        "whereIn",
+        "orderBy",
+        "groupBy",
+        "having",
+        "useIndex",
+        "unionAdd",
+        "union",
+        "limit",
+        "selectAdd",
+        "select",
+        "selectAs",
+        "escape",
+        "whereToString",
+        "sqlValue",
+        "setFrom",
+        "set",
+        "fromValue",
+        "validate"
+    ],
+    "introspect": [
+        "PDO",
+        "quoteIdentifier",
+        "modifyLimitQuery",
+        "toSelectSQL",
+        "databaseStructure",
+        "tableName",
+        "databaseNickname",
+        "table",
+        "tableColumns",
+        "keys",
+        "sequenceKey"
+    ],
+    "config": [
+        "config"
+    ],
+    "fetch": [
+        "get",
+        "load",
+        "reload",
+        "find",
+        "fetch",
+        "fetchAll",
+        "fetchAllAssoc",
+        "count",
+        "query",
+        "generator"
+    ],
+    "results": [
+        "pid",
+        "toArray",
+        "formatValue"
+    ],
+    "crud": [
+        "insert",
+        "update",
+        "save",
+        "snapshot",
+        "delete"
+    ],
+    "create": [
+        "factorySelf",
+        "factory"
+    ],
+    "join": [
+        "links",
+        "link",
+        "applyLinks",
+        "linkArray",
+        "joinAdd",
+        "autoJoin"
+    ],
+    "intropect": [
+        "result"
+    ],
+    "debug": [
+        "debug",
+        "debugLevel",
+        "raise",
+        "free"
+    ],
+    "@debug": [
+        "reset"
+    ]
+}
