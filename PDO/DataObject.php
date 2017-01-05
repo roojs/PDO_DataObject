@@ -72,7 +72,7 @@ class PDO_DataObject
     * LOCK_IN_SHARE_MODE => SELECT ... LOCK IN SHARE MODE
     */
     const FOR_UPDATE = "FOR UPDATE";
-    const LOCK_IN_SHARE_MODE = "LOCK IN SHARE MODE";
+    const IN_SHARE_MODE = "LOCK IN SHARE MODE";
     
     /**
      * used by config[portability]
