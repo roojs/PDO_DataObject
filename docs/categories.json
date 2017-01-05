@@ -108,6 +108,12 @@
             {
                 "|xns": "Roo.bootstrap",
                 "xtype": "NavItem",
+                "href": "#pdo-dataobject\/locking",
+                "html": "locking"
+            },
+            {
+                "|xns": "Roo.bootstrap",
+                "xtype": "NavItem",
                 "href": "#pdo-dataobject\/modifyLimitQuery",
                 "html": "modifyLimitQuery"
             },
