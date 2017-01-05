@@ -1919,34 +1919,28 @@ class PDO_DataObject
      * $object->locking(PDO_DataObject::FOR_UPDATE);
      * $object->locking(PDO_DataObject::IN_SHARE_MODE); 
      * $object->locking(); //reset the locking
-     * $object->having("sum(value) > 0 ");
+     
      * ```
      * 
      * @category build
-     * @param  string  $having  condition to add
-     * @param  string  $having  (optional) how to add to existing data default is 'AND' - can be 'OR'
+     * @param  string  $locking  set the locking condition
      * @access public
      * @return PDO_DataObject self
      */
-    final function having($having = false, $logic = 'AND' )
+    final function having($locking = false )
     {
         if ($this->_query === false) {
             return $this->raise(
                 "You cannot do two queries on the same object (copy it before finding)", 
                 self::ERROR_INVALIDARGS);
         }
-        if (!in_array($logic,array('AND','OR'))) {
-            return $this->raise(
-                "Having logic should be AND or OR", 
-                self::ERROR_INVALIDARGS);
-        }
-
+        
         if ($having === false) {
-            $this->_query['having'] = '';
+            $this->_query['locking'] = '';
             return $this;
         }
         // check input...= 0 or '    ' == error!
-        if (!trim($having)) {
+        if (!trim($locking)) {
             return $this->raise("Having: No Valid Arguments", self::ERROR_INVALIDARGS);
         }
         
