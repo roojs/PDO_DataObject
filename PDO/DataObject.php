@@ -1108,7 +1108,7 @@ class PDO_DataObject
             ($this->_query['condition'] == '' ? '' : ' WHERE ' . $this->_query['condition'] . " \n") .
             ($this->_query['group_by']  == '' ? '' : $this->_query['group_by'] . " \n") .
             ($this->_query['having']    == '' ? '' : $this->_query['having'] . " \n")
-            ($this->_query['locking']    == '' ? '' : ' ' . $this->_query['locking'] . " \n")
+            ($this->_query['locking']   == '' ? '' : ' ' . $this->_query['locking'] . " \n")
         );
 
         
