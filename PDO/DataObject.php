@@ -1927,7 +1927,7 @@ class PDO_DataObject
      * @access public
      * @return PDO_DataObject self
      */
-    final function having($locking = false )
+    final function locking($locking = false )
     {
         if ($this->_query === false) {
             return $this->raise(
@@ -1945,11 +1945,8 @@ class PDO_DataObject
         }
         
         
-        if (!$this->_query['having']) {
-            $this->_query['having'] = " HAVING {$having}";
-            return $this;
-        }
-        $this->_query['having'] .= " {$logic} {$having}";
+        
+        $this->_query['locking'] = $locking;
         return $this;
     }
     
