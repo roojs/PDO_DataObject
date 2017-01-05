@@ -69,7 +69,7 @@ class PDO_DataObject
     /**
     * optional modes for find() 
     * FOR_UPDATE => SELECT ... FOR UPDATE
-    * LOCK_IN_SHARE_MODE => SELECT ... LOCK IN SHARE MODE
+    * IN_SHARE_MODE => SELECT ... LOCK IN SHARE MODE
     */
     const FOR_UPDATE = "FOR UPDATE";
     const IN_SHARE_MODE = "LOCK IN SHARE MODE";
