@@ -65,7 +65,15 @@ class PDO_DataObject
     */
     const WHEREADD_ONLY = true;
     const WHERE_ONLY = true;
-
+    
+    /**
+    * optional modes for find() 
+    * FOR_UPDATE => SELECT ... FOR UPDATE
+    * LOCK_IN_SHARE_MODE => SELECT ... LOCK IN SHARE MODE
+    */
+    const FOR_UPDATE = "FOR UPDATE";
+    const LOCK_IN_SHARE_MODE = "LOCK IN SHARE MODE";
+    
     /**
      * used by config[portability]
      */
