@@ -3336,6 +3336,8 @@ class PDO_DataObject
         $schemas = array();
         $suffix = '';
         
+        var_dump(self::$config['schema_location']);
+        
         if (is_array(self::$config['schema_location'])) {
             if (!isset(self::$config['schema_location'][$database_nickname])) {
                 $this->raise("Could not find configuration for database $database_nickname in schema_location",
