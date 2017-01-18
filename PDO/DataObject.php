@@ -4207,7 +4207,7 @@ class PDO_DataObject
                             self::ERROR_INVALIDCONFIG
             );
         }
-        var_dump($schemas);
+        
                   
         // default to not available.
         self::$links[$dn] = false;
