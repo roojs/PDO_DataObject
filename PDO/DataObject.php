@@ -3972,7 +3972,7 @@ class PDO_DataObject
         }
           
         // no configuration available for database
-        if (!empty($database) && empty(self::config['databases'][$database])) {
+        if (!empty($database) && empty(self::$config['databases'][$database])) {
                 $do = new PDO_DataObject();
                 $do->raise(
                     "unable to find databases[{$database}] in Configuration, It is required for factory with database"
