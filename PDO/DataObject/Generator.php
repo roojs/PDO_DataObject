@@ -268,7 +268,8 @@ class PDO_DataObject_Generator extends PDO_DataObject
         if (!empty($options['database'])) {
             // ctor without table...
             $do = new PDO_DataObject();
-            $dname = $do->PDO()->database_nickname;
+            $dname = $do->databaseNickname();
+            
             
             if (!isset($database[$dname])){
                 $databases[$dname] = $options['database'];
