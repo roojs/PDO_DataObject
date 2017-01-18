@@ -3357,7 +3357,7 @@ class PDO_DataObject
                             self::ERROR_INVALIDCONFIG
             );
         }
-          
+        var_dump($schemas);var_dump($suffix);
         $tried = array();
         $ini_out  = array();
         foreach ($schemas as $ini) {
