@@ -4204,7 +4204,9 @@ class PDO_DataObject
         } else if (is_string(self::$config['schema_location']) && !empty(self::$config['schema_location'])) {
             $this->PDO(); // as we need the nickname..
             $schemas  = explode(PATH_SEPARATOR,self::$config['schema_location']);
-            $suffix = '/'. $this->_database_nickname .'.ini';
+            if (count($schemas) > 1) {
+                $suffix = '/'. $this->_database_nickname .'.ini';
+            }
         } else {
             $this->raise("Invalid format or empty value for config[schema_location]",
                             self::ERROR_INVALIDCONFIG
