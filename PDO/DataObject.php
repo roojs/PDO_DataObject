@@ -134,7 +134,7 @@ class PDO_DataObject
                 //         eg.
                 //         mydb => /var/www/mysite/Myproejct/DataObject/mydb.ini
                 //              value can be an array of absolute paths, or PATH_SEPERATED
-    
+            
                 
     
         // class - factory + load derived classes
@@ -188,7 +188,8 @@ class PDO_DataObject
                 // values true  means  'NULL' as a string is supported      
                 // values 'full' means both 'NULL' and guessing with isset() is supported
                 
-                
+            'table_alias' => array(),
+            
         //  NEW ------------   peformance 
              
             'fetch_into' => false,
@@ -735,7 +736,13 @@ class PDO_DataObject
      * 		            BC - not recommended for new code... <br/>\
      *                  values true  means  'NULL' as a string is supported      <br/>\
      *                  values 'full' means both 'NULL' and guessing with isset() is supported |
-     *                 
+     * | table alias    | array |  [] | map of 'new names' to 'current names' <br/>\
+     *                  if you are renaming tables, for example from 'Person' to 'core_person' \
+     *                  and have updated the factory methods, but not the database.<br/>\
+     *                  This can be used as ``` 'core_person' => 'Person' ``` ensure operations \
+     *                  use the correct database name when quering the database. <br/>\
+     *                  note it does not affect RAW queries) when using ``` $do->query() ``` |
+     *                  
      *                 
      * ### Performance and debugging
      * | Option     | Type | Default | Description |
@@ -3464,10 +3471,16 @@ class PDO_DataObject
         if (empty($this->__table)) {
             return '';
         }
+        
+        // check for table aliases
+        $tbl = isset(self::$config['table_alias'][$this->__table]) ?
+            self::$config['table_alias'][$this->__table] :
+            $this->__table;
+        
         if (!empty(self::$config['portability']) && self::$config['portability'] & self::PORTABILITY_LOWERCASE) {
-            return strtolower($this->__table);
+            return strtolower($tbl);
         }
-        return $this->__table;
+        return $tbl;
     }
     
     /**
@@ -3883,20 +3896,28 @@ class PDO_DataObject
     
     
 
-    static function factory($table)
+    static function factory($in_table = '')
     {
         
-        
+        $database = '';
+        $table = $in_table;
         
         if (strpos( $table,'/') !== false ) {
-            list($database,) = explode('.',$table, 2);
-          
+            list($database,$table) = explode('/',$table, 2);  
         }
         
+        if (!empty(self::$config['table_alias'])) {
+             // old name -> loads 'new' class...
+            $flip  = array_flip(self::$config['table_alias']);
+            if (isset($flip[$table])) {
+                $table = $flip[$table];
+                $in_table = (strlen($database) ? "$database/" : '') . $table;
+            }
+        }
+             
         
-        
-        if (isset(self::$factory_cache[$table])) {
-            $rclass = self::$factory_cache[$table];
+        if (isset(self::$factory_cache[$in_table])) {
+            $rclass = self::$factory_cache[$in_table];
             $ret = new $rclass();
         
             if (!empty($database)) {
@@ -4267,7 +4288,29 @@ class PDO_DataObject
                 
             }
         }
-    
+        if (!empty(self::$config['table_alias'])) {
+            $ta = self::$config['table_alias'];
+            foreach(self::$links[$dn] as $k=>$v) {
+                $kk = $k;
+                if (isset($ta[$k])) {
+                    $kk = $ta[$k];
+                    if (!isset(self::$links[$dn][$kk])) {
+                        self::$links[$dn][$kk] = array();
+                    }
+                }
+                foreach($v as $l => $t_c) {
+                    $bits = explode(':',$t_c);
+                    $tt = isset($ta[$bits[0]]) ? $ta[$bits[0]] : $bits[0];
+                    if ($tt == $bits[0] && $kk == $k) {
+                        continue;
+                    }
+                    self::$links[$dn][$kk][$l] = $tt .':'. $bits[1];
+                    
+                    
+                }
+                
+            }
+        }
         if (isset(self::$links[$dn][$tn])) {
             return self::$links[$dn][$tn];
         }
@@ -5849,8 +5892,15 @@ class PDO_DataObject
         
     	
     }
+    /**
+     * serialize support..
+     *
+     */
      
-    
+    function __sleep()
+    {
+         return array_keys(call_user_func('get_object_vars', $this));
+    }
     
     
 } 
