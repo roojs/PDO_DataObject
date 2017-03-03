@@ -3604,6 +3604,9 @@ class PDO_DataObject
         // note this is not declared as we dont want to bloat the print_r output
         $args = func_get_args();
         if (count($args)) {
+            if (!empty($args) && !key_exists(0, $args)) {
+                $this->raise("Invalid argument - must be an array (not associative one)",PDO_DataObject::ERROR_INVALIDARGS);
+            }
             $this->_database_keys = $args;
         }
         if (isset($this->_database_keys)) {
@@ -4225,7 +4228,7 @@ class PDO_DataObject
         } else if (is_string(self::$config['schema_location']) && !empty(self::$config['schema_location'])) {
             $this->PDO(); // as we need the nickname..
             $schemas  = explode(PATH_SEPARATOR,self::$config['schema_location']);
-            if (count($schemas) > 1) {
+            if (count($schemas) > 1 || is_dir($schemas[0])) {
                 $suffix = '/'. $this->_database_nickname .'.ini';
             }
         } else {
@@ -5821,13 +5824,15 @@ class PDO_DataObject
     *     setting it to true = then 'null' as a string works..
     *     setting it to 'full' - results in $this->XXXX << even if it's not set, then we read it as null!!!
     *
+    * note - technically it's private - but it's used by validate... so it's now public.
+    *
     * @param  object|array $obj_or_ar 
     * @param  string|false $prop prperty
     
-    * @access private
+    * @access public
     * @return bool  object
     */
-    static private function _is_null_member($obj_or_ar , $prop) 
+    static public function _is_null_member($obj_or_ar , $prop) 
     {
      	
         switch(true) {

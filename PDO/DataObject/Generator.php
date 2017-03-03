@@ -528,7 +528,7 @@ class PDO_DataObject_Generator extends PDO_DataObject
         } else {
             $base =  explode(PATH_SEPARATOR, $options['schema_location']); // get the first path...
             $file = "{$base[0]}/{$this->_database_nickname}.ini";
-            if (count($base) < 2) {
+            if (count($base) < 2 && !is_dir($base[0])) {
                 $file  = $base[0];
             }
             
