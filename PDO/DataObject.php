@@ -4403,8 +4403,8 @@ class PDO_DataObject
      * Usage: (requires links.ini to be set up correctly)
      * ```
      * // get all the images for product 24
-     * $i = new DataObject_Image();
-     * $pi = new DataObjects_Product_image();
+     * $i = PDO_DataObject::factory('image');
+     * $pi = PDO_DAtaObject::factory('product_image');
      * $pi->product_id = 24; // set the product id to 24
      * $i->joinAdd($pi); // add the product_image connectoin
      * $i->find();
@@ -4414,9 +4414,9 @@ class PDO_DataObject
      * 
      * // an example with 2 joins
      * // get all the images linked with products or productgroups
-     * $i = new DataObject_Image();
-     * $pi = new DataObject_Product_image();
-     * $pgi = new DataObject_Productgroup_image();
+     * $i = PDO_DataObject::factory('image');
+     * $pi = PDO_DAtaObject::factory('product_image');
+     * $pgi = PDO_DAtaObject::factory('productgroup_image');
      * $i->joinAdd($pi);
      * $i->joinAdd($pgi);
      * $i->find();
