@@ -452,7 +452,7 @@ class PDO_DataObject_Links
      * 
      * Example - Getting the related objects
      * 
-     * $person = new DataObjects_Person;
+     * $person = PDO_DataObject::Factory('Person');
      * $person->get(12);
      * $children = $person->getLinkArray('children');
      * 
