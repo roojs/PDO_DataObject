@@ -119,7 +119,7 @@ class PDO_DataObject_Introspection_mysql extends PDO_DataObject_Introspection
         }
         $records = array();
         foreach($cache as $ar) {
-            if ($cache['tablename'] != $string) {
+            if ($ar['tablename'] != $string) {
                 continue;
             }
             $records[] = $ar;
