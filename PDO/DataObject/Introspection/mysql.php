@@ -77,7 +77,7 @@ class PDO_DataObject_Introspection_mysql extends PDO_DataObject_Introspection
         // so it's quicker to query, all and cache the results..
         
         if (empty($cache)) {
-            $tn = $this->do->escape($string);
+            //$tn = $this->do->escape($string);
             // FK first...
             
             $cache =  $this->do
@@ -116,6 +116,13 @@ class PDO_DataObject_Introspection_mysql extends PDO_DataObject_Introspection
                             COLUMNS.TABLE_SCHEMA = DATABASE()
                 ")
                 ->fetchAllAssoc();
+        }
+        $records = array();
+        foreach($cache as $ar) {
+            if ($cache['tablename']) != $string) {
+                continue;
+            }
+            $records[] = $ar;
         }
         
         
