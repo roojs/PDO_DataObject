@@ -43,6 +43,17 @@ class PDO_DataObject_Introspection_mysql extends PDO_DataObject_Introspection
                 return 'SHOW TABLES';
             case 'databases':
                 return 'SHOW DATABASES';
+            case 'views':
+                 return "SELECT
+                        distinct(TABLE_NAME)
+                    FROM
+                        information_schema.TABLES
+                    WHERE
+                        table_type = 'VIEW'
+                        AND
+                        TABLE_SCHEMA=DATABASE()
+                    ";
+            
             default:
                 return null;
         }
