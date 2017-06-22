@@ -1514,7 +1514,7 @@ class PDO_DataObject
     final function fetchAll($k= false, $v = false, $method = false)  
     {
         $cl =  is_a($k, "Closure"); 
-       
+        var_dump($this->_result);
         if (!$this->_result) {
             if (!$cl && $k !== false &&    $this->_query['data_select'] === false) {
                 $this->select($k);
