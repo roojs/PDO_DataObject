@@ -111,8 +111,8 @@ class PDO_DataObject_Introspection_mysql extends PDO_DataObject_Introspection
                             AND
                             KEY_COLUMN_USAGE.TABLE_SCHEMA = COLUMNS.TABLE_SCHEMA 
                         WHERE
-                            COLUMNS.TABLE_NAME = '$tn'
-                            and
+                     --       COLUMNS.TABLE_NAME = '$tn'
+                     --       and
                             COLUMNS.TABLE_SCHEMA = DATABASE()
                 ")
                 ->fetchAllAssoc();
