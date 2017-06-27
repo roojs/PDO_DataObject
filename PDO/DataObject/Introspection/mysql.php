@@ -80,14 +80,17 @@ class PDO_DataObject_Introspection_mysql extends PDO_DataObject_Introspection
     function tableInfo($string)
     {
         // FIXME = use META data....
-        //  
+        // 
+        
+        $cache = &PDO_DataObject_Introspection::$cache
+        
         // this query takes about 1.5 seconds to do all tables in the database, or 0.5 for single ones.
         // so it's quicker to query, all and cache the results..
         
-        if (empty(PDO_DataObject_Introspection::$cache[__CLASS__])) {
+        if (empty($cache[__CLASS__.'::'. __FUNCTION__])) {
              // FK first...
             
-            PDO_DataObject_Introspection::$cache[__CLASS__] =  $this->do
+            $cache[__CLASS__.'::'. __FUNCTION__] =  $this->do
                 ->query("
                         
                         SELECT
@@ -123,7 +126,7 @@ class PDO_DataObject_Introspection_mysql extends PDO_DataObject_Introspection
                 ->fetchAllAssoc();
         }
         $records = array();
-        foreach(PDO_DataObject_Introspection::$cache[__CLASS__] as $ar) {
+        foreach($cache[__CLASS__.'::'. __FUNCTION__] as $ar) {
             if ($ar['tablename'] != $string) {
                 continue;
             }
