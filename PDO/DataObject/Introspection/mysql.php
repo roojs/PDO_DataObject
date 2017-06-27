@@ -87,10 +87,10 @@ class PDO_DataObject_Introspection_mysql extends PDO_DataObject_Introspection
         // this query takes about 1.5 seconds to do all tables in the database, or 0.5 for single ones.
         // so it's quicker to query, all and cache the results..
         
-        if (empty($cache)) {
+        if (empty(PDO_DataObject_Introspection::$cache[__CLASS__])) {
              // FK first...
             
-            $cache =  $this->do
+            PDO_DataObject_Introspection::$cache[__CLASS__] =  $this->do
                 ->query("
                         
                         SELECT
@@ -126,7 +126,7 @@ class PDO_DataObject_Introspection_mysql extends PDO_DataObject_Introspection
                 ->fetchAllAssoc();
         }
         $records = array();
-        foreach($cache as $ar) {
+        foreach(PDO_DataObject_Introspection::$cache[__CLASS__] as $ar) {
             if ($ar['tablename'] != $string) {
                 continue;
             }
