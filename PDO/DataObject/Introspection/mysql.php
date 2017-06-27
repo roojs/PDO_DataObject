@@ -82,7 +82,7 @@ class PDO_DataObject_Introspection_mysql extends PDO_DataObject_Introspection
         // FIXME = use META data....
         // 
         
-        $cache = &PDO_DataObject_Introspection::$cache
+        $cache = &PDO_DataObject_Introspection::$cache;
         
         // this query takes about 1.5 seconds to do all tables in the database, or 0.5 for single ones.
         // so it's quicker to query, all and cache the results..
