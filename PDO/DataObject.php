@@ -1515,8 +1515,7 @@ class PDO_DataObject
     {
         $cl =  is_a($k, "Closure"); 
         
-        var_dump($this->_result);
-        if (!$this->_result) {
+         if (!$this->_result) {
             if (!$cl && $k !== false &&    $this->_query['data_select'] === false) {
                 $this->select($k);
                 if ($v !== false) {
