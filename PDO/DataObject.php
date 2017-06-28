@@ -1522,7 +1522,7 @@ class PDO_DataObject
                     $this->select($v);
                 }
             }
-            
+            PDO_DataObject::debugLevel(1);
             $this->find();
         }
 
