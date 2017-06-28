@@ -1525,7 +1525,10 @@ class PDO_DataObject
             $this->find();
         }
 
-      
+        if ($this->_result === 0) {
+            // no results retured.
+            return array();
+        }
         
         if ($method == true) {
             // ignore's key/value.
@@ -1582,7 +1585,7 @@ class PDO_DataObject
         }
         // in theory this is not 
         if ($v === false) {
-            $ret = $this->_result->fetchAll(PDO::FETCH_COLUMN, $cols[0]);
+            $ret =  $this->_result->fetchAll(PDO::FETCH_COLUMN, $cols[0]);
             if (self::$debug) {
                 $this->debug("fetchAll returned: (Column {$cols[0]} ". json_encode($ret),1);
             }
