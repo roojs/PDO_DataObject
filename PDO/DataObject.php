@@ -1515,7 +1515,8 @@ class PDO_DataObject
     {
         $cl =  is_a($k, "Closure"); 
         
-	if (!$this->_result) {
+        var_dump($this->_result);
+        if (!$this->_result) {
             if (!$cl && $k !== false &&    $this->_query['data_select'] === false) {
                 $this->select($k);
                 if ($v !== false) {
@@ -1568,7 +1569,7 @@ class PDO_DataObject
             }
             return $ret;
         }
-         $cols = array();
+        $cols = array();
         for($i =0;$i< $this->_result->columnCount(); $i++) {
             $meta = $this->_result->getColumnMeta($i);
             if ($meta['name'] == $k) {
