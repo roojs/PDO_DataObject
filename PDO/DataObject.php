@@ -2594,6 +2594,12 @@ class PDO_DataObject
         // connect will load the config!
         $PDO = $this->PDO();
         
+        if ($this->_query === false) {
+            $reflection= new ReflectionClass(__CLASS__);
+            $props = $reflection->getDefaultProperties();
+            $this->_query = $props['_query'];
+        }
+        
         $original_query =  $this->_query;
         
         $items = $this->tableColumns();
