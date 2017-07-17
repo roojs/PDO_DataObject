@@ -3147,17 +3147,14 @@ class PDO_DataObject
             break;
         }
         
-
         if (is_a($result,'PDOException')) {
             if (self::$debug) { 
                 $this->debug((string)$result, __FUNCTION__,1 );
             }
             $this->N = false;
-            return $this->raise("Could not run Query", self::ERROR_QUERY, $result);
+            return $this->raise("Could not run Query: " . $result->getMessage(), self::ERROR_QUERY, $result);
         }
         
-        
-
         switch (true) {
             case $dbtype  == 'sqlite':
             case $pdo->getAttribute(PDO::MYSQL_ATTR_USE_BUFFERED_QUERY) == 0:
