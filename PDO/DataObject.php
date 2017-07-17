@@ -2885,6 +2885,13 @@ class PDO_DataObject
         $PDO = $this->PDO();
         $quoteIdentifiers  = self::$config['quote_identifiers'];
         
+        if ($this->_query === false) {
+            $reflection= new ReflectionClass($class);
+            $props = $reflection->getdefaultProperties();
+            print_r($props);exit;
+            $this->_query = $props['_query'];
+        }
+        
         // why would we use order by?????
         // I guess if we have dependant elements?!?!? eg. parent's pointing to children...
         $extra_cond = ' ' . (isset($this->_query['order_by']) ? $this->_query['order_by'] : ''); 
