@@ -2886,7 +2886,7 @@ class PDO_DataObject
         $quoteIdentifiers  = self::$config['quote_identifiers'];
         
         if ($this->_query === false) {
-            $reflection= new ReflectionClass($class);
+            $reflection= new ReflectionClass($this);
             $props = $reflection->getdefaultProperties();
             print_r($props);exit;
             $this->_query = $props['_query'];
