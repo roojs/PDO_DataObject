@@ -3564,7 +3564,6 @@ class PDO_DataObject
         if (count($args)) {
             $this->_assigned_fields = $args[0];
         }
-        
         if (isset($this->_assigned_fields)) {
             return $this->_assigned_fields;
         }
@@ -3572,7 +3571,7 @@ class PDO_DataObject
         $this->PDO();
         
          
-        print_r(self::$ini[$this->_database_nickname][$this->tableName()]);exit;
+          
         if (isset(self::$ini[$this->_database_nickname][$this->tableName()])) {
             return self::$ini[$this->_database_nickname][$this->tableName()];
         }
@@ -5227,7 +5226,7 @@ class PDO_DataObject
     {
         $keys  = $this->keys();
         $items = $this->tableColumns();
-        print_r($items);exit;
+        print_R($items);exit;
         
         if (!$items) {
             $this->raise(
