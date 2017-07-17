@@ -2888,7 +2888,6 @@ class PDO_DataObject
         if ($this->_query === false) {
             $reflection= new ReflectionClass(__CLASS__);
             $props = $reflection->getDefaultProperties();
-            print_r($props);exit;
             $this->_query = $props['_query'];
         }
         
