@@ -3572,7 +3572,7 @@ class PDO_DataObject
         $this->PDO();
         
          
-          
+        print_r(self::$ini[$this->_database_nickname][$this->tableName()]);exit;
         if (isset(self::$ini[$this->_database_nickname][$this->tableName()])) {
             return self::$ini[$this->_database_nickname][$this->tableName()];
         }
