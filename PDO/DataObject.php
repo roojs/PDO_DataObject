@@ -5226,7 +5226,7 @@ class PDO_DataObject
     {
         $keys  = $this->keys();
         $items = $this->tableColumns();
-        print_R($items);exit;
+            
         
         if (!$items) {
             $this->raise(
