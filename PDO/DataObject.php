@@ -603,6 +603,7 @@ class PDO_DataObject
         $password = isset($dsn_ar['pass']) ? urldecode( $dsn_ar['pass'] ): '';
         
         // might throw an eror..
+        print_r($pdo_dsn);exit;
         try {
             self::$connections[$md5] = new $PDO($pdo_dsn, $username, $password, $opts );
             self::$connections[$md5]->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION); // just in case?
