@@ -3525,7 +3525,7 @@ class PDO_DataObject
     function databaseLinks()
     {
         $this->links(); // force loading using this method.
-        return self::$links[$dn][$this->_database_nickname];
+        return self::$links[$this->_database_nickname];
     }
     
     /**
