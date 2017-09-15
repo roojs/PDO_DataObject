@@ -3515,6 +3515,19 @@ class PDO_DataObject
         
         return $this->_database_nickname;
     }
+     /**
+     * Returns the full link mapping array for the database
+     *
+     * @category introspect
+     * @access public
+     * @return array associative array of table => array ( col -> table:col )
+     */
+    function databaseLinks()
+    {
+        $this->links(); // force loading using this method.
+        return self::$links[$dn][$this->_database_nickname];
+    }
+    
     /**
      * Warning Method if using old DB_DataObjects code
      *
