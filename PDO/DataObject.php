@@ -2904,8 +2904,6 @@ class PDO_DataObject
         $where = !empty($this->_query) && !empty($this->_query['condition']) ?
             $this->_query['condition'] : '';
         
-        print_R($where);exit;
-        
         if (!$useWhere) {
 
             $keys = $this->keys();
