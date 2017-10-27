@@ -3976,7 +3976,7 @@ class PDO_DataObject
             return $do->generator()->{$proxyMethod}( $do->_database_nickname, $table);
 
         }
-
+        
         if (!$rclass || !class_exists($rclass)) {
             $dor = new PDO_DataObject();
             return $dor->raise(
@@ -4025,8 +4025,6 @@ class PDO_DataObject
                 $do->raise(
                     "unable to find databases[{$database}] in Configuration, It is required for factory with database"
                     , self::ERROR_INVALIDARGS);
-
-                    var_dump('die here?/');exit;
         }
 
 
