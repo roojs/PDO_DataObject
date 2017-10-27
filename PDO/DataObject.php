@@ -3955,7 +3955,7 @@ class PDO_DataObject
         }
 
         // multi-database support.. - experimental.
-        var_dump($table);exit;
+
         $rclass = self::tableToClass($table);
         // proxy = full|light
         if (!$rclass && self::$config['proxy']) {
@@ -3976,7 +3976,7 @@ class PDO_DataObject
             return $do->generator()->{$proxyMethod}( $do->_database_nickname, $table);
 
         }
-
+        
         if (!$rclass || !class_exists($rclass)) {
             $dor = new PDO_DataObject();
             return $dor->raise(
