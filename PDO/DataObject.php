@@ -3955,7 +3955,7 @@ class PDO_DataObject
         }
 
         // multi-database support.. - experimental.
-
+        var_dump($table);exit;
         $rclass = self::tableToClass($table);
         // proxy = full|light
         if (!$rclass && self::$config['proxy']) {
