@@ -5240,8 +5240,6 @@ class PDO_DataObject
         $keys  = $this->keys();
         $items = $this->tableColumns();
 
-        print_r($items);exit;
-
         if (!$items) {
             $this->raise(
                 "setFrom:Could not find table definition for {$this->tableName()}",
