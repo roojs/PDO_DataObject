@@ -5927,8 +5927,7 @@ class PDO_DataObject
 
     function __sleep()
     {
-//         return array_keys(call_user_func('get_object_vars', $this));
-         return array_keys(get_object_vars($this));
+         return array_keys(call_user_func('get_object_vars', $this));
     }
 
 
