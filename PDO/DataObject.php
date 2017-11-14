@@ -5920,15 +5920,5 @@ class PDO_DataObject
 
 
     }
-    /**
-     * serialize support..
-     *
-     */
-
-    function __sleep()
-    {
-         return array_keys(call_user_func('get_object_vars', $this));
-    }
-
 
 }
