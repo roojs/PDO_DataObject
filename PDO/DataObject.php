@@ -3138,7 +3138,7 @@ class PDO_DataObject
                 }
 
 
-            } catch (\PDOException $e) {
+            } catch (PDOException $e) {
                 $this->debug((string)$e, __FUNCTION__,1 );
                 $result = $e;
                 switch($e->getCode()) {
