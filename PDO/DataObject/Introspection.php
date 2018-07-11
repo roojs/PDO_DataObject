@@ -50,8 +50,16 @@ abstract class PDO_DataObject_Introspection
     }
   
      
-    
-    
+    /**
+     * Schema Cache
+     * - this is used by the drivers to store a cache of the schema data..
+     * - Currently only used by Mysql, as quering Information Schema is slow,
+     * - You may need to reset the cache if you modify the database schema at some point
+     * -> eg. PDO_DataObject_Introspection::$cache = array();
+     *
+     *
+     */
+    static $cache = array();
     
      
     /**

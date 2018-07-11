@@ -43,6 +43,17 @@ class PDO_DataObject_Introspection_mysql extends PDO_DataObject_Introspection
                 return 'SHOW TABLES';
             case 'databases':
                 return 'SHOW DATABASES';
+            case 'views':
+                 return "SELECT
+                        distinct(TABLE_NAME)
+                    FROM
+                        information_schema.TABLES
+                    WHERE
+                        table_type = 'VIEW'
+                        AND
+                        TABLE_SCHEMA=DATABASE()
+                    ";
+            
             default:
                 return null;
         }
@@ -71,45 +82,58 @@ class PDO_DataObject_Introspection_mysql extends PDO_DataObject_Introspection
         // FIXME = use META data....
         // 
         
-        $tn = $this->do->escape($string);
-        // FK first...
+        $cache = &PDO_DataObject_Introspection::$cache;
         
-         $records =  $this->do
-            ->query("
-                    
-                    SELECT
-                        COLUMNS.TABLE_NAME as tablename,
-                        COLUMNS.COLUMN_NAME as name,
-                        COLUMN_DEFAULT as default_value_raw,
-                        DATA_TYPE as type,
-                        NUMERIC_PRECISION as len,
-                        CONCAT(
-                            EXTRA,  -- autoincrement...
-                            IF (IS_NULLABLE, '', ' not_null'),
-                            IF (COLUMN_KEY = 'PRI', ' primary', ''),
-                            IF (COLUMN_KEY = 'UNI', ' unique', ''),
-                            IF (COLUMN_KEY = 'MUL', ' multiple_key', '')
-                            
-                        )    as flags,
-                        COALESCE(REFERENCED_TABLE_NAME,'') as fk_table,
-                        COALESCE(REFERENCED_COLUMN_NAME,'') as fk_column
+        // this query takes about 1.5 seconds to do all tables in the database, or 0.5 for single ones.
+        // so it's quicker to query, all and cache the results..
+        
+        if (empty($cache[__CLASS__.'::'. __FUNCTION__])) {
+             // FK first...
+            
+            $cache[__CLASS__.'::'. __FUNCTION__] =  $this->do
+                ->query("
                         
-                    FROM
-                        INFORMATION_SCHEMA.COLUMNS
-                    LEFT JOIN
-                        INFORMATION_SCHEMA.KEY_COLUMN_USAGE
-                    ON
-                        KEY_COLUMN_USAGE.TABLE_NAME = COLUMNS.TABLE_NAME 
-                        AND
-                        KEY_COLUMN_USAGE.COLUMN_NAME = COLUMNS.COLUMN_NAME
-                        AND
-                        KEY_COLUMN_USAGE.TABLE_SCHEMA = COLUMNS.TABLE_SCHEMA 
-                    WHERE
-                        COLUMNS.TABLE_NAME = '$tn'
-                        and
-                        COLUMNS.TABLE_SCHEMA = DATABASE()
-            ")
-            ->fetchAllAssoc();
+                        SELECT
+                            COLUMNS.TABLE_NAME as tablename,
+                            COLUMNS.COLUMN_NAME as name,
+                            COLUMN_DEFAULT as default_value_raw,
+                            DATA_TYPE as type,
+                            NUMERIC_PRECISION as len,
+                            CONCAT(
+                                EXTRA,  -- autoincrement...
+                                IF (IS_NULLABLE, '', ' not_null'),
+                                IF (COLUMN_KEY = 'PRI', ' primary', ''),
+                                IF (COLUMN_KEY = 'UNI', ' unique', ''),
+                                IF (COLUMN_KEY = 'MUL', ' multiple_key', '')
+                                
+                            )    as flags,
+                            COALESCE(REFERENCED_TABLE_NAME,'') as fk_table,
+                            COALESCE(REFERENCED_COLUMN_NAME,'') as fk_column
+                            
+                        FROM
+                            INFORMATION_SCHEMA.COLUMNS
+                        LEFT JOIN
+                            INFORMATION_SCHEMA.KEY_COLUMN_USAGE
+                        ON
+                            KEY_COLUMN_USAGE.TABLE_NAME = COLUMNS.TABLE_NAME 
+                            AND
+                            KEY_COLUMN_USAGE.COLUMN_NAME = COLUMNS.COLUMN_NAME
+                            AND
+                            KEY_COLUMN_USAGE.TABLE_SCHEMA = COLUMNS.TABLE_SCHEMA 
+                        WHERE
+                            COLUMNS.TABLE_SCHEMA = DATABASE()
+                ")
+                ->fetchAllAssoc();
+        }
+        $records = array();
+        foreach($cache[__CLASS__.'::'. __FUNCTION__] as $ar) {
+            if ($ar['tablename'] != $string) {
+                continue;
+            }
+            $records[] = $ar;
+        }
+        
+        
    
         if (PDO_DataObject::debugLevel() > 2)  {
             // this is for the test_suite...

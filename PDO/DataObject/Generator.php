@@ -268,7 +268,8 @@ class PDO_DataObject_Generator extends PDO_DataObject
         if (!empty($options['database'])) {
             // ctor without table...
             $do = new PDO_DataObject();
-            $dname = $do->PDO()->database_nickname;
+            $dname = $do->databaseNickname();
+            
             
             if (!isset($database[$dname])){
                 $databases[$dname] = $options['database'];
@@ -525,9 +526,13 @@ class PDO_DataObject_Generator extends PDO_DataObject
 
             $file = $base[$this->_database_nickname];
         } else {
-            $base =  explode(PATH_SEPARATOR, $options['schema_location'])[0]; // get the first path...
-
-            $file = "{$base}/{$this->_database_nickname}.ini";
+            $base =  explode(PATH_SEPARATOR, $options['schema_location']); // get the first path...
+            $file = "{$base[0]}/{$this->_database_nickname}.ini";
+            if (count($base) < 2 && !is_dir($base[0])) {
+                $file  = $base[0];
+            }
+            
+            
         }
         
        
