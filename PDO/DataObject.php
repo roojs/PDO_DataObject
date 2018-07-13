@@ -2888,7 +2888,7 @@ class PDO_DataObject
     final function delete($useWhere = false)
     {
 
-        $PDO = $this->PDO();
+        $this->PDO();
         $quoteIdentifiers  = self::$config['quote_identifiers'];
 
         if ($this->_query === false) {
