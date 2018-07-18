@@ -5447,7 +5447,7 @@ class PDO_DataObject
                     $this->$col = $x->format("Y-m-d");
                 } catch (Exception $e) {
                     self::debug("Error: $col : type is TIME -> Datetime threw an error {$e->getMessage()}", __FUNCTION__);
-                    return "Error: $col : type is TIME -> Datetime threw an error {$e->getMessage()}";
+                    return "Error: $col : type is DATE -> Datetime threw an error {$e->getMessage()}";
                 }
                 
                 return true;
@@ -5463,7 +5463,6 @@ class PDO_DataObject
                     $this->$col = $x->format('H:i:s');
                 } catch(Exception $e) {
                     self::debug("Error: $col : type is TIME -> Datetime threw an error {$e->getMessage()}", __FUNCTION__);
-
                     return "Error: $col : type is TIME -> Datetime threw an error {$e->getMessage()}";
                 }
 
