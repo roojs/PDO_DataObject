@@ -5442,9 +5442,13 @@ class PDO_DataObject
                     return "Error: $col : type is DATE -> value is not string or number";
                 }
                 // try date!!!!
-
-                $x = new DateTime($value);
-                $this->$col = $x->format("Y-m-d");
+                try {
+                    $x = new DateTime($value);
+                    $this->$col = $x->format("Y-m-d");
+                } catch (Exception $e) {
+                    return "Error: $col : type is DATE -> value is not string or number";
+                }
+                    
                 return true;
 
             case ($cols[$col] & self::TIME):
