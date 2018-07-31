@@ -5221,8 +5221,7 @@ class PDO_DataObject
     }
 
      /**
-     * Copies items that are in the table definitions from an \
-     * array or object into the current object
+     * Sets the properties of the Object based on the Key Value array '$from'
      *
      * it will not override primary key values.
      *
