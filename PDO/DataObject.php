@@ -5830,6 +5830,10 @@ class PDO_DataObject
         self::$links = array();
         self::$sequence = array();
         self::$factory_cache = array();
+        if (class_exists('PDO_DataObject_Introspection')) {
+            PDO_DataObject_Introspection::$cache = array();
+        }
+        
     }
     /**
     * Null member testing
