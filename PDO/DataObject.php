@@ -2913,7 +2913,7 @@ class PDO_DataObject
         $where = !empty($this->_query) && !empty($this->_query['condition']) ?
             $this->_query['condition'] : '';
 
-        if (!$useWhere) {
+        if ($useWhere === false) {
 
             $keys = $this->keys();
             $old = $this->_query;
@@ -2921,18 +2921,16 @@ class PDO_DataObject
  
             // first try building where using the primary keys...
             $where = $this->whereToString($this->tableColumns(),$keys);
-            
-            // old behaviour was to then try using the other properties of the element.
-            if (!strlen($where)) {
-                // if we fail.. then use all the values..
-                
-            }
-            
+              
             $this->_query = $old;
-
-
+ 
             //$extra_cond = ''; // why????
         }
+        if ($useWhere === PDO::DANGER_USE_ALL_PROPS) {
+            
+        }
+        
+        
 
         // don't delete without a condition
         if (!strlen($where)) {
