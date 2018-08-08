@@ -2909,10 +2909,13 @@ class PDO_DataObject
             $keys = $this->keys();
             $old = $this->_query;
             $this->_query = array('condition' => ''); // as it's probably unset!
-
-            
+ 
+            // first try building where using the primary keys...
             $where = $this->whereToString($this->tableColumns(),$keys);
-
+            if (!strlen($where)) {
+                
+            }
+            
             $this->_query = $old;
 
 
