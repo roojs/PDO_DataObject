@@ -2919,7 +2919,7 @@ class PDO_DataObject
 
         $where = '';
         switch(true) {
-            case ($useWhere === PDO::DANGER_USE_ALL_PROPS):
+            case ($useWhere === PDO_DataObject::DANGER_USE_ALL_PROPS):
             case (self::$config['enable_dangerous_delete']):
                 $where = $this->whereToString($this->tableColumns());
                 break;
@@ -2950,7 +2950,7 @@ class PDO_DataObject
  
             //$extra_cond = ''; // why????
         }
-        if ($useWhere === PDO::DANGER_USE_ALL_PROPS) {
+        if ($useWhere === PDO_DataObject::DANGER_USE_ALL_PROPS) {
             
             
             
