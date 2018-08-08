@@ -197,7 +197,7 @@ class PDO_DataObject
                 // previously you could use delete(), and it would use all of the object properties
                 // to build a query to delete the data. Since a single typo can wipe out a large part of your
                 // database.. this is disabled by default now.
-                // this can still be done by using PDO_DataObject::DANGER_USE_ALL_PROPS as the property.
+                // deleting this way can still be done by calling delete with PDO_DataObject::DANGER_USE_ALL_PROPS.
                 
            
             'table_alias' => array(),
