@@ -2914,6 +2914,8 @@ class PDO_DataObject
             
             $where = $this->whereToString($this->tableColumns(),$keys);
 
+            var_Dump($where);
+            
             $this->_query = $old;
 
 
