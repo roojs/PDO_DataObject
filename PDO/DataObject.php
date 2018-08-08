@@ -2917,8 +2917,13 @@ class PDO_DataObject
         // I guess if we have dependant elements?!?!? eg. parent's pointing to children...
         $extra_cond = ' ' . (isset($this->_query['order_by']) ? $this->_query['order_by'] : '');
 
-        
+        $where = '';
         switch(true) {
+            case ($useWhere === PDO::DANGER_USE_ALL_PROPS):
+            case (self::$config['enable_dangerous_delete']):
+                $where = $this->whereToString($this->tableColumns());
+                break;
+            
             case ($useWhere === false): // default behaviour - only use primary key.
                 $keys = $this->keys();
                 $old = $this->_query;
@@ -2934,13 +2939,6 @@ class PDO_DataObject
                 $where = !empty($this->_query) && !empty($this->_query['condition']) ?
                     $this->_query['condition'] : '';
                 break;
-            
-            case ($useWhere === PDO::DANGER_USE_ALL_PROPS):
-            //case (self::$config['quote_identifiers'] PDO::DANGER_USE_ALL_PROPS):
-                $where = $this->whereToString($this->tableColumns());
-                break;
-                
-                
                 
                 
         }
