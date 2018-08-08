@@ -69,7 +69,7 @@ class PDO_DataObject
     * Used for clarity in delete() - behaves like old DataObjects, uses all object properties
     * rather than only primary keys to enable delete.
     */
-    const USE_ALL_PROPS = -1;
+    const DANGER_USE_ALL_PROPS = -1;
 
     /**
     * optional modes for find()
@@ -2883,9 +2883,12 @@ class PDO_DataObject
      * ```
      *
      * @category crud
-     * @param bool $useWhere (optional) If PDO_DataObject::WHERE_ONLY is passed in then
-     *             we will build the condition only using the whereAdd's. <br/>
-     *             Default is to build the condition only using the primary key.
+     * @param bool $useWhere (optional)
+     *             Default - will only use Primary keys if set.
+     *             PDO_DataObject::WHERE_ONLY then it will only use 'whereAdd values'
+     *             PDO_DataObject::DANGER_USE_ALL_PROPS - then it will match all object property
+     *                   values to build the delete.
+     *                   Note - this is dangerous, and delete multiple rows without warning
      *             
      * @throws PDO_DataObject_Exception on SQL errors etc.
      * @access public
