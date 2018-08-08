@@ -3819,7 +3819,9 @@ class PDO_DataObject
             if (!isset($this->$k)) {
                 continue;
             }
-
+            
+            echo "key? $k\n";
+            
             $kSql = $quoteIdentifiers
                 ? ( $this->quoteIdentifier($tableName) . '.' . $this->quoteIdentifier($k) )
                 : "{$tableName}.{$k}";
