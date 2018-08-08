@@ -62,10 +62,11 @@ class PDO_DataObject
     * Used for clarity in methods like delete() and count() to specify that the method should
     * build the condition only out of the whereAdd's and not the object parameters.
     * use WHERE_ONLY now.. whereadd's only the for easier conversion.
+    * 
     */
     const WHEREADD_ONLY = true;
     const WHERE_ONLY = true;
-    const ALL_PROPS = -1;
+    const USE_ALL_PROPS = -1;
 
     /**
     * optional modes for find()
