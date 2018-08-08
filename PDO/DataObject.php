@@ -2943,21 +2943,6 @@ class PDO_DataObject
                 
         }
         
-
-        if ($useWhere === false) {
-
-           
- 
-            //$extra_cond = ''; // why????
-        }
-        if ($useWhere === PDO_DataObject::DANGER_USE_ALL_PROPS) {
-            
-            
-            
-        }
-        
-        
-
         // don't delete without a condition
         if (!strlen($where)) {
             return $this->raise("deleting all data from database is disabled by default, " .
