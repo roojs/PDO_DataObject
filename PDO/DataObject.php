@@ -2912,7 +2912,10 @@ class PDO_DataObject
  
             // first try building where using the primary keys...
             $where = $this->whereToString($this->tableColumns(),$keys);
+            
+            // old behaviour was to then try using the other properties of the element.
             if (!strlen($where)) {
+                // if we fail.. then use all the values..
                 
             }
             
@@ -3804,8 +3807,7 @@ class PDO_DataObject
         $ret = empty($this->_query) || empty($this->_query['condition'])  ? '' :
             trim($this->_query['condition']);
 
-        var_Dump($keys);    
-        
+         
         foreach($keys as $k => $v) {
             // index keys is an indexed array
             /* these filter checks are a bit suspicious..
