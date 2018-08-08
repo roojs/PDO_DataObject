@@ -2912,7 +2912,7 @@ class PDO_DataObject
 
             echo "BUILDING where from string?";
             
-            $where = $this->whereToString($this->tableColumns(),$keys);
+            $where = $this->whereToString($this->tableColumns(),array(), $keys);
 
             var_Dump($where);
             
