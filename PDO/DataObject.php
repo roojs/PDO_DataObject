@@ -2936,7 +2936,7 @@ class PDO_DataObject
                 break;
             
             case ($useWhere === PDO::DANGER_USE_ALL_PROPS):
-            case (self::$config['quote_identifiers'] PDO::DANGER_USE_ALL_PROPS):
+            //case (self::$config['quote_identifiers'] PDO::DANGER_USE_ALL_PROPS):
                 $where = $this->whereToString($this->tableColumns());
                 break;
                 
