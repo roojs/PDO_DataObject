@@ -192,7 +192,13 @@ class PDO_DataObject
 		            // BC - not recommended for new code...
                 // values true  means  'NULL' as a string is supported
                 // values 'full' means both 'NULL' and guessing with isset() is supported
-
+            'enable_dangerous_delete' => false,
+                // This is only for BC support -
+                // previously you could use delete(), and it would use all of the object properties
+                // to build a query to delete the data.
+                // this can still be done by using PDO_DataObject::DANGER_USE_ALL_PROPS as the property.
+                
+           
             'table_alias' => array(),
 
         //  NEW ------------   peformance
@@ -2929,7 +2935,9 @@ class PDO_DataObject
                 break;
             
             case ($useWhere === PDO::DANGER_USE_ALL_PROPS):
-                $this->whereToString($this->tableColumns());
+            case (self::$config['quote_identifiers'] PDO::DANGER_USE_ALL_PROPS):
+                $where = $this->whereToString($this->tableColumns());
+                break;
                 
                 
                 
