@@ -2910,6 +2910,8 @@ class PDO_DataObject
             $old = $this->_query;
             $this->_query = array('condition' => ''); // as it's probably unset!
 
+            echo "BUILDING where from string?";
+            
             $where = $this->whereToString($this->tableColumns(),$keys);
 
             $this->_query = $old;
