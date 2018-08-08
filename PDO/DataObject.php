@@ -3804,6 +3804,8 @@ class PDO_DataObject
         $ret = empty($this->_query) || empty($this->_query['condition'])  ? '' :
             trim($this->_query['condition']);
 
+        var_Dump($keys);    
+        
         foreach($keys as $k => $v) {
             // index keys is an indexed array
             /* these filter checks are a bit suspicious..
