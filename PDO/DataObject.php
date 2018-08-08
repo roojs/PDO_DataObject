@@ -2910,23 +2910,42 @@ class PDO_DataObject
         // I guess if we have dependant elements?!?!? eg. parent's pointing to children...
         $extra_cond = ' ' . (isset($this->_query['order_by']) ? $this->_query['order_by'] : '');
 
-        $where = !empty($this->_query) && !empty($this->_query['condition']) ?
-            $this->_query['condition'] : '';
+        
+        switch(true) {
+            case ($useWhere === false): // default behaviour - only use primary key.
+                $keys = $this->keys();
+                $old = $this->_query;
+                $this->_query = array('condition' => ''); // as it's probably unset!
+     
+                // first try building where using the primary keys...
+                $where = $this->whereToString($this->tableColumns(),$keys);
+                  
+                $this->_query = $old;
+                break;
+            
+            case ($useWhere === PDO_DataObject::WHERE_ONLY):
+                $where = !empty($this->_query) && !empty($this->_query['condition']) ?
+                    $this->_query['condition'] : '';
+                break;
+            
+            case ($useWhere === PDO::DANGER_USE_ALL_PROPS):
+                $this->whereToString($this->tableColumns());
+                
+                
+                
+                
+        }
+        
 
         if ($useWhere === false) {
 
-            $keys = $this->keys();
-            $old = $this->_query;
-            $this->_query = array('condition' => ''); // as it's probably unset!
- 
-            // first try building where using the primary keys...
-            $where = $this->whereToString($this->tableColumns(),$keys);
-              
-            $this->_query = $old;
+           
  
             //$extra_cond = ''; // why????
         }
         if ($useWhere === PDO::DANGER_USE_ALL_PROPS) {
+            
+            
             
         }
         
