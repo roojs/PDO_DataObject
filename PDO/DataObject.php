@@ -65,6 +65,11 @@ class PDO_DataObject
     */
     const WHEREADD_ONLY = true;
     const WHERE_ONLY = true;
+    /**
+    * Used for clarity in delete() - behaves like old DataObjects, uses all object properties
+    * rather than only primary keys to enable delete.
+    */
+    const DANGER_USE_ALL_PROPS = -1;
 
     /**
     * optional modes for find()
@@ -187,7 +192,14 @@ class PDO_DataObject
 		            // BC - not recommended for new code...
                 // values true  means  'NULL' as a string is supported
                 // values 'full' means both 'NULL' and guessing with isset() is supported
-
+            'enable_dangerous_delete' => false,
+                // This is only for BC support -
+                // previously you could use delete(), and it would use all of the object properties
+                // to build a query to delete the data. Since a single typo can wipe out a large part of your
+                // database.. this is disabled by default now.
+                // deleting this way can still be done by calling delete with PDO_DataObject::DANGER_USE_ALL_PROPS.
+                
+           
             'table_alias' => array(),
 
         //  NEW ------------   peformance
@@ -2878,9 +2890,13 @@ class PDO_DataObject
      * ```
      *
      * @category crud
-     * @param bool $useWhere (optional) If PDO_DataObject::WHERE_ONLY is passed in then
-     *             we will build the condition only using the whereAdd's. <br/>
-     *             Default is to build the condition only using the object parameters.
+     * @param bool $useWhere (optional)
+     *             Default - will only use Primary keys if set.
+     *             PDO_DataObject::WHERE_ONLY then it will only use 'whereAdd values'
+     *             PDO_DataObject::DANGER_USE_ALL_PROPS - then it will match all object property
+     *                   values to build the delete.
+     *                   Note - this is dangerous, and delete multiple rows without warning
+     *             
      * @throws PDO_DataObject_Exception on SQL errors etc.
      * @access public
      * @return mixed Number of rows affected on success, false on failure, 0 on no data affected
@@ -2888,7 +2904,7 @@ class PDO_DataObject
     final function delete($useWhere = false)
     {
 
-        $PDO = $this->PDO();
+        $this->PDO();
         $quoteIdentifiers  = self::$config['quote_identifiers'];
 
         if ($this->_query === false) {
@@ -2901,26 +2917,36 @@ class PDO_DataObject
         // I guess if we have dependant elements?!?!? eg. parent's pointing to children...
         $extra_cond = ' ' . (isset($this->_query['order_by']) ? $this->_query['order_by'] : '');
 
-        $where = !empty($this->_query) && !empty($this->_query['condition']) ?
-            $this->_query['condition'] : '';
-
-        if (!$useWhere) {
-
-            $keys = $this->keys();
-            $old = $this->_query;
-            $this->_query = array('condition' => ''); // as it's probably unset!
-
-            $where = $this->whereToString($this->tableColumns(),$keys);
-
-            $this->_query = $old;
-
-
-            //$extra_cond = ''; // why????
+        $where = '';
+        switch(true) {
+            case ($useWhere === PDO_DataObject::DANGER_USE_ALL_PROPS):
+            case (self::$config['enable_dangerous_delete']):
+                $where = $this->whereToString($this->tableColumns());
+                break;
+            
+            case ($useWhere === false): // default behaviour - only use primary key.
+                $keys = $this->keys();
+                $old = $this->_query;
+                $this->_query = array('condition' => ''); // as it's probably unset!
+     
+                // first try building where using the primary keys...
+                $where = $this->whereToString($this->tableColumns(),$keys);
+                  
+                $this->_query = $old;
+                break;
+            
+            case ($useWhere === PDO_DataObject::WHERE_ONLY):
+                $where = !empty($this->_query) && !empty($this->_query['condition']) ?
+                    $this->_query['condition'] : '';
+                break;
+                
+                
         }
-
+        
         // don't delete without a condition
         if (!strlen($where)) {
-            return $this->raise("deleting all data from database is disabled by default, use where('1=1') if you really want to do that.",
+            return $this->raise("deleting all data from database is disabled by default, " .
+                                "use where('1=1') if you really want to do that.",
                 self::ERROR_INVALIDARGS);
         }
 
@@ -3799,6 +3825,7 @@ class PDO_DataObject
         $ret = empty($this->_query) || empty($this->_query['condition'])  ? '' :
             trim($this->_query['condition']);
 
+         
         foreach($keys as $k => $v) {
             // index keys is an indexed array
             /* these filter checks are a bit suspicious..
@@ -3818,7 +3845,7 @@ class PDO_DataObject
             if (!isset($this->$k)) {
                 continue;
             }
-
+        
             $kSql = $quoteIdentifiers
                 ? ( $this->quoteIdentifier($tableName) . '.' . $this->quoteIdentifier($k) )
                 : "{$tableName}.{$k}";
@@ -5221,8 +5248,7 @@ class PDO_DataObject
     }
 
      /**
-     * Copies items that are in the table definitions from an \
-     * array or object into the current object
+     * Sets the properties of the Object based on the Key Value array '$from'
      *
      * it will not override primary key values.
      *
@@ -5442,9 +5468,14 @@ class PDO_DataObject
                     return "Error: $col : type is DATE -> value is not string or number";
                 }
                 // try date!!!!
-
-                $x = new DateTime($value);
-                $this->$col = $x->format("Y-m-d");
+                try {
+                    $x = new DateTime($value);
+                    $this->$col = $x->format("Y-m-d");
+                } catch (Exception $e) {
+                    self::debug("Error: $col : type is TIME -> Datetime threw an error {$e->getMessage()}", __FUNCTION__);
+                    return "Error: $col : type is DATE -> Datetime threw an error {$e->getMessage()}";
+                }
+                
                 return true;
 
             case ($cols[$col] & self::TIME):
@@ -5458,7 +5489,6 @@ class PDO_DataObject
                     $this->$col = $x->format('H:i:s');
                 } catch(Exception $e) {
                     self::debug("Error: $col : type is TIME -> Datetime threw an error {$e->getMessage()}", __FUNCTION__);
-
                     return "Error: $col : type is TIME -> Datetime threw an error {$e->getMessage()}";
                 }
 
@@ -5827,6 +5857,10 @@ class PDO_DataObject
         self::$links = array();
         self::$sequence = array();
         self::$factory_cache = array();
+        if (class_exists('PDO_DataObject_Introspection')) {
+            PDO_DataObject_Introspection::$cache = array();
+        }
+        
     }
     /**
     * Null member testing
