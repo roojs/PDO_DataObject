@@ -195,7 +195,8 @@ class PDO_DataObject
             'enable_dangerous_delete' => false,
                 // This is only for BC support -
                 // previously you could use delete(), and it would use all of the object properties
-                // to build a query to delete the data.
+                // to build a query to delete the data. Since a single typo can wipe out a large part of your
+                // database.. this is disabled by default now.
                 // this can still be done by using PDO_DataObject::DANGER_USE_ALL_PROPS as the property.
                 
            
