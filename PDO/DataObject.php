@@ -5696,9 +5696,10 @@ class PDO_DataObject
 
     final function result()
     {
-        $args = func_get_args()
-        if (count(func_get_args()) {
+        $args = func_get_args();
+        if (count($args)) {
             $this->_result = $args[0];
+            return $args[0];
         }
         
         return !$this->_result ? false :
