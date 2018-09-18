@@ -5689,12 +5689,18 @@ class PDO_DataObject
      * Gets the DB result object related to the objects active query
      *
      * @category results
+     * @param (optional) fake result object - used to force toArray() to deliver a full range of values.
      * @access public
      * @return PDOStatement|false
      */
 
     final function result()
     {
+        $args = func_get_args()
+        if (count(func_get_args()) {
+            $this->_result = $args[0];
+        }
+        
         return !$this->_result ? false :
             (is_a($this->_result,'StdClass') ? false : $this->_result);
 
