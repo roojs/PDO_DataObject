@@ -3115,7 +3115,6 @@ class PDO_DataObject
             if (!self::$config['transactions']) {
                 return $this;
             }
-            throw new Exception("BEGIN");
             
             $pdo->setAttribute(PDO::ATTR_AUTOCOMMIT, false); // we do not commit by default...
             $pdo->beginTransaction();
