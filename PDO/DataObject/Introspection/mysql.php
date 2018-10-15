@@ -108,7 +108,8 @@ class PDO_DataObject_Introspection_mysql extends PDO_DataObject_Introspection
                                 
                             )    as flags,
                             COALESCE(REFERENCED_TABLE_NAME,'') as fk_table,
-                            COALESCE(REFERENCED_COLUMN_NAME,'') as fk_column
+                            COALESCE(REFERENCED_COLUMN_NAME,'') as fk_column,
+                            ". time(). " as _prevent_cache
                             
                         FROM
                             INFORMATION_SCHEMA.COLUMNS
