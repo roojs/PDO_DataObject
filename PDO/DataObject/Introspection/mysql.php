@@ -126,6 +126,9 @@ class PDO_DataObject_Introspection_mysql extends PDO_DataObject_Introspection
                 ")
                 ->fetchAllAssoc();
         }
+        
+        var_Dump(count($cache[__CLASS__.'::'. __FUNCTION__]));
+        
         $records = array();
         foreach($cache[__CLASS__.'::'. __FUNCTION__] as $ar) {
             if ($ar['tablename'] != $string) {
