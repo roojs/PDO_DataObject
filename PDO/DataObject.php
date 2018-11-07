@@ -3604,7 +3604,7 @@ class PDO_DataObject
         if (count($args)) {
             $this->_assigned_fields = $args[0];
         }
-        if (isset($this->_assigned_fields)) {
+        if (isset($this->_assigned_fields) && $this->_assigned_fields != false) {
             return $this->_assigned_fields;
         }
 
