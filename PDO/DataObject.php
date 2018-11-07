@@ -5699,7 +5699,7 @@ class PDO_DataObject
     {
         $args = func_get_args();
         if (count($args)) {
-            $this->_fake_result = $args[0];
+            $this->_result = $args[0];
             return $args[0];
         }
         
