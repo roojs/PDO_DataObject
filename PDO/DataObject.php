@@ -1396,7 +1396,6 @@ class PDO_DataObject
                 }
                 $this->_result->fields[$kk] = 0; // unknown type...
             }
-            $this->_result->returned_fields = $this->_result->fields;
         }
 
 
