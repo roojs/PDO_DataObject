@@ -89,9 +89,7 @@ class PDO_DataObject_Introspection_mysql extends PDO_DataObject_Introspection
         
         if (empty($cache[__CLASS__.'::'. __FUNCTION__])) {
              // FK first...
-            if (php_sapi_name() == 'cli') {
-                echo "Querying schema database\n";
-            }
+             
             $cache[__CLASS__.'::'. __FUNCTION__] =  $this->do
                 ->query("
                         
