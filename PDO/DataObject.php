@@ -3591,7 +3591,7 @@ class PDO_DataObject
      *
      * @category introspect
      * @access public
-     * @param  array key=>type array
+     * @param  array key=>type array - if you set it to false it will clear the local stored tableColumns
      * @return array (associative)
      */
     function tableColumns()
