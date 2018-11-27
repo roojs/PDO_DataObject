@@ -98,7 +98,7 @@ class PDO_DataObject_Introspection_mysql extends PDO_DataObject_Introspection
                             COLUMNS.COLUMN_NAME as name,
                             COLUMN_DEFAULT as default_value_raw,
                             DATA_TYPE as type,
-                            NUMERIC_PRECISION as len,
+                            COALESCE(NUMERIC_PRECISION,CHARACTER_MAXIMUM_LENGTH) as len,
                             CONCAT(
                                 EXTRA,  -- autoincrement...
                                 IF (IS_NULLABLE, '', ' not_null'),
