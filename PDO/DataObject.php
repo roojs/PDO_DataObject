@@ -865,6 +865,7 @@ class PDO_DataObject
      * This is used internally to modify the SELECT query to apply rules about limiting the resultsets.
      * You should not need to use this normally - it's just publicly available as it's pretty harmless...
      *
+     * @author Benedict Reuthlinger (MSSQL)
      * @category build
      * @param string $sql the query to modify
      * @param bool $manip  is the query a manipluation?
@@ -912,6 +913,27 @@ class PDO_DataObject
                         WHERE rnum >= {$start}
                 ";
 
+            case 'mssql':
+            case 'sqlsrv':
+                if ($manip) {
+                     $this->raise("Limit-Query:Mssql may not support offset,count in modification queries",
+                        self::ERROR_INVALIDARGS); // from PEAR DB?
+                }
+                $order_by = $this->_query['order_by'];
+                if (empty($order_by)) {
+                    $this->raise("Limit-Query: Mssql may not support offset,count without ORDER BY",
+                        self::ERROR_INVALIDARGS); // from PEAR DB?
+                }               
+                if (!is_numeric($start)) {
+                    $start = 0;
+                }
+                if (!is_numeric($count)) {
+                    $this->raise("Limit-Query: Mssql: \$count has NO numeric Value!",
+                         self::ERROR_INVALIDARGS); // from PEAR DB?
+                }
+                
+                return $sql . ' OFFSET ' . $start . ' ROWS FETCH NEXT ' . $count . ' ROWS ONLY';                
+                
 
             default:
                 $this->raise("The Database $drv, does not support limit queries - if you know how this can be added, please send a patch.",
