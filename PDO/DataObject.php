@@ -865,6 +865,7 @@ class PDO_DataObject
      * This is used internally to modify the SELECT query to apply rules about limiting the resultsets.
      * You should not need to use this normally - it's just publicly available as it's pretty harmless...
      *
+     * @author Benedict Reuthlinger (MSSQL)
      * @category build
      * @param string $sql the query to modify
      * @param bool $manip  is the query a manipluation?
