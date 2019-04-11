@@ -865,6 +865,7 @@ class PDO_DataObject
      * This is used internally to modify the SELECT query to apply rules about limiting the resultsets.
      * You should not need to use this normally - it's just publicly available as it's pretty harmless...
      *
+     * @author Benedict Reuthlinger (MSSQL)
      * @category build
      * @param string $sql the query to modify
      * @param bool $manip  is the query a manipluation?
@@ -912,6 +913,27 @@ class PDO_DataObject
                         WHERE rnum >= {$start}
                 ";
 
+            case 'mssql':
+            case 'sqlsrv':
+                if ($manip) {
+                     $this->raise("Limit-Query:Mssql may not support offset,count in modification queries",
+                        self::ERROR_INVALIDARGS); // from PEAR DB?
+                }
+                $order_by = $this->_query['order_by'];
+                if (empty($order_by)) {
+                    $this->raise("Limit-Query: Mssql may not support offset,count without ORDER BY",
+                        self::ERROR_INVALIDARGS); // from PEAR DB?
+                }               
+                if (!is_numeric($start)) {
+                    $start = 0;
+                }
+                if (!is_numeric($count)) {
+                    $this->raise("Limit-Query: Mssql: \$count has NO numeric Value!",
+                         self::ERROR_INVALIDARGS); // from PEAR DB?
+                }
+                
+                return $sql . ' OFFSET ' . $start . ' ROWS FETCH NEXT ' . $count . ' ROWS ONLY';                
+                
 
             default:
                 $this->raise("The Database $drv, does not support limit queries - if you know how this can be added, please send a patch.",
@@ -1396,7 +1418,6 @@ class PDO_DataObject
                 }
                 $this->_result->fields[$kk] = 0; // unknown type...
             }
-
         }
 
 
@@ -3115,6 +3136,7 @@ class PDO_DataObject
             if (!self::$config['transactions']) {
                 return $this;
             }
+            
             $pdo->setAttribute(PDO::ATTR_AUTOCOMMIT, false); // we do not commit by default...
             $pdo->beginTransaction();
 
@@ -3590,7 +3612,7 @@ class PDO_DataObject
      *
      * @category introspect
      * @access public
-     * @param  array key=>type array
+     * @param  array key=>type array - if you set it to false it will clear the stored tableColumns
      * @return array (associative)
      */
     function tableColumns()
@@ -3603,7 +3625,7 @@ class PDO_DataObject
         if (count($args)) {
             $this->_assigned_fields = $args[0];
         }
-        if (isset($this->_assigned_fields)) {
+        if (isset($this->_assigned_fields) && $this->_assigned_fields != false) {
             return $this->_assigned_fields;
         }
 
@@ -5689,12 +5711,19 @@ class PDO_DataObject
      * Gets the DB result object related to the objects active query
      *
      * @category results
+     * @param (optional) fake result object - used to force toArray() to deliver a full range of values.
      * @access public
      * @return PDOStatement|false
      */
 
     final function result()
     {
+        $args = func_get_args();
+        if (count($args)) {
+            $this->_result = $args[0];
+            return $args[0];
+        }
+        
         return !$this->_result ? false :
             (is_a($this->_result,'StdClass') ? false : $this->_result);
 
