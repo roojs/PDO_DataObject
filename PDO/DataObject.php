@@ -3200,7 +3200,7 @@ class PDO_DataObject
                         sleep(1);
                         self::$connections = array(); // reset the connections.
                         $this->PDO();
-                        continue;
+                        continue 2;
                 }
 
             }
