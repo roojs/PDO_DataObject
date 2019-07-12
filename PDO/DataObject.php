@@ -2632,7 +2632,7 @@ class PDO_DataObject_Implementation
      * @throws PDO_DataObject_Error
      * @return  int|true Number rows affected (may be 0), true (if no difference between old/new), false
      */
-    final function update($dataObject = false)
+    function update($dataObject = false)
     {
 
         // connect will load the config!
