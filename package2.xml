@@ -107,6 +107,29 @@ http://pear.php.net/dtd/package-2.0.xsd">
  </dependencies>
  <phprelease />
  <changelog>
+  
+     <release>
+     <date>2018-01-14</date>
+      
+     <version>
+      <release>0.0.2</release>
+      <api>2.0.0</api>
+     </version>
+     
+     <stability>
+      <release>beta</release>
+      <api>beta</api>
+     </stability>
+     
+     <license uri="https://www.gnu.org/licenses/lgpl-3.0.en.html">LGPL</license>
+     <notes><![CDATA[
+      
+        Fix #5659 - MSSQL support by Benedict Reuthlinger
+               
+     ]]></notes>
+     
+  </release>
+  
   <release>
      
      <date>2016-10-06</date>
