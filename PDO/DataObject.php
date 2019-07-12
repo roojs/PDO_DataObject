@@ -29,19 +29,8 @@
  */
 
  
-if (defined(PDO_DATAOBJECT_DISABLE_FINAL)) {
-    class PDO_DataObject extends PDO_DataObject_Implementation {}
-} else {
-    class PDO_DataObject extends PDO_DataObject_Implementation {
-        final function insert() { return parent::insert(); }
-        final function update($dataObject = false) { return parent::update($dataObject); }
-        final function delete($useWhere = false) { return parent::delete($useWhere); }
-    }
-}
  
-
-
-class PDO_DataObject_Implementation
+class PDO_DataObject 
 {
    /**
     * The Version - use this to check feature changes
