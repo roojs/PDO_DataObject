@@ -28,9 +28,19 @@
  * @link       https://github.com/roojs/PDO_DataObject
  */
 
+ 
+if (defined(PDO_DATAOBJECT_DISABLE_FINAL)) {
+    class PDO_DataObject extends PDO_DataObject_Implementation {}
+} else {
+    class PDO_DataObject extends PDO_DataObject_Implementation {
+        
+        
+    }
+}
+ 
 
 
-class PDO_DataObject
+class PDO_DataObject_Implementation
 {
    /**
     * The Version - use this to check feature changes
