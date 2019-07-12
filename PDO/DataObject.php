@@ -2933,7 +2933,7 @@ class PDO_DataObject_Implementation
      * @access public
      * @return mixed Number of rows affected on success, false on failure, 0 on no data affected
      */
-    final function delete($useWhere = false)
+    function delete($useWhere = false)
     {
 
         $this->PDO();
