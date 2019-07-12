@@ -28,9 +28,20 @@
  * @link       https://github.com/roojs/PDO_DataObject
  */
 
+ 
+if (defined(PDO_DATAOBJECT_DISABLE_FINAL)) {
+    class PDO_DataObject extends PDO_DataObject_Implementation {}
+} else {
+    class PDO_DataObject extends PDO_DataObject_Implementation {
+        final function insert() { return parent::insert(); }
+        final function update($dataObject = false) { return parent::update($dataObject); }
+        final function delete($useWhere = false) { return parent::delete($useWhere); }
+    }
+}
+ 
 
 
-class PDO_DataObject
+class PDO_DataObject_Implementation
 {
    /**
     * The Version - use this to check feature changes
@@ -2354,7 +2365,7 @@ class PDO_DataObject
      * @throws PDO_DataObject_Exception
      * @return int|boolean  when auto increment or sequence used, otherwise true on success
      */
-    final function insert()
+    function insert()
     {
 
         // we need to write to the connection (For nextid) - so us the real
@@ -2621,7 +2632,7 @@ class PDO_DataObject
      * @throws PDO_DataObject_Error
      * @return  int|true Number rows affected (may be 0), true (if no difference between old/new), false
      */
-    final function update($dataObject = false)
+    function update($dataObject = false)
     {
 
         // connect will load the config!
@@ -2922,7 +2933,7 @@ class PDO_DataObject
      * @access public
      * @return mixed Number of rows affected on success, false on failure, 0 on no data affected
      */
-    final function delete($useWhere = false)
+    function delete($useWhere = false)
     {
 
         $this->PDO();
