@@ -33,8 +33,9 @@ if (defined(PDO_DATAOBJECT_DISABLE_FINAL)) {
     class PDO_DataObject extends PDO_DataObject_Implementation {}
 } else {
     class PDO_DataObject extends PDO_DataObject_Implementation {
-        
-        
+        final function insert() { return parent::insert(); }
+        final function update($dataObject = false) { return parent::update($dataObject); }
+        final function delete($useWhere = false) { return parent::delete($useWhere); }
     }
 }
  
@@ -2364,7 +2365,7 @@ class PDO_DataObject_Implementation
      * @throws PDO_DataObject_Exception
      * @return int|boolean  when auto increment or sequence used, otherwise true on success
      */
-    final function insert()
+    function insert()
     {
 
         // we need to write to the connection (For nextid) - so us the real
