@@ -3586,7 +3586,7 @@ class PDO_DataObject
      * @category introspect
      * @throws an error always..
      */
-    final function table()
+    function table()
     {
         $this->raise("
             Table has been replaced with tableColumns()
