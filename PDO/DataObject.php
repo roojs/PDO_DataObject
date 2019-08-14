@@ -4430,7 +4430,8 @@ class PDO_DataObject
      */
     function link($field, $set_args = false)
     {
-        require_once 'PDO/DataObject/Links.php';
+        class_exists('PDO_DataObject_Links') ? '' :
+            require_once 'PDO/DataObject/Links.php';
         $l = new PDO_DataObject_Links($this);
         return  $l->link($field,$set_args) ;
 
@@ -4445,7 +4446,8 @@ class PDO_DataObject
      */
     function applyLinks($format = '_%s')
     {
-        require_once 'PDO/DataObject/Links.php';
+        class_exists('PDO_DataObject_Links') ? '' :
+            require_once 'PDO/DataObject/Links.php';
          $l = new PDO_DataObject_Links($this);
         return $l->applyLinks($format);
 
@@ -4462,7 +4464,8 @@ class PDO_DataObject
      */
     function linkArray($row, $table = null)
     {
-        require_once 'PDO/DataObject/Links.php';
+        class_exists('PDO_DataObject_Links') ? '' :
+            require_once 'PDO/DataObject/Links.php';
         $l = new PDO_DataObject_Links($this);
         return $l->getLinkArray($row, $table === null ? false: $table);
 
@@ -5264,7 +5267,8 @@ class PDO_DataObject
             $method = $value;
             $value = func_get_arg(1);
         }
-        require_once 'PDO/DataObject/Cast.php';
+        class_exists('PDO_DataObject_Cast') ? '' :
+            require_once 'PDO/DataObject/Cast.php';
         return call_user_func(array('PDO_DataObject_Cast', $method), $value);
 
     }
