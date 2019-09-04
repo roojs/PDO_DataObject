@@ -1442,6 +1442,7 @@ class PDO_DataObject
         if ($this->_query !== false) {
             $this->_query = false;
         }
+        $this->snapshot();
         return true;
     }
 
