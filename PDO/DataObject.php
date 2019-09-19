@@ -4290,15 +4290,15 @@ class PDO_DataObject
 
         $suffix = '';
         if (is_array(self::$config['schema_location'])) {
-            if (!isset(self::$config['schema_location'][$database_nickname])) {
-                $this->raise("Could not find configuration for database $database_nickname in schema_location",
+            if (!isset(self::$config['schema_location'][$dn])) {
+                $this->raise("Could not find configuration for database $dn in schema_location",
                         self::ERROR_INVALIDCONFIG
                 );
             }
 
-            $schemas = is_array(self::$config['schema_location'][$database_nickname]) ?
-                self::$config['schema_location'][$database_nickname]:
-                explode(PATH_SEPARATOR, self::$config['schema_location'][$database_nickname]);
+            $schemas = is_array(self::$config['schema_location'][$dn]) ?
+                self::$config['schema_location'][$dn]:
+                explode(PATH_SEPARATOR, self::$config['schema_location'][$dn]);
         } else if (is_string(self::$config['schema_location']) && !empty(self::$config['schema_location'])) {
             $this->PDO(); // as we need the nickname..
             $schemas  = explode(PATH_SEPARATOR,self::$config['schema_location']);
