@@ -265,7 +265,7 @@ class PDO_DataObject_Generator_Table {
                 }
             }
             foreach($this->toIniSequenceArray() as $k => $v) {
-                $kdef[] = var_export($k,true) .' => ' . var_export($v,true);
+                $kdef[] = var_export($k,true);
             }
             
             
