@@ -1442,7 +1442,13 @@ class PDO_DataObject
         if ($this->_query !== false) {
             $this->_query = false;
         }
-        $this->snapshot();
+        // this might fail if we have not configured our schema yet.
+        try {
+            $this->snapshot();
+        } catch (Exception $e) {
+            return true;
+        }
+        
         return true;
     }
 
