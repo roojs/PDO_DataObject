@@ -40,7 +40,6 @@ class PDO_DataObject_Exception extends Exception
     // todo : - support code -> message handling, and translated error messages...
     static function factory($message, $type, $previous_exception)
     {
-          debug_print_backtrace();
         $cls = 'PDO_DataObject_Exception_'. $type;
         $code = $previous_exception ? $previous_exception->getCode() : 0;
         return new $cls($message, 0, $previous_exception );
