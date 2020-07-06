@@ -25,7 +25,7 @@ $foo->PDO()->query('CREATE TABLE IF NOT EXISTS "imgcache" (
     foobar VARCHAR (255)
 );');
 
-$foo->get(); // PHP Fatal error:  Uncaught PDO_DataObject_Exception_InvalidConfig
+$foo->get(1);  
 
 
 ?>
