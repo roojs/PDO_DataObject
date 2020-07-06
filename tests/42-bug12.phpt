@@ -27,7 +27,8 @@ $foo->PDO()->query('CREATE TABLE IF NOT EXISTS "imgcache" (
 
 $foo->get(1);  
 
+echo "DONE\n";
 
 ?>
 --EXPECT--
- 
+DONE
