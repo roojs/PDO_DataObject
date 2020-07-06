@@ -3,6 +3,14 @@ github bug #12
 --FILE--
 <?php
 require_once 'includes/init.php';
+class Foo extends PDO_DataObject
+{
+    public function __construct()
+    {
+        parent::__construct();
+        $this->__table = 'imgcache';
+    }
+}
 
 PDO_DataObject::config(['database' => 'sqlite::memory:', 'proxy' => true]);
 
