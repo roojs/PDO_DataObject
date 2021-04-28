@@ -116,7 +116,7 @@ QUERY:e7e98b166e84d8a86f012e03789dc226:
                             KEY_COLUMN_USAGE.TABLE_SCHEMA = COLUMNS.TABLE_SCHEMA 
                         WHERE
                             COLUMNS.TABLE_SCHEMA = DATABASE()
-
+                
 proxy - no such table - Exception Thrown: Could not find INI values for database=mysql_somedb and table=do_not_exist
 __construct==["mysql:dbname=testdb;host=localhost","user","pass",[]]
 proxy - no such db -  Exception Thrown: Fake connection failed to non-existant database
