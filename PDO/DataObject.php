@@ -1649,10 +1649,10 @@ class PDO_DataObject
                 return $ret;
                 
              // key object (BC - not documented)
-             // false, string
-            case $k === false && is_string($v) && $method === false:
+             // false, string   or false, true
+            case $k === false && (is_string($v) || $v === true) && $method === false:
                 while ($this->fetch()) {
-                    $ret[$this->$k] = clone($this);
+                    $ret[$v === false ? $this->pid() : $this->$v] = clone($this);
                 }
                 return $ret;
               
