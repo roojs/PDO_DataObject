@@ -3,7 +3,7 @@ databaseStructure - postgresql - real databases (not for final test pass)
 --FILE--
 <?php
 
-die("DONE")
+die("DONE");
 
 require_once 'includes/init.php';
 
