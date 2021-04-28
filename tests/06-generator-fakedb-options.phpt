@@ -76,80 +76,42 @@ __construct==["mysql:dbname=anotherdb;host=localhost;port=3344","root","",[]]
 setAttribute==[3,2]
 QUERY:9c36cac1372650b703400c60dd29042c:
 SHOW TABLES
-QUERY:6996acc544ef440ec8756b9a474a8261: [Query hidden from tests]
-QUERY:fbfdf155a2b80c37a9da0b57c7ec0c8a:
+QUERY:e7e98b166e84d8a86f012e03789dc226:
 
-                    
-                    SELECT
-                        COLUMNS.TABLE_NAME as tablename,
-                        COLUMNS.COLUMN_NAME as name,
-                        COLUMN_DEFAULT as default_value_raw,
-                        DATA_TYPE as type,
-                        NUMERIC_PRECISION as len,
-                        CONCAT(
-                            EXTRA,  -- autoincrement...
-                            IF (IS_NULLABLE, '', ' not_null'),
-                            IF (COLUMN_KEY = 'PRI', ' primary', ''),
-                            IF (COLUMN_KEY = 'UNI', ' unique', ''),
-                            IF (COLUMN_KEY = 'MUL', ' multiple_key', '')
-                            
-                        )    as flags,
-                        COALESCE(REFERENCED_TABLE_NAME,'') as fk_table,
-                        COALESCE(REFERENCED_COLUMN_NAME,'') as fk_column
                         
-                    FROM
-                        INFORMATION_SCHEMA.COLUMNS
-                    LEFT JOIN
-                        INFORMATION_SCHEMA.KEY_COLUMN_USAGE
-                    ON
-                        KEY_COLUMN_USAGE.TABLE_NAME = COLUMNS.TABLE_NAME 
-                        AND
-                        KEY_COLUMN_USAGE.COLUMN_NAME = COLUMNS.COLUMN_NAME
-                        AND
-                        KEY_COLUMN_USAGE.TABLE_SCHEMA = COLUMNS.TABLE_SCHEMA 
-                    WHERE
-                        COLUMNS.TABLE_NAME = 'Events'
-                        and
-                        COLUMNS.TABLE_SCHEMA = DATABASE()
-            
-QUERY:f77e1669034239c845220bf51ee0a9f2:
-
-                    
-                    SELECT
-                        COLUMNS.TABLE_NAME as tablename,
-                        COLUMNS.COLUMN_NAME as name,
-                        COLUMN_DEFAULT as default_value_raw,
-                        DATA_TYPE as type,
-                        NUMERIC_PRECISION as len,
-                        CONCAT(
-                            EXTRA,  -- autoincrement...
-                            IF (IS_NULLABLE, '', ' not_null'),
-                            IF (COLUMN_KEY = 'PRI', ' primary', ''),
-                            IF (COLUMN_KEY = 'UNI', ' unique', ''),
-                            IF (COLUMN_KEY = 'MUL', ' multiple_key', '')
+                        SELECT
+                            COLUMNS.TABLE_NAME as tablename,
+                            COLUMNS.COLUMN_NAME as name,
+                            COLUMN_DEFAULT as default_value_raw,
+                            DATA_TYPE as type,
+                            COALESCE(NUMERIC_PRECISION,CHARACTER_MAXIMUM_LENGTH) as len,
+                            CONCAT(
+                                EXTRA,  -- autoincrement...
+                                IF (IS_NULLABLE, '', ' not_null'),
+                                IF (COLUMN_KEY = 'PRI', ' primary', ''),
+                                IF (COLUMN_KEY = 'UNI', ' unique', ''),
+                                IF (COLUMN_KEY = 'MUL', ' multiple_key', '')
+                                
+                            )    as flags,
+                            COALESCE(REFERENCED_TABLE_NAME,'') as fk_table,
+                            COALESCE(REFERENCED_COLUMN_NAME,'') as fk_column,
+                             12 as _prevent_cache
                             
-                        )    as flags,
-                        COALESCE(REFERENCED_TABLE_NAME,'') as fk_table,
-                        COALESCE(REFERENCED_COLUMN_NAME,'') as fk_column
-                        
-                    FROM
-                        INFORMATION_SCHEMA.COLUMNS
-                    LEFT JOIN
-                        INFORMATION_SCHEMA.KEY_COLUMN_USAGE
-                    ON
-                        KEY_COLUMN_USAGE.TABLE_NAME = COLUMNS.TABLE_NAME 
-                        AND
-                        KEY_COLUMN_USAGE.COLUMN_NAME = COLUMNS.COLUMN_NAME
-                        AND
-                        KEY_COLUMN_USAGE.TABLE_SCHEMA = COLUMNS.TABLE_SCHEMA 
-                    WHERE
-                        COLUMNS.TABLE_NAME = 'Groups'
-                        and
-                        COLUMNS.TABLE_SCHEMA = DATABASE()
-            
+                        FROM
+                            INFORMATION_SCHEMA.COLUMNS
+                        LEFT JOIN
+                            INFORMATION_SCHEMA.KEY_COLUMN_USAGE
+                        ON
+                            KEY_COLUMN_USAGE.TABLE_NAME = COLUMNS.TABLE_NAME 
+                            AND
+                            KEY_COLUMN_USAGE.COLUMN_NAME = COLUMNS.COLUMN_NAME
+                            AND
+                            KEY_COLUMN_USAGE.TABLE_SCHEMA = COLUMNS.TABLE_SCHEMA 
+                        WHERE
+                            COLUMNS.TABLE_SCHEMA = DATABASE()
+                
 QUERY:9c36cac1372650b703400c60dd29042c:
 SHOW TABLES
-QUERY:6996acc544ef440ec8756b9a474a8261: [Query hidden from tests]
 [Companies]
 id = 129
 code = 130
