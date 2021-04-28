@@ -103,6 +103,7 @@ QUERY:f77e1669034239c845220bf51ee0a9f2:
                         COALESCE(REFERENCED_TABLE_NAME,'') as fk_table,
                         COALESCE(REFERENCED_COLUMN_NAME,'') as fk_column,
                          12 as _prevent_cache
+
                     FROM
                         INFORMATION_SCHEMA.COLUMNS
                     LEFT JOIN
