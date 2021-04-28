@@ -217,6 +217,7 @@ SELECT *
  FROM   Companies   
  WHERE ( ( id !=1  ) AND (Companies.comptype  = 'CONSULTANT') ) 
  LIMIT  1
+Fetch Row 0 / 1
 Array
 (
     [code] => vinski
