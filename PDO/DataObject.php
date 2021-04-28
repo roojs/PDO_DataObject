@@ -1530,7 +1530,7 @@ class PDO_DataObject
      * G) array of objects -- USING primary as key
      * ```
      * $x = PDO_DataObject::factory('mytable');
-     * $ar = $x->fetchAll(false, true);
+     * $ar = $x->fetchAll(PDO_DataObject::FETCH_PID,  PDO_DataObject::FETCH_OBJECT);
      *
      * //  results in  [ 23=> {object} }, 24=> {object} }, .... ]
      *```
@@ -1540,7 +1540,7 @@ class PDO_DataObject
      * $x = PDO_DataObject::factory('mytable');
      * $ar = $x->fetchAll(function () { $this->snapshot()->set(['xxx' => 2])->update(); } );
      * ```
-
+     *
      * I) array of associative arrays - No child dataobjects created... fetchAllAssoc()
      * ```
      * $x = PDO_DataObject::factory('mytable');
@@ -1558,14 +1558,19 @@ class PDO_DataObject
      * ```
      *
      * K) associative array of arrays calling to array with false,0
-     * $x = DB_DataObject::factory('mytable');
+     * ```
+     * * $x = PDO_DataObject::factory('mytable');
      * $x->whereAdd('something = 1');
      * $ar = $x->fetchAll('id',false,'toArray',false, 0);
+     * ```
      *
      * L) associative array of object
-     * $x = DB_DataObject::factory('mytable');
+     * ```
+     * $x = PDO_DataObject::factory('mytable');
      * $x->whereAdd('something = 1');
      * $ar = $x->fetchAll('id',false, 0);
+     * ```
+     * 
      * @category fetch
      * @param    string|false|Closure  $k key  or closure for something to call on every object
      * @param    string|false  $v value
