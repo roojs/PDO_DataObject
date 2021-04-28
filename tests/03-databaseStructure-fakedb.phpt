@@ -133,7 +133,6 @@ QUERY:e7e98b166e84d8a86f012e03789dc226:
                         WHERE
                             COLUMNS.TABLE_SCHEMA = DATABASE()
                 
-
 QUERY:f77e1669034239c845220bf51ee0a9f2:
 
                     
