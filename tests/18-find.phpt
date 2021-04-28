@@ -181,27 +181,28 @@ SELECT *
  FROM   Companies   
  WHERE ( (Companies.comptype  = 'CONSULTANT') ) 
  LIMIT  1
+Fetch Row 0 / 1
 Array
 (
-    [id] => 
-    [code] => 
-    [name] => 
+    [code] => vinski
+    [name] => Vinski Web
     [remarks] => 
-    [owner_id] => 
+    [owner_id] => 0
     [address] => 
     [tel] => 
     [fax] => 
-    [email] => 
-    [isOwner] => 
-    [logo_id] => 
+    [email] => test@example.com
+    [id] => 15
+    [isOwner] => 0
+    [logo_id] => 0
     [background_color] => 
     [comptype] => CONSULTANT
     [url] => 
-    [main_office_id] => 
-    [created_by] => 
-    [created_dt] => 
-    [updated_by] => 
-    [updated_dt] => 
+    [main_office_id] => 0
+    [created_by] => 0
+    [created_dt] => 0000-00-00 00:00:00
+    [updated_by] => 0
+    [updated_dt] => 0000-00-00 00:00:00
     [passwd] => 
     [dispatch_port] => 
     [province] => 
@@ -216,27 +217,28 @@ SELECT *
  FROM   Companies   
  WHERE ( ( id !=1  ) AND (Companies.comptype  = 'CONSULTANT') ) 
  LIMIT  1
+Fetch Row 0 / 1
 Array
 (
-    [id] => 
-    [code] => 
-    [name] => 
+    [code] => vinski
+    [name] => Vinski Web
     [remarks] => 
-    [owner_id] => 
+    [owner_id] => 0
     [address] => 
     [tel] => 
     [fax] => 
-    [email] => 
-    [isOwner] => 
-    [logo_id] => 
+    [email] => test@example.com
+    [id] => 15
+    [isOwner] => 0
+    [logo_id] => 0
     [background_color] => 
     [comptype] => CONSULTANT
     [url] => 
-    [main_office_id] => 
-    [created_by] => 
-    [created_dt] => 
-    [updated_by] => 
-    [updated_dt] => 
+    [main_office_id] => 0
+    [created_by] => 0
+    [created_dt] => 0000-00-00 00:00:00
+    [updated_by] => 0
+    [updated_dt] => 0000-00-00 00:00:00
     [passwd] => 
     [dispatch_port] => 
     [province] => 

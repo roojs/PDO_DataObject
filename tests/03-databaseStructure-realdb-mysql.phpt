@@ -88,6 +88,7 @@ Array
             [person_id] => 129
             [person_table] => 130
             [remarks] => 162
+            [dupe_id] => 129
         )
 
     [Events__keys] => Array
@@ -115,6 +116,8 @@ Array
             [member_id] => 129
             [billmsg] => 162
             [dayofmonth] => 129
+            [is_approved] => 129
+            [approved_date] => 134
         )
 
     [Hebe_bill_message__keys] => Array
@@ -140,6 +143,8 @@ Array
             [linkurl] => 130
             [descript] => 162
             [title] => 130
+            [no_of_pages] => 129
+            [is_deleted] => 129
         )
 
     [Images__keys] => Array
@@ -211,6 +216,7 @@ Array
             [point_score] => 129
             [authorize_md5] => 130
             [post_code] => 130
+            [oath_key] => 130
         )
 
     [Person__keys] => Array
@@ -267,6 +273,7 @@ Array
             [cost_center] => 129
             [accpac] => 130
             [accpac_out] => 130
+            [is_active] => 129
         )
 
     [account_code__keys] => Array
@@ -290,18 +297,21 @@ Array
     [account_transaction] => Array
         (
             [id] => 129
-            [reverse_id] => 129
             [member] => 129
             [at_date] => 134
             [voucher_number] => 130
             [chit_number] => 130
             [cheque_number] => 130
+            [reverse_id] => 129
             [account_code] => 129
             [value] => 129
             [description_old] => 130
             [sequence_no] => 129
             [ts] => 384
             [description] => 130
+            [at_time] => 138
+            [boat_id] => 129
+            [event_id] => 129
         )
 
     [account_transaction__keys] => Array
@@ -340,8 +350,8 @@ Array
     [boat_owners] => Array
         (
             [id] => 129
-            [boat] => 129
-            [boat_owner] => 129
+            [boat_id] => 129
+            [boat_owner_id] => 129
         )
 
     [boat_owners__keys] => Array
@@ -389,9 +399,40 @@ Array
             [cost] => 129
             [discount_minutes] => 129
             [discount_amount] => 129
+            [evening_discount] => 129
+            [dependant_id] => 129
+            [transaction_id] => 129
+            [discount_transaction_id] => 129
+            [updated_dt] => 142
         )
 
     [carpark__keys] => Array
+        (
+            [id] => N
+        )
+
+    [carpark_archive] => Array
+        (
+            [id] => 129
+            [member_id] => 129
+            [arrive] => 142
+            [depart] => 142
+            [departed] => 129
+            [cardid] => 130
+            [imported] => 129
+            [inid] => 129
+            [outid] => 129
+            [cost] => 129
+            [discount_minutes] => 129
+            [discount_amount] => 129
+            [evening_discount] => 129
+            [dependant_id] => 129
+            [transaction_id] => 129
+            [discount_transaction_id] => 129
+            [updated_dt] => 142
+        )
+
+    [carpark_archive__keys] => Array
         (
             [id] => N
         )
@@ -405,6 +446,12 @@ Array
             [cardid] => 130
             [accesslog] => 130
             [processed] => 129
+            [id] => 129
+        )
+
+    [carparklog__keys] => Array
+        (
+            [id] => N
         )
 
     [committee] => Array
@@ -485,6 +532,8 @@ Array
             [address3] => 162
             [is_system] => 129
             [crm_industry_id] => 129
+            [deleted_by] => 129
+            [deleted_dt] => 142
         )
 
     [core_company__keys] => Array
@@ -530,8 +579,11 @@ Array
             [owner_id] => 129
             [is_system] => 129
             [active] => 129
-            [bcc_group] => 129
+            [bcc_group_id] => 129
             [test_class] => 130
+            [to_group_id] => 129
+            [use_file] => 130
+            [description] => 130
         )
 
     [core_email__keys] => Array
@@ -570,6 +622,40 @@ Array
             [id] => N
         )
 
+    [core_event_audit_archive] => Array
+        (
+            [id] => 129
+            [event_id] => 129
+            [name] => 130
+            [old_audit_id] => 129
+            [newvalue] => 194
+        )
+
+    [core_event_audit_archive__keys] => Array
+        (
+            [id] => N
+        )
+
+    [core_events_archive] => Array
+        (
+            [id] => 129
+            [person_name] => 130
+            [event_when] => 142
+            [action] => 130
+            [ipaddr] => 130
+            [on_id] => 129
+            [on_table] => 130
+            [person_id] => 129
+            [remarks] => 162
+            [person_table] => 130
+            [dupe_id] => 129
+        )
+
+    [core_events_archive__keys] => Array
+        (
+            [id] => N
+        )
+
     [core_group] => Array
         (
             [id] => 129
@@ -577,6 +663,7 @@ Array
             [type] => 129
             [leader] => 129
             [is_system] => 129
+            [display_name] => 130
         )
 
     [core_group__keys] => Array
@@ -605,6 +692,37 @@ Array
         )
 
     [core_group_right__keys] => Array
+        (
+            [id] => N
+        )
+
+    [core_holiday] => Array
+        (
+            [id] => 129
+            [holiday_date] => 134
+            [country] => 130
+        )
+
+    [core_holiday__keys] => Array
+        (
+            [id] => N
+        )
+
+    [core_ip_access] => Array
+        (
+            [id] => 129
+            [ip] => 130
+            [created_dt] => 142
+            [status] => 129
+            [authorized_by] => 129
+            [authorized_key] => 130
+            [email] => 130
+            [expire_dt] => 134
+            [user_agent] => 130
+            [updated_by] => 129
+        )
+
+    [core_ip_access__keys] => Array
         (
             [id] => N
         )
@@ -763,6 +881,7 @@ Array
             [crm_city] => 162
             [crm_division] => 162
             [updated_dt] => 134
+            [oath_key] => 130
         )
 
     [core_person__keys] => Array
@@ -778,6 +897,19 @@ Array
         )
 
     [core_person_alias__keys] => Array
+        (
+            [id] => N
+        )
+
+    [core_person_settings] => Array
+        (
+            [id] => 129
+            [person_id] => 129
+            [scope] => 130
+            [data] => 162
+        )
+
+    [core_person_settings__keys] => Array
         (
             [id] => N
         )
@@ -833,6 +965,71 @@ Array
             [id] => N
         )
 
+    [core_setting] => Array
+        (
+            [id] => 129
+            [module] => 130
+            [name] => 130
+            [description] => 130
+            [val] => 194
+            [updated_dt] => 134
+            [is_encrypt] => 129
+            [is_valid] => 129
+        )
+
+    [core_setting__keys] => Array
+        (
+            [id] => N
+        )
+
+    [core_template] => Array
+        (
+            [id] => 129
+            [template] => 130
+            [updated] => 142
+            [lang] => 130
+            [view_name] => 130
+            [filetype] => 130
+            [is_deleted] => 129
+        )
+
+    [core_template__keys] => Array
+        (
+            [id] => N
+        )
+
+    [core_template_element] => Array
+        (
+            [id] => 129
+            [name] => 130
+            [template_id] => 129
+        )
+
+    [core_template_element__keys] => Array
+        (
+            [id] => N
+        )
+
+    [core_templatestr] => Array
+        (
+            [id] => 129
+            [txt] => 162
+            [updated] => 142
+            [src_id] => 129
+            [lang] => 130
+            [active] => 129
+            [mdsum] => 130
+            [template_id] => 129
+            [on_table] => 130
+            [on_id] => 129
+            [on_col] => 130
+        )
+
+    [core_templatestr__keys] => Array
+        (
+            [id] => N
+        )
+
     [core_watch] => Array
         (
             [id] => 129
@@ -854,6 +1051,7 @@ Array
             [id] => 129
             [short_name] => 130
             [name] => 130
+            [is_active] => 129
         )
 
     [cost_centers__keys] => Array
@@ -1017,6 +1215,8 @@ Array
             [updated_by] => 129
             [created_dt] => 142
             [created_by] => 129
+            [to_group_id] => 129
+            [bcc_group_id] => 129
         )
 
     [crm_mailing_list_message__keys] => Array
@@ -1107,6 +1307,11 @@ Array
             [crm_division] => 162
             [crm_contact_again_notify_date] => 142
             [updated_dt] => 134
+            [crm_industry_id] => 129
+            [crm_honor] => 130
+            [crm_last_smtp_reject] => 129
+            [post_code] => 130
+            [oath_key] => 130
         )
 
     [crm_person__keys] => Array
@@ -1235,6 +1440,46 @@ Array
             [id] => N
         )
 
+    [hebe_member_obligation] => Array
+        (
+            [id] => 129
+            [member_id] => 129
+            [member_obligation_type_id] => 129
+        )
+
+    [hebe_member_obligation__keys] => Array
+        (
+            [id] => N
+        )
+
+    [hebe_obligations_history] => Array
+        (
+            [id] => 129
+            [obligation_id] => 129
+            [member_id] => 129
+            [when_dt] => 134
+            [notes] => 162
+        )
+
+    [hebe_obligations_history__keys] => Array
+        (
+            [id] => N
+        )
+
+    [hebe_report] => Array
+        (
+            [id] => 129
+            [report_table] => 130
+            [report_name] => 130
+            [filters] => 162
+            [columns] => 162
+        )
+
+    [hebe_report__keys] => Array
+        (
+            [id] => N
+        )
+
     [i18n] => Array
         (
             [id] => 129
@@ -1243,6 +1488,7 @@ Array
             [inlang] => 130
             [lval] => 130
             [is_active] => 129
+            [is_prefer] => 129
         )
 
     [i18n__keys] => Array
@@ -1282,15 +1528,54 @@ Array
             [address_type] => 130
             [profession] => 130
             [company_name] => 130
-            [address] => 130
+            [address] => 162
             [tel] => 130
             [fax] => 130
             [mobile] => 130
             [member] => 129
             [email] => 130
+            [email_secondary] => 130
         )
 
     [member_address__keys] => Array
+        (
+            [id] => N
+        )
+
+    [member_bill] => Array
+        (
+            [id] => 129
+            [billm] => 134
+            [member_id] => 129
+            [billmsg] => 162
+            [dayofmonth] => 129
+            [is_approved] => 129
+            [approved_date] => 134
+            [email_day] => 129
+            [email_hour] => 129
+            [opening_balance] => 129
+            [no_transactions] => 129
+            [email_notify_id] => 129
+        )
+
+    [member_bill__keys] => Array
+        (
+            [id] => N
+        )
+
+    [member_deposit_transaction] => Array
+        (
+            [id] => 129
+            [member_id] => 129
+            [transaction_dt] => 134
+            [amount] => 129
+            [reservation_id] => 129
+            [transaction_id] => 129
+            [create_event_id] => 129
+            [delete_event_id] => 129
+        )
+
+    [member_deposit_transaction__keys] => Array
         (
             [id] => N
         )
@@ -1311,11 +1596,24 @@ Array
             [member] => 129
             [changed_date] => 134
             [to_status] => 129
+            [notes] => 130
+            [resign_reason_id] => 129
+            [end_date] => 134
         )
 
     [member_history__keys] => Array
         (
             [id] => N
+        )
+
+    [member_history_current] => Array
+        (
+            [member] => 129
+            [changed_date] => 134
+            [end_date] => 134
+            [to_status] => 129
+            [to_status_name] => 130
+            [to_status_short_name] => 130
         )
 
     [member_history_status] => Array
@@ -1332,6 +1630,23 @@ Array
             [food_min] => 129
             [start_d] => 134
             [end_d] => 134
+        )
+
+    [member_long_term_parking] => Array
+        (
+            [id] => 129
+            [member_id] => 129
+            [is_active] => 129
+            [start_date] => 134
+            [is_ceased] => 129
+            [ceased_date] => 134
+            [price] => 129
+            [notes] => 162
+        )
+
+    [member_long_term_parking__keys] => Array
+        (
+            [id] => N
         )
 
     [member_obligation] => Array
@@ -1368,6 +1683,23 @@ Array
             [id] => N
         )
 
+    [member_registered_cars] => Array
+        (
+            [id] => 129
+            [member_id] => 129
+            [registration_number] => 130
+            [color] => 130
+            [brand] => 130
+            [model] => 130
+            [reference] => 130
+            [active] => 129
+        )
+
+    [member_registered_cars__keys] => Array
+        (
+            [id] => N
+        )
+
     [member_status] => Array
         (
             [id] => 129
@@ -1386,6 +1718,10 @@ Array
             [member_id] => 129
             [member_type_id] => 129
             [changed_dt] => 134
+            [endorsed_by_gc_dt] => 134
+            [proposer] => 129
+            [seconder] => 129
+            [notes] => 162
         )
 
     [member_type_history__keys] => Array
@@ -1405,9 +1741,29 @@ Array
             [approved] => 130
             [food_min] => 129
             [building_levy_fee] => 129
+            [voting_rights] => 129
         )
 
     [member_typecost__keys] => Array
+        (
+            [id] => N
+        )
+
+    [member_typecost_old] => Array
+        (
+            [id] => 129
+            [member_type] => 129
+            [start_date] => 134
+            [join_fee] => 129
+            [month_fee] => 129
+            [privaliges] => 130
+            [notes] => 162
+            [approved] => 130
+            [food_min] => 129
+            [building_levy_fee] => 129
+        )
+
+    [member_typecost_old__keys] => Array
         (
             [id] => N
         )
@@ -1472,6 +1828,7 @@ Array
             [tel] => 130
             [bill_lang] => 130
             [parent_id] => 129
+            [email_jebe] => 130
         )
 
     [members__keys] => Array
@@ -1605,16 +1962,18 @@ Array
 
     [rentals] => Array
         (
-            [id] => 129
             [start_date] => 134
             [ceased] => 134
             [rental_item] => 129
             [active] => 130
+            [id] => 129
             [rental_code] => 129
             [renter] => 129
             [boat] => 129
             [boat_registration] => 130
             [is_temporary] => 129
+            [deposit_tx_id] => 129
+            [refund_tx_id] => 129
         )
 
     [rentals__keys] => Array
@@ -1636,6 +1995,9 @@ Array
             [is_withdrawn] => 129
             [rental_id] => 129
             [positions] => 129
+            [deposit_paid_dt] => 134
+            [deposit_tx_id] => 129
+            [refund_tx_id] => 129
         )
 
     [reservations__keys] => Array

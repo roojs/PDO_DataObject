@@ -255,7 +255,7 @@ Array
     [City] => El Paso
     [State] => TX
 )
-PDO_DataObject   : query       : 5be360208e9172d983b550bd69253bd1 : UPDATE  Customers  SET CompanyName = 'test1' , ContactName = 'test2' , ContactTitle = 'Director of Installations' , Address = '10 Industrial Drive' , City = 'El Paso' , State = 'TX'  WHERE (Customers.CustomerID = 2) 
+PDO_DataObject   : query       : e62d517cdee81be4d67df04a5fdcc63d : UPDATE  Customers  SET CompanyName = 'test1' , ContactName = 'test2'  WHERE (Customers.CustomerID = 2) 
 PDO_DataObject   : query       : NO# of results: Unknown
 Array
 (

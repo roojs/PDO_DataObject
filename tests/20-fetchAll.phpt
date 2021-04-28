@@ -146,6 +146,10 @@ SELECT id
  FROM   Companies   
  WHERE ( (Companies.comptype  = 'CONSULTANT') ) ORDER BY id ASC  
  LIMIT  3
+Fetch Row 0 / 3
+Fetch Row 1 / 3
+Fetch Row 2 / 3
+Fetch Row 3 / 3
 Array
 (
     [0] => 2
@@ -176,6 +180,10 @@ SELECT *,  name
  FROM   Companies   
  WHERE ( (Companies.comptype  = 'CONSULTANT') ) 
  LIMIT  3
+Fetch Row 0 / 3
+Fetch Row 1 / 3
+Fetch Row 2 / 3
+Fetch Row 3 / 3
 Array
 (
     [0] => Vinski Web
@@ -446,6 +454,11 @@ SELECT *
  FROM   Companies   
  WHERE ( (Companies.comptype  = 'CONSULTANT') ) 
  LIMIT  3
+Fetch Row 0 / 3
+Fetch Row 1 / 3
+Fetch Row 2 / 3
+Fetch Row 3 / 3
+Close Cursor
 Array
 (
     [0] => Array
@@ -469,6 +482,10 @@ Array
             [created_dt] => 0000-00-00 00:00:00
             [updated_by] => 0
             [updated_dt] => 0000-00-00 00:00:00
+            [passwd] => 
+            [dispatch_port] => 
+            [province] => 
+            [country] => 
         )
 
     [1] => Array
@@ -492,6 +509,10 @@ Array
             [created_dt] => 0000-00-00 00:00:00
             [updated_by] => 0
             [updated_dt] => 0000-00-00 00:00:00
+            [passwd] => 
+            [dispatch_port] => 
+            [province] => 
+            [country] => 
         )
 
     [2] => Array
@@ -515,6 +536,10 @@ Array
             [created_dt] => 0000-00-00 00:00:00
             [updated_by] => 0
             [updated_dt] => 0000-00-00 00:00:00
+            [passwd] => 
+            [dispatch_port] => 
+            [province] => 
+            [country] => 
         )
 
 )

@@ -2,6 +2,8 @@
 Generator - compare to DB_DataObject - Postgres (real database) - will not normmally pass...
 --FILE--
 <?php
+die("DONE");
+
 require_once 'includes/init.php';
  
 
@@ -95,94 +97,4 @@ echo `diff -w -u $dofn/xtuplehk.links.ini $fn/xtuple_db.links.ini | grep -v /tmp
  
 ?>
 --EXPECT--
-@@ -1,4 +1,3 @@
--
- [acalitem]
- acalitem_id = 129
- acalitem_calhead_id = 1
-@@ -380,8 +379,6 @@
- usr_shift_id = 1
- usr_window = 34
- 
--[backup_usr__keys]
--
- [bankaccnt]
- bankaccnt_id = 129
- bankaccnt_name = 34
-@@ -2344,8 +2341,6 @@
- flrpt_accnt_id = 1
- flrpt_interval = 2
- 
--[flrpt__keys]
--
- [flspec]
- flspec_id = 129
- flspec_flhead_id = 129
-@@ -3603,8 +3598,6 @@
- payco_amount = 129
- payco_curr_id = 1
- 
--[payco__keys]
--
- [period]
- period_id = 129
- period_start = 6
-@@ -4331,8 +4324,6 @@
- [sequence]
- sequence_value = 1
- 
--[sequence__keys]
--
- [shift]
- shift_id = 129
- shift_number = 162
-@@ -4908,8 +4899,6 @@
- trgthist_col = 162
- trgthist_value = 162
- 
--[trgthist__keys]
--
- [trialbal]
- trialbal_id = 129
- trialbal_period_id = 1
-@@ -5331,3 +5320,4 @@
- 
- [yearperiod__keys]
- yearperiod_id = yearperiod_yearperiod_id_seq
-+
-@@ -62,6 +62,7 @@
- bomhead_item_id = item:item_id
- 
- [bomitem]
-+bomitem_char_id = char:char_id
- bomitem_item_id = item:item_id
- bomitem_parent_item_id = item:item_id
- bomitem_uom_id = uom:uom_id
-@@ -70,6 +71,9 @@
- bomitemsub_bomitem_id = bomitem:bomitem_id
- bomitemsub_item_id = item:item_id
- 
-+[bomwork]
-+bomwork_char_id = char:char_id
-+
- [budgitem]
- budgitem_budghead_id = budghead:budghead_id
- budgitem_period_id = period:period_id
-@@ -93,6 +97,9 @@
- [ccbank]
- ccbank_bankaccnt_id = bankaccnt:bankaccnt_id
- 
-+[charopt]
-+charopt_char_id = char:char_id
-+
- [checkhead]
- checkhead_bankaccnt_id = bankaccnt:bankaccnt_id
- checkhead_curr_id = curr_symbol:curr_id
-@@ -377,6 +384,7 @@
- ipshead_curr_id = curr_symbol:curr_id
- 
- [ipsitemchar]
-+ipsitemchar_char_id = char:char_id
- ipsitemchar_ipsitem_id = ipsiteminfo:ipsitem_id
- 
- [ipsiteminfo]
+DONE

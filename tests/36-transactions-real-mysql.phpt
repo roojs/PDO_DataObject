@@ -90,7 +90,7 @@ PDO_DataObject   : query       : 183b4035a4a59e23b849e6bdd8a53fdb : SELECT *
 PDO_DataObject   : query       : NO# of results: 1
 PDO_DataObject   : find       : CHECK autofetched true
 PDO_DataObject   : find       : ABOUT TO AUTOFETCH
-PDO_DataObject   : fetch       : {"id":"3523","person_name":"Alan","event_when":"2009-04-16 14:05:32","action":"RELOAD","ipaddr":"202.134.82.251","on_id":"0","on_table":"","person_id":"4","remarks":"0","person_table":null}
+PDO_DataObject   : fetch       : {"id":"3523","person_name":"Alan","event_when":"2009-04-16 14:05:32","action":"RELOAD","ipaddr":"202.134.82.251","on_id":"0","on_table":"","person_id":"4","remarks":"0","person_table":null,"dupe_id":"0"}
 PDO_DataObject   : find       : DONE
 PDO_DataObject   : query       : 9da43100ad8e2d1eee0cfee396c16588 : UPDATE  Events  SET action = 'testing'  WHERE (Events.id = 3523) 
 PDO_DataObject   : query       : NO# of results: 1
@@ -111,7 +111,7 @@ PDO_DataObject   : query       : 183b4035a4a59e23b849e6bdd8a53fdb : SELECT *
 PDO_DataObject   : query       : NO# of results: 1
 PDO_DataObject   : find       : CHECK autofetched true
 PDO_DataObject   : find       : ABOUT TO AUTOFETCH
-PDO_DataObject   : fetch       : {"id":"3523","person_name":"Alan","event_when":"2009-04-16 14:05:32","action":"RELOAD","ipaddr":"202.134.82.251","on_id":"0","on_table":"","person_id":"4","remarks":"0","person_table":null}
+PDO_DataObject   : fetch       : {"id":"3523","person_name":"Alan","event_when":"2009-04-16 14:05:32","action":"RELOAD","ipaddr":"202.134.82.251","on_id":"0","on_table":"","person_id":"4","remarks":"0","person_table":null,"dupe_id":"0"}
 PDO_DataObject   : find       : DONE
 Array
 (
@@ -125,6 +125,7 @@ Array
     [person_id] => 4
     [remarks] => 0
     [person_table] => 
+    [dupe_id] => 0
 )
 PDO_DataObject   : PDO       : Checking for database specific ini ('inserttest') : config[databases][inserttest] in options
 PDO_DataObject   : query       : 19aad9f2fe3ce0023298ab83f7e75775 : BEGIN
@@ -142,7 +143,7 @@ PDO_DataObject   : query       : 183b4035a4a59e23b849e6bdd8a53fdb : SELECT *
 PDO_DataObject   : query       : NO# of results: 1
 PDO_DataObject   : find       : CHECK autofetched true
 PDO_DataObject   : find       : ABOUT TO AUTOFETCH
-PDO_DataObject   : fetch       : {"id":"3523","person_name":"Alan","event_when":"2009-04-16 14:05:32","action":"RELOAD","ipaddr":"202.134.82.251","on_id":"0","on_table":"","person_id":"4","remarks":"0","person_table":null}
+PDO_DataObject   : fetch       : {"id":"3523","person_name":"Alan","event_when":"2009-04-16 14:05:32","action":"RELOAD","ipaddr":"202.134.82.251","on_id":"0","on_table":"","person_id":"4","remarks":"0","person_table":null,"dupe_id":"0"}
 PDO_DataObject   : find       : DONE
 PDO_DataObject   : query       : 9da43100ad8e2d1eee0cfee396c16588 : UPDATE  Events  SET action = 'testing'  WHERE (Events.id = 3523) 
 PDO_DataObject   : query       : NO# of results: 1
@@ -163,7 +164,7 @@ PDO_DataObject   : query       : 183b4035a4a59e23b849e6bdd8a53fdb : SELECT *
 PDO_DataObject   : query       : NO# of results: 1
 PDO_DataObject   : find       : CHECK autofetched true
 PDO_DataObject   : find       : ABOUT TO AUTOFETCH
-PDO_DataObject   : fetch       : {"id":"3523","person_name":"Alan","event_when":"2009-04-16 14:05:32","action":"testing","ipaddr":"202.134.82.251","on_id":"0","on_table":"","person_id":"4","remarks":"0","person_table":null}
+PDO_DataObject   : fetch       : {"id":"3523","person_name":"Alan","event_when":"2009-04-16 14:05:32","action":"testing","ipaddr":"202.134.82.251","on_id":"0","on_table":"","person_id":"4","remarks":"0","person_table":null,"dupe_id":"0"}
 PDO_DataObject   : find       : DONE
 Array
 (
@@ -177,6 +178,7 @@ Array
     [person_id] => 4
     [remarks] => 0
     [person_table] => 
+    [dupe_id] => 0
 )
 PDO_DataObject   : databaseStructure       : CALL:[]
 PDO_DataObject   : PDO       : Checking for database specific ini ('inserttest') : config[databases][inserttest] in options
@@ -193,7 +195,7 @@ PDO_DataObject   : query       : 183b4035a4a59e23b849e6bdd8a53fdb : SELECT *
 PDO_DataObject   : query       : NO# of results: 1
 PDO_DataObject   : find       : CHECK autofetched true
 PDO_DataObject   : find       : ABOUT TO AUTOFETCH
-PDO_DataObject   : fetch       : {"id":"3523","person_name":"Alan","event_when":"2009-04-16 14:05:32","action":"testing","ipaddr":"202.134.82.251","on_id":"0","on_table":"","person_id":"4","remarks":"0","person_table":null}
+PDO_DataObject   : fetch       : {"id":"3523","person_name":"Alan","event_when":"2009-04-16 14:05:32","action":"testing","ipaddr":"202.134.82.251","on_id":"0","on_table":"","person_id":"4","remarks":"0","person_table":null,"dupe_id":"0"}
 PDO_DataObject   : find       : DONE
 PDO_DataObject   : query       : aa7e82b2a77902f4d3cc43c60837099b : UPDATE  Events  SET action = 'RELOAD'  WHERE (Events.id = 3523) 
 PDO_DataObject   : query       : NO# of results: 1

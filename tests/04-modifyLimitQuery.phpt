@@ -101,9 +101,9 @@ PDO_DataObject   : databaseStructure       : CALL:[]
 PDO_DataObject   : PDO       : Checking for database specific ini ('oracle_somedb') : config[databases][oracle_somedb] in options
 __construct==["oci:dbname=somedb","","",[]]
 setAttribute==[3,2]
-string(366) "SELECT * FROM (
+string(365) "SELECT * FROM (
                             SELECT
-                                rownum _pdo_rnum, pdo_do.* 
+                                rownum _pdo_rnum, pdo_do.*
                             FROM (
                                 SELECT * FROM TEST
                             ) _pdo_do
@@ -114,9 +114,9 @@ string(366) "SELECT * FROM (
 PDO_DataObject   : __construct       : ["oracle_somedb\/account_code"]
 PDO_DataObject   : databaseStructure       : CALL:[]
 PDO_DataObject   : PDO       : Checking for database specific ini ('oracle_somedb') : config[databases][oracle_somedb] in options
-string(367) "SELECT * FROM (
+string(366) "SELECT * FROM (
                             SELECT
-                                rownum _pdo_rnum, pdo_do.* 
+                                rownum _pdo_rnum, pdo_do.*
                             FROM (
                                 SELECT * FROM TEST
                             ) _pdo_do

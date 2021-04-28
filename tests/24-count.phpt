@@ -236,7 +236,7 @@ sql typo;
 QUERY:de2b1352684938007346c359b3406ea9:
 SELECT count(distinct person_name) as DATAOBJECT_NUM
                 FROM Events  WHERE ( id = > 10000 ) AND (Events.action  = 'RELOAD')
-Typo got exception as expected : Could not run Query
+Typo got exception as expected : Could not run Query: dummy sql error
 
 
 --------

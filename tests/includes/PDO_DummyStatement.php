@@ -25,14 +25,16 @@ class PDO_DummyStatement {
         // 03 - databaseStructure tests.
         'mysql:dbname=anotherdb;host=localhost;port=3344' => array(
             
+            
             // QUeries
             'SHOW TABLES' =>  '[
                     {"Tables_in_somedb":"Companies"},
                     {"Tables_in_somedb":"Events"},
                     {"Tables_in_somedb":"Groups"}
                 ]',
-            // describe companies... 
-            '6996acc544ef440ec8756b9a474a8261' => '[ 
+                
+            //
+            'e7e98b166e84d8a86f012e03789dc226' => '[
                     {"tablename":"Companies","name":"id","default_value_raw":null,"type":"int","len":"10","flags":"auto_increment not_null primary","fk_table":"","fk_column":""},
                     {"tablename":"Companies","name":"code","default_value_raw":"","type":"varchar","len":null,"flags":" not_null","fk_table":"","fk_column":""},
                     {"tablename":"Companies","name":"name","default_value_raw":null,"type":"varchar","len":null,"flags":" not_null multiple_key","fk_table":"","fk_column":""},
@@ -55,10 +57,7 @@ class PDO_DummyStatement {
                     {"tablename":"Companies","name":"passwd","default_value_raw":"","type":"varchar","len":null,"flags":" not_null","fk_table":"","fk_column":""},
                     {"tablename":"Companies","name":"dispatch_port","default_value_raw":"","type":"varchar","len":null,"flags":" not_null","fk_table":"","fk_column":""},
                     {"tablename":"Companies","name":"province","default_value_raw":"","type":"varchar","len":null,"flags":" not_null","fk_table":"","fk_column":""},
-                    {"tablename":"Companies","name":"country","default_value_raw":"","type":"varchar","len":null,"flags":" not_null","fk_table":"","fk_column":""}
-                ]',
-            // describe events... 
-            'fbfdf155a2b80c37a9da0b57c7ec0c8a' => '[
+                    {"tablename":"Companies","name":"country","default_value_raw":"","type":"varchar","len":null,"flags":" not_null","fk_table":"","fk_column":""},
                     {"tablename":"Events","name":"id","default_value_raw":null,"type":"int","len":"10","flags":"auto_increment not_null primary","fk_table":"","fk_column":""},
                     {"tablename":"Events","name":"person_name","default_value_raw":null,"type":"varchar","len":null,"flags":" not_null","fk_table":"","fk_column":""},
                     {"tablename":"Events","name":"event_when","default_value_raw":null,"type":"datetime","len":null,"flags":" not_null multiple_key","fk_table":"","fk_column":""},
@@ -68,9 +67,7 @@ class PDO_DummyStatement {
                     {"tablename":"Events","name":"on_table","default_value_raw":null,"type":"varchar","len":null,"flags":" not_null multiple_key","fk_table":"","fk_column":""},
                     {"tablename":"Events","name":"person_id","default_value_raw":null,"type":"int","len":"10","flags":" not_null","fk_table":"","fk_column":""},
                     {"tablename":"Events","name":"person_table","default_value_raw":null,"type":"varchar","len":null,"flags":" not_null multiple_key","fk_table":"","fk_column":""},
-                    {"tablename":"Events","name":"remarks","default_value_raw":null,"type":"text","len":null,"flags":" not_null","fk_table":"","fk_column":""}
-                ]',
-            'f77e1669034239c845220bf51ee0a9f2' => '[
+                    {"tablename":"Events","name":"remarks","default_value_raw":null,"type":"text","len":null,"flags":" not_null","fk_table":"","fk_column":""},
                     {"tablename":"Groups","name":"id","default_value_raw":null,"type":"int","len":"10","flags":"auto_increment not_null primary","fk_table":"","fk_column":""},
                     {"tablename":"Groups","name":"name","default_value_raw":"","type":"varchar","len":null,"flags":" not_null","fk_table":"","fk_column":""},
                     {"tablename":"Groups","name":"type","default_value_raw":"0","type":"int","len":"10","flags":" not_null","fk_table":"","fk_column":""},
@@ -145,6 +142,8 @@ class PDO_DummyStatement {
             'f5a65e29f10636175726b93d83e99ad6' => '[]', // used by config-database
        
             '49a4307336aeaeb2e24de305a3d0da30' => '[]', // config-schema
+             
+             'e7e98b166e84d8a86f012e03789dc226' => '[]',
         ),
           
         'oci:dbname=somedb' => array(
@@ -209,14 +208,14 @@ class PDO_DummyStatement {
                   {"code":"vinski","name":"Vinski Web","remarks":"","owner_id":"0","address":"",
                  "tel":"","fax":"","email":"test@example.com","id":"15","isOwner":"0","logo_id":"0","background_color":"","comptype":"CONSULTANT",
                  "url":"","main_office_id":"0","created_by":"0","created_dt":"0000-00-00 00:00:00",
-                 "updated_by":"0","updated_dt":"0000-00-00 00:00:00"},
+                 "updated_by":"0","updated_dt":"0000-00-00 00:00:00"}
             ]',
              // limit 1... (!=1)
             'd67f7387466fef0c36b56c91273fa513' => '[
                   {"code":"vinski","name":"Vinski Web","remarks":"","owner_id":"0","address":"",
                  "tel":"","fax":"","email":"test@example.com","id":"15","isOwner":"0","logo_id":"0","background_color":"","comptype":"CONSULTANT",
                  "url":"","main_office_id":"0","created_by":"0","created_dt":"0000-00-00 00:00:00",
-                 "updated_by":"0","updated_dt":"0000-00-00 00:00:00"},
+                 "updated_by":"0","updated_dt":"0000-00-00 00:00:00"}
             ]',
             // fetchall - id only
             '23df5cd6e811c14da7711b51d7298521' => '[
@@ -450,6 +449,9 @@ class PDO_DummyStatement {
             throw new PDOException("dummy sql error", 9999);
         }
         $this->result = json_decode($value,true);
+        if ($this->result === null) {
+            var_dump($value);
+        }
         
         
         
@@ -519,7 +521,7 @@ class PDO_DummyStatement {
       
     function rowCount()
     {
-        return is_int($this->result) ? $this->result : count( $this->result);
+         return is_int($this->result) ? $this->result : count( $this->result);
     }
     function columnCount()
     {

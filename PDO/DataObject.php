@@ -100,9 +100,8 @@ class PDO_DataObject
     const ERROR_CONNECT =       'Connect';  // if connect throws an error....
 
 
-
-
-
+   
+    
     /* ---------------- ---------------- static  -------------------------------- */
     /**
      * Configuration - use PDO_DataObject::config() to access this.
@@ -1451,8 +1450,11 @@ class PDO_DataObject
         
         return true;
     }
-
-
+    
+    const FETCH_OBJECT = -1;
+    const FETCH_FAST = -2;
+    const FETCH_PID = -3;
+    const FETCH_COL = -4;
      /**
      * fetches all results as an array,
      *
@@ -1470,16 +1472,7 @@ class PDO_DataObject
      * // returns array(1,2,3,4,5)
      * ```
      *
-     * B) ONE COLUMN ARRAY - Fetch the first column (1st argument = true)
-     * ```
-     * $x = PDO_DataObject::factory('mytable');
-     * $x->select('id')
-     * $x->whereAdd('something = 1')
-     * $ar = $x->fetchAll(true);
-     *
-     * // returns array(1,2,3,4,5)
-     * ```
-     * C) ONE COLUMN ARRAY - Array of values (using selectAdd)
+     * A1) ONE COLUMN ARRAY - Array of values (using selectAdd) 
      * ```
      * $x = PDO_DataObject::factory('mytable');
      * $x->whereAdd('something = 1');
@@ -1489,8 +1482,18 @@ class PDO_DataObject
      * // returns array(1,2,3,4,5)
      * ```
      *
+     * B) ONE COLUMN ARRAY - Fetch the first column (1st argument = true)
+     * ```
+     * $x = PDO_DataObject::factory('mytable');
+     * $x->select('id')
+     * $x->whereAdd('something = 1')
+     * $ar = $x->fetchAll(PDO_DataObject::FETCH_COL);
      *
-     * D) ASSOCIATIVE ARRAY - A key=>value associative array
+     * // returns array(1,2,3,4,5)
+     * ```
+     *  
+     *
+     * C) ASSOCIATIVE ARRAY - A key=>value associative array
      * ```
      * $x = PDO_DataObject::factory('mytable');
      * $x->whereAdd('something = 1')
@@ -1498,18 +1501,28 @@ class PDO_DataObject
      *
      * // returns array(1=>'fred',2=>'blogs',3=> .......
      * ```
+     * 
+     * C1) ASSOCIATIVE ARRAY - A key=>value associative array based on columns (note should be faster)
+     * ```
+     * $x = PDO_DataObject::factory('mytable');
+     * $x->select('id,name')
+     * $x->whereAdd('something = 1')
+     * $ar = $x->fetchAll(PDO_DataObject::FETCH_COL,PDO_DataObject::FETCH_COL);
      *
-     * E) array of objects -- NO ARGUMENTS
+     * // returns array(1=>'fred',2=>'blogs',3=> .......
+     * ``
+     * 
+     * D) array of objects -- NO ARGUMENTS
      * ```
      * $x = PDO_DataObject::factory('mytable');
      * $x->whereAdd('something = 1');
      * $ar = $x->fetchAll();
      * ```
      *
-     * F) array of objects -- USING property as key
+     * F) array of objects -- USING property as key    
      * ```
      * $x = PDO_DataObject::factory('mytable');
-     * $ar = $x->fetchAll(false, 'email');
+     * $ar = $x->fetchAll('email', PDO_DataObject::FETCH_OBJECT);
      *
      * //  results in  [ { fred@example.com=> {object} }, {brian@example.com=> {object} }, .... ]
      * ```
@@ -1517,7 +1530,7 @@ class PDO_DataObject
      * G) array of objects -- USING primary as key
      * ```
      * $x = PDO_DataObject::factory('mytable');
-     * $ar = $x->fetchAll(false, true);
+     * $ar = $x->fetchAll(PDO_DataObject::FETCH_PID,  PDO_DataObject::FETCH_OBJECT);
      *
      * //  results in  [ 23=> {object} }, 24=> {object} }, .... ]
      *```
@@ -1525,16 +1538,22 @@ class PDO_DataObject
      * H) interable via closure  (closure is called with a clone as scope?)
      * ```
      * $x = PDO_DataObject::factory('mytable');
-     * $ar = $x->fetchAll(function () { $this->snapshot()->set(['xxx' => 2])->update(); } );
+     * $ar = $x->fetchAll(function ($obj, $row_id) { $this->snapshot()->set(['xxx' => 2])->update(); } );
      * ```
-
+     * 
+     * H1) interable via closure  and return associate array
+     * ```
+     * $x = PDO_DataObject::factory('mytable');
+     * $ar = $x->fetchAll('id' , function ($obj, $row_id) { $this->snapshot()->set(['xxx' => 2])->update(); } );
+     * ```
+     *
      * I) array of associative arrays - No child dataobjects created... fetchAllAssoc()
      * ```
      * $x = PDO_DataObject::factory('mytable');
      * $x->whereAdd('something = 1');
-     * $ar = $x->fetchAll(false,false, true);
+     * $ar = $x->fetchAll(PDO_DataObject::FETCH_FAST);
      *
-     * // returns [ { a=>1 }, {a=>2}, .... ]
+     * // returns [ [ a=>1 , b=>2 , c=>3 ], [ a=>1 , b=>2 , c=>3 ], .... ]
      * ```
      *
      * J) array of associative arrays call by method...
@@ -1544,20 +1563,40 @@ class PDO_DataObject
      * $ar = $x->fetchAll(false,false,'toArray');
      * ```
      *
+     * K) associative array of arrays calling to array with false,0
+     * ```
+     * * $x = PDO_DataObject::factory('mytable');
+     * $x->whereAdd('something = 1');
+     * $ar = $x->fetchAll('id',false,'toArray',false, 0);
+     *```
+     *
+     *
+     *
+     *
+     * 
      * @category fetch
-     * @param    string|false  $k key
-     * @param    string|false  $v value
+     * @param    string|PDO_DataObject::FETCH_FAST|PDO_DataObject::FETCH_PID|PDO_DataObject::FETCH_COL|Closure  $k key  or closure for something to call on every object
+     * @param    string|PDO_DataObject::FETCH_COL|PDO_DataObject::FETCH_OBJECT  $v value
      * @param    string|false  true|$method method to call on each result to get array value (eg. 'toArray')
+     * @param    mixed ...   other arguments are passed to 'method'
      * @access  public
-     * @return  array|PDO_DataObject  format dependant on arguments, may be empty, if using closures, it will return it'self...
+     * @return  array  format dependant on arguments 
      */
     final function fetchAll($k= false, $v = false, $method = false)
     {
-        $cl =  is_a($k, "Closure");
+        
+        $args = func_get_args();
+        $args = count($args) > 3 ? array_slice($args, 3) : array();
+      
+        $kcl =  is_a($k, "Closure");
+        $vcl =  is_a($v, "Closure");
+        
 
-         if (!$this->_result) {
-            if (!$cl && $k !== false &&    $this->_query['data_select'] === false) {
-                $this->select($k);
+        if ($this->_result === false) {
+            if (!$kcl && $k !== false &&  $this->_query['data_select'] === false) {
+                if ($k !== PDO_DataObject::FETCH_FAST) {
+                    $this->select($k);
+                }
                 if ($v !== false) {
                     $this->select($v);
                 }
@@ -1569,90 +1608,123 @@ class PDO_DataObject
             // no results retured.
             return array();
         }
-
-        if ($method == true) {
-            // ignore's key/value.
-            $ret = $this->_result->fetchAll(PDO::FETCH_ASSOC);
-            if (self::$debug) {
-                $this->debug("fetchAll returned: ". json_encode($ret),__FUNCTION__);
-            }
-            return $ret;
-        }
-
-
-
-        if (($k === false) || is_a($k, "Closure")) {
-
-            $ret = array();
-            $row = 0;
-            while ($this->fetch()) {
-                if ($cl) {
-                    $k->call(clone($this), $row);
-                    $row++;
-                    continue;
-                }
-                if ($v !== false) {
-                    $ret[$v === true ? $this->pid() : $this->$v] = clone($this);
-                    continue;
-                }
-                $ret[] = $k === false ?
-                    ($method == false ? clone($this)  : $this->$method())
-                    : $this->$k;
-            }
-
-            return $cl ? $this : $ret;
-        }
-
-        if ($k === true) { // first column...
-            $ret = $this->_result->fetchAll(PDO::FETCH_COLUMN, 0);
-            if (self::$debug) {
-                $this->debug("fetchAll returned: ". json_encode($ret),__FUNCTION__);
-            }
-            return $ret;
-        }
-        $cols = array();
-        for($i =0;$i< $this->_result->columnCount(); $i++) {
-            $meta = $this->_result->getColumnMeta($i);
-            if ($meta['name'] == $k) {
-                $cols[0] = $i;
-            }
-            if ($meta['name'] == $v) {
-                $cols[1] = $i;
-            }
-        }
-        if (!isset($cols[0])) {
-            return $this->raise("can not find column '{$k}' in results", self::ERROR_INVALIDARGS);
-        }
-        // in theory this is not
-        if ($v === false) {
-            $ret =  $this->_result->fetchAll(PDO::FETCH_COLUMN, $cols[0]);
-            if (self::$debug) {
-                $this->debug("fetchAll returned: (Column {$cols[0]} ". json_encode($ret),1);
-            }
-            return $ret;
-        }
-
-        // 2 args..
-        if (!isset($cols[1])) {
-            return $this->raise("can not find column '{$k}' in results", self::ERROR_INVALIDARGS);
-        }
-
-        // this is only a bit faster than standard.. - no better way to do this using the PDO API?
         $ret = array();
-        while($row = $this->_result->fetch(PDO::FETCH_ASSOC)) {
-            if (self::$debug) {
-                $this->debug("fetch FETCH_ASSOC: (Columns {$k}/{$v} " . json_encode($row),__FUNCTION__);
-            }
-
-            $ret[$row[$k]] =  $row[$v];
+        $row = 0;
+        switch(true) {
+            // empty  - array of objects
+            case $k === false && $v === false && $method === false:
+                while ($this->fetch()) {
+                    $ret[] = clone($this);
+                }
+                return $ret;
+            
+            
+            // array of assoc arrays.. = FAST...
+            
+            case $k === PDO_DataObject::FETCH_FAST && $v === false && $method === false:    
+            case $k === false && $v === false  && $method === true: // BC - not documented.
+                
+                $ret = $this->_result->fetchAll(PDO::FETCH_ASSOC);
+                if (self::$debug) {
+                    $this->debug("fetchAll returned: ". json_encode($ret),__FUNCTION__);
+                }
+                return $ret;
+            
+            /// key only.
+            case is_string($k) && $v === false && $method === false:
+                while($row = $this->_result->fetch(PDO::FETCH_ASSOC)) {
+                    $ret[] =  $row[$k];
+                }
+                return $ret;
+            
+            // key value
+            case is_string($k) && is_string($v) && $method === false:
+            case $k === PDO_DataObject::FETCH_PID  && is_string($v) && $method === false:
+                while($row = $this->_result->fetch(PDO::FETCH_ASSOC)) {
+                    $ret[is_string($k) ? $row[$k] : $row[$this->pid()]] =  $row[$v];
+                }
+                return $ret;
+                
+            // key object
+            case is_string($k) && $v == PDO_DataObject::FETCH_OBJECT  && $method === false:
+            case $k === PDO_DataObject::FETCH_PID  && $v === PDO_DataObject::FETCH_OBJECT  && $method === false:
+                while ($this->fetch()) {
+                    $ret[is_string($k) ? $this->$k : $this->pid()] = clone($this);
+                }
+                return $ret;
+                
+             // key object (BC - not documented)
+             // false, string   or false, true
+            case $k === false && (is_string($v) || $v === true) && $method === false:
+                while ($this->fetch()) {
+                    $ret[$v === true ? $this->pid() : $this->$v] = clone($this);
+                }
+                return $ret;
+              
+            
+            // closure only.
+            case $kcl && $v === false && $method === false:    
+                while ($this->fetch()) {          
+                    $ret[] = $k->call(clone($this), $row);
+                    $row++;
+                }
+                return $ret;
+            
+            // closure with key
+            // closure with pid            
+            case is_string($k) && $vcl && $method === false:
+            case $k === PDO_DataObject::FETCH_PID && $vcl && $method === false:
+                while ($this->fetch()) {
+                    $ret[is_string($k) ? $this->$k : $this->pid()] = $v->call(clone($this), $row);
+                    $row++;
+                }
+                return $ret;
+            
+            
+            // method as array
+            case $k === false && $v === false && is_string($method):
+                while ($this->fetch()) {
+                    $ret[] =  call_user_func_array(array($this,$method), $args);
+                    $row++;
+                }
+                return $ret;
+            
+            // method as a string. with a key.
+            case is_string($k) && $v === false && is_string($method):
+            case $k === PDO_DataObject::FETCH_PID && $v === false && is_string($method):
+                while ($this->fetch()) {
+                    $ret[is_string($k) ? $this->$k : $this->pid()] =  call_user_func_array(array($this,$method), $args);
+                    $row++;
+                }
+                return $ret;
+            
+            // support for quick fetches.
+            case $k == PDO_DataObject::FETCH_COL && $v === false:
+                return $this->_result->fetchAll(PDO::FETCH_COLUMN,0);
+            
+            case $k == PDO_DataObject::FETCH_COL &&  $v === PDO_DataObject::FETCH_COL;
+                $cols = array();
+                while($row = $this->_result->fetch(PDO::FETCH_BOTH)) {
+                    if (self::$debug) {
+                        $this->debug("fetch FETCH_COLUMN:   " .  json_encode($row),__FUNCTION__);
+                    }
+                    $ret[$row[0]] =  $row[1];
+                }
+            
+            default:
+                return $this->raise(
+                    "You cannot do two queries on the same object (clone it before finding)",
+                    self::ERROR_INVALIDARGS);
         }
+        
+         
         return $ret;
 
     }
      /**
      * fetches all results as an array of associative  arrays, without creating Child DataObjects
      *
-     * It's an alias for `fetchAll(false,false, true)`
+     * It's an alias for `fetchAll( PDO_DataObject::FETCH_FAST )`
      *
      * @category fetch
      * @access  public
@@ -1660,7 +1732,7 @@ class PDO_DataObject
      */
     final function fetchAllAssoc()
     {
-        return $this->fetchAll(false,false,true);
+        return $this->fetchAll( PDO_DataObject::FETCH_FAST );
 
     }
 

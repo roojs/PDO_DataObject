@@ -89,7 +89,9 @@ class PDO_DataObject_Introspection_mysql extends PDO_DataObject_Introspection
         
         if (empty($cache[__CLASS__.'::'. __FUNCTION__])) {
              // FK first...
-             
+            
+            $cacheblock = class_exists('PDO_DummyStatement') ?' 12 as _prevent_cache' : ( time(). " as _prevent_cache");
+            
             $cache[__CLASS__.'::'. __FUNCTION__] =  $this->do
                 ->query("
                         
@@ -109,7 +111,7 @@ class PDO_DataObject_Introspection_mysql extends PDO_DataObject_Introspection
                             )    as flags,
                             COALESCE(REFERENCED_TABLE_NAME,'') as fk_table,
                             COALESCE(REFERENCED_COLUMN_NAME,'') as fk_column,
-                            ". time(). " as _prevent_cache
+                            $cacheblock
                             
                         FROM
                             INFORMATION_SCHEMA.COLUMNS
