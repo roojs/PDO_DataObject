@@ -1538,7 +1538,13 @@ class PDO_DataObject
      * H) interable via closure  (closure is called with a clone as scope?)
      * ```
      * $x = PDO_DataObject::factory('mytable');
-     * $ar = $x->fetchAll(function () { $this->snapshot()->set(['xxx' => 2])->update(); } );
+     * $ar = $x->fetchAll(function ($obj, $row_id) { $this->snapshot()->set(['xxx' => 2])->update(); } );
+     * ```
+     * 
+     * H1) interable via closure  and return associate array
+     * ```
+     * $x = PDO_DataObject::factory('mytable');
+     * $ar = $x->fetchAll('id' , function ($obj, $row_id) { $this->snapshot()->set(['xxx' => 2])->update(); } );
      * ```
      *
      * I) array of associative arrays - No child dataobjects created... fetchAllAssoc()
