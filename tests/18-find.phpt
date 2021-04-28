@@ -181,6 +181,7 @@ SELECT *
  FROM   Companies   
  WHERE ( (Companies.comptype  = 'CONSULTANT') ) 
  LIMIT  1
+Fetch Row 0 / 1
 Array
 (
     [code] => vinski
