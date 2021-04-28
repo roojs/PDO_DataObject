@@ -1487,7 +1487,7 @@ class PDO_DataObject
      * $x = PDO_DataObject::factory('mytable');
      * $x->select('id')
      * $x->whereAdd('something = 1')
-     * $ar = $x->fetchAll(PDO_DataObject::FETCH_FIRST_COL);
+     * $ar = $x->fetchAll(PDO_DataObject::FETCH_COL);
      *
      * // returns array(1,2,3,4,5)
      * ```
@@ -1501,7 +1501,17 @@ class PDO_DataObject
      *
      * // returns array(1=>'fred',2=>'blogs',3=> .......
      * ```
+     * 
+     * C1) ASSOCIATIVE ARRAY - A key=>value associative array based on columns (note should be faster)
+     * ```
+     * $x = PDO_DataObject::factory('mytable');
+     * $x->select('id,name')
+     * $x->whereAdd('something = 1')
+     * $ar = $x->fetchAll(PDO_DataObject::FETCH_COL,PDO_DataObject::FETCH_COL);
      *
+     * // returns array(1=>'fred',2=>'blogs',3=> .......
+     * ``
+     * 
      * D) array of objects -- NO ARGUMENTS
      * ```
      * $x = PDO_DataObject::factory('mytable');
@@ -1512,7 +1522,7 @@ class PDO_DataObject
      * F) array of objects -- USING property as key    
      * ```
      * $x = PDO_DataObject::factory('mytable');
-     * $ar = $x->fetchAll('email', true);
+     * $ar = $x->fetchAll('email', PDO_DataObject::FETCH_OBJECT);
      *
      * //  results in  [ { fred@example.com=> {object} }, {brian@example.com=> {object} }, .... ]
      * ```
