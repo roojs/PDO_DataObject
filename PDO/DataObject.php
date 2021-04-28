@@ -1574,7 +1574,7 @@ class PDO_DataObject
      * @param    string|false  true|$method method to call on each result to get array value (eg. 'toArray')
      * @param    mixed ...   other arguments are passed to 'method'
      * @access  public
-     * @return  array|PDO_DataObject  format dependant on arguments, may be empty, if using closures, it will return it'self...
+     * @return  array  format dependant on arguments 
      */
     final function fetchAll($k= false, $v = false, $method = false)
     {
