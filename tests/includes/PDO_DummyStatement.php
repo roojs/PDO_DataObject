@@ -25,12 +25,16 @@ class PDO_DummyStatement {
         // 03 - databaseStructure tests.
         'mysql:dbname=anotherdb;host=localhost;port=3344' => array(
             
+            
             // QUeries
             'SHOW TABLES' =>  '[
                     {"Tables_in_somedb":"Companies"},
                     {"Tables_in_somedb":"Events"},
                     {"Tables_in_somedb":"Groups"}
                 ]',
+                
+            //
+            'e7e98b166e84d8a86f012e03789dc226' => [],
             // describe companies... 
             '6996acc544ef440ec8756b9a474a8261' => '[ 
                     {"tablename":"Companies","name":"id","default_value_raw":null,"type":"int","len":"10","flags":"auto_increment not_null primary","fk_table":"","fk_column":""},
@@ -58,7 +62,7 @@ class PDO_DummyStatement {
                     {"tablename":"Companies","name":"country","default_value_raw":"","type":"varchar","len":null,"flags":" not_null","fk_table":"","fk_column":""}
                 ]',
             // describe events... 
-            'e7e98b166e84d8a86f012e03789dc226' => '[
+            'fbfdf155a2b80c37a9da0b57c7ec0c8a' => '[
                     {"tablename":"Events","name":"id","default_value_raw":null,"type":"int","len":"10","flags":"auto_increment not_null primary","fk_table":"","fk_column":""},
                     {"tablename":"Events","name":"person_name","default_value_raw":null,"type":"varchar","len":null,"flags":" not_null","fk_table":"","fk_column":""},
                     {"tablename":"Events","name":"event_when","default_value_raw":null,"type":"datetime","len":null,"flags":" not_null multiple_key","fk_table":"","fk_column":""},
