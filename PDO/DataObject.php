@@ -1714,7 +1714,7 @@ class PDO_DataObject
             
             default:
                 return $this->raise(
-                    "You cannot do two queries on the same object (clone it before finding)",
+                    "Invalid arguments for fetchAll",
                     self::ERROR_INVALIDARGS);
         }
         
