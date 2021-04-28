@@ -518,6 +518,7 @@ class PDO_DummyStatement {
       
     function rowCount()
     {
+        var_Dump($this->result);
         return is_int($this->result) ? $this->result : count( $this->result);
     }
     function columnCount()
