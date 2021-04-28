@@ -482,6 +482,10 @@ Array
             [created_dt] => 0000-00-00 00:00:00
             [updated_by] => 0
             [updated_dt] => 0000-00-00 00:00:00
+            [passwd] => 
+            [dispatch_port] => 
+            [province] => 
+            [country] => 
         )
 
     [1] => Array
@@ -505,6 +509,10 @@ Array
             [created_dt] => 0000-00-00 00:00:00
             [updated_by] => 0
             [updated_dt] => 0000-00-00 00:00:00
+            [passwd] => 
+            [dispatch_port] => 
+            [province] => 
+            [country] => 
         )
 
     [2] => Array
@@ -528,6 +536,10 @@ Array
             [created_dt] => 0000-00-00 00:00:00
             [updated_by] => 0
             [updated_dt] => 0000-00-00 00:00:00
+            [passwd] => 
+            [dispatch_port] => 
+            [province] => 
+            [country] => 
         )
 
 )
