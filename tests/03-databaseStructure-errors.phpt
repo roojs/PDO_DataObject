@@ -83,7 +83,7 @@ __construct==["mysql:dbname=somedb;host=localhost;port=3344","username","test",[
 setAttribute==[3,2]
 QUERY:9c36cac1372650b703400c60dd29042c:
 SHOW TABLES
-QUERY:f77e1669034239c845220bf51ee0a9f2:
+QUERY:e7e98b166e84d8a86f012e03789dc226:
 
                     
                     SELECT
