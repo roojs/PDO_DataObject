@@ -1655,7 +1655,7 @@ class PDO_DataObject
              // false, string   or false, true
             case $k === false && (is_string($v) || $v === true) && $method === false:
                 while ($this->fetch()) {
-                    $ret[$v === false ? $this->pid() : $this->$v] = clone($this);
+                    $ret[$v === true ? $this->pid() : $this->$v] = clone($this);
                 }
                 return $ret;
               
