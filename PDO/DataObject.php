@@ -1594,7 +1594,8 @@ class PDO_DataObject
 
         if ($this->_result === false) {
             if (!$kcl && $k !== false &&  $this->_query['data_select'] === false) {
-                $this->select($k);
+                
+                $this->select($k == PDO_DataObject::FETCH_FAST ? false : $k);
                 if ($v !== false) {
                     $this->select($v);
                 }
