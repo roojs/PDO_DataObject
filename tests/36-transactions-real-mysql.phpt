@@ -4,6 +4,8 @@ tranaction Test  - needs real mysql
 <?php
 require_once 'includes/init.php';
 
+die("DONE");
+
 PDO_DataObject::config(array(
         'class_location' => __DIR__.'/includes/sample_classes/DataObjects_',
     // fake db..
