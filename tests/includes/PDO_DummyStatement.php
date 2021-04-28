@@ -449,6 +449,9 @@ class PDO_DummyStatement {
             throw new PDOException("dummy sql error", 9999);
         }
         $this->result = json_decode($value,true);
+        if ($this->result === null) {
+            var_dump($value);
+        }
         
         
         
