@@ -98,7 +98,6 @@ __construct==["mysql:dbname=anotherdb;host=localhost;port=3344","root","",[]]
 setAttribute==[3,2]
 QUERY:9c36cac1372650b703400c60dd29042c:
 SHOW TABLES
-QUERY:6996acc544ef440ec8756b9a474a8261: [Query hidden from tests]
 QUERY:e7e98b166e84d8a86f012e03789dc226:
 
                         
