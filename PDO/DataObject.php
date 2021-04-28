@@ -1615,9 +1615,9 @@ class PDO_DataObject
                     $ret[] = clone($this);
                 }
                 return $ret;
-            // key
             
-            // array of assoc arrays..
+            
+            // array of assoc arrays.. = FAST...
             
             case $k === PDO_DataObject::FETCH_FAST && $v === false && $method === false:    
             case $k === false && $v === false  && $method === true: // BC - not documented.
