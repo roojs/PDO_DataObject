@@ -1510,7 +1510,7 @@ class PDO_DataObject
      * $ar = $x->fetchAll(PDO_DataObject::FETCH_COL,PDO_DataObject::FETCH_COL);
      *
      * // returns array(1=>'fred',2=>'blogs',3=> .......
-     * ``
+     * ```
      * 
      * D) array of objects -- NO ARGUMENTS
      * ```
@@ -1722,13 +1722,7 @@ class PDO_DataObject
 
     }
      /**
-     * fetches all results as an array of associative  arrays, without creating Child DataObjects
-     *
-     * It's an alias for `fetchAll( PDO_DataObject::FETCH_FAST )`
-     *
-     * @category fetch
-     * @access  public
-     * @return  array  array of associative arrays (note does note create child dataobjects.
+     *  DEPRICATED - just use the fetchAll..
      */
     final function fetchAllAssoc()
     {

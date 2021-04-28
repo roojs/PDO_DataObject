@@ -46,7 +46,7 @@
                     "xtype": "Section",
                     "items": [
                         {
-                            "html": " Not chainable\n \n NOTE : ALWAYS ENSURE ARGUMENTS ARE ESCAPED\n\n Usage:\n ```\n $object->whereAdd(); \/\/reset or cleaer ewhwer\n $object->whereAdd(\"ID > 20\");\n $object->whereAdd(\"age > 20\",\"OR\");\n ```\n \n",
+                            "html": " Not chainable\n\n NOTE : ALWAYS ENSURE ARGUMENTS ARE ESCAPED\n\n Usage:\n ```\n $object->whereAdd(); \/\/reset or cleaer ewhwer\n $object->whereAdd(\"ID > 20\");\n $object->whereAdd(\"age > 20\",\"OR\");\n ```\n\n",
                             "|xns": "Roo.doc",
                             "xtype": "Para"
                         }

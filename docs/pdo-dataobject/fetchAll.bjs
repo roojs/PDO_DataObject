@@ -17,16 +17,16 @@
                     "is_static": false,
                     "is_constructor": false,
                     "memberof": "PDO_DataObject",
-                    "returndesc": "format dependant on arguments, may be empty, if using closures, it will return it'self...",
-                    "returntype": "array|PDO_DataObject",
+                    "returndesc": "format dependant on arguments",
+                    "returntype": "array",
                     "|xns": "Roo.doc",
                     "xtype": "Synopsis",
                     "items": [
                         {
-                            "desc": "key",
+                            "desc": "key  or closure for something to call on every object",
                             "is_optional": false,
                             "name": "$k",
-                            "type": "false",
+                            "type": "Closure",
                             "|xns": "Roo.doc",
                             "xtype": "Param"
                         },
@@ -34,7 +34,7 @@
                             "desc": "value",
                             "is_optional": false,
                             "name": "$v",
-                            "type": "false",
+                            "type": "FETCH_OBJECT",
                             "|xns": "Roo.doc",
                             "xtype": "Param"
                         },
@@ -43,6 +43,14 @@
                             "is_optional": false,
                             "name": "$method",
                             "type": "",
+                            "|xns": "Roo.doc",
+                            "xtype": "Param"
+                        },
+                        {
+                            "desc": "...   other arguments are passed to 'method'",
+                            "is_optional": false,
+                            "name": "",
+                            "type": "mixed",
                             "|xns": "Roo.doc",
                             "xtype": "Param"
                         }
@@ -54,7 +62,7 @@
                     "xtype": "Section",
                     "items": [
                         {
-                            "html": " return format is dependant on args.\n \n if selectAdd() has not been called on the object, then it will add the correct columns to the query.\n\n\n A) ONE COLUMN ARRAY - Array of values (eg. a list of 'id')\n ```\n $x = PDO_DataObject::factory('mytable');\n $x->whereAdd('something = 1')\n $ar = $x->fetchAll('id');\n \n \/\/ returns array(1,2,3,4,5)\n ```\n \n B) ONE COLUMN ARRAY - Fetch the first column (1st argument = true)\n ```\n $x = PDO_DataObject::factory('mytable');\n $x->select('id')\n $x->whereAdd('something = 1')\n $ar = $x->fetchAll(true);\n \n \/\/ returns array(1,2,3,4,5)\n ```\n C) ONE COLUMN ARRAY - Array of values (using selectAdd)\n ```\n $x = PDO_DataObject::factory('mytable');\n $x->whereAdd('something = 1');\n $x->select('distinct(group_id) as group_id');\n $ar = $x->fetchAll('group_id');\n \n \/\/ returns array(1,2,3,4,5)\n ```\n\n \n D) ASSOCIATIVE ARRAY - A key=>value associative array\n ```\n $x = PDO_DataObject::factory('mytable');\n $x->whereAdd('something = 1')\n $ar = $x->fetchAll('id','name');\n \n \/\/ returns array(1=>'fred',2=>'blogs',3=> .......\n ```\n \n E) array of objects -- NO ARGUMENTS\n ```\n $x = PDO_DataObject::factory('mytable');\n $x->whereAdd('something = 1');\n $ar = $x->fetchAll();\n ```\n      \n F) array of objects -- USING property as key \n ```\n $x = PDO_DataObject::factory('mytable');\n $ar = $x->fetchAll(false, 'email');\n \n \/\/  results in  [ { fred@example.com=> {object} }, {brian@example.com=> {object} }, .... ]\n ```\n \n G) array of objects -- USING primary as key \n ```\n $x = PDO_DataObject::factory('mytable');\n $ar = $x->fetchAll(false, true);\n \n \/\/  results in  [ 23=> {object} }, 24=> {object} }, .... ]\n```\n\n H) interable via closure  (closure is called with a clone as scope?)\n ```\n $x = PDO_DataObject::factory('mytable');\n $ar = $x->fetchAll(function () { $this->snapshot()->set(['xxx' => 2])->update(); } );\n ```\n\n I) array of associative arrays - No child dataobjects created... fetchAllAssoc()\n ```\n $x = PDO_DataObject::factory('mytable');\n $x->whereAdd('something = 1');\n $ar = $x->fetchAll(false,false, true);\n\n \/\/ returns [ { a=>1 }, {a=>2}, .... ]\n ```\n\n J) array of associative arrays call by method...\n ```\n $x = PDO_DataObject::factory('mytable');\n $x->whereAdd('something = 1');\n $ar = $x->fetchAll(false,false,'toArray');\n ```\n \n",
+                            "html": " return format is dependant on args.\n\n if selectAdd() has not been called on the object, then it will add the correct columns to the query.\n\n\n A) ONE COLUMN ARRAY - Array of values (eg. a list of 'id')\n ```\n $x = PDO_DataObject::factory('mytable');\n $x->whereAdd('something = 1')\n $ar = $x->fetchAll('id');\n\n \/\/ returns array(1,2,3,4,5)\n ```\n\n A1) ONE COLUMN ARRAY - Array of values (using selectAdd) \n ```\n $x = PDO_DataObject::factory('mytable');\n $x->whereAdd('something = 1');\n $x->select('distinct(group_id) as group_id');\n $ar = $x->fetchAll('group_id');\n\n \/\/ returns array(1,2,3,4,5)\n ```\n\n B) ONE COLUMN ARRAY - Fetch the first column (1st argument = true)\n ```\n $x = PDO_DataObject::factory('mytable');\n $x->select('id')\n $x->whereAdd('something = 1')\n $ar = $x->fetchAll(PDO_DataObject::FETCH_COL);\n\n \/\/ returns array(1,2,3,4,5)\n ```\n  \n\n C) ASSOCIATIVE ARRAY - A key=>value associative array\n ```\n $x = PDO_DataObject::factory('mytable');\n $x->whereAdd('something = 1')\n $ar = $x->fetchAll('id','name');\n\n \/\/ returns array(1=>'fred',2=>'blogs',3=> .......\n ```\n \n C1) ASSOCIATIVE ARRAY - A key=>value associative array based on columns (note should be faster)\n ```\n $x = PDO_DataObject::factory('mytable');\n $x->select('id,name')\n $x->whereAdd('something = 1')\n $ar = $x->fetchAll(PDO_DataObject::FETCH_COL,PDO_DataObject::FETCH_COL);\n\n \/\/ returns array(1=>'fred',2=>'blogs',3=> .......\n ```\n \n D) array of objects -- NO ARGUMENTS\n ```\n $x = PDO_DataObject::factory('mytable');\n $x->whereAdd('something = 1');\n $ar = $x->fetchAll();\n ```\n\n F) array of objects -- USING property as key    \n ```\n $x = PDO_DataObject::factory('mytable');\n $ar = $x->fetchAll('email', PDO_DataObject::FETCH_OBJECT);\n\n \/\/  results in  [ { fred@example.com=> {object} }, {brian@example.com=> {object} }, .... ]\n ```\n\n G) array of objects -- USING primary as key\n ```\n $x = PDO_DataObject::factory('mytable');\n $ar = $x->fetchAll(PDO_DataObject::FETCH_PID,  PDO_DataObject::FETCH_OBJECT);\n\n \/\/  results in  [ 23=> {object} }, 24=> {object} }, .... ]\n```\n\n H) interable via closure  (closure is called with a clone as scope?)\n ```\n $x = PDO_DataObject::factory('mytable');\n $ar = $x->fetchAll(function ($obj, $row_id) { $this->snapshot()->set(['xxx' => 2])->update(); } );\n ```\n \n H1) interable via closure  and return associate array\n ```\n $x = PDO_DataObject::factory('mytable');\n $ar = $x->fetchAll('id' , function ($obj, $row_id) { $this->snapshot()->set(['xxx' => 2])->update(); } );\n ```\n\n I) array of associative arrays - No child dataobjects created... fetchAllAssoc()\n ```\n $x = PDO_DataObject::factory('mytable');\n $x->whereAdd('something = 1');\n $ar = $x->fetchAll(PDO_DataObject::FETCH_FAST);\n\n \/\/ returns [ [ a=>1 , b=>2 , c=>3 ], [ a=>1 , b=>2 , c=>3 ], .... ]\n ```\n\n J) array of associative arrays call by method...\n ```\n $x = PDO_DataObject::factory('mytable');\n $x->whereAdd('something = 1');\n $ar = $x->fetchAll(false,false,'toArray');\n ```\n\n K) associative array of arrays calling to array with false,0\n ```\n * $x = PDO_DataObject::factory('mytable');\n $x->whereAdd('something = 1');\n $ar = $x->fetchAll('id',false,'toArray',false, 0);\n```\n\n\n\n\n \n",
                             "|xns": "Roo.doc",
                             "xtype": "Para"
                         }

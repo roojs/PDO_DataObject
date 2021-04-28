@@ -23,7 +23,7 @@
                     "xtype": "Synopsis",
                     "items": [
                         {
-                            "desc": "(optional) If PDO_DataObject::WHERE_ONLY is passed in then\n             we will build the condition only using the whereAdd's. <br\/>\n             Default is to build the condition only using the object parameters.",
+                            "desc": "(optional)\n             Default - will only use Primary keys if set.\n             PDO_DataObject::WHERE_ONLY then it will only use 'whereAdd values'\n             PDO_DataObject::DANGER_USE_ALL_PROPS - then it will match all object property\n                   values to build the delete.\n                   Note - this is dangerous, and delete multiple rows without warning\n             ",
                             "is_optional": false,
                             "name": "$useWhere",
                             "type": "bool",
@@ -38,7 +38,7 @@
                     "xtype": "Section",
                     "items": [
                         {
-                            "html": " Returns the true on success\n\n Usage:\n ```\n \n $object = PDO_DataObject::factory('mytable')\n    ->get(123)\n    ->delete();\n\n \/\/ using where condition, rather than primary key\n $object = PDO_DataObject::factory('mytable')\n      ->where('age > 12');\n      ->limit(1)\n      ->orderBy('age DESC')\n      ->delete(PDO_DataObject::WHERE_ONLY)\n\n ```\n \n",
+                            "html": " Returns the true on success\n\n Usage:\n ```\n\n $object = PDO_DataObject::factory('mytable')\n    ->get(123)\n    ->delete();\n\n \/\/ using where condition, rather than primary key\n $object = PDO_DataObject::factory('mytable')\n      ->where('age > 12');\n      ->limit(1)\n      ->orderBy('age DESC')\n      ->delete(PDO_DataObject::WHERE_ONLY)\n\n ```\n\n",
                             "|xns": "Roo.doc",
                             "xtype": "Para"
                         }

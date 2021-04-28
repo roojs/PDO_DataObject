@@ -38,7 +38,7 @@
                     "xtype": "Section",
                     "items": [
                         {
-                            "html": "  Usage\n ```\n PDO_DataObject::factory('mytable');\n      ->load(23)\n      ->set(['email' => \"test@testing.com\"]),\n      ->save()\n ```  \n This will only update the changed column.  as load() calls snapshot on the loaded data.\n \n\n  Uses primary id to determine if data should be updated or inserted.\n",
+                            "html": "  Usage\n ```\n PDO_DataObject::factory('mytable');\n      ->load(23)\n      ->set(['email' => \"test@testing.com\"]),\n      ->save()\n ```\n This will only update the changed column.  as load() calls snapshot on the loaded data.\n\n\n  Uses primary id to determine if data should be updated or inserted.\n",
                             "|xns": "Roo.doc",
                             "xtype": "Para"
                         }

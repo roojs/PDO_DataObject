@@ -54,7 +54,7 @@
                     "xtype": "Section",
                     "items": [
                         {
-                            "html": " Copies items that are in the table definitions from an \\\n array or object into the current object\n \n If errors occur on set** methods, then `$this->_set_errors` will be set to the problem, and an exception is thrown.\n\n It will not override primary key values.\n\n Usage:\n ```\n $do->set([ 'name' => 'fred', age => 12]);\n $do->set([ 'xxx_name' => 'fred', 'xxx_age' => 12], 'xxx_%s');\n ```\n \n\n",
+                            "html": " Copies items that are in the table definitions from an \\\n array or object into the current object\n\n If errors occur on set** methods, then `$this->_set_errors` will be set to the problem, and an exception is thrown.\n\n It will not override primary key values.\n\n Usage:\n ```\n $do->set([ 'name' => 'fred', age => 12]);\n $do->set([ 'xxx_name' => 'fred', 'xxx_age' => 12], 'xxx_%s');\n ```\n\n\n",
                             "|xns": "Roo.doc",
                             "xtype": "Para"
                         }

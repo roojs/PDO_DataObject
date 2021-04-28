@@ -62,7 +62,7 @@
                     "xtype": "Section",
                     "items": [
                         {
-                            "html": " usage :\n 1 argument - forces generator run..\n ```\n PDO_DataObject::databaseStructure(  'databasename')\n ```\n \n 2 argument - just returns the database structure - if any.\n```\n PDO_DataObject::databaseStructure(  'databasename', false)\n ```\n \n 2 arguments - set's the structure..\n ```\n PDO_DataObject::databaseStructure(  'databasename', parse_ini_file('mydb.ini',true))\n ```\n  \n 3 arguments:\n ```\n PDO_DataObject::databaseStructure(  'databasename',\n                                    parse_ini_file('mydb.ini',true), \n                                    parse_ini_file('mydb.link.ini',true)); \n ```\n if you dont have to use ini files.. (just return array similar to ini files..)\n  \n     \n\n",
+                            "html": " usage :\n 1 argument - forces generator run..\n ```\n PDO_DataObject::databaseStructure(  'databasename')\n ```\n\n 2 argument - just returns the database structure - if any.\n```\n PDO_DataObject::databaseStructure(  'databasename', false)\n ```\n\n 2 arguments - set's the structure..\n ```\n PDO_DataObject::databaseStructure(  'databasename', parse_ini_file('mydb.ini',true))\n ```\n\n 3 arguments:\n ```\n PDO_DataObject::databaseStructure(  'databasename',\n                                    parse_ini_file('mydb.ini',true),\n                                    parse_ini_file('mydb.link.ini',true));\n ```\n if you dont have to use ini files.. (just return array similar to ini files..)\n\n\n\n",
                             "|xns": "Roo.doc",
                             "xtype": "Para"
                         }

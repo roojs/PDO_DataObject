@@ -38,7 +38,7 @@
                     "xtype": "Section",
                     "items": [
                         {
-                            "html": " \n NOTE : ALWAYS ENSURE ARGUMENTS ARE ESCAPED\n\n Usage:\n ```\n $object->useIndex(); \/\/reset the use Index \n $object->useIndex(\"some_index\");\n ```\n\n This may be mysql specific at present? - might need altering to support other databases.\n\n",
+                            "html": " NOTE : ALWAYS ENSURE ARGUMENTS ARE ESCAPED\n\n Usage:\n ```\n $object->useIndex(); \/\/reset the use Index\n $object->useIndex(\"some_index\");\n ```\n\n This may be mysql specific at present? - might need altering to support other databases.\n\n",
                             "|xns": "Roo.doc",
                             "xtype": "Para"
                         }

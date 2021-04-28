@@ -46,7 +46,7 @@
                     "xtype": "Section",
                     "items": [
                         {
-                            "html": " This is the new 'recommended' way to get get\/set linked objects.\n must be used with links.ini\n\n Usage Getting data:\n  ```\n  $obj = $do->link('company_id');\n  $obj = $do->link(array('local_col', 'linktable:linked_col'));\n  ```\n  \n Usage Setting data:\n ```\n  $do->link('company_id',0);\n  $do->link('company_id',$obj);\n ```\n\n Example function (you could add to your extended classes - to make the code easy to read...)\n ```\n  function company($set = false) {\n     $this->link('company_id', $set);\n  }\n ```\n \n",
+                            "html": " This is the new 'recommended' way to get get\/set linked objects.\n must be used with links.ini\n\n Usage Getting data:\n  ```\n  $obj = $do->link('company_id');\n  $obj = $do->link(array('local_col', 'linktable:linked_col'));\n  ```\n\n Usage Setting data:\n ```\n  $do->link('company_id',0);\n  $do->link('company_id',$obj);\n ```\n\n Example function (you could add to your extended classes - to make the code easy to read...)\n ```\n  function company($set = false) {\n     $this->link('company_id', $set);\n  }\n ```\n\n",
                             "|xns": "Roo.doc",
                             "xtype": "Para"
                         }

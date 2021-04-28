@@ -29,7 +29,7 @@
                     "xtype": "Section",
                     "items": [
                         {
-                            "html": " Uses [PDO_DataObject_Validate](#pdo-dataobject-validate\/new)\n \n",
+                            "html": " Uses [PDO_DataObject_Validate](#pdo-dataobject-validate\/new)\n\n",
                             "|xns": "Roo.doc",
                             "xtype": "Para"
                         }

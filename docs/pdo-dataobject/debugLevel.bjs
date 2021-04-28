@@ -38,7 +38,7 @@
                     "xtype": "Section",
                     "items": [
                         {
-                            "html": " \n Usage:\n ```\n PDO_DataObject::debugLevel(4);\n ```\n \n without arguments it just returns the existing debug level\n It's an alias for `PDO_DataObject::config('debug', $value);`\n \n Debug Levels\n | Level | Output |\n | ----- | ----- |\n | 1 | basic QUERY and results. | \n | 2 | Timers | \n | 3 | Detail returned data | \n | 5 | Full connection details (including DSN with password) | \n\n",
+                            "html": " Usage:\n ```\n PDO_DataObject::debugLevel(4);\n ```\n\n without arguments it just returns the existing debug level\n It's an alias for `PDO_DataObject::config('debug', $value);`\n\n Debug Levels\n | Level | Output |\n | ----- | ----- |\n | 1 | basic QUERY and results. |\n | 2 | Timers |\n | 3 | Detail returned data |\n | 5 | Full connection details (including DSN with password) |\n\n",
                             "|xns": "Roo.doc",
                             "xtype": "Para"
                         }

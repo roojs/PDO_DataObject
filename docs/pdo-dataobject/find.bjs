@@ -38,7 +38,7 @@
                     "xtype": "Section",
                     "items": [
                         {
-                            "html": " Usage:\n ```\n $object = PDO_DataObject::Factory('mytable');\n $object->ID = 1;\n $object->find();\n while($object->fetch() {\n    \/\/ do stuff..\n }\n\n \/\/ or\n $object = PDO_DataObject::Factory('mytable');\n $object->ID = 1;\n if($object->find(true)) { \/\/ this fetches it as well.\n    print $ojbect->email\n }\n ```\n\n will set $object->N to number of rows, and expects next command to fetch rows\n \n will return $object->N\n\n if an error occurs $object->N will be set to false and return value will also be false;\n\n if numRows is not supported it will return true.\n \n",
+                            "html": " Usage:\n ```\n $object = PDO_DataObject::Factory('mytable');\n $object->ID = 1;\n $object->find();\n while($object->fetch() {\n    \/\/ do stuff..\n }\n\n \/\/ or\n $object = PDO_DataObject::Factory('mytable');\n $object->ID = 1;\n if($object->find(true)) { \/\/ this fetches it as well.\n    print $ojbect->email\n }\n ```\n\n will set $object->N to number of rows, and expects next command to fetch rows\n\n will return $object->N\n\n if an error occurs $object->N will be set to false and return value will also be false;\n\n if numRows is not supported it will return true.\n\n",
                             "|xns": "Roo.doc",
                             "xtype": "Para"
                         }

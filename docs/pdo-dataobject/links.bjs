@@ -38,7 +38,7 @@
                     "xtype": "Section",
                     "items": [
                         {
-                            "html": " \n mapping the foreign key relationships (which MAY NOT be enforced by the database)\n\n Will attempt to load the ini file (if not done already)\n   This can be over-ridden rather than using links.ini files...\n\n    \n returns data like this.\n ```\n [\n 'local_col_name'=> 'related_tablename:related_col_name',\n 'local_col_name'=> 'related_tablename:related_col_name'\n ]\n ```\n \n \n",
+                            "html": " mapping the foreign key relationships (which MAY NOT be enforced by the database)\n\n Will attempt to load the ini file (if not done already)\n   This can be over-ridden rather than using links.ini files...\n\n\n returns data like this.\n ```\n [\n 'local_col_name'=> 'related_tablename:related_col_name',\n 'local_col_name'=> 'related_tablename:related_col_name'\n ]\n ```\n\n\n",
                             "|xns": "Roo.doc",
                             "xtype": "Para"
                         }

@@ -29,7 +29,7 @@
                     "xtype": "Section",
                     "items": [
                         {
-                            "html": "  When you use 'update' or save, this makes a copy, so you do not need to clone\/pass arguments to save or\n\n  It is automatically called when you use `load()`\n\n  Looping through results, and updating each row..\n  ```\n  foreach(PDO_DataObject::factory('mytable');\n      ->fetchAll(23)\n      as $obj) {\n      \n        $obj->snapshot()\n          ->set([age => $obj->age + 1])\n          ->save(); \n   }\n ```\n   \n \n",
+                            "html": "  When you use 'update' or save, this makes a copy, so you do not need to clone\/pass arguments to save or\n\n  It is automatically called when you use `load()`\n\n  Looping through results, and updating each row..\n  ```\n  foreach(PDO_DataObject::factory('mytable');\n      ->fetchAll(23)\n      as $obj) {\n\n        $obj->snapshot()\n          ->set([age => $obj->age + 1])\n          ->save();\n   }\n ```\n\n\n",
                             "|xns": "Roo.doc",
                             "xtype": "Para"
                         }

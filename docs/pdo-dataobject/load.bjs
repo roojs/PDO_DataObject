@@ -46,7 +46,7 @@
                     "xtype": "Section",
                     "items": [
                         {
-                            "html": " Example\n ```\n $object->load(1234)\n    ->set(['email' => 'fred@fred.com'])\n    ->save()\n    \n $object->load(\"email\",'fred@fred.com');\n ```\n \n selects a row from the database based on the key\/value and puts all the table columns into this classes instance\n values\n \n Note: this also snapshot's the object, ready for update.., and clears any 'where condition'\n\n if no value is entered, it is assumed that $key is a value\n and get will then use the first key in keys()\n to obtain the key.\n \n",
+                            "html": " Example\n ```\n $object->load(1234)\n    ->set(['email' => 'fred@fred.com'])\n    ->save()\n\n $object->load(\"email\",'fred@fred.com');\n ```\n\n selects a row from the database based on the key\/value and puts all the table columns into this classes instance\n values\n\n Note: this also snapshot's the object, ready for update.., and clears any 'where condition'\n\n if no value is entered, it is assumed that $key is a value\n and get will then use the first key in keys()\n to obtain the key.\n\n",
                             "|xns": "Roo.doc",
                             "xtype": "Para"
                         }

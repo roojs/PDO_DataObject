@@ -46,7 +46,7 @@
                     "xtype": "Section",
                     "items": [
                         {
-                            "html": " Cast Objects represent database values, that can not be represented using simple PHP types,\n\n For example RAW sql calls like `NOW()` or database methods or database `'NULL'`\n\n if used with 1 argument `PDO_DataObject_Cast::sql($value)` is called\n \n if used with 2 arguments `PDO_DataObject_Cast::$value($callvalue)` is called\n valid first arguments are: blob, string, date, sql\n \n usage:\n ```\n $member->updated = $member->sqlValue('NOW()');\n $member->blob_data = $member->sqlValue('some_file_location', 'blob');\n ```\n \n\n",
+                            "html": " Cast Objects represent database values, that can not be represented using simple PHP types,\n\n For example RAW sql calls like `NOW()` or database methods or database `'NULL'`\n\n if used with 1 argument `PDO_DataObject_Cast::sql($value)` is called\n\n if used with 2 arguments `PDO_DataObject_Cast::$value($callvalue)` is called\n valid first arguments are: blob, string, date, sql\n\n usage:\n ```\n $member->updated = $member->sqlValue('NOW()');\n $member->blob_data = $member->sqlValue('some_file_location', 'blob');\n ```\n\n\n",
                             "|xns": "Roo.doc",
                             "xtype": "Para"
                         }

@@ -29,7 +29,7 @@
                     "xtype": "Section",
                     "items": [
                         {
-                            "html": " It just throws an error...\n \n this has been replaced with [tableColumns](#pdo-dataobject\/tableColumns)\n\n",
+                            "html": " It just throws an error...\n\n this has been replaced with [tableColumns](#pdo-dataobject\/tableColumns)\n\n",
                             "|xns": "Roo.doc",
                             "xtype": "Para"
                         }

@@ -7,7 +7,7 @@
     "items": [
         {
             "name": "whereToString",
-            "purpose": " Builds the WHERE based on the values of of this object ",
+            "purpose": " Builds the WHERE based on the values of of this object",
             "stype": "function",
             "|xns": "Roo.doc",
             "xtype": "Entry",
@@ -62,7 +62,7 @@
                     "xtype": "Section",
                     "items": [
                         {
-                            "html": " (used to be _build_condition)\n\n Can be used to save a where condition for building, mostly used in unit tests though.\n \n",
+                            "html": " (used to be _build_condition)\n\n Can be used to save a where condition for building, mostly used in unit tests though.\n\n",
                             "|xns": "Roo.doc",
                             "xtype": "Para"
                         }

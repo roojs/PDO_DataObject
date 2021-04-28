@@ -29,7 +29,7 @@
                     "xtype": "Section",
                     "items": [
                         {
-                            "html": " \n Basedon the objects table and database settings it will connect to the database\n as set by the configuratino, and return the PDO object.\n\n the PDO object has `$PDO->dsn` set to and array, of which\n `$PDO->dsn['database_name']` should contain the real database name.\n \n",
+                            "html": " Basedon the objects table and database settings it will connect to the database\n as set by the configuratino, and return the PDO object.\n\n the PDO object has `$PDO->dsn` set to and array, of which\n `$PDO->dsn['database_name']` should contain the real database name.\n\n",
                             "|xns": "Roo.doc",
                             "xtype": "Para"
                         }

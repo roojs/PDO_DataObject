@@ -29,7 +29,7 @@
                     "xtype": "Section",
                     "items": [
                         {
-                            "html": " returns 1 on success 0 on failure\n\n\n\n Usage:\n ```\n $object = new mytable();\n $object->name = \"fred\";\n $object->find();\n $store = array();\n while ($object->fetch()) {\n   echo $this->ID;\n   $store[] = $object; \/\/ builds an array of object lines.\n }\n ```\n \n",
+                            "html": " returns 1 on success 0 on failure\n\n\n\n Usage:\n ```\n $object = new mytable();\n $object->name = \"fred\";\n $object->find();\n $store = array();\n while ($object->fetch()) {\n   echo $this->ID;\n   $store[] = $object; \/\/ builds an array of object lines.\n }\n ```\n\n",
                             "|xns": "Roo.doc",
                             "xtype": "Para"
                         }

@@ -31,7 +31,7 @@
                             "xtype": "Param"
                         },
                         {
-                            "desc": "(optional) `'LEFT'|'INNER'|'RIGHT'|''`<br\/>\n                                           Inner is default,\n                                           '' indicates just select ... from a,b,c with no join and \n                                          links are added as where items.\n                                          <br\/>\n                                          If second Argument is array, it is assumed to be an associative\n                                          array with arguments matching below = eg.\n                                          \n                                          'joinType' => 'INNER',\n                                          'joinAs' => '...'\n                                          'joinCol' => ....\n                                          'useWhereAsOn' => false,\n                                          ",
+                            "desc": "(optional) `'LEFT'|'INNER'|'RIGHT'|''`<br\/>\n                                           Inner is default,\n                                           '' indicates just select ... from a,b,c with no join and\n                                          links are added as where items.\n                                          <br\/>\n                                          If second Argument is array, it is assumed to be an associative\n                                          array with arguments matching below = eg.",
                             "is_optional": false,
                             "name": "$joinType",
                             "type": "array",
@@ -39,7 +39,7 @@
                             "xtype": "Param"
                         },
                         {
-                            "desc": "(optional ) if you want to select the table as anther name\n                                          useful when you want to select multiple columsn\n                                          from a secondary table.\n     ",
+                            "desc": "(optional ) if you want to select the table as anther name\n                                          useful when you want to select multiple columsn\n                                          from a secondary table.",
                             "is_optional": false,
                             "name": "$joinAs",
                             "type": "string",
@@ -47,7 +47,7 @@
                             "xtype": "Param"
                         },
                         {
-                            "desc": "(optional) The column on This objects table to match (needed\n                                          if this table links to the child object in \n                                          multiple places eg.<br\/>\n                                          `user->friend` (is a link to another user) <br\/>\n                                          `user->mother` (is a link to another user..) ",
+                            "desc": "(optional) The column on This objects table to match (needed\n                                          if this table links to the child object in\n                                          multiple places eg.<br\/>\n                                          `user->friend` (is a link to another user) <br\/>\n                                          `user->mother` (is a link to another user..)",
                             "is_optional": false,
                             "name": "$joinCol",
                             "type": "string",
@@ -62,7 +62,7 @@
                     "xtype": "Section",
                     "items": [
                         {
-                            "html": " Usage: (requires links.ini to be set up correctly)\n ```\n \/\/ get all the images for product 24\n $i = new DataObject_Image();\n $pi = new DataObjects_Product_image();\n $pi->product_id = 24; \/\/ set the product id to 24\n $i->joinAdd($pi); \/\/ add the product_image connectoin\n $i->find();\n while ($i->fetch()) {\n     \/\/ do stuff\n }\n \n \/\/ an example with 2 joins\n \/\/ get all the images linked with products or productgroups\n $i = new DataObject_Image();\n $pi = new DataObject_Product_image();\n $pgi = new DataObject_Productgroup_image();\n $i->joinAdd($pi);\n $i->joinAdd($pgi);\n $i->find();\n while ($i->fetch()) {\n     \/\/ do stuff\n }\n ```\n\n if the second argement is an associative array, then the keys can be the argument names,\n and you can also use `'useWhereAsOn' => true` to convert the where argments from the object being added \\\n                                          into ON arguments.\n\n\n\n\n \n",
+                            "html": " Usage: (requires links.ini to be set up correctly)\n ```\n \/\/ get all the images for product 24\n $i = PDO_DataObject::factory('image');\n $pi = PDO_DAtaObject::factory('product_image');\n $pi->product_id = 24; \/\/ set the product id to 24\n $i->joinAdd($pi); \/\/ add the product_image connectoin\n $i->find();\n while ($i->fetch()) {\n     \/\/ do stuff\n }\n\n \/\/ an example with 2 joins\n \/\/ get all the images linked with products or productgroups\n $i = PDO_DataObject::factory('image');\n $pi = PDO_DAtaObject::factory('product_image');\n $pgi = PDO_DAtaObject::factory('productgroup_image');\n $i->joinAdd($pi);\n $i->joinAdd($pgi);\n $i->find();\n while ($i->fetch()) {\n     \/\/ do stuff\n }\n ```\n\n if the second argement is an associative array, then the keys can be the argument names,\n and you can also use `'useWhereAsOn' => true` to convert the where argments from the object being added \\\n                                          into ON arguments.\n\n\n\n\n                                          'joinType' => 'INNER',\n                                          'joinAs' => '...'\n                                          'joinCol' => ....\n                                          'useWhereAsOn' => false,\n\n\n\n\n",
                             "|xns": "Roo.doc",
                             "xtype": "Para"
                         }

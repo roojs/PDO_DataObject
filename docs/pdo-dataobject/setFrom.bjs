@@ -7,7 +7,7 @@
     "items": [
         {
             "name": "setFrom",
-            "purpose": " Copies items that are in the table definitions from an \\",
+            "purpose": " Sets the properties of the Object based on the Key Value array '$from'",
             "stype": "function",
             "|xns": "Roo.doc",
             "xtype": "Entry",
@@ -54,7 +54,7 @@
                     "xtype": "Section",
                     "items": [
                         {
-                            "html": " array or object into the current object\n \n it will not override primary key values.\n\n\n",
+                            "html": " it will not override primary key values.\n\n\n",
                             "|xns": "Roo.doc",
                             "xtype": "Para"
                         }

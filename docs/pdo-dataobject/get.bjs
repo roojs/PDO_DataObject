@@ -46,7 +46,7 @@
                     "xtype": "Section",
                     "items": [
                         {
-                            "html": " Usage:\n ```\n $object->get(1234);\n \n $object->get(\"email\",'fred@fred.com');\n ```\n Returns Number of rows located (usually 1) for success,\n and puts all the table columns into this classes variables\n\n\n if no `$value` is entered, it is assumed that `$key` is a value\n and get will then use the first key in keys()\n to obtain the key.\n \n",
+                            "html": " Usage:\n ```\n $object->get(1234);\n\n $object->get(\"email\",'fred@fred.com');\n ```\n Returns Number of rows located (usually 1) for success,\n and puts all the table columns into this classes variables\n\n\n if no `$value` is entered, it is assumed that `$key` is a value\n and get will then use the first key in keys()\n to obtain the key.\n\n",
                             "|xns": "Roo.doc",
                             "xtype": "Para"
                         }

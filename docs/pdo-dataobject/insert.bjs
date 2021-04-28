@@ -29,7 +29,7 @@
                     "xtype": "Section",
                     "items": [
                         {
-                            "html": " Returns the ID of the inserted element (if auto increment or sequences are used.)\n\n Usage:\n ```\n PDO_DataObject::Factory('mytable')\n   ->set([ 'name' => 'test'])\n   ->insert();\n ```\n \n",
+                            "html": " Returns the ID of the inserted element (if auto increment or sequences are used.)\n\n Usage:\n ```\n PDO_DataObject::Factory('mytable')\n   ->set([ 'name' => 'test'])\n   ->insert();\n ```\n\n",
                             "|xns": "Roo.doc",
                             "xtype": "Para"
                         }

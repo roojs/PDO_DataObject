@@ -46,7 +46,7 @@
                     "xtype": "Section",
                     "items": [
                         {
-                            "html": "  \n  BC Break: the standard date formating is different from DB_DataObject.\n  \n  Should better support Pre-1970 dates as it uses DateTime now, rather than strtotime\n  \n  with formaters..\n supported formaters:\n ``\n   date\/time : d\/m\/m (eg. php strftime) or pear::Date \n   numbers   : %02d (eg. sprintf)\n ```\n  \n \n",
+                            "html": "  BC Break: the standard date formating is different from DB_DataObject.\n\n  Should better support Pre-1970 dates as it uses DateTime now, rather than strtotime\n\n  with formaters..\n supported formaters:\n ``\n   date\/time : d\/m\/m (eg. php strftime) or pear::Date\n   numbers   : %02d (eg. sprintf)\n ```\n\n\n",
                             "|xns": "Roo.doc",
                             "xtype": "Para"
                         }

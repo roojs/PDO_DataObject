@@ -38,7 +38,7 @@
                     "xtype": "Section",
                     "items": [
                         {
-                            "html": " \n NOTE : ALWAYS ENSURE ARGUMENTS ARE ESCAPED\n\n By default if the select is empty, and you start adding arguments, then the resulting query will include a '*' star\n This can be cleared by calling without arguments - this differs to the chainable [select](#pdo-dataobject\/select) version of\n this method.\n\n Usage:\n ```\n $object->selectAdd(); \/\/ resets select to nothing!\n $object->selectAdd(\"*\"); \/\/ default select\n $object->selectAdd(\"unixtime(DATE) as udate\");\n $object->selectAdd(\"DATE\");\n ```\n \n",
+                            "html": " NOTE : ALWAYS ENSURE ARGUMENTS ARE ESCAPED\n\n By default if the select is empty, and you start adding arguments, then the resulting query will include a '*' star\n This can be cleared by calling without arguments - this differs to the chainable [select](#pdo-dataobject\/select) version of\n this method.\n\n Usage:\n ```\n $object->selectAdd(); \/\/ resets select to nothing!\n $object->selectAdd(\"*\"); \/\/ default select\n $object->selectAdd(\"unixtime(DATE) as udate\");\n $object->selectAdd(\"DATE\");\n ```\n\n",
                             "|xns": "Roo.doc",
                             "xtype": "Para"
                         }

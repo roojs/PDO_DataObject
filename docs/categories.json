@@ -252,12 +252,6 @@
             {
                 "|xns": "Roo.bootstrap",
                 "xtype": "NavItem",
-                "href": "#pdo-dataobject\/fetchAllAssoc",
-                "html": "fetchAllAssoc"
-            },
-            {
-                "|xns": "Roo.bootstrap",
-                "xtype": "NavItem",
                 "href": "#pdo-dataobject\/find",
                 "html": "find"
             },
@@ -327,6 +321,12 @@
         "|xns": "Roo.bootstrap",
         "xtype": "NavGroup",
         "items": [
+            {
+                "|xns": "Roo.bootstrap",
+                "xtype": "NavItem",
+                "href": "#pdo-dataobject\/databaseLinks",
+                "html": "databaseLinks"
+            },
             {
                 "|xns": "Roo.bootstrap",
                 "xtype": "NavItem",

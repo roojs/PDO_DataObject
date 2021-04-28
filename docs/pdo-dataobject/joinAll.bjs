@@ -23,7 +23,7 @@
                     "xtype": "Synopsis",
                     "items": [
                         {
-                            "desc": "Configuration (see above)\n          ",
+                            "desc": "Configuration (see above)",
                             "is_optional": false,
                             "name": "$cfg",
                             "type": "array",
@@ -38,7 +38,7 @@
                     "xtype": "Section",
                     "items": [
                         {
-                            "html": " \n Usage:\n ```\n $array  = PDO_DataObject::factory('mytable')->joinAll()->fetchAssoc();\n ```\n \n see [autoJoin](#pdo-dataobject\/autoJoin) for more details.\n\n ### Configuration (First Argument array)\n\n | Key | Description |\n | --- | ------------|\n | exclude |  Array of columns to exclude from results (eg. modified_by_id) <br\/>\\\n                    Use TABLENAME.* to prevent a join occuring to a specific table. |\n | include |  Array of specific columns to include (none others are added to select, join is still done though) |\n | links |   The equivilant links.ini data for this table eg. <br\/>\\\n                    `array( 'person_id' => 'person:id', .... )` <br\/>\\\n                      only applied to this instance of the DataObject (used to be applied globally)\n  | distinct | Array of distinct columns. (note you may need to add GROUP BY for this to work) |\n\n",
+                            "html": " Usage:\n ```\n $array  = PDO_DataObject::factory('mytable')->joinAll()->fetchAssoc();\n ```\n\n see [autoJoin](#pdo-dataobject\/autoJoin) for more details.\n\n ### Configuration (First Argument array)\n\n | Key | Description |\n | --- | ------------|\n | exclude |  Array of columns to exclude from results (eg. modified_by_id) <br\/>\\\n                    Use TABLENAME.* to prevent a join occuring to a specific table. |\n | include |  Array of specific columns to include (none others are added to select, join is still done though) |\n | links |   The equivilant links.ini data for this table eg. <br\/>\\\n                    `array( 'person_id' => 'person:id', .... )` <br\/>\\\n                      only applied to this instance of the DataObject (used to be applied globally)\n  | distinct | Array of distinct columns. (note you may need to add GROUP BY for this to work) |\n\n\n",
                             "|xns": "Roo.doc",
                             "xtype": "Para"
                         }

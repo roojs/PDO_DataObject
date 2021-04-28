@@ -62,7 +62,7 @@
                     "xtype": "Section",
                     "items": [
                         {
-                            "html": " \n NOTE : ALWAYS ENSURE KEY IS ESCAPED\n \n Usage:\n ```\n \/\/minimal usage\n $object->whereAddIn('id', $array, 'int');\n\n \/\/ cast to float, and call whereAdd with 'OR'\n $object->whereAddIn('price', $array, 'float', 'OR');\n\n \/\/ quote strings\n $object->whereAddIn('name', $array, 'string');  \n ```\n\n",
+                            "html": " NOTE : ALWAYS ENSURE KEY IS ESCAPED\n\n Usage:\n ```\n \/\/minimal usage\n $object->whereAddIn('id', $array, 'int');\n\n \/\/ cast to float, and call whereAdd with 'OR'\n $object->whereAddIn('price', $array, 'float', 'OR');\n\n \/\/ quote strings\n $object->whereAddIn('name', $array, 'string');\n ```\n\n",
                             "|xns": "Roo.doc",
                             "xtype": "Para"
                         }

@@ -38,7 +38,7 @@
                     "xtype": "Section",
                     "items": [
                         {
-                            "html": " \n NOTE : ALWAYS ENSURE ARGUMENTS ARE ESCAPED \n\n the behaviour is slightly different to selectAdd()\n when you call select() with an argument the first time, it will remove the default '*',\n if you need to include '*', then call it first with `select('*')`\n\n If called multiple times, it will add the 'commas' between the arguments\n\n Usage:\n ```\n $object->select(); \/\/ resets select to nothing!\n $object->select(\"*\"); \/\/ default select\n $object->select(\"unixtime(DATE) as udate\");\n $object->select(\"DATE\");\n ```\n\n",
+                            "html": " NOTE : ALWAYS ENSURE ARGUMENTS ARE ESCAPED\n\n the behaviour is slightly different to selectAdd()\n when you call select() with an argument the first time, it will remove the default '*',\n if you need to include '*', then call it first with `select('*')`\n\n If called multiple times, it will add the 'commas' between the arguments\n\n Usage:\n ```\n $object->select(); \/\/ resets select to nothing!\n $object->select(\"*\"); \/\/ default select\n $object->select(\"unixtime(DATE) as udate\");\n $object->select(\"DATE\");\n ```\n\n",
                             "|xns": "Roo.doc",
                             "xtype": "Para"
                         }

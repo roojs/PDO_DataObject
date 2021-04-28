@@ -46,7 +46,7 @@
                     "xtype": "Section",
                     "items": [
                         {
-                            "html": " When you call [set](#pdo-dataObjects\/set)()\/[setFrom](#pdo-dataObjects\/setFrom)() it uses this\n method to set the property of the object\n\n\n Currently  supports these types\n \n | Database Type | validation  |\n | ------------- | ----------- |\n | date       | using (standard time format, or unixtimestamp).... so you could create a method : |\n | time       | using standard time format |\n | datetime   | using  same as date - accepts iso standard or unixtimestamp. |\n | string     | typecast only..\n | int        | cast to integers\n | NULL\/NOTNULL | verifies not null can not be set to null see [sqlValue](#pdo-dataobject\/sqlValue])() |\n \n\n",
+                            "html": " When you call [set](#pdo-dataObjects\/set)()\/[setFrom](#pdo-dataObjects\/setFrom)() it uses this\n method to set the property of the object\n\n\n Currently  supports these types\n\n | Database Type | validation  |\n | ------------- | ----------- |\n | date       | using (standard time format, or unixtimestamp).... so you could create a method : |\n | time       | using standard time format |\n | datetime   | using  same as date - accepts iso standard or unixtimestamp. |\n | string     | typecast only..\n | int        | cast to integers\n | NULL\/NOTNULL | verifies not null can not be set to null see [sqlValue](#pdo-dataobject\/sqlValue])() |\n\n\n",
                             "|xns": "Roo.doc",
                             "xtype": "Para"
                         }

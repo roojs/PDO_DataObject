@@ -38,7 +38,7 @@
                     "xtype": "Section",
                     "items": [
                         {
-                            "html": " \n NOTE : ALWAYS ENSURE ARGUMENTS ARE ESCAPED\n\n Usage:\n ```\n $object->orderBy(); \/\/clears order by\n $object->orderBy(\"ID ASC\");\n $object->orderBy(\"ID DESC ,age ASC\");\n ```\n\n",
+                            "html": " NOTE : ALWAYS ENSURE ARGUMENTS ARE ESCAPED\n\n Usage:\n ```\n $object->orderBy(); \/\/clears order by\n $object->orderBy(\"ID ASC\");\n $object->orderBy(\"ID DESC ,age ASC\");\n ```\n\n",
                             "|xns": "Roo.doc",
                             "xtype": "Para"
                         }

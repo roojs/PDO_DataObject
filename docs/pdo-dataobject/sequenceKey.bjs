@@ -54,7 +54,7 @@
                     "xtype": "Section",
                     "items": [
                         {
-                            "html": " by default it returns the first key from keys()\n set usage:\n ```\n $do->sequenceKey('id',true);\n ```\n\n override this to return `array(false,false)` if table has no real sequence key.\n     \n",
+                            "html": " by default it returns the first key from keys()\n set usage:\n ```\n $do->sequenceKey('id',true);\n ```\n\n override this to return `array(false,false)` if table has no real sequence key.\n\n",
                             "|xns": "Roo.doc",
                             "xtype": "Para"
                         }

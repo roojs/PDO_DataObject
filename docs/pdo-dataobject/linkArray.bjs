@@ -46,7 +46,7 @@
                     "xtype": "Section",
                     "items": [
                         {
-                            "html": " \n This is only in for compatibility ( not supported anymore )\n",
+                            "html": " This is only in for compatibility ( not supported anymore )\n",
                             "|xns": "Roo.doc",
                             "xtype": "Para"
                         }

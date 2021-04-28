@@ -46,7 +46,7 @@
                     "xtype": "Section",
                     "items": [
                         {
-                            "html": " \n \n usage:\n ```\n $doTable1 = PDO_DataObject::factory(\"table1\");\n $doTable2 = PDO_DataObject::factory(\"table2\");\n \n $doTable1->selectAdd();\n $doTable1->selectAdd(\"col1,col2\");\n $doTable1->whereAdd(\"col1 > 100\");\n $doTable1->orderBy(\"col1\");\n\n $doTable2->selectAdd();\n $doTable2->selectAdd(\"col1, col2\");\n $doTable2->whereAdd(\"col2 = 'v'\");\n \n $doTable1->unionAdd($doTable2);\n $doTable1->find();\n ```\n \n",
+                            "html": " usage:\n ```\n $doTable1 = PDO_DataObject::factory(\"table1\");\n $doTable2 = PDO_DataObject::factory(\"table2\");\n\n $doTable1->selectAdd();\n $doTable1->selectAdd(\"col1,col2\");\n $doTable1->whereAdd(\"col1 > 100\");\n $doTable1->orderBy(\"col1\");\n\n $doTable2->selectAdd();\n $doTable2->selectAdd(\"col1, col2\");\n $doTable2->whereAdd(\"col2 = 'v'\");\n\n $doTable1->unionAdd($doTable2);\n $doTable1->find();\n ```\n\n",
                             "|xns": "Roo.doc",
                             "xtype": "Para"
                         }

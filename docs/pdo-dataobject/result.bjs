@@ -21,7 +21,16 @@
                     "returntype": "PDOStatement|false",
                     "|xns": "Roo.doc",
                     "xtype": "Synopsis",
-                    "items": []
+                    "items": [
+                        {
+                            "desc": "result object - used to force toArray() to deliver a full range of values.",
+                            "is_optional": false,
+                            "name": "",
+                            "type": "fake",
+                            "|xns": "Roo.doc",
+                            "xtype": "Param"
+                        }
+                    ]
                 },
                 {
                     "stype": "desc",
@@ -29,7 +38,7 @@
                     "xtype": "Section",
                     "items": [
                         {
-                            "html": " \n",
+                            "html": "",
                             "|xns": "Roo.doc",
                             "xtype": "Para"
                         }

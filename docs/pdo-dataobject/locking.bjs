@@ -38,7 +38,7 @@
                     "xtype": "Section",
                     "items": [
                         {
-                            "html": " NOTE : ALWAYS ENSURE ARGUMENTS ARE ESCAPED\n\n Usage:\n ```\n $object->locking(PDO_DataObject::FOR_UPDATE);\n $object->locking(PDO_DataObject::IN_SHARE_MODE); \n $object->locking(); \/\/reset the locking\n     \n ```\n \n",
+                            "html": " NOTE : ALWAYS ENSURE ARGUMENTS ARE ESCAPED\n\n Usage:\n ```\n $object->locking(PDO_DataObject::FOR_UPDATE);\n $object->locking(PDO_DataObject::IN_SHARE_MODE);\n $object->locking(); \/\/reset the locking\n\n ```\n\n",
                             "|xns": "Roo.doc",
                             "xtype": "Para"
                         }

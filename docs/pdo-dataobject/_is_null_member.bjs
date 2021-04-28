@@ -15,6 +15,7 @@
                 {
                     "name": "_is_null_member",
                     "is_static": true,
+                    "is_constructor": false,
                     "memberof": "PDO_DataObject",
                     "returndesc": "object",
                     "returntype": "bool",
@@ -30,7 +31,7 @@
                             "xtype": "Param"
                         },
                         {
-                            "desc": "$prop",
+                            "desc": "prperty",
                             "is_optional": false,
                             "name": "$prop",
                             "type": "false",
@@ -45,7 +46,7 @@
                     "xtype": "Section",
                     "items": [
                         {
-                            "html": "<p> Testing for null is a bit of a nightmare... - the database may have null values in it, but that does not mean \n that properties are actually set to null..!!!\n\n When updateing \/ inserting or searching queries need to be built based on the properties.<\/p><p> when a column is NOT_NULL - we just ignore any null testing... the value is either set or not-set...\n\n when a column allows NULL\n     then we have to determine was it actually set to NULL by the user, or was it just empty, and never filled in.\n     if you use real null values, not CAST , then we can only really detect it when you use 'set\/setFrom'\n         in which case we actually set the value to a CAST.. <\/p><p> enable_null_strings (seriously not recommended) - modifies the behaviour - it's really only for BC code.\n     setting it to true = then 'null' as a string works..\n     setting it to 'full' - results in $this->XXXX << even if it's not set, then we read it as null!!!<\/p><p><\/p>",
+                            "html": " Testing for null is a bit of a nightmare... - the database may have null values in it, but that does not mean\n that properties are actually set to null..!!!\n\n When updateing \/ inserting or searching queries need to be built based on the properties.\n\n when a column is NOT_NULL - we just ignore any null testing... the value is either set or not-set...\n\n when a column allows NULL\n     then we have to determine was it actually set to NULL by the user, or was it just empty, and never filled in.\n     if you use real null values, not CAST , then we can only really detect it when you use 'set\/setFrom'\n         in which case we actually set the value to a CAST..\n\n enable_null_strings (seriously not recommended) - modifies the behaviour - it's really only for BC code.\n     setting it to true = then 'null' as a string works..\n     setting it to 'full' - results in $this->XXXX << even if it's not set, then we read it as null!!!\n\n note - technically it's private - but it's used by validate... so it's now public.\n\n\n",
                             "|xns": "Roo.doc",
                             "xtype": "Para"
                         }
@@ -58,11 +59,6 @@
                 },
                 {
                     "stype": "return",
-                    "|xns": "Roo.doc",
-                    "xtype": "Section"
-                },
-                {
-                    "stype": "example",
                     "|xns": "Roo.doc",
                     "xtype": "Section"
                 }

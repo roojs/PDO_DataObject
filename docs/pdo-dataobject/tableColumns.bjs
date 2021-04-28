@@ -23,7 +23,7 @@
                     "xtype": "Synopsis",
                     "items": [
                         {
-                            "desc": "key=>type array",
+                            "desc": "key=>type array - if you set it to false it will clear the stored tableColumns",
                             "is_optional": false,
                             "name": "",
                             "type": "array",

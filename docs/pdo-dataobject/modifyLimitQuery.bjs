@@ -46,7 +46,7 @@
                     "xtype": "Section",
                     "items": [
                         {
-                            "html": " This is used internally to modify the SELECT query to apply rules about limiting the resultsets.\n You should not need to use this normally - it's just publicly available as it's pretty harmless...\n\n \n",
+                            "html": " This is used internally to modify the SELECT query to apply rules about limiting the resultsets.\n You should not need to use this normally - it's just publicly available as it's pretty harmless...\n\n\n",
                             "|xns": "Roo.doc",
                             "xtype": "Para"
                         }

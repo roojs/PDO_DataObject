@@ -46,7 +46,7 @@
                     "xtype": "Section",
                     "items": [
                         {
-                            "html": " NOTE : ALWAYS ENSURE ARGUMENTS ARE ESCAPED\n\n Usage:\n ```\n $object->having(); \/\/reset the grouping\n $object->having(\"sum(value) > 0 \");\n ```\n \n",
+                            "html": " NOTE : ALWAYS ENSURE ARGUMENTS ARE ESCAPED\n\n Usage:\n ```\n $object->having(); \/\/reset the grouping\n $object->having(\"sum(value) > 0 \");\n ```\n\n",
                             "|xns": "Roo.doc",
                             "xtype": "Para"
                         }

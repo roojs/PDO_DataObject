@@ -25,7 +25,7 @@
                         {
                             "desc": "tablename or database_nickname\/tablename",
                             "is_optional": false,
-                            "name": "$table",
+                            "name": "$in_table",
                             "type": "string",
                             "|xns": "Roo.doc",
                             "xtype": "Param"
@@ -38,7 +38,7 @@
                     "xtype": "Section",
                     "items": [
                         {
-                            "html": " usage:\n ```\n $do = PDO_DataObject::factory('person')\n ```\n\n table name can be \"databasename\/table\"\n and allow modular dataobjects to be written..\n (this also helps proxy creation)\n\n \n",
+                            "html": " usage:\n ```\n $do = PDO_DataObject::factory('person')\n ```\n\n table name can be \"databasename\/table\"\n and allow modular dataobjects to be written..\n (this also helps proxy creation)\n\n\n",
                             "|xns": "Roo.doc",
                             "xtype": "Para"
                         }

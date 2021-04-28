@@ -7,7 +7,7 @@
     "items": [
         {
             "name": "fetchAllAssoc",
-            "purpose": " fetches all results as an array of associative  arrays, without creating Child DataObjects",
+            "purpose": "  DEPRICATED - just use the fetchAll..",
             "stype": "function",
             "|xns": "Roo.doc",
             "xtype": "Entry",
@@ -17,8 +17,8 @@
                     "is_static": false,
                     "is_constructor": false,
                     "memberof": "PDO_DataObject",
-                    "returndesc": "array of associative arrays (note does note create child dataobjects.",
-                    "returntype": "array",
+                    "returndesc": "",
+                    "returntype": "",
                     "|xns": "Roo.doc",
                     "xtype": "Synopsis",
                     "items": []
@@ -29,7 +29,7 @@
                     "xtype": "Section",
                     "items": [
                         {
-                            "html": " It's an alias for `fetchAll(false,false, true)`\n \n",
+                            "html": "",
                             "|xns": "Roo.doc",
                             "xtype": "Para"
                         }

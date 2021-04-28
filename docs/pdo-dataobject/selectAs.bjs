@@ -54,7 +54,7 @@
                     "xtype": "Section",
                     "items": [
                         {
-                            "html": " note it will clear the '*' default select\n \n Usage:\n ```\n $object->selectAs( );\n ```\n adds \"table.colnameA as colnameA,table.colnameB as colnameB,......\"\n n\n\n ```\n $object->selectAs(array('a','b'),'%s_x');\n ```\n adds \"a as a_x, b as b_x\"\n\n ```\n $object->selectAs(array('a','b'),'ddd_%s','ccc');\n ```\n adds \"ccc.a as ddd_a, ccc.b as ddd_b\"\n\n ```\n $object->selectAdd($object,'prefix_%s');\n ```\n calls $object->get_table and adds it all as objectTableName.colnameA as prefix_colnameA\n\n ```\n $object->selectAdd('another_table','prefix_%s');\n ```\n calls $object->get_table and adds it all as objectTableName.colnameA as prefix_colnameA\n \n\n",
+                            "html": " note it will clear the '*' default select\n\n Usage:\n ```\n $object->selectAs( );\n ```\n adds \"table.colnameA as colnameA,table.colnameB as colnameB,......\"\n n\n\n ```\n $object->selectAs(array('a','b'),'%s_x');\n ```\n adds \"a as a_x, b as b_x\"\n\n ```\n $object->selectAs(array('a','b'),'ddd_%s','ccc');\n ```\n adds \"ccc.a as ddd_a, ccc.b as ddd_b\"\n\n ```\n $object->selectAdd($object,'prefix_%s');\n ```\n calls $object->get_table and adds it all as objectTableName.colnameA as prefix_colnameA\n\n ```\n $object->selectAdd('another_table','prefix_%s');\n ```\n calls $object->get_table and adds it all as objectTableName.colnameA as prefix_colnameA\n\n\n",
                             "|xns": "Roo.doc",
                             "xtype": "Para"
                         }

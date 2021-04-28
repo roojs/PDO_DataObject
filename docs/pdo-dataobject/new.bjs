@@ -38,7 +38,7 @@
                     "xtype": "Section",
                     "items": [
                         {
-                            "html": " This is not normally used. it's better to use factory to load extended dataObjects.\n\n Can be used to create on-the fly DataObjects. not heavily tested yet though...\n Should be used with config[proxy] = true  \n\n Normally you would extend this class an fill it up with methods that relate to actions on that table\n\n usage:\n ```\n $a =  new PDO_DataObject('person');\n $a =  new PDO_DataObject('mydatabase\/person');\n $a =  new PDO_DataObject(['mydatabase','person']);\n ```\n \n",
+                            "html": " This is not normally used. it's better to use factory to load extended dataObjects.\n\n Can be used to create on-the fly DataObjects. not heavily tested yet though...\n Should be used with config[proxy] = true\n\n Normally you would extend this class an fill it up with methods that relate to actions on that table\n\n usage:\n ```\n $a =  new PDO_DataObject('person');\n $a =  new PDO_DataObject('mydatabase\/person');\n $a =  new PDO_DataObject(['mydatabase','person']);\n ```\n\n",
                             "|xns": "Roo.doc",
                             "xtype": "Para"
                         }
