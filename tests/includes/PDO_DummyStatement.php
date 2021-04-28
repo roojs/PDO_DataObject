@@ -145,6 +145,9 @@ class PDO_DummyStatement {
             'f5a65e29f10636175726b93d83e99ad6' => '[]', // used by config-database
        
             '49a4307336aeaeb2e24de305a3d0da30' => '[]', // config-schema
+            
+            'b7d3daa09ffbeb20018a983632ee9525' => '[]',
+            
         ),
           
         'oci:dbname=somedb' => array(
