@@ -184,6 +184,10 @@ SELECT *,  name
  FROM   Companies   
  WHERE ( (Companies.comptype  = 'CONSULTANT') ) 
  LIMIT  3
+Fetch Row 0 / 3
+Fetch Row 1 / 3
+Fetch Row 2 / 3
+Fetch Row 3 / 3
 Array
 (
     [0] => Vinski Web
