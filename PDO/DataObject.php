@@ -1646,6 +1646,7 @@ class PDO_DataObject
                 return $ret;
                 
             // key object
+            case is_string($k) && $v == true && $method === false: // BC support
             case is_string($k) && $v == PDO_DataObject::FETCH_OBJECT  && $method === false:
             case $k === PDO_DataObject::FETCH_PID  && $v === PDO_DataObject::FETCH_OBJECT  && $method === false:
                 while ($this->fetch()) {
