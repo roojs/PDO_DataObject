@@ -458,6 +458,7 @@ Fetch Row 0 / 3
 Fetch Row 1 / 3
 Fetch Row 2 / 3
 Fetch Row 3 / 3
+Close Cursor
 Array
 (
     [0] => Array
