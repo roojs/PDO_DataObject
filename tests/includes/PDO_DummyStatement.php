@@ -34,7 +34,7 @@ class PDO_DummyStatement {
                 ]',
                 
             //
-            'e7e98b166e84d8a86f012e03789dc226' => [],
+            'e7e98b166e84d8a86f012e03789dc226' => '[]',
             // describe companies... 
             '6996acc544ef440ec8756b9a474a8261' => '[ 
                     {"tablename":"Companies","name":"id","default_value_raw":null,"type":"int","len":"10","flags":"auto_increment not_null primary","fk_table":"","fk_column":""},
