@@ -1633,6 +1633,7 @@ class PDO_DataObject
                 while($row = $this->_result->fetch(PDO::FETCH_ASSOC)) {
                     $ret[] =  $row[$k];
                 }
+                die("here");
                 return $ret;
             
             // key value
