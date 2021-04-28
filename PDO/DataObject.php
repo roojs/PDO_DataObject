@@ -1575,8 +1575,8 @@ class PDO_DataObject
      *
      * 
      * @category fetch
-     * @param    string|PDO_DataObject::FETCH_FAST|PDO_DataObject::FETCH_PID|Closure  $k key  or closure for something to call on every object
-     * @param    string|false  $v value
+     * @param    string|PDO_DataObject::FETCH_FAST|PDO_DataObject::FETCH_PID|PDO_DataObject::FETCH_COL|Closure  $k key  or closure for something to call on every object
+     * @param    string|PDO_DataObject::FETCH_COL|PDO_DataObject::FETCH_OBJECT  $v value
      * @param    string|false  true|$method method to call on each result to get array value (eg. 'toArray')
      * @param    mixed ...   other arguments are passed to 'method'
      * @access  public
