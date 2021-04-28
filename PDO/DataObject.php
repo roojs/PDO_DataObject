@@ -1593,7 +1593,7 @@ class PDO_DataObject
         
 
         if ($this->_result === false) {
-            if (!$cl && $k !== false &&  $this->_query['data_select'] === false) {
+            if (!$kcl && $k !== false &&  $this->_query['data_select'] === false) {
                 $this->select($k);
                 if ($v !== false) {
                     $this->select($v);
