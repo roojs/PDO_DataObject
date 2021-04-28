@@ -146,6 +146,10 @@ SELECT id
  FROM   Companies   
  WHERE ( (Companies.comptype  = 'CONSULTANT') ) ORDER BY id ASC  
  LIMIT  3
+Fetch Row 0 / 3
+Fetch Row 1 / 3
+Fetch Row 2 / 3
+Fetch Row 3 / 3
 Array
 (
     [0] => 2
@@ -161,6 +165,10 @@ SELECT LENGTH(name)
  FROM   Companies   
  WHERE ( (Companies.comptype  = 'CONSULTANT') ) ORDER BY LENGTH(name) DESC  
  LIMIT  3
+Fetch Row 0 / 3
+Fetch Row 1 / 3
+Fetch Row 2 / 3
+Fetch Row 3 / 3
 Array
 (
     [0] => 29
