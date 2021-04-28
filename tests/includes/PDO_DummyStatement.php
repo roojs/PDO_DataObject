@@ -185,7 +185,7 @@ class PDO_DummyStatement {
                 "ipaddr":"202.134.82.251","on_id":"0","on_table":"","person_id":"4","remarks":"0","person_table":null}
             ]',
             // 18 - find test 3 rows where comptype = 'CONSULT'
-            '2a1daa39fc1c411b62e53c52ff873eee' => '[
+            'ebba0af48c52cc567e77a69664b3addb' => '[
                   {"code":"vinski","name":"Vinski Web","remarks":"","owner_id":"0","address":"",
                  "tel":"","fax":"","email":"test@example.com","id":"15","isOwner":"0","logo_id":"0","background_color":"","comptype":"CONSULTANT",
                  "url":"","main_office_id":"0","created_by":"0","created_dt":"0000-00-00 00:00:00",
