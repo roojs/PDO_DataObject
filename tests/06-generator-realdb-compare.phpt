@@ -2,6 +2,8 @@
 Generator - compare to DB_DataObject - Postgres (real database) - will not normmally pass...
 --FILE--
 <?php
+die("DONE");
+
 require_once 'includes/init.php';
  
 
