@@ -1562,14 +1562,11 @@ class PDO_DataObject
      * * $x = PDO_DataObject::factory('mytable');
      * $x->whereAdd('something = 1');
      * $ar = $x->fetchAll('id',false,'toArray',false, 0);
-     * ```
+     *```
      *
-     * L) associative array of object
-     * ```
-     * $x = PDO_DataObject::factory('mytable');
-     * $x->whereAdd('something = 1');
-     * $ar = $x->fetchAll('id',false, 0);
-     * ```
+     *
+     *
+     *
      * 
      * @category fetch
      * @param    string|false|Closure  $k key  or closure for something to call on every object
