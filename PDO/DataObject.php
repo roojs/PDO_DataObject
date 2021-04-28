@@ -1618,7 +1618,13 @@ class PDO_DataObject
             // key
             
             // array of assoc arrays..
+            
+            
+            
             case $k === PDO_DataObject::FETCH_FAST && $v === false && $method === false:
+                
+            case $k === false && $v === false  && $method === true: // BC - not documented.
+                
                 $ret = $this->_result->fetchAll(PDO::FETCH_ASSOC);
                 if (self::$debug) {
                     $this->debug("fetchAll returned: ". json_encode($ret),__FUNCTION__);
@@ -1642,7 +1648,7 @@ class PDO_DataObject
                 
             // key object
             case is_string($k) && $v == PDO_DataObject::FETCH_OBJECT  && $method === false:
-            case $k === PDO_DataObject::FETCH_PID  && PDO_DataObject::FETCH_OBJECT  && $method === false:
+            case $k === PDO_DataObject::FETCH_PID  && $v === PDO_DataObject::FETCH_OBJECT  && $method === false:
                 while ($this->fetch()) {
                     $ret[is_string($k) ? $this->$k : $this->pid()] = clone($this);
                 }
