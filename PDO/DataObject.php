@@ -1575,7 +1575,7 @@ class PDO_DataObject
      *
      * 
      * @category fetch
-     * @param    string|false|Closure  $k key  or closure for something to call on every object
+     * @param    string|PDO_DataObject::FETCH_FAST|PDO_DataObject::FETCH_PID|Closure  $k key  or closure for something to call on every object
      * @param    string|false  $v value
      * @param    string|false  true|$method method to call on each result to get array value (eg. 'toArray')
      * @param    mixed ...   other arguments are passed to 'method'
@@ -1696,6 +1696,7 @@ class PDO_DataObject
                 }
                 return $ret;
             
+            // support for quick fetches.
             case $k == PDO_DataObject::FETCH_COL && $v === false:
                 return $this->_result->fetchAll(PDO::FETCH_COLUMN,0);
             
