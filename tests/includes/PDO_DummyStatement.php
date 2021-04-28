@@ -58,7 +58,7 @@ class PDO_DummyStatement {
                     {"tablename":"Companies","name":"country","default_value_raw":"","type":"varchar","len":null,"flags":" not_null","fk_table":"","fk_column":""}
                 ]',
             // describe events... 
-            'fbfdf155a2b80c37a9da0b57c7ec0c8a' => '[
+            'e7e98b166e84d8a86f012e03789dc226' => '[
                     {"tablename":"Events","name":"id","default_value_raw":null,"type":"int","len":"10","flags":"auto_increment not_null primary","fk_table":"","fk_column":""},
                     {"tablename":"Events","name":"person_name","default_value_raw":null,"type":"varchar","len":null,"flags":" not_null","fk_table":"","fk_column":""},
                     {"tablename":"Events","name":"event_when","default_value_raw":null,"type":"datetime","len":null,"flags":" not_null multiple_key","fk_table":"","fk_column":""},
