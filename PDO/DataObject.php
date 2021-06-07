@@ -1335,6 +1335,11 @@ class PDO_DataObject
             return false;
         }
         //PDO::FETCH_ASSOC
+        
+        if (!empty($this->_snapshot)) {
+            unset($this->_snapshot);
+        }
+        
 
         // fast_fetch - experimentall... - not sure what happens on missing/null values etc.. on rows.
         if (self::$config['fetch_into']) {
@@ -2956,7 +2961,12 @@ class PDO_DataObject
         if (empty($this->$k)) { // no need to store originall...
             return;
         }
+        // stop it nesting indefinatly
+        if (isset($this->_snapshot)) {
+            unset($this->_snapshot);
+        }
         $this->_snapshot = clone($this);
+        
         return $this;
     }
 
