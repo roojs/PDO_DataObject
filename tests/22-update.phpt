@@ -66,6 +66,8 @@ try {
     echo "Throws exception as expected: {$e->getMessage()}\n";
 }
 
+
+
 echo "\n\n--------\n";
 echo "bulk update using where  ;\n" ;
 
