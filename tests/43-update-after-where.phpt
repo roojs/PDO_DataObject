@@ -31,7 +31,7 @@ echo "update after using where  ;\n" ;
 
 $event = PDO_DataObject::factory('Events');
 $event->action="ssss";
-$event->where('id >15 and id < 20');
+$event->where('id >880453 and id < 880456');
 foreach($event->fetchAll() as $e) {
         $old = clone($e);
         $e->action = "bbb";
