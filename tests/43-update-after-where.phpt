@@ -30,11 +30,11 @@ echo "\n\n--------\n";
 echo "update after using where  ;\n" ;
 
 $event = PDO_DataObject::factory('Events');
-$event->action="ERROR";
+$event->ipaddr="127.0.0.1";
 $event->where('id >880453 and id < 880456');
 foreach($event->fetchAll() as $e) {
         $old = clone($e);
-        $e->action = "bbb";
+        $e->action = "Ccc";
         $e->update($old);
 }
 
