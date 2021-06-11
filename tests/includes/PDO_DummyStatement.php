@@ -123,7 +123,7 @@ class PDO_DummyStatement {
                    {"tablename":"addr","name":"addr_number","default_value_raw":null,"type":"text","len":null,"flags":" not_null","fk_table":null,"fk_column":null}
                 ]'
         ),
-        
+ 
         // 03 - error tests..
           'mysql:dbname=somedb;host=localhost;port=3344' => array(
             
@@ -411,6 +411,16 @@ class PDO_DummyStatement {
              // config-schema-location
              'f5a65e29f10636175726b93d83e99ad6' => '[]',
              '49a4307336aeaeb2e24de305a3d0da30' => '[]',
+             
+             
+            // test 43       
+            'f3c3df658c34091f268f3767ae835fbb' => '[
+                {"id":"880454","person_name":"alan","event_when":"2021-05-26 15:30:02","action":"bbb","ipaddr":"127.0.0.1","on_id":"0","on_table":"","person_id":"1","remarks":"PERMISSION DENIED (g)","person_table":"core_person","dupe_id":"0"},
+                {"id":"880455","person_name":"alan","event_when":"2021-05-27 11:37:56","action":"bbb","ipaddr":"127.0.0.1","on_id":"0","on_table":"","person_id":"1","remarks":"PERMISSION DENIED (g)","person_table":"core_person","dupe_id":"0"}
+            ]',
+            '1b787098d6053b2cb040a5d136424e80' => '[]',
+            'ac53eb383010cd58315aa0d3a1d691a7' => '[]',
+             
         ), 
          'pgsql:dbname=pginsert;host=localhost' => array(  
             // insert....
