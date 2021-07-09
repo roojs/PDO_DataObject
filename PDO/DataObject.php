@@ -2832,6 +2832,9 @@ class PDO_DataObject
                 $settings .= "$kSql = {$this->$k} ";
                 continue;
             }
+            if (is_object($this->$k)) {
+                $this->raise("Attempt to assign Object to $k : " . print_R($this->$k, true), self::ERROR_INVALIDARGS);
+            }
             // at present we only cast to integers
             // - V2 may store additional data about float/int
             $settings .= "$kSql = " . intval($this->$k) . ' ';
