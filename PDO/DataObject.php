@@ -5867,7 +5867,7 @@ class PDO_DataObject
         }
 
         $colorize = ($logtype == 'ERROR') ? '<font color="red">' : '<font>';
-        echo "<code>{$colorize}<B>$class: $logtype:</B> ". nl2br(htmlspecialchars($message)) . "</font></code><BR>\n";
+        echo "{$colorize}<code><B>$class: $logtype:</B></code><code style=\"white-space:pre\">". htmlspecialchars($message) . "</code></font><BR>\n";
     }
 
     /**
