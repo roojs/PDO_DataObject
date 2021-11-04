@@ -356,7 +356,7 @@ class PDO_DataObject_Cast {
     * @access   public
     */
   
-    function toString($to=false,$PDO) 
+    function toString($to=false,$PDO=false) 
     {
         // if $this->type is not set, we are in serious trouble!!!!
         // values for to:
