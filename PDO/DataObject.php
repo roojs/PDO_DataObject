@@ -5710,7 +5710,7 @@ class PDO_DataObject
     *  with formaters..
     * supported formaters:
     * ``
-    *   date/time : d/m/m (eg. php strftime) or pear::Date
+    *   date/time : d/m/m (eg. php DateTime) 
     *   numbers   : %02d (eg. sprintf)
     * ```
     *
