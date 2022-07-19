@@ -1948,7 +1948,7 @@ class PDO_DataObject
      * Usage:
      * ```
      * $object->groupBy(); //reset the grouping
-     * $object->groupBy("ID DESC");
+     * $object->groupBy("ID");
      * $object->groupBy("ID,age");
      *```
      *
