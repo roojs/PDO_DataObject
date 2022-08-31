@@ -313,7 +313,7 @@ class PDO_DataObject_Generator_Column
         
         $m = array();
        
-        if (preg_match('/(nextval\(([^)]*))/i',$this->default_value_raw,$m)
+        if ((!empty($this->default_value_raw) && preg_match('/(nextval\(([^)]*))/i',$this->default_value_raw,$m))
             ||
             preg_match('/auto_increment/i',rawurldecode($this->flags)) 
             || (isset($def_ar['autoincrement']) && ($def_ar['autoincrement'] === true))) {
