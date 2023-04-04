@@ -29,7 +29,7 @@
  */
 
  
- 
+#[AllowDynamicProperties]
 class PDO_DataObject 
 {
    /**
@@ -5713,12 +5713,12 @@ class PDO_DataObject
         $format = $format == '%s' ? false : $format;
 
         $ret = array();
-        $rf = isset($this->_result->fields) ? $this->_result->fields: false;
+        $rf = $this->result_fields($this->_result);
 
         // table knows better...??? -- table() will use result->fields anyway...
         // need to look at this... --
 
-        $ar = ($rf !== false) ?
+        $ar = !empty($rf) ?
             (($hideEmpty === 0) ? $rf : array_merge($rf, $this->tableColumns())) :
             $this->tableColumns();
 
