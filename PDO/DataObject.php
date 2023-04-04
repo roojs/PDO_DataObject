@@ -233,7 +233,9 @@ class PDO_DataObject
      * note - we overload PDO with some values
      *   $pdo->database (as there is no support for it..!)
      */
-    private static $connections = array(); // md5 map of connections to DSN
+    private static $connections = array(); // md5 map of connections PDO objects 
+
+    private static $connections_dsn = array(); // md5 map to dsn
 
 
     // use databaseStructure to set these...
@@ -257,7 +259,7 @@ class PDO_DataObject
      */
     public static  $set_errors = false;
 
-
+    public static  $result_fields = false;
 
     /* ---------------- ---------------- non-static  -------------------------------- */
 
@@ -524,7 +526,7 @@ class PDO_DataObject
 
 
             if (!$this->_database_nickname) {
-                $this->_database_nickname = self::$connections[$md5]->dsn['nickname'];
+                $this->_database_nickname = self::$connections_dsn[$md5]['nickname'];
 
             }
             return self::$connections[$md5];
@@ -632,8 +634,8 @@ class PDO_DataObject
                     $dsn_ar['database_name']  : $this->_database_nickname;
 
 
-
-        self::$connections[$md5]->dsn = $dsn_ar;
+        
+        self::$connections_dsn[$md5] = $dsn_ar;
 
         if (empty($this->_database_nickname)) {
             $this->_database_nickname =  $dsn_ar['nickname'] ;
@@ -1364,26 +1366,29 @@ class PDO_DataObject
                         " seconds",
                    __FUNCTION__, 2);
             }
+            $fields = $this->result_fields($this->_result);
             //may not be available in sqlite when zero rows returned.. we only find out after a fetch..
-            $fields = isset($this->_result->fields) ? $this->_result->fields : array();
             $this->_result->closeCursor();
             $this->_result = new StdClass;
-            $this->_result->fields  = $fields;
+            $this->result_fields($this->_result, $fields);
+            
             return false; // no more data... -- and this fetch did not return any...
 
         }
         static $replace = array('.', ' ');
+        
+        $fields = $this->result_fields($this->_result);
 
-        if (!isset($this->_result->fields)) {
+        if (empty($fields)) {
 
 
-            $this->_result->fields = array();
+            $fields = array();
             foreach($array as $k=>$v) {
                 $kk =  (strpos($k, '.') === false && strpos($k, ' ') === false) ?
                     $k : str_replace($replace, '_', $k);
-                $this->_result->fields[$kk] = 0; // unknown type...
+                $fields[$kk] = 0; // unknown type...
             }
-
+         
 
             for ($i = 0; $i < $this->_result->columnCount();$i++) {
 
@@ -1420,8 +1425,9 @@ class PDO_DataObject
                         throw new Exception("Unknown type {$meta['native_type']} ");
 
                 }
-                $this->_result->fields[$kk] = 0; // unknown type...
+                $fields[$kk] = 0; // unknown type...
             }
+            $this->result_fields($this->_result, $fields);
         }
 
 
@@ -1455,6 +1461,34 @@ class PDO_DataObject
         
         return true;
     }
+    
+    
+    /**
+     * can't store extra data on built in objects - annoying...
+     * so we have to use weakmap on PHP8
+     * @param $result PDOResult
+     * @param $fields (optional) - use to set the value.
+     * @return array() or empty array of fields.
+     */
+        
+    function result_fields($result) {
+        if (!class_exists('WeakMap')) {
+            if (func_num_args() == 2) {
+                $result->fields = func_get_arg(1);
+            }
+            return $result->fields;
+        }
+        if (self::$result_fields === false) { 
+            self::$result_fields = new WeakMap();
+        }
+        if (func_num_args() == 2) {
+            self::$result_fields[$result] = func_get_arg(1);
+        }
+        return isset(self::$result_fields[$result]) ? self::$result_fields[$result] : array();
+    }
+    
+    
+    
     
     const FETCH_OBJECT = -1;
     const FETCH_FAST = -2;
