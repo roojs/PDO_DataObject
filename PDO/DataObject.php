@@ -235,7 +235,7 @@ class PDO_DataObject
      */
     private static $connections = array(); // md5 map of connections PDO objects 
 
-    private static $connections_dsn = array(); // md5 map to dsn
+    private static $dsn = false; // map PDO objects to dsn data
 
 
     // use databaseStructure to set these...
@@ -274,7 +274,7 @@ class PDO_DataObject
      * The Database nick-name (usually matches the real database name, but may not..)
      * created in __connection
      * Note - this used to be called _database - however it's not guarenteed to be the real database name,
-     * for that use PDO()->dsn[database_name]
+     * for that use $dataobject->dsn()[database_name]
      *
      * @access  private (ish) - extended classes can overide this
      * @var  string
@@ -454,7 +454,7 @@ class PDO_DataObject
             }
 
             if (empty($this->_database_nickname)) {
-                $this->_database = $con->dsn['nickname'];
+                $this->_database = $this->dsn($con)['nickname'];
 
                 // note
                 // sqlite -- database == basename of database...
@@ -526,7 +526,7 @@ class PDO_DataObject
 
 
             if (!$this->_database_nickname) {
-                $this->_database_nickname = self::$connections_dsn[$md5]['nickname'];
+                $this->_database_nickname = $this->dsn(self::$connections[$md5])['nickname'];
 
             }
             return self::$connections[$md5];
@@ -635,7 +635,7 @@ class PDO_DataObject
 
 
         
-        self::$connections_dsn[$md5] = $dsn_ar;
+        $this->dsn(self::$connections[$md5], $dsn_ar);
 
         if (empty($this->_database_nickname)) {
             $this->_database_nickname =  $dsn_ar['nickname'] ;
@@ -1488,6 +1488,30 @@ class PDO_DataObject
     }
     
     
+    /**
+     * can't store extra data on built in objects - annoying...
+     * so we have to use weakmap on PHP8
+     * @param $pdo PDO conneciton object
+     * @param $dsn (optional) - use to set the value.
+     * @return array() the dsn for the PDO Object or empty array of fields.
+     */
+        
+    function dsn($pdo) {
+         
+        if (!class_exists('WeakMap')) {
+            if (func_num_args() == 2) {
+                $pdo->dsn = func_get_arg(1);
+            }
+            return $pdo->dsn;
+        }
+        if (self::$dsn === false) { 
+            self::$dsn = new WeakMap();
+        }
+        if (func_num_args() == 2) {
+            self::$dsn[$pdo] = func_get_arg(1);
+        }
+        return isset(self::$dsn[$pdo]) ? self::$dsn[$pdo] : array();
+    }
     
     
     const FETCH_OBJECT = -1;
@@ -4871,7 +4895,7 @@ class PDO_DataObject
 
         $dbPrefix  = '';
 
-        $obj_database = $obj->PDO()->dsn['database_name'];
+        $obj_database = $obj->dsn($obj->PDO())['database_name'];
 
         if ($PDO->getAttribute(PDO::ATTR_DRIVER_NAME) == 'mysql') {
             $dbPrefix = ($quoteIdentifiers
@@ -4880,7 +4904,7 @@ class PDO_DataObject
         }
 
         // if they are the same, then dont add a prefix...
-        if ($obj_database == $PDO->dsn['database_name']) {
+        if ($obj_database == $this->dsn($PDO)['database_name']) {
            $dbPrefix = '';
         }
         // as far as we know only mysql supports database prefixes..
