@@ -1476,7 +1476,7 @@ class PDO_DataObject
             if (func_num_args() == 2) {
                 $result->fields = func_get_arg(1);
             }
-            return $result->fields;
+            return isset($result->fields) ? $result->fields : array();
         }
         if (self::$result_fields === false) { 
             self::$result_fields = new WeakMap();
@@ -1502,7 +1502,7 @@ class PDO_DataObject
             if (func_num_args() == 2) {
                 $pdo->dsn = func_get_arg(1);
             }
-            return $pdo->dsn;
+            return isset($pdo->dsn) ? $pdo->dsn : array();
         }
         if (self::$dsn === false) { 
             self::$dsn = new WeakMap();
