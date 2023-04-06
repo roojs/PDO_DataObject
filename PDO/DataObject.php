@@ -1471,7 +1471,11 @@ class PDO_DataObject
      * @return array() or empty array of fields.
      */
         
-    function result_fields($result) {
+    function result_fields($result)
+    {
+        if ($result === false) {
+            return array();
+        }
         if (!class_exists('WeakMap')) {
             if (func_num_args() == 2) {
                 $result->fields = func_get_arg(1);
