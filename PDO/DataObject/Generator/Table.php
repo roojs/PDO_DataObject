@@ -150,8 +150,9 @@ class PDO_DataObject_Generator_Table {
         
         $defs = $this->gen->introspection()->tableInfo($this->table);
          
+        $dsn = PDO_DataObject::dsn($pdo);
         
-        $this->gen->debug("getting def for {$pdo->dsn['database_name']}/{$this->table}", __FUNCTION__,3);
+        $this->gen->debug("getting def for {$dsn['database_name']}/{$this->table}", __FUNCTION__,3);
         $this->gen->debug(print_r($defs,true),'defs',3);
         
         // cast all definitions to objects - as we deal with that better.

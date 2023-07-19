@@ -1500,7 +1500,7 @@ class PDO_DataObject
      * @return array() the dsn for the PDO Object or empty array of fields.
      */
         
-    function dsn($pdo) {
+    static function dsn($pdo) {
          
         if (!class_exists('WeakMap')) {
             if (func_num_args() == 2) {
