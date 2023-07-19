@@ -100,6 +100,11 @@ class PDO_DataObject_Generator_Column
     var $is_sequence_native = false;
 
     /**
+     * @var PDO_DataObject_Generator_Hook - or a extended version.. - implement your own
+     */
+    
+    var $hook;
+    /**
      * 
      * @param PDO_DataObject_Generator_Table $table - table that this column belongs to..
      * @param Array  definition array --inludes
