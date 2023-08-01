@@ -1473,7 +1473,7 @@ class PDO_DataObject
         
     function result_fields($result)
     {
-        if ($result === false) {
+        if ($result === false || !is_object($result)) {
             return array();
         }
         if (!class_exists('WeakMap')) {
