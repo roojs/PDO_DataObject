@@ -36,7 +36,7 @@ class PDO_DataObject_Generator_Table {
      */
     var $gen; // generator.
     /**
-     * @var PDO_DataObject_Generator_Hook - or a extended version.. - implement your own
+     * @var PDO_DataObject_Generator_Hooks - or a extended version.. - implement your own
      */
     var $hook;
     /**

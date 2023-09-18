@@ -105,7 +105,7 @@ class PDO_DataObject_Introspection_mysql extends PDO_DataObject_Introspection
                             COALESCE(NUMERIC_PRECISION,CHARACTER_MAXIMUM_LENGTH) as len,
                             CONCAT(
                                 EXTRA,  -- autoincrement...
-                                IF (IS_NULLABLE, '', ' not_null'),
+                                IF (IS_NULLABLE = 'YES', '', ' not_null'),
                                 IF (COLUMN_KEY = 'PRI', ' primary', ''),
                                 IF (COLUMN_KEY = 'UNI', ' unique', ''),
                                 IF (COLUMN_KEY = 'MUL', ' multiple_key', '')
