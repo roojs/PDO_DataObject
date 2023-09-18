@@ -2542,8 +2542,8 @@ class PDO_DataObject
 
         foreach($items as $k => $v) {
 
-            // if we are using autoincrement - skip the column...
-            if ($key && ($k == $key) && $useNative) {
+            // if we are using autoincrement - skip the column if it is empty...
+            if ($key && ($k == $key) && $useNative && empty($this->$k)) {
                 continue;
 
             }
