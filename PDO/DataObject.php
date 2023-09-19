@@ -2274,8 +2274,8 @@ class PDO_DataObject
      * your database manual to decide how you want to implement it.
 
      * @category build
-     * @param  string $a  limit start (or number of results), or blank to reset
-     * @param  string $b  number or results
+     * @param  string|int|null $a  limit start (or number of results), or blank to reset
+     * @param  string|int|null $b  number or results
      * @access public
      * @return self  (for chaining) - except when it's being used to 'reset' the settings, \
      *                       where it returns the 'old' values
