@@ -6137,4 +6137,14 @@ class PDO_DataObject
 
     }
 
+    /**
+     * To enable serialization of a PDO object we must only store public
+     * properties, excluding PDOStatements.
+     *
+     * @return array
+     */
+    public function __sleep()
+    {
+        return array_keys(get_object_vars($this));
+    }
 }
