@@ -57,6 +57,7 @@ foreach($config as $class=>$values) {
                 
         default:
             // skip... just ingore stuff..
+    }
 }
 
 

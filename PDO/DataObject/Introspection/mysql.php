@@ -102,6 +102,7 @@ class PDO_DataObject_Introspection_mysql extends PDO_DataObject_Introspection
                             COLUMNS.COLUMN_NAME as name,
                             COLUMN_DEFAULT as default_value_raw,
                             DATA_TYPE as type,
+                            COLUMN_TYPE as column_type,
                             COALESCE(NUMERIC_PRECISION,CHARACTER_MAXIMUM_LENGTH) as len,
                             CONCAT(
                                 EXTRA,  -- autoincrement...
@@ -161,12 +162,26 @@ class PDO_DataObject_Introspection_mysql extends PDO_DataObject_Introspection
         
         $res   = array();
 
-        
+        $columns_already_seen = array();
         foreach($records as $r) {
+            $column_name = $case_func($r['name']);
+
+            // prevent duplicate mapping in .ini file, due to multiple indexes on same column
+            if (in_array($column_name, $columns_already_seen)) {
+                continue;
+            }
+            $columns_already_seen[] = $column_name;
             
             $r['table'] =  $case_func($string);
-            $r['name'] =  $case_func($r['name']);
+            $r['name'] = $column_name;
             $r['default_value'] = $r['default_value_raw']; /// probably...
+
+            // extract size from string ex: int(1) for the boolean detection
+            if (preg_match('/int\((\d+)\)/', $r['column_type'], $matches)) {
+                $r['len'] = $matches[1];
+            }
+            unset($r['column_type']);
+
             $res[] = $r;
            
         }
