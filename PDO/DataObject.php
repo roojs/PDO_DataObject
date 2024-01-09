@@ -261,6 +261,8 @@ class PDO_DataObject
 
     public static  $result_fields = false;
 
+    // used for timeing results - used to be appended to statement - but that is too compilcated now
+    private $_time_query_end = 0;
     /* ---------------- ---------------- non-static  -------------------------------- */
 
     /**
@@ -365,6 +367,9 @@ class PDO_DataObject
      */
     public $_link_loaded = false;
 
+    
+    
+    
     /**
      * Constructor
      * This is not normally used. it's better to use factory to load extended dataObjects.
@@ -1362,7 +1367,7 @@ class PDO_DataObject
                 $t= explode(' ',microtime());
 
                 $this->debug("Last Data Fetch'ed after " .
-                        number_format($t[0]+$t[1]- $this->_result->time_query_end ,3) .
+                        number_format($t[0]+$t[1]- $this->_time_query_end ,3) .
                         " seconds",
                    __FUNCTION__, 2);
             }
@@ -3378,7 +3383,7 @@ class PDO_DataObject
 
         if (self::$debug) {
             $t= explode(' ',microtime());
-            $result->time_query_end = $t[0]+$t[1];
+            $this->_time_query_end = $t[0]+$t[1];
             $this->debug('QUERY DONE IN  '.number_format($t[0]+$t[1]-$time,3)." seconds", __FUNCTION__,2);
             $this->debug('NO# of results: '. ($no_results === true ? 'Unknown' : $no_results ), __FUNCTION__,1);
         }
