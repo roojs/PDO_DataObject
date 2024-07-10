@@ -33,6 +33,7 @@
 #[AllowDynamicProperties]
 class PDO_DataObject_Generator_Hooks {
    
+    var $gen;
    
     function __construct($gen)
     {
