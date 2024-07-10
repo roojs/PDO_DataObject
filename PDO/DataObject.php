@@ -3822,7 +3822,7 @@ class PDO_DataObject
      * @param  string optional set the key
      * @param  ...   optional  set more keys
      * @access public
-     * @return array
+     * @return array  , eg. array( 'id' => N )
      */
     function keys()
     {

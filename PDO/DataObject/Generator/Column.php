@@ -214,6 +214,8 @@ class PDO_DataObject_Generator_Column
             case 'INTEGER[]':   // postgres type
             case 'BOOLEAN[]':   // postgres type
             
+            
+            
             case 'TIMESTAMP WITH TIME ZONE': // pgsql -- might need another 'type' to handle this correctly..
             
                 $type = PDO_DataObject::STR;
@@ -224,6 +226,7 @@ class PDO_DataObject_Generator_Column
             case 'LONGTEXT':
             case '_TEXT':   //postgres (?? view ??)
             case 'TEXT[]':   // postgres type
+            case 'BINARY':  // not really - but not got any better ides.
                 
                 $type = PDO_DataObject::STR + PDO_DataObject::TXT;
                 break;
