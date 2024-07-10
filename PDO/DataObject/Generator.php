@@ -147,6 +147,8 @@ class PDO_DataObject_Generator extends PDO_DataObject
                 // regex to match table names = if set, then matching tables will not be generated
                 
     );
+    
+    var $hook;
       /**
      * Set/get the generator configuration...
  
