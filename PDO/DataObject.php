@@ -1342,9 +1342,9 @@ class PDO_DataObject
             return false;
         }
         //PDO::FETCH_ASSOC
-        
-        if (!empty($this->_snapshot)) {
-            unset($this->_snapshot);
+
+        if (isset($this->_snapshot)) {
+            $this->_snapshot = null;
         }
         
 
@@ -2810,7 +2810,7 @@ class PDO_DataObject
         $dbtype    = $PDO->getAttribute(PDO::ATTR_DRIVER_NAME);
         $quoteIdentifiers = self::$config['quote_identifiers'];
 
-        if ($dataObject !== true && !empty($this->_snapshot)) {
+        if ($dataObject !== true && isset($this->_snapshot)) {
             $dataObject = $this->_snapshot;
         }
 
@@ -2961,7 +2961,7 @@ class PDO_DataObject
         return $r;
 
     }
-    private $_snapshot = false;
+    private $_snapshot;
 
     /**
      *  Save data to database (simple wrapper around insert/update) Chainable
@@ -3033,7 +3033,7 @@ class PDO_DataObject
         }
         // stop it nesting indefinatly
         if (isset($this->_snapshot)) {
-            unset($this->_snapshot);
+            $this->_snapshot = null;
         }
         $this->_snapshot = clone($this);
         
