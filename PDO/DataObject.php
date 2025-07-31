@@ -6142,13 +6142,23 @@ class PDO_DataObject
     }
 
     /**
-     * To enable serialization of a PDO object we must only store public
+     * To enable serialization of a PDO object we must only store public (non-static ones)
      * properties, excluding PDOStatements.
      *
      * @return array
      */
     public function __sleep()
     {
-        return array_keys(get_object_vars($this));
+        $reflection = new ReflectionClass($this);
+        $properties = array_filter(
+            $reflection->getProperties(ReflectionProperty::IS_PUBLIC),
+            function ($property) {
+                return !$property->isStatic();
+            }
+        );
+
+        return array_map(function($prop) {
+            return $prop->getName();
+        }, $properties);
     }
 }
