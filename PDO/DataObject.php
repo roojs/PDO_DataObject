@@ -1343,8 +1343,8 @@ class PDO_DataObject
         }
         //PDO::FETCH_ASSOC
         
-        if (!empty($this->_snapshot)) {
-            unset($this->_snapshot);
+        if ($this->_snapshot !== false) {
+            $this->_snapshot = false;
         }
         
 
@@ -2816,7 +2816,7 @@ class PDO_DataObject
         $dbtype    = $PDO->getAttribute(PDO::ATTR_DRIVER_NAME);
         $quoteIdentifiers = self::$config['quote_identifiers'];
 
-        if ($dataObject !== true && !empty($this->_snapshot)) {
+        if ($dataObject !== true && $this->_snapshot !== false) {
             $dataObject = $this->_snapshot;
         }
 
@@ -3037,10 +3037,9 @@ class PDO_DataObject
         if (empty($this->$k)) { // no need to store originall...
             return;
         }
-        // stop it nesting indefinatly
-        if (isset($this->_snapshot)) {
-            unset($this->_snapshot);
-        }
+        
+        $this->_snapshot = false; // clears it for the cloned version..
+        
         $this->_snapshot = clone($this);
         
         return $this;
@@ -6149,13 +6148,23 @@ class PDO_DataObject
     }
 
     /**
-     * To enable serialization of a PDO object we must only store public
+     * To enable serialization of a PDO object we must only store public (non-static ones)
      * properties, excluding PDOStatements.
      *
      * @return array
      */
     public function __sleep()
     {
-        return array_keys(get_object_vars($this));
+        $reflection = new ReflectionClass($this);
+        $properties = array_filter(
+            $reflection->getProperties(ReflectionProperty::IS_PUBLIC),
+            function ($property) {
+                return !$property->isStatic();
+            }
+        );
+
+        return array_map(function($prop) {
+            return $prop->getName();
+        }, $properties);
     }
 }
