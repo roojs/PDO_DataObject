@@ -2673,41 +2673,48 @@ class PDO_DataObject
 
         // now do we have an integer key!
 
-        if ($key && $useNative) {
-            switch ($dbtype) {
-                case 'mysql':
-                case 'sqlite': // possibly...
-                    $this->$key = $PDO->lastInsertId();
-                    break;
+        if (!$key && !$useNative) {
+            return $key ? $this->$key : true;
+        }
+        
+        $insertId = null;
+        switch ($dbtype) {
+            case 'mysql':
+            case 'sqlite': // possibly...
+                $insertId = $PDO->lastInsertId();
+                break;
 
-                case 'mssql':
-                    // note this is not really thread safe - you should wrapp it with
-                    // transactions = eg.
-                    // $db->query('BEGIN');
-                    // $db->insert();
-                    // $db->query('COMMIT');
-                    $res = $PDO->query("SELECT @@IDENTITY");
-                    $this->$key = $res->fetchAll(PDO::FETCH_COLUMN, 0)[0]; // could throw error...
+            case 'mssql':
+                // note this is not really thread safe - you should wrapp it with
+                // transactions = eg.
+                // $db->query('BEGIN');
+                // $db->insert();
+                // $db->query('COMMIT');
+                $res = $PDO->query("SELECT @@IDENTITY");
+                $insertId = $res->fetchAll(PDO::FETCH_COLUMN, 0)[0]; // could throw error...
 
-                    break;
+                break;
 
-                case 'pgsql':
-                    if (!$seq) {
-                        $this->raise("Could not determine Sequence name for table: " . $this->tableName(),
-                                          self::ERROR_INVALIDCONFIG);
-                    }
-                    $this->$key = $PDO->lastInsertId($seq); // hopefully...
+            case 'pgsql':
+                if (!$seq) {
+                    $this->raise("Could not determine Sequence name for table: " . $this->tableName(),
+                                        self::ERROR_INVALIDCONFIG);
+                }
+                $insertId = $PDO->lastInsertId($seq); // hopefully...
 
-                    break;
-
-            }
+                break;
 
         }
 
-        if ($key) {
+        // Use fromValue to properly cast the ID according to column type
+        if ($insertId !== null) {
+            $this->fromValue($key, $insertId);
             return $this->$key;
         }
         return true;
+        
+        
+          
     }
 
 
@@ -5683,7 +5690,7 @@ class PDO_DataObject
                 if (!is_numeric($value)) {
                     return "Error: $col : type is INT -> Non numeric '$value' passed to it";
                 }
-                $this->$col = $value;
+                $this->$col = (int) $value;
                 return true;
 
             // todo : floats numerics and ints...
