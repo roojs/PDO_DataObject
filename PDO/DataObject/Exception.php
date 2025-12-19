@@ -22,7 +22,15 @@
  * @link       http://pear.php.net/package/PDO_DataObject
  */
   
- 
+
+class_exists('PDO_DataObject_Exception_InvalidArgs') ? '' : require_once 'PDO/DataObject/Exception/InvalidArgs.php';
+class_exists('PDO_DataObject_Exception_NoData') ? '' : require_once 'PDO/DataObject/Exception/NoData.php';
+class_exists('PDO_DataObject_Exception_InvalidConfig') ? '' : require_once 'PDO/DataObject/Exception/InvalidConfig.php';
+class_exists('PDO_DataObject_Exception_NoClass') ? '' : require_once 'PDO/DataObject/Exception/NoClass.php';
+class_exists('PDO_DataObject_Exception_Set') ? '' : require_once 'PDO/DataObject/Exception/Set.php';
+class_exists('PDO_DataObject_Exception_Connect') ? '' : require_once 'PDO/DataObject/Exception/Connect.php';
+class_exists('PDO_DataObject_Exception_Query') ? '' : require_once 'PDO/DataObject/Exception/Query.php';
+
 class PDO_DataObject_Exception extends Exception
 {
     
@@ -48,14 +56,4 @@ class PDO_DataObject_Exception extends Exception
     
      
 }
-
-// child classes - so you can catch them..
-class PDO_DataObject_Exception_InvalidArgs extends   PDO_DataObject_Exception {};
-class PDO_DataObject_Exception_NoData extends   PDO_DataObject_Exception {};
-class PDO_DataObject_Exception_InvalidConfig extends   PDO_DataObject_Exception {};
-class PDO_DataObject_Exception_NoClass extends   PDO_DataObject_Exception {};
-class PDO_DataObject_Exception_Set extends   PDO_DataObject_Exception {};
-class PDO_DataObject_Exception_Connect extends   PDO_DataObject_Exception {};
-class PDO_DataObject_Exception_Query extends   PDO_DataObject_Exception {};
-
 
