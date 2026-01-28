@@ -586,7 +586,10 @@ class PDO_DataObject
             default:
                 // by default we need to validate a little bit..
                 if (empty($dsn_ar['host']) || empty($dsn_ar['path'])  || strlen($dsn_ar['path']) < 2) {
-                    return $this->raise("Invalid syntax of DSN : {$dsn}\n". print_r($dsn_ar,true), self::ERROR_INVALIDCONFIG);
+                    $this->debug( print_r($dsn_ar, true) , __FUNCTION__, 5);
+                    return $this->raise(
+                        "Invalid syntax of DSN - missing host or path (turn debugging to 5 to see connection details)", 
+                        self::ERROR_INVALIDCONFIG);
                 }
                 $pdo_dsn =
                     $dsn_ar['scheme'] . ':' .
