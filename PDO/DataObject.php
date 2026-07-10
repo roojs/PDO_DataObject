@@ -2114,7 +2114,7 @@ class PDO_DataObject
      * ```
      *
      * @category build
-     * @param  string  $locking  set the locking condition
+     * @param  string|false  $locking  set the locking condition
      * @access public
      * @return PDO_DataObject self
      */
@@ -2126,16 +2126,16 @@ class PDO_DataObject
                 self::ERROR_INVALIDARGS);
         }
 
-        if ($having === false) {
+        if ($locking === false) {
             $this->_query['locking'] = '';
             return $this;
         }
-        // check input...= 0 or '    ' == error!
-        if (!trim($locking)) {
-            return $this->raise("Having: No Valid Arguments", self::ERROR_INVALIDARGS);
+
+        if (!in_array($locking, array(self::FOR_UPDATE, self::IN_SHARE_MODE), true)) {
+            return $this->raise(
+                "locking: argument must be one of PDO_DataObject::FOR_UPDATE or PDO_DataObject::IN_SHARE_MODE",
+                self::ERROR_INVALIDARGS);
         }
-
-
 
         $this->_query['locking'] = $locking;
         return $this;
