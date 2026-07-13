@@ -3434,7 +3434,9 @@ class PDO_DataObject
      */
     final function escape($string, $likeEscape=false)
     {
-        $ret = trim($this->PDO()->quote($string),"'");
+        // PDO doesn't provide a clean escape - so we have to remove quotes from quote()
+        $q = $this->PDO()->quote($string);
+        $ret = substr("" . $q, 1, -1);
         if ($likeEscape) {
             $ret = str_replace(array('_','%'), array('\_','\%'), $ret);
         }
