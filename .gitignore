@@ -1,3 +1,6 @@
+# SpecStory AI chat history (extension inner .gitignore does not cover history/)
+.specstory/
+
 tests/*.diff
 tests/*.exp
 tests/*.log
