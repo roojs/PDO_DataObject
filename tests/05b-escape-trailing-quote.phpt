@@ -19,12 +19,26 @@ $do = new PDO_DataObject('mysql_somedb/account_code');
 var_dump($do->escape("x'"));
 var_dump($do->escape("'"));
 var_dump($do->escape("Mc'Donalds"));
+var_dump($do->escape(123));
+var_dump($do->escape(0));
+var_dump($do->escape(12.5));
+var_dump($do->escape(true));
+var_dump($do->escape(false));
+var_dump($do->escape(null));
+var_dump($do->escape(''));
 --EXPECT--
 PDO_DataObject   : __construct       : ["mysql_somedb\/account_code"]
 PDO_DataObject   : databaseStructure       : CALL:[]
 PDO_DataObject   : PDO       : Checking for database specific ini ('mysql_somedb') : config[databases][mysql_somedb] in options
 __construct==["mysql:dbname=somedb;host=localhost;port=3344","username","test",[]]
 setAttribute==[3,2]
-string(3) "x\\'"
-string(2) "\\'"
-string(11) "Mc\\'Donalds"
+string(3) "x\'"
+string(2) "\'"
+string(11) "Mc\'Donalds"
+string(3) "123"
+string(1) "0"
+string(4) "12.5"
+string(1) "1"
+string(0) ""
+string(0) ""
+string(0) ""
