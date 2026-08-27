@@ -35,7 +35,11 @@ echo "\n\n--------\n";
 echo "basic load a big result set\n" ;
 
 
-PDO_DataObject::factory('Events')->PDO()->setAttribute(PDO::MYSQL_ATTR_USE_BUFFERED_QUERY, false);
+$mysqlAttrUseBufferedQuery = defined('Pdo\\Mysql::ATTR_USE_BUFFERED_QUERY')
+    ? constant('Pdo\\Mysql::ATTR_USE_BUFFERED_QUERY')
+    : PDO::MYSQL_ATTR_USE_BUFFERED_QUERY;
+
+PDO_DataObject::factory('Events')->PDO()->setAttribute($mysqlAttrUseBufferedQuery, false);
  
 $x = PDO_DataObject::factory('Events');
 $x->find();

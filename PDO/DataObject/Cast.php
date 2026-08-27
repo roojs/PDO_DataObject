@@ -61,6 +61,7 @@
 *
 
 */ 
+#[AllowDynamicProperties]
 class PDO_DataObject_Cast {
         
     /**

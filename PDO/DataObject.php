@@ -606,10 +606,9 @@ class PDO_DataObject
         $opts = array();
         if (!empty($dsn_ar['fragment'])) {
             // options.. |MYSQL_ATTR_INIT_COMMAND=....|
-            $pdo_rc = new ReflectionClass( "PDO" );
             foreach(explode('|', $dsn_ar['fragment']) as $opt) {
                 list($k,$v) = explode('=', $opt);
-                $opts[$pdo_rc->getConstant($k)] = $v;
+                $opts[self::dsnOptionConstant($k)] = $v;
 
             }
         }
@@ -654,6 +653,35 @@ class PDO_DataObject
         return self::$connections[$md5];
     }
 
+    /**
+     * Resolve a PDO option constant by name, as used in DSN fragment options
+     * (eg. |MYSQL_ATTR_INIT_COMMAND=...|).
+     *
+     * Driver-specific constants (MYSQL_*, PGSQL_*, SQLITE_*, OCI_*, ODBC_*, DBLIB_*, FIREBIRD_*)
+     * are deprecated on the base PDO class since PHP 8.5 - resolve them via the Pdo\<Driver>
+     * subclasses (available since PHP 8.4) when possible, falling back to the PDO class
+     * for generic constants and on older PHP versions.
+     */
+    private static function dsnOptionConstant($name)
+    {
+        static $driverClasses = array(
+            'MYSQL'    => 'Pdo\\Mysql',
+            'PGSQL'    => 'Pdo\\Pgsql',
+            'SQLITE'   => 'Pdo\\Sqlite',
+            'OCI'      => 'Pdo\\Oci',
+            'ODBC'     => 'Pdo\\Odbc',
+            'DBLIB'    => 'Pdo\\Dblib',
+            'FIREBIRD' => 'Pdo\\Firebird',
+        );
+
+        foreach ($driverClasses as $prefix => $class) {
+            if (strpos($name, $prefix . '_') === 0 && defined($class . '::' . $name)) {
+                return constant($class . '::' . $name);
+            }
+        }
+
+        return defined('PDO::' . $name) ? constant('PDO::' . $name) : false;
+    }
 
 
 
@@ -3378,9 +3406,15 @@ class PDO_DataObject
             return $this->raise("Could not run Query: " . $result->getMessage(), self::ERROR_QUERY, $result);
         }
 
+        // PDO::MYSQL_ATTR_USE_BUFFERED_QUERY is deprecated since PHP 8.5 in favor of
+        // Pdo\Mysql::ATTR_USE_BUFFERED_QUERY (only available from PHP 8.4 onwards).
+        $mysqlAttrUseBufferedQuery = defined('Pdo\\Mysql::ATTR_USE_BUFFERED_QUERY')
+            ? constant('Pdo\\Mysql::ATTR_USE_BUFFERED_QUERY')
+            : PDO::MYSQL_ATTR_USE_BUFFERED_QUERY;
+
         switch (true) {
             case $dbtype  == 'sqlite':
-            case $pdo->getAttribute(PDO::MYSQL_ATTR_USE_BUFFERED_QUERY) == 0:
+            case $pdo->getAttribute($mysqlAttrUseBufferedQuery) == 0:
                 $no_results = true;
                 break;
 

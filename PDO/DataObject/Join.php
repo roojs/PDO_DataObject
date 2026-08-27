@@ -75,6 +75,7 @@
  *
  *
  */
+#[AllowDynamicProperties]
 class PDO_DataObject_Join {
     
     private $do;

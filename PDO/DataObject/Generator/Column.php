@@ -28,6 +28,7 @@
  * @version    1.0
  * @link       https://github.com/roojs/PDO_DataObject
  */
+#[AllowDynamicProperties]
 class PDO_DataObject_Generator_Column
 {
    

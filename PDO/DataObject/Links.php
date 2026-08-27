@@ -42,7 +42,8 @@
  *
  * @package DB_DataObject
  */
-class PDO_DataObject_Links 
+#[AllowDynamicProperties]
+class PDO_DataObject_Links
 {
      /**
      * @property {DB_DataObject}      do   DataObject to apply this to.

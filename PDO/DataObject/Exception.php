@@ -23,6 +23,7 @@
  */
   
  
+#[AllowDynamicProperties]
 class PDO_DataObject_Exception extends Exception
 {
     

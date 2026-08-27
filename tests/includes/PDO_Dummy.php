@@ -33,14 +33,20 @@ class PDO_Dummy {
     function getAttribute($key)
     {
         
+        // PDO::MYSQL_ATTR_USE_BUFFERED_QUERY is deprecated since PHP 8.5 in favor of
+        // Pdo\Mysql::ATTR_USE_BUFFERED_QUERY (only available from PHP 8.4 onwards).
+        $mysqlAttrUseBufferedQuery = defined('Pdo\\Mysql::ATTR_USE_BUFFERED_QUERY')
+            ? constant('Pdo\\Mysql::ATTR_USE_BUFFERED_QUERY')
+            : PDO::MYSQL_ATTR_USE_BUFFERED_QUERY;
+
         switch($key) {
             case PDO::ATTR_DRIVER_NAME:
                 // it does this alot!!!?
                 //echo __FUNCTION__ . '==' .  json_encode(func_get_args()) . " => " . $this->_dbtype  . "\n";
                 return $this->_dbtype;
                 break;
-            
-            case PDO::MYSQL_ATTR_USE_BUFFERED_QUERY:
+
+            case $mysqlAttrUseBufferedQuery:
                 return 1;
             
             default:

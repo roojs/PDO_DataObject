@@ -31,6 +31,7 @@
  */
   
   
+#[AllowDynamicProperties]
 abstract class PDO_DataObject_Introspection
 {
     /**
