@@ -1,9 +1,11 @@
 {
     "name": "roojs/pdo_dataobject",
     "type": "library",
-    "description": "ORM based on PEAR::DB_DataObject ported for PHP5/7 and PDO",
-    "keywords": ["orm"],
-    "homepage": "https://github/roojs/PDO_DataObject#v0.0.4",
+    "description": "ORM based on PEAR::DB_DataObject ported for PHP 8.4+ and PDO",
+    "keywords": [
+        "orm"
+    ],
+    "homepage": "https://github.com/roojs/PDO_DataObject#v0.1.0",
     "license": "LGPL-3.0",
     "authors": [
         {
@@ -16,11 +18,22 @@
             "PDO": "./"
         }
     },
-    "require-dev": {
-        "php": ">=5.5"
+    "require": {
+        "php": ">=8.4"
+    },
+    "archive": {
+        "exclude": [
+            "/scripts",
+            "/tests",
+            "/docs",
+            "/.github",
+            "/.gitignore",
+            "/.gitattributes",
+            "/.cursorindexingignore",
+            "/package2.xml"
+        ]
     },
     "config": {
         "secure-http": false
     }
-      
 }

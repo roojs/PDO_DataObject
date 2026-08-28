@@ -26,7 +26,7 @@
                             "desc": "limit start (or number of results), or blank to reset",
                             "is_optional": false,
                             "name": "$a",
-                            "type": "string",
+                            "type": "null",
                             "|xns": "Roo.doc",
                             "xtype": "Param"
                         },
@@ -34,7 +34,7 @@
                             "desc": "number or results",
                             "is_optional": false,
                             "name": "$b",
-                            "type": "string",
+                            "type": "null",
                             "|xns": "Roo.doc",
                             "xtype": "Param"
                         }

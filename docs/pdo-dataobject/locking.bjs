@@ -26,7 +26,7 @@
                             "desc": "set the locking condition",
                             "is_optional": false,
                             "name": "$locking",
-                            "type": "string",
+                            "type": "false",
                             "|xns": "Roo.doc",
                             "xtype": "Param"
                         }

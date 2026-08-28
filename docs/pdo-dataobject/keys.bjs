@@ -17,7 +17,7 @@
                     "is_static": false,
                     "is_constructor": false,
                     "memberof": "PDO_DataObject",
-                    "returndesc": "",
+                    "returndesc": ", eg. array( 'id' => N )",
                     "returntype": "array",
                     "|xns": "Roo.doc",
                     "xtype": "Synopsis",
