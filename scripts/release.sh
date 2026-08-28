@@ -7,8 +7,10 @@
 # 3. Verify: Unreleased is empty, clean tree, non-empty notes,
 #    package2.xml, composer.json, and docs/ were generated from CHANGELOG.md
 #    / PHP sources
-# 4. git tag -a + git push (branch + tag) → GitHub Actions publishes
-#    a GitHub Release whose notes come from CHANGELOG.md
+# 4. git tag -a + git push origin (branch + tag)
+#
+# If a `github` remote exists, that is a mirror only — do not push it from
+# this script. GitHub Actions will run if that mirror receives the tag.
 #
 # AGENTS ARE BANNED from running this script. Do not tag, push, or release
 # on the user's behalf. Do not unset CURSOR_AGENT, spoof the environment,
@@ -98,7 +100,7 @@ if [[ -n "$(git status --porcelain)" ]]; then
 	exit 1
 fi
 
-git fetch --tags origin 2>/dev/null || git fetch --tags github 2>/dev/null || true
+git fetch --tags origin 2>/dev/null || true
 
 if [[ "${retry}" -eq 1 ]]; then
 	if git rev-parse -q --verify "refs/tags/${tag}" >/dev/null; then
@@ -108,9 +110,6 @@ if [[ "${retry}" -eq 1 ]]; then
 	if git ls-remote --exit-code --tags origin "refs/tags/${tag}" >/dev/null 2>&1; then
 		echo "Deleting origin tag ${tag}..."
 		git push origin --delete "refs/tags/${tag}"
-	elif git ls-remote --exit-code --tags github "refs/tags/${tag}" >/dev/null 2>&1; then
-		echo "Deleting github tag ${tag}..."
-		git push github --delete "refs/tags/${tag}"
 	fi
 fi
 
@@ -120,9 +119,8 @@ if git rev-parse -q --verify "refs/tags/${tag}" >/dev/null; then
 	exit 0
 fi
 
-if git ls-remote --exit-code --tags origin "refs/tags/${tag}" >/dev/null 2>&1 \
-	|| git ls-remote --exit-code --tags github "refs/tags/${tag}" >/dev/null 2>&1; then
-	echo "Tag ${tag} already exists on a remote — nothing to do."
+if git ls-remote --exit-code --tags origin "refs/tags/${tag}" >/dev/null 2>&1; then
+	echo "Tag ${tag} already exists on origin — nothing to do."
 	echo "Re-run with --retry to delete it and retag HEAD." >&2
 	exit 0
 fi
@@ -131,13 +129,8 @@ echo "Creating annotated tag ${tag}..."
 git tag -a "${tag}" -m "${tag}"
 
 branch="$(git rev-parse --abbrev-ref HEAD)"
-echo "Pushing ${branch} and ${tag}..."
-if git remote get-url github >/dev/null 2>&1; then
-	git push -u github "${branch}"
-	git push github "${tag}"
-else
-	git push -u origin "${branch}"
-	git push origin "${tag}"
-fi
+echo "Pushing ${branch} and ${tag} to origin..."
+git push -u origin "${branch}"
+git push origin "${tag}"
 
-echo "Released ${tag}. GitHub Actions will publish release notes from CHANGELOG.md."
+echo "Released ${tag} on origin."
