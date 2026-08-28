@@ -1,0 +1,10 @@
+# GitHub / Packagist dist zips (composer require --prefer-dist) omit these.
+# --prefer-source still clones the full git tree.
+/scripts export-ignore
+/tests export-ignore
+/docs export-ignore
+/.github export-ignore
+/.gitignore export-ignore
+/.gitattributes export-ignore
+/.cursorindexingignore export-ignore
+/package2.xml export-ignore
