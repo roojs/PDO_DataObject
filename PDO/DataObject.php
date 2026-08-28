@@ -542,11 +542,13 @@ class PDO_DataObject
 
         // create a pdo dsn....
 
+        $pdo_class = 'PDO';
         switch($dsn_ar['scheme'] ) {
             case 'sqlite':
             case 'sqlite2':
                 $pdo_dsn =      $dsn_ar['scheme'] . ':' .$dsn_ar['path']; // urldec917ode perhaps?
                 $dsn_ar['database_name'] = basename($dsn_ar['path']);
+                $pdo_class = 'Pdo\\Sqlite';
                 break;
 
             case 'sqlsrv':
@@ -562,6 +564,7 @@ class PDO_DataObject
 
                 $pdo_dsn = $dsn_ar['scheme'] . ':';
                 $dsn_ar['database_name'] = empty($dsn_ar['path']) ? $dsn_ar['host'] : substr($dsn_ar['path'],1);
+                $pdo_class = 'Pdo\\Oci';
 
                 switch(true) {
 
@@ -581,6 +584,12 @@ class PDO_DataObject
                 }
                 break;
 
+            case 'mysql':
+                $pdo_class = 'Pdo\\Mysql';
+                // fall through to generic host DSN
+            case 'pgsql':
+                $pdo_class = ($pdo_class == 'PDO') ? 'Pdo\\Pgsql' : $pdo_class;
+                // fall through to generic host DSN
             // others go here...
 
             default:
@@ -605,10 +614,10 @@ class PDO_DataObject
         }
         $opts = array();
         if (!empty($dsn_ar['fragment'])) {
-            // options.. |MYSQL_ATTR_INIT_COMMAND=....|
-            $pdo_rc = new ReflectionClass( "PDO" );
-            foreach(explode('|', $dsn_ar['fragment']) as $opt) {
-                list($k,$v) = explode('=', $opt);
+            // options.. |ATTR_INIT_COMMAND=....|
+            $pdo_rc = new ReflectionClass($pdo_class);
+            foreach (explode('|', $dsn_ar['fragment']) as $opt) {
+                list($k, $v) = explode('=', $opt);
                 $opts[$pdo_rc->getConstant($k)] = $v;
 
             }
@@ -3380,7 +3389,7 @@ class PDO_DataObject
 
         switch (true) {
             case $dbtype  == 'sqlite':
-            case $pdo->getAttribute(PDO::MYSQL_ATTR_USE_BUFFERED_QUERY) == 0:
+            case $pdo->getAttribute(Pdo\Mysql::ATTR_USE_BUFFERED_QUERY) == 0:
                 $no_results = true;
                 break;
 

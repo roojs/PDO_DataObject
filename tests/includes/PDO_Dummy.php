@@ -10,6 +10,13 @@
 
  
 class PDO_Dummy {
+
+    var $_dsn;
+    var $_dbtype;
+    var $user;
+    var $pass;
+    var $options;
+    var $last_statement;
     
     function __construct($dsn,$user,$pass, $options)
     {
@@ -40,7 +47,7 @@ class PDO_Dummy {
                 return $this->_dbtype;
                 break;
             
-            case PDO::MYSQL_ATTR_USE_BUFFERED_QUERY:
+            case Pdo\Mysql::ATTR_USE_BUFFERED_QUERY:
                 return 1;
             
             default:

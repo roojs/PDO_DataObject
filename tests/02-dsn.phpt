@@ -10,22 +10,22 @@ PDO_DataObject::debugLevel(1);
 
 PDO_DataObject::config('database', 'mysql://username:test@localhost:3344/somedb#' . implode( '|',
     array(
-        'MYSQL_ATTR_SSL_KEY=/path/to/client-key.pem',
-        'MYSQL_ATTR_SSL_CERT=/path/to/client-cert.pem',
-        'MYSQL_ATTR_SSL_CA=/path/to/ca-cert.pem',
+        'ATTR_SSL_KEY=/path/to/client-key.pem',
+        'ATTR_SSL_CERT=/path/to/client-cert.pem',
+        'ATTR_SSL_CA=/path/to/ca-cert.pem',
         
-        'MYSQL_ATTR_LOCAL_INFILE=1',
-        'MYSQL_ATTR_INIT_COMMAND=2',
-       // 'MYSQL_ATTR_READ_DEFAULT_FILE=3',
-       //  'MYSQL_ATTR_READ_DEFAULT_GROUP=4',
-        'MYSQL_ATTR_MAX_BUFFER_SIZE=5',
-        'MYSQL_ATTR_DIRECT_QUERY=6',
-        'MYSQL_ATTR_FOUND_ROWS=7',
-        'MYSQL_ATTR_IGNORE_SPACE=8',
-        'MYSQL_ATTR_COMPRESS=9',
-        'MYSQL_ATTR_SSL_CIPHER=10',
-        'MYSQL_ATTR_SSL_KEY=11',
-        'MYSQL_ATTR_MULTI_STATEMENTS=12',
+        'ATTR_LOCAL_INFILE=1',
+        'ATTR_INIT_COMMAND=2',
+       // 'ATTR_READ_DEFAULT_FILE=3',
+       //  'ATTR_READ_DEFAULT_GROUP=4',
+        'ATTR_MAX_BUFFER_SIZE=5',
+        'ATTR_DIRECT_QUERY=6',
+        'ATTR_FOUND_ROWS=7',
+        'ATTR_IGNORE_SPACE=8',
+        'ATTR_COMPRESS=9',
+        'ATTR_SSL_CIPHER=10',
+        'ATTR_SSL_KEY=11',
+        'ATTR_MULTI_STATEMENTS=12',
         
     )));
 (new PDO_DataObject())->PDO();

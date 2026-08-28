@@ -33,8 +33,6 @@
 
 class_exists('PDO_DataObject_Introspection') ? '' : require_once 'PDO/DataObject/Introspection.php';
 // move me to seperate classes...
-#[AllowDynamicProperties]
-
 class PDO_DataObject_Introspection_mysql extends PDO_DataObject_Introspection
 {
     

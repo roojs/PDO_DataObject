@@ -37,6 +37,11 @@ abstract class PDO_DataObject_Introspection
      * @var PDO_DataObject $do - the dataobject.
      */
     protected $do;
+
+    /**
+     * @var string last query attempted when getListOf() has no SQL for the requested type.
+     */
+    var $last_query = '';
     
     /**
      * Constructor
