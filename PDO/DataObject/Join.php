@@ -78,6 +78,13 @@
 class PDO_DataObject_Join {
     
     private $do;
+
+    /**
+     * Join SQL fragment built by joinAdd().
+     *
+     * @access public
+     */
+    public $_join = '';
     
     /**
      * Associative map of joined elements and their names..

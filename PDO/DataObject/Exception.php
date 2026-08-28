@@ -41,6 +41,8 @@ class PDO_DataObject_Exception extends Exception
     static function factory($message, $type, $previous_exception)
     {
         $cls = 'PDO_DataObject_Exception_'. $type;
+        class_exists($cls) ? '' :
+            require_once 'PDO/DataObject/Exception/' . $type . '.php';
         $code = $previous_exception ? $previous_exception->getCode() : 0;
         return new $cls($message, 0, $previous_exception );
     }
@@ -48,14 +50,3 @@ class PDO_DataObject_Exception extends Exception
     
      
 }
-
-// child classes - so you can catch them..
-class PDO_DataObject_Exception_InvalidArgs extends   PDO_DataObject_Exception {};
-class PDO_DataObject_Exception_NoData extends   PDO_DataObject_Exception {};
-class PDO_DataObject_Exception_InvalidConfig extends   PDO_DataObject_Exception {};
-class PDO_DataObject_Exception_NoClass extends   PDO_DataObject_Exception {};
-class PDO_DataObject_Exception_Set extends   PDO_DataObject_Exception {};
-class PDO_DataObject_Exception_Connect extends   PDO_DataObject_Exception {};
-class PDO_DataObject_Exception_Query extends   PDO_DataObject_Exception {};
-
-

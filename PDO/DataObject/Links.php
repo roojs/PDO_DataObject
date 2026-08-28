@@ -95,6 +95,9 @@ class PDO_DataObject_Links
         $this->do = $do;
         
         foreach($cfg as $k=>$v) {
+            if (!property_exists($this, $k)) {
+                continue;
+            }
             $this->$k = $v;
         }
        

@@ -14,6 +14,14 @@ file and the PHP sources).
 
 ## [Unreleased]
 
+## [0.1.1] - 2026-08-28
+
+### Fixed
+
+- Declare `PDO_DataObject_Join::$_join` instead of a dynamic property
+- `PDO_DataObject_Links` constructor only assigns declared config keys
+- Split exception subclasses into `PDO/DataObject/Exception/*.php`; factory loads the type file
+
 ## [0.1.0] - 2026-08-28
 
 ### Changed

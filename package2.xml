@@ -22,7 +22,7 @@ http://pear.php.net/dtd/package-2.0.xsd">
  </lead>
  <date>2026-08-28</date>
  <version>
-  <release>0.1.0</release>
+  <release>0.1.1</release>
   <api>2.0.0</api>
  </version>
  <stability>
@@ -31,21 +31,25 @@ http://pear.php.net/dtd/package-2.0.xsd">
  </stability>
  <license uri="https://www.gnu.org/licenses/lgpl-3.0.en.html">LGPL</license>
  <notes><![CDATA[
-### Changed
-
-- Require PHP 8.4+; PHP 5 / 7 / 8.0–8.3 are no longer supported
-- Use `Pdo\<Driver>::ATTR_*` constants instead of deprecated `PDO::MYSQL_ATTR_*`
-- DSN fragment options resolve constants on the driver subclass for the DSN scheme
-
 ### Fixed
 
-- Declare `PDO_DataObject_Introspection::$last_query` instead of a dynamic property
-- Declare `PDO_Dummy` connection fields used by the test harness
+- Declare `PDO_DataObject_Join::$_join` instead of a dynamic property
+- `PDO_DataObject_Links` constructor only assigns declared config keys
+- Split exception subclasses into `PDO/DataObject/Exception/*.php`; factory loads the type file
 ]]></notes>
  <contents>
   <dir name="/">
    <dir name="PDO">
     <dir name="DataObject">
+     <dir name="Exception">
+      <file name="Connect.php" role="php" />
+      <file name="InvalidArgs.php" role="php" />
+      <file name="InvalidConfig.php" role="php" />
+      <file name="NoClass.php" role="php" />
+      <file name="NoData.php" role="php" />
+      <file name="Query.php" role="php" />
+      <file name="Set.php" role="php" />
+     </dir>
      <dir name="Generator">
       <file name="Column.php" role="php" />
       <file name="Hooks.php" role="php" />
@@ -87,6 +91,31 @@ http://pear.php.net/dtd/package-2.0.xsd">
  </dependencies>
  <phprelease />
  <changelog>
+  <release>
+   <date>2026-08-28</date>
+   <version>
+    <release>0.1.0</release>
+    <api>2.0.0</api>
+   </version>
+   <stability>
+    <release>beta</release>
+    <api>beta</api>
+   </stability>
+   <license uri="https://www.gnu.org/licenses/lgpl-3.0.en.html">LGPL</license>
+   <notes><![CDATA[
+### Changed
+
+- Require PHP 8.4+; PHP 5 / 7 / 8.0–8.3 are no longer supported
+- Use `Pdo\<Driver>::ATTR_*` constants instead of deprecated `PDO::MYSQL_ATTR_*`
+- DSN fragment options resolve constants on the driver subclass for the DSN scheme
+
+### Fixed
+
+- Declare `PDO_DataObject_Introspection::$last_query` instead of a dynamic property
+- Declare `PDO_Dummy` connection fields used by the test harness
+]]></notes>
+  </release>
+
   <release>
    <date>2026-08-27</date>
    <version>
